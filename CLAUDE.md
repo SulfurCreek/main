@@ -63,6 +63,20 @@ Use `1111-jobdocs` as `:teamPath` in all team note endpoints.
 | PATCH | `/teams/:teamPath/notes/:noteId` | Update a team note |
 | DELETE | `/teams/:teamPath/notes/:noteId` | Delete a team note |
 | POST | `/notes/:noteId/upload` | Upload attachment (experimental) |
+| GET | `/folders` | List folders in the user's workspace |
+| POST | `/folders` | Create a folder in the user's workspace |
+| GET | `/folders/folder-order` | Get personal folder ordering (user workspace) |
+| PUT | `/folders/folder-order` | Replace personal folder ordering (user workspace) |
+| GET | `/folders/:folderId` | Get a single user folder |
+| PATCH | `/folders/:folderId` | Update a user folder |
+| DELETE | `/folders/:folderId` | Delete a user folder |
+| GET | `/teams/:teamPath/folders` | List folders in a team workspace |
+| POST | `/teams/:teamPath/folders` | Create a folder in a team workspace |
+| GET | `/teams/:teamPath/folders/folder-order` | Get personal folder ordering (team workspace) |
+| PUT | `/teams/:teamPath/folders/folder-order` | Replace personal folder ordering (team workspace) |
+| GET | `/teams/:teamPath/folders/:folderId` | Get a single team folder |
+| PATCH | `/teams/:teamPath/folders/:folderId` | Update a team folder |
+| DELETE | `/teams/:teamPath/folders/:folderId` | Delete a team folder |
 
 ---
 
@@ -107,6 +121,23 @@ Use `1111-jobdocs` as `:teamPath` in all team note endpoints.
 | `teamPath` | string/null | Team path if a team note |
 | `readPermission` | string | See above |
 | `writePermission` | string | See above |
+
+### Folder object fields (in responses)
+
+`ApiFolder` (returned by folder list / get endpoints):
+
+| Field | Type | Notes |
+|-------|------|-------|
+| `id` | string | Folder ID — used as `:folderId` in paths |
+| `name` | string | Folder name |
+| `description` | string/null | |
+| `icon` | string/null | |
+| `color` | string/null | |
+| `parentFolderId` | string/null | Parent folder ID, or `null` if top-level. **This is the real hierarchy source** — the notes list endpoints do **not** expose folder nesting |
+| `createdAt` | number | Unix epoch ms |
+| `updatedAt` | number | Unix epoch ms |
+
+`ApiFolderOrder`: an object mapping a parent folder id (or the literal `root`) → ordered array of child folder ids. Used by the `folder-order` endpoints.
 
 ---
 
@@ -223,6 +254,71 @@ Multipart form field: `file`. Verify against live Swagger docs before relying on
 
 ---
 
+## Folder API
+
+Management API for organising notes into folders. Folders can be nested (a folder may have a `parentFolderId`). Find a folder's id via the folder's URL in `https://hackmd.io/?nav=overview`. Each set of endpoints exists for both the user workspace (`/folders`) and a team workspace (`/teams/:teamPath/folders`); the team variants take `:teamPath` (e.g. `1111-jobdocs`) and otherwise behave identically.
+
+> **Why this matters here:** the notes list endpoints (`GET /notes`, `GET /teams/:teamPath/notes`) return a per-note `folderPaths`/parent that the API reports flat (top-level), so true nesting can't be reconstructed from notes alone. The Folder API's `parentFolderId` is the authoritative source for the folder tree — use it when building a hierarchy (e.g. `tree.md`).
+
+### List folders
+```
+GET /folders
+GET /teams/:teamPath/folders
+```
+Returns an array of `ApiFolder` objects.
+
+### Create a folder
+```
+POST /folders
+POST /teams/:teamPath/folders
+```
+Body (all optional):
+```json
+{
+  "name": "New folder",
+  "description": "…",
+  "icon": "…",
+  "color": "…",
+  "parentFolderId": "PARENT_FOLDER_ID"
+}
+```
+Omit `parentFolderId` (or pass top-level) to create at workspace root; set it to nest inside another folder.
+
+### Get a single folder
+```
+GET /folders/:folderId
+GET /teams/:teamPath/folders/:folderId
+```
+Returns one `ApiFolder` object.
+
+### Update a folder
+```
+PATCH /folders/:folderId
+PATCH /teams/:teamPath/folders/:folderId
+```
+Body (all optional; nullable fields can be set to `null` to clear): `name`, `description`, `icon`, `color`, `parentFolderId`. Set `parentFolderId` to move the folder under a new parent.
+
+### Delete a folder
+```
+DELETE /folders/:folderId
+DELETE /teams/:teamPath/folders/:folderId
+```
+Returns `204` (no body).
+
+### Get / set folder ordering
+```
+GET /folders/folder-order
+PUT /folders/folder-order
+GET /teams/:teamPath/folders/folder-order
+PUT /teams/:teamPath/folders/folder-order
+```
+`GET` returns an `ApiFolderOrder` (parent folder id or `root` → ordered array of child folder ids). `PUT` **replaces** the personal ordering; body:
+```json
+{ "order": { "root": ["folderIdA", "folderIdB"], "folderIdA": ["childId1", "childId2"] } }
+```
+
+---
+
 ## Code Snippets
 
 ### Node.js (fetch)
@@ -255,6 +351,10 @@ await hackmd("/notes/NOTE_ID", {
   body: JSON.stringify({ content: "# Updated", readPermission: "owner", writePermission: "owner" }),
 });
 await hackmd("/notes/NOTE_ID", { method: "DELETE" });
+// Folders
+await hackmd("/teams/1111-jobdocs/folders");
+await hackmd("/teams/1111-jobdocs/folders", { method: "POST", body: JSON.stringify({ name: "規格文件", parentFolderId: "PARENT_ID" }) });
+await hackmd("/teams/1111-jobdocs/folders/FOLDER_ID", { method: "PATCH", body: JSON.stringify({ parentFolderId: "NEW_PARENT_ID" }) });
 ```
 
 ### Python (requests)
@@ -278,6 +378,10 @@ get("/teams/1111-jobdocs/notes")
 post("/notes", {"content": "# Hello"})
 patch("/notes/NOTE_ID", {"content": "# Updated", "readPermission": "owner", "writePermission": "owner"})
 delete("/notes/NOTE_ID")
+# Folders
+get("/teams/1111-jobdocs/folders")
+post("/teams/1111-jobdocs/folders", {"name": "規格文件", "parentFolderId": "PARENT_ID"})
+patch("/teams/1111-jobdocs/folders/FOLDER_ID", {"parentFolderId": "NEW_PARENT_ID"})
 ```
 
 ### cURL
@@ -292,6 +396,10 @@ curl -X POST "https://api.hackmd.io/v1/teams/1111-jobdocs/notes" \
   -H "Authorization: Bearer $HACKMD_TOKEN" \
   -H "Content-Type: application/json" \
   -d '{"content":"# Hello from API"}'
+
+# List team folders (real hierarchy via parentFolderId)
+curl "https://api.hackmd.io/v1/teams/1111-jobdocs/folders" \
+  -H "Authorization: Bearer $HACKMD_TOKEN"
 ```
 
 ---
@@ -319,4 +427,6 @@ curl -X POST "https://api.hackmd.io/v1/teams/1111-jobdocs/notes" \
 - **`writePermission` must be at least as strict as `readPermission`.**
 - **`teamPath`** is the team's `path` field, not its `id`.
 - **Team `createdAt` is ISO 8601**; note timestamps (`createdAt`, `lastChangedAt`, `publishedAt`) are Unix epoch milliseconds.
+- **Folder hierarchy lives in the Folder API, not the notes endpoints.** To reconstruct a folder tree, read `parentFolderId` from `GET /folders` or `GET /teams/:teamPath/folders` — the notes list does not expose nesting.
+- **`folder-order` is personal and `PUT` replaces it wholesale** — fetch current order first, merge, then put back.
 - When in doubt, the **live Swagger docs at `https://api.hackmd.io/v1/docs`** are canonical.
