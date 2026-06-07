@@ -18,15 +18,16 @@
 | C. 職缺 | 求才系統 |
 | E. 聯繫 | 求才系統 |
 | M. Modal&Lightbox | 求才系統 |
+| 2.0 職缺內頁 | 求才系統 |
+| 11. 功能說明頁 | 求才系統 |
 | 1. 首頁 | 求職系統 |
-| 2.0 職缺內頁 | 求職系統 |
 | 2. 搜尋頁 | 求職系統 |
 | 3. 公司頁 | 求職系統 |
 | 4. 職缺頁 | 求職系統 |
 | A 主網 | 求職系統 |
 | D 求職 AI 產品 | 求職系統 |
 
-未歸併（保留頂層）：11. 功能說明頁、信件即時通合併專案、凱文交接文件、廣告合作頁、會議記錄、求職求才API
+未歸併（保留頂層）：信件即時通合併專案、凱文交接文件、廣告合作頁、會議記錄、求職求才API
 
 ---
 
@@ -126,6 +127,13 @@
       - [2.4 職缺移轉](https://hackmd.io/@1111-jobdocs/rJ5KsWEG-e)
     - 📁 **2.7 職缺廣告排程**
       - [2.7 職缺廣告排程](https://hackmd.io/@1111-jobdocs/Sy7bgNuzZg)
+  - 📁 **2.0 職缺內頁** 〔推測〕
+    - [2.0 職缺內頁 > 職缺內容](https://hackmd.io/@1111-jobdocs/BJ7Yob8W-g)
+    - [2.0 職缺內頁＞應徵方式](https://hackmd.io/@1111-jobdocs/Sy_fXBBfWx)
+    - [2.0 職缺內頁＞職缺設定](https://hackmd.io/@1111-jobdocs/SJEiSjRzbl)
+    - [2.0 送出職缺後彈窗與職缺審核](https://hackmd.io/@1111-jobdocs/rJhe4yBNWe)
+    - [提案：職缺資料＞工作時間與班別優化](https://hackmd.io/@1111-jobdocs/S1xTdMKV-l)
+    - [職缺預覽頁](https://hackmd.io/@1111-jobdocs/S1OfrDqiWl)
   - 📁 **D. 人才**
     - 📁 **3.0 履歷共用頁面**
       - [3.0 履歷列印頁](https://hackmd.io/@1111-jobdocs/H18Vo3zyMx)
@@ -197,6 +205,9 @@
     - [轉寄履歷Lightbox](https://hackmd.io/@1111-jobdocs/ByoEYp2a-g)
     - [追蹤人才Lightbox](https://hackmd.io/@1111-jobdocs/r1V8b3ZDWg)
     - [通訊錄 Lightbox](https://hackmd.io/@1111-jobdocs/B1iOzIB9-e)
+  - 📁 **11. 功能說明頁** 〔推測〕
+    - [帳號設定改版 功能說明頁](https://hackmd.io/@1111-jobdocs/rynOybVWZx)
+    - [智能客服 功能說明頁](https://hackmd.io/@1111-jobdocs/SJtErv_lZl)
   - 📁 **客服後台**
     - [不顯示：外籍人士需求](https://hackmd.io/@1111-jobdocs/S1ZG37NG-x)
     - [客服後台上傳文件及流程](https://hackmd.io/@1111-jobdocs/rkHmZ8iobx)
@@ -226,13 +237,6 @@
     - [1. 首頁目錄](https://hackmd.io/@1111-jobdocs/Bk4ou5JPWl)
     - [各版位上稿後台](https://hackmd.io/@1111-jobdocs/rJ3ec0v7bl)
     - [首頁熱門關鍵字](https://hackmd.io/@1111-jobdocs/SJXmooMxZx)
-  - 📁 **2.0 職缺內頁** 〔推測〕
-    - [2.0 職缺內頁 > 職缺內容](https://hackmd.io/@1111-jobdocs/BJ7Yob8W-g)
-    - [2.0 職缺內頁＞應徵方式](https://hackmd.io/@1111-jobdocs/Sy_fXBBfWx)
-    - [2.0 職缺內頁＞職缺設定](https://hackmd.io/@1111-jobdocs/SJEiSjRzbl)
-    - [2.0 送出職缺後彈窗與職缺審核](https://hackmd.io/@1111-jobdocs/rJhe4yBNWe)
-    - [提案：職缺資料＞工作時間與班別優化](https://hackmd.io/@1111-jobdocs/S1xTdMKV-l)
-    - [職缺預覽頁](https://hackmd.io/@1111-jobdocs/S1OfrDqiWl)
   - 📁 **2. 搜尋頁** 〔推測〕
     - [立即上工](https://hackmd.io/@1111-jobdocs/rySufos5gl)
     - [立即上工](https://hackmd.io/@1111-jobdocs/HkS2_wddlx)
@@ -376,9 +380,6 @@
 
 ## 其他／跨系統（未歸併）
 
-- 📁 **11. 功能說明頁**
-  - [帳號設定改版 功能說明頁](https://hackmd.io/@1111-jobdocs/rynOybVWZx)
-  - [智能客服 功能說明頁](https://hackmd.io/@1111-jobdocs/SJtErv_lZl)
 - 📁 **信件即時通合併專案**
   - [即時通、信件通知（企業通知）合併](https://hackmd.io/@1111-jobdocs/SJJY3isYZe)
   - [求才廠商對話流程圖.md](https://hackmd.io/@1111-jobdocs/H1sMBJolMl)
