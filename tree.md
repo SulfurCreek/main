@@ -13,12 +13,12 @@
   - [七言絕句](https://hackmd.io/@1111-jobdocs/H11GKtTxfe)
   - [招募系統規格文件目錄](https://hackmd.io/@1111-jobdocs/rkGFjjlPWe)
   - 📁 **A. 首頁**
-    - [A.1.7 異常狀態列](https://hackmd.io/@1111-jobdocs/SkJEsXNWMx)
     - 📁 **A.1 Topbar**
       - [A.1 topbar](https://hackmd.io/@1111-jobdocs/Hym116n3-x)
       - [A.1.3 公告](https://hackmd.io/@1111-jobdocs/HkTiVy7Z-e)
       - [A.1.4&A.1.5 公告&通知](https://hackmd.io/@1111-jobdocs/SJsQkWsWbg)
       - [A.1.6 帳號資訊選單](https://hackmd.io/@1111-jobdocs/ryik5PAZWl)
+      - [A.1.7 異常狀態列](https://hackmd.io/@1111-jobdocs/SkJEsXNWMx)
     - 📁 **登入流程**
       - [toast](https://hackmd.io/@1111-jobdocs/rk0aZy0aZg)
       - [登入功能](https://hackmd.io/@1111-jobdocs/rych3fo0bl)
