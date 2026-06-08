@@ -430,3 +430,42 @@ curl "https://api.hackmd.io/v1/teams/1111-jobdocs/folders" \
 - **Folder hierarchy lives in the Folder API, not the notes endpoints.** To reconstruct a folder tree, read `parentFolderId` from `GET /folders` or `GET /teams/:teamPath/folders` — the notes list does not expose nesting.
 - **`folder-order` is personal and `PUT` replaces it wholesale** — fetch current order first, merge, then put back.
 - When in doubt, the **live Swagger docs at `https://api.hackmd.io/v1/docs`** are canonical.
+
+---
+
+# 規格書 UI 截圖標號慣例（求才系統）
+
+來源：分析求才系統格式最完整的規格書 **[4.1 信件訊息對話規格文件](https://hackmd.io/@1111-jobdocs/r1ghrPxP-x)**（次選 [2.0 職缺內頁＞職缺內容](https://hackmd.io/@1111-jobdocs/BJ7Yob8W-g)）。新規格書（含 `E.1 聯繫人才`）的截圖標號與章節編號**一律依此慣例**。
+
+## 核心原則：截圖標號 == 章節編號（1:1 對應）
+
+截圖上標示的每個編號，**必對應一個同號的 Markdown heading**；反之每個編號 heading 應能在截圖上找到對應標號。標號是「畫面區塊 ↔ 規格章節」的唯一橋樑，RD/QA 靠它對照畫面與文字。
+
+## 編號階層與章節對應
+
+| 編號 | 標的 | Markdown | 截圖呈現 |
+| :--- | :--- | :--- | :--- |
+| `N`（整數） | 一個主要 UI 區塊（畫面分區） | `## N {區塊名}`（如 `## 2 對話區塊`） | 區塊**總覽截圖**緊接在 `## N` heading 下方；該截圖左上緣放一個**大號**標號 `N` |
+| `N.M` | 區塊內的元件／子區域 | `### N.M {元件名}`（如 `### 2.4 廠商訊息`） | 在同一張區塊總覽截圖上，於該元件左上角放**小號**標號 `N.M` |
+| `N.M.K` | 元件內的細項 | `#### N.M.K {細項名}`（如 `#### 2.4.1 信件類型`） | 視需要在更細的截圖或同張圖上標 `N.M.K` |
+
+* 每個 `## N` 區塊**自帶一張總覽截圖**（區塊內所有 `N.M` 標號集中標在這張圖上），緊接在 heading 之後。
+* 編號**連續**且**對應畫面標號**；`初始化` 不編號、固定放最前（見 spec-doc-1111 skill）。
+* 特殊變體用小寫字母後綴（如 `#### 2.2a 勾選兼職`、`2.2b`），對應同一元件的不同情境。
+
+## 標號徽章樣式（畫在截圖上）
+
+* **顏色**：紅／珊瑚紅底（salmon/coral，約 `#F2675F`～`#F4685E`）、**白色粗體**數字。
+* **形狀**：圓角矩形；整數區塊號 `N` 用較大、近正圓的徽章，子號 `N.M` 用較小的圓角矩形。
+* **位置**：
+  * 區塊號 `N`：放在該區塊總覽截圖的**左上緣／左外側**。
+  * 子號 `N.M`：放在所對應元件的**左上角**，緊貼元件。
+* **閱讀順序**：由上而下、由左至右，編號隨之遞增。
+
+## 套用步驟（從 Figma 畫面產生標號截圖）
+
+1. 從 Figma 對應 node 抓取目標區塊的乾淨截圖（design token / 畫面切圖）。
+2. 依「由上而下、由左至右」決定區塊與元件的編號。
+3. 在截圖上以上述徽章樣式（紅底白字圓角）標上 `N` / `N.M`。
+4. 規格文件以**編號為單位**建立／更新對應的 `## N` / `### N.M` 章節，使截圖標號與 heading 完全同步。
+5. 圖片寬度沿用既有慣例（手機版 `375px`、區塊總覽 `500`～`800px`）。

@@ -2,6 +2,7 @@
 
 - 文件總數：**307** 份
 - 來源：HackMD **Folder API**（`folder-order` 顯示排列 ＋ `parentFolderId` 結構欄位），2026-06-07 即時擷取
+- ⭐ **求才系統格式最完整的規格書**：[4.1 信件訊息對話規格文件](https://hackmd.io/@1111-jobdocs/r1ghrPxP-x)（`求才系統 > E. 聯繫 > 4.1 信件訊息`，v1.0.7 已發布）。完整具備 `示意圖`／`初始化`／**編號區塊（`## N` → 區塊總覽截圖 → `### N.M` / `#### N.M.K`）** 與「截圖標號對應章節編號」慣例，作為新規格書（含 E.1）的標號樣式基準。次選參考：[2.0 職缺內頁＞職缺內容](https://hackmd.io/@1111-jobdocs/BJ7Yob8W-g)（截圖數量最多）。
 
 > 本樹依 HackMD 團隊**實際資料夾結構**產生（不再用命名推測）。
 > HackMD 以 **folder-order（拖曳排列）** 決定 UI 顯示巢狀；當它與底層 `parentFolderId` 不一致時，以 folder-order（＝你在 HackMD 看到的排列）為準。
@@ -124,7 +125,7 @@
     - [（無標題）](https://hackmd.io/@1111-jobdocs/By6LOzxbMe)
     - 📁 **4.1 信件訊息**
       - [信件列表 規格文件](https://hackmd.io/@1111-jobdocs/rJkyKgeGWl)
-      - [信件對話 規格文件](https://hackmd.io/@1111-jobdocs/r1ghrPxP-x)
+      - [信件對話 規格文件](https://hackmd.io/@1111-jobdocs/r1ghrPxP-x) ⭐ **求才系統格式最完整／截圖標號慣例基準**
     - 📁 **E.2.1 信件範本**
       - [E.2.1 信件範本](https://hackmd.io/@1111-jobdocs/HyDIQwJUWg)
     - 📁 **E.2.2 簡訊範本**
