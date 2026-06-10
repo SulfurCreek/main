@@ -62,7 +62,7 @@ Use `1111-jobdocs` as `:teamPath` in all team note endpoints.
 | POST | `/teams/:teamPath/notes` | Create a note in a team workspace |
 | PATCH | `/teams/:teamPath/notes/:noteId` | Update a team note |
 | DELETE | `/teams/:teamPath/notes/:noteId` | Delete a team note |
-| POST | `/notes/:noteId/upload` | Upload attachment (experimental) |
+| POST | `/notes/:noteId/images` | Upload an image to a note |
 | GET | `/folders` | List folders in the user's workspace |
 | POST | `/folders` | Create a folder in the user's workspace |
 | GET | `/folders/folder-order` | Get personal folder ordering (user workspace) |
@@ -121,6 +121,7 @@ Use `1111-jobdocs` as `:teamPath` in all team note endpoints.
 | `teamPath` | string/null | Team path if a team note |
 | `readPermission` | string | See above |
 | `writePermission` | string | See above |
+| `folderPaths` | array | Folder ancestor chain `[{ id, name, parentId, ... }]` (root → leaf). Returned by the single-note GET; reflects where `parentFolderId` filed the note |
 
 ### Folder object fields (in responses)
 
@@ -173,10 +174,17 @@ Body (all optional):
   "readPermission": "owner",
   "writePermission": "owner",
   "commentPermission": "everyone",
-  "permalink": "custom-slug"
+  "permalink": "custom-slug",
+  "tags": ["求才系統web"],
+  "description": "短描述",
+  "parentFolderId": "FOLDER_ID"
 }
 ```
-Returns `201` with created note object.
+- `parentFolderId` — file the note directly into a folder **at creation** (no separate "move" call needed). Omit to create at workspace root.
+- `tags` — array of tag strings.
+- `description` — short note description.
+
+Returns `201` with created note object (includes `folderPaths` — the folder ancestor chain).
 
 ### Update a note
 ```
@@ -188,9 +196,12 @@ Body (all optional):
   "content": "# Updated",
   "readPermission": "signed_in",
   "writePermission": "owner",
-  "permalink": "new-slug"
+  "permalink": "new-slug",
+  "parentFolderId": "FOLDER_ID"
 }
 ```
+- `parentFolderId` — **move** the note into a different folder. Same field as create; this is how you re-file an existing note via API.
+
 Returns `202` with body `Accepted`.
 
 ### Delete a note
@@ -246,11 +257,11 @@ DELETE /teams/:teamPath/notes/:noteId
 ```
 Returns `204`.
 
-### Upload attachment (experimental)
+### Upload an image
 ```
-POST /notes/:noteId/upload
+POST /notes/:noteId/images
 ```
-Multipart form field: `file`. Verify against live Swagger docs before relying on this endpoint.
+Multipart upload of an image; returns a hosted image URL you can embed in note content as `![image](<returned-url>)`. Useful for adding `## 示意圖` screenshots programmatically. Confirm the exact multipart field name against the live Swagger (`https://api.hackmd.io/v1/docs`) before relying on it.
 
 ---
 
@@ -258,7 +269,10 @@ Multipart form field: `file`. Verify against live Swagger docs before relying on
 
 Management API for organising notes into folders. Folders can be nested (a folder may have a `parentFolderId`). Find a folder's id via the folder's URL in `https://hackmd.io/?nav=overview`. Each set of endpoints exists for both the user workspace (`/folders`) and a team workspace (`/teams/:teamPath/folders`); the team variants take `:teamPath` (e.g. `1111-jobdocs`) and otherwise behave identically.
 
-> **Why this matters here:** the notes list endpoints (`GET /notes`, `GET /teams/:teamPath/notes`) return a per-note `folderPaths`/parent that the API reports flat (top-level), so true nesting can't be reconstructed from notes alone. The Folder API's `parentFolderId` is the authoritative source for the folder tree — use it when building a hierarchy (e.g. `tree.md`).
+> **Note placement vs. folder tree — two different things:**
+> - **To create / move a note into a folder**, set `parentFolderId` in the note's POST or PATCH body (see Create/Update a note). No separate "move" endpoint is needed.
+> - **To read a note's folder location**, use the single-note `GET /teams/:teamPath/notes/:noteId`, which returns a `folderPaths` array — the full ancestor chain (e.g. `求才系統 > A. 首頁 > A.1 Topbar`).
+> - **Only the *list* endpoints** (`GET /notes`, `GET /teams/:teamPath/notes`) don't guarantee full nesting; the Folder API's `parentFolderId` is the authoritative source when reconstructing the whole tree (e.g. `tree.md`).
 
 ### List folders
 ```
@@ -427,6 +441,7 @@ curl "https://api.hackmd.io/v1/teams/1111-jobdocs/folders" \
 - **`writePermission` must be at least as strict as `readPermission`.**
 - **`teamPath`** is the team's `path` field, not its `id`.
 - **Team `createdAt` is ISO 8601**; note timestamps (`createdAt`, `lastChangedAt`, `publishedAt`) are Unix epoch milliseconds.
-- **Folder hierarchy lives in the Folder API, not the notes endpoints.** To reconstruct a folder tree, read `parentFolderId` from `GET /folders` or `GET /teams/:teamPath/folders` — the notes list does not expose nesting.
+- **A note's folder is set via `parentFolderId` on note POST/PATCH, and read via `folderPaths` on the single-note GET.** Don't assume notes can't be filed via API — they can, at creation or later. The Folder API (`GET /folders`) remains the authoritative source for reconstructing the *whole* tree, since the note *list* endpoints don't guarantee full nesting.
+- **Image upload endpoint is `/notes/:noteId/images`** (not `/upload`). Upload returns a hosted URL to embed as `![image](...)`.
 - **`folder-order` is personal and `PUT` replaces it wholesale** — fetch current order first, merge, then put back.
 - When in doubt, the **live Swagger docs at `https://api.hackmd.io/v1/docs`** are canonical.
