@@ -470,6 +470,17 @@ curl "https://api.hackmd.io/v1/teams/1111-jobdocs/folders" \
 4. 規格文件以**編號為單位**建立／更新對應的 `## N` / `### N.M` 章節，使截圖標號與 heading 完全同步。
 5. 圖片寬度沿用既有慣例（手機版 `375px`、區塊總覽 `500`～`800px`）。
 
+## 以 Pillow 在截圖上標注／覆蓋文字
+
+設計稿與規格有落差時，可在 Figma 截圖上疊加標號、覆蓋改字、標注落差（不要求設計稿與規格一致，目的是示意）。完整步驟見 `spec-doc-1111` skill「截圖標注／覆蓋」一節，重點：
+
+* **抓圖**：`mcp__Figma__get_screenshot`（`nodeId`＋`fileKey`，回傳短效 URL→`curl` 下載）；定位座標再用 `get_design_context`。
+* **改字**：先畫白底矩形蓋舊內容，再 `ImageDraw.text` 重寫；中文字型用 `/usr/share/fonts/truetype/wqy/wqy-zenhei.ttc`（無 Noto TC 時後備）。
+* **標號徽章**：紅底白字圓角（`#F2675F`），`N` / `N.M` 依慣例放置。
+* **落差標注**：黃框（`(255,200,0)`）圈出差異處，旁注「規格：XX／現況：OO」。
+* **入庫**：HackMD `upload` 端點不可用→圖 commit 到 `.claude/assets/`、push 後用 `raw.githubusercontent.com/sulfurcreek/main/{commit}/.claude/assets/{file}.png` 引用。
+* **限制**：只能蓋白重寫，無法智慧抹除；要乾淨換字改用 Figma MCP 編輯設計稿文字節點再重截。
+
 ---
 
 # 版控表慣例（所有規格書共通）

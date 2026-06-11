@@ -238,6 +238,21 @@ Use Case: `{調用端＋執行動作＋受影響標的物}`
 - 限寬內嵌圖（手機版／小元件）：`<image style="max-width:375px" src="..."></image>` 或 `<img style="max-width:500px" src="...">`
 - 常見寬度：手機版 `375px`、空狀態 `500px`、列表 `800px`、tooltip `300px`
 
+### 截圖標注／覆蓋（從 Figma 產生規格截圖）
+
+當設計稿與規格需求有落差，或要在畫面上補規格章節標號時，用 Pillow 在截圖上疊加，**不要求設計稿與規格完全一致**——目的是示意落差與對應章節。流程：
+
+1. **抓圖**：`mcp__Figma__get_screenshot`（傳 `nodeId`＋`fileKey`，`maxDimension` 視需要放大，預設回傳短效 URL），用 `curl` 下載 PNG。需要定位元件座標時再呼叫 `get_design_context`（輸出大時用 `excludeScreenshot:true`、再從存檔檔案 grep `data-node-id`）。
+2. **定位**：用 Pillow 逐列掃描像素（無 numpy 時用 `img.getpixel`）找出區塊邊界（底色、border、文字色），決定覆蓋與標號座標。
+3. **覆蓋改字**：在目標區先畫白底矩形蓋掉舊內容，再用 `ImageDraw.text` 重寫。中文字型用 `/usr/share/fonts/truetype/wqy/wqy-zenhei.ttc`（系統無 Noto TC 時的後備）。
+4. **章節標號徽章**：紅／珊瑚紅底（`#F2675F`）圓角矩形＋白色粗體數字，`N` 放區塊左上、`N.M` 貼元件左上（見 CLAUDE.md「截圖標號慣例」）。
+5. **落差標注**（選用）：黃框（`outline=(255,200,0)`）圈出與設計稿不同處，旁邊以文字注明「規格：XX／現況：OO」。用 `Image.alpha_composite` 疊半透明層。
+6. **裁切成小圖**：`img.crop((x0,y0,x1,y1))` 只留相關區塊，避免整頁大圖。
+7. **入庫**：HackMD 的 `POST /notes/:noteId/upload` 目前不可用；改將圖 commit 到 `repo .claude/assets/`、push 後用 `https://raw.githubusercontent.com/sulfurcreek/main/{commit}/.claude/assets/{file}.png` 引用（與既有 E.1 截圖一致）。
+8. **置入文件**：限寬內嵌（手機版 `<div style="max-width:375px">…</div>`），緊貼對應 `### N.M` heading 下方。
+
+> 圖片層級只能「蓋白重寫」，無法智慧抹除原字再換字；若要乾淨替換 UI 內文字，改用 Figma MCP 編輯設計稿文字節點再重新截圖。
+
 ### 摺疊區塊
 
 - 大段補充（如判斷邏輯、流程圖）：`:::spoiler {標題}` ... `:::`
