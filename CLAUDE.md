@@ -455,8 +455,9 @@ curl "https://api.hackmd.io/v1/teams/1111-jobdocs/folders" \
 
 ## 標號徽章樣式（畫在截圖上）
 
-* **顏色**：紅／珊瑚紅底（salmon/coral，約 `#F2675F`～`#F4685E`）、**白色粗體**數字。
-* **形狀**：圓角矩形；整數區塊號 `N` 用較大、近正圓的徽章，子號 `N.M` 用較小的圓角矩形。
+* **顏色**：紅／珊瑚紅底 `#FF5F57`、**白色粗體**數字。
+* **字型**：`Inter`、`font-weight:700`、`font-size:20px`、`line-height:24px`、置中、白色 `#FFFFFF`。
+* **形狀／尺寸**：圓角矩形 `border-radius:10px`、`padding:4px 10px`（單字元徽章約 `34×33px`）；整數區塊號 `N` 用較大、近正圓的徽章，子號 `N.M` 用較小的圓角矩形。
 * **位置**：
   * 區塊號 `N`：放在該區塊總覽截圖的**左上緣／左外側**。
   * 子號 `N.M`：放在所對應元件的**左上角**，緊貼元件。
@@ -476,7 +477,7 @@ curl "https://api.hackmd.io/v1/teams/1111-jobdocs/folders" \
 
 * **抓圖**：`mcp__Figma__get_screenshot`（`nodeId`＋`fileKey`，回傳短效 URL→`curl` 下載）；定位座標再用 `get_design_context`。
 * **改字**：先畫白底矩形蓋舊內容，再 `ImageDraw.text` 重寫；中文字型用 `/usr/share/fonts/truetype/wqy/wqy-zenhei.ttc`（無 Noto TC 時後備）。
-* **標號徽章**：紅底白字圓角（`#F2675F`），`N` / `N.M` 依慣例放置。
+* **標號徽章**：紅底白字圓角，底色 `#FF5F57`、`border-radius:10px`、`padding:4px 10px`、字型 `Inter` 700 / `20px` / `line-height:24px`，`N` / `N.M` 依慣例放置。
 * **落差標注**：黃框（`(255,200,0)`）圈出差異處，旁注「規格：XX／現況：OO」。
 * **入庫**：HackMD `upload` 端點不可用→圖 commit 到 `.claude/assets/`、push 後用 `raw.githubusercontent.com/sulfurcreek/main/{commit}/.claude/assets/{file}.png` 引用。
 * **限制**：只能蓋白重寫，無法智慧抹除；要乾淨換字改用 Figma MCP 編輯設計稿文字節點再重截。
