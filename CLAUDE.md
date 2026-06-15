@@ -404,6 +404,16 @@ curl "https://api.hackmd.io/v1/teams/1111-jobdocs/folders" \
 
 ---
 
+## 規格書引用語法（HackMD 平台特性）
+
+寫入 note `content` 時可直接使用以下 HackMD 原生語法（API 不會轉義）：
+
+- **相對 note 連結**：`[標題](/noteId)` — 在同一 team workspace 下點擊可直接導航，規格書間互連一律用此形式，不用完整 URL。例：`[求才系統代碼表](/B1j3sN-bzx)`。
+- **全文嵌入**：`{%hackmd <noteId> %}` — 將另一份 note 的內容就地嵌入渲染。慣例是包在 `:::spoiler {名稱}` 內、外層 `<div style="padding-left:50px">`，讓讀者展開閱讀引用文件（如 lightbox 規格）而不離開本文。
+- 詳細的文件撰寫慣例（三層引用方式、🚧 待補規則區塊、階段拆分）見 `spec-doc-1111` skill。
+
+---
+
 ## Status Codes
 
 | Code | Meaning |
@@ -429,4 +439,5 @@ curl "https://api.hackmd.io/v1/teams/1111-jobdocs/folders" \
 - **Team `createdAt` is ISO 8601**; note timestamps (`createdAt`, `lastChangedAt`, `publishedAt`) are Unix epoch milliseconds.
 - **Folder hierarchy lives in the Folder API, not the notes endpoints.** To reconstruct a folder tree, read `parentFolderId` from `GET /folders` or `GET /teams/:teamPath/folders` — the notes list does not expose nesting.
 - **`folder-order` is personal and `PUT` replaces it wholesale** — fetch current order first, merge, then put back.
+- **Moving a note into a folder**: `PATCH /teams/:teamPath/notes/:noteId` with body `{"parentFolderId": "<folder UUID>"}`. The UUID must be the folder's **internal UUID** (from the note's `folderPaths[].id` or the Folder API `id`), **not** the short `clientId` seen in folder URLs — passing `folderId` or the short id returns `202` but silently does nothing. Verify by re-fetching the note and checking `folderPaths`.
 - When in doubt, the **live Swagger docs at `https://api.hackmd.io/v1/docs`** are canonical.
