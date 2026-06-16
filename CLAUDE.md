@@ -4,6 +4,19 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ---
 
+# CLAUDE.md 維護原則
+
+* **不收錄規格內容本身**：本檔案只定義「如何用有限資源產出合規、且不需大量人工審閱的文件」的方法與慣例（格式、流程、命名、裁切規則等），不得寫入任何規格文件的實際規格內容（業務邏輯、欄位定義、UI 文案等）。範例（用於說明格式慣例的最小示意片段）不受此限。
+* **每次更新都要留痕**：每次修改本檔案，都要在下方「版控紀錄」表格新增一筆紀錄（時間升冪、最新一筆 append 在最末列）。使用者會定期清理此表格，但每次異動都必須先記錄。
+
+## 版控紀錄
+
+| 時間 | 異動摘要 |
+| :--- | :--- |
+| 2026-06-16 | 新增本「CLAUDE.md 維護原則」區塊與本表格；新增「狀態邏輯寫進表格欄位、不另開小表格／合成截圖」之 Pillow 截圖慣例補充 |
+
+---
+
 # HackMD API Reference
 
 Complete reference for authenticating and calling every HackMD API endpoint. Live interactive spec: `https://api.hackmd.io/v1/docs`.
@@ -482,6 +495,7 @@ curl "https://api.hackmd.io/v1/teams/1111-jobdocs/folders" \
 * **入庫**：HackMD `upload` 端點不可用→圖 commit 到 `.claude/assets/`、push 後用 `raw.githubusercontent.com/sulfurcreek/main/{commit}/.claude/assets/{file}.png` 引用。
 * **限制**：只能蓋白重寫，無法智慧抹除；要乾淨換字改用 Figma MCP 編輯設計稿文字節點再重截。
 * **裁切精準，不留空白**：截圖裁切至 UI 元件本身邊界，不含周圍空白背景；badge 直接疊在元素上（`x=4`），不加左側留白 margin。
+* **狀態邏輯收斂進表格欄位，不另開小表格／合成截圖**：同一元件在不同條件下的呈現差異（如按鈕 disabled 規則），優先用 `<ul><li>` 巢狀條列寫進對應表格欄位本身，不另立獨立子表格或段落重述；截圖維持單張完整 UI 元件原始畫面，不用多張局部裁切堆疊拼接成合成圖。
 
 ---
 
