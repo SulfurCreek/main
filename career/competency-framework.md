@@ -1,10 +1,14 @@
 <!--markdownlint-disable MD033-->
 <!--markdownlint-disable MD013-->
 
+> ⚠️ **個人職涯資料，非 1111 規格文件 / Personal career material — NOT a 1111 spec.** 請勿套用 `spec-doc-1111`
+> skill，也勿推送至 HackMD `1111-jobdocs` 團隊工作區。詳見 `career/CLAUDE.md`。
+> *Do not apply the spec-doc-1111 skill or push to the HackMD team workspace; see `career/CLAUDE.md`.*
+
 # 職能框架 / Competency Framework
 
 > **用途 / Purpose**：作為下一步職涯（**資深產品經理 Senior PM** 或 **同領域轉職 same-craft move**）的職能盤點。
-> 每一項職能都附上可追溯的工作證據（出自本 repo 的 `spec-doc-1111` skill 與 `tree.md` 的 307 份規格文件）。
+> 每一項職能都附上可追溯的工作證據（出自本 repo 的 `spec-doc-1111` skill 與 `tree.md` 文件清單中本人負責的範圍）。
 > 可直接用於升遷評估、履歷／LinkedIn 撰寫、面試談資。
 
 ---
@@ -12,12 +16,13 @@
 ## 定位一句話 / Positioning Statement
 
 **繁中**：我是能掌握「產品定義全鏈路」的產品企劃——從 **User Story → Wireframe → 功能規格 → 跨團隊交接**，
-獨立負責一個**雙邊招募媒合平台**（求才 B 端 ＋ 求職 C 端）及其 **AI 產品線**的需求定義與規格輸出。
+獨立負責 **1111 求才系統（recruit, B 端）的端到端產品定義**，並延伸負責求職端的**公司頁（公司在求職站的呈現）**，
+同時規劃多項**求才側 AI 產品**（生成式與推薦類）。
 
 **English**：A product planner who owns the **full definition pipeline** — *user story → wireframe → functional
-spec → cross-team handoff* — for a **two-sided recruitment marketplace** (employer B-side + jobseeker C-side) and
-its **AI product line**. I originate products from my own user stories and wireframes; I don't transcribe other
-people's.
+spec → cross-team handoff* — for the **1111 recruit (employer, B-side) platform end-to-end**, extending to the
+jobseeker-facing **company page (公司頁)**, plus a line of **employer-side AI products** (generative + recommendation).
+I originate products from my own user stories and wireframes; I don't transcribe other people's.
 
 ---
 
@@ -25,12 +30,15 @@ people's.
 
 | 維度 / Dimension | 內容 / Detail |
 | :--- | :--- |
-| 產出規模 / Output | **307 份規格文件**（`tree.md`，2026-06 自 HackMD Folder API 即時擷取） |
-| 平台廣度 / Surface | **雙邊平台**：求才（recruit, B 端）＋ 求職（jobseeker, C 端） |
-| 產品線 / Product lines | 核心交易流程 ＋ **AI 產品**（模擬面試、履歷健檢、小精靈、最適配、個人化推薦） |
+| 負責範圍 / Ownership | **求才系統（recruit, B 端）全系統**（A–M 各模組）＋ 求職端**公司頁**；本人撰寫份數〔待補數據 / TODO: count〕 |
+| 平台定位 / Surface | 廠商端（B-side）平台主責；公司頁為連結至求職者端（C-side）的橋接面 |
+| 產品線 / Product lines | 核心交易流程 ＋ **求才側 AI 產品**（職缺匯入、公司簡介生成、JD 生成、職缺健檢、AI 推薦人才） |
 | 角色定位 / Role | 需求源頭 → 規格輸出 → 交接落地（originate → specify → hand off），非單純文件化 |
 | 方法論 / Method | 狀態驅動規格、MECE 四狀態、權限代碼建模、分階段交付、版本控管、流程圖視覺化 |
 | 工具化 / Tooling | 將自身規格慣例**標準化為可複用 skill**（`spec-doc-1111`）＋雙系統範本＋文件樹 |
+
+> 註 / Note：HackMD `1111-jobdocs` 工作區共 307 份文件（`tree.md`），涵蓋多人；上表僅列**本人負責**範圍。
+> *The HackMD workspace holds 307 docs across multiple people; the row above lists only what I own.*
 
 ---
 
@@ -48,8 +56,8 @@ than a downstream documenter.*
 
 - **實際展現 / In practice**：規格範本以 `User Story:`（Persona 視角）＋ `Use Case:`（系統視角）開場，
   將每個功能錨定在「為誰、解決什麼、達成什麼目標」；多數文件由我自己的 user story 或 wireframe 展開。
-- **工作證據 / Evidence**：`spec-doc-1111` 範本骨架（User Story／Use Case 區塊）；`tree.md` 全 307 份文件
-  皆為自身專案產出。
+- **工作證據 / Evidence**：`spec-doc-1111` 範本骨架（User Story／Use Case 區塊）；求才系統各模組規格皆由本人的
+  user story／wireframe 展開（見 `tree.md` 求才系統與公司頁範圍）。
 - **資深度訊號 / Seniority signal**：擁有「定義權」——決定要做什麼、為什麼做，是 PM 角色的核心，而非 BA／文件職。
 
 ### F2. 功能規格與系統思維 / Functional Spec & Systems Thinking
@@ -66,27 +74,34 @@ verify without ambiguity.*
   `[REF] 求才系統權限代碼表`。
 - **資深度訊號 / Seniority signal**：把模糊需求轉成**可驗收的系統規格**，降低反工與上線風險。
 
-### F3. 雙邊平台領域深度 / Two-Sided Marketplace Domain Depth
+### F3. 廠商端平台深度 ＋ 公司頁橋接 / Employer-Side (B-Side) Platform Depth + Company-Page Bridge
 
-**定義 / Definition**：同時掌握招募媒合平台的**供需兩端**商業邏輯與使用情境。
-*Command the business logic of both sides of a recruitment marketplace.*
+**定義 / Definition**：完整掌握招募媒合平台**廠商端（B-side）**的商業邏輯與使用情境，並負責連結至求職者端的**公司頁**。
+*Command the full business logic of the employer (B-side) of a recruitment platform, plus the jobseeker-facing
+company page that bridges to the C-side.*
 
 - **實際展現 / In practice**：
-  - **求才 B 端 / Employer-side**：公司資料、職缺（新增／總覽／排序／移轉／廣告排程）、人才（搜尋／配對／追蹤／封鎖）、
+  - **求才 B 端 / Employer-side（主責）**：公司資料、職缺（新增／總覽／排序／移轉／廣告排程）、人才（搜尋／配對／追蹤／封鎖）、
     聯繫（信件訊息／範本）、購買（線上續約／合約）、紀錄統計。
-  - **求職 C 端 / Jobseeker-side**：首頁、搜尋頁、公司頁、職缺頁、會員中心（履歷／我的主頁／關注）、登入註冊。
-- **工作證據 / Evidence**：`tree.md` 求才系統（A–M 系列）＋ 求職系統（1–6 ＋ A／B／D 頂層資料夾）。
-- **資深度訊號 / Seniority signal**：理解雙邊網路效應與跨端連動（如職缺曝光 ↔ 求職者觸及），具備平台級產品視野。
+  - **公司頁 / Company page（求職端唯一負責面）**：公司資料、相似公司、推薦職缺、品牌行銷子頁——
+    廠商資料如何呈現給求職者的橋接面。
+- **工作證據 / Evidence**：`tree.md` 求才系統（A–M 系列）；求職端「3. 公司頁」（3.2 公司資料、3.12 相似公司、
+  3.13 推薦職缺、3.14 品牌行銷子頁），repo `.claude/assets/company-page/` 為其設計素材。
+- **資深度訊號 / Seniority signal**：對 B 端平台有端到端掌握，並透過公司頁理解 B→C 的曝光連動，具備平台級產品視野。
 
 ### F4. AI 產品企劃 / AI Product Planning
 
 **定義 / Definition**：為 AI 驅動功能定義產品需求，涵蓋輸入／模型行為／結果呈現／失敗與邊界狀態。
 *Define requirements for AI-driven features: inputs, model behavior, result presentation, and failure/edge states.*
 
-- **實際展現 / In practice**：規格化生成式與推薦類 AI 產品，處理非確定性輸出的狀態設計（loading／成功／失敗／次數限制）。
-- **工作證據 / Evidence**：`AI 模擬面試`、`AI 履歷健檢`（健診各階段、分數計算、診斷報告）、`AI 小精靈`（語音輸入狀態）、
-  `AI 最適配`（分階段：首頁／測驗／社群）、`個人化推薦`、`3.2.6 AI 推薦人才名單`、`AI 履歷&職缺打標`、`PDF 履歷匯入`。
-- **資深度訊號 / Seniority signal**：站在 AI 產品前沿，能將模型能力轉譯為可落地的使用者價值與規格——當前最稀缺的 PM 能力之一。
+- **實際展現 / In practice**：為**求才側**規格化生成式與推薦類 AI 功能，處理非確定性輸出的狀態設計
+  （loading／成功／失敗／品質與邊界），把 LLM 能力轉成廠商可用的工作流。
+- **工作證據 / Evidence（求才側 AI）**：
+  - **生成式 / Generative**：**公司簡介生成**、**JD（職缺描述）生成**、**職缺匯入**（自動解析既有職缺）、**職缺健檢**。
+  - **推薦 / Recommendation**：`3.2.6 AI 推薦人才名單`。
+  - 相關提案／延伸：職缺審核導入 AI、AI 履歷&職缺打標、求才智能客服。
+- **資深度訊號 / Seniority signal**：能將生成式模型能力（公司簡介／JD 自動生成）轉譯為可落地的廠商價值與規格——
+  當前最稀缺的 PM 能力之一。
 
 ### F5. 交付流程與品質 / Delivery Process & Quality
 
@@ -130,8 +145,8 @@ verify without ambiguity.*
 | :--- | :--- | :--- |
 | F1 產品定義全鏈路 | 從需求源頭定義產品、握有 what/why 決策權 | 即戰力：能獨立把模糊需求變成完整規格 |
 | F2 規格與系統思維 | 把策略拆解為可執行、可驗收的範圍 | 高品質規格、低反工，RD/QA 無痛接手 |
-| F3 雙邊平台領域 | 平台級產品視野、跨端連動判斷 | 招募／HR Tech 領域可直接上手 |
-| F4 AI 產品企劃 | 帶 AI 產品線、轉譯模型能力為價值 | 稀缺的 AI 規格經驗，跨產業可遷移 |
+| F3 廠商端平台＋公司頁 | B 端平台級掌握、理解 B→C 曝光連動 | 招募／HR Tech B 端領域可直接上手 |
+| F4 AI 產品企劃（求才側） | 帶生成式／推薦 AI 產品、轉譯模型能力為價值 | 稀缺的生成式 AI 規格經驗，跨產業可遷移 |
 | F5 交付流程與品質 | 可治理交付、管理變更與風險 | 成熟的版本控管與缺口管理習慣 |
 | F6 跨職能協作／交接 | 團隊樞紐、建立制度記憶 | 文件化與溝通能力，降低 onboarding 成本 |
 | F7 流程標準化／工具化 | 設計流程、放大團隊產出（lead 訊號） | 能帶入並提升新團隊的規格標準 |
@@ -142,13 +157,14 @@ verify without ambiguity.*
 
 > 動作＋範圍＋影響（action + scope + impact）。`〔待補數據〕` 處請補上實際數字後再對外使用。
 
-- 主導一個**雙邊招募媒合平台**（求才 B 端 ＋ 求職 C 端）的產品定義，從 user story／wireframe 到功能規格獨立產出
-  **307 份**規格文件，涵蓋核心交易流程與 AI 產品線。
-  *Owned end-to-end product definition for a two-sided recruitment marketplace, authoring **307** functional specs
-  from user story/wireframe through to engineering-ready spec.*
-- 定義並交付多項 **AI 產品**（模擬面試、履歷健檢、AI 小精靈、最適配、個人化推薦），將生成式／推薦模型能力轉譯為
-  可落地的使用者流程，〔待補數據：採用率／使用量 adoption/usage〕。
-  *Defined and shipped multiple AI products …, translating model capabilities into shippable user flows.*
+- 端到端主導 **1111 求才（B 端）招募平台**的產品定義（公司／職缺／人才／聯繫／購買／紀錄各模組）並延伸負責求職端**公司頁**，
+  從 user story／wireframe 到工程可實作的功能規格皆獨立產出，〔待補數據：本人撰寫份數〕。
+  *Owned end-to-end product definition for the 1111 recruit (B-side) platform — plus the jobseeker company page —
+  authoring specs from user story/wireframe through to engineering-ready, across 〔TODO: count〕 documents.*
+- 定義並交付多項**求才側 AI 功能**：**公司簡介生成、JD 生成、職缺匯入、職缺健檢**（生成式）與 **AI 推薦人才名單**（推薦），
+  將 LLM 能力轉譯為廠商可用的工作流，〔待補數據：採用率／使用量 adoption/usage〕。
+  *Defined and shipped multiple employer-side AI features — company-profile generation, JD generation, job import,
+  job health-check (generative) and AI talent recommendation — translating model capabilities into usable workflows.*
 - 建立**狀態驅動的規格方法論**（MECE 四狀態、權限代碼建模、條件邏輯），降低 RD/QA 反工與上線風險，
   〔待補數據：缺陷率／反工率下降 %〕。
   *Established a state-driven spec methodology (MECE four-state coverage, permission-code modeling) that reduced
