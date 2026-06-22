@@ -181,6 +181,20 @@ frontline/customer needs, aligning everyone through regular communication and da
 - **工作證據 / Evidence**：求才產品 Roadmap 的 `需求單位／需求來源／附註` 欄位（需求廣度、來源可溯、決策與取捨紀錄）。
 - **資深度訊號 / Seniority signal**：對齊高層目標、協調多團隊、以數據而非位階做決策——資深 PM 最被期待的**向上與橫向影響力**。
 
+### F10. 業務邏輯梳理 / Business-Logic Untangling
+
+**定義 / Definition**：把散落、互相矛盾、隱含的業務規則，**盤整成窮盡且互斥（MECE）的決策邏輯**，作為規格與工程實作前的「單一真相來源」。這是 F2 的**上游**——先把業務真相釐清，才寫得出可驗收的規格。
+*Untangle scattered, contradictory, and implicit business rules into a single MECE decision model — the source of
+truth that precedes specs and engineering. This is upstream of F2: clarify the business truth before writing the spec.*
+
+- **實際展現 / In practice**：
+  - **規則盤整**：把分散在權限、審核、配對、續約等處的判斷，集中成單一規則集（如「權限判斷」表、職缺是否進審核的條件、配對的全文檢索／國籍／證照 AND 邏輯）。
+  - **多重條件建模**：為複雜情境窮舉巢狀條件（如求職者「停權／關閉履歷」依姓名真偽 × 年齡 × 久未登入 × 註冊年資的多條件規則；論件薪資與薪資區間警示；語文證照分數顯示格式）。
+  - **矛盾與邊界釐清**：找出規則衝突與例外並收斂（如香港公司完整地址不加東北亞、特定產業統編不撈商業司資料、過期廠商不顯示可暫停日期）。
+  - **規則演進**：把人工／正則規則升級為系統或 AI 判斷（正則檢查改 AI 檢查、職缺審核導入 AI、AI 履歷／職缺打標）。
+- **工作證據 / Evidence**：求才產品 Roadmap 與規格中的權限判斷、配對條件、審核規則、續約與資料清理條件；F2 的「權限代碼建模」即為本能力的輸出產物。
+- **資深度訊號 / Seniority signal**：在規格之前先把「業務真相」釐清——降低反工與上線風險的**根因能力**，是把模糊變確定的源頭，而非下游的文件化。
+
 ---
 
 ## 職能對應下一步 / Function → Role Mapping
@@ -196,6 +210,7 @@ frontline/customer needs, aligning everyone through regular communication and da
 | F7 流程標準化／工具化 | 設計流程、放大團隊產出（lead 訊號） | 能帶入並提升新團隊的規格標準 |
 | F8 專案管理／路線圖交付 | 管路線圖、配資源、追準時（94% on-time）、帶團隊委派 | 成熟的優先級與交付節奏管理，可直接接手 backlog |
 | F9 利害關係人／向上影響 | 對齊 C-suite 目標、協調多團隊、用數據做決策 | 跨層級溝通與需求匯流能力，降低協作成本 |
+| F10 業務邏輯梳理 | 把混亂規則盤成 MECE 決策邏輯、降低反工根因 | 規格上游的需求分析力，複雜規則一手接管 |
 
 ---
 
@@ -211,6 +226,10 @@ frontline/customer needs, aligning everyone through regular communication and da
   將 LLM 能力轉譯為廠商可用的工作流，〔待補數據：採用率／使用量 adoption/usage〕。
   *Defined and shipped multiple employer-side AI features — company-profile generation, JD generation, job import,
   job health-check (generative) and AI talent recommendation — translating model capabilities into usable workflows.*
+- **梳理複雜業務邏輯**：將散落於權限、審核、配對、續約等處互相矛盾的規則，盤整為窮盡互斥（MECE）的決策邏輯，
+  作為規格與工程的單一真相來源，〔待補數據：涉及規則／模組數〕。
+  *Untangled tangled business rules across permissions, review, matching, and renewal into a single MECE decision
+  model — the source of truth for specs and engineering.*
 - 建立**狀態驅動的規格方法論**（MECE 四狀態、權限代碼建模、條件邏輯），降低 RD/QA 反工與上線風險，
   〔待補數據：缺陷率／反工率下降 %〕。
   *Established a state-driven spec methodology (MECE four-state coverage, permission-code modeling) that reduced

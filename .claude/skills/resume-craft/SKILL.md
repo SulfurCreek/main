@@ -128,6 +128,7 @@ description: >
 | Execution & Delivery / 執行與交付 | **F8**, F5 | 227 項 roadmap、94% 準時、版控與缺口治理 |
 | Data & Experimentation / 數據與實驗 | F4（部分）, Growth Edge | A/B、埋點、SQL；〔待補：實驗數〕|
 | Stakeholder Mgmt & Influence / 利害關係人與向上影響 | **F9**, F6 | 對接 16 單位、C-suite 對齊、數據決策 |
+| Business Logic & Requirements / 業務邏輯梳理 | **F10**, F2 | 盤整權限／審核／配對／續約規則為 MECE 決策邏輯；多重條件建模 |
 | Technical Fluency / 技術素養 | F2, F4 | 狀態驅動規格、權限代碼建模、API 串接 |
 | AI Product / AI 產品 | **F4** | 生成式（公司簡介/JD 生成）+ 推薦（AI 推薦人才）|
 | Process & Tooling / 流程與工具化 | F7 | spec-doc-1111 skill、程式化重建文件樹 |
