@@ -441,3 +441,17 @@ curl "https://api.hackmd.io/v1/teams/1111-jobdocs/folders" \
 - **`folder-order` is personal and `PUT` replaces it wholesale** — fetch current order first, merge, then put back.
 - **Moving a note into a folder**: `PATCH /teams/:teamPath/notes/:noteId` with body `{"parentFolderId": "<folder UUID>"}`. The UUID must be the folder's **internal UUID** (from the note's `folderPaths[].id` or the Folder API `id`), **not** the short `clientId` seen in folder URLs — passing `folderId` or the short id returns `202` but silently does nothing. Verify by re-fetching the note and checking `folderPaths`.
 - When in doubt, the **live Swagger docs at `https://api.hackmd.io/v1/docs`** are canonical.
+
+---
+
+# UI/UX 工作慣例（WIKI）
+
+> 本區為本專案 UI/UX 調整（如 `handoff/` 內的 HTML/CSS 改版）的固定工作慣例，AI agent 每次接手都應遵守。
+
+## 每次改動都要產生可預覽的 HTML 檔
+
+- **只要對畫面（HTML/CSS）做了任何視覺調整，完成後一律重新產生一份「自包含」的預覽 HTML 並交付給使用者**，不需使用者另外要求。
+- 「自包含」＝把對應的 CSS 直接內嵌進 `<style>`（不要靠外部 `<link>`），使用者單檔即可在瀏覽器開啟預覽。
+- 產生方式（沿用現行做法）：讀取目標 HTML 與其 CSS，將 `<link rel="stylesheet" ...>` 置換為 `<style>…內嵌 CSS…</style>`，輸出成預覽檔（例：`handoff/preview-tab-underline.html`），再以檔案形式（SendUserFile）交付。
+- 若環境無法下載無頭瀏覽器截圖，就直接交付自包含預覽 HTML 檔（不要因為截不了圖就略過預覽）。
+- 預覽檔同樣納入版控、隨改動一起 commit／push 到工作分支（更新對應 PR）。
