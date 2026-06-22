@@ -23,6 +23,10 @@ not co-manage them.
   *Do NOT merge this with the root `CLAUDE.md` (HackMD API tooling); they are kept apart on purpose.*
 - ✅ 把 `career/` 當成一般文字檔處理：直接讀寫 Markdown，依使用者當下指示即可。
   *Treat `career/` as plain documents: read/write Markdown directly, per the user's instructions.*
-- ✅ **履歷／作品集**相關工作（resume／CV／LinkedIn／portfolio／自傳）請使用 **`resume-craft`** skill；
+- ✅ **履歷／作品集**相關工作（resume／CV／LinkedIn／portfolio／自傳、職能盤點、擷取個人成就）請使用 **`resume-craft`** skill；
   分工是：`spec-doc-1111` = 規格書、`resume-craft` = 個人職涯。
   *For résumé/portfolio work use the **`resume-craft`** skill — `spec-doc-1111` is for specs, `resume-craft` is for career.*
+- 🔒 **隔離原則 / Isolation policy**：`resume-craft` 與職涯素材**僅在使用者明確要求「整理履歷／盤點職能／擷取個人成就」時載入**；
+  執行一般 SA／PM 規格產出、打 HackMD API、看 Figma 規格、資料分析等日常任務時**請勿載入**，以免履歷情境污染日常開發／文件工作流的 Context。
+  *Load `resume-craft` / career material ONLY for explicit résumé / competency-inventory tasks; do NOT load it during
+  ordinary SA/PM spec work, HackMD API calls, Figma spec extraction, or data analysis — keep the dev workflow context clean.*

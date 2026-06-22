@@ -128,13 +128,20 @@ description: >
 | Execution & Delivery / 執行與交付 | **F8**, F5 | 227 項 roadmap、94% 準時、版控與缺口治理 |
 | Data & Experimentation / 數據與實驗 | F4（部分）, Growth Edge | A/B、埋點、SQL；〔待補：實驗數〕|
 | Stakeholder Mgmt & Influence / 利害關係人與向上影響 | **F9**, F6 | 對接 16 單位、C-suite 對齊、數據決策 |
-| Business Logic & Requirements / 業務邏輯梳理 | **F10**, F2 | 盤整權限／審核／配對／續約規則為 MECE 決策邏輯；多重條件建模 |
-| Technical Fluency / 技術素養 | F2, F4 | 狀態驅動規格、權限代碼建模、API 串接 |
+| Business Logic & Requirements / 業務邏輯梳理 | **F10**, F2 | 盤整權限／審核／配對／續約規則為 MECE 決策邏輯；多重條件建模；後端邏輯重構（追蹤識別碼定義與狀態拆分）、API 整合協定設計 |
+| Technical Fluency / 技術素養 | F2, F4 | 狀態驅動規格、權限代碼建模、API 串接；Mermaid 循序圖／流程圖／ER、Markdown 規格書、設計稿轉前端規格、欄位檢核與防呆、AI 模組導入 |
 | AI Product / AI 產品 | **F4** | 生成式（公司簡介/JD 生成）+ 推薦（AI 推薦人才）|
 | Process & Tooling / 流程與工具化 | F7 | spec-doc-1111 skill、程式化重建文件樹 |
 
 **叢集寫法（強）**：`執行與交付 — roadmap 優先級（P0–P3）、時間盒交付、版控治理；主導 227 項 roadmap，半年 111 項上線、94% 準時。`
 **平鋪關鍵字（弱，勿用）**：`產品管理、roadmap、A/B、Agile、SQL、溝通、領導、策略…`
+
+> **系統分析 (SA) 視角 / SA lens**：應徵偏系統分析／技術型 PM 時，特別凸顯三條證據線（皆已對映上表，與 F2／F10／F4 共用同一批成就）：
+> - **系統架構與規格設計**：以 Markdown 撰寫高可讀性規格書；用 Mermaid 繪製循序圖／邏輯流程圖／資料表關聯（ER）。
+> - **技術整合與重構**：API 整合協定設計、後端邏輯重構（如追蹤識別碼定義與狀態拆分）、AI 模組導入。
+> - **UI/UX 對接**：設計稿轉前端開發規格、建立欄位檢核標準與系統防呆機制。
+>
+> 寫成 bullet 時套「Bullet 公式」的 **STAR**：情境/任務（系統痛點，如重構舊有追蹤邏輯）→ 行動（重新定義單一識別碼架構、撰寫含 API 與資料庫綱要的技術規格書）→ 結果（確保開發邏輯合規、提升跨工程團隊對接效率）。
 
 **Junior → Senior 訊號：**
 
