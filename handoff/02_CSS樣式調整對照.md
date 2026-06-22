@@ -166,5 +166,7 @@
 1. **交付工程師時，C 區全部略過**（僅離線替身）。
 2. **A 區**＝直接改 `resumePoolNoticeMail.css` 既有行的值，最單純，優先描述。
 3. **B 區**＝可整併進 `resumePoolNoticeMail.css` 對應 selector（移除 `!important`），或保留為一段 page-scoped override。轉譯時請逐條對應「selector → 原值 → 新值 → 視覺目的」。
-4. 顏色值務必原樣保留：**底線式頁籤** default 字 `#212529`、hover/selected 字＋底線 `#1a66ff`、分隔線 `#e9ecef`；表頭 `#E3ECFD`/`#0D2760`、有意願 `#1D880D`、無意願 `#BF1212`、刪除 `#e25656`、星號/已讀 `#199ed8`、搜尋鈕 `#4f6b92`、focus `#4f6b92`、hover `#9aa7b2`。（tab 未選舊值 `#DCE3EB` 已隨頁籤改版淘汰。）
+4. 顏色值務必原樣保留：**底線式頁籤** default 字 `#212529`、hover/selected 字＋底線 `#1a66ff`、分隔線 `#e9ecef`；表頭 `#E3ECFD`/`#0D2760`、有意願 `#1D880D`、**無意願 `#FF5D15`（原 `#BF1212`，依需求更新）**、刪除 `#e25656`、星號/已讀 `#199ed8`、搜尋鈕 `#4f6b92`、focus `#4f6b92`、hover `#9aa7b2`。（tab 未選舊值 `#DCE3EB` 已隨頁籤改版淘汰。）
+
+> **無意願文字色更新**：`面試邀約 無意願` 文字由 `#BF1212` → `#FF5D15`。本 mock 該列以 inline `style="color:#FF5D15"` 呈現；對應的語意 CSS 類別 `.msgTable .td-status .isNoWish` 亦同步改為 `#FF5D15`（正式環境若以此 class 上色，值已一致）。註：未讀紅點 `--State-warning #BF1212`（badge）為不同語意，未更動。
 5. 互動規格（全選 / 半選 / 批次按鈕條件顯示）請以「行為描述」交付，實作方式（jQuery / 原生）由工程師決定；CSS 端對應 `.actionBtn.has-checked` state class。

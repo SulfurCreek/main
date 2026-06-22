@@ -79,7 +79,7 @@
 >
 > 信件類別（`.td-mail > p.mail-type`）有意願/無意願時，沿用原檔 **inline style 上色**：
 > - 有意願：`<p class="mail-type lastMailTypeName" title="面試邀約" style="color:#1D880D;font-weight:bold;">面試邀約 有意願</p>`
-> - 無意願：`... style="color:#BF1212;font-weight:bold;">面試邀約 無意願</p>`
+> - 無意願：`... style="color:#FF5D15;font-weight:bold;">面試邀約 無意願</p>`（無意願文字色依需求由 `#BF1212` 更新為 `#FF5D15`）
 
 ### 2.2 「移除星號」「刪除」按鈕：移除左側 `<i>` icon（**刪節點**）
 
