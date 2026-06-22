@@ -147,6 +147,12 @@
 | 上列「放大」群 | `font-size:16px` | 原 13/14/15px 不等 | 改值 |
 | `.actionBtn` 群 | `font-size:14px`（維持） | `14px` | 維持/明確排除 |
 
+### B9. 標題與訊息筆數文字（依設計 Figma typography token）
+| selector | 屬性=值（新） | 原值 | 性質 | 原因／token |
+|---|---|---|---|---|
+| `.headingBar .Title`（「信件訊息」標題） | `font-family:'Noto Sans TC'; font-weight:500; font-size:28px; line-height:150%; color:#212529` | `color:#4e4e4e; font-size:20px`（無指定 family/weight） | 改值 | Chinese/Title/28-Medium（行高 150%=42px、文字色 #212529 Text/Neutral/Primary） |
+| `.actionBtn .msgRecord`（「共127筆」） | `font-family:'Noto Sans TC'; font-weight:400; font-size:16px; line-height:155%; color:#495057; display:inline-flex; align-items:center` | `font-size:14px`（B8 原列為「維持 14px」）、色繼承深色 | 改值 | Chinese/Body/16-Regular（行高 155%=25px、色 #495057）。**注意：此項覆蓋 B8「`.msgRecord` 維持 14px」之排除，改為 16px #495057** |
+
 ---
 
 ## C. 離線預覽替身（**正式環境不需要，務必排除**）
@@ -166,7 +172,7 @@
 1. **交付工程師時，C 區全部略過**（僅離線替身）。
 2. **A 區**＝直接改 `resumePoolNoticeMail.css` 既有行的值，最單純，優先描述。
 3. **B 區**＝可整併進 `resumePoolNoticeMail.css` 對應 selector（移除 `!important`），或保留為一段 page-scoped override。轉譯時請逐條對應「selector → 原值 → 新值 → 視覺目的」。
-4. 顏色值務必原樣保留：**底線式頁籤** default 字 `#212529`、hover/selected 字＋底線 `#1a66ff`、分隔線 `#e9ecef`；表頭 `#E3ECFD`/`#0D2760`、有意願 `#1D880D`、**無意願 `#FF5D15`（原 `#BF1212`，依需求更新）**、刪除 `#e25656`、星號/已讀 `#199ed8`、搜尋鈕 `#4f6b92`、focus `#4f6b92`、hover `#9aa7b2`。（tab 未選舊值 `#DCE3EB` 已隨頁籤改版淘汰。）
+4. 顏色值務必原樣保留：**標題「信件訊息」字 `#212529`（28px/500）**、**「共127筆」字 `#495057`（16px/400）**；**底線式頁籤** default 字 `#212529`、hover/selected 字＋底線 `#1a66ff`、分隔線 `#e9ecef`；表頭 `#E3ECFD`/`#0D2760`、有意願 `#1D880D`、**無意願 `#FF5D15`（原 `#BF1212`，依需求更新）**、刪除 `#e25656`、星號/已讀 `#199ed8`、搜尋鈕 `#4f6b92`、focus `#4f6b92`、hover `#9aa7b2`。（tab 未選舊值 `#DCE3EB` 已隨頁籤改版淘汰。）
 
 > **無意願文字色更新**：`面試邀約 無意願` 文字由 `#BF1212` → `#FF5D15`。本 mock 該列以 inline `style="color:#FF5D15"` 呈現；對應的語意 CSS 類別 `.msgTable .td-status .isNoWish` 亦同步改為 `#FF5D15`（正式環境若以此 class 上色，值已一致）。註：未讀紅點 `--State-warning #BF1212`（badge）為不同語意，未更動。
 5. 互動規格（全選 / 半選 / 批次按鈕條件顯示）請以「行為描述」交付，實作方式（jQuery / 原生）由工程師決定；CSS 端對應 `.actionBtn.has-checked` state class。

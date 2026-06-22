@@ -1680,3 +1680,26 @@ body{ background:#f0f0f0; font-family:"Noto Sans TC","微軟正黑體","Microsof
 
 /* ===== 第一個 .tr（表頭列）儲存格上下 padding 12px ===== */
 .msgTable .thead .tr .th{ padding-top:12px !important; padding-bottom:12px !important; }
+
+
+/* ===== 標題「信件訊息」：Chinese/Title/28-Medium（依設計）===== */
+.headingBar .Title{
+  font-family:'Noto Sans TC', sans-serif !important;
+  font-style:normal !important;
+  font-weight:500 !important;          /* Medium */
+  font-size:28px !important;
+  line-height:150% !important;         /* 42px */
+  color:#212529 !important;            /* Text/Neutral/Primary */
+}
+
+/* ===== 「共127筆」訊息筆數：Chinese/Body/16-Regular（依設計）===== */
+.actionBtn .msgRecord{
+  font-family:'Noto Sans TC', sans-serif !important;
+  font-style:normal !important;
+  font-weight:400 !important;          /* Regular */
+  font-size:16px !important;
+  line-height:155% !important;         /* 25px */
+  color:#495057 !important;
+  display:-webkit-inline-box !important; display:-ms-inline-flexbox !important; display:inline-flex !important;
+  -webkit-box-align:center !important;-ms-flex-align:center !important;align-items:center !important;
+}
