@@ -1641,7 +1641,18 @@ body{ background:#f0f0f0; font-family:"Noto Sans TC","微軟正黑體","Microsof
           Surface/Primary/Primary #1a66ff、Border/Neutral/Tertiary #e9ecef、
           Radius/Full 80、Space/800 32、Space/400 16、Size/100 8、Size/200 16、Body/16 16px。
    正式整併時可移除舊 .tabs / .tabs .tab / .tabs .active 規則與此區塊 !important。 */
-#bookmark.titleBar{ background:#fff !important; }   /* 頁籤襯白，接合下方白卡 */
+#bookmark.titleBar{                                  /* 便當上半：頁籤 */
+  background:#fff !important;
+  border-radius:10px 10px 0 0 !important;            /* 上方圓角＝便當 .whiteBg 的 10px */
+  -webkit-box-shadow:0 3px 6px 0 rgba(0,0,0,.15) !important;
+          box-shadow:0 3px 6px 0 rgba(0,0,0,.15) !important; /* 與便當同陰影；側邊連續 */
+  position:relative !important; z-index:1 !important;
+}
+.whiteBg.filter{                                     /* 便當下半：篩選 */
+  border-radius:0 0 10px 10px !important;            /* 僅下方圓角，與上方頁籤接合 */
+  margin-top:0 !important;
+  position:relative !important; z-index:2 !important;/* 蓋住頁籤往下投射的接縫陰影 */
+}
 .tabs{
   display:-webkit-box !important; display:-ms-flexbox !important; display:flex !important;
   -webkit-box-pack:start !important;-ms-flex-pack:start !important;justify-content:flex-start !important;
@@ -1670,6 +1681,10 @@ body{ background:#f0f0f0; font-family:"Noto Sans TC","微軟正黑體","Microsof
   height:4px !important; background:#1a66ff !important;   /* Surface/Primary/Primary */
   border-radius:80px 80px 0 0 !important;                 /* Radius/Full 上緣 */
 }
+
+
+/* ===== 第一個 .tr（表頭列）儲存格上下 padding 12px ===== */
+.msgTable .thead .tr .th{ padding-top:12px !important; padding-bottom:12px !important; }
 </style></head>
 <body>
 <div class="content"><div class="cont">

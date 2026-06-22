@@ -109,6 +109,8 @@
 - `ul.tabs > li.tab[.active] ×5` 的標籤、class、巢狀關係**完全沿用原檔**；底線以 `li.active::after` 偽元素達成，**未新增任何節點**。
 - 雖約束允許「可搬移 DOM 到別的 div」，本次**未搬移**——純靠 CSS 即可完成。
 - 對應樣式見 `02_CSS樣式調整對照.md` B2「頁籤 tabs（底線式 Tab）」。
+- **頁籤與篩選「同一便當」亦為純 CSS 視覺合併**：DOM 仍是 `.cont` 內兩個相鄰 sibling（`#bookmark.titleBar` 與 `.whiteBg.filter`），未搬移、未包新節點；合併靠圓角/陰影/z-index 達成（見 02 文件 B2-bis）。
+- 表頭列（第一個 `.tr`）上下 padding 調整見 02 文件 A2-bis，亦為純樣式值變更。
 
 ---
 

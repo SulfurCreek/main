@@ -29,6 +29,13 @@
 
 > 過程中曾改 `8px 15px` 縮列高，後依 DevTools 指示**回復為原始 `10px 15px`**。最終 = 原值，工程師無需變更此項。
 
+#### A2-bis. 表頭列（第一個 `.tr`）儲存格上下 padding
+| selector | 屬性 | 原值 | 新值 | 原始檔 | 性質 |
+|---|---|---|---|---|---|
+| `.msgTable .thead .tr .th` | `padding-top` / `padding-bottom` | `10px`（繼承 `.tr .th` 的 `10px 15px`） | `12px`（左右仍 `15px`） | resumePoolNoticeMail.css | 【改值】 |
+
+> 需求：第一個 `div.tr`（＝表頭列，含全選 checkbox 那列）上下 padding 由 10px 改 12px，列高略增。僅影響表頭列；資料列 `.td` 維持 10px。
+
 ### A3. list 卡片（便當）padding
 | selector | 屬性 | 原值 | 新值 | 原始檔 | 性質 |
 |---|---|---|---|---|---|
@@ -72,6 +79,17 @@
 
 > 備註：`gap` 取代原 margin，第一顆「全部」自然貼齊容器左 padding（32px，與下方篩選卡內容對齊）；`align-items:stretch` 讓各 `li` 等高、底緣對齊分隔線，底線即落在線上。
 > 此區塊覆蓋的既有膠囊樣式來源（正式整併時可刪）：原始 `.tabs`/`.tabs .tab`/`.tabs .active`、像素取樣覆蓋、接合覆蓋（active `-3px`）、`.tabs .tab:first-child` 對齊、字級覆蓋。
+
+### B2-bis. 頁籤併入篩選便當（頁籤＋篩選＝同一張白色圓角卡）
+
+> 需求：把頁籤列 `#bookmark.titleBar` 與下方篩選列 `.whiteBg.filter` 做成**同一個便當**。上方圓角與左右 padding 沿用原篩選便當（`.whiteBg` 的 `border-radius:10px`、左右 `32px`）。**CSS-only，DOM 不變**（兩者本就是 `.cont` 內相鄰 sibling）。
+
+| selector | 屬性=值（新） | 原值 | 性質 | 原因 |
+|---|---|---|---|---|
+| `#bookmark.titleBar` | `background:#fff; border-radius:10px 10px 0 0; box-shadow:0 3px 6px 0 rgba(0,0,0,.15); position:relative; z-index:1` | 原 `padding:0; z-index:3`、無圓角/陰影 | 改值/補值 | 便當**上半**：上方圓角 10px（＝`.whiteBg`）、與便當同陰影使側邊連續 |
+| `.whiteBg.filter` | `border-radius:0 0 10px 10px; margin-top:0; position:relative; z-index:2` | 原 `.whiteBg` 四角 `10px`、`z-index:1` | 改值 | 便當**下半**：僅留下方圓角與頁籤接合；`z-index:2`＋不透明白底蓋掉頁籤往下投射的接縫陰影 |
+
+> 原理：兩相鄰 sibling 各帶相同便當陰影 → 上/下/左右陰影連續；下半 `z-index` 較高且與上半齊貼（`margin-top:0`），其白底蓋住接縫處的下投陰影 → 視覺成為單一卡片。頁籤底部 `#e9ecef` 細線（B2 的 `.tabs` border-bottom）落在接縫上方，恰為頁籤/篩選分隔線。左右 padding 已是 `32px`（與便當一致），「全部」與「篩選訊息」左緣對齊。
 
 ### B3. 操作列 actionBtn（截圖為靠左群組）
 | selector | 屬性=值 | 原值 | 性質 | 原因 |
