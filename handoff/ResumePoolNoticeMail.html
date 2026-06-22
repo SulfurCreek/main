@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="zh-Hant"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>信件訊息 - 預覽</title>
+<link rel="stylesheet" href="./_files/resumePoolNoticeMail.css"></head>
+<body>
+<div class="content"><div class="cont">
+
+    <div class="headingBar">
+        <h2 class="Title">信件訊息</h2>
+        <button id="btnGuidedTour" class="btn-guidedTour" type="button"><i class="icon icon-bulb"></i>操作指引</button>
+        <div class="LMInstruct">每則訊息保留90天</div>
+    </div>
+
+    <div id="bookmark" class="titleBar">
+        <div id="UpdatePanel3" class="Areabox">
+            <ul class="tabs">
+                <li data-target="all" class="tab active" data-type="0">全部</li>
+                <li data-target="unread" class="tab" data-type="1">我的未讀訊息</li>
+                <li data-target="read" class="tab" data-type="2">我的已讀訊息</li>
+                <li data-target="interest" class="tab" data-type="4">有意願</li>
+                <li data-target="star" class="tab" data-type="3">已加星號</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="whiteBg w100 filter">
+        <div class="filterBox">
+            <div class="LMVacancies">
+                篩選訊息&nbsp;&nbsp;
+                <div id="ctl00_cp_content_EmpSel1_EmpInputDiv" class="SearchPanelMainDiv">
+                    <input name="EmpInput" type="text" size="20" readonly id="EmpInput" class="jobList w95" placeholder="請選擇職缺">
+                    <i class="fas fa-times SearchPanelClear"></i>
+                </div>
+            </div>
+            <div class="LMDateSet">
+                <input name="StartDate" type="text" id="StartDate" class="datepicker start hasDatepicker" placeholder="開始日期">~
+                <input name="EndDate" type="text" id="EndDate" class="datepicker end hasDatepicker" placeholder="結束日期">
+            </div>
+            <div class="LMSch">
+                <div id="UpdatePanel1" class="Areabox">
+                    <input name="txtSearchKeyWord" type="text" id="txtSearchKeyWord" class="searchName" placeholder="請輸入求職者姓名或履歷編號">
+                    <input type="submit" value="搜尋" id="btnSearch" class="btnSch">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="actionBtn">
+        <span class="msgRecord" style="margin: 7px 10px 7px 10px;">共127 筆</span>
+        <div class="col">
+            <div class="deleteBtn"><a style="cursor: pointer;">刪除</a></div>
+            <div class="starBtn"><a style="cursor: pointer;">移除星號</a></div>
+            <div class="readBtn"><a style="cursor: pointer;">已讀勾選訊息</a></div>
+            <div id="ucSelectAccountListPanel" class="accoutSelect">
+                <input type="text" readonly id="txtChooseUNOs" class="otherAcc" placeholder="查看其他帳號">
+            </div>
+        </div>
+        <div id="rPoolMail" class="Areabox">
+            <div class="col">
+                <div class="LMType">
+                    <select id="ddlMailType">
+                        <option selected disabled value="-2">信件類別</option>
+                        <option value="-1">不拘</option>
+                        <option value="1">面試邀約</option>
+                        <option value="8">面試異動</option>
+                        <option value="6">到職確認</option>
+                        <option value="5">感謝函</option>
+                        <option value="0">一般訊息</option>
+                    </select>
+                </div>
+                <div class="seekerWillStatus">
+                    <select id="ddlReaded">
+                        <option selected disabled value="-1">求職者回覆</option>
+                        <option value="0">不拘</option>
+                        <option value="1">求職者已回覆</option>
+                        <option value="3">求職者已讀未回覆</option>
+                        <option value="3">求職者未讀未回覆</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="headingBar" style="margin:0px 10px 0px 0px;"></div>
+
+    <div class="whiteBg w100 list">
+        <div class="msgList">
+            <div id="UpdatePanel2" class="Areabox">
+                <div id="divMailList" class="tabContent">
+                    <div id="all" data-tab-content="" class="panel active">
+                        <div class="msgTable">
+                            <div class="thead" style="background-color: #E3ECFD;">
+                                <div class="tr">
+                                    <div class="th w5"><label class="checkAll"><input id="checkALL" type="checkbox"></label></div>
+                                    <div class="th w2"></div>
+                                    <div class="th w10" style="font-weight: bold;">姓名</div>
+                                    <div class="th w12" style="font-weight: bold;">求職者回覆</div>
+                                    <div class="th w50" style="font-weight: bold;">訊息內容</div>
+                                    <div class="th w13" style="font-weight: bold;">職缺</div>
+                                    <div class="th w8" style="font-weight: bold;">日期</div>
+                                </div>
+                            </div>
+
+                                        <div class="tr">
+                                            <div class="mDetailA read">
+                                                <div class="td w5">
+                                                    <label class="cbox"><input name="mainNo" type="checkbox" autocomplete="off"></label>
+                                                </div>
+                                                <div class="td w2  "><i class="far fa-star "></i></div>
+                                                 <div class="td w10  tdDetail tName" title="陳柏宇">陳柏宇</div>
+                                                <div class="td w12  tdDetail td-status ">
+                                                    <p class="reply-content isReply" title="已回覆">已回覆</p>
+                                                </div>
+                                                <div class="td w50 lastMailContent tdDetail td-mail">
+                                                    <p class="mail-type lastMailTypeName" title="面試邀約" style="color:#1D880D;font-weight:bold;">面試邀約 有意願</p> <bdi>期待與貴公司面談，已確認時段沒問題，再請協助安排後續流程，謝謝</bdi><span class="badge"></span>
+                                                </div>
+                                                <div class="td w13 tdDetail td-job " title="前端工程師">
+                                                    <p class="job-content">前端工程師</p>
+                                                </div>
+                                                <div class="td w8 tdDetail">06/17</div>
+                                            </div>
+                                        </div>
+                                        <div class="tr">
+                                            <div class="mDetailA read">
+                                                <div class="td w5">
+                                                    <label class="cbox"><input name="mainNo" type="checkbox" autocomplete="off"></label>
+                                                </div>
+                                                <div class="td w2  "><i class="far fa-star "></i></div>
+                                                 <div class="td w10  tdDetail tName" title="林佳穎">林佳穎</div>
+                                                <div class="td w12  tdDetail td-status ">
+                                                    <p class="reply-content isReply" title="已回覆">已回覆</p>
+                                                </div>
+                                                <div class="td w50 lastMailContent tdDetail td-mail">
+                                                    <p class="mail-type lastMailTypeName" title="面試邀約" style="color:#FF5D15;font-weight:bold;">面試邀約 無意願</p> <bdi>貴主管 您好：感謝您的來信，目前已有其他規劃，先行婉謝本次邀約，謝謝您…</bdi>
+                                                </div>
+                                                <div class="td w13 tdDetail td-job " title="資深設計師">
+                                                    <p class="job-content">資深設計師</p>
+                                                </div>
+                                                <div class="td w8 tdDetail">06/17</div>
+                                            </div>
+                                        </div>
+                                        <div class="tr">
+                                            <div class="mDetailA read">
+                                                <div class="td w5">
+                                                    <label class="cbox"><input name="mainNo" type="checkbox" autocomplete="off"></label>
+                                                </div>
+                                                <div class="td w2  "><i class="far fa-star "></i></div>
+                                                 <div class="td w10  tdDetail tName" title="黃詩涵">黃詩涵</div>
+                                                <div class="td w12  tdDetail td-status ">
+                                                    <p class="reply-content isNotReply" title="未回覆">求職者未讀</p>
+                                                </div>
+                                                <div class="td w50 lastMailContent tdDetail td-mail">
+                                                    <p class="mail-type lastMailTypeName" title="面試邀約">面試邀約</p> <bdi>您好：本公司透過1111人力銀行招募【行銷企劃專員】人才，本公司對您的…</bdi>
+                                                </div>
+                                                <div class="td w13 tdDetail td-job " title="行銷企劃專員">
+                                                    <p class="job-content">行銷企劃專員</p>
+                                                </div>
+                                                <div class="td w8 tdDetail">06/17</div>
+                                            </div>
+                                        </div>
+                                        <div class="tr">
+                                            <div class="mDetailA read">
+                                                <div class="td w5">
+                                                    <label class="cbox"><input name="mainNo" type="checkbox" autocomplete="off"></label>
+                                                </div>
+                                                <div class="td w2  "><i class="far fa-star "></i></div>
+                                                 <div class="td w10  tdDetail tName" title="張哲瑋">張哲瑋</div>
+                                                <div class="td w12  tdDetail td-status ">
+                                                    <p class="reply-content isNotReply" title="未回覆">未回覆<br>求職者已讀</p>
+                                                </div>
+                                                <div class="td w50 lastMailContent tdDetail td-mail">
+                                                    <p class="mail-type lastMailTypeName" title="面試邀約">面試邀約</p> <bdi>您好：本公司透過1111人力銀行招募【後端工程師】人才，本公司對您的資…</bdi>
+                                                </div>
+                                                <div class="td w13 tdDetail td-job " title="後端工程師">
+                                                    <p class="job-content">後端工程師</p>
+                                                </div>
+                                                <div class="td w8 tdDetail">06/17</div>
+                                            </div>
+                                        </div>
+                                        <div class="tr">
+                                            <div class="mDetailA read">
+                                                <div class="td w5">
+                                                    <label class="cbox"><input name="mainNo" type="checkbox" autocomplete="off"></label>
+                                                </div>
+                                                <div class="td w2  "><i class="far fa-star "></i></div>
+                                                 <div class="td w10  tdDetail tName" title="吳孟潔">吳孟潔</div>
+                                                <div class="td w12  tdDetail td-status ">
+                                                    <p class="reply-content isNotReply" title="未回覆">未回覆<br>求職者已讀</p>
+                                                </div>
+                                                <div class="td w50 lastMailContent tdDetail td-mail">
+                                                    <p class="mail-type lastMailTypeName" title="一般訊息">一般訊息</p> <bdi>好的 我們保持聯絡</bdi>
+                                                </div>
+                                                <div class="td w13 tdDetail td-job " title="產品經理">
+                                                    <p class="job-content">產品經理</p>
+                                                </div>
+                                                <div class="td w8 tdDetail">06/16</div>
+                                            </div>
+                                        </div>
+                        </div>
+                        <div id="ctl00_cp_content_PagerUC1_PagerDiv" class="pageBox DataPager">
+                            <span id="ctl00_cp_content_PagerUC1_DataPagerObj" class="DataPagerObj">
+                                <span>
+                                    <a href="javascript:;" class="disabled" id="PreviousButton"></a>
+                                    <span class="Currect">1</span>
+                                    <a href="javascript:;">2</a>
+                                    <a href="javascript:;">3</a>
+                                    <a id="NextButton" class="next" href="javascript:;"></a>
+                                </span>
+                                <div class="pageGoGroup" style="display:inline;">
+                                    <span class="dataPagerText">到</span>
+                                    <input name="goPage" type="text" value="1" size="2" class="goPageVal">
+                                    <span class="dataPagerText">頁</span>
+                                    <a class="hide" href="javascript:;">GO</a>
+                                </div>
+                            </span>
+                            <span>
+                                <select class="FC">
+                                    <option value="10">每頁10筆</option>
+                                    <option value="20">每頁20筆</option>
+                                    <option value="30">每頁30筆</option>
+                                    <option value="40">每頁40筆</option>
+                                    <option selected value="50">每頁50筆</option>
+                                </select>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div></div>
+
+<script>
+(function(){
+  function rowBoxes(){ return Array.prototype.slice.call(document.querySelectorAll('input[name="mainNo"]')); }
+  var headAll = document.getElementById('checkALL');
+  var actionBar = document.querySelector('.actionBtn');
+
+  function refresh(){
+    var boxes = rowBoxes();
+    var anyChecked = boxes.some(function(b){ return b.checked; });
+    var allChecked = boxes.length>0 && boxes.every(function(b){ return b.checked; });
+    // 顯示/隱藏三顆批次按鈕
+    if(actionBar){ actionBar.classList.toggle('has-checked', anyChecked); }
+    // 同步表頭全選的勾選/半選狀態
+    if(headAll){
+      headAll.checked = allChecked;
+      headAll.indeterminate = anyChecked && !allChecked;
+    }
+  }
+
+  // 表頭全選/全不選
+  if(headAll){
+    headAll.addEventListener('change', function(){
+      rowBoxes().forEach(function(b){ b.checked = headAll.checked; });
+      refresh();
+    });
+  }
+  // 任一列 checkbox 變動
+  rowBoxes().forEach(function(b){ b.addEventListener('change', refresh); });
+
+  refresh(); // 初始狀態：無勾選 → 按鈕隱藏
+})();
+</script>
+
+</body></html>
