@@ -9,7 +9,8 @@
 
 > **用途 / Purpose**：作為下一步職涯（**資深產品經理 Senior PM** 或 **同領域轉職 same-craft move**）的職能盤點。
 > 每一項職能都附上可追溯的工作證據（出自本 repo 的 `spec-doc-1111` skill、`tree.md` 文件清單中本人負責的範圍，
-> 以及本人 Figma 工作檔《求才用圖層》的第一手規格／流程內容）。
+> 本人 Figma 工作檔《求才用圖層》的第一手規格／流程內容，以及本人維護的**求才產品 Roadmap**（Google Sheet）的
+> 專案清單與交付時程）。
 > 可直接用於升遷評估、履歷／LinkedIn 撰寫、面試談資。
 
 ---
@@ -35,6 +36,7 @@ I originate products from my own user stories and wireframes; I don't transcribe
 | 平台定位 / Surface | 廠商端（B-side）平台主責；公司頁為連結至求職者端（C-side）的橋接面 |
 | 產品線 / Product lines | 核心交易流程 ＋ **求才側 AI 產品**（職缺匯入、公司簡介生成、JD 生成、職缺健檢、AI 推薦人才） |
 | 角色定位 / Role | 需求源頭 → 規格輸出 → 交接落地（originate → specify → hand off），非單純文件化 |
+| 路線圖與團隊 / Roadmap & team | 主導 **227 項求才產品 Roadmap**（P0–P3 優先級、時間盒交付節奏）；委派工單給 **3 人企劃團隊**（本人＋育琳／小楊）與工程／QA；近半年 111 項上線、**94% 準時或提前** |
 | 方法論 / Method | 狀態驅動規格、MECE 四狀態、權限代碼建模、分階段交付、版本控管、流程圖視覺化 |
 | 工具化 / Tooling | 將自身規格慣例**標準化為可複用 skill**（`spec-doc-1111`）＋雙系統範本＋文件樹 |
 
@@ -145,6 +147,40 @@ company page that bridges to the C-side.*
   `tree.md`（由 Folder API 即時擷取重建）。
 - **資深度訊號 / Seniority signal**：**元能力**——設計流程而不只執行流程；這是從資深個人貢獻者邁向 lead/PM 的分水嶺。
 
+### F8. 專案管理：優先級、路線圖與交付節奏 / Roadmap Prioritization & Delivery Management
+
+**定義 / Definition**：維護產品路線圖，將大量需求依優先級與工作量排序、分配至時間盒交付節奏，並追蹤計畫 vs 實際上線以確保準時交付。
+*Own a product roadmap: rank a large request backlog by priority and effort, slot it into time-boxed delivery
+cadences, and track planned-vs-actual launch to deliver on time.*
+
+- **實際展現 / In practice**：
+  - **優先級模型**：以 `P0–P3` 分級（P0＝資安／緊急，如 auth token httponly、封鎖詐騙 IP、移除 password）＋ `難易 0–3` 工作量評分。
+  - **交付節奏**：以時間盒分級需求——`公司急件／2 週內交付／4 週內交付／排隊中`。
+  - **狀態工作流**：`待辦 → 工程待辦 → 企劃執行 → 前／後端執行 → QA／企劃測試 → 待上線 → 已上線`；`暫停／取消` 一律附決策理由。
+  - **計畫 vs 實際**：以 `封測日期／預計上線／實際上線` 三欄追蹤——**94%（84/89）準時或提前上線**；滑期項目記錄原因
+    （如「公司簡介生成 API」預計 5/20 → 實際 6/4，因 QA 返修）。
+  - **跨團隊關鍵路徑**：為含外部相依的專案排程（如「職缺健檢 API」5/5–6/17：開設計工單 → 串接資科 API → 切版 → 後端 → QA → 上線）。
+  - **平行發布列車**：同時管理 `現版／新版／API／客服後台／TCode` 多軌；與 APP／求職主網跨產品同步上線。
+  - **委派治理**：主導 **227 項 master roadmap**，將工單委派給 **3 人企劃團隊**（本人＋育琳／小楊）與工程，自身聚焦優先級與交付治理。
+- **工作證據 / Evidence**：本人維護的**求才產品 Roadmap**（Google Sheet），227 項、111 項已上線（2026/01–06，約 5 個月）。
+- **資深度訊號 / Seniority signal**：從「寫規格」躍升到「管路線圖、配資源、追準時、帶團隊委派」——**94% 準時交付**為可量化的交付績效，是帶專案、做取捨的 lead 行為。
+
+### F9. 利害關係人管理與向上影響 / Stakeholder Management & Upward Influence
+
+**定義 / Definition**：作為求才產品需求的單一窗口，平衡由上而下的高層指令與由下而上的第一線／客戶需求，透過例行溝通與數據決策對齊各方。
+*Be the single intake point for a product's demand: balance top-down executive mandates against bottom-up
+frontline/customer needs, aligning everyone through regular communication and data-driven decisions.*
+
+- **實際展現 / In practice**：
+  - **利害關係人廣度**：對接 **16 個需求單位**，從**總裁／董事長／策略長／多位協理副總**（C-suite 與董事層）
+    到求才客服（109 件需求）、工程部、行動發展部、求職主網、稽核單位、系統中心。
+  - **雙向需求匯流**：由上而下（策略長／董事的戰略指令）＋ 由下而上（**需求許願池／Team-Suggest** 的具名第一線建議），每筆需求皆可溯源。
+  - **溝通節奏與共識**：以 `客服晨會說明 → 蒐集建議 → 反修 → 收斂` 的回饋迴圈對齊需求方。
+  - **以數據而非位階決策**：如「AI 推薦人才：改為精準度排序」依「客服 5/26 投票結果」確定執行。
+  - **取捨與衝突管理**：`暫停／取消` 一律附理由（如「系統內問卷系統」因 surveycake 已可串接而取消；「履歷新增證件資料」因求職流程調整先串接但暫不驗收）。
+- **工作證據 / Evidence**：求才產品 Roadmap 的 `需求單位／需求來源／附註` 欄位（需求廣度、來源可溯、決策與取捨紀錄）。
+- **資深度訊號 / Seniority signal**：對齊高層目標、協調多團隊、以數據而非位階做決策——資深 PM 最被期待的**向上與橫向影響力**。
+
 ---
 
 ## 職能對應下一步 / Function → Role Mapping
@@ -158,6 +194,8 @@ company page that bridges to the C-side.*
 | F5 交付流程與品質 | 可治理交付、管理變更與風險 | 成熟的版本控管與缺口管理習慣 |
 | F6 跨職能協作／交接 | 團隊樞紐、建立制度記憶 | 文件化與溝通能力，降低 onboarding 成本 |
 | F7 流程標準化／工具化 | 設計流程、放大團隊產出（lead 訊號） | 能帶入並提升新團隊的規格標準 |
+| F8 專案管理／路線圖交付 | 管路線圖、配資源、追準時（94% on-time）、帶團隊委派 | 成熟的優先級與交付節奏管理，可直接接手 backlog |
+| F9 利害關係人／向上影響 | 對齊 C-suite 目標、協調多團隊、用數據做決策 | 跨層級溝通與需求匯流能力，降低協作成本 |
 
 ---
 
@@ -187,6 +225,12 @@ company page that bridges to the C-side.*
 - 擔任 **PM／RD／QA／設計**間的樞紐，產出交接文件、功能說明頁、競品分析與跨組同步會議記錄，降低 key-person 風險。
   *Served as the cross-functional hub, producing handoff docs, feature guides, competitive analyses, and sync
   meeting notes that reduced key-person risk.*
+- 主導 **227 項求才產品 Roadmap** 的優先級（P0–P3）與時間盒交付，委派工單給 3 人企劃團隊與工程，近半年交付 **111 項上線、94%（84/89）準時或提前**。
+  *Owned a 227-item product roadmap — prioritization (P0–P3) and time-boxed delivery — delegating tickets to a
+  3-person planning team and engineering; shipped 111 items in ~5 months at 94% (84/89) on-or-ahead-of-schedule.*
+- 作為求才產品需求單一窗口，對接 **16 個利害關係單位**（總裁／董事／策略長／協理副總到第一線客服），平衡上層指令與第一線需求，並以數據（投票）而非位階做決策。
+  *Acted as single intake point across 16 stakeholder units (from C-suite/board down to frontline CS), balancing
+  top-down mandates with bottom-up needs and deciding by data (votes) rather than hierarchy.*
 
 ---
 
@@ -200,13 +244,14 @@ company page that bridges to the C-side.*
 - **A/B 測試與數據決策 / Experimentation ownership**：`tree.md` 已見埋點與 A/B 分流（如職缺配對信、功能埋點），
   可進一步呈現**從假設 → 實驗 → 決策**的完整 ownership。
   *Show end-to-end experiment ownership (hypothesis → test → decision), building on the existing tracking/A-B work.*
-- **優先級與路線圖 / Prioritization & roadmap**：補上需求排序框架、roadmap、trade-off 決策的產出物，
-  證明在資源受限下做取捨的能力。
-  *Add prioritization frameworks, roadmaps, and trade-off artifacts demonstrating resource-constrained decisions.*
-- **跨團隊／向上影響 / Stakeholder & upward influence**：呈現對齊高層目標、協調多團隊、影響策略方向的案例。
-  *Surface examples of aligning leadership goals and influencing strategy across teams.*
+> ✅ 原列為缺口的 **優先級與路線圖** 及 **跨團隊／向上影響**，已由 **F8／F9**（求才產品 Roadmap 證據）補齊。
+> 下一步可再補上**量化的「結果」**（見上兩點），把已具備的交付與影響力連結到商業成效。
+> *The former gaps "prioritization & roadmap" and "stakeholder & upward influence" are now covered by F8/F9
+> (roadmap evidence); the remaining edge is tying that delivery and influence to quantified business outcomes.*
 
 ---
 
-> 本文件依本 repo 既有證據（`spec-doc-1111` skill、`tree.md`）撰寫，未捏造任何數據；標示 `〔待補數據〕` 處為待補。
-> Built solely from in-repo evidence; no metrics were invented — `〔待補數據〕` marks placeholders to fill in.
+> 本文件依本 repo 既有證據（`spec-doc-1111` skill、`tree.md`）與本人第一手工作檔（Figma《求才用圖層》、求才產品 Roadmap）撰寫，
+> 未捏造任何數據（量化數字均來自上述來源）；標示 `〔待補數據〕` 處為待補。
+> Built from in-repo evidence (`spec-doc-1111` skill, `tree.md`) and the author's own first-party work files
+> (the Figma《求才用圖層》file and the recruit product Roadmap); no metrics were invented — `〔待補數據〕` marks placeholders.
