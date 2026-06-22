@@ -8,7 +8,8 @@
 # 職能框架 / Competency Framework
 
 > **用途 / Purpose**：作為下一步職涯（**資深產品經理 Senior PM** 或 **同領域轉職 same-craft move**）的職能盤點。
-> 每一項職能都附上可追溯的工作證據（出自本 repo 的 `spec-doc-1111` skill 與 `tree.md` 文件清單中本人負責的範圍）。
+> 每一項職能都附上可追溯的工作證據（出自本 repo 的 `spec-doc-1111` skill、`tree.md` 文件清單中本人負責的範圍，
+> 以及本人 Figma 工作檔《求才用圖層》的第一手規格／流程內容）。
 > 可直接用於升遷評估、履歷／LinkedIn 撰寫、面試談資。
 
 ---
@@ -87,6 +88,10 @@ company page that bridges to the C-side.*
     廠商資料如何呈現給求職者的橋接面。
 - **工作證據 / Evidence**：`tree.md` 求才系統（A–M 系列）；求職端「3. 公司頁」（3.2 公司資料、3.12 相似公司、
   3.13 推薦職缺、3.14 品牌行銷子頁），repo `.claude/assets/company-page/` 為其設計素材。
+- **第一手證據 / First-party evidence**（本人 Figma 工作檔《求才用圖層》）：人才搜尋／配對（`配對條件設定：預設只看本國籍求職者`、
+  `全文檢索`、欄位順序優化與展開／收折狀態）、聯繫即時通（「APP 語音通話的紀錄整合於聊天室內」）、
+  購買與合約（`VIP求才招募系統`、Days Remaining／Expiration Date／Next Contract、排程 Calendar、Monthly Visits 數據）、
+  進站導覽（`A. 新版進站彈窗`、Tour）、上傳／驗證流程（Upload File／Photo Capture／Verification & Send）。
 - **資深度訊號 / Seniority signal**：對 B 端平台有端到端掌握，並透過公司頁理解 B→C 的曝光連動，具備平台級產品視野。
 
 ### F4. AI 產品企劃 / AI Product Planning
@@ -100,6 +105,9 @@ company page that bridges to the C-side.*
   - **生成式 / Generative**：**公司簡介生成**、**JD（職缺描述）生成**、**職缺匯入**（自動解析既有職缺）、**職缺健檢**。
   - **推薦 / Recommendation**：`3.2.6 AI 推薦人才名單`。
   - 相關提案／延伸：職缺審核導入 AI、AI 履歷&職缺打標、求才智能客服。
+- **第一手證據 / First-party evidence**（本人 Figma 工作檔《求才用圖層》）：`AI一鍵優化職缺`、`AI智能徵才 – 立刻體驗！`、
+  行銷訴求「1111 招募系統整合多樣智能招募利器，使用 AI 工具不用再剪剪貼貼」、AI 推薦人才調整
+  （技能／證照推薦、推薦與建議移除樣式、AI icon）——可佐證生成式與推薦 AI 的實際規格產出。
 - **資深度訊號 / Seniority signal**：能將生成式模型能力（公司簡介／JD 自動生成）轉譯為可落地的廠商價值與規格——
   當前最稀缺的 PM 能力之一。
 
