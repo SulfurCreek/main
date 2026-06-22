@@ -23,3 +23,6 @@ not co-manage them.
   *Do NOT merge this with the root `CLAUDE.md` (HackMD API tooling); they are kept apart on purpose.*
 - ✅ 把 `career/` 當成一般文字檔處理：直接讀寫 Markdown，依使用者當下指示即可。
   *Treat `career/` as plain documents: read/write Markdown directly, per the user's instructions.*
+- ✅ **履歷／作品集**相關工作（resume／CV／LinkedIn／portfolio／自傳）請使用 **`resume-craft`** skill；
+  分工是：`spec-doc-1111` = 規格書、`resume-craft` = 個人職涯。
+  *For résumé/portfolio work use the **`resume-craft`** skill — `spec-doc-1111` is for specs, `resume-craft` is for career.*
