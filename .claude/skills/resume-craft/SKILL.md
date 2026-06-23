@@ -131,6 +131,7 @@ description: >
 | Business Logic & Requirements / 業務邏輯梳理 | **F10**, F2 | 盤整權限／審核／配對／續約規則為 MECE 決策邏輯；多重條件建模；後端邏輯重構（追蹤識別碼定義與狀態拆分）、API 整合協定設計 |
 | Technical Fluency / 技術素養 | F2, F4 | 狀態驅動規格、權限代碼建模、API 串接；Mermaid 循序圖／流程圖／ER、Markdown 規格書、設計稿轉前端規格、欄位檢核與防呆、AI 模組導入 |
 | AI Product / AI 產品 | **F4** | 生成式（公司簡介/JD 生成）+ 推薦（AI 推薦人才）|
+| Problem-Solving & Ops / 問題解決與維運 | **F11** | 年處理 1,279 工單、~88% 結案；工單→Kanban→上線閉環；根因定位（非表面修補）|
 | Process & Tooling / 流程與工具化 | F7 | spec-doc-1111 skill、程式化重建文件樹 |
 
 **叢集寫法（強）**：`執行與交付 — roadmap 優先級（P0–P3）、時間盒交付、版控治理；主導 227 項 roadmap，半年 111 項上線、94% 準時。`

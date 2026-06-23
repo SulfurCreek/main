@@ -175,8 +175,8 @@ frontline/customer needs, aligning everyone through regular communication and da
   - **利害關係人廣度**：對接 **16 個需求單位**，從**總裁／董事長／策略長／多位協理副總**（C-suite 與董事層）
     到求才客服（109 件需求）、工程部、行動發展部、求職主網、稽核單位、系統中心。
   - **雙向需求匯流**：由上而下（策略長／董事的戰略指令）＋ 由下而上（**需求許願池／Team-Suggest** 的具名第一線建議），每筆需求皆可溯源。
-  - **溝通節奏與共識**：以 `客服晨會說明 → 蒐集建議 → 反修 → 收斂` 的回饋迴圈對齊需求方。
-  - **以數據而非位階決策**：如「AI 推薦人才：改為精準度排序」依「客服 5/26 投票結果」確定執行。
+  - **溝通節奏與共識**：每週固定向**近 200 人的業務團隊**做進度簡報（說明已上線與預計上線項目），並以 `晨會說明 → 蒐集建議 → 反修 → 收斂` 的回饋迴圈對齊需求方。
+  - **以數據而非位階決策**：設計**結構化投票**讓近 200 人團隊共同決策（如「多筆職缺修改」審核機制、廠商「已下架」圖片標籤樣式、職缺須審核廠商的搜尋規則、求職／求才職缺瀏覽數顯示規則統一），如「AI 推薦人才：改為精準度排序」依「客服 5/26 投票結果」確定執行。
   - **取捨與衝突管理**：`暫停／取消` 一律附理由（如「系統內問卷系統」因 surveycake 已可串接而取消；「履歷新增證件資料」因求職流程調整先串接但暫不驗收）。
 - **工作證據 / Evidence**：求才產品 Roadmap 的 `需求單位／需求來源／附註` 欄位（需求廣度、來源可溯、決策與取捨紀錄）。
 - **資深度訊號 / Seniority signal**：對齊高層目標、協調多團隊、以數據而非位階做決策——資深 PM 最被期待的**向上與橫向影響力**。
@@ -195,9 +195,21 @@ truth that precedes specs and engineering. This is upstream of F2: clarify the b
 - **工作證據 / Evidence**：求才產品 Roadmap 與規格中的權限判斷、配對條件、審核規則、續約與資料清理條件；F2 的「權限代碼建模」即為本能力的輸出產物。
 - **資深度訊號 / Seniority signal**：在規格之前先把「業務真相」釐清——降低反工與上線風險的**根因能力**，是把模糊變確定的源頭，而非下游的文件化。
 
----
+### F11. 問題解決與維運交付 / Problem-Solving & Operational Delivery
 
-## 職能對應下一步 / Function → Role Mapping
+**定義 / Definition**：作為求才系統維運與需求的單一處理窗口，接收第一線（業務／客服）與工程開立的工單，
+快速**定位根因 → 拆解為可執行方案 → 以看板（Kanban）追蹤至上線結案**，在高工單量下維持高結案率。
+*Single intake point for recruit-system ops and requests: triage incoming tickets (maintenance issues, planning
+suggestions, engineering bugs), diagnose root cause, break them into actionable fixes, and track to launch on a
+Kanban board while sustaining a high close rate under heavy ticket volume.*
+
+- **實際展現 / In practice**：
+  - **規模與結案率**：2026 年至今累計處理 **1,279 張工單**（維運問題／企劃建議／工程 bug），完成 **1,131 張、結案率約 88%**；每週穩定新增約 50–70 張、完成約 40–52 張。
+  - **工單 → 看板 → 上線閉環**：接收業務團隊／客服開立的**具名、可溯源**工單（Team-Suggest 建議單，可追溯至公司與單號，如 `k=6237`／`6301`／`6252`），以 Kanban 追蹤狀態至上線並每週回報結案。
+  - **根因定位（非表面修補）**：凌晨配對信數量異常 → 與工程調整配對機制並**持續監測至月底**驗證；AI 推薦人才名單過舊（多家廠商回報）→ 調整鄰近地區規則與名單排序邏輯；代碼體系老化 → 重整證照／工作專長／電腦專長／兼職職類代碼，並以**競品比對**補齊「對手有、我們沒有」的類別。
+  - **缺陷處理廣度**：錯誤代碼、信件副本收件人刪除、即時通畫面裁切、感謝函範本無法帶入、紅利點數 hover 失效、過期廠商未發信客服等多類 bug 的定位與修復追蹤。
+- **工作證據 / Evidence**：求才**週報**（每週「已處理項目／預計上線項目」清單與工單量統計：總量／已完成／未完成）、Team-Suggest 具名建議單、Kanban 專案看板。
+- **資深度訊號 / Seniority signal**：在高工單量下維持約 **88% 結案率**，並把「修 bug」升級為「**根因定位＋機制調整＋上線驗證**」的閉環——可量化的維運交付績效。
 
 | 職能 / Function | 資深 PM 期待 / Senior PM lens | 同領域轉職 / Spec-specialist lens |
 | :--- | :--- | :--- |
@@ -211,6 +223,7 @@ truth that precedes specs and engineering. This is upstream of F2: clarify the b
 | F8 專案管理／路線圖交付 | 管路線圖、配資源、追準時（94% on-time）、帶團隊委派 | 成熟的優先級與交付節奏管理，可直接接手 backlog |
 | F9 利害關係人／向上影響 | 對齊 C-suite 目標、協調多團隊、用數據做決策 | 跨層級溝通與需求匯流能力，降低協作成本 |
 | F10 業務邏輯梳理 | 把混亂規則盤成 MECE 決策邏輯、降低反工根因 | 規格上游的需求分析力，複雜規則一手接管 |
+| F11 問題解決與維運交付 | 高工單量下根因定位、~88% 結案、看板追蹤至上線 | 即戰力維運窗口，工單→Kanban→上線閉環可直接接手 |
 
 ---
 
@@ -247,9 +260,14 @@ truth that precedes specs and engineering. This is upstream of F2: clarify the b
 - 主導 **227 項求才產品 Roadmap** 的優先級（P0–P3）與時間盒交付，委派工單給 3 人企劃團隊與工程，近半年交付 **111 項上線、94%（84/89）準時或提前**。
   *Owned a 227-item product roadmap — prioritization (P0–P3) and time-boxed delivery — delegating tickets to a
   3-person planning team and engineering; shipped 111 items in ~5 months at 94% (84/89) on-or-ahead-of-schedule.*
-- 作為求才產品需求單一窗口，對接 **16 個利害關係單位**（總裁／董事／策略長／協理副總到第一線客服），平衡上層指令與第一線需求，並以數據（投票）而非位階做決策。
+- 作為求才產品需求單一窗口，對接 **16 個利害關係單位**（總裁／董事／策略長／協理副總到第一線客服），平衡上層指令與第一線需求，並以數據（投票）而非位階做決策；每週向**近 200 人業務團隊**做進度簡報。
   *Acted as single intake point across 16 stakeholder units (from C-suite/board down to frontline CS), balancing
-  top-down mandates with bottom-up needs and deciding by data (votes) rather than hierarchy.*
+  top-down mandates with bottom-up needs and deciding by data (votes) rather than hierarchy; briefed a ~200-person
+  business team on progress weekly.*
+- 作為求才系統維運單一窗口，年度累計處理 **1,279 張工單**（維運／企劃建議／工程 bug），**結案率約 88%**（1,131 張），以**工單 → Kanban → 上線**閉環追蹤，並做**根因定位**（如配對信異常、AI 推薦名單過舊、代碼體系競品重整）而非表面修補。
+  *Ran point on recruit-system operations, handling 1,279 tickets YTD (maintenance / planning / engineering bugs)
+  at ~88% close rate (1,131 resolved), tracked ticket → Kanban → launch, and drove root-cause fixes (matching-email
+  anomaly, stale AI recommendations, competitor-benchmarked code-table overhaul) rather than surface patches.*
 
 ---
 
@@ -263,10 +281,13 @@ truth that precedes specs and engineering. This is upstream of F2: clarify the b
 - **A/B 測試與數據決策 / Experimentation ownership**：`tree.md` 已見埋點與 A/B 分流（如職缺配對信、功能埋點），
   可進一步呈現**從假設 → 實驗 → 決策**的完整 ownership。
   *Show end-to-end experiment ownership (hypothesis → test → decision), building on the existing tracking/A-B work.*
-> ✅ 原列為缺口的 **優先級與路線圖** 及 **跨團隊／向上影響**，已由 **F8／F9**（求才產品 Roadmap 證據）補齊。
-> 下一步可再補上**量化的「結果」**（見上兩點），把已具備的交付與影響力連結到商業成效。
+> ✅ 原列為缺口的 **優先級與路線圖** 及 **跨團隊／向上影響**，已由 **F8／F9**（求才產品 Roadmap 證據）補齊；
+> **量化的維運交付結果**（1,279 工單／~88% 結案）亦由 **F11**（週報證據）部分補上。
+> 下一步可再補上**商業／使用者指標**（轉換、留存、營收、AI 功能採用率），把交付與影響力連結到商業成效。
 > *The former gaps "prioritization & roadmap" and "stakeholder & upward influence" are now covered by F8/F9
-> (roadmap evidence); the remaining edge is tying that delivery and influence to quantified business outcomes.*
+> (roadmap evidence), and quantified operational delivery (1,279 tickets / ~88% close rate) is partly covered by F11
+> (weekly-report evidence); the remaining edge is tying this to business/user metrics (conversion, retention,
+> revenue, AI-feature adoption).*
 
 ---
 
