@@ -40,6 +40,26 @@ Use `1111-jobdocs` as `:teamPath` in all team note endpoints.
 
 ---
 
+## 🚀 Token 節省與本地快取規範（Local Caching Policy）
+
+撈取既有 HackMD note 內容做後續編輯（尤其是規格書這種數千字的長文）時，**禁止把整份 Response 直接印進對話/終端輸出**，否則每一輪修改都會把全文重新攤進 context，token 線性膨脹。改用「落地快取 → 本地編輯 → 一次性回寫」流程：
+
+* **規則 A — 落地快取，不印全文**：呼叫 `GET /notes/:noteId`／`GET /teams/:teamPath/notes/:noteId` 時，把 `content` 寫進本次 session 的**暫存目錄**（即系統指定的 scratchpad 路徑，不是 repo 工作目錄），不要讓整份內容出現在工具回傳的可見輸出裡。
+  * 範例（Python，搭配既有的 `os.environ['HACKMD_TOKEN']` 慣例）：
+    ```python
+    import os, requests, json
+    r = requests.get(f"{BASE}/notes/{note_id}", headers=HEADERS)
+    with open(f"{SCRATCHPAD}/{note_id}.md", "w") as f:
+        f.write(r.json()["content"])
+    ```
+  * 絕對不要寫到 repo 路徑（如 `tmp/`）下 —— 該路徑未列入 `.gitignore`，有被誤 commit 的風險。一律用 scratchpad 暫存目錄，工作結束後可捨棄。
+* **規則 B — 在本地檔案上迭代，不在對話裡整篇覆寫**：對落地的快取檔案用 `Read`／`Edit` 工具做局部修改（精準字串替換、可控的小範圍 diff），不要在回覆裡貼出整份重寫後的 Markdown。
+* **規則 C — 確認無誤後才一次性回寫**：所有修改（章節調整、Mermaid 圖、欄位表）都在本地快取檔案改完，並經使用者確認後，才執行一次 `PATCH /teams/:teamPath/notes/:noteId`（或 `PATCH /notes/:noteId`）把本地檔案內容整份送回 HackMD —— 避免多次小步 PATCH，也避免漏改。
+
+> 新建（`POST`）或只改幾行的小幅修補不必硬套這套流程；本規範主要針對「讀取既有長文 → 大幅編輯 → 寫回」這種會讓全文重複出現在 context 裡的情境。
+
+---
+
 ## Endpoint Summary
 
 | Method | Path | Purpose |
