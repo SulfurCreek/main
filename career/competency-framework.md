@@ -205,11 +205,12 @@ Kanban board while sustaining a high close rate under heavy ticket volume.*
 
 - **實際展現 / In practice**：
   - **規模與結案率**：2026 年至今累計處理 **1,279 張工單**（維運問題／企劃建議／工程 bug），完成 **1,131 張、結案率約 88%**；每週穩定新增約 50–70 張、完成約 40–52 張。
+  - **商業影響（付費客戶留存）**：工單**幾乎全數來自付費中的廠商客戶**，每一張的處理都直接維護付費帳號的使用體驗、支撐業務團隊的**業績維持與續約**——把維運從成本中心轉為**營收保護**，〔待補數據：受影響付費帳號數／續約率 affected paying accounts / renewal rate〕。
   - **工單 → 看板 → 上線閉環**：接收業務團隊／客服開立的**具名、可溯源**工單（Team-Suggest 建議單，可追溯至公司與單號，如 `k=6237`／`6301`／`6252`），以 Kanban 追蹤狀態至上線並每週回報結案。
   - **根因定位（非表面修補）**：凌晨配對信數量異常 → 與工程調整配對機制並**持續監測至月底**驗證；AI 推薦人才名單過舊（多家廠商回報）→ 調整鄰近地區規則與名單排序邏輯；代碼體系老化 → 重整證照／工作專長／電腦專長／兼職職類代碼，並以**競品比對**補齊「對手有、我們沒有」的類別。
   - **缺陷處理廣度**：錯誤代碼、信件副本收件人刪除、即時通畫面裁切、感謝函範本無法帶入、紅利點數 hover 失效、過期廠商未發信客服等多類 bug 的定位與修復追蹤。
 - **工作證據 / Evidence**：求才**週報**（每週「已處理項目／預計上線項目」清單與工單量統計：總量／已完成／未完成）、Team-Suggest 具名建議單、Kanban 專案看板。
-- **資深度訊號 / Seniority signal**：在高工單量下維持約 **88% 結案率**，並把「修 bug」升級為「**根因定位＋機制調整＋上線驗證**」的閉環——可量化的維運交付績效。
+- **資深度訊號 / Seniority signal**：在高工單量下維持約 **88% 結案率**，並把「修 bug」升級為「**根因定位＋機制調整＋上線驗證**」的閉環；因工單幾乎全來自**付費廠商**，此能力直接連結到**付費客戶留存與業務業績**——是把維運交付綁定**商業成效**的稀缺訊號，而非單純的工單清算。
 
 | 職能 / Function | 資深 PM 期待 / Senior PM lens | 同領域轉職 / Spec-specialist lens |
 | :--- | :--- | :--- |
@@ -223,7 +224,7 @@ Kanban board while sustaining a high close rate under heavy ticket volume.*
 | F8 專案管理／路線圖交付 | 管路線圖、配資源、追準時（94% on-time）、帶團隊委派 | 成熟的優先級與交付節奏管理，可直接接手 backlog |
 | F9 利害關係人／向上影響 | 對齊 C-suite 目標、協調多團隊、用數據做決策 | 跨層級溝通與需求匯流能力，降低協作成本 |
 | F10 業務邏輯梳理 | 把混亂規則盤成 MECE 決策邏輯、降低反工根因 | 規格上游的需求分析力，複雜規則一手接管 |
-| F11 問題解決與維運交付 | 高工單量下根因定位、~88% 結案、看板追蹤至上線 | 即戰力維運窗口，工單→Kanban→上線閉環可直接接手 |
+| F11 問題解決與維運交付 | 根因定位、~88% 結案；工單幾乎全來自付費廠商→直接連結客戶留存與業績 | 即戰力維運窗口，工單→Kanban→上線閉環、付費客戶留存可直接接手 |
 
 ---
 
@@ -264,10 +265,11 @@ Kanban board while sustaining a high close rate under heavy ticket volume.*
   *Acted as single intake point across 16 stakeholder units (from C-suite/board down to frontline CS), balancing
   top-down mandates with bottom-up needs and deciding by data (votes) rather than hierarchy; briefed a ~200-person
   business team on progress weekly.*
-- 作為求才系統維運單一窗口，年度累計處理 **1,279 張工單**（維運／企劃建議／工程 bug），**結案率約 88%**（1,131 張），以**工單 → Kanban → 上線**閉環追蹤，並做**根因定位**（如配對信異常、AI 推薦名單過舊、代碼體系競品重整）而非表面修補。
-  *Ran point on recruit-system operations, handling 1,279 tickets YTD (maintenance / planning / engineering bugs)
-  at ~88% close rate (1,131 resolved), tracked ticket → Kanban → launch, and drove root-cause fixes (matching-email
-  anomaly, stale AI recommendations, competitor-benchmarked code-table overhaul) rather than surface patches.*
+- 作為求才系統維運單一窗口，年度累計處理 **1,279 張工單**（維運／企劃建議／工程 bug），**結案率約 88%**（1,131 張）；工單**幾乎全數來自付費中廠商**，故以**工單 → Kanban → 上線**閉環與**根因定位**（配對信異常、AI 推薦名單過舊、代碼體系競品重整）維護付費客戶體驗、**支撐業務業績與續約**。
+  *Ran point on recruit-system operations, resolving 1,279 tickets YTD at ~88% close rate (1,131) — nearly all from
+  paying employer accounts — via a ticket → Kanban → launch loop and root-cause fixes (matching-email anomaly, stale
+  AI recommendations, competitor-benchmarked code-table overhaul), protecting paying-customer experience and the
+  sales team's revenue retention.*
 
 ---
 
@@ -282,8 +284,8 @@ Kanban board while sustaining a high close rate under heavy ticket volume.*
   可進一步呈現**從假設 → 實驗 → 決策**的完整 ownership。
   *Show end-to-end experiment ownership (hypothesis → test → decision), building on the existing tracking/A-B work.*
 > ✅ 原列為缺口的 **優先級與路線圖** 及 **跨團隊／向上影響**，已由 **F8／F9**（求才產品 Roadmap 證據）補齊；
-> **量化的維運交付結果**（1,279 工單／~88% 結案）亦由 **F11**（週報證據）部分補上。
-> 下一步可再補上**商業／使用者指標**（轉換、留存、營收、AI 功能採用率），把交付與影響力連結到商業成效。
+> **量化的維運交付結果**（1,279 工單／~88% 結案）由 **F11**（週報證據）補上，且因工單幾乎全來自**付費廠商**，已**定性連結到付費客戶留存與業績**。
+> 仍待補的是**硬性商業數字**：受影響付費帳號數、續約率、客訴下降、AI 功能採用率——拿到後即可把 F11 從「處理量」升級為「營收成效」。
 > *The former gaps "prioritization & roadmap" and "stakeholder & upward influence" are now covered by F8/F9
 > (roadmap evidence), and quantified operational delivery (1,279 tickets / ~88% close rate) is partly covered by F11
 > (weekly-report evidence); the remaining edge is tying this to business/user metrics (conversion, retention,
