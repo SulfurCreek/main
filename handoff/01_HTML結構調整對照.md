@@ -1,7 +1,8 @@
 # HTML 結構調整對照表（ResumePoolNoticeMail 信件訊息頁）
 
 > 本文件供後續 AI agent / 前端工程師理解「相對於原始頁面 HTML」做了哪些**結構與標籤層級**的調整。
-> 原則：**DOM 結構與既有 class / tag 名稱完全沿用原檔，不新增、不改名、不刪除既有節點。** 僅有的差異是「資料替換為 mock」「補回原本就存在但渲染不出的節點」與「新增行為用 JS」。
+>
+> ⚠️ **2026-06 更正**：本文件原宣稱「DOM 結構與 class/tag 完全沿用原檔、零改動」。經取得正式環境 `ResumePoolNoticeMail.aspx` HTML 後逐行比對，確認**此宣稱不成立**——前一手在產出 mock 時對結構有多處偏離。**class/tag 名稱本身沒有被改名或拼錯**（mock 未出現任何正式環境不存在的 class），偏離屬於「**節點刪除／屬性（`data-*`、`onclick`）移除／位置搬移／意願呈現方式改寫／新增節點**」。完整清單見 **§2.5 與正式環境結構偏離清單**。下方 §0 結論、§1「完全沿用」、§3 之敘述均以 §2.5 為準理解。本輪僅更正紀錄文件，**未更動 HTML**。
 
 ---
 
@@ -12,13 +13,15 @@
 | 原始頁面 | 1111 recruit 企業端 `ResumePoolNoticeMail.aspx`（信件訊息列表） |
 | 對照檔 | `ResumePoolNoticeMail.html`（本次產出） |
 | DOM 層級 | `.content > .cont > [.headingBar, #bookmark.titleBar, .whiteBg.filter, .actionBtn, .headingBar(空), .whiteBg.list]` |
-| 結論 | **結構零改動**；僅資料 mock 化、補 inline SVG 圖示替身、加入互動 JS |
+| 結論 | ⚠️ 原記「**結構零改動**」**不正確**（見 §2.5）。實際有結構偏離：刪節點、移除 `data-*`/`onclick`、位置搬移、意願呈現改寫、新增節點。惟 **class/tag 名稱均無改名/拼錯**。 |
 
 ---
 
-## 1. 結構層級：完全沿用，未改動
+## 1. 結構層級（mock 現況樹）
 
-下列節點的標籤名稱、class、巢狀關係與原檔**逐一相同**，工程師端**不需要任何 HTML 變更**：
+> ⚠️ 下圖是**本 mock 目前的 DOM 樹**，並非「與正式環境逐一相同」。標題列、頁籤位置、空 `.headingBar` 間隔等已與正式環境不同（例如 `#bookmark.titleBar` 在正式環境是位於 `.whiteBg.list > .msgList` 內，mock 搬到了 `.cont` 最上層；且正式環境 titleBar 內含 `h1.titleFont` 與 `span.msgRecord`，mock 已刪/搬走）。差異全列於 §2.5。
+>
+> 以下節點的**標籤名稱與 class 確實與原檔相同（無改名）**，差異在於位置與是否保留：
 
 ```
 .content
@@ -49,7 +52,9 @@
 
 ---
 
-## 2. 差異點（共 3 類，皆非結構破壞性）
+## 2. 差異點
+
+> 註：原本只記了 §2.1~2.3 三類並稱「皆非結構破壞性」，實際尚有與正式環境的結構偏離，見 **§2.5**。
 
 ### 2.1 資料列內容：替換為 mock data（**結構不變、僅文字值替換**）
 
@@ -72,14 +77,17 @@
 </div>
 ```
 
-> **工程師需注意**：求職者回覆欄（`.td-status`）有三種狀態文字結構，皆沿用原檔：
-> - 已回覆：`<p class="reply-content isReply" title="已回覆">已回覆</p>`
-> - 未讀：`<p class="reply-content isNotReply" title="未回覆">求職者未讀</p>`
-> - 已讀未回覆：`<p class="reply-content isNotReply" title="未回覆">未回覆<br>求職者已讀</p>`
+> ⚠️ **更正（原此處敘述有誤）**：原文宣稱回覆狀態與意願「皆沿用原檔」，**與正式環境不符**。實情如下（詳見 §2.5 D）：
 >
-> 信件類別（`.td-mail > p.mail-type`）有意願/無意願時，沿用原檔 **inline style 上色**：
-> - 有意願：`<p class="mail-type lastMailTypeName" title="面試邀約" style="color:#1D880D;font-weight:bold;">面試邀約 有意願</p>`
-> - 無意願：`... style="color:#FF5D15;font-weight:bold;">面試邀約 無意願</p>`（無意願文字色依需求由 `#BF1212` 更新為 `#FF5D15`）
+> **回覆狀態欄 `.td-status`**
+> - 回覆本身沿用原 class：`<p class="reply-content isReply">已回覆</p>` / `<p class="reply-content isNotReply">未回覆</p>`（class 無改名）。
+> - 但 mock 的狀態**文字是自填**，非原檔字：mock 寫「求職者未讀」「未回覆\<br\>求職者已讀」，正式環境只有「未回覆」「已回覆」。
+> - **意願在正式環境是放在同一欄、用獨立節點** `p.wish-content.isWish` / `p.wish-content.isNoWish`（以 `&nbsp;•&nbsp;` 分隔），例：`已回覆 • 無意願`。**mock 把這組 `wish-content/isWish/isNoWish` 節點刪掉了**。
+>
+> **意願改用 `.mail-type` inline 上色＝mock 自行改寫，非原檔做法**
+> - mock：`<p class="mail-type lastMailTypeName" title="面試邀約" style="color:#1D880D;font-weight:bold;">面試邀約 有意願</p>` / 無意願 `style="color:#FF5D15;…">面試邀約 無意願</p>`（無意願色依需求由 `#BF1212`→`#FF5D15`）。
+> - 正式環境的 `.mail-type` **只放類別文字**（例「面試邀約」），**不含**「有意願/無意願」、**也沒有** inline color；意願是上面的 `wish-content` 節點。
+> - 先前依需求改「無意願」色時，已同步更新 CSS `.td-status .isNoWish`（正式環境真正使用的 class）為 `#FF5D15`，方向正確；但 mock 畫面上實際變色的是 `.mail-type` 那段 inline 文字（偏離）。
 
 ### 2.2 「移除星號」「刪除」按鈕：移除左側 `<i>` icon（**刪節點**）
 
@@ -112,13 +120,53 @@
 - **頁籤與篩選「同一便當」亦為純 CSS 視覺合併**：DOM 仍是 `.cont` 內兩個相鄰 sibling（`#bookmark.titleBar` 與 `.whiteBg.filter`），未搬移、未包新節點；合併靠圓角/陰影/z-index 達成（見 02 文件 B2-bis）。
 - 表頭列（第一個 `.tr`）上下 padding 調整見 02 文件 A2-bis，亦為純樣式值變更。
 
+### 2.5 與正式環境結構偏離清單（前一手 mock 化時動到，非本輪所為）
+
+> 經與正式環境 `ResumePoolNoticeMail.aspx` HTML 逐行比對得出。**class/tag 名稱無改名/拼錯**（mock 未出現任何正式環境不存在的 class）；以下屬「節點刪除／屬性移除／位置搬移／呈現改寫／新增節點」。本輪僅更正紀錄，**未動 HTML**。
+
+**A. 刪除的節點（連同其 class）**
+| 正式環境 | mock | 說明 |
+|---|---|---|
+| `#UpdatePanel3.Areabox > h1.titleFont`「訊息列表」 | 無 | 整個刪除（唯一被刪的 `h1`）|
+| `.td-status` 內 `p.wish-content.isWish` / `.isNoWish`（有意願/無意願） | 無 | 刪除；意願改到 `.mail-type` inline 上色（見 D）|
+| `.deleteBtn a > i.far.fa-trash-alt`、`.starBtn a > i.far.fa-star` | 無 | 已記於 §2.2（使用者要求拿掉 icon）|
+| 操作指引浮層 `#guidedTour`（`guidedTour-step`/`box-*`/`step-1~4`/`close-step`/`next-step`/`icon-x-mark`…） | 無 | 未納入 mock |
+| 分頁「最後頁」`a.leaf.LastBtn`、GoPage 相關節點 | 無/簡化 | 未納入 |
+| 多個 `input[type=hidden]`（`HideEmpNo/Name/Role`、`hiducSelectAccount*`、`hidDDLVal`、`hfChooseReadType`）與頁面 `<script>` | 無 | 未納入 mock |
+
+**B. 被移除的屬性（非 class）**
+| 元素 | 正式環境屬性 | mock |
+|---|---|---|
+| 列星號 `.td.w2 > i.far.fa-star` | `data-starno="0"` | 移除 |
+| 資料列 `.mDetailA` | `data-mailno/tno/empno/tname/rno/rguid` | 移除 |
+| 列 checkbox `input[name=mainNo]` | `value`、`data-tname`、`data-empname`、`data-starno` | 移除 |
+| 三顆按鈕 `<a>` | `onclick="delSel()/removeStarSel()/saveReadMail()"` | 移除 |
+| `.td-mail` | `data-mailno` | 移除 |
+
+**C. 位置搬移（class/tag 不變，僅位置）**
+- `#bookmark.titleBar`（頁籤＋`h1.titleFont`＋`span.msgRecord`）：正式環境在 `.whiteBg.list > .msgList` **內**；mock 搬到 `.cont` **最上層**。
+- `.actionBtn`：正式環境在 `.msgList` 內；mock 搬到 `.cont`（filter 與 list 之間）。
+- `span.msgRecord`「共N筆」：正式環境在 `#UpdatePanel3.Areabox`（titleBar）內；mock 搬進 `.actionBtn`。
+- 頁籤順序：正式 `全部／未讀／已讀／已加星號／有意願`；mock 末兩項對調為 `…／有意願／已加星號`。
+- `<li>` class 由 `active tab` 寫成 `tab active`（同樣兩 class、純順序、無影響）。
+
+**D. 呈現方式改寫（意願）**
+- 正式環境：`.td-status` 內＝`p.reply-content.isReply/.isNotReply`（回覆）＋ `p.wish-content.isWish/.isNoWish`（意願，`&nbsp;•&nbsp;` 分隔）；`.mail-type` 只放類別。
+- mock：`.td-status` 只留 `reply-content`；意願移到 `.td-mail > p.mail-type` 用 inline `style="color:…"` 寫「面試邀約 有意願/無意願」。
+- 影響：CSS 已改 `.td-status .isNoWish`＝`#FF5D15`（對到正式 class，正確）；但 mock 畫面實際變色處是 `.mail-type` inline 文字（偏離正式結構）。
+
+**E. mock 新增**
+- `.cont` 內多一個空 `.headingBar` 間隔 div（正式環境無）。
+- 整份為 standalone 文件（多 `html/head/body/meta/link/title`），供單檔預覽。
+
 ---
 
 ## 3. 給後續 Agent 的判讀提示
 
-1. **本檔 HTML 不應被當成「要套用的新結構」**——它就是原結構。真正要交付給工程師的是「**樣式值變更**」（見 `02_CSS樣式調整對照.md`）與本檔列出的 3 個結構差異。
-2. 產出人類可讀需求時，HTML 面向只需描述三件事：
+1. ⚠️ **本檔 HTML ≠ 正式環境原結構**（原此處宣稱「它就是原結構」，已更正）。本檔是 mock，與正式環境有 §2.5 所列偏離。要交付工程師的視覺需求＝「**樣式值變更**」（見 `02_CSS樣式調整對照.md`），但**結構面請以正式環境為準**，不要直接照搬本 mock 的 DOM。
+2. 產出人類可讀需求時，HTML 面向需描述：
    - (a) 刪除 / 移除星號按鈕**拿掉 icon**；
    - (b) 表頭 checkbox **全選**、列 checkbox **任一勾選才顯示三顆批次按鈕**（互動規格）；
-   - (c) 其餘 HTML **維持原樣**。
-3. 不要要求工程師改動 class 名稱或 DOM 階層——所有視覺調整都能、且應該、只透過 CSS 值達成。
+   - (c) **意願**仍應沿用正式環境的 `.td-status > p.wish-content.isWish/.isNoWish`（mock 改成 `.mail-type` inline 上色是偏離，勿沿用）；
+   - (d) 其餘結構**維持正式環境原樣**。
+3. **class/tag 名稱本來就沒被改名**；正式環境上線時請依 §2.5 還原被刪節點/屬性，不要把 mock 的偏離帶進正式環境。所有視覺調整都應只透過 CSS 值達成。
