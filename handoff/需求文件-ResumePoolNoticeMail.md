@@ -5,14 +5,14 @@
 
 > 代號：`待補`（求才系統 B 端，頁面 `ResumePoolNoticeMail.aspx`）
 
-* User Story: `身為一個求才廠商，我想要在「信件訊息」頁看到符合新版設計系統的列表與篩選介面，以便更清楚地檢視與操作與求職者的聯繫訊息`
+* User Story: `身為一個求才廠商，我想要在「信件訊息」頁看到符合新版設計的列表與篩選介面，以便更清楚地檢視與操作和求職者的聯繫訊息`
 * Use Case:
-  * `廠商進入信件訊息頁 → 系統依新版視覺（底線式頁籤、合併便當、列表樣式）渲染畫面`
-  * `本文件僅描述前端視覺/樣式調整，不變更後端資料來源與既有互動邏輯`
+  * `廠商進入信件訊息頁 → 系統依新版視覺（底線式頁籤、合併卡片、列表樣式）渲染畫面`
+  * `本文件只描述前端的畫面/樣式調整，不動後端資料來源與既有互動邏輯`
 
 :::spoiler Document info
 
-文件版本：v0.1.0
+文件版本：v0.2.0
 最後更新：2026/06/23
 文件作者：UIUX
 文件狀態： <span style="color:blue">草稿</span></h6>
@@ -24,6 +24,7 @@
 | 版本 | 日期 | 作者 | 調整說明（異動區段 + 內容摘要） |
 | :---: | :--- | :--- | :--- |
 | 0.1.0 | 2026-06-23 | UIUX | 初版：彙整信件訊息頁前端視覺調整需求，逐一列出每個 HTML 標籤的更動與對應 CSS 檔名/行數 |
+| 0.2.0 | 2026-06-23 | UIUX | [全文] 改寫為白話敘述；[§3] 由「請確認版面」改為明確的 HTML 搬移指示 |
 
 [TOC]
 
@@ -32,221 +33,235 @@
 ## 示意圖
 
 * 對應 Figma：頁籤 `信件簡訊範本 node 3235-13620`、設計系統 `Horizontal/Tab node 566-1943`。
-* 預覽：隨本文件附上之自包含預覽檔 `preview-tab-underline.html`（單檔可直接於瀏覽器開啟）。
+* 預覽：隨附的 `preview-tab-underline.html`，單檔用瀏覽器打開就能看調整後的樣子。
 * 完整截圖：`待補`
 
 ## 初始化
 
-> 本文件為**純前端視覺/樣式調整**，不涉及進入權限、資料來源或路由變更。
+> 這份文件是**純前端畫面/樣式調整**，不碰權限、資料來源或路由。
 
 ### 進入路徑
 
-* 沿用現行頁面進入路徑（求才後台 → 信件訊息），不變更。
+* 維持現在的進入方式（求才後台 → 信件訊息），不變。
 
 ### 權限判斷
 
-* 無新增/變更權限條件，沿用原頁面。
+* 沒有新增或變更任何權限條件，照舊。
 
 ### 資料載入
 
-* 資料來源、API、分頁邏輯**皆不變**，僅調整呈現樣式。
+* 資料怎麼來、call 哪支 API、分頁邏輯**全部不變**，這次只調樣式。
 
 ---
 
-## 閱讀方式（給工程師）
+## 怎麼讀這份文件
 
-1. 下列章節**逐一對應一個 HTML 標籤／區塊**；該標籤若有 CSS 調整，CSS 需求寫在同一章節內，並標明**修改的 CSS 檔名與行數**。
-2. CSS 檔名統一為 **`resumePoolNoticeMail.css`**；所附行號為**隨附 mock 檔**的行號（共 1706 行版本），正式 codebase 行號請依 selector 對應。
-3. 值一律以反引號標出（如 `#1a66ff`、`16px`）。涉及 HTML 結構/屬性的更動另以 🚧 標明，並提醒**以正式環境結構為準**（背景見 `01_HTML結構調整對照.md` §2.5）。
-4. 標 <font style="color:red">紅字</font> 者為需特別注意之結構前提或與正式環境不一致處。
-5. <font style="color:red">**字體一律使用微軟正黑體**</font>（`"Microsoft JhengHei","微軟正黑體","新微軟正黑體",sans-serif`）。設計稿雖標 `Noto Sans TC`，**實作不採用**；全頁文字統一微軟正黑體。`Font Awesome`（圖示字型）為功能性字型，維持不動。
+1. 下面每一節對應頁面上的**一個元素／一塊區域**。需要改 CSS 的，就把「改哪個檔、第幾行」寫在同一節裡。
+2. CSS 檔都是 **`resumePoolNoticeMail.css`**。附的行號是**隨附那份 mock 檔**的行號（共 1706 行的版本），正式專案的行號請用 selector 自己對一下，不會完全一樣。
+3. 程式碼相關的值（顏色、尺寸、class 名）都用 `等寬字` 標出來。
+4. 只有 **§3** 需要動到 HTML 的位置，其餘**全部只改 CSS**、不動 HTML 結構與 class 名稱。
+5. <font style="color:red">**字體一律用微軟正黑體**</font>（`"Microsoft JhengHei","微軟正黑體","新微軟正黑體",sans-serif`）。設計稿上雖然標 `Noto Sans TC`，**這次不要用**，全頁文字統一微軟正黑體。`Font Awesome`（圖示字型）是拿來顯示 icon 的，不要動。
+6. 標 <font style="color:red">紅字</font> 的地方是要請你特別留意的重點（通常跟正式環境結構不一樣，或是容易踩雷的地方）。
 
 ---
 
-## 1 標題列 `<h2 class="Title">`（「信件訊息」）
+## 1 頁面大標「信件訊息」`<h2 class="Title">`
 
-| 項目 | 內容 |
+把頁面最上面的標題字放大、換成設計稿指定的樣式。
+
+* **要改成**：字體微軟正黑體、字重 `500`（中等粗）、字級 `28px`、行高 `150%`（約 42px）、顏色 `#212529`。
+* **原本長這樣**：顏色 `#4e4e4e`、字級 `20px`，沒特別指定字體與字重。
+* **改哪**：`resumePoolNoticeMail.css` 第 1686–1693 行（新增的 `.headingBar .Title` 規則）；原始設定在第 556–560 行。
+* **HTML**：不用動。
+
+---
+
+## 2 頁籤「全部／我的未讀訊息…」`<ul class="tabs"> / <li class="tab">`
+
+把現在的「方塊/膠囊式」頁籤換成新版的「**底線式**」頁籤：沒有底色方塊，只用文字＋選中時下面一條藍色底線。HTML 不用動（底線是用 `li.active::after` 這個偽元素畫出來的，不新增節點）。
+
+三種狀態長這樣：
+
+| 狀態 | 要呈現的樣子 |
 | :--- | :--- |
-| HTML 更動 | 無（僅改樣式） |
-| 需求 | 套用設計系統 `Chinese/Title/28-Medium`：字體 **微軟正黑體**（`"Microsoft JhengHei","微軟正黑體","新微軟正黑體",sans-serif`）、字重 `500`、字級 `28px`、行高 `150%`(≈42px)、字色 `#212529` |
-| CSS 檔／行 | `resumePoolNoticeMail.css` L1686–1693（新增 `.headingBar .Title` override）｜原值在 L556–560：`color:#4e4e4e; font-size:20px` |
-| 視覺目的 | 標題放大、改用設計系統標題級距與中性主色 |
+| 整排容器 `.tabs` | 靠左排、每顆間距 `32px`、底部一條 `#e9ecef` 細灰線；上方留 `16px`、左右各留 `32px`；把 `<ul>` 的圓點和預設縮排拿掉 |
+| 沒選到 `.tabs .tab` | 透明底、沒有框；文字深灰 `#212529`、字重 `400`、`16px`；滑鼠移上去手指游標 |
+| 滑過去 hover `.tabs .tab:hover` | 文字轉成品牌藍 `#1a66ff`，不出現底線、粗細不變 |
+| 選中的那顆 `.tabs .tab.active` | 文字藍 `#1a66ff`、字重 `500`；底下加一條 4px 藍色底線（`#1a66ff`、上緣圓角 `80px`） |
+
+* **改哪**：`resumePoolNoticeMail.css` 第 1634–1678 行（容器 1652、未選 1661、hover 1669、選中 1670、底線 `::after` 1674）。
+* 舊的方塊頁籤樣式散在好幾處（第 1067–1106 行，以及 1362、1364、1402–1416、1504、1529 的覆蓋），正式整併時可以一併刪掉、把 `!important` 拿掉。
+* <font style="color:red">提醒：頁籤的排列順序（全部／未讀／已讀／已加星號／有意願）請以正式環境為準。mock 裡最後兩顆順序跟正式不一樣，那是前一手 mock 的偏差，不是這次的需求。</font>
 
 ---
 
-## 2 頁籤 `<ul class="tabs"> / <li class="tab">`（底線式 Tab）
+## 3 把「頁籤」搬到「篩選列」上面，併成同一張卡片 🔧 需要動 HTML
 
-HTML **不變**（底線以 `li.active::after` 偽元素達成，無新增節點）。依設計系統把「膠囊/方塊式」改為「底線式 Tab」。
+> **這一節是唯一要動到 HTML 位置的地方，其餘都只改 CSS。**
 
-| 狀態 | 樣式需求 | token |
+目標：讓「頁籤」和下面的「篩選列」看起來是**同一張白色圓角卡片**——頁籤在上半、篩選在下半，中間用一條細灰線分隔，整張卡只有一圈陰影。
+
+### 3.1 先把頁籤這塊 HTML 搬家
+
+現在正式環境裡，頁籤那塊（`#bookmark.titleBar`，也就是「全部／我的未讀訊息…」整排）是**被包在最下面那張列表卡片裡**的，跟資料表格擠在一起（位置在 `.whiteBg.list > .msgList` 內）。
+
+請把**整塊 `#bookmark.titleBar`** 搬出來，移到**篩選卡片 `.whiteBg.filter` 的正上方**，讓它變成 `.whiteBg.filter` 的前一個兄弟節點。
+
+簡單講就是：
+
+* **搬之前（正式環境現況）**
+  `… > .whiteBg.list > .msgList > #bookmark.titleBar`　←　頁籤埋在最下面的列表卡裡
+* **搬之後（這次要的）**
+  `.cont` 底下依序：`#bookmark.titleBar`（頁籤）→ 緊接著 `.whiteBg.filter`（篩選）　←　頁籤坐到篩選卡正上方
+
+> 搬家時只是**換位置**，標籤名稱、class、裡面的內容都不要改。
+
+### 3.2 再用 CSS 把兩塊接成一張卡
+
+搬好之後，套以下樣式讓上下兩塊「黏」成一張卡片：
+
+* **頁籤這塊（卡片上半）`#bookmark.titleBar`**：白底、**上面兩個角圓角 `10px`**（跟原本卡片的圓角一樣）、加上和卡片相同的陰影 `0 3px 6px rgba(0,0,0,.15)`。
+* **篩選這塊（卡片下半）`.whiteBg.filter`**：**下面兩個角圓角 `10px`**、上面不留間距（`margin-top:0`）、層級蓋在頁籤上面（`z-index` 高一階），這樣兩塊接縫的陰影才不會露出來。
+* 中間的分隔線就是頁籤底部那條 `#e9ecef` 細灰線（§2 已經有了）。
+
+* **改哪**：`resumePoolNoticeMail.css` 第 1640–1645 行（頁籤這塊）、第 1647–1650 行（篩選這塊）。
+* 來源：`01_HTML結構調整對照.md` §2.5 C。
+
+---
+
+## 4 筆數文字「共 N 筆」`<span class="msgRecord">`
+
+把「共 N 筆」這行字換成設計稿的樣式。
+
+* **要改成**：微軟正黑體、字重 `400`、`16px`、行高 `155%`（約 25px）、顏色 `#495057`，並用 `inline-flex` + 垂直置中讓它跟旁邊對齊。
+* **原本**：`14px`、顏色沿用預設深色。
+* **改哪**：`resumePoolNoticeMail.css` 第 1696–1705 行（新增的 `.actionBtn .msgRecord` 規則）。
+* **HTML**：不用動。
+
+---
+
+## 5 三顆批次按鈕「刪除／移除星號／已讀勾選訊息」
+
+| 子項 | 要做的事 | 改哪 |
 | :--- | :--- | :--- |
-| 容器 `.tabs` | `display:flex; justify-content:flex-start; gap:32px; border-bottom:1px solid #e9ecef; padding:16px 32px 0`；移除 `list-style`/`margin` | Space/800、Border/Neutral/Tertiary |
-| Default `.tabs .tab` | 透明底、無框；字色 `#212529`、字重 `400`、`16px`、行高 `1.55`；`padding:8px 0 16px`；`cursor:pointer` | Text/Neutral/Primary |
-| Hover `.tabs .tab:hover` | 字色轉 `#1a66ff`、無底線、字重不變 | Text/Primary/Primary |
-| Selected `.tabs .tab.active` | 字色 `#1a66ff`、字重 `500`；底線 `::after` 4px、`#1a66ff`、上緣圓角 `80px` | Surface/Primary/Primary、Radius/Full |
-
-* CSS 檔／行：`resumePoolNoticeMail.css` L1634–1678（容器 L1652、default L1661、hover L1669、selected L1670、底線 `::after` L1674）。
-* 取代來源：原膠囊規則 L1067–1106 及像素取樣覆蓋（L1362、L1364、L1402–1416、L1504、L1529）；正式整併時可刪除舊規則與本區塊 `!important`。
-* <font style="color:red">註：頁籤順序與「全部/未讀/已讀/已加星號/有意願」在正式環境的排序，請以正式環境為準（mock 末兩項順序與正式不同，屬 mock 偏離，非本需求）。</font>
-
----
-
-## 3 頁籤容器 `#bookmark.titleBar` ＋ 篩選卡 `.whiteBg.filter`（合併為同一便當）
-
-| 項目 | 內容 |
-| :--- | :--- |
-| 需求 | 將頁籤列與下方篩選列**視覺上合併為同一張圓角白卡**：上方圓角＝便當原圓角 `10px`、整體一圈陰影、中間以 `#e9ecef` 細線分隔；左右 padding 對齊便當 `32px` |
-| `#bookmark.titleBar`（便當上半） | `background:#fff; border-radius:10px 10px 0 0; box-shadow:0 3px 6px rgba(0,0,0,.15); z-index:1` |
-| `.whiteBg.filter`（便當下半） | `border-radius:0 0 10px 10px; margin-top:0; z-index:2`（不透明白底蓋住接縫陰影） |
-| CSS 檔／行 | `resumePoolNoticeMail.css` L1640–1645（titleBar）、L1647–1650（filter） |
-| 視覺目的 | 頁籤與篩選成為單一卡片，去除兩塊分離感 |
-
-> 🚧 <font style="color:red">**結構前提（務必確認）**：本合併假設 `#bookmark.titleBar` 與 `.whiteBg.filter` 為**相鄰 sibling**。但**正式環境** `#bookmark.titleBar` 位於 `.whiteBg.list > .msgList` 內，與 `.whiteBg.filter` 並不相鄰（mock 是前一手把頁籤搬到最上層才相鄰）。</font>
->
-> 工程師需先確認正式環境要採哪種版面：
-> * [ ] 若維持正式環境 DOM（頁籤在 list 內）：本「合併便當」需求需改以正式結構重新定義，或調整 DOM 使兩者相鄰。
-> * [ ] 若採 mock 版面（頁籤移至篩選卡上方）：需確認此 DOM 位移是否為正式需求。
-> * 來源：`01_HTML結構調整對照.md` §2.5 C。
-
----
-
-## 4 訊息筆數 `<span class="msgRecord">`（「共 N 筆」）
-
-| 項目 | 內容 |
-| :--- | :--- |
-| HTML 更動 | 無 |
-| 需求 | 套用 `Chinese/Body/16-Regular`：字體 **微軟正黑體**（`"Microsoft JhengHei","微軟正黑體","新微軟正黑體",sans-serif`）、字重 `400`、`16px`、行高 `155%`(≈25px)、字色 `#495057`、`display:inline-flex; align-items:center` |
-| CSS 檔／行 | `resumePoolNoticeMail.css` L1696–1705（新增 `.actionBtn .msgRecord` override）｜原為 `14px`（L1554 群組） |
-| 視覺目的 | 筆數文字級距/顏色與設計系統一致 |
-
----
-
-## 5 批次按鈕 `.deleteBtn > a` / `.starBtn > a` / `.readBtn > a`
-
-| 子項 | HTML | CSS | 說明 |
-| :--- | :--- | :--- | :--- |
-| 5.1 移除 icon | 🚧 移除 `.deleteBtn a` 內 `<i class="far fa-trash-alt">`、`.starBtn a` 內 `<i class="far fa-star">`（`.readBtn` 原本就無 icon） | — | 需求來源：按鈕只留文字 |
-| 5.2 尺寸/置中 | 無 | L1619、L1508–1517：`width:auto; padding:0 14px; display:inline-flex; align-items:center; justify-content:center; height:25px` | 固定寬改自然寬、文字＋hover 置中 |
-| 5.3 條件顯示 | 無 | L1628（預設 `display:none`）、L1631（`.actionBtn.has-checked …{display:inline-flex}`） | **勾選任一列 checkbox 才顯示三顆按鈕**（行為見 §13） |
-| 5.4 配色（維持原值） | — | 刪除 `#e25656`(hover `#FFEAEB`)、星號/已讀 `#199ed8`(hover `#e9f8ff`) | 不變更 |
+| 5.1 拿掉 icon | 🔧 HTML：把「刪除」按鈕裡的 `<i class="far fa-trash-alt">`、「移除星號」裡的 `<i class="far fa-star">` 拿掉，按鈕只留文字（「已讀勾選訊息」本來就沒 icon） | HTML |
+| 5.2 寬度與置中 | 固定寬改成依文字自然寬，文字和 hover 都置中（高度 `25px`、左右各留 `14px`） | CSS 第 1619、1508–1517 行 |
+| 5.3 預設藏起來，勾了才出現 | 三顆按鈕**預設隱藏**；只要列表有任一列被勾選，才顯示出來（靠 `.actionBtn` 上的 `has-checked` 這個 class 切換，互動細節見 §13） | CSS 第 1628 行（藏）、1631 行（顯示） |
+| 5.4 顏色 | 不變：刪除維持紅色 `#e25656`（hover `#FFEAEB`）、星號/已讀維持藍色 `#199ed8`（hover `#e9f8ff`） | — |
 
 * CSS 檔：`resumePoolNoticeMail.css`。
 
 ---
 
-## 6 篩選輸入元件群（邊框/hover/focus 統一）
+## 6 篩選區的輸入框們（外框、hover、focus 統一）
 
-作用標籤：`#EmpInput.jobList`(職缺)、`.LMDateSet`(日期外框)、`#txtSearchKeyWord.searchName`(關鍵字)、`#btnSearch.btnSch`(搜尋鈕)、`#txtChooseUNOs.otherAcc`(查看其他帳號)、`#ddlMailType`(信件類別)、`#ddlReaded`(求職者回覆)。
+把這幾個輸入元件的外框長相統一起來：職缺 `#EmpInput`、日期 `.LMDateSet`、關鍵字 `#txtSearchKeyWord`、搜尋鈕 `#btnSearch`、查看其他帳號 `#txtChooseUNOs`、信件類別 `#ddlMailType`、求職者回覆 `#ddlReaded`。
 
-| 狀態 | 樣式 | CSS 檔／行 |
+| 狀態 | 要呈現的樣子 | 改哪 |
 | :--- | :--- | :--- |
-| 預設 | `border:1px solid #ccc; border-radius:4px; box-shadow:none; transition:border-color .15s` | L1442 起 |
-| `.searchName` 接搜尋鈕 | 右側不圓角、不重複右框 | L1448 |
-| `.btnSch` | 左角 `0`、右角 `4px` | L1452 |
-| `.LMDateSet .start/.end` | `border:none`（外框統一、內部 input 無框） | L1457 |
-| hover | `border-color:#9aa7b2` | L1467 |
-| focus / focus-within | `outline:none; border-color:#4f6b92` | L1477 |
+| 平常 | 統一 `1px` 灰框 `#ccc`、圓角 `4px`、無陰影、加上邊框變色的過場 | 第 1442 行起 |
+| 關鍵字框接搜尋鈕 | 關鍵字框右邊不要圓角、不重複畫右框，跟搜尋鈕貼在一起 | 第 1448 行 |
+| 搜尋鈕 | 左邊角不圓、右邊角圓 `4px` | 第 1452 行 |
+| 日期區間 | 外框統一，裡面兩個 input 本身不要框 | 第 1457 行 |
+| 滑過去 hover | 邊框變深一點 `#9aa7b2` | 第 1467 行 |
+| 點進去 focus | 去掉預設 outline，邊框換品牌藍 `#4f6b92` | 第 1477 行 |
 
 ---
 
-## 7 卡片容器 `.whiteBg` / `.whiteBg.list`
+## 7 卡片留白 `.whiteBg` / `.whiteBg.list`
 
-| 項目 | 原值 | 新值 | CSS 檔／行 | 視覺目的 |
-| :--- | :--- | :--- | :--- | :--- |
-| `.whiteBg.list` padding | `20px 24px 20px 24px` | `0 0 20px 0` | L1428 | 表格上/左/右貼齊卡片邊，僅留下方 `20px` |
-| `.whiteBg` margin-bottom | `20px` | `0` | L1565 | 卡片移除下外距 |
-| `.whiteBg.list .thead .tr` 頂角 | — | `border-radius:10px 10px 0 0` | L1429 | 表頭頂角隨卡片圓角 |
-
----
-
-## 8 表頭列 `.msgTable .thead .tr`（含 `.th`）
-
-| 項目 | 原值 | 新值 | CSS 檔／行 | 視覺目的 |
-| :--- | :--- | :--- | :--- | :--- |
-| 底色 | `#e5eaf3` | `#E3ECFD` | L1388 | 依設計圖淺藍底 |
-| 文字色 | （繼承深色） | `#0D2760` | L1388 | 深藍字（配合各 `.th` 既有 `font-weight:bold`） |
-| 儲存格上下 padding | `10px` | `12px`（左右維持 `15px`） | L1682–1683（`.msgTable .thead .tr .th`） | 表頭列略加高 |
+| 要做的事 | 原本 | 改成 | 改哪 |
+| :--- | :--- | :--- | :--- |
+| 列表卡片內距 | `20px 24px 20px 24px` | `0 0 20px 0`（表格上、左、右貼齊卡片邊，只留下面 `20px` 給分頁喘口氣） | 第 1428 行 |
+| 卡片下方外距 | `20px` | `0`（拿掉卡片之間的下緣空隙） | 第 1565 行 |
+| 表頭頂角 | — | 跟著卡片圓角 `10px 10px 0 0`，避免方角凸出來 | 第 1429 行 |
 
 ---
 
-## 9 資料列 `.msgTable .tr .mDetailA`（hover）
+## 8 表頭那一列 `.msgTable .thead .tr`（含每格 `.th`）
 
-| 項目 | 原值 | 新值 | CSS 檔／行 | 視覺目的 |
-| :--- | :--- | :--- | :--- | :--- |
-| hover 效果 | 左右內陰影＋外陰影邊框（`box-shadow … inset …`）＋`z-index:2` | **移除邊框/陰影**，改 `box-shadow:none; background:#FFF7F7; cursor:pointer` | L921–927（直接改原始 `:hover` 規則） | hover 僅以淡紅底色提示，無邊框 |
+| 要做的事 | 原本 | 改成 | 改哪 |
+| :--- | :--- | :--- | :--- |
+| 底色 | `#e5eaf3` | `#E3ECFD`（設計稿的淺藍） | 第 1388 行 |
+| 文字色 | 沿用深色 | `#0D2760`（深藍，配既有的粗體） | 第 1388 行 |
+| 每格上下內距 | `10px` | `12px`（左右維持 `15px`），讓表頭列高一點 | 第 1682–1683 行 |
 
 ---
 
-## 10 訊息內容欄 `.td-mail`（`p.mail-type` / `bdi` / `span.badge`）
+## 9 資料列滑過去的效果 `.msgTable .tr .mDetailA:hover`
 
-| 項目 | 原值 | 新值 | CSS 檔／行 | 視覺目的 |
-| :--- | :--- | :--- | :--- | :--- |
-| `<p>` 預設上下 margin | UA `16px 0` | `0`（`.msgTable p`） | L1596 | 移除類別/狀態/職缺 `<p>` 預設間距 |
-| `bdi` 上 padding | `3px 0 0 0` | `2px 0 0 0` | L1386 | 類別與內容間距收斂 |
-| 未讀紅點 `.badge` | `6px×6px` | `10px×10px` | L1496 | 紅點放大 |
-| `.td-mail:has(.badge)` 內文寬 | `…- 6px` | `max-width:calc(100% - 12px - 18px - 10px)` | L1497 | 配合紅點變大保留寬度 |
+* **原本**：滑過去會出現左右內陰影＋外陰影的「外框感」（還有 `z-index:2`）。
+* **改成**：把那些陰影/外框**全部拿掉**，滑過去就只是整列換成淡紅底色 `#FFF7F7`，游標變手指。
+* **改哪**：`resumePoolNoticeMail.css` 第 921–927 行（直接改原本的 `:hover` 規則）。
+
+---
+
+## 10 訊息內容欄 `.td-mail`（類別 `p.mail-type`、內文 `bdi`、未讀紅點 `span.badge`）
+
+| 要做的事 | 原本 | 改成 | 改哪 |
+| :--- | :--- | :--- | :--- |
+| 段落上下間距 | 瀏覽器預設 `16px 0` | `0`（把類別/狀態/職缺那些 `<p>` 的預設上下 margin 清掉，間距才不會太鬆） | 第 1596 行 |
+| 內文 `bdi` 上方留白 | `3px` | `2px`（類別和內文靠近一點） | 第 1386 行 |
+| 未讀紅點 | `6px × 6px` | `10px × 10px`（放大比較明顯） | 第 1496 行 |
+| 有紅點時內文寬度 | `…- 6px` | `calc(100% - 12px - 18px - 10px)`（紅點變大後幫內文留出空間） | 第 1497 行 |
 
 ---
 
 ## 11 回覆狀態欄 `.td-status`（含意願）
 
-| 項目 | 內容 |
-| :--- | :--- |
-| 需求 | 「無意願」文字色由 `#BF1212` 改為 `#FF5D15`；「有意願」維持 `#1D880D` |
-| CSS 檔／行 | `resumePoolNoticeMail.css` L983（`.msgTable .td-status .isNoWish{color:#FF5D15}`）；有意願 L980（`.isWish #1D880D`） |
+* **要做的事**：「無意願」的文字顏色從 `#BF1212` 換成 `#FF5D15`；「有意願」維持綠色 `#1D880D`。
+* **改哪**：`resumePoolNoticeMail.css` 第 983 行（`.msgTable .td-status .isNoWish`，無意願）、第 980 行（`.isWish`，有意願）。
 
-> 🚧 <font style="color:red">**結構說明（重要）**：正式環境的「有意願/無意願」是放在 `.td-status` 內、以獨立節點 `p.wish-content.isWish` / `p.wish-content.isNoWish` 呈現（與 `p.reply-content` 以 `•` 分隔，例：`已回覆 • 無意願`）。本需求的 `#FF5D15` 即套在 `.isNoWish`，**正式環境請以此為準**。</font>
+> 🚧 <font style="color:red">**這裡要特別注意結構**：正式環境的「有意願／無意願」是放在 `.td-status` 這一欄，用獨立的 `<p class="wish-content isWish">` / `<p class="wish-content isNoWish">` 來顯示（跟「已回覆」用 `•` 隔開，像「已回覆 • 無意願」）。所以這次的 `#FF5D15` 就是套在 `.isNoWish` 上，**正式環境照這個來**。</font>
 >
-> mock 畫面上的「無意願」其實是前一手改寫到 `.td-mail > p.mail-type` 的 inline 上色（偏離正式結構），**正式環境請勿沿用** mock 的 inline 寫法。來源：`01_HTML結構調整對照.md` §2.5 D。
-> 另：未讀紅點 `--State-warning #BF1212`（badge）為不同語意，**不更動**。
+> mock 畫面上看到的「無意願」其實是前一手改寫到 `.td-mail` 的 `<p class="mail-type">` 上用 inline 顏色硬塗的（跟正式結構不一樣），**正式環境不要照 mock 那個 inline 寫法**。背景見 `01_HTML結構調整對照.md` §2.5 D。
+> 另外：未讀紅點用到的 `--State-warning #BF1212` 是不同的東西（紅點，不是文字），**不要動**。
 
 ---
 
-## 12 一般內容文字放大 `16px`（排除中間操作項目）
+## 12 內文字級統一放大到 `16px`（中間那排操作項目除外）
 
-| 項目 | 內容 |
-| :--- | :--- |
-| 放大為 `16px` | `.tabs .tab`、`.headingBar .LMInstruct`、`.filterBox .LMVacancies`、`.filterBox input/.jobList/.searchName/.start/.end/.btnSch`、`.msgTable .thead .tr`、`.tName`、`.td-status .reply-content`、`.mail-type`、`.td-mail bdi`、`.job-content`、`.td.w8`(日期)、`.pageBox.DataPager` 及其 `a/.Currect/.dataPagerText/select/input` |
-| 維持 `14px`（明確排除） | `.actionBtn` 與其 `.msgRecord`(見 §4 已另調 16px)、三顆批次按鈕 `a`、`.otherAcc`、`.LMType select`、`.seekerWillStatus select` |
-| 次要層級 | `.td-status .sub-read`（求職者已讀）`14px` |
-| CSS 檔／行 | `resumePoolNoticeMail.css` L1529 起（16px 群組） |
+* **放大成 16px 的**：頁籤 `.tabs .tab`、提示 `.headingBar .LMInstruct`、篩選標 `.filterBox .LMVacancies`、篩選輸入框 `.filterBox input/.jobList/.searchName/.start/.end/.btnSch`、表頭 `.msgTable .thead .tr`、姓名 `.tName`、回覆狀態 `.td-status .reply-content`、信件類別 `.mail-type`、內文 `.td-mail bdi`、職缺 `.job-content`、日期 `.td.w8`、分頁 `.pageBox.DataPager` 和裡面的 `a/.Currect/.dataPagerText/select/input`。
+* **維持 14px（刻意不放大）**：操作列 `.actionBtn` 和它的「共 N 筆」（這個已在 §4 另外指定 16px）、三顆批次按鈕、查看其他帳號 `.otherAcc`、信件類別/求職者回覆兩個下拉。
+* **次要小字**：`.td-status .sub-read`（求職者已讀）維持 `14px`。
+* **改哪**：`resumePoolNoticeMail.css` 第 1529 行起（放大那一群）。
 
 ---
 
-## 13 表頭/列 Checkbox 互動 `#checkALL` / `input[name="mainNo"]`（行為規格）
+## 13 表頭/列的勾選框互動 `#checkALL` / `input[name="mainNo"]`（行為規格）
 
-> 行為規格，實作方式（jQuery／原生）由工程師決定；CSS 端對應 `.actionBtn.has-checked` state class（§5.3）。
+> 這是行為規格，用 jQuery 還是原生 JS 隨你。CSS 端對應的是 `.actionBtn` 上的 `has-checked` class（見 §5.3）。
 
-| 功能 | 觸發 | 操作對象 |
+| 功能 | 什麼時候 | 做什麼 |
 | :--- | :--- | :--- |
-| 表頭全選/全不選 | `#checkALL` change | 所有 `input[name="mainNo"]` |
-| 半選狀態同步 | 列 checkbox change | `#checkALL.indeterminate` |
-| 批次按鈕條件顯示 | 任一 `input[name="mainNo"]` 被勾 | 在 `.actionBtn` 加/移除 class `has-checked` → 顯示/隱藏三顆批次按鈕 |
+| 表頭全選/全不選 | 點表頭的 `#checkALL` | 把所有 `input[name="mainNo"]` 一起勾起來/取消 |
+| 半選狀態 | 任一列勾選狀態改變 | 若只勾了一部分，表頭框顯示「半選」（`indeterminate`） |
+| 三顆批次按鈕顯示 | 只要有任一列被勾 | 在 `.actionBtn` 加上 `has-checked` → 三顆按鈕才出現（沒勾就藏起來） |
 
 ---
 
-## 14 不需處理 / 排除項目
+## 14 不用處理 / 要排除的東西
 
 | 項目 | 說明 |
 | :--- | :--- |
-| `body{background:#f0f0f0}`（L1316）、欄寬 `.w2/.w5/...` 與 `.w50 flex:1`（L1320） | **mock 補值**（原站定義在未打包的 `boxPage.css`、外層 layout 提供）；正式環境已具備，**無需處理** |
-| FontAwesome CDN `@font-face`、三顆按鈕/星號/清除/箭頭等 inline SVG `data-uri`、`.icon-bulb` SVG 替身 | **離線預覽替身**（打包缺資產用），正式環境用站台原字型/圖示資產，**務必排除** |
+| `body` 的底色 `#f0f0f0`（第 1316 行）、欄寬 `.w2/.w5/...` 和 `.w50 flex:1`（第 1320 行） | 這些是 mock 為了單檔顯示補的（正式站本來就有，定義在沒打包進來的 `boxPage.css` 或外層 layout）。**正式環境不用處理。** |
+| FontAwesome 的 CDN 字型、三顆按鈕/星號/清除/箭頭等用 inline SVG 替代的圖示、燈泡 `.icon-bulb` 的 SVG | 這些都是**離線預覽用的替身**（因為打包時少了圖片資產）。正式站用站上原本的字型和圖示就好，**這些務必不要帶進正式環境。** |
 
 ---
 
-## 附錄：CSS 行號對照（隨附 mock 檔 `resumePoolNoticeMail.css`，1706 行版）
+## 附錄：CSS 行號速查（隨附 mock 檔 `resumePoolNoticeMail.css`，1706 行版）
 
 | 區段 | selector | 行號 |
 | :--- | :--- | :--- |
 | 標題 | `.headingBar .Title` | 1686–1693 |
-| 底線式 Tab | `.tabs` / `.tab` / `:hover` / `.active` / `::after` | 1652 / 1661 / 1669 / 1670 / 1674 |
-| 便當合併 | `#bookmark.titleBar` / `.whiteBg.filter` | 1640 / 1647 |
+| 底線式頁籤 | `.tabs` / `.tab` / `:hover` / `.active` / `::after` | 1652 / 1661 / 1669 / 1670 / 1674 |
+| 卡片合併 | `#bookmark.titleBar` / `.whiteBg.filter` | 1640 / 1647 |
 | 筆數 | `.actionBtn .msgRecord` | 1696–1705 |
 | 批次按鈕 | 自然寬/置中、隱藏、has-checked | 1619、1508–1517 / 1628 / 1631 |
-| 輸入元件 | border / hover / focus | 1442 / 1467 / 1477 |
-| 卡片 | `.whiteBg.list` padding / `.whiteBg` margin | 1428 / 1565 |
-| 表頭 | 配色 / `.th` padding | 1388 / 1682–1683 |
-| 資料列 hover | `.mDetailA:hover` | 921–927 |
+| 輸入框 | 外框 / hover / focus | 1442 / 1467 / 1477 |
+| 卡片留白 | `.whiteBg.list` 內距 / `.whiteBg` 外距 | 1428 / 1565 |
+| 表頭 | 配色 / `.th` 內距 | 1388 / 1682–1683 |
+| 列 hover | `.mDetailA:hover` | 921–927 |
 | 訊息欄 | `.msgTable p` / `bdi` / `.badge` | 1596 / 1386 / 1496 |
 | 意願 | `.isNoWish` / `.isWish` | 983 / 980 |
-| 16px 群 | 多 selector | 1529 起 |
+| 內文 16px | 多個 selector | 1529 起 |
