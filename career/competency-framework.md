@@ -37,7 +37,7 @@ I originate products from my own user stories and wireframes; I don't transcribe
 | 產品線 / Product lines | 核心交易流程 ＋ **求才側 AI 產品**（職缺匯入、公司簡介生成、JD 生成、職缺健檢、AI 推薦人才） |
 | 角色定位 / Role | 需求源頭 → 規格輸出 → 交接落地（originate → specify → hand off），非單純文件化 |
 | 路線圖與團隊 / Roadmap & team | 主導 **227 項求才產品 Roadmap**（P0–P3 優先級、時間盒交付節奏）；委派工單給 **3 人企劃團隊**（本人＋育琳／小楊）與工程／QA；近半年 111 項上線、**94% 準時或提前** |
-| 方法論 / Method | 狀態驅動規格、MECE 四狀態、權限代碼建模、分階段交付、版本控管、流程圖視覺化 |
+| 方法論 / Method | 狀態驅動規格、MECE 四狀態、權限代碼建模、分階段交付、版本控管、UML／BPMN 建模（循序圖／活動圖／使用案例圖／BPMN） |
 | 工具化 / Tooling | 將自身規格慣例**標準化為可複用 skill**（`spec-doc-1111`）＋雙系統範本＋文件樹 |
 
 > 註 / Note：HackMD `1111-jobdocs` 工作區共 307 份文件（`tree.md`），涵蓋多人；上表僅列**本人負責**範圍。
@@ -73,6 +73,7 @@ verify without ambiguity.*
   - **MECE 四狀態**：所有非同步資料區塊一律覆蓋 `載入中／有資料／無資料／錯誤`（loading / data / empty / error）。
   - **權限代碼建模**：將散落的權限判斷集中為單一「權限判斷」表格，欄位以代碼建模（`oStatus:1`、`confirmed&4096`、`代碼54`）。
   - **條件邏輯**：巢狀條列描述「判斷 → 顯示／行為」，搭配狀態術語（default／disabled／Error／hover／toast）。
+  - **流程與系統建模 / Diagramming**：以 **循序圖（sequence）／活動圖（activity）／使用案例圖（use case）／BPMN** 表達系統互動、操作流程與角色行為，對齊 RD／QA 與利害關係人；循序圖、活動圖以 Mermaid 等 AI 工具加速產出，使用案例圖與 BPMN 手繪建模。
 - **工作證據 / Evidence**：skill 核心原則（狀態驅動、欄位即真相、MECE）；`初始化` 三段式（進入路徑／權限判斷／資料載入）；
   `[REF] 求才系統權限代碼表`。
 - **資深度訊號 / Seniority signal**：把模糊需求轉成**可驗收的系統規格**，降低反工與上線風險。
