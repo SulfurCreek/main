@@ -25,6 +25,7 @@
 | :---: | :--- | :--- | :--- |
 | 0.1.0 | 2026-06-23 | UIUX | 初版：彙整信件訊息頁前端視覺調整需求，逐一列出每個 HTML 標籤的更動與對應 CSS 檔名/行數 |
 | 0.2.0 | 2026-06-23 | UIUX | [全文] 改寫為白話敘述；[§3] 由「請確認版面」改為明確的 HTML 搬移指示 |
+| 0.2.1 | 2026-06-23 | UIUX | [§11] 意願標籤由「結構說明」改為明確結構指示（用 `.td-status > p.wish-content`、附 HTML 範例），並明確要求別照 mock 的 `.mail-type` inline 寫法 |
 
 [TOC]
 
@@ -209,13 +210,30 @@
 
 ## 11 回覆狀態欄 `.td-status`（含意願）
 
-* **要做的事**：「無意願」的文字顏色從 `#BF1212` 換成 `#FF5D15`；「有意願」維持綠色 `#1D880D`。
-* **改哪**：`resumePoolNoticeMail.css` 第 983 行（`.msgTable .td-status .isNoWish`，無意願）、第 980 行（`.isWish`，有意願）。
+這一欄要顯示兩件事：求職者的「回覆狀態」和「意願」。請照下面的結構做。
 
-> 🚧 <font style="color:red">**這裡要特別注意結構**：正式環境的「有意願／無意願」是放在 `.td-status` 這一欄，用獨立的 `<p class="wish-content isWish">` / `<p class="wish-content isNoWish">` 來顯示（跟「已回覆」用 `•` 隔開，像「已回覆 • 無意願」）。所以這次的 `#FF5D15` 就是套在 `.isNoWish` 上，**正式環境照這個來**。</font>
+### 11.1 意願標籤怎麼放
+
+意願（有意願／無意願）請放在**這一欄 `.td-status` 裡**，用一個獨立的 `<p>` 來顯示，跟前面的「已回覆」用一個 `•` 隔開，像這樣：
+
+```html
+<p class="reply-content isReply" title="已回覆">已回覆</p>
+&nbsp;•&nbsp;
+<p class="wish-content isNoWish" title="無意願">無意願</p>
+```
+
+* 有意願：`<p class="wish-content isWish">有意願</p>`
+* 無意願：`<p class="wish-content isNoWish">無意願</p>`
+
+### 11.2 顏色
+
+* 「無意願」文字色：從 `#BF1212` 換成 `#FF5D15`。
+* 「有意願」文字色：維持綠色 `#1D880D`。
+* **改哪**：`resumePoolNoticeMail.css` 第 983 行（`.isNoWish`，無意願）、第 980 行（`.isWish`，有意願）。
+
+> 🔧 <font style="color:red">**請不要照 mock 的寫法做**：mock 畫面上的「無意願」是前一手偷懶塞到 `.td-mail` 的 `<p class="mail-type">` 上、直接用 inline 顏色硬塗的，跟正式結構不一樣。正式環境請照上面 11.1 的 `wish-content` 結構做，顏色套在 `.isNoWish` / `.isWish` 上。</font>背景見 `01_HTML結構調整對照.md` §2.5 D。
 >
-> mock 畫面上看到的「無意願」其實是前一手改寫到 `.td-mail` 的 `<p class="mail-type">` 上用 inline 顏色硬塗的（跟正式結構不一樣），**正式環境不要照 mock 那個 inline 寫法**。背景見 `01_HTML結構調整對照.md` §2.5 D。
-> 另外：未讀紅點用到的 `--State-warning #BF1212` 是不同的東西（紅點，不是文字），**不要動**。
+> 另外：未讀紅點用到的 `--State-warning #BF1212` 是另一個東西（紅點，不是文字），**不要動到它**。
 
 ---
 
