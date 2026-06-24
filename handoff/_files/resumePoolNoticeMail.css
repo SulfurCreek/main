@@ -1313,7 +1313,7 @@ button {
 
 /* ===== 整併補丁：以 doc2 inline style + 截圖為主 ===== */
 html,body{margin:0;}
-body{ background:#f0f0f0; font-family:"Noto Sans TC","微軟正黑體","Microsoft JhengHei",sans-serif; }
+body{ background:#f0f0f0; font-family:"Microsoft JhengHei","微軟正黑體","新微軟正黑體",sans-serif; }
 
 /* 欄寬 (原站 boxPage.css)，訊息欄 w50 無定義→flex 撐滿 */
 .w2{width:2%;}.w5{width:5%;}.w8{width:8%;}.w10{width:10%;}.w12{width:12%;}.w13{width:13%;}.w100{width:100%;}
@@ -1685,7 +1685,7 @@ body{ background:#f0f0f0; font-family:"Noto Sans TC","微軟正黑體","Microsof
 
 /* ===== 標題「信件訊息」：Chinese/Title/28-Medium（依設計）===== */
 .headingBar .Title{
-  font-family:'Noto Sans TC', sans-serif !important;
+  font-family:"Microsoft JhengHei","微軟正黑體","新微軟正黑體",sans-serif !important;
   font-style:normal !important;
   font-weight:500 !important;          /* Medium */
   font-size:28px !important;
@@ -1695,7 +1695,7 @@ body{ background:#f0f0f0; font-family:"Noto Sans TC","微軟正黑體","Microsof
 
 /* ===== 「共127筆」訊息筆數：Chinese/Body/16-Regular（依設計）===== */
 .actionBtn .msgRecord{
-  font-family:'Noto Sans TC', sans-serif !important;
+  font-family:"Microsoft JhengHei","微軟正黑體","新微軟正黑體",sans-serif !important;
   font-style:normal !important;
   font-weight:400 !important;          /* Regular */
   font-size:16px !important;

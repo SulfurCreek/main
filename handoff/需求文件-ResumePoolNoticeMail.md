@@ -59,6 +59,7 @@
 2. CSS 檔名統一為 **`resumePoolNoticeMail.css`**；所附行號為**隨附 mock 檔**的行號（共 1706 行版本），正式 codebase 行號請依 selector 對應。
 3. 值一律以反引號標出（如 `#1a66ff`、`16px`）。涉及 HTML 結構/屬性的更動另以 🚧 標明，並提醒**以正式環境結構為準**（背景見 `01_HTML結構調整對照.md` §2.5）。
 4. 標 <font style="color:red">紅字</font> 者為需特別注意之結構前提或與正式環境不一致處。
+5. <font style="color:red">**字體一律使用微軟正黑體**</font>（`"Microsoft JhengHei","微軟正黑體","新微軟正黑體",sans-serif`）。設計稿雖標 `Noto Sans TC`，**實作不採用**；全頁文字統一微軟正黑體。`Font Awesome`（圖示字型）為功能性字型，維持不動。
 
 ---
 
@@ -67,7 +68,7 @@
 | 項目 | 內容 |
 | :--- | :--- |
 | HTML 更動 | 無（僅改樣式） |
-| 需求 | 套用設計系統 `Chinese/Title/28-Medium`：字體 `Noto Sans TC`、字重 `500`、字級 `28px`、行高 `150%`(≈42px)、字色 `#212529` |
+| 需求 | 套用設計系統 `Chinese/Title/28-Medium`：字體 **微軟正黑體**（`"Microsoft JhengHei","微軟正黑體","新微軟正黑體",sans-serif`）、字重 `500`、字級 `28px`、行高 `150%`(≈42px)、字色 `#212529` |
 | CSS 檔／行 | `resumePoolNoticeMail.css` L1686–1693（新增 `.headingBar .Title` override）｜原值在 L556–560：`color:#4e4e4e; font-size:20px` |
 | 視覺目的 | 標題放大、改用設計系統標題級距與中性主色 |
 
@@ -114,7 +115,7 @@ HTML **不變**（底線以 `li.active::after` 偽元素達成，無新增節點
 | 項目 | 內容 |
 | :--- | :--- |
 | HTML 更動 | 無 |
-| 需求 | 套用 `Chinese/Body/16-Regular`：`Noto Sans TC`、字重 `400`、`16px`、行高 `155%`(≈25px)、字色 `#495057`、`display:inline-flex; align-items:center` |
+| 需求 | 套用 `Chinese/Body/16-Regular`：字體 **微軟正黑體**（`"Microsoft JhengHei","微軟正黑體","新微軟正黑體",sans-serif`）、字重 `400`、`16px`、行高 `155%`(≈25px)、字色 `#495057`、`display:inline-flex; align-items:center` |
 | CSS 檔／行 | `resumePoolNoticeMail.css` L1696–1705（新增 `.actionBtn .msgRecord` override）｜原為 `14px`（L1554 群組） |
 | 視覺目的 | 筆數文字級距/顏色與設計系統一致 |
 

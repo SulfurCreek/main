@@ -150,8 +150,8 @@
 ### B9. 標題與訊息筆數文字（依設計 Figma typography token）
 | selector | 屬性=值（新） | 原值 | 性質 | 原因／token |
 |---|---|---|---|---|
-| `.headingBar .Title`（「信件訊息」標題） | `font-family:'Noto Sans TC'; font-weight:500; font-size:28px; line-height:150%; color:#212529` | `color:#4e4e4e; font-size:20px`（無指定 family/weight） | 改值 | Chinese/Title/28-Medium（行高 150%=42px、文字色 #212529 Text/Neutral/Primary） |
-| `.actionBtn .msgRecord`（「共127筆」） | `font-family:'Noto Sans TC'; font-weight:400; font-size:16px; line-height:155%; color:#495057; display:inline-flex; align-items:center` | `font-size:14px`（B8 原列為「維持 14px」）、色繼承深色 | 改值 | Chinese/Body/16-Regular（行高 155%=25px、色 #495057）。**注意：此項覆蓋 B8「`.msgRecord` 維持 14px」之排除，改為 16px #495057** |
+| `.headingBar .Title`（「信件訊息」標題） | `font-family:"Microsoft JhengHei","微軟正黑體","新微軟正黑體",sans-serif; font-weight:500; font-size:28px; line-height:150%; color:#212529` | `color:#4e4e4e; font-size:20px`（無指定 family/weight） | 改值 | Chinese/Title/28-Medium（行高 150%=42px、#212529）。**字體一律用微軟正黑體**（設計稿雖標 Noto Sans TC，依需求實作改微軟正黑體） |
+| `.actionBtn .msgRecord`（「共127筆」） | `font-family:"Microsoft JhengHei","微軟正黑體","新微軟正黑體",sans-serif; font-weight:400; font-size:16px; line-height:155%; color:#495057; display:inline-flex; align-items:center` | `font-size:14px`（B8 原列為「維持 14px」）、色繼承深色 | 改值 | Chinese/Body/16-Regular（行高 155%=25px、#495057）。**字體一律用微軟正黑體**。注意：覆蓋 B8「`.msgRecord` 維持 14px」之排除，改 16px |
 
 ### B10. 資料列 hover 效果（移除邊框/陰影，改純底色）
 | selector | 屬性=值（新） | 原值 | 性質 | 原因 |
