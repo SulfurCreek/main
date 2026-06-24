@@ -125,6 +125,7 @@
     - 📁 **4.1 信件訊息**
       - [信件列表 規格文件](https://hackmd.io/@1111-jobdocs/rJkyKgeGWl)
       - [信件對話 規格文件](https://hackmd.io/@1111-jobdocs/r1ghrPxP-x)
+      - [信件訊息頁（ResumePoolNoticeMail）前端視覺調整需求](https://hackmd.io/@1111-jobdocs/S1cYFSFfzx)
     - 📁 **E.2.1 信件範本**
       - [E.2.1 信件範本](https://hackmd.io/@1111-jobdocs/HyDIQwJUWg)
     - 📁 **E.2.2 簡訊範本**
