@@ -86,6 +86,8 @@ description: >
    - 避免明確點出「不符條件」等容易引發用戶爭論／比對的字眼。
    - 移除「履歷/個資妥善留存」之類引發隱私焦慮的冗餘客套話，改用精簡、合規、令人安心的語句。
 
+> 本模組只收錄上述兩條 1111 專屬慣例。若任務是制式內部溝通格式（3P updates、公司 newsletter、FAQ 罐頭回覆、incident report 等），改用執行環境內建的官方 `internal-comms` skill，不在此重複範本——分工依據見 `wiki/platform_skills_reference.md`。
+
 ---
 
 ## 通用輸出原則
