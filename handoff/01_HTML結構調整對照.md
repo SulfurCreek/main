@@ -150,10 +150,10 @@
 - 頁籤順序：正式 `全部／未讀／已讀／已加星號／有意願`；mock 末兩項對調為 `…／有意願／已加星號`。
 - `<li>` class 由 `active tab` 寫成 `tab active`（同樣兩 class、純順序、無影響）。
 
-**D. 呈現方式改寫（意願）**
+**D. 呈現方式改寫（意願）** — ✅ <font style="color:green">已修正，mock 現已對齊正式結構</font>
 - 正式環境：`.td-status` 內＝`p.reply-content.isReply/.isNotReply`（回覆）＋ `p.wish-content.isWish/.isNoWish`（意願，`&nbsp;•&nbsp;` 分隔）；`.mail-type` 只放類別。
-- mock：`.td-status` 只留 `reply-content`；意願移到 `.td-mail > p.mail-type` 用 inline `style="color:…"` 寫「面試邀約 有意願/無意願」。
-- 影響：CSS 已改 `.td-status .isNoWish`＝`#FF5D15`（對到正式 class，正確）；但 mock 畫面實際變色處是 `.mail-type` inline 文字（偏離正式結構）。
+- ~~前一手 mock：`.td-status` 只留 `reply-content`；意願移到 `.td-mail > p.mail-type` 用 inline 上色~~ → **2026-06-23 已修正**：意願移回 `.td-status`，改用 `p.wish-content.isWish/.isNoWish`（與「已回覆」以 `•` 分隔）；`.mail-type` 還原成只放「面試邀約」。mock 與正式結構一致，本偏離已消除。
+- 顏色：`.td-status .isNoWish`＝`#FF5D15`、`.isWish`＝`#1D880D`（對到正式 class）。
 
 **E. mock 新增**
 - `.cont` 內多一個空 `.headingBar` 間隔 div（正式環境無）。

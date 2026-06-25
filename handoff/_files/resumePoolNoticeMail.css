@@ -1537,7 +1537,8 @@ body{ background:#f0f0f0; font-family:"Microsoft JhengHei","微軟正黑體","�
 .filterBox .btnSch{ font-size:16px !important; }
 .msgTable .thead .tr{ font-size:16px !important; }
 .msgTable .tName{ font-size:16px !important; }
-.msgTable .td-status .reply-content{ font-size:16px !important; }
+.msgTable .td-status .reply-content,
+.msgTable .td-status .wish-content{ font-size:16px !important; }
 .msgTable .td-status .sub-read{ font-size:14px !important; }
 .msgTable .mail-type{ font-size:16px !important; }
 .msgTable .lastMailContent bdi,

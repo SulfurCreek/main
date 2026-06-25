@@ -26,6 +26,7 @@
 | 0.1.0 | 2026-06-23 | UIUX | 初版：彙整信件訊息頁前端視覺調整需求，逐一列出每個 HTML 標籤的更動與對應 CSS 檔名/行數 |
 | 0.2.0 | 2026-06-23 | UIUX | [全文] 改寫為白話敘述；[§3] 由「請確認版面」改為明確的 HTML 搬移指示 |
 | 0.2.1 | 2026-06-23 | UIUX | [§11] 意願標籤由「結構說明」改為明確結構指示（用 `.td-status > p.wish-content`、附 HTML 範例），並明確要求別照 mock 的 `.mail-type` inline 寫法 |
+| 0.2.2 | 2026-06-23 | UIUX | [§11] mock 已修正為正式結構（意願移回 `.td-status` 的 `wish-content`、`.mail-type` 還原），警語改為「mock 已照此結構」 |
 
 [TOC]
 
@@ -231,7 +232,7 @@
 * 「有意願」文字色：維持綠色 `#1D880D`。
 * **改哪**：`resumePoolNoticeMail.css` 第 983 行（`.isNoWish`，無意願）、第 980 行（`.isWish`，有意願）。
 
-> 🔧 <font style="color:red">**請不要照 mock 的寫法做**：mock 畫面上的「無意願」是前一手偷懶塞到 `.td-mail` 的 `<p class="mail-type">` 上、直接用 inline 顏色硬塗的，跟正式結構不一樣。正式環境請照上面 11.1 的 `wish-content` 結構做，顏色套在 `.isNoWish` / `.isWish` 上。</font>背景見 `01_HTML結構調整對照.md` §2.5 D。
+> ✅ <font style="color:green">**mock 已照這個結構做了**</font>：隨附的預覽檔裡，意願已經放在 `.td-status`、用 `wish-content`（跟「已回覆」用 `•` 隔開），`.mail-type` 也還原成只放「面試邀約」。所以你照 mock 跟著做就對了。
 >
 > 另外：未讀紅點用到的 `--State-warning #BF1212` 是另一個東西（紅點，不是文字），**不要動到它**。
 
