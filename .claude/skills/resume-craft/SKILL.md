@@ -3,11 +3,11 @@ name: resume-craft
 description: >
   撰寫、修改、批改、優化使用者**個人履歷／CV／LinkedIn／作品集（portfolio）**，或把職能、經歷、專案成果轉成
   履歷 bullet、依特定職缺（JD）客製化履歷時使用。只要任務涉及「履歷」「resume」「CV」「自傳」「作品集」「portfolio」
-  「case study」「LinkedIn」「投遞」「應徵」「求職」「JD 客製」「把 F1–F9 職能或專案變成履歷條目」，務必使用本 skill
+  「case study」「LinkedIn」「投遞」「應徵」「求職」「JD 客製」「把 F1–F11 職能或專案變成履歷條目」，務必使用本 skill
   —— 即使使用者沒有明講「履歷」兩個字。
   本 skill 依**大型企業招募標準**（ATS 解析、核心職能叢集、量化影響 bullet、作品集案例研究、Amazon Leadership
   Principles 等）優化；以 **Senior PM / Product** 視角為主，**雙語**（英文 ATS 版 + 繁中在地版）。
-  證據來源為 `career/competency-framework.md`（F1–F9、Resume-Ready Extract、`〔待補數據〕` 誠實標記）。
+  證據來源為 `career/competency-framework.md`（F1–F11、Resume-Ready Extract、`〔待補數據〕` 誠實標記）。
   ⚠️ 這是 `career/` 個人職涯工具，**不是 1111 規格書**：請勿套用 `spec-doc-1111`，請勿推送至 HackMD `1111-jobdocs`。
 ---
 
@@ -41,11 +41,12 @@ description: >
 ## 何時使用 / When to use
 
 - 批改或改寫既有履歷（指出弱點、重寫 bullet、調整結構、做 ATS 檢查）。
-- 從 `career/competency-framework.md` **產出一份新履歷**（把 F1–F9 與 Resume-Ready Extract 轉成條目）。
+- 從 `career/competency-framework.md` **產出一份新履歷**（把 F1–F11 與 Resume-Ready Extract 轉成條目）。
 - 把某項職能（F#）、某個專案、某段經歷**轉成 1–3 條量化 bullet**。
 - 撰寫作品集 case study（problem → research → approach → results）。
 - **依特定 JD 客製**：抽關鍵字、改 top-third、重排 bullet 順序。
 - 優化 LinkedIn headline / About 段落（與履歷共用同一批成就）。
+- **逆向**：把一段日常產出（規格書／週報／Figma／工單紀錄／流程圖）反推成 XYZ 影響力 bullet（見下方「逆向模式」）。
 
 ---
 
@@ -231,13 +232,43 @@ description: >
 要產出或更新履歷時，以 `career/competency-framework.md` 為唯一證據源：
 
 1. 取 **Resume-Ready Extract**（7 條 action+scope+impact）作為 bullet 草稿基底。
-2. 取 **F1–F9** → 映射到上方「核心職能叢集」表，挑 5–7 個最相關的成叢集。
+2. 取 **F1–F11** → 映射到上方「核心職能叢集」表，挑 5–7 個最相關的成叢集。
 3. 取 **Profile Snapshot / Positioning** → 寫 Summary/Headline。
 4. 遇到 `〔待補數據〕`：**先問使用者拿真實數字**；拿不到就**保留待補標記**，不要編。
 5. 依目標 JD 與市場版本（ATS/繁中）選範本、客製 top-third。
 6. 產出後跑下方檢查清單。
 
 > ⚠️ 框架與履歷都遵守「不捏造」契約：量化數字必須有來源（roadmap、Figma、實際指標）。
+
+---
+
+## 逆向模式：產出 → XYZ 影響力 bullet / Reverse mode: raw output → XYZ impact bullet
+
+「正向」是框架 → 履歷；「逆向」是把一段**日常產出**（規格書、週報、Figma、工單紀錄、流程圖）反推成履歷 bullet。
+扮演角色：**精通矽谷科技業標準的資深獵頭／履歷教練**。三步驟：
+
+1. **職能萃取 / Competency extraction**：從產出中用到的**工具與思維**（Mermaid／循序圖、Markdown 規格、權限代碼建模、Kanban 工單治理、資料結構重構…）反推對應 PM 職能，並**對映回 F1–F11**——不要發明新職能，先連回框架。
+2. **XYZ 句型重構 / XYZ formula**：`達成／主導 [X 影響力或產品模組]，透過 [Z 技術／管理方法]，解決了 [Y 複雜度或痛點]`。
+   等價於 Google XYZ：*Accomplished [X] by doing [Z], solving [Y]*。**X＝結果、Z＝方法、Y＝痛點/複雜度**。
+3. **技術 × 商業雙語轉譯 / Bilingual PM pitch**：同一條 bullet 同時帶**商業價值**（營收保護、續約、降低溝通成本、定價策略）與**技術含金量**（API 串接邏輯、防呆機制、資料結構重構、狀態建模），並產出**中英兩版**。
+
+### 輸出格式 / Output format
+
+- **【原產出概述】**：一句話描述輸入素材。
+- **【展現的核心職能】**：2–3 個 PM 關鍵能力（標註對映 `F#`）。
+- **【履歷黃金亮點】**：**3 種不同動詞強度**的選項（穩健 → 進取 → 主導），讓使用者挑語氣。
+
+> ⚠️ **誠實護欄（沿用全域不捏造契約）**：XYZ 的 X／Y 若無真實數字，用**代理指標**（規模／速度／廣度／流程改善）或保留 `〔待補數據〕`，**絕不為了句型漂亮而編造**。技術詞也須屬實——手繪 vs AI 輔助、`contributed` vs `led`、結案率有來源才寫。
+
+### 範例 / Worked example（取自 F11 維運工單）
+
+- **【原產出概述】**：每週求才系統週報——工單量統計＋已上線／待上線清單；工單幾乎全來自付費中廠商。
+- **【展現的核心職能】**：問題解決與維運交付（F11）、利害關係人溝通（F9）、根因分析（F11／F2）。
+- **【履歷黃金亮點】**
+  1. （穩健）*Resolved 1,279 paying-customer support tickets at ~88% close rate via a ticket→Kanban→launch loop, protecting account experience and renewals.*
+  2. （進取）*Drove a ~88% close rate across 1,279 paying-account tickets by standing up a ticket→Kanban→launch ops loop with root-cause fixes — safeguarding the sales team's revenue retention.*
+  3. （主導）*Owned recruit-system operations end-to-end as single intake, clearing 1,279 paying-customer tickets (~88% closed) through root-cause remediation (matching engine, AI recommendations, code-table overhaul) to defend renewal revenue.*
+  - 中文（主導版）：**主導**求才維運單一窗口，以「工單→Kanban→上線」閉環與根因修復清理 **1,279 張付費廠商工單（~88% 結案）**，守住續約營收。
 
 ---
 
@@ -248,7 +279,7 @@ description: >
 - [ ] **Top-third 衝擊**：Summary + 前 2–3 bullet 鏡射 JD、6 秒看得到 2–3 個差異點。
 - [ ] **Bullet 公式**：每條 = 強動詞 + 任務 + 量化結果，1–3 行。
 - [ ] **量化覆蓋**：≥ 80% bullet 有數字（%/$/人數/時程/用戶/留存）；無硬數據處用代理指標。
-- [ ] **職能叢集**：5–7 叢集 + 證據點，非平鋪關鍵字；已映射 F1–F9。
+- [ ] **職能叢集**：5–7 叢集 + 證據點，非平鋪關鍵字；已映射 F1–F11。
 - [ ] **作品集**：資深者於 header 放連結；3–5 篇 problem→research→approach→results（含一個失敗實驗）。
 - [ ] **大企業訊號**：對映 4–5 條 Amazon LP / 目標公司價值；範圍、模糊度、跨職能影響、商業成果到位。
 - [ ] **強動詞**：spearheaded/orchestrated/architected/shipped/scaled/validated，非 responsible for/helped。
