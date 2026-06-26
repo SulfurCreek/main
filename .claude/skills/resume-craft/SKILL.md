@@ -47,6 +47,7 @@ description: >
 - **依特定 JD 客製**：抽關鍵字、改 top-third、重排 bullet 順序。
 - 優化 LinkedIn headline / About 段落（與履歷共用同一批成就）。
 - **逆向**：把一段日常產出（規格書／週報／Figma／工單紀錄／流程圖）反推成 XYZ 影響力 bullet（見下方「逆向模式」）。
+- 產出**可列印的高顏值版本**：單檔 HTML（Tailwind ＋ `@media print`）或 LaTeX（Awesome-CV／xeCJK）匯出 PDF（見「視覺化／可列印輸出」）。
 
 ---
 
@@ -306,6 +307,33 @@ description: >
 
 ---
 
+## 視覺化／可列印輸出（HTML / LaTeX）/ Print-ready visual output
+
+當使用者要的是**人看的、可匯出 PDF 的高顏值版本**（非 ATS 上傳版）時，切換到資深前端設計師＋排版師模式。
+
+> ⚠️ **與 ATS 不衝突的前提**：視覺版**僅供人看／面試攜帶／作品集**；**ATS 上傳一律用單欄純文字版**（見「先選市場版本」與「ATS 規則」）。一份內容、兩種包裝——**動手前先確認這份是「視覺版」還是「ATS 版」**。
+
+### 模式一：列印優化單檔 HTML / Print-optimized single-file HTML
+
+使用者要 HTML 時，產出**單一檔案**的 HTML/CSS：
+
+1. **排版框架**：Tailwind CSS（CDN 引入），現代極簡。
+2. **列印優化（關鍵）**：`<style>` 內加 `@media print`——隱藏滾動條與非必要元素、`print-color-adjust: exact;`（強制背景色列印）、`page-break-inside: avoid;`（精準分頁斷點，避免內容被切斷）。
+3. **視覺風格**：專業 PM 質感；字體 Inter／Roboto；主色沉穩**深藍或碳灰**；高對比可讀。
+4. **輸出與指示**：以 Artifacts 原生渲染供預覽，並提示使用者「**在瀏覽器列印 → 另存為 PDF**」。
+
+### 模式二：科技業 LaTeX / The Silicon Valley LaTeX
+
+使用者明確要求最頂級、嚴謹的 PDF 排版時切 LaTeX：
+
+1. **套件**：基於 `Awesome-CV` 或標準 `article` 類別；含中文時用 `xeCJK`（須 XeLaTeX 編譯）。
+2. **結構**：嚴格用 `\section`／`\subsection`，讓學歷、核心職能（XYZ 法則亮點）、專案經歷有完美對齊與間隔。
+3. **純代碼輸出**：產出完整 `.tex` 代碼區塊，附一句「**將此代碼貼至 Overleaf 即可匯出 PDF**」。
+
+> 內容來源仍是 `career/competency-framework.md`（F1–F11／旗艦專案／Resume-Ready Extract）；視覺版只換**包裝**、不改成就與數字，「不捏造」契約照舊。
+
+---
+
 ## 交付前檢查清單 / Pre-delivery checklist
 
 - [ ] **市場版本已選**（ATS-EN / 繁中 / 雙語），用對應範本；ATS 版已去照片與個資。
@@ -321,3 +349,4 @@ description: >
 - [ ] **誠實**：所有 `〔待補數據〕` 要嘛填真實數字、要嘛保留標記；職稱屬實。
 - [ ] **長度與格式**：1–2 頁；hybrid 或反時序（非純 functional）。
 - [ ] **雙語同步**（若維護兩份）：成就一致，僅包裝/語言不同。
+- [ ] **視覺版 ／ ATS 版分清**：HTML（Tailwind＋`@media print`）或 LaTeX 視覺版僅供人看／面試／作品集；**ATS 上傳另備單欄純文字版**；兩者成就數字一致。
