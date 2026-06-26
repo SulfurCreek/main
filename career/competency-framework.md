@@ -213,6 +213,27 @@ Kanban board while sustaining a high close rate under heavy ticket volume.*
 - **工作證據 / Evidence**：求才**週報**（每週「已處理項目／預計上線項目」清單與工單量統計：總量／已完成／未完成）、Team-Suggest 具名建議單、Kanban 專案看板。
 - **資深度訊號 / Seniority signal**：在高工單量下維持約 **88% 結案率**，並把「修 bug」升級為「**根因定位＋機制調整＋上線驗證**」的閉環；因工單幾乎全來自**付費廠商**，此能力直接連結到**付費客戶留存與業務業績**——是把維運交付綁定**商業成效**的稀缺訊號，而非單純的工單清算。
 
+---
+
+## 旗艦專案 / Flagship Project — 跨系統聯絡人才（求才 ↔ 求職即時訊息）
+
+> 至今**最具野心**的專案：打通**求才（廠商 B 端）↔ 求職主網（求職者 C 端）**兩套系統的即時訊息，是 F1／F2／F3／F6／F10 的**綜合輸出**。
+> *Most ambitious project to date: a cross-system messaging feature bridging the employer (B-side) and jobseeker
+> (C-side) platforms — a composite output evidencing F1/F2/F3/F6/F10.*
+
+- **跨系統架構 / Cross-system architecture**：在求才端建單一聊天室介面，與求職主網**雙向同步**——廠商發出邀約／訊息、求職者於求職端回覆後聊天室**即時更新**；以 **SignalR** 即時推送，搭配浮動即時通面板與 90 天訊息載入。
+- **整合兩條 legacy 通道 / Unifying two legacy channels**：把原本分離的**即時通**與**信件**兩套來源（`MsgKind` 0/1）合併為單一對話流，建立廠商／求職者**雙視角訊息明細**（`oJsonB`／`tJsonB`），並以 `SendKind` 建模**跨系統寄件者路由**（含「即時通轉入」與「求才↔求職系統信」）。
+- **狀態機與業務邏輯 / State machine & business logic**：邀約狀態（詢問意願／面試邀約／錄取通知／感謝函／面試異動）、求職者意願回覆（`ReplyWishMsg`）、**跨系統面試行事曆寫入**（求職者同意 → 求職後端寫雙方行事曆 → 聊天室即時顯示面試確認區塊）。
+- **欄位級規格與相容遷移 / Field-level spec & compatible migration**：定義 `get-echat-mail-logs`／`get-detail/{infoNo}` 兩支 API 的 query／header／回傳欄位（含 30+ 欄位明細對照表）；以**現版↔新版命名對照**與 **iframe 串接現版 lightbox**（信件通知／封鎖／紀錄管理）做**漸進遷移、向後相容**；MECE 四狀態（載入／有資料／無資料／錯誤）全覆蓋。
+- **工作證據 / Evidence**：HackMD `E.1 聯絡人才` 規格（User Story／Use Case／權限判斷／API 欄位對照表／`oJsonB`／`tJsonB` 訊息明細欄位），本人為文件作者。
+- **資深度訊號 / Seniority signal**：以**單一 PM** 之力定義橫跨**兩個系統、兩個後端、即時通訊＋既有信件**的整合架構——平台級系統思維與跨團隊（含 SignalR 工程協作）協調的綜合展現，是本框架技術深度最高的單一證據。
+
+> ⚠️ **對外引用務必抽象化**：履歷／面試可述「跨系統即時訊息、整合兩條 legacy 通道」，但**勿外露**內部 API 名、欄位名、權限代碼（1111 機密）。
+
+---
+
+## 職能對應下一步 / Function → Role Mapping
+
 | 職能 / Function | 資深 PM 期待 / Senior PM lens | 同領域轉職 / Spec-specialist lens |
 | :--- | :--- | :--- |
 | F1 產品定義全鏈路 | 從需求源頭定義產品、握有 what/why 決策權 | 即戰力：能獨立把模糊需求變成完整規格 |
@@ -237,6 +258,11 @@ Kanban board while sustaining a high close rate under heavy ticket volume.*
   從 user story／wireframe 到工程可實作的功能規格皆獨立產出，〔待補數據：本人撰寫份數〕。
   *Owned end-to-end product definition for the 1111 recruit (B-side) platform — plus the jobseeker company page —
   authoring specs from user story/wireframe through to engineering-ready, across 〔TODO: count〕 documents.*
+- 定義並交付**跨系統即時訊息**旗艦功能，打通廠商端與求職者端兩套平台：以即時推送（SignalR）將原本分離的即時通與信件**兩條 legacy 通道**統一為單一對話流，建模跨系統訊息路由、邀約狀態機與跨系統面試行事曆寫入，並產出端到端 API 與**欄位級規格**、相容既有系統做漸進遷移。
+  *Defined and shipped a flagship cross-system real-time messaging feature bridging the employer and jobseeker
+  platforms: unified two separate legacy channels (instant messaging + mail) into one conversation stream via
+  real-time push (SignalR), modeling cross-system message routing, an invitation state machine, and cross-system
+  interview-calendar writes, with end-to-end API and field-level specs and backward-compatible incremental migration.*
 - 定義並交付多項**求才側 AI 功能**：**公司簡介生成、JD 生成、職缺匯入、職缺健檢**（生成式）與 **AI 推薦人才名單**（推薦），
   將 LLM 能力轉譯為廠商可用的工作流，〔待補數據：採用率／使用量 adoption/usage〕。
   *Defined and shipped multiple employer-side AI features — company-profile generation, JD generation, job import,

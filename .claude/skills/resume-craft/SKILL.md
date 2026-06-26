@@ -270,6 +270,30 @@ description: >
   3. （主導）*Owned recruit-system operations end-to-end as single intake, clearing 1,279 paying-customer tickets (~88% closed) through root-cause remediation (matching engine, AI recommendations, code-table overhaul) to defend renewal revenue.*
   - 中文（主導版）：**主導**求才維運單一窗口，以「工單→Kanban→上線」閉環與根因修復清理 **1,279 張付費廠商工單（~88% 結案）**，守住續約營收。
 
+### NVIDIA-tier（硬技術、零廢話升級版）/ Deep-tech zero-fluff escalation
+
+應徵**硬技術公司／技術型 PM**（NVIDIA、平台／基礎設施、infra）時，把上面的 XYZ 再升一級。
+扮演角色：深諳 NVIDIA 價值觀（**Intellectual Honesty、Deep Tech Competence、Speed & Agility**）的首席技術招募官。
+
+1. **剔除冗餘 ＋ 誠實盤點 / Intellectual honesty check**：刪掉所有空泛形容詞（成功地／極大地／successfully／significantly），盤點**真實技術細節**——特定 API 協議與端點、系統代碼對照、資料庫欄位規則、驗證邊界條件。
+2. **架構 → 商業瓶頸掛鉤 / Tech-to-business**：把系統架構對應到它解掉的商業瓶頸（跨系統串接延遲、計價精準度、付費客戶留存）。
+3. **XYZ（NVIDIA 定義）**：**X**＝具體系統優化／商業規模；**Y**＝克服的高複雜度歷史包袱或架構限制；**Z**＝制定的核心系統規範或技術實作路徑。
+
+**輸出格式 / Output format：**
+
+- **【技術深度盤點】**：條列硬核 PM 職能（API 邏輯定義、資料結構設計、複雜業務邏輯降維、跨系統訊息路由建模…）。
+- **【Nvidia-Tier 履歷亮點】**：3 句，每句必含**具體資料流向／系統機制／計價模型**；**嚴禁** AI 客套與華麗修辭（realm／intricate／pivotal／seamlessly／成功地／極大地）。
+
+> ⚠️ **對外履歷務必抽象化專有資訊**：可寫「整合兩條 legacy 通道為單一即時對話流」，但**勿外露** 1111 內部 API 名、欄位名、權限代碼（機密）。Intellectual Honesty ≠ 揭露公司機密。
+
+**範例 / Worked example（取自旗艦專案：跨系統聯絡人才，已抽象化）：**
+
+- **【技術深度盤點】**：跨系統即時訊息架構（B 端 ↔ C 端）、即時推送機制、雙來源訊息流合併（即時通＋信件）、邀約狀態機、跨系統面試行事曆寫入、欄位級 API 規格與向後相容遷移。
+- **【Nvidia-Tier 履歷亮點】**
+  1. *Unified two previously separate messaging channels (instant messaging + mail) into a single real-time conversation stream across the employer and jobseeker platforms, defining the message-routing model and dual-view data structures that eliminated cross-system sync gaps.*
+  2. *Specified end-to-end APIs (list + conversation-detail) down to field-level contracts and an invitation state machine, enabling engineers to build cross-system real-time delivery (SignalR) without ambiguity.*
+  3. *Drove backward-compatible incremental migration — bridging the legacy system via embedded iframes while shipping the new unified chatroom — so no existing recruiter workflow broke during cutover.*
+
 ---
 
 ## 交付前檢查清單 / Pre-delivery checklist
