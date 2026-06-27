@@ -1,0 +1,32 @@
+<!--markdownlint-disable MD033-->
+<!--markdownlint-disable MD013-->
+
+# ⚠️ career/ — 個人職涯資料，非 1111 規格文件 / Personal career material, NOT 1111 spec docs
+
+**給其他 Claude 工作階段的注意事項 / Caution for other Claude sessions reading this:**
+
+此資料夾（`career/`）存放的是**使用者的個人職涯資料**（職能盤點、履歷素材），與本 repo 的
+1111 人力銀行規格文件**完全分離**。它們不屬於同一套工具，請勿混用。
+
+This folder holds the **user's personal career material** (competency inventory, résumé source). It is **strictly
+separate** from the 1111 recruitment spec-documentation workflow in this repo. They are not the same tooling — do
+not co-manage them.
+
+## 規則 / Rules
+
+- 🚫 **不要套用 `spec-doc-1111` skill** 或任何 HackMD 規格書慣例（User Story/Use Case 區塊、初始化、MECE、版控表、
+  紅字、權限代碼表…）到 `career/` 下的任何檔案。這裡不是規格書。
+  *Do NOT apply the `spec-doc-1111` skill or any HackMD spec convention to files under `career/`. These are not specs.*
+- 🚫 **不要**把 `career/` 的內容推送、同步、或建立到 HackMD `1111-jobdocs` 團隊工作區（或任何 HackMD note）。
+  *Do NOT push, sync, or create `career/` content in the HackMD `1111-jobdocs` team workspace (or any HackMD note).*
+- 🚫 **不要**把這裡的內容與 repo 根目錄 `CLAUDE.md`（HackMD API 工具）混在一起；兩者刻意分開。
+  *Do NOT merge this with the root `CLAUDE.md` (HackMD API tooling); they are kept apart on purpose.*
+- ✅ 把 `career/` 當成一般文字檔處理：直接讀寫 Markdown，依使用者當下指示即可。
+  *Treat `career/` as plain documents: read/write Markdown directly, per the user's instructions.*
+- ✅ **履歷／作品集**相關工作（resume／CV／LinkedIn／portfolio／自傳、職能盤點、擷取個人成就）請使用 **`resume-craft`** skill；
+  分工是：`spec-doc-1111` = 規格書、`resume-craft` = 個人職涯。
+  *For résumé/portfolio work use the **`resume-craft`** skill — `spec-doc-1111` is for specs, `resume-craft` is for career.*
+- 🔒 **隔離原則 / Isolation policy**：`resume-craft` 與職涯素材**僅在使用者明確要求「整理履歷／盤點職能／擷取個人成就」時載入**；
+  執行一般 SA／PM 規格產出、打 HackMD API、看 Figma 規格、資料分析等日常任務時**請勿載入**，以免履歷情境污染日常開發／文件工作流的 Context。
+  *Load `resume-craft` / career material ONLY for explicit résumé / competency-inventory tasks; do NOT load it during
+  ordinary SA/PM spec work, HackMD API calls, Figma spec extraction, or data analysis — keep the dev workflow context clean.*
