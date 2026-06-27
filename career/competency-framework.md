@@ -36,7 +36,7 @@ I originate products from my own user stories and wireframes; I don't transcribe
 | 平台定位 / Surface | 廠商端（B-side）平台主責；公司頁為連結至求職者端（C-side）的橋接面 |
 | 產品線 / Product lines | 核心交易流程 ＋ **求才側 AI 產品**（職缺匯入、公司簡介生成、JD 生成、職缺健檢、AI 推薦人才） |
 | 角色定位 / Role | 需求源頭 → 規格輸出 → 交接落地（originate → specify → hand off），非單純文件化 |
-| 路線圖與團隊 / Roadmap & team | 主導 **227 項求才產品 Roadmap**（P0–P3 優先級、時間盒交付節奏）；委派工單給 **3 人企劃團隊**（本人＋育琳／小楊）與工程／QA；近半年 111 項上線、**94% 準時或提前** |
+| 路線圖與團隊 / Roadmap & team | 主導 **227 項求才產品 Roadmap**（P0–P3 優先級、時間盒交付節奏）；**直屬管理 2 名企劃**（蔡育琳、楊丞佳）並委派工單、協作工程／QA；與第一線 **tech support 平行單位**（同部門）協作——其升級複雜需求給本人；近半年 111 項上線、**94% 準時或提前** |
 | 方法論 / Method | 狀態驅動規格、MECE 四狀態、權限代碼建模、分階段交付、版本控管、UML／BPMN 建模（循序圖／活動圖／使用案例圖／BPMN） |
 | 工具化 / Tooling | 將自身規格慣例**標準化為可複用 skill**（`spec-doc-1111`）＋雙系統範本＋文件樹 |
 
@@ -162,7 +162,7 @@ cadences, and track planned-vs-actual launch to deliver on time.*
     （如「公司簡介生成 API」預計 5/20 → 實際 6/4，因 QA 返修）。
   - **跨團隊關鍵路徑**：為含外部相依的專案排程（如「職缺健檢 API」5/5–6/17：開設計工單 → 串接資科 API → 切版 → 後端 → QA → 上線）。
   - **平行發布列車**：同時管理 `現版／新版／API／客服後台／TCode` 多軌；與 APP／求職主網跨產品同步上線。
-  - **委派治理**：主導 **227 項 master roadmap**，將工單委派給 **3 人企劃團隊**（本人＋育琳／小楊）與工程，自身聚焦優先級與交付治理。
+  - **委派治理**：主導 **227 項 master roadmap**，**直屬管理 2 名企劃**（蔡育琳、楊丞佳）並委派工單給工程；第一線 **tech support 為同部門平行單位**，處理可即時解決的客戶問題、將需企劃／設計／工程的複雜需求**升級**給本人，本人聚焦評估、優先級與交付治理。
 - **工作證據 / Evidence**：本人維護的**求才產品 Roadmap**（Google Sheet），227 項、111 項已上線（2026/01–06，約 5 個月）。
 - **資深度訊號 / Seniority signal**：從「寫規格」躍升到「管路線圖、配資源、追準時、帶團隊委派」——**94% 準時交付**為可量化的交付績效，是帶專案、做取捨的 lead 行為。
 
@@ -198,11 +198,11 @@ truth that precedes specs and engineering. This is upstream of F2: clarify the b
 
 ### F11. 問題解決與維運交付 / Problem-Solving & Operational Delivery
 
-**定義 / Definition**：作為求才系統維運與需求的單一處理窗口，接收第一線（業務／客服）與工程開立的工單，
-快速**定位根因 → 拆解為可執行方案 → 以看板（Kanban）追蹤至上線結案**，在高工單量下維持高結案率。
-*Single intake point for recruit-system ops and requests: triage incoming tickets (maintenance issues, planning
-suggestions, engineering bugs), diagnose root cause, break them into actionable fixes, and track to launch on a
-Kanban board while sustaining a high close rate under heavy ticket volume.*
+**定義 / Definition**：作為求才需求的**二線升級窗口與主要評估者**——第一線 tech support（同部門平行單位）處理可即時解決的客戶問題，
+將需企劃／設計／工程的複雜需求**升級**給本人；本人負責**功能評估與解決方案設計 → 拆解 → 以看板（Kanban）追蹤至上線結案**，在高工單量下維持高結案率。
+*Second-line escalation owner and primary assessor: a parallel first-line tech-support unit resolves immediate
+customer issues and escalates the complex ones (needing planning/design/engineering) to me; I own feasibility
+assessment and solution design, then break down and track to launch on a Kanban board at a high close rate.*
 
 - **實際展現 / In practice**：
   - **規模與結案率**：2026 年至今累計處理 **1,279 張工單**（維運問題／企劃建議／工程 bug），完成 **1,131 張、結案率約 88%**；每週穩定新增約 50–70 張、完成約 40–52 張。
@@ -210,7 +210,7 @@ Kanban board while sustaining a high close rate under heavy ticket volume.*
   - **工單 → 看板 → 上線閉環**：接收業務團隊／客服開立的**具名、可溯源**工單（Team-Suggest 建議單，可追溯至公司與單號，如 `k=6237`／`6301`／`6252`），以 Kanban 追蹤狀態至上線並每週回報結案。
   - **根因定位（非表面修補）**：凌晨配對信數量異常 → 與工程調整配對機制並**持續監測至月底**驗證；AI 推薦人才名單過舊（多家廠商回報）→ 調整鄰近地區規則與名單排序邏輯；代碼體系老化 → 重整證照／工作專長／電腦專長／兼職職類代碼，並以**競品比對**補齊「對手有、我們沒有」的類別。
   - **缺陷處理廣度**：錯誤代碼、信件副本收件人刪除、即時通畫面裁切、感謝函範本無法帶入、紅利點數 hover 失效、過期廠商未發信客服等多類 bug 的定位與修復追蹤。
-- **工作證據 / Evidence**：求才**週報**（每週「已處理項目／預計上線項目」清單與工單量統計：總量／已完成／未完成）、Team-Suggest 具名建議單、Kanban 專案看板。
+- **工作證據 / Evidence**：求才**週報**（2026 已處理量統計：總量／已完成／未完成）；**需求許願池原始檔**（有史以來，截至 2025-12）——本人為**最主要評估者**（功能評估／解決方案 **222 案**，遠高於次位 32 案）並親自處理 **156 案**（第一線 tech support 另承擔大量首線處理）；Team-Suggest 具名建議單、Kanban 專案看板。
 - **資深度訊號 / Seniority signal**：在高工單量下維持約 **88% 結案率**，並把「修 bug」升級為「**根因定位＋機制調整＋上線驗證**」的閉環；因工單幾乎全來自**付費廠商**，此能力直接連結到**付費客戶留存與業務業績**——是把維運交付綁定**商業成效**的稀缺訊號，而非單純的工單清算。
 
 ---
@@ -286,9 +286,9 @@ Kanban board while sustaining a high close rate under heavy ticket volume.*
 - 擔任 **PM／RD／QA／設計**間的樞紐，產出交接文件、功能說明頁、競品分析與跨組同步會議記錄，降低 key-person 風險。
   *Served as the cross-functional hub, producing handoff docs, feature guides, competitive analyses, and sync
   meeting notes that reduced key-person risk.*
-- 主導 **227 項求才產品 Roadmap** 的優先級（P0–P3）與時間盒交付，委派工單給 3 人企劃團隊與工程，近半年交付 **111 項上線、94%（84/89）準時或提前**。
-  *Owned a 227-item product roadmap — prioritization (P0–P3) and time-boxed delivery — delegating tickets to a
-  3-person planning team and engineering; shipped 111 items in ~5 months at 94% (84/89) on-or-ahead-of-schedule.*
+- 主導 **227 項求才產品 Roadmap** 的優先級（P0–P3）與時間盒交付，**直屬管理 2 名企劃**（蔡育琳、楊丞佳）並委派工單給工程，近半年交付 **111 項上線、94%（84/89）準時或提前**。
+  *Owned a 227-item product roadmap — prioritization (P0–P3) and time-boxed delivery — directly managing 2 product
+  planners and delegating to engineering; shipped 111 items in ~5 months at 94% (84/89) on-or-ahead-of-schedule.*
 - 作為求才產品需求單一窗口，對接 **16 個利害關係單位**（總裁／董事／策略長／協理副總到第一線客服），平衡上層指令與第一線需求，並以數據（投票）而非位階做決策；每週向**近 200 人業務團隊**做進度簡報。
   *Acted as single intake point across 16 stakeholder units (from C-suite/board down to frontline CS), balancing
   top-down mandates with bottom-up needs and deciding by data (votes) rather than hierarchy; briefed a ~200-person
