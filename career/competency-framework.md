@@ -305,7 +305,7 @@ assessment and solution design, then break down and track to launch on a Kanban 
 
 | 學校 / School | 系所・學程 / Program | 期間 / Period | 備註 / Note |
 | :--- | :--- | :--- | :--- |
-| **淡江大學 / Tamkang University** | 國際企業學系 / Dept. of International Business（學士 / B.B.A.）| 〔待補：畢業年 / TODO: grad year〕 | 商管本科，奠定商業與國際視野 |
+| **淡江大學 / Tamkang University** | 國際企業學系 / Dept. of International Business（學士 / B.B.A.）| Class of 2013 | 商管本科，奠定商業與國際視野 |
 | **California State University, Sacramento (CSUS)** | 交換學生・商學主修 / Exchange student, Business major | 一學年 / one academic year | 赴美交換一年（修商學課程、應考 TOEFL iBT），佐證英語環境與國際適應力 |
 
 > **定位用法 / Positioning**：**國際企業**本科 ＋ **美國 CSUS 交換一年**，共同支撐「**商業敏銳度 ＋ 英語／國際環境即戰力**」，呼應 PM 對商業化思維與跨國協作的期待。
