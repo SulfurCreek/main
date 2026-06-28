@@ -301,6 +301,22 @@ assessment and solution design, then break down and track to launch on a Kanban 
 
 ---
 
+## 證照與語言 / Certifications & Languages
+
+| 類別 / Type | 證照 / Credential | 等級・分數 / Level・Score | 履歷價值 / Résumé value |
+| :--- | :--- | :--- | :--- |
+| 雲端技術 / Cloud | **AWS Certified Cloud Practitioner** | 基礎級 / foundational | 雲端素養佐證，強化**技術型 PM／硬技術公司**（NVIDIA-tier）定位與 F2 技術素養 |
+| 英語 / English | **TOEIC** | **金色證書 Gold・980／990** | 近滿分英語力——國際／英文 ATS 版的**頭牌**訊號 |
+| 英語 / English | **TOEFL** | 〔待補：分數 / TODO: score〕 | 學術英語能力（補上分數後再對外） |
+| 英語 / English | **全民英檢 GEPT** | 中高級 / High-Intermediate | 台灣在地英語能力佐證 |
+
+> **定位用法 / Positioning**：三項英語證照（**TOEIC 980 Gold 為主**、TOEFL／GEPT 為輔）共同支撐**雙語履歷與國際職位**的英語可信度；
+> **AWS Cloud Practitioner** 強化技術型 PM／硬技術公司的雲端素養。英文 ATS 版把 TOEIC 980（Gold）放 Education & Certifications 區；TOEFL 分數補齊後再列出。
+> *List TOEIC 980 (Gold) as the headline English credential on the ATS-EN version; AWS Cloud Practitioner supports the
+> technical-PM / hard-tech positioning. Add the TOEFL score before external use.*
+
+---
+
 ## 下一步補強建議 / Growth Edges
 
 > 誠實盤點：以下是「資深 PM」常被期待、但目前 repo 證據尚未充分呈現的面向，建議刻意累積。
