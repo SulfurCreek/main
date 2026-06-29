@@ -25,6 +25,16 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ---
 
+## 規格書 UI 截圖標號慣例
+
+規格書／需求文件的畫面截圖，要在圖上標「區塊編號」badge，編號與文件章節一致，方便 RD/QA 對照畫面。**一律以 Pillow 在截圖上程式化標注／覆蓋文字**，不要手動修圖：
+
+- **badge 樣式（固定）**：紅底 `#FF5F57`、白字 `Inter`／`700`／`20px`、圓角；打在截圖**上緣加出的白色留白**上，**不壓到畫面內容**。
+- **流程**：取圖（Figma `get_screenshot` 或現成截圖）→（URL 來源用 `curl` 下載）→ Pillow 加白邊＋打 badge → 裁切 → commit 到 `.claude/assets/` → 文件用 `https://raw.githubusercontent.com/<owner>/<repo>/<SHA>/.claude/assets/<file>`（URL 帶 commit SHA）引用，`<img>` 加 `alt`。
+- 完整步驟與 Pillow 範例碼見 `.claude/skills/spec-doc-1111/SKILL.md` 的「截圖標注／覆蓋」一節。
+
+---
+
 ## 常用速查（不需要查 wiki 就能用）
 
 **HackMD 團隊**：team path `1111-jobdocs`（`https://hackmd.io/team/1111-jobdocs?nav=overview`）

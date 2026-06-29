@@ -260,6 +260,39 @@ description: >
   - `<img style="max-width:600px" src="..." alt="{章節編號＋元件說明}">`（GitHub raw 圖用 img tag，**必加 alt** 描述對應章節）
 - 常見寬度：選單 `200px`、手機版 `375px`、空狀態／lightbox `500px`、聊天室全景 `600px`、列表 `800px`、tooltip `300px`
 
+### 截圖標注／覆蓋（從 Figma 產生規格截圖）
+
+規格書畫面圖要在圖上打「區塊編號」badge，編號與章節一致，讓 RD/QA 對照畫面。**一律用 Pillow 程式化標注／覆蓋文字，不手動修圖**。
+
+**badge 樣式（固定）**：紅底 `#FF5F57`、白字 `Inter`／`700`／`20px`、圓角矩形；打在截圖**上緣或左側加出的白色留白**上，**不覆蓋畫面內容**（多個區塊垂直堆疊時，用左側白邊 gutter＋細引線指向各區塊；同一列有左右兩塊時，右塊改用畫面內小 badge＋箭頭指向）。找不到 `Inter` 字檔時退 `DejaVuSans-Bold`（badge 多為編號，影響不大）。
+
+**完整流程**：
+
+1. **取圖**：Figma 用 `mcp__Figma__get_screenshot` 抓設計稿節點圖；或用既有截圖（如「調整前」現況頁）。使用者貼在對話裡的內嵌圖**不是檔案**，必要時可從本 session 對話 JSONL（`/root/.claude/projects/<proj>/<id>.jsonl` 的 `type:"image"` base64）解出。
+2. **下載**：來源是 URL（Figma 回傳圖、HackMD `_uploads`）時用 `curl` 下載到 scratchpad 暫存。
+3. **量測**：先用 Pillow 灰階＋ink threshold 掃出**內容 bounding box** 與各區塊的 row band（別憑肉眼，截圖常有大留白邊）。
+4. **裁切＋打 badge**（Pillow）：`crop` 去掉瀏覽器外框／site chrome／footer，只留規格相關區域；加白邊 gutter，依量到的 row y 打圓角 badge＋引線。
+5. **入庫＋引用**：圖 commit 到 `.claude/assets/`；文件（HackMD／Markdown）用 GitHub raw URL 帶 commit SHA 引用：`https://raw.githubusercontent.com/<owner>/<repo>/<SHA>/.claude/assets/<file>`，`<img>` 加 `alt`（章節編號＋說明）。
+
+```python
+from PIL import Image, ImageDraw, ImageFont
+RED="#FF5F57"; GUT=84
+content=Image.open("shot.png").convert("RGB").crop((L,T,R,B))  # bbox 先量測
+cw,ch=content.size
+canvas=Image.new("RGB",(cw+GUT,ch),"white"); canvas.paste(content,(GUT,0))
+d=ImageDraw.Draw(canvas)
+try:    font=ImageFont.truetype("Inter-Bold.ttf",20)
+except: font=ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf",20)
+def badge(text, by, rx, ry):                 # gutter badge + 引線指向 (rx,ry)
+    w=d.textlength(text,font=font)+18; h=30; x1=GUT-12; x0=x1-w; cy=by+h//2
+    d.line([(x1,cy),(rx,ry)],fill=RED,width=2); d.ellipse([rx-3,ry-3,rx+3,ry+3],fill=RED)
+    d.rounded_rectangle([x0,by,x1,by+h],radius=8,fill=RED); d.text((x0+9,by+4),text,font=font,fill="white")
+badge("1", 8, 90, 12); badge("2.1", 80, 250, 96)   # 依量到的區塊位置擺
+canvas.save("shot_badged.png")
+```
+
+> badge 也可直接覆蓋在畫面內元件左上角（不加白邊）——但**預設用留白＋引線**，避免擋住要看的 UI。範例落地：`handoff/` 信件訊息頁「調整前」區塊標號圖（`.claude/assets/`）。
+
 ### 摺疊區塊
 
 - 大段補充（如判斷邏輯、流程圖）：`:::spoiler {標題}` ... `:::`
