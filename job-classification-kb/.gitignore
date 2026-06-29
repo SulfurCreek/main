@@ -3,3 +3,5 @@ __pycache__/
 credentials/
 *.env
 token.json
+*_backup_*.xlsx
+cat1_suggestions.json
