@@ -12,7 +12,7 @@ import sys, openpyxl, warnings
 from collections import defaultdict, Counter
 warnings.filterwarnings('ignore')
 
-TCODE_PATH = 'TCode_Export_20260622.xlsx'   # 移轉時改路徑
+TCODE_PATH = 'TCode_Export.xlsx'   # 移轉時改路徑（KB 根目錄的 tCode 匯出檔）
 
 def load_sheet(sheet):
     wb = openpyxl.load_workbook(TCODE_PATH, read_only=True)
