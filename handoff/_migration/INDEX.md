@@ -43,7 +43,7 @@
 ### D. 交付給工程師的需求文件 + 預覽
 | 檔 | 是什麼 |
 | :-- | :-- |
-| `handoff/需求文件-ResumePoolNoticeMail.md` | **最終需求文件**（求才 template、白話、逐標籤、CSS 標檔名行號）。v0.2.2，HackMD：`@1111-jobdocs/S1cYFSFfzx` |
+| `handoff/需求文件-ResumePoolNoticeMail.md` | **最終需求文件**（求才 template、逐標籤、CSS 標檔名行號）。v0.2.0：章節編號已對齊規格《4.1 信件訊息列表規格文件》(`rJkyKgeGWl`) 區塊（1／2／3＋區塊對照索引＋對不到清單）。HackMD：`@1111-jobdocs/S1cYFSFfzx` |
 | `handoff/preview-tab-underline.html` | 自包含預覽（after CSS 內嵌進 after HTML），瀏覽器單檔可開 |
 
 ### E. 可複用 skill（切版/前端經驗）
