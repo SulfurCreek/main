@@ -1,0 +1,48 @@
+# 00 — tCode 代碼表總覽 (Index & Purpose)
+
+> `TCode_Export_20260622.xlsx`，15 張工作表。所有表共用同一套 schema（見 [01-schema](01-schema.md)）。本頁是用途對照與選表指南。
+
+## 15 張表一覽
+
+| 表名 | 用途（一句話） | 列數 | 葉數 | 葉 CodeType | 中類數 |
+|---|---|---|---|---|---|
+| **tCodeDutyNM** | **職務小類（全職 Normal）— 本專案主用** | 691 | 614 | 3 | 58 |
+| tCodeDutyHL | 職務（精簡/高階 HL，77 葉精選） | 135 | 77 | 3 | 41 |
+| tCodeDutyPT | 職務（兼職 Part-Time） | 602 | 525 | 3 | 59 |
+| tCodeDutyST | 職務（ST，219 葉） | 286 | 219 | 3 | 48 |
+| tCodeDutyTU | 職務（家教 TUtor） | 214 | 199 | 3 | 18 |
+| tCodeCertify | 證照／認證 | 2,621 | 2,451 | 3 | 149 |
+| tCodeCompSkill | 電腦／工作技能（Word, Excel…） | 790 | 765 | 2 | 26 |
+| tCodeWorkAbility | 工作能力／職能（談判、營運分析…） | 1,208 | 1,093 | 3 | 94 |
+| tCodeCity | 縣市／鄉鎮區 | 1,077 | 999 | 3 | 67 |
+| tCodeCollege | 學校／大專院校 | 235 | 213 | 3 | 21 |
+| tCodeMajor | 科系／學門 | 216 | 183 | 3 | 25 |
+| tCodeMRT | 捷運站 | 292 | 275 | 3 | 13 |
+| tCodeNation | 國家／地區 | 224 | 196 | 3 | 23 |
+| tCodeTrade | 行業別 | 372 | 289 | 3 | 67 |
+| tCodeBenefit | 福利項目 | 95 | 85 | 2 | 10 |
+
+## 選表指南
+
+| 你要處理… | 用哪張表 |
+|---|---|
+| 職缺的「職務小類」（全職） | **tCodeDutyNM** |
+| 兼職職缺職務 | tCodeDutyPT |
+| 家教科目 | tCodeDutyTU |
+| 求職者證照 | tCodeCertify |
+| 求職者會的軟體/技能 | tCodeCompSkill |
+| 求職者職能/能力標籤 | tCodeWorkAbility |
+| 工作地點 | tCodeCity（行政區）/ tCodeMRT（捷運） |
+| 學歷（學校/科系） | tCodeCollege / tCodeMajor |
+| 公司行業分類 | tCodeTrade |
+| 公司福利 | tCodeBenefit |
+| 外語/國籍 | tCodeNation |
+
+## DutyNM 大類 → 中類 結構（職務表核心）
+
+職務表三層：大類(CodeNameC) > 中類(CodeNameB) > 葉(CodeNameA)。21 個大類、58 個中類、614 葉。完整清單見 [03-duty-tables](03-duty-tables.md)。**OFFICE_MID（辦公室類白名單）對應的中類**散落在「管理幕僚／人資／行政」「行銷／企劃／專案管理」「業務／貿易／客服／門市」「金融保險／財會／稽核」「法務專利／顧問諮詢」「影視傳媒／出版翻譯」等大類下。
+
+## 注意
+
+- 各表 ChangeType 在 20260622 版全為 `UnChange`（無待處理異動）。若拿到含 新增/改名/合併 的版本，見 [tcode-excel-ops skill](../skills/) 與 [01-schema](01-schema.md) 的 ChangeType 說明。
+- DutyNM / HL / PT / ST / TU 是**同一套職類的不同子集/版本**，中類名稱大致共用，葉的收錄範圍不同。比對差異見 [03-duty-tables](03-duty-tables.md)。

@@ -1,0 +1,369 @@
+[
+ {
+  "file": "CHANGELOG.md",
+  "title": "CHANGELOG — 規則演進史",
+  "headings": [
+   "CHANGELOG — 規則演進史",
+   "規則層 (plan) 累積版本",
+   "v8 — 職稱拆解 + 機構行政共存",
+   "v7 — agency 公司 + 管理詞保護",
+   "v6 — 語言主動補",
+   "v5 — 語言保護",
+   "v4 — SUPPORT 收窄 + domain 方向修正",
+   "v3 — function tail 優先",
+   "v2 — keep_strike + replace_all + dept 標籤",
+   "v1 — 基礎 plan",
+   "資料層 (MD 正解) 重大修正",
+   "當前統計（v8）"
+  ],
+  "chars": 1634
+ },
+ {
+  "file": "README.md",
+  "title": "1111 職類校正知識庫 (Job Classification Knowledge Base)",
+  "headings": [
+   "1111 職類校正知識庫 (Job Classification Knowledge Base)",
+   "這個庫是什麼",
+   "角色設定",
+   "索引 (Index)",
+   "🧭 Wiki — 概念與導覽",
+   "🧠 Logic — 分析邏輯（最重要）",
+   "📊 tCode — 代碼表知識",
+   "🛠 Skills — Claude Code 技能",
+   "💾 Scripts — 可執行程式",
+   "快速上手 (Claude Code)",
+   "1. 重建 MD 資料層（從 Excel/CSV）",
+   "2. 看會改什麼（不寫入）",
+   "3. 確認後寫入對照版 Excel",
+   "4. 把任一 tCode 表轉成可讀 MD",
+   "維護原則"
+  ],
+  "chars": 2366
+ },
+ {
+  "file": "skills/google-sheets-skill.md",
+  "title": "Skill — 讀寫 Google Sheet (Google Sheets Access)",
+  "headings": [
+   "Skill — 讀寫 Google Sheet (Google Sheets Access)",
+   "適用時機",
+   "前置：憑證設定",
+   "A. Service Account（推薦，無互動）",
+   "B. OAuth User（個人帳號互動授權）",
+   "安裝套件",
+   "讀取（gspread，最簡）",
+   "或：values = ws.get_all_values()               # list[list]，純文字",
+   "寫入",
+   "整批覆寫（含 header）",
+   "單格 / 範圍",
+   "追加列",
+   "格式化（刪除線、底色）— 需 Sheets API batchUpdate",
+   "底色（建議格=橘）",
+   "刪除線（被槓現有格）",
+   "與本專案整合的建議",
+   "常見錯誤",
+   "配額注意"
+  ],
+  "chars": 2629
+ },
+ {
+  "file": "skills/sync-md-skill.md",
+  "title": "Skill — sync_md.py 同步工具使用",
+  "headings": [
+   "Skill — sync_md.py 同步工具使用",
+   "指令",
+   "頂部常數（移轉時要改路徑）",
+   "內部結構",
+   "MD 格式",
+   "修改 plan() 的安全流程",
+   "build_excel mode 分支檢查清單（防 P1 雷）"
+  ],
+  "chars": 1710
+ },
+ {
+  "file": "wiki/00-index.md",
+  "title": "00 — 總索引 (Master Index)",
+  "headings": [
+   "00 — 總索引 (Master Index)",
+   "關鍵字 → 文件對照",
+   "概念關鍵字（語意規則）",
+   "tCode 表關鍵字"
+  ],
+  "chars": 2606
+ },
+ {
+  "file": "wiki/01-project-overview.md",
+  "title": "01 — 專案概觀 (Project Overview)",
+  "headings": [
+   "01 — 專案概觀 (Project Overview)",
+   "背景",
+   "輸入",
+   "中間資料層",
+   "輸出（最終交付）",
+   "對照版欄位與配色",
+   "分區拆分規則",
+   "檔案地圖 (Claude Code 環境假設)"
+  ],
+  "chars": 1367
+ },
+ {
+  "file": "wiki/02-workflow.md",
+  "title": "02 — 工作流程 (Workflow)",
+  "headings": [
+   "02 — 工作流程 (Workflow)",
+   "核心理念",
+   "三個指令",
+   "標準修正流程（個案微調）",
+   "重建北三區 sheet",
+   "從對照版主表複製「分區含台北三區」的列到新 sheet「北三區」",
+   "保留所有格式（刪除線、配色、欄寬、凍結窗格 H2）",
+   "注意事項（血淚教訓）"
+  ],
+  "chars": 1625
+ },
+ {
+  "file": "wiki/03-glossary.md",
+  "title": "03 — 術語表 (Glossary)",
+  "headings": [
+   "03 — 術語表 (Glossary)",
+   "plan() 模式速查"
+  ],
+  "chars": 1416
+ },
+ {
+  "file": "tcode/00-tcode-index.md",
+  "title": "00 — tCode 代碼表總覽 (Index & Purpose)",
+  "headings": [
+   "00 — tCode 代碼表總覽 (Index & Purpose)",
+   "15 張表一覽",
+   "選表指南",
+   "DutyNM 大類 → 中類 結構（職務表核心）",
+   "注意"
+  ],
+  "chars": 1883
+ },
+ {
+  "file": "tcode/01-schema.md",
+  "title": "01 — tCode 共通 Schema",
+  "headings": [
+   "01 — tCode 共通 Schema",
+   "CodeType 階層",
+   "階層與 CodeNameA/B/C 的對應",
+   "ChangeType 處理（拿到含異動的版本時）",
+   "載入程式（Python / openpyxl）",
+   "葉名→中類 對照（plan() 用的 MID）"
+  ],
+  "chars": 1824
+ },
+ {
+  "file": "tcode/02-analysis-recipes.md",
+  "title": "02 — 各表「如何快速分析產生 MD」食譜 (Analysis Recipes)",
+  "headings": [
+   "02 — 各表「如何快速分析產生 MD」食譜 (Analysis Recipes)",
+   "通用三步驟",
+   "Step 1 — 結構偵察（不 dump 全表）",
+   "Step 2 — 抽葉 + 依中類分組",
+   "Step 3 — 輸出 MD（大類標題 + 中類表）",
+   "各表客製要點",
+   "大表的 token 節省策略",
+   "中類摘要（大表首選）",
+   "比對兩版 export（異動分析）",
+   "載入兩版，比對 CodeNo 集合 + 名稱變化"
+  ],
+  "chars": 2546
+ },
+ {
+  "file": "tcode/03-duty-tables.md",
+  "title": "03 — 職務表深入 (Duty Tables)",
+  "headings": [
+   "03 — 職務表深入 (Duty Tables)",
+   "五個職務表的關係",
+   "DutyNM 完整結構（20 大類 / 58 中類 / 614 葉）",
+   "OFFICE_MID 與實際中類對照",
+   "與職類校正相關的關鍵中類"
+  ],
+  "chars": 2464
+ },
+ {
+  "file": "tcode/data_tCodeCertify_summary.md",
+  "title": "tCodeCertify 代碼表",
+  "headings": [
+   "tCodeCertify 代碼表",
+   "交通運輸／物流類（71）",
+   "人資／法政／教育類（101）",
+   "企劃／專案管理類（98）",
+   "化工／化學相關類（9）",
+   "品管安規類（36）",
+   "機械汽修相關類（61）",
+   "殯葬相關類（4）",
+   "演藝媒體相關類（5）",
+   "營建／消防相關類（78）",
+   "環保／勞安相關類（100）",
+   "生產製造類（233）",
+   "礦業冶金類（5）",
+   "美容／運動／技職類（123）",
+   "設計／美工相關類（95）",
+   "語言認證類（168）",
+   "財會金融相關類（143）",
+   "農林漁牧類（19）",
+   "醫療護理類（98）",
+   "電子電機類（107）",
+   "電腦／網路相關類（829）",
+   "餐飲／旅遊／服務類（68）"
+  ],
+  "chars": 3173
+ },
+ {
+  "file": "tcode/data_tCodeCompSkill.md",
+  "title": "tCodeCompSkill 代碼表",
+  "headings": [
+   "tCodeCompSkill 代碼表",
+   "(無大類)（765）"
+  ],
+  "chars": 9069
+ },
+ {
+  "file": "tcode/data_tCodeDutyNM.md",
+  "title": "tCodeDutyNM 代碼表",
+  "headings": [
+   "tCodeDutyNM 代碼表",
+   "光電IC／電子通訊（20）",
+   "學術研究／教育師資（34）",
+   "幼教才藝／補習進修（24）",
+   "影視傳媒／出版翻譯（47）",
+   "採購／物流／品質檢測（45）",
+   "操作／維修／技術服務（50）",
+   "業務／貿易／客服／門市（36）",
+   "機械模具／生產製程（43）",
+   "法務專利／顧問諮詢（12）",
+   "營建／製圖／施作（49）",
+   "生活服務／農林漁牧（21）",
+   "生物科技／化學製藥（13）",
+   "管理幕僚／人資／行政（21）",
+   "美容美髮／餐飲旅遊（42）",
+   "美編設計（16）",
+   "行銷／企劃／專案管理（27）",
+   "軍警消防／保全相關（10）",
+   "醫療／護理／保健（40）",
+   "金融保險／財會／稽核（26）",
+   "電腦系統／資訊／軟硬體（38）"
+  ],
+  "chars": 5731
+ },
+ {
+  "file": "tcode/data_tCodeDutyPT.md",
+  "title": "tCodeDutyPT 代碼表",
+  "headings": [
+   "tCodeDutyPT 代碼表",
+   "光電IC／電子通訊（19）",
+   "學術研究／教育師資（32）",
+   "幼教才藝／補習進修（23）",
+   "影視傳媒／出版翻譯（44）",
+   "採購／物流／品質檢測（35）",
+   "操作／維修／技術服務（46）",
+   "業務／貿易／客服／門市（29）",
+   "機械模具／生產製程（34）",
+   "法務專利／顧問諮詢（11）",
+   "營建／製圖／施作（45）",
+   "生活服務／農林漁牧（19）",
+   "生物科技／化學製藥（11）",
+   "管理幕僚／人資／行政（17）",
+   "美容美髮／餐飲旅遊（38）",
+   "美編設計（14）",
+   "行銷／企劃／專案管理（21）",
+   "軍警消防／保全相關（9）",
+   "醫療／護理／保健（34）",
+   "金融保險／財會／稽核（23）",
+   "電腦系統／資訊／軟硬體（21）"
+  ],
+  "chars": 5121
+ },
+ {
+  "file": "tcode/data_tCodeWorkAbility_summary.md",
+  "title": "tCodeWorkAbility 代碼表",
+  "headings": [
+   "tCodeWorkAbility 代碼表",
+   "光電通訊（69）",
+   "學術文教（23）",
+   "影視傳媒（48）",
+   "業務門市（31）",
+   "機械操作（106）",
+   "法務諮詢（39）",
+   "營建物業（83）",
+   "物流檢測（58）",
+   "生活服務（26）",
+   "生物科技（51）",
+   "管理行政（77）",
+   "系統網路（63）",
+   "美容美髮（39）",
+   "美編設計（47）",
+   "行銷企劃（42）",
+   "補教進修（24）",
+   "軍警保全（29）",
+   "農林漁牧（27）",
+   "醫事保健（67）",
+   "金融財務（96）",
+   "餐飲旅遊（48）"
+  ],
+  "chars": 1843
+ },
+ {
+  "file": "logic/01-plan-algorithm.md",
+  "title": "01 — plan() 演算法規格 (Algorithm Spec)",
+  "headings": [
+   "01 — plan() 演算法規格 (Algorithm Spec)",
+   "輸入",
+   "輸出",
+   "決策流程",
+   "loosely_related(i)（取代時是否連帶槓除）",
+   "domain_ok(e, ctx, title='')",
+   "常數集合"
+  ],
+  "chars": 3336
+ },
+ {
+  "file": "logic/02-verified-logic.md",
+  "title": "02 — 已驗證 OK 的邏輯 (Verified Logic)",
+  "headings": [
+   "02 — 已驗證 OK 的邏輯 (Verified Logic)",
+   "✅ 已確認的規則（使用者點頭過的）",
+   "R1. 辦公室類 vs 專業現場類，鬆緊不同",
+   "R2. function tail 優先於 context keyword",
+   "R3. agency 公司：行業 ≠ 職缺",
+   "R4. 語言：保護 + 主動補",
+   "R5. 管理詞保護",
+   "R6. 機構行政共存",
+   "R7. 職稱拆解",
+   "R8. 取代時的連帶槓除（loosely_related）",
+   "🎯 校準案例（回歸測試基準）",
+   "三輪自我審查協定"
+  ],
+  "chars": 3089
+ },
+ {
+  "file": "logic/03-pitfalls.md",
+  "title": "03 — 要避免的錯誤邏輯 (Pitfalls)",
+  "headings": [
+   "03 — 要避免的錯誤邏輯 (Pitfalls)",
+   "🐞 P1. build_excel 的 mode 分支不齊 → 判斷對卻沒寫入",
+   "🐞 P2. domain_ok 方向相反 → 籠統項被特定項誤吸",
+   "⚠️ P3. SUPPORT 全家族無條件互保 → 業務/人事互相誤留",
+   "⚠️ P4. 非辦公室類正解仍套 domain 籠統保護 → 不相關項被留",
+   "🐞 P5. replace_multi 過頭 → 把擦邊項也槓了",
+   "⚠️ P6. agency 公司行業誤判職缺",
+   "⚠️ P7. 只看職稱不看公司 → 機構行政被誤槓",
+   "⚠️ P8. 把語言當主職務",
+   "⚠️ P9. keep 模式完全不動 → 旁邊的明顯錯誤沒清",
+   "通用紀律"
+  ],
+  "chars": 2482
+ },
+ {
+  "file": "logic/04-case-decisions.md",
+  "title": "04 — 逐案判定紀錄 (Case Decisions)",
+  "headings": [
+   "04 — 逐案判定紀錄 (Case Decisions)",
+   "常見職務 → 正解 對照（經驗法則）"
+  ],
+  "chars": 2007
+ }
+]
