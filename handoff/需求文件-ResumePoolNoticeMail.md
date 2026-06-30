@@ -8,7 +8,7 @@
 
 :::spoiler Document info
 
-文件版本：v0.2.1
+文件版本：v0.2.2
 最後更新：2026/06/30
 文件作者：UIUX
 文件狀態： <span style="color:blue">草稿</span></h6>
@@ -22,6 +22,7 @@
 | 0.1.0 | 2026-06-23 | UIUX | 初版：彙整信件訊息頁前端視覺調整需求，逐一列出每個 HTML 標籤的更動與對應 CSS 檔名/行數 |
 | 0.2.0 | 2026-06-29 | UIUX | [全文] 依《4.1 信件訊息列表規格文件》(`rJkyKgeGWl`) 的功能區塊重排章節編號（1／2／3）；新增「區塊對照索引」與「對不到單一區塊」清單；各需求內容不變 |
 | 0.2.1 | 2026-06-30 | UIUX | [示意圖] 新增「調整前頁面區塊標號」截圖（GitHub raw 引用，badge 對應規格區塊 1／2.1／2.2／2.3／3） |
+| 0.2.2 | 2026-06-30 | UIUX | [各章節] 內嵌各區塊「調整前」局部標號圖（1／2.1／2.2／2.3／3）於對應章節 |
 
 [TOC]
 
@@ -85,6 +86,8 @@ badge 對照：`1` Heading與篩選區｜`2.1` Tab｜`2.2` 操作列｜`2.3` 下
 
 ## 1 Heading與篩選區
 
+<img style="max-width:800px" src="https://raw.githubusercontent.com/SulfurCreek/main/ba1076c5937a4ebbcbf812a155b951bdf1d03127/.claude/assets/resumePoolNoticeMail-block-1.png" alt="信件訊息頁 調整前 區塊1 Heading與篩選區：標題＋篩選列">
+
 ### 1.1 標題列 `<h2 class="Title">`（「信件訊息」）（原 §1）
 
 | 項目 | 內容 |
@@ -134,6 +137,8 @@ badge 對照：`1` Heading與篩選區｜`2.1` Tab｜`2.2` 操作列｜`2.3` 下
 
 ### 2.1 Tab `<ul class="tabs"> / <li class="tab">`（底線式 Tab）（原 §2）
 
+<img style="max-width:800px" src="https://raw.githubusercontent.com/SulfurCreek/main/ba1076c5937a4ebbcbf812a155b951bdf1d03127/.claude/assets/resumePoolNoticeMail-block-2_1.png" alt="信件訊息頁 調整前 區塊2.1 Tab：訊息列表頁籤（全部/未讀/已讀/已加星號/有意願）">
+
 HTML **不變**（底線以 `li.active::after` 偽元素達成，無新增節點）。依設計系統把「膠囊/方塊式」改為「底線式 Tab」。
 
 | 狀態 | 樣式需求 | token |
@@ -148,6 +153,8 @@ HTML **不變**（底線以 `li.active::after` 偽元素達成，無新增節點
 * <font style="color:red">註：頁籤順序與「全部/未讀/已讀/已加星號/有意願」在正式環境的排序（規格 2.1.1～2.1.5），請以正式環境為準（mock 末兩項順序與正式不同，屬 mock 偏離，非本需求）。</font>
 
 ### 2.2 操作列
+
+<img style="max-width:520px" src="https://raw.githubusercontent.com/SulfurCreek/main/ba1076c5937a4ebbcbf812a155b951bdf1d03127/.claude/assets/resumePoolNoticeMail-block-2_2.png" alt="信件訊息頁 調整前 區塊2.2 操作列：刪除/移除星號/已讀勾選訊息/查看其他帳號">
 
 > 對應規格 `2.2 操作列`。本區三項：批次按鈕（2.2.1）、訊息筆數（2.2.2）、Checkbox 互動行為（2.2.3）。
 
@@ -185,6 +192,8 @@ HTML **不變**（底線以 `li.active::after` 偽元素達成，無新增節點
 
 ### 2.3 下拉篩選選單（信件類別 / 求職者回覆）
 
+<img style="max-width:380px" src="https://raw.githubusercontent.com/SulfurCreek/main/ba1076c5937a4ebbcbf812a155b951bdf1d03127/.claude/assets/resumePoolNoticeMail-block-2_3.png" alt="信件訊息頁 調整前 區塊2.3 下拉篩選選單：信件類別/求職者回覆">
+
 > 對應規格 `2.3 下拉篩選選單`。本次**僅統一其外框/hover/focus 外觀**，已併入 [1.2 篩選輸入元件群](#12-篩選輸入元件群邊框hoverfocus-統一原-6)（`#ddlMailType`、`#ddlReaded` 兩個下拉）。下拉的**篩選邏輯與選項值**（信件類別 value、面試類別、求職者回覆 value）不在本視覺需求範圍，沿用規格 2.3.1～2.3.3。
 
 ### 2.4 卡片容器 `.whiteBg` / `.whiteBg.list`（原 §7）
@@ -200,6 +209,8 @@ HTML **不變**（底線以 `li.active::after` 偽元素達成，無新增節點
 ---
 
 ## 3 信件對話 by 職缺&求職者
+
+<img style="max-width:800px" src="https://raw.githubusercontent.com/SulfurCreek/main/ba1076c5937a4ebbcbf812a155b951bdf1d03127/.claude/assets/resumePoolNoticeMail-block-3.png" alt="信件訊息頁 調整前 區塊3 信件對話：表頭與資料列">
 
 > 對應規格 `3 信件對話`（列表中的每一列＝一則對話）。規格 3.1～3.6 以「列內欄位」拆分；本次視覺需求落在 3.3（回覆狀態）、3.4（信件內容），以及表格整體的表頭/列樣式（3.7／3.8，規格未細分，另立於此）。3.1 操作項目的 Checkbox 行為見 2.2.3。
 
