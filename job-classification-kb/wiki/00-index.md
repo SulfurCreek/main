@@ -39,22 +39,24 @@
 
 ## tCode 表關鍵字
 
-| 表名 | 一句話用途 | 葉數 |
-|---|---|---|
-| tCodeDutyNM | **職務小類（全職）** — 本專案主用 | 614 |
-| tCodeDutyHL | 職務（精簡/高階版） | 77 |
-| tCodeDutyPT | 職務（兼職 part-time） | 525 |
-| tCodeDutyST | 職務（學生/短期？） | 219 |
-| tCodeDutyTU | 職務（家教 tutor） | 199 |
-| tCodeCertify | 證照 | 2,451 |
-| tCodeCompSkill | 電腦/工作技能 | 765 |
-| tCodeWorkAbility | 工作能力／職能 | 1,093 |
-| tCodeCity | 縣市鄉鎮 | 999 |
-| tCodeCollege | 學校 | 213 |
-| tCodeMajor | 科系 | 183 |
-| tCodeMRT | 捷運站 | 275 |
-| tCodeNation | 國家 | 196 |
-| tCodeTrade | 行業別 | 289 |
-| tCodeBenefit | 福利 | 85 |
+> ⚠️ **查 tCode 內容先讀 MD，不要直接讀 Excel。** 下表「現成 MD」欄有檔的直接讀；標 ⬜ 的先 `python3 scripts/tcode_to_md.py <表名>` 匯出再讀。完整對照見 [tcode/00-tcode-index §資料層 MD 對照](../tcode/00-tcode-index.md#資料層-md-對照先讀-md不要直接讀-excel)。
+
+| 表名 | 一句話用途 | 葉數 | 現成 MD |
+|---|---|---|---|
+| tCodeDutyNM | **職務小類（全職）** — 本專案主用 | 614 | ✅ [data](../tcode/data_tCodeDutyNM.md) |
+| tCodeDutyPT | 職務（兼職 part-time） | 525 | ✅ [data](../tcode/data_tCodeDutyPT.md) |
+| tCodeCompSkill | 電腦/工作技能 | 765 | ✅ [data](../tcode/data_tCodeCompSkill.md) |
+| tCodeBenefit | 福利（B 公司>福利制度） | 85 | ✅ [data](../tcode/data_tCodeBenefit.md) |
+| tCodeCertify | 證照 | 2,451 | ◑ [摘要](../tcode/data_tCodeCertify_summary.md) |
+| tCodeWorkAbility | 工作能力／職能 | 1,093 | ◑ [摘要](../tcode/data_tCodeWorkAbility_summary.md) |
+| tCodeDutyHL | 職務（精簡/高階版） | 77 | ⬜ 需 export |
+| tCodeDutyST | 職務（學生/短期？） | 219 | ⬜ 需 export |
+| tCodeDutyTU | 職務（家教 tutor） | 199 | ⬜ 需 export |
+| tCodeCity | 縣市鄉鎮 | 999 | ⬜ 需 export |
+| tCodeCollege | 學校 | 213 | ⬜ 需 export |
+| tCodeMajor | 科系 | 183 | ⬜ 需 export |
+| tCodeMRT | 捷運站 | 275 | ⬜ 需 export |
+| tCodeNation | 國家 | 196 | ⬜ 需 export |
+| tCodeTrade | 行業別 | 289 | ⬜ 需 export |
 
 詳見 [tcode/00-tcode-index](../tcode/00-tcode-index.md)。

@@ -88,7 +88,7 @@
    "概念關鍵字（語意規則）",
    "tCode 表關鍵字"
   ],
-  "chars": 2606
+  "chars": 3215
  },
  {
   "file": "wiki/01-project-overview.md",
@@ -135,11 +135,12 @@
   "headings": [
    "00 — tCode 代碼表總覽 (Index & Purpose)",
    "15 張表一覽",
+   "資料層 MD 對照（先讀 MD，不要直接讀 Excel）",
    "選表指南",
    "DutyNM 大類 → 中類 結構（職務表核心）",
    "注意"
   ],
-  "chars": 1883
+  "chars": 3001
  },
  {
   "file": "tcode/01-schema.md",

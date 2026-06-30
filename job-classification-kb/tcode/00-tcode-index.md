@@ -22,6 +22,29 @@
 | tCodeTrade | 行業別 | 372 | 289 | 3 | 67 |
 | tCodeBenefit | 福利項目 | 95 | 85 | 2 | 10 |
 
+## 資料層 MD 對照（先讀 MD，不要直接讀 Excel）
+
+> **鐵則**：要查某張 tCode 表的內容，**先看下表有沒有現成 `data_*.md`**；有就讀 MD。
+> 只有「尚未產出」的表才需先跑 `python3 scripts/tcode_to_md.py <表名>` 由 `TCode_Export.xlsx` 匯出，匯出後一樣讀 MD。**不要為了查值直接 `load_workbook` 讀 Excel。**
+
+| 表名 | 現成 MD | 狀態 |
+|---|---|---|
+| tCodeDutyNM | [`data_tCodeDutyNM.md`](data_tCodeDutyNM.md) | ✅ 完整 |
+| tCodeDutyPT | [`data_tCodeDutyPT.md`](data_tCodeDutyPT.md) | ✅ 完整 |
+| tCodeCompSkill | [`data_tCodeCompSkill.md`](data_tCodeCompSkill.md) | ✅ 完整 |
+| tCodeBenefit | [`data_tCodeBenefit.md`](data_tCodeBenefit.md) | ✅ 完整（含 CodeNo/CodeNoNew，供 B 公司>福利制度） |
+| tCodeCertify | [`data_tCodeCertify_summary.md`](data_tCodeCertify_summary.md) | ◑ 中類摘要（大表，葉太多） |
+| tCodeWorkAbility | [`data_tCodeWorkAbility_summary.md`](data_tCodeWorkAbility_summary.md) | ◑ 中類摘要 |
+| tCodeDutyHL | — | ⬜ 未產出，需先 export |
+| tCodeDutyST | — | ⬜ 未產出，需先 export |
+| tCodeDutyTU | — | ⬜ 未產出，需先 export |
+| tCodeCity | — | ⬜ 未產出，需先 export |
+| tCodeCollege | — | ⬜ 未產出，需先 export |
+| tCodeMajor | — | ⬜ 未產出，需先 export |
+| tCodeMRT | — | ⬜ 未產出，需先 export |
+| tCodeNation | — | ⬜ 未產出，需先 export |
+| tCodeTrade | — | ⬜ 未產出，需先 export |
+
 ## 選表指南
 
 | 你要處理… | 用哪張表 |
