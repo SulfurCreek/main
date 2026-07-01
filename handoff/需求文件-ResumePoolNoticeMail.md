@@ -90,70 +90,11 @@ badge 對照：`1` Heading與篩選區｜`2.1` Tab｜`2.2` 操作列｜`2.3` 下
 
 ## 結構調整總覽（正式環境 DOM 需搬動的地方）
 
-> mock 跟正式環境目前有 3 個元素位置不一樣，另外還有 1 個節點被拿掉。這些搬動**不是 mock 亂改**，是要達成本次視覺需求（頁籤跟篩選合併同一張卡、操作列要顯示在篩選卡跟表格中間）才需要動；下面直接講清楚怎麼搬，不留開放式問題。左邊是正式環境現在的樣子，右邊是搬完後要達成的樣子（＝ mock 現況）：
+> mock 跟正式環境目前有 3 個元素位置不一樣，另外還有 1 個節點被拿掉。這些搬動**不是 mock 亂改**，是要達成本次視覺需求（頁籤跟篩選合併同一張卡、操作列要顯示在篩選卡跟表格中間）才需要動；下面直接在「調整前」實際截圖上標出來，講清楚怎麼搬，不留開放式問題。
 
-```mermaid
-flowchart LR
-  subgraph A["搬前（正式環境現況）"]
-    direction TB
-    A1[".cont"]
-    A2[".headingBar<br/>標題「信件訊息」"]
-    A3[".whiteBg.filter<br/>篩選卡"]
-    A4[".whiteBg.list"]
-    A5[".msgList"]
-    A6["#bookmark.titleBar"]
-    A7["#UpdatePanel3.Areabox"]
-    A8["h1.titleFont<br/>「訊息列表」"]
-    A9["ul.tabs 頁籤"]
-    A10["span.msgRecord<br/>「共N筆」"]
-    A11[".actionBtn 操作列"]
-    A12[".msgTable 表格"]
-    A1 --> A2
-    A1 --> A3
-    A1 --> A4
-    A4 --> A5
-    A5 --> A6
-    A6 --> A7
-    A7 --> A8
-    A7 --> A9
-    A7 --> A10
-    A5 --> A11
-    A5 --> A12
-  end
+<img style="max-width:900px" src="https://raw.githubusercontent.com/SulfurCreek/main/13e0963de73da2e44345f4404cee9ad31563e240/.claude/assets/resumePoolNoticeMail-structure-move.png" alt="信件訊息頁 結構搬移標注：①頁籤區塊 titleBar 與 ②操作列 actionBtn 目前的位置，及要搬到的地方">
 
-  subgraph B["搬後（本次需求 / mock 現況）"]
-    direction TB
-    B1[".cont"]
-    B2[".headingBar<br/>標題「信件訊息」"]
-    B6["#bookmark.titleBar"]
-    B9["ul.tabs 頁籤"]
-    B3[".whiteBg.filter<br/>篩選卡"]
-    B11[".actionBtn 操作列"]
-    B10["span.msgRecord<br/>「共N筆」"]
-    B4[".whiteBg.list"]
-    B12[".msgTable 表格"]
-    B1 --> B2
-    B1 --> B6
-    B6 --> B9
-    B1 --> B3
-    B1 --> B11
-    B11 --> B10
-    B1 --> B4
-    B4 --> B12
-  end
-
-  A6 -. 搬移 .-> B6
-  A11 -. 搬移 .-> B11
-  A10 -. 搬移 .-> B10
-  A8 -. 建議刪除，不搬 .-> X8["不建議保留"]
-
-  classDef moved fill:#FFF3E0,stroke:#F4A261,stroke-width:2px,color:#333333;
-  classDef deleted fill:#FDECEA,stroke:#E57373,stroke-width:2px,color:#333333;
-  classDef base fill:#E3F2FD,stroke:#90A4AE,stroke-width:2px,color:#333333;
-  class A6,B6,A11,B11,A10,B10 moved;
-  class A8,X8 deleted;
-  class A1,A2,A3,A4,A5,A7,A9,A12,B1,B2,B3,B4,B9,B12 base;
-```
+（圖中橘框①＝目前包在 `.msgList` 裡的 `#bookmark.titleBar`／頁籤；藍框②＝目前也在 `.msgList` 裡的 `.actionBtn`／操作列；綠色虛線＝篩選卡 `.whiteBg.filter`，位置不動；灰色虛線＝表格 `.msgTable`，位置不動。箭頭指向搬移後的落點。）
 
 **要搬的 3 個地方**：
 
