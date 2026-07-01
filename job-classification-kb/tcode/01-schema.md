@@ -49,6 +49,45 @@ CodeType 標示該列在樹的哪一層。**葉 = CodeType 的最大值**：
 CodeNameA=經營管理主管 | CodeNameB=管理幕僚 | CodeNameC=管理幕僚／人資／行政 | CodeType=3
 ```
 
+## I~T：職務內容描述欄（tCodeDutyNM／DutyPT／DutyHL 等 Duty 系表適用）
+
+葉節點才會填這些欄；中類/大類列多半是空的。
+
+| 欄 | 欄名 | 內容 | 與其他表的關聯 |
+|---|---|---|---|
+| I | CodeDescript | 工作內容條列（`<br>` 分隔） | — |
+| J | CodeCore | 核心職能關鍵字 | — |
+| K | CodeAlike | 相似／同義職稱（搜尋同義詞用） | — |
+| L | CodeCert | 建議相關證照 | **強關聯 `tCodeCertify`**：值與該表葉節點 `CodeNameA` 逐字對應（抽樣 3 筆 100% 命中），可用字串比對自動關聯 |
+| M | CodeFuture | 職涯發展／晉升方向（未來職稱） | — |
+| N | CodeMajor | 建議學歷／科系 | **弱關聯 `tCodeMajor`**：僅文字概念呼應（如「工業管理類」對 tCodeMajor 的「工業管理學類」），非嚴格對照，不可字串比對 |
+| O | CodeDefinition | 一句話定義 | — |
+| P | chsNameA | **大陸對應職稱**（非簡繁轉換，是整套另外引用的大陸職業分類資料，用語/定義常與 CodeNameA 不同，如「經營管理主管」對應「首席執行官」） | — |
+| Q | chsDescription | 大陸用語版職務說明（`φ` 開頭條列，明顯外部來源格式） | — |
+| R | chsJobContent | 大陸用語版工作內容（同上格式） | — |
+| S | chsJobSkills | 大陸用語版所需技能（同上格式） | — |
+| T | chsAlike | 大陸用語版相似職稱（同上格式） | — |
+
+> P~T 這組跟 D~O 是**兩套獨立內容**，不是彼此的翻譯——P~T 抄自另一套大陸職業分類資料源，用詞、定義、技能都改寫過。
+
+## Z~AQ：多語系名稱欄（葉/中類/大類三層皆有值；Descript_* 系列抽樣多為空）
+
+| 欄 | 欄名 | 內容 |
+|---|---|---|
+| Z | CodeNameEN | 葉節點英文名（與 AB 重複） |
+| AA | CodeNameCHS | 葉節點**簡體中文**名（純繁轉簡，如「經營管理主管」→「经营管理主管」，跟 P 欄的「大陸對應職稱」不同） |
+| AB/AC/AD | CodeNameA/B/C_EN | 葉／中類／大類 英文名 |
+| AE | CodeDescript_EN | 英文版描述（抽樣多為空） |
+| AF/AG/AH | CodeNameA/B/C_VI | 葉／中類／大類 **越南文**名 |
+| AI | CodeDescript_VI | 越南文描述（多為空） |
+| AJ/AK/AL | CodeNameA/B/C_TH | 葉／中類／大類 **泰文**名 |
+| AM | CodeDescript_TH | 泰文描述（多為空） |
+| AN/AO/AP | CodeNameA/B/C_ID | 葉／中類／大類 **印尼文**名 |
+| AQ | CodeDescript_ID | 印尼文描述（多為空） |
+
+> VI／TH／ID 對應 **`tCodeNation`** 的移工主要來源國，服務外籍移工／外語求職者介面的職稱在地化顯示。
+> 實務技巧：同一中類下所有葉節點的 `CodeNameB/C_*`（EN/VI/TH/ID）**值完全相同**（因為是中類/大類層級翻譯，逐葉複製而來）——新增葉節點時，B/C 系列翻譯可直接**沿用同中類下任一既有葉節點的值**，只需新寫 A 系列（葉名本身）與 chs 系列。
+
 ## ChangeType 處理（拿到含異動的版本時）
 
 | ChangeType | 意義 | 動作 |
