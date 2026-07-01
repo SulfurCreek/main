@@ -29,14 +29,14 @@
 
 | 表名 | 現成 MD | 狀態 |
 |---|---|---|
-| tCodeDutyNM | [`data_tCodeDutyNM.md`](data_tCodeDutyNM.md) | ✅ 完整 |
-| tCodeDutyPT | [`data_tCodeDutyPT.md`](data_tCodeDutyPT.md) | ✅ 完整 |
+| tCodeDutyNM | [`data_tCodeDutyNM.md`](data_tCodeDutyNM.md) | ✅ 完整（20260701 已依 Google Sheet 即時匯出更新，617葉，含已套用 add/edit） |
+| tCodeDutyPT | [`data_tCodeDutyPT.md`](data_tCodeDutyPT.md) | ✅ 完整（20260701 已依 Google Sheet 即時匯出更新，528葉） |
+| tCodeDutyHL | [`data_tCodeDutyHL.md`](data_tCodeDutyHL.md) | ✅ 完整（20260701 新產出，Google Sheet 即時匯出，79葉） |
+| tCodeDutyST | [`data_tCodeDutyST.md`](data_tCodeDutyST.md) | ✅ 完整（20260701 新產出，Google Sheet 即時匯出，219葉） |
 | tCodeCompSkill | [`data_tCodeCompSkill.md`](data_tCodeCompSkill.md) | ✅ 完整 |
 | tCodeBenefit | [`data_tCodeBenefit.md`](data_tCodeBenefit.md) | ✅ 完整（含 CodeNo/CodeNoNew，供 B 公司>福利制度） |
 | tCodeCertify | [`data_tCodeCertify_summary.md`](data_tCodeCertify_summary.md) | ◑ 中類摘要（大表，葉太多） |
 | tCodeWorkAbility | [`data_tCodeWorkAbility_summary.md`](data_tCodeWorkAbility_summary.md) | ◑ 中類摘要 |
-| tCodeDutyHL | — | ⬜ 未產出，需先 export |
-| tCodeDutyST | — | ⬜ 未產出，需先 export |
 | tCodeDutyTU | — | ⬜ 未產出，需先 export |
 | tCodeCity | — | ⬜ 未產出，需先 export |
 | tCodeCollege | — | ⬜ 未產出，需先 export |
@@ -46,6 +46,7 @@
 | tCodeTrade | — | ⬜ 未產出，需先 export |
 
 > **待議新增／改名建議**（尚未寫入正式代碼表）：[`data_tCodeDutyNM_changes.md`](data_tCodeDutyNM_changes.md) — 20260420 討論表整理的 5 筆新增、30 筆改名（含 3 筆中類層級改名）。
+> **四表 ChangeType 同步檢查**（20260701）：[`data_tCodeDuty_changetype_sync.md`](data_tCodeDuty_changetype_sync.md) — 比對 Google Sheet 即時匯出中 NM/PT/ST/HL 四表已套用的 add/edit，找出跨表沒同步的項目（如 250510~250514 語言老師搬遷只有 PT 標記、NM 沒套用）。
 
 ## 選表指南
 
