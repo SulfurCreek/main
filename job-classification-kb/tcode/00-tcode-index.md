@@ -45,6 +45,8 @@
 | tCodeNation | — | ⬜ 未產出，需先 export |
 | tCodeTrade | — | ⬜ 未產出，需先 export |
 
+> **待議新增／改名建議**（尚未寫入正式代碼表）：[`data_tCodeDutyNM_changes.md`](data_tCodeDutyNM_changes.md) — 20260420 討論表整理的 5 筆新增、30 筆改名（含 3 筆中類層級改名）。
+
 ## 選表指南
 
 | 你要處理… | 用哪張表 |
