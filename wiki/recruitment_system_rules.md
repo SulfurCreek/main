@@ -32,6 +32,9 @@
 | API | 權威文件 |
 | --- | --- |
 | `GET /api/v1/echat/get-detail/{infoNo}`（取得單筆對話完整內容，含 `oJsonB`／`tJsonB` 訊息明細） | `notes/api/echat-get-detail-infoNo.md` |
+| `GET /api/v1/external/echat/get-echat-mail-logs`（取得訊息紀錄列表） | `notes/api/echat-get-echat-mail-logs.md` |
+| `GET /api/v1/external/echat/get-by-condition`（搜尋記訊內容） | `notes/api/echat-get-by-condition.md` |
+| `POST /api/v1/external/echat/update-chatlog`（同步訊息狀態，記訊整併） | `notes/api/echat-update-chatlog.md` |
 
 規則（**鐵律**）：
 - 只要任務涉及**同一支 API**，一律先 Read 上表對應文件取用欄位定義／前端判斷，**不要**憑記憶、對話歷史或其他文件的轉抄版本作答（轉抄版可能過期）。
