@@ -11,7 +11,7 @@
 
 Cross-system messaging (E.1): converged 8+ heterogeneous specs into a single source of truth and arbitrated 3 long-unresolved business-code conflicts.
 
-**角色 / Role**：主導 PM／系統分析（單一 PM 定義整體架構）｜ **時間 / Timeline**：〔待補：起訖 YYYY/MM–MM〕｜ **團隊 / Team**：PM 1（本人）＋ 前端（Nuxt 4）／後端（.NET Core）／RD（SignalR 即時推播）跨團隊協作
+**角色 / Role**：主導 PM／系統分析（單一 PM 定義整體架構）｜ **時間 / Timeline**：2026/01 明確立案 → 過年（2026/02）啟動規劃 → 2026/07 產出跨系統循序圖與規格（進行中）；痛點自 2022/08 到職即持續聽聞｜ **團隊 / Team**：PM 1（本人）＋ 前端（Nuxt 4）／後端（.NET Core）／RD（SignalR 即時推播）跨團隊協作
 
 ---
 
@@ -19,7 +19,7 @@ Cross-system messaging (E.1): converged 8+ heterogeneous specs into a single sou
 
 1111 人力銀行的求才（廠商 B 端）與求職主網（求職者 C 端）是兩套獨立系統，廠商與求職者的往來訊息長期分散在**兩條 legacy 通道**——**站內信**與**即時通**——彼此不同步，體驗割裂。E.1「聯絡人才」要把兩條通道整併成**單一對話流**，讓雙方能在同一介面收發一般訊息與**五種邀約卡片**（詢問意願／面試邀約／面試異動／取消面試／錄取通知／感謝函），並**雙向即時同步**。
 
-真正的難點不在畫面，而在**上游的規格治理**：功能相關資訊散落在 **8+ 份異質、且彼此不一致**的來源，其中**三處業務代碼衝突**被標記「待確認」已久，RD 無法安全落地。此專案橫跨前端 component、後端 API、SignalR 即時推播、EventBus 記訊整併、跨系統 E-mail 排程與資料庫對話紀錄——是我至今**技術範圍最廣**的單一專案。
+這個痛點我自 **2022/08 到職**起就持續聽到來自業務與客戶的抱怨，卻懸置多年；直到 **2026/01** 才推上檯面明確立案、過年後啟動規劃，由我主導定義整體架構。真正的難點不在畫面，而在**上游的規格治理**：功能相關資訊散落在 **8+ 份異質、且彼此不一致**的來源，其中**三處業務代碼衝突**被標記「待確認」已久，RD 無法安全落地。此專案橫跨前端 component、後端 API、SignalR 即時推播、EventBus 記訊整併、跨系統 E-mail 排程與資料庫對話紀錄——是我至今**技術範圍最廣**的單一專案。
 
 ## 2. 研究與洞察　Research & Insight
 
