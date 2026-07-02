@@ -15,6 +15,19 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 | :--- | :--- |
 | 2026-06-16 | 新增本「CLAUDE.md 維護原則」區塊與本表格；新增「狀態邏輯寫進表格欄位、不另開小表格／合成截圖」之 Pillow 截圖慣例補充 |
 | 2026-06-24 | 修訂 badge 截圖慣例：badge 改打在「上緣擴增的純白留白處、不壓畫面」（取代原「直接疊在元素上 x=4」），白邊高度剛好容納 badge；badge 文字可帶「類型·視角」 |
+| 2026-07-02 | 新增「Mermaid 循序圖格式慣例」區塊：所有 sequenceDiagram 一律套用 `mermaid-sequence-diagram` skill（frontmatter 配置注入冷灰／莫蘭迪色系、rightAngles、box 分組、Note 標邊界條件） |
+
+---
+
+# Mermaid 循序圖格式慣例
+
+**所有 Mermaid 循序圖（`sequenceDiagram`）一律套用 `.claude/skills/mermaid-sequence-diagram/SKILL.md`** 的三條規則：
+
+1. **配置注入**：頂端以 frontmatter `config` 寫入 `theme: base`、`rightAngles: true` 與統一冷灰／莫蘭迪色系 `themeVariables`（不使用舊式 `%%{init}%%`）。
+2. **排版優化**：直角排線；過長文字用 `<br>` 截斷；開啟 `autonumber`。
+3. **防呆與異常標示**：以 `box`（低透明度 `rgba` 底色）區分系統網域；以 `Note over` 標示邊界條件與異常。
+
+修改既有循序圖時順手遷移為本格式。flowchart 等其他圖型不適用，維持既有慣例。
 
 ---
 
