@@ -13,7 +13,7 @@ description: >
 
 ## 規則一：配置注入（Config Injection）
 
-於圖表**頂端強制寫入** frontmatter config（不使用舊式 `%%{init}%%`），統一冷灰與莫蘭迪色系、確保對比度：
+於圖表**頂端強制寫入** frontmatter config（不使用舊式 `%%{init}%%`），統一冷灰與莫蘭迪色系、確保對比度，**並明確加大字級**（mermaid 預設字級偏小、中文尤其難讀）：
 
 ```
 ---
@@ -29,6 +29,18 @@ config:
     signalTextColor: "#333333"
     noteBkgColor: "#FFF0B3"
     noteBorderColor: "#FFC400"
+  sequence:
+    actorFontSize: 17
+    actorFontWeight: bold
+    messageFontSize: 16
+    noteFontSize: 15
+    wrap: true
+    wrapPadding: 12
+    actorMargin: 70
+    boxMargin: 12
+    boxTextMargin: 8
+    messageMargin: 42
+    mirrorActors: false
 ---
 ```
 
@@ -41,10 +53,23 @@ config:
 | `signalTextColor` | `#333333` | 訊息文字 |
 | `noteBkgColor` / `noteBorderColor` | `#FFF0B3` / `#FFC400` | Note 底／框（暖黃，與冷灰對比突顯） |
 
+`sequence` 區塊字級／間距（依 [官方 config schema](https://mermaid.js.org/config/schema-docs/config-defs-sequence-diagram-config.html)，預設 `actorFontSize:14`／`messageFontSize:16` 中文常態下偏小、擠在一起）：
+
+| 變數 | 值 | 用途 |
+| :--- | :--- | :--- |
+| `actorFontSize` | `17`（預設 14） | participant／actor 名稱字級，加大＋`actorFontWeight: bold` 讓角色一眼辨識 |
+| `messageFontSize` | `16` | 訊息線文字字級，維持與 Note 有層次區隔 |
+| `noteFontSize` | `15` | Note 文字字級 |
+| `wrap` / `wrapPadding` | `true` / `12` | 開啟 mermaid 原生自動換行＋內距，避免文字貼邊；仍搭配規則二手動 `<br>` 控制斷點 |
+| `actorMargin` | `70`（預設 50） | participant 欄位間距加寬，避免加大字級後彼此擠壓 |
+| `boxMargin` / `boxTextMargin` | `12` / `8` | `box` 分組的外距／標題內距，讓分組標題不貼框線 |
+| `messageMargin` | `42`（預設 35） | 訊息線之間的垂直間距，避免文字疊行 |
+| `mirrorActors` | `false` | 底部不重複畫一次 actor／participant，圖表更精簡、少一半視覺雜訊 |
+
 ## 規則二：排版優化（Layout）
 
 * `rightAngles: true`：訊息線一律專業直角，不用弧線。
-* **長文字用 `<br>` 截斷**：單行訊息／Note 文字過長（約 >18 全形字）就以 `<br>` 換行，避免拉寬整張圖。
+* **長文字用 `<br>` 截斷**：單行訊息／Note 文字過長（約 >16 全形字，因字級加大後容許寬度變小）就以 `<br>` 換行，避免拉寬整張圖；`wrap: true` 只處理自動換行，關鍵斷點仍手動下 `<br>` 才可控。
 * `autonumber` 一律開啟。
 
 ## 規則三：防呆與異常標示（Guard & Domain）
@@ -84,6 +109,18 @@ config:
     signalTextColor: "#333333"
     noteBkgColor: "#FFF0B3"
     noteBorderColor: "#FFC400"
+  sequence:
+    actorFontSize: 17
+    actorFontWeight: bold
+    messageFontSize: 16
+    noteFontSize: 15
+    wrap: true
+    wrapPadding: 12
+    actorMargin: 70
+    boxMargin: 12
+    boxTextMargin: 8
+    messageMargin: 42
+    mirrorActors: false
 ---
 sequenceDiagram
     autonumber
