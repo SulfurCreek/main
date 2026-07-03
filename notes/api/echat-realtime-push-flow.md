@@ -118,3 +118,8 @@ sequenceDiagram
 - **打 API 取回訊息**：若為當前聊天對象，前端另外打 Core API 取回完整訊息內容後才顯示；此舉可確保顯示的訊息與 DB 一致，避免推送內容與存檔內容不同步。
 - **非當前聊天對象**：只更新未讀提示，不打 API 取訊息。
 - **`ContextID`**：接收端 `onSrSignal` 收到的 `ContextID` 為固定字串 `"apiSendMessage"`，可用來識別推送來源。
+
+> ✅ **工程端討論確認**（2026/7/3，田圻勳／莊千慧／林彥宇／詹雁翔）：
+> - 送出僅走 WebAPI（`eChatHandler.ashx kind=5`），前端**不做** SignalR invoke；SignalR 連線只用於「接收」信號。
+> - `onSignal` 的 SignalR 訊號**只傳 KEY 值**（`ContextID`／`tNo`／`oNo`／`uNo`／`eNo`，不含訊息內容本身可用）。
+> - 當前聊天對象打 API 取回的是**該對話「整包全部訊息」**（`get-detail` 整包回傳，含最新一則在內），**不是**只取單一新訊息 —— 對照現行求才系統既有行為（訊息收到後重撈全對話）沿用不變。

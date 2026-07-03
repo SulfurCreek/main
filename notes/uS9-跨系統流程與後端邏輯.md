@@ -156,6 +156,14 @@ flowchart TD
 > - 寄信排程明確指向正確收件人：通知信→求職者 email；副本信→廠商副本收件人 email（可視為求才廠商）
 > - 求職者回覆：一般訊息走廠商帳號「收信區間排程」，意願回覆等其他類別為即時寄信，兩者終點都是求才廠商
 > - 求職端頁面正名為「聯絡公司」，同樣以 `alt` 分辨進頁是否已指定聊天室
+>
+> 修正記錄（v7，依 `notes/api/echat-realtime-push-flow.md` 真實推播架構重繪）：
+> - 推播段落改用真實鏈路取代抽象「調用廣播服務」：`EventBus → 推播服務(apiSendMessage.ashx) → 驗簽/查對方線上狀態 → onSignal（在線時）＋FCM/APNS（一律）`
+> - 新增 `senderType` 分流：企業發送查 `GetTalentUserOnline`（`uType=1,Silent=0`）；求職者發送查 `GetOrganUserOnline`（`uType=2,Silent=1`）
+>
+> 修正記錄（v8，2026-07-03，依工程端 Slack 討論確認）：
+> - 送出段補註：送出僅走 WebAPI（`eChatHandler.ashx kind=5`），前端不做 SignalR invoke；SignalR 連線只用於「接收」信號
+> - 接收 Note 修正：SignalR 只傳 KEY 值；當前聊天室收到通知後打 API **重撈該對話整包全部訊息**（`get-detail` 整包回傳、含最新一則，非單一新訊息）→ 整室重新渲染
 
 ```mermaid
 ---
@@ -195,8 +203,9 @@ sequenceDiagram
 
     box rgba(200,200,200,0.1) 共用基礎設施
         participant DB as 資料庫
-        participant Bus as 事件匯流排<br>（記訊整併）
-        participant Hub as 即時推播<br>（SignalR）
+        participant Bus as 事件匯流排<br>（EventBus）
+        participant Push as 推播服務<br>（apiSendMessage.ashx）
+        participant Hub as 即時推播<br>（eChatHub SignalR／FCM／APNS）
     end
 
     box rgba(180,160,200,0.1) 求職系統
@@ -207,7 +216,7 @@ sequenceDiagram
 
     %% ===== 一、進入聯絡人才頁（整併原一＋三：載入列表＋指定聊天室明細＋SignalR） =====
     rect rgb(227, 242, 253)
-    Note over Emp,Hub: 一、進入「聯絡人才」頁（載入左側列表；正常情況已指定聊天室 → 一併載入該室明細並建立 SignalR）
+    Note over Emp,DB: 一、進入「聯絡人才」頁（載入左側列表；正常情況已指定聊天室 → 一併載入該室明細並建立 SignalR）
     Emp->>RF: 進入「聯絡人才」頁
     RF->>RB: GET get-echat-mail-logs<br>（廠商編號／職缺編號，limit＋cursor 分頁）
     RB->>DB: 查詢整併後的記訊列表
@@ -221,7 +230,7 @@ sequenceDiagram
         RB-->>RF: 回傳廠商視角訊息明細
         Note over RF: 依明細渲染右側聊天室：<br>寄件者代碼→泡泡左右與收回樣式<br>信件類別＋面試類別→一般訊息／邀約卡片<br>已讀未讀＝訊息已讀旗標＋雙方已讀日期
         RF->>Hub: 建立 SignalR 連線並加入該聊天室頻道<br>（登入憑證、公司編號、使用者編號，頻道 echathub）
-        Note over Hub: 進入指定聊天室即連線；固定間隔心跳偵測、斷線自動重連；<br>訊息以「頻道＋動作＋資料」推送
+        Note over Hub: 進入指定聊天室即連線；固定間隔心跳偵測、斷線自動重連
     else 未指定聊天室（僅載入列表，待點選）
         Emp->>RF: 點選左側某筆對話（選擇聊天室）
         Note over RF,Hub: 走上方相同流程：GET get-detail 載入該室明細 → 建立 SignalR 連線並加入頻道
@@ -249,11 +258,11 @@ sequenceDiagram
 
     Note over Emp,RF: 選擇邀約類型並設定內容：<br>詢問意願／面試邀約／錄取通知<br>／一般訊息／感謝函
     Emp->>RF: 送出（帶入該類型內容）
-    RF->>RB: 提交發送請求（對話編號＋卡片內容）
+    RF->>RB: 提交發送請求（對話編號＋卡片內容）<br>※送出僅走 WebAPI，前端不做 SignalR invoke；<br>SignalR 連線只用於「接收」信號
     activate RB
 
     rect rgb(232, 245, 233)
-    Note over RB,Hub: 三、共同發送行為（求才系統）
+    Note over RB,DB: 三、共同發送行為（求才系統）
 
     %% ----- 寫入前檢查：前後端溝通，失敗即擋住、不觸碰資料庫 -----
     RB->>RB: 驗證廠商點數與職缺權限<br>（前後端溝通，尚未觸碰資料庫）
@@ -262,7 +271,11 @@ sequenceDiagram
         RB-->>RF: 回傳錯誤，擋住送出<br>（此請求根本不會送到資料庫）
     end
 
-    RB->>DB: 寫入信件主表<br>（結構化訊息寫入對話紀錄，驗證通過後第一次寫入資料庫）
+    RB->>DB: 寫入信件主表<br>（eChatFunc.SaveMsgLog()，結構化訊息寫入對話紀錄，<br>驗證通過後第一次寫入資料庫；唯一寫入點）
+
+    opt 發送類別為面試邀約
+        RB->>DB: 額外寫入一筆面試資料至面試行事曆資料表<br>（求才端；面試欄位隨發送請求帶入）
+    end
 
     %% ----- 信件即時通整併：緊接寫入之後同步 -----
     Note over RB,Bus: 信件／即時通有異動 → 同步記訊狀態
@@ -270,20 +283,24 @@ sequenceDiagram
     activate Bus
     Bus->>DB: 下游服務合併／更新記訊狀態<br>（即時通＋信件整併為單一對話紀錄）
     Bus-->>RB: 成功（true）
+    Bus->>Push: 發送訊息事件，觸發 apiSendMessage.ashx
     deactivate Bus
 
-    opt 發送類別為面試邀約
-        RB->>DB: 額外寫入一筆面試資料至面試行事曆資料表<br>（求才端；面試欄位隨發送請求帶入）
+    activate Push
+    Push->>Push: 驗證簽章／Token；senderType=1（企業）<br>→ 查詢求職者是否在線 GetTalentUserOnline(tNo)
+    alt 求職者在線 且 MsgType=0
+        Push->>Hub: hubContext.Clients.User(tNo).onSignal<br>(ContextID="apiSendMessage", tNo, oNo, uNo, eNo, MsgLog)
+        Hub-->>SF: 即時推送 onSignal<br>（前端 onSrSignal 收到後忽略 MsgLog，僅視為「有新訊息」通知）
     end
+    Push->>Hub: DoApiPushMessage（uType=1, Silent=0）
+    deactivate Push
+    Hub-->>SF: FCM／APNS 手機推播（求職 App）
+
+    Note over SF: onSrSignal 收到通知後（SignalR 只傳 KEY 值）：<br>若為目前開啟中的聊天室 → 打 Core API 重撈該對話「整包全部訊息」<br>（get-detail 整包回傳、含最新一則，非單一新訊息）→ 整室重新渲染，確保與 DB 一致<br>若非目前開啟的聊天室 → 僅更新未讀提示圖示，不打 API
 
     %% ----- 寄信排程：兩封信最終各自寄到求職者 / 廠商副本收件人 -----
     RB-->>Seeker: 通知信加入寄信排程 → 寄至求職者 email<br>（非即時，由排程送出，處理時間很短）
     RB-->>Emp: 副本通知信加入寄信排程 → 寄至廠商副本收件人 email<br>（可視為求才廠商）
-    RB->>Hub: 調用廣播服務（傳遞訊息物件）
-    activate Hub
-    Hub-->>SF: 即時推送新訊息（ReceiveMessage）<br>＋發送推播給求職 App<br>（求職者若已在該聊天室則即時顯示；否則靠推播／信件）
-    deactivate Hub
-    Note over SF: 求職前端依訊息類型<br>動態渲染卡片元件
     RB-->>RF: 傳送成功
     deactivate RB
     Note over RF: 聊天泡泡轉為「傳送成功」<br>（廠商畫面即時更新）
@@ -320,17 +337,30 @@ sequenceDiagram
     rect rgb(243, 229, 245)
     opt 有回覆（非感謝函）
         activate SB
-        Note over Hub,SB: 五、共同回覆行為（求職系統）
+        Note over SB,DB: 五、共同回覆行為（求職系統）
         SB->>DB: 更新回覆／面試狀態<br>（面試狀態「已接受」、意願回覆代碼）
-        SB->>DB: 寫入信件主表＝自動寫入系統對話紀錄<br>（系統訊息 與 一般訊息）
+        SB->>DB: 寫入信件主表＝自動寫入系統對話紀錄<br>（系統訊息 與 一般訊息；唯一寫入點）
 
         %% ----- 信件即時通整併：緊接寫入之後同步 -----
-        Note over Bus,SB: 信件／即時通有異動 → 同步記訊狀態
+        Note over SB,Bus: 信件／即時通有異動 → 同步記訊狀態
         SB->>Bus: POST update-chatlog<br>（廠商編號、履歷編號、職缺編號、<br>異動類型、異動編號）
         activate Bus
         Bus->>DB: 下游服務合併／更新記訊狀態<br>（即時通＋信件整併）
         Bus-->>SB: 成功（true）
+        Bus->>Push: 發送訊息事件，觸發 apiSendMessage.ashx
         deactivate Bus
+
+        activate Push
+        Push->>Push: 驗證簽章／Token；senderType=2（求職者）<br>→ 查詢廠商該使用者是否在線 GetOrganUserOnline(oNo, uNo)
+        alt 廠商在線 且 MsgType=0
+            Push->>Hub: hubContext.Clients.User(oNo_uNo).onSignal<br>(ContextID="apiSendMessage", tNo, oNo, uNo, eNo, MsgLog)
+            Hub-->>RF: 即時推送 onSignal<br>（前端忽略 MsgLog，僅視為「有新訊息」通知）
+        end
+        Push->>Hub: DoApiPushMessage（uType=2, Silent=1）
+        deactivate Push
+        Hub-->>RF: FCM／APNS 手機推播（求才 App）
+
+        Note over RF: 收到通知後（SignalR 只傳 KEY 值）：<br>若為目前開啟中的聊天室 → 打 Core API 重撈該對話「整包全部訊息」<br>（非單一新訊息）→ 整室重新渲染，卡片狀態更新為「已接受」等（含插入意願狀態標籤）<br>若非目前開啟的聊天室 → 僅更新未讀提示
 
         %% ----- 依回信類別決定寄信方式（兩種方式終點都是求才廠商） -----
         SB->>SB: 判斷回信類別
@@ -342,11 +372,6 @@ sequenceDiagram
         SB-->>Emp: 副本通知信加入寄信排程 → 寄至廠商副本收件人 email
 
         SB->>SB: 計算回覆狀態（與其他雜項判斷）
-        SB->>Hub: 調用廣播服務（傳遞狀態更新）
-        activate Hub
-        Hub-->>RF: 即時推送狀態更新（UpdateMessageStatus）<br>＋發送推播給求才 App<br>（廠商若已在該聊天室則即時更新卡片狀態）
-        deactivate Hub
-        Note over RF: 廠商端卡片狀態動態更新為「已接受」等<br>（含插入意願狀態標籤）
         SB-->>SF: 處理成功<br>求職者畫面即時更新
 
         alt 回覆為同意面試
