@@ -1,6 +1,8 @@
 <!--markdownlint-disable MD013-->
 
-# 給工程師的需求文件 寫法
+> ⚠️ **已由 `frontend-change-ticket-1111` skill 取代**：需求文件**內文寫法**改用 `.claude/skills/frontend-change-ticket-1111/SKILL.md`（精準選擇器、區塊化模板、少廢話）。本檔僅保留供參考舊版風格，勿再依此白話敘述風格產文件。
+
+# 給工程師的需求文件 寫法（舊版，已停用）
 
 骨架用求才 template（搭 `spec-doc-1111` skill），但**內容寫法**遵守下面這套 —— 重點：給人看、不是給 AI 看。
 

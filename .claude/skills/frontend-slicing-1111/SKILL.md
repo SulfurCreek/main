@@ -35,7 +35,7 @@ description: >
 4. **改 CSS**：在 mock CSS 檔尾加 override 區塊（帶 `!important`）或直接改原規則；**排除離線替身**（FontAwesome CDN、inline SVG）。→ `reference/css-conventions.md`
 5. **重生自包含預覽**並交付。
 6. **更新兩份對照紀錄**：`01_HTML結構調整對照.md`（結構/偏離）、`02_CSS樣式調整對照.md`（逐條 selector｜原值→新值｜行數）。
-7. **產需求文件**：求才 template、**白話、逐 HTML 標籤、CSS 標檔名行號**、結構前提用明確指示。→ `reference/requirement-doc-style.md`（HackMD 排版格式搭 `spec-doc-1111`）
+7. **產需求文件**：內文寫法改用 `.claude/skills/frontend-change-ticket-1111/SKILL.md`（精準選擇器、區塊化、少廢話，`reference/requirement-doc-style.md` 的白話敘述風格已由它取代）；HackMD 排版格式仍搭 `spec-doc-1111`。
 8. **commit/push** 到工作分支，更新 PR；每個 commit 對應一個需求。
 
 ## 三個狀態別搞混
