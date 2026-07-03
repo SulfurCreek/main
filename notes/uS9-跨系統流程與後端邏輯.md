@@ -164,6 +164,11 @@ flowchart TD
 > 修正記錄（v8，2026-07-03，依工程端 Slack 討論確認）：
 > - 送出段補註：送出僅走 WebAPI（`eChatHandler.ashx kind=5`），前端不做 SignalR invoke；SignalR 連線只用於「接收」信號
 > - 接收 Note 修正：SignalR 只傳 KEY 值；當前聊天室收到通知後打 API **重撈該對話整包全部訊息**（`get-detail` 整包回傳、含最新一則，非單一新訊息）→ 整室重新渲染
+>
+> 修正記錄（v9，2026-07-03，依工程端 Slack 討論二次確認）：
+> - 接收事件名確認：新版統一用 `onSignal`（取代舊版 `onTextMessage`），求職／求才兩端皆同
+> - `onSignal` 參數向後相容：原有參數都保留、只增不改，之後若擴充一律附加在後面（擴充項目確認中）
+> - 同步翻修下方〈SignalR / WebSocket 即時通連線機制〉章節：送出動作 `sendMsgPush` 與接收事件 `onTextMessage` 標記廢止，業務流程改為「送出走 WebAPI、SignalR 只收信號、整包重撈」
 
 ```mermaid
 ---
@@ -290,7 +295,7 @@ sequenceDiagram
     Push->>Push: 驗證簽章／Token；senderType=1（企業）<br>→ 查詢求職者是否在線 GetTalentUserOnline(tNo)
     alt 求職者在線 且 MsgType=0
         Push->>Hub: hubContext.Clients.User(tNo).onSignal<br>(ContextID="apiSendMessage", tNo, oNo, uNo, eNo, MsgLog)
-        Hub-->>SF: 即時推送 onSignal<br>（前端 onSrSignal 收到後忽略 MsgLog，僅視為「有新訊息」通知）
+        Hub-->>SF: 即時推送 onSignal（接收事件名，取代舊版 onTextMessage）<br>（前端 onSrSignal 收到後忽略 MsgLog，僅視為「有新訊息」通知；<br>參數原有的都保留、只增不改，新增參數一律附加在後面──擴充中）
     end
     Push->>Hub: DoApiPushMessage（uType=1, Silent=0）
     deactivate Push
@@ -354,7 +359,7 @@ sequenceDiagram
         Push->>Push: 驗證簽章／Token；senderType=2（求職者）<br>→ 查詢廠商該使用者是否在線 GetOrganUserOnline(oNo, uNo)
         alt 廠商在線 且 MsgType=0
             Push->>Hub: hubContext.Clients.User(oNo_uNo).onSignal<br>(ContextID="apiSendMessage", tNo, oNo, uNo, eNo, MsgLog)
-            Hub-->>RF: 即時推送 onSignal<br>（前端忽略 MsgLog，僅視為「有新訊息」通知）
+            Hub-->>RF: 即時推送 onSignal（取代舊版 onTextMessage）<br>（前端忽略 MsgLog，僅視為「有新訊息」通知）
         end
         Push->>Hub: DoApiPushMessage（uType=2, Silent=1）
         deactivate Push
@@ -385,11 +390,13 @@ sequenceDiagram
 
 ## SignalR / WebSocket 即時通連線機制
 
-> 聊天室的即時訊息採 **SignalR**（底層走 WebSocket）做雙向即時推播：訊息送出後雙方畫面即時更新、不需重新整理。本章只記錄業務邏輯與相關名稱供對照；協定握手、連線升級等技術細節屬 RD 範疇，不在此展開。
+> 聊天室的即時訊息採 **SignalR**（底層走 WebSocket）推播：本次「信件即時通整併」改版後，SignalR 連線**只負責「接收」信號**，訊息送出一律走 WebAPI（見下方新版流程）。本章只記錄業務邏輯與相關名稱供對照；協定握手、連線升級等技術細節屬 RD 範疇，不在此展開。
+> 推播鏈完整技術文件見 `notes/api/echat-realtime-push-flow.md`。
 
-### 連線時帶的資訊
+### 連線時機與帶的資訊
 
-使用者進入聊天室建立連線時，會帶上以下資訊辨識身分與頻道：
+- **連線時機**：進入「聯絡人才」（求才）／「聯絡公司」（求職）頁後，**選定／指定特定聊天室當下**才建立連線（非進系統即連線）。
+- 建立連線時帶上以下資訊辨識身分與頻道：
 
 | 名稱 | 意義 |
 | :--- | :--- |
@@ -398,29 +405,22 @@ sequenceDiagram
 | `uNo` | 使用者編號 |
 | `echathub` | 聊天頻道名稱（全系統統一用這個） |
 
-### 訊息資料格式（名稱對照）
+> 為避免閒置斷線，系統會固定間隔自動偵測連線是否存活（心跳），斷線自動重連。
 
-每則即時訊息用三個欄位描述「在哪個頻道、做什麼動作、帶什麼資料」：
+### 新版業務流程（送出走 WebAPI、SignalR 只收信號）
 
-| 欄位 | 名稱 | 意義 |
-| :--- | :--- | :--- |
-| `H` | Hub | 頻道名稱，固定為 `echathub` |
-| `M` | Method | 這則訊息要觸發的動作（見下方對照表） |
-| `A` | Arguments | 該動作需要的資料（訊息內文、發送者 ID 等） |
-
-> 為避免閒置斷線，系統會固定間隔自動偵測連線是否存活（心跳）。
-
-### 業務流程
-
-1. 發送者送出訊息 → 後端驗證、寫入資料庫、產生訊息編號（UUID）。
-2. 後端即時推播給接收者 → 接收者畫面立即出現新訊息，不需重新整理。
-3. 接收者讀取後 → 前端回報「已讀」，更新雙方的已讀狀態。
+1. **送出**：前端**不做 SignalR invoke**，改打 `eChatHandler.ashx`（`kind=5`）WebAPI 存進 DB（`eChatFunc.SaveMsgLog()`＝唯一寫入點）。
+2. DB 寫入成功後，後端呼叫 `POST update-chatlog`（同步整合訊息 API）→ 發事件到 **EventBus** → 觸發 `eChatHub/apiSendMessage.ashx`。
+3. `apiSendMessage.ashx` 驗證簽章、查對方線上狀態，對在線接收端呼叫 `onSignal` 做 SignalR 即時推送，並統一分派 FCM／APNS 手機推播。
+4. **接收**：前端 `onSignal` 收到的只是「有新訊息」的**通知信號（KEY 值）**，不直接使用其中的訊息內容 —— 若為目前開啟中的聊天室，另外打 API **重撈該對話整包全部訊息**（含最新一則，非單一新訊息）後整室重新渲染，確保與 DB 一致；非當前聊天室僅更新未讀提示。
+5. 接收者讀取後 → 前端回報「已讀」，更新雙方的已讀狀態。
 
 ### 常用動作（Action）對照表
 
-| 方向 | 動作名稱（M） | 說明 | 帶的資料（A） |
+| 方向 | 動作名稱 | 新版狀態 | 說明 |
 | :--- | :--- | :--- | :--- |
-| 前端發送 | `setoUser` | 上線報到 | 公司名稱, 使用者名稱 |
-| 前端發送 | `sendMsgPush` | 送出文字訊息 | 訊息內文, 發送者ID, 接收者ID |
-| 後端推播 | `onTextMessage` | 接收文字訊息 | 訊息 UUID, 雙方ID, 訊息內文 |
-| 前端發送 | `updateMsgReaded` | 標記訊息已讀 | 已讀對象的 ID 陣列 |
+| 前端發送 | `setoUser` | 沿用（未在本次改版討論中異動） | 上線報到（公司名稱, 使用者名稱） |
+| 前端發送 | `sendMsgPush` | ❌ **廢止** | 舊版送出文字訊息用；新版送出改走 `eChatHandler.ashx kind=5` WebAPI，前端不再 invoke |
+| 後端推播 | `onTextMessage` | ❌ **廢止（由 `onSignal` 取代）** | 舊版接收文字訊息事件（`signalr?.on('onTextMessage', handleReceive)`） |
+| 後端推播 | `onSignal` | ✅ **新版接收事件** | 參數 `(ContextID, tNo, oNo, uNo, eNo, MsgLog)`，`ContextID` 固定 `"apiSendMessage"` 供識別推送來源；**原有參數都保留、只增不改，之後若擴充一律附加在後面**（擴充項目確認中）。前端忽略 `MsgLog`，僅當通知信號 |
+| 前端發送 | `updateMsgReaded` | 沿用（未在本次改版討論中異動） | 標記訊息已讀（已讀對象的 ID 陣列） |

@@ -123,3 +123,7 @@ sequenceDiagram
 > - 送出僅走 WebAPI（`eChatHandler.ashx kind=5`），前端**不做** SignalR invoke；SignalR 連線只用於「接收」信號。
 > - `onSignal` 的 SignalR 訊號**只傳 KEY 值**（`ContextID`／`tNo`／`oNo`／`uNo`／`eNo`，不含訊息內容本身可用）。
 > - 當前聊天對象打 API 取回的是**該對話「整包全部訊息」**（`get-detail` 整包回傳，含最新一則在內），**不是**只取單一新訊息 —— 對照現行求才系統既有行為（訊息收到後重撈全對話）沿用不變。
+>
+> ✅ **工程端討論二次確認**（2026/7/3）：
+> - 前端接收事件名由舊版 `onTextMessage`（`signalr?.on<ReceiveMessageArgs>('onTextMessage', handleReceive)`）**統一改為 `onSignal`**，求職／求才兩端皆同。
+> - `onSignal` 參數**向後相容**：原本的參數都會保留；可能再增加（擴充項目確認中），**新增一律附加在參數列後面**，前端既有解構邏輯不需改。
