@@ -10,6 +10,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 | 任務類型 | 讀取檔案 |
 | --- | --- |
+| **每次接到規格書／流程圖／跨文件統整／數據分析任務時的頂層行為規範**（零廢話、比對缺失標 `NULL` 不推測、Excel/CSV 走 pandas 漸進式分析、Figma 截圖 HTML 絕對定位標註） | `wiki/master_prompt.md`（含 `rNo`／`oTag` 範式與本專案實況的銜接警語） |
 | 涉及 HackMD API 呼叫（建立／讀取／更新／刪除 note 或 folder） | `wiki/hackmd_rules.md` |
 | 撰寫/修改 1111 規格書、需要求才系統業務代碼（`showfield`／`confirmed`／`oStatus` 等）、需先確認求才 vs 求職專案、**引用後端 API 契約（欄位／前端判斷／已讀未讀等）**、**任何 E.1 聯絡人才／信件即時通整併相關需求** | `wiki/recruitment_system_rules.md`（API 契約見 §3；**E.1／信件即時通整併素材與 inference 規則見 §6**，實體檔在 `notes/`、`notes/api/`） |
 | 涉及 Figma 畫面規格擷取、Figma → HackMD 轉換 | `wiki/figma_rules.md` |
