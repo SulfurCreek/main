@@ -18,6 +18,8 @@
 | 怎麼把某張表變成 MD | [../tcode/02-analysis-recipes](../tcode/02-analysis-recipes.md) |
 | 職務表 NM/HL/PT 差在哪 | [../tcode/03-duty-tables](../tcode/03-duty-tables.md) |
 | 讀寫 Google Sheet | [../skills/google-sheets-skill](../skills/google-sheets-skill.md) |
+| 反查某葉的職務說明（Description）判斷職缺歸類 | [../skills/tcode-desc-lookup-skill](../skills/tcode-desc-lookup-skill.md) |
+| 已反查過的葉節點說明快取 | [../tcode/data_tCodeDutyNM_descript_cache](../tcode/data_tCodeDutyNM_descript_cache.md) |
 
 ## 概念關鍵字（語意規則）
 
