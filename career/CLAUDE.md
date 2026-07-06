@@ -26,6 +26,11 @@ not co-manage them.
 - ✅ **履歷／作品集**相關工作（resume／CV／LinkedIn／portfolio／自傳、職能盤點、擷取個人成就）請使用 **`resume-craft`** skill；
   分工是：`spec-doc-1111` = 規格書、`resume-craft` = 個人職涯。
   *For résumé/portfolio work use the **`resume-craft`** skill — `spec-doc-1111` is for specs, `resume-craft` is for career.*
+- ✅ **Wiki 結構**：`competency-framework.md` 是 **wiki 入口（索引＋路由表）**，職能細節在 `wiki/`（F01–F11、旗艦專案、
+  履歷摘要、學歷證照、缺口盤點），作品集案例在 `portfolio/`。**依任務只載入需要的分頁**，勿整包讀入；更新職能內容時
+  改對應 `wiki/` 分頁，入口只維護索引與快照。
+  *`competency-framework.md` is the wiki home (index + routing table); details live in `wiki/` and case studies in
+  `portfolio/`. Load only the pages the task needs; edit content in the `wiki/` pages and keep the home as index.*
 - 🔒 **隔離原則 / Isolation policy**：`resume-craft` 與職涯素材**僅在使用者明確要求「整理履歷／盤點職能／擷取個人成就」時載入**；
   執行一般 SA／PM 規格產出、打 HackMD API、看 Figma 規格、資料分析等日常任務時**請勿載入**，以免履歷情境污染日常開發／文件工作流的 Context。
   *Load `resume-craft` / career material ONLY for explicit résumé / competency-inventory tasks; do NOT load it during

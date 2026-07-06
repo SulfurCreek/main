@@ -1,0 +1,27 @@
+<!--markdownlint-disable MD033-->
+<!--markdownlint-disable MD013-->
+
+> 🧭 [← 職能框架首頁 / Home](../competency-framework.md) ｜ `career/` 個人職涯 wiki 分頁，非 1111 規格文件（規則見 [`career/CLAUDE.md`](../CLAUDE.md)）
+
+# F11. 問題解決與維運交付 / Problem-Solving & Operational Delivery
+
+> **履歷叢集 / Résumé cluster**：Problem-Solving & Ops（見 `resume-craft` skill 核心職能叢集表）
+
+**定義 / Definition**：作為求才需求的**二線升級窗口與主要評估者**——第一線 tech support（同部門平行單位）處理可即時解決的客戶問題，
+將需企劃／設計／工程的複雜需求**升級**給本人；本人負責**功能評估與解決方案設計 → 拆解 → 以看板（Kanban）追蹤至上線結案**，在高工單量下維持高結案率。
+*Second-line escalation owner and primary assessor: a parallel first-line tech-support unit resolves immediate
+customer issues and escalates the complex ones (needing planning/design/engineering) to me; I own feasibility
+assessment and solution design, then break down and track to launch on a Kanban board at a high close rate.*
+
+- **實際展現 / In practice**：
+  - **規模與結案率**：2026 年至今累計處理 **1,279 張工單**（維運問題／企劃建議／工程 bug），完成 **1,131 張、結案率約 88%**；每週穩定新增約 50–70 張、完成約 40–52 張。
+  - **商業影響（付費客戶留存）**：工單**幾乎全數來自付費中的廠商客戶**，每一張的處理都直接維護付費帳號的使用體驗、支撐業務團隊的**業績維持與續約**——把維運從成本中心轉為**營收保護**，〔待補數據：受影響付費帳號數／續約率 affected paying accounts / renewal rate〕。
+  - **工單 → 看板 → 上線閉環**：接收業務團隊／客服開立的**具名、可溯源**工單（Team-Suggest 建議單，可追溯至公司與單號，如 `k=6237`／`6301`／`6252`），以 Kanban 追蹤狀態至上線並每週回報結案。
+  - **根因定位（非表面修補）**：凌晨配對信數量異常 → 與工程調整配對機制並**持續監測至月底**驗證；AI 推薦人才名單過舊（多家廠商回報）→ 調整鄰近地區規則與名單排序邏輯；代碼體系老化 → 重整證照／工作專長／電腦專長／兼職職類代碼，並以**競品比對**補齊「對手有、我們沒有」的類別。
+  - **缺陷處理廣度**：錯誤代碼、信件副本收件人刪除、即時通畫面裁切、感謝函範本無法帶入、紅利點數 hover 失效、過期廠商未發信客服等多類 bug 的定位與修復追蹤。
+- **工作證據 / Evidence**：求才**週報**（2026 已處理量統計：總量／已完成／未完成）；**需求許願池原始檔**（有史以來，截至 2025-12）——本人為**最主要評估者**（功能評估／解決方案 **222 案**，遠高於次位 32 案）並親自處理 **156 案**（第一線 tech support 另承擔大量首線處理）；Team-Suggest 具名建議單、Kanban 專案看板。
+- **資深度訊號 / Seniority signal**：在高工單量下維持約 **88% 結案率**，並把「修 bug」升級為「**根因定位＋機制調整＋上線驗證**」的閉環；因工單幾乎全來自**付費廠商**，此能力直接連結到**付費客戶留存與業務業績**——是把維運交付綁定**商業成效**的稀缺訊號，而非單純的工單清算。
+
+---
+
+**相關分頁 / Related**：[F8 專案管理／路線圖交付](F08-roadmap-delivery.md) ・ [F9 利害關係人管理](F09-stakeholder-influence.md) ・ [下一步補強建議（商業成效數字）](growth-edges.md)
