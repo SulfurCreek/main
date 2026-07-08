@@ -47,6 +47,7 @@
 
 > **待議新增／改名建議**（尚未寫入正式代碼表）：[`data_tCodeDutyNM_changes.md`](data_tCodeDutyNM_changes.md) — 20260420 討論表整理的 5 筆新增、30 筆改名（含 3 筆中類層級改名）。
 > **四表 ChangeType 同步檢查**（20260701）：[`data_tCodeDuty_changetype_sync.md`](data_tCodeDuty_changetype_sync.md) — 比對 Google Sheet 即時匯出中 NM/PT/ST/HL 四表已套用的 add/edit，找出跨表沒同步的項目（如 250510~250514 語言老師搬遷只有 PT 標記、NM 沒套用）。
+> **正式異動公告**（20260707）：[`announcement_tCodeDuty_20260707.md`](announcement_tCodeDuty_20260707.md) — 依上述同步檢查與工程需求清單整理成對外公告格式（新增3筆／改名40筆）。
 
 ## 選表指南
 
