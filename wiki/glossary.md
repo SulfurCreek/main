@@ -23,7 +23,7 @@
 - **`organsMore`**：廠商擴充欄位代碼。
 - **`interViewType`**：邀約類型（詢問意願／面試邀約／錄取通知／感謝函…）。
 - **`Type`(`MailType`)**：信件／訊息類別。新版 `get-detail/{infoNo}` API mailType 列舉：`0`一般訊息／`1`面試邀約／`5`感謝函／`6`錄取通知／`8`面試異動。
-- **`interViewKind`**（即訊息 schema 內的 `InterViewKind`）：與 `Type`(`MailType`) 搭配判斷邀約子類型。新版 `get-detail/{infoNo}` API 代碼表：`0`詢問意願／`1`實體面試／`3`取消面試（`2` 遠距面試為舊資料、已停用）。API「前端判斷」：`Type:1`+`IVK:1`＝面試邀約／`Type:1`+`IVK:0`＝詢問意願／`Type:5`＝感謝函／`Type:6`＝錄取通知／`Type:8`＝面試異動（`IVK:1/3` 樣式規則待補）。⚠️ 注意 `_8_6BHe5Qhu4VXJqaYRKOA` 規格書現行將 `詢問意願` 標為 `Type:2`，與本 API 文件（無 `Type:2`、改用 `Type:1`+`IVK:0`）不一致，已於該 note 標 🚧 待 PM／RD 確認。完整對照詳見 `_8_6BHe5Qhu4VXJqaYRKOA`（求才求職訊息樣式）。
+- **`interViewKind`**（即訊息 schema 內的 `InterViewKind`）：與 `Type`(`MailType`) 搭配判斷邀約子類型。新版 `get-detail/{infoNo}` API 代碼表：`0`詢問意願／`1`實體面試／`3`取消面試（`2` 遠距面試為舊資料、已停用）。API「前端判斷」：`Type:1`+`IVK:1`＝面試邀約／`Type:1`+`IVK:0`＝詢問意願／`Type:5`＝感謝函／`Type:6`＝錄取通知／`Type:8`+`IVK:1`＝面試異動、`Type:8`+`IVK:3`＝取消面試。`Type:2`（詢問意願）為**前端 mapper 衍生碼**（`toMailType` 由 `type1+IVK0` 轉出，後端 jsonB 層無此值；查詢參數層 `get-by-condition` 的 `mailType` 才有 `2`）——已定案，見 `wiki/recruitment_system_rules.md §6.2/§6.3`。完整對照詳見 `_8_6BHe5Qhu4VXJqaYRKOA`（求才求職訊息樣式）。
 - **`SendKind`**：寄件者代碼。新版 API：`0`廠商／`1`求職者／`3`廠商系統訊息／`4`求職者系統訊息／`5`求才發給求職系統信／`6`求職給求才系統信／`7`求才回收／`8`求職回收／`9`求才即時通（視為 0）／`10`求職即時通（視為 1）。廠商端顯示 `0,1,3,6,9,10`；求職端顯示 `0,1,4,5,9,10`。完整對照詳見 E.1（`BJ0R8ocgGl`）API 欄位附錄。
 
 > 這些代碼的完整對照表不放在本 repo，一律連結到 HackMD note `[REF] 求才系統代碼表`（`B1j3sN-bzx`），詳見 `wiki/recruitment_system_rules.md`。
@@ -40,9 +40,9 @@
 ## 訊息／邀約卡片規格術語
 
 - **邀約訊息 / Interview Card**：聊天室內以卡片呈現的訊息類型，含 `詢問意願`／`面試邀約`／`面試異動`／`錄取通知`／`婉拒（感謝函）`，依 `Type`(`MailType`) + `InterViewKind` 共同判斷對應泡泡（**現行＋舊資料相容代碼已於 `_8_6BHe5Qhu4VXJqaYRKOA` 確認**）：
-  - `詢問意願` ＝ `Type:2`（規格書現行）；舊資料 `Type:1&InterViewKind:0` 或 `Type:8&InterViewKind:0`。⚠️ 新版 `get-detail/{infoNo}` API 改以 `Type:1&InterViewKind:0` 判斷（mailType 無 `Type:2`），與此不一致，已於 note 標 🚧 待 PM／RD 確認
+  - `詢問意願` ＝ API 原始值 `Type:1&InterViewKind:0`；前端 mapper 轉為內部 `mailType=2`（前端衍生碼，後端 jsonB 無 `Type:2`）——已定案（`wiki/recruitment_system_rules.md §6.2`）
   - `面試邀約` ＝ `Type:1&InterViewKind:1`（現行）；舊資料 `Type:1&InterViewKind:2`（遠距面試代碼，已停用）
-  - `感謝函` ＝ `Type:5`／`錄取通知` ＝ `Type:6`／`面試異動` ＝ `Type:8`（新版 API 前端判斷；部分舊資料另帶 `InterViewKind:0`）
+  - `感謝函` ＝ `Type:5`／`錄取通知` ＝ `Type:6`（部分舊資料另帶 `InterViewKind:0`）／`面試異動` ＝ `Type:8&InterViewKind:1`／`取消面試` ＝ `Type:8&InterViewKind:3`
 - **雙視角（發出↔收到）**：同一則跨系統訊息在收發兩端各有不同呈現，規格拆成 `#### 廠商發出：X` / `#### 求職者收到：X` 兩個視角（動作與類型間用冒號分隔）；泡泡靠邊（廠商靠右／求職者靠左）與角落資訊欄名（右下角／左下角）隨視角相反。寫法見 `spec-doc-1111` skill。
 - **操作狀態（互動狀態）**：互動元件（邀約卡片按鈕、可回覆訊息）的狀態軸，逐一列舉如 `未選擇`／`已選擇`／`已婉拒`／`已過期`（多半標 `disabled`），有別於資料載入的 MECE 四狀態（載入中／有資料／無資料／錯誤）。
 - **意願狀態標籤**：求職者回覆後系統自動寫入、雙方都看得到的提示文字（如「施小君已回覆有意願面試」）。雙視角文案差異：廠商側用第三人稱主詞、求職者側用第二人稱（「你已…」）；有意願／同意＝綠色、無意願／婉拒＝灰色。後端對應欄位 `ReplyWishMsg` 實際有 4 個狀態：`0`未回覆／`1`有意願／`2`婉拒／`3`更改時間（面試邀約「選擇其他時間」按鈕對應的狀態，標籤文案與樣式待補）。
@@ -55,4 +55,6 @@
 - **`echathub`**：聊天頻道名稱（Hub），全系統統一用這個。
 - **`H` / `M` / `A`**：即時訊息的三個欄位 —— `H`(Hub) 頻道名、`M`(Method) 觸發的動作、`A`(Arguments) 動作所需資料陣列。
 - **連線帶入參數**：`Token`（登入憑證）／`oNo`（公司編號）／`uNo`（使用者編號）。
-- **常用動作（M）**：`setoUser`（上線報到）／`sendMsgPush`（送出文字訊息）／`onTextMessage`（後端推播接收訊息）／`updateMsgReaded`（標記已讀）。
+- **常用動作（M）**（依 `uS9yE837SYedY9hQFneb6Q` v11 定案，分「保留／廢止」）：
+  - 保留：`setoUser`（求才上線報到）／`settUser`（求職上線報到）／`updateMsgReaded`（標記已讀）／`onSignal`（後端推播的統一接收事件，**只用於接收**，取代舊 `onTextMessage`）。
+  - 廢止：`onTextMessage`（舊接收事件，由 `onSignal` 取代）／`sendMsgPush`（SignalR invoke 送出——送出一律改走 WebAPI：求才 `eChatHandler.ashx?kind=5`、求職自有送出 API，皆為原有 API 而非新增）／`setRoomInfo`、`getUserStatus`（求職端，不再使用）。

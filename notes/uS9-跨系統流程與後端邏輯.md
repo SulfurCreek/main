@@ -169,6 +169,16 @@ flowchart TD
 > - 接收事件名確認：新版統一用 `onSignal`（取代舊版 `onTextMessage`），求職／求才兩端皆同
 > - `onSignal` 參數向後相容：原有參數都保留、只增不改，之後若擴充一律附加在後面（擴充項目確認中）
 > - 同步翻修下方〈SignalR / WebSocket 即時通連線機制〉章節：送出動作 `sendMsgPush` 與接收事件 `onTextMessage` 標記廢止，業務流程改為「送出走 WebAPI、SignalR 只收信號、整包重撈」
+>
+> 修正記錄（v10，2026-07-06，依工程端 Ryder 三則答覆確認）：
+> - **送出 API 不跨系統共用**：`eChatHandler.ashx（kind=5）` 為**求才端專用**；求職端送訊息改用**求職自己提供的 API**（非 `eChatHandler.ashx`），登入認證（各自 cookie）與參數各端獨立、不共用。求才／求職送出的 API 名稱與參數不同
+> - **保留的原始 SignalR 事件**：`setoUser`、`updateMsgReaded`（求才端）、`settUser`（求職端）三者**保留、新版仍會使用**；求職端 `setRoomInfo`、`getUserStatus` 未列入保留清單 → 視為不再需要
+> - **`onSignal` 即取對話 API 的參數來源**：目前對話列表只有**1 支「取全部」API**；設計上 `onSignal` 推送的內容**包含可打「取得對話 API」的參數**，前端收到後即用這些 KEY 值去打該 API 重撈整包對話（求才端為 `get-detail`）
+>
+> 修正記錄（v11，2026-07-06，依工程端 Ryder 補充答覆）：
+> - **`onSignal` 正常情況會帶 `updateId`**（同 `update-chatlog` 的「異動編號」欄位）：前端可靠此判斷「哪些資料已存在資料庫中、哪些還沒」
+> - **可用 `bNo`（`oJsonB`／`tJsonB` 訊息明細的流水號）當 cursor 指標查新資料，不必每次都打全部** —— 與 v8/v9 記錄的「一律整包重撈」互為補充：**目前唯一的取對話 API 仍是回傳整包**（無獨立的差異／delta 端點），`updateId`＋`bNo` cursor 是前端拿到整包後用來**判斷差異、避免整室重新渲染**的依據，而非另一支局部查詢 API
+> - 🚧 **待確認**：`bNo` cursor 具體如何「查新資料」——是既有取對話 API 未來會新增 cursor 查詢參數（伺服器端只回傳 `bNo` 之後的新資料），還是純前端用本地已存最大 `bNo` 與新回傳整包比對做差異渲染，兩種實作方式待工程端釐清後補充。**沿用先前判斷**：求職端收到 `onSignal` 後打的取對話 API 仍標記為「求職自有 API」（非 `get-detail`）——Ryder 本輪未進一步澄清求才／求職是否共用同一支，待確認
 
 ```mermaid
 ---
@@ -263,7 +273,7 @@ sequenceDiagram
 
     Note over Emp,RF: 選擇邀約類型並設定內容：<br>詢問意願／面試邀約／錄取通知<br>／一般訊息／感謝函
     Emp->>RF: 送出（帶入該類型內容）
-    RF->>RB: 提交發送請求（對話編號＋卡片內容）<br>※送出僅走 WebAPI，前端不做 SignalR invoke；<br>SignalR 連線只用於「接收」信號
+    RF->>RB: 提交發送請求（對話編號＋卡片內容）<br>※求才端送出走 eChatHandler.ashx（kind=5）WebAPI，前端不做 SignalR invoke；<br>SignalR 連線只用於「接收」信號
     activate RB
 
     rect rgb(232, 245, 233)
@@ -295,13 +305,13 @@ sequenceDiagram
     Push->>Push: 驗證簽章／Token；senderType=1（企業）<br>→ 查詢求職者是否在線 GetTalentUserOnline(tNo)
     alt 求職者在線 且 MsgType=0
         Push->>Hub: hubContext.Clients.User(tNo).onSignal<br>(ContextID="apiSendMessage", tNo, oNo, uNo, eNo, MsgLog)
-        Hub-->>SF: 即時推送 onSignal（接收事件名，取代舊版 onTextMessage）<br>（前端 onSrSignal 收到後忽略 MsgLog，僅視為「有新訊息」通知；<br>參數原有的都保留、只增不改，新增參數一律附加在後面──擴充中）
+        Hub-->>SF: 即時推送 onSignal（接收事件名，取代舊版 onTextMessage）<br>（前端忽略 MsgLog；其餘 KEY 參數 tNo／oNo／uNo／eNo 即後續打「取對話 API」的參數；<br>參數原有的都保留、只增不改，新增參數一律附加在後面──擴充中）
     end
     Push->>Hub: DoApiPushMessage（uType=1, Silent=0）
     deactivate Push
     Hub-->>SF: FCM／APNS 手機推播（求職 App）
 
-    Note over SF: onSrSignal 收到通知後（SignalR 只傳 KEY 值）：<br>若為目前開啟中的聊天室 → 打 Core API 重撈該對話「整包全部訊息」<br>（get-detail 整包回傳、含最新一則，非單一新訊息）→ 整室重新渲染，確保與 DB 一致<br>若非目前開啟的聊天室 → 僅更新未讀提示圖示，不打 API
+    Note over SF: 求職前端收到 onSignal 後（SignalR 只傳 KEY 值，正常情況含 updateId）：<br>若為目前開啟中的聊天室 → 用 onSignal 帶的參數打「求職自有取對話 API」（由求職端提供，非 get-detail）<br>取得該對話整包訊息；以 updateId 判斷已存在／未存在資料，bNo 當 cursor 比對新資料，<br>不必每次都整室重新渲染（🚧 差異比對機制待工程端釐清）<br>若非目前開啟的聊天室 → 僅更新未讀提示圖示，不打 API
 
     %% ----- 寄信排程：兩封信最終各自寄到求職者 / 廠商副本收件人 -----
     RB-->>Seeker: 通知信加入寄信排程 → 寄至求職者 email<br>（非即時，由排程送出，處理時間很短）
@@ -329,14 +339,15 @@ sequenceDiagram
     end
     end
 
+    Note over SF,SB: 求職端送出走「求職自己提供的 API」（非 eChatHandler.ashx）；<br>認證用求職端各自的 cookie、參數與求才端不同
     alt 感謝函
         Note over SF,Seeker: 不可回覆，對話結束
     else 詢問意願／面試邀約／錄取通知
         Seeker->>SF: 點擊卡片按鈕回覆有無意願<br>（同意／婉拒，前端帶入系統預設文字）
-        SF->>SB: 提交回覆
+        SF->>SB: 提交回覆（求職自有送出 API）
     else 一般訊息
         Seeker->>SF: 自由文字回覆
-        SF->>SB: 提交回覆
+        SF->>SB: 提交回覆（求職自有送出 API）
     end
 
     rect rgb(243, 229, 245)
@@ -359,13 +370,13 @@ sequenceDiagram
         Push->>Push: 驗證簽章／Token；senderType=2（求職者）<br>→ 查詢廠商該使用者是否在線 GetOrganUserOnline(oNo, uNo)
         alt 廠商在線 且 MsgType=0
             Push->>Hub: hubContext.Clients.User(oNo_uNo).onSignal<br>(ContextID="apiSendMessage", tNo, oNo, uNo, eNo, MsgLog)
-            Hub-->>RF: 即時推送 onSignal（取代舊版 onTextMessage）<br>（前端忽略 MsgLog，僅視為「有新訊息」通知）
+            Hub-->>RF: 即時推送 onSignal（取代舊版 onTextMessage）<br>（前端忽略 MsgLog；其餘 KEY 參數即後續打「取對話 API」的參數）
         end
         Push->>Hub: DoApiPushMessage（uType=2, Silent=1）
         deactivate Push
         Hub-->>RF: FCM／APNS 手機推播（求才 App）
 
-        Note over RF: 收到通知後（SignalR 只傳 KEY 值）：<br>若為目前開啟中的聊天室 → 打 Core API 重撈該對話「整包全部訊息」<br>（非單一新訊息）→ 整室重新渲染，卡片狀態更新為「已接受」等（含插入意願狀態標籤）<br>若非目前開啟的聊天室 → 僅更新未讀提示
+        Note over RF: 求才前端收到 onSignal 後（SignalR 只傳 KEY 值，正常情況含 updateId）：<br>若為目前開啟中的聊天室 → 用 onSignal 帶的參數打 get-detail（求才端，目前唯一「取全部」API）<br>取得該對話整包訊息；以 updateId 判斷已存在／未存在資料，bNo 當 cursor 比對新資料後更新畫面，<br>卡片狀態更新為「已接受」等（含插入意願狀態標籤，🚧 差異比對機制待工程端釐清）<br>若非目前開啟的聊天室 → 僅更新未讀提示
 
         %% ----- 依回信類別決定寄信方式（兩種方式終點都是求才廠商） -----
         SB->>SB: 判斷回信類別
@@ -409,18 +420,25 @@ sequenceDiagram
 
 ### 新版業務流程（送出走 WebAPI、SignalR 只收信號）
 
-1. **送出**：前端**不做 SignalR invoke**，改打 `eChatHandler.ashx`（`kind=5`）WebAPI 存進 DB（`eChatFunc.SaveMsgLog()`＝唯一寫入點）。
+1. **送出**：前端**不做 SignalR invoke**，改打 WebAPI 存進 DB。
+   - **求才端**：打 `eChatHandler.ashx`（`kind=5`）WebAPI（`eChatFunc.SaveMsgLog()`＝唯一寫入點）。
+   - **求職端**：打**求職自己提供的送出 API**（**非** `eChatHandler.ashx`）；登入認證用求職端各自的 cookie，API 名稱與參數與求才端**不同、不共用**。
 2. DB 寫入成功後，後端呼叫 `POST update-chatlog`（同步整合訊息 API）→ 發事件到 **EventBus** → 觸發 `eChatHub/apiSendMessage.ashx`。
 3. `apiSendMessage.ashx` 驗證簽章、查對方線上狀態，對在線接收端呼叫 `onSignal` 做 SignalR 即時推送，並統一分派 FCM／APNS 手機推播。
-4. **接收**：前端 `onSignal` 收到的只是「有新訊息」的**通知信號（KEY 值）**，不直接使用其中的訊息內容 —— 若為目前開啟中的聊天室，另外打 API **重撈該對話整包全部訊息**（含最新一則，非單一新訊息）後整室重新渲染，確保與 DB 一致；非當前聊天室僅更新未讀提示。
-5. 接收者讀取後 → 前端回報「已讀」，更新雙方的已讀狀態。
+4. **接收**：前端 `onSignal` 收到的只是「有新訊息」的**通知信號**；`MsgLog` 直接忽略，但**其餘 KEY 參數（`tNo`／`oNo`／`uNo`／`eNo`、正常情況下含 `updateId` 等）即後續打「取對話 API」所需的參數** —— 若為目前開啟中的聊天室，就用這些參數打**「取全部」對話 API**（目前**只有 1 支**取全部 API，無獨立差異／delta 端點；求才端為 `get-detail`，求職端為求職自有取對話 API）取得該對話整包訊息；前端可用 `updateId` 判斷哪些資料已存在 DB、哪些還沒，並以 `bNo`（訊息明細流水號）當 cursor 指標比對出新資料，**不必每次都整室重新渲染全部**（🚧 具體差異比對是伺服器端新增查詢能力還是純前端比對，待工程端釐清）；非當前聊天室僅更新未讀提示。
+5. 接收者讀取後 → 前端回報「已讀」（求才端 `updateMsgReaded`），更新雙方的已讀狀態。
 
 ### 常用動作（Action）對照表
 
-| 方向 | 動作名稱 | 新版狀態 | 說明 |
-| :--- | :--- | :--- | :--- |
-| 前端發送 | `setoUser` | 沿用（未在本次改版討論中異動） | 上線報到（公司名稱, 使用者名稱） |
-| 前端發送 | `sendMsgPush` | ❌ **廢止** | 舊版送出文字訊息用；新版送出改走 `eChatHandler.ashx kind=5` WebAPI，前端不再 invoke |
-| 後端推播 | `onTextMessage` | ❌ **廢止（由 `onSignal` 取代）** | 舊版接收文字訊息事件（`signalr?.on('onTextMessage', handleReceive)`） |
-| 後端推播 | `onSignal` | ✅ **新版接收事件** | 參數 `(ContextID, tNo, oNo, uNo, eNo, MsgLog)`，`ContextID` 固定 `"apiSendMessage"` 供識別推送來源；**原有參數都保留、只增不改，之後若擴充一律附加在後面**（擴充項目確認中）。前端忽略 `MsgLog`，僅當通知信號 |
-| 前端發送 | `updateMsgReaded` | 沿用（未在本次改版討論中異動） | 標記訊息已讀（已讀對象的 ID 陣列） |
+> **保留 vs 廢止**（依工程端 Ryder 確認）：原始事件中 `setoUser`、`updateMsgReaded`（求才端）、`settUser`（求職端）**保留、新版仍會使用**；求職端 `setRoomInfo`、`getUserStatus` 未列入保留清單、視為**不再需要**。送出用的 SignalR invoke（`sendMsgPush`）與接收 `onTextMessage` 兩端皆廢止。
+
+| 方向 | 動作名稱 | 端 | 新版狀態 | 說明 |
+| :--- | :--- | :--- | :--- | :--- |
+| 前端發送 | `setoUser` | 求才 | ✅ **保留**（新版仍使用） | 上線報到（公司名稱, 使用者名稱） |
+| 前端發送 | `updateMsgReaded` | 求才 | ✅ **保留**（新版仍使用） | 標記訊息已讀（已讀對象的 ID 陣列） |
+| 前端發送 | `settUser` | 求職 | ✅ **保留**（新版仍使用） | 求職端上線報到 |
+| 前端發送 | `setRoomInfo` | 求職 | ❌ **廢止**（未列入保留清單，不再需要） | 舊版設定聊天室資訊 |
+| 前端發送 | `getUserStatus` | 求職 | ❌ **廢止**（未列入保留清單，不再需要） | 舊版查詢對方線上狀態；新版線上狀態由後端 `apiSendMessage.ashx` 於推播前查（`GetTalentUserOnline`／`GetOrganUserOnline`） |
+| 前端發送 | `sendMsgPush` | 求才／求職 | ❌ **廢止** | 舊版送出文字訊息的 SignalR invoke；新版送出改走 WebAPI（求才 `eChatHandler.ashx kind=5`／求職自有送出 API），前端不再 invoke |
+| 後端推播 | `onTextMessage` | 求才／求職 | ❌ **廢止（由 `onSignal` 取代）** | 舊版接收文字訊息事件（`signalr?.on('onTextMessage', handleReceive)`） |
+| 後端推播 | `onSignal` | 求才／求職 | ✅ **新版接收事件** | 參數 `(ContextID, tNo, oNo, uNo, eNo, MsgLog)`，`ContextID` 固定 `"apiSendMessage"` 供識別推送來源；**原有參數都保留、只增不改，之後若擴充一律附加在後面**（擴充項目確認中）。前端忽略 `MsgLog`，其餘 KEY 參數即後續打「取對話 API」的參數 |
