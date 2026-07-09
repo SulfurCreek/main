@@ -67,6 +67,8 @@ level_counter = Counter()                            # global
 feature_miss = defaultdict(lambda: {'miss': 0, 'total': 0})
 mismatch_examples = defaultdict(list)                # feature -> [(title, duty0, top3_recs)]
 seen_titles_for_examples = set()
+recoverable_examples = []                            # 正解卡在推薦6~10名(前5名看不到)的案例
+seen_recoverable = set()
 
 n_rows = 0
 n_no_duty0 = 0
@@ -120,6 +122,18 @@ for row in parse_rows(DATA_MD):
     if cat:
         cat_stats[cat][lvl] += 1
 
+    # 收集「正解卡在推薦6~10名」的案例：命中(rank)但落在前5名之外，
+    # 前端只顯示前5筆 → 這格答案使用者實際看不到，是順序優化的回收標的。
+    if rank is not None and rank > 5 and title and title not in seen_recoverable and len(seen_recoverable) < 3000:
+        hit_leaf = recs[rank - 1]
+        recoverable_examples.append({
+            'title': title,
+            'hit_leaf': hit_leaf,          # 命中的正解(卡在第 rank 名)
+            'hit_rank': rank,
+            'top5_recs': recs[:5],         # 前端實際會顯示的前5筆(把正解擠掉的內容)
+        })
+        seen_recoverable.add(title)
+
     if not title:
         continue
 
@@ -161,7 +175,8 @@ for (major, mid), counter in cat_stats.items():
     top1 = counter['top1']
     top3_cum = top1 + counter['top3']
     top5_cum = top3_cum + counter['top5']
-    top10_cum = top5_cum + counter['top10']
+    only_6_10 = counter['top10']          # 正解只出現在推薦6~10名(前5名看不到)
+    top10_cum = top5_cum + only_6_10
     zb_mid = counter['沾邊_中類']
     zb_major = counter['沾邊_大類']
     irrelevant = counter['無關']
@@ -169,6 +184,7 @@ for (major, mid), counter in cat_stats.items():
         'major': major, 'mid': mid, 'n': n,
         'top1_pct': pct(top1, n), 'top3_cum_pct': pct(top3_cum, n),
         'top5_cum_pct': pct(top5_cum, n), 'top10_cum_pct': pct(top10_cum, n),
+        'recoverable_6_10_pct': pct(only_6_10, n),   # 順序優化可回收比例
         'zhanbian_mid_pct': pct(zb_mid, n), 'zhanbian_major_pct': pct(zb_major, n),
         'irrelevant_pct': pct(irrelevant, n),
     })
@@ -197,6 +213,7 @@ out = {
     'category_table': cat_table,
     'feature_table': feature_table,
     'examples': mismatch_examples,
+    'recoverable_examples': recoverable_examples[:200],
 }
 json.dump(out, open(OUT_JSON, 'w', encoding='utf-8'), ensure_ascii=False, indent=2)
 
