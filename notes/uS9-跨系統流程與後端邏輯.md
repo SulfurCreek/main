@@ -182,6 +182,11 @@ flowchart TD
 >
 > 修正記錄（v12，2026-07-08，工程端問答再確認）：
 > - **求才端接收流程定案**：針對「接收改成 `onSignal` 後，（求才）是否直接用 `get-detail` 打全部內容 API」的直球提問，工程端正面確認——目前對話列表只有 **1 支取全部的 API**，設計上收到 `onSignal` 時**內容即包含可打取得全部對話 API 的參數**；正常對話情況帶 `updateId` 更新（判斷哪些資料已存在資料庫、哪些還沒），可用 `bNo`（cursor 指標）查新資料、不必每次都打全部。與 v10／v11 記錄一致，本輪為正式確認、循序圖無需變更；同步補記於 E.1 規格書（`cj-xlto2SdOtVskt3TkhdA` §1.3）
+>
+> 修正記錄（v13，2026-07-08，工程端確認 v11 兩項待確認結案）：
+> - **求職端取對話 API＝共用 `get-detail`（結案 v11 待確認）**：工程端確認「求職端取對話 API 是否與 `get-detail` 共用」→ **是**。求職端收到 `onSignal` 後打的「取全部」對話 API 即與求才端**共用同一支 `get-detail`**，先前 v10／v11 暫記的「求職自有取對話 API（非 get-detail）」更正作廢。⚠️ 注意：**送出（發送）** API 仍是各端獨立（求才 `eChatHandler.ashx kind=5`／求職自有送出 API，v10 確認）——共用的只有「接收後取對話」這支，送出不共用，兩者勿混。
+> - **`bNo` cursor 機制＝伺服器端（結案 v11 待確認）**：工程端確認「前端會傳 `bNo` 讓 SignalR／後端知道要從哪裡開始更新」→ 屬**伺服器端 cursor 查詢能力**（前端帶上本地已存最大 `bNo`，後端只回傳該 `bNo` 之後的新資料），而非純前端拿整包自行比對。v11 暫記的「兩種實作待釐清」就此定案為前者。
+> - 已同步更新：上方循序圖 求職前端／求才前端 兩處接收 Note、〈SignalR 連線機制〉§4 接收流程；E.1 規格書 §1.3。
 
 ```mermaid
 ---
@@ -314,7 +319,7 @@ sequenceDiagram
     deactivate Push
     Hub-->>SF: FCM／APNS 手機推播（求職 App）
 
-    Note over SF: 求職前端收到 onSignal 後（SignalR 只傳 KEY 值，正常情況含 updateId）：<br>若為目前開啟中的聊天室 → 用 onSignal 帶的參數打「求職自有取對話 API」（由求職端提供，非 get-detail）<br>取得該對話整包訊息；以 updateId 判斷已存在／未存在資料，bNo 當 cursor 比對新資料，<br>不必每次都整室重新渲染（🚧 差異比對機制待工程端釐清）<br>若非目前開啟的聊天室 → 僅更新未讀提示圖示，不打 API
+    Note over SF: 求職前端收到 onSignal 後（SignalR 只傳 KEY 值，正常情況含 updateId）：<br>若為目前開啟中的聊天室 → 用 onSignal 帶的參數打 get-detail（求才／求職共用同一支取對話 API）<br>前端帶上本地已存最大 bNo，讓 SignalR／後端知道要從哪裡開始更新（只回該 bNo 之後的新資料）；<br>以 updateId 判斷已存在／未存在資料，不必每次都整室重新渲染<br>若非目前開啟的聊天室 → 僅更新未讀提示圖示，不打 API
 
     %% ----- 寄信排程：兩封信最終各自寄到求職者 / 廠商副本收件人 -----
     RB-->>Seeker: 通知信加入寄信排程 → 寄至求職者 email<br>（非即時，由排程送出，處理時間很短）
@@ -379,7 +384,7 @@ sequenceDiagram
         deactivate Push
         Hub-->>RF: FCM／APNS 手機推播（求才 App）
 
-        Note over RF: 求才前端收到 onSignal 後（SignalR 只傳 KEY 值，正常情況含 updateId）：<br>若為目前開啟中的聊天室 → 用 onSignal 帶的參數打 get-detail（求才端，目前唯一「取全部」API）<br>取得該對話整包訊息；以 updateId 判斷已存在／未存在資料，bNo 當 cursor 比對新資料後更新畫面，<br>卡片狀態更新為「已接受」等（含插入意願狀態標籤，🚧 差異比對機制待工程端釐清）<br>若非目前開啟的聊天室 → 僅更新未讀提示
+        Note over RF: 求才前端收到 onSignal 後（SignalR 只傳 KEY 值，正常情況含 updateId）：<br>若為目前開啟中的聊天室 → 用 onSignal 帶的參數打 get-detail（求才／求職共用同一支取對話 API）<br>前端帶上本地已存最大 bNo，讓 SignalR／後端知道要從哪裡開始更新（只回該 bNo 之後的新資料）；<br>以 updateId 判斷已存在／未存在資料後更新畫面，卡片狀態更新為「已接受」等（含插入意願狀態標籤）<br>若非目前開啟的聊天室 → 僅更新未讀提示
 
         %% ----- 依回信類別決定寄信方式（兩種方式終點都是求才廠商） -----
         SB->>SB: 判斷回信類別
@@ -428,7 +433,7 @@ sequenceDiagram
    - **求職端**：打**求職自己提供的送出 API**（**非** `eChatHandler.ashx`）；登入認證用求職端各自的 cookie，API 名稱與參數與求才端**不同、不共用**。
 2. DB 寫入成功後，後端呼叫 `POST update-chatlog`（同步整合訊息 API）→ 發事件到 **EventBus** → 觸發 `eChatHub/apiSendMessage.ashx`。
 3. `apiSendMessage.ashx` 驗證簽章、查對方線上狀態，對在線接收端呼叫 `onSignal` 做 SignalR 即時推送，並統一分派 FCM／APNS 手機推播。
-4. **接收**：前端 `onSignal` 收到的只是「有新訊息」的**通知信號**；`MsgLog` 直接忽略，但**其餘 KEY 參數（`tNo`／`oNo`／`uNo`／`eNo`、正常情況下含 `updateId` 等）即後續打「取對話 API」所需的參數** —— 若為目前開啟中的聊天室，就用這些參數打**「取全部」對話 API**（目前**只有 1 支**取全部 API，無獨立差異／delta 端點；求才端為 `get-detail`，求職端為求職自有取對話 API）取得該對話整包訊息；前端可用 `updateId` 判斷哪些資料已存在 DB、哪些還沒，並以 `bNo`（訊息明細流水號）當 cursor 指標比對出新資料，**不必每次都整室重新渲染全部**（🚧 具體差異比對是伺服器端新增查詢能力還是純前端比對，待工程端釐清）；非當前聊天室僅更新未讀提示。
+4. **接收**：前端 `onSignal` 收到的只是「有新訊息」的**通知信號**；`MsgLog` 直接忽略，但**其餘 KEY 參數（`tNo`／`oNo`／`uNo`／`eNo`、正常情況下含 `updateId` 等）即後續打「取對話 API」所需的參數** —— 若為目前開啟中的聊天室，就用這些參數打**「取全部」對話 API**（目前**只有 1 支**取全部 API，**求才／求職共用同一支 `get-detail`**）取得該對話訊息；前端**帶上本地已存最大 `bNo`（訊息明細流水號）作 cursor 指標，讓 SignalR／後端知道要從哪裡開始更新**（後端只回傳該 `bNo` 之後的新資料），並以 `updateId` 判斷哪些資料已存在 DB、哪些還沒，**不必每次都整室重新渲染全部**；非當前聊天室僅更新未讀提示。
 5. 接收者讀取後 → 前端回報「已讀」（求才端 `updateMsgReaded`），更新雙方的已讀狀態。
 
 ### 常用動作（Action）對照表
