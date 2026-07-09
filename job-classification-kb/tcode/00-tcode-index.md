@@ -1,19 +1,21 @@
 # 00 — tCode 代碼表總覽 (Index & Purpose)
 
-> `TCode_Export_20260622.xlsx`，15 張工作表。所有表共用同一套 schema（見 [01-schema](01-schema.md)）。本頁是用途對照與選表指南。
+> `TCode_Export_20260707T090934846Z.xlsx`（官方匯出，20260707 到貨，已取代先前 `20260622` 版），15 張工作表。所有表共用同一套 schema（見 [01-schema](01-schema.md)）。本頁是用途對照與選表指南。
 
 ## 15 張表一覽
 
+> 下表 tCodeDutyNM／HL／PT 與 tCodeWorkAbility 之列數/葉數已依 20260707 官方匯出更新（其餘 11 表與 20260622 版相同，未變動）。
+
 | 表名 | 用途（一句話） | 列數 | 葉數 | 葉 CodeType | 中類數 |
 |---|---|---|---|---|---|
-| **tCodeDutyNM** | **職務小類（全職 Normal）— 本專案主用** | 691 | 614 | 3 | 58 |
-| tCodeDutyHL | 職務（精簡/高階 HL，77 葉精選） | 135 | 77 | 3 | 41 |
-| tCodeDutyPT | 職務（兼職 Part-Time） | 602 | 525 | 3 | 59 |
-| tCodeDutyST | 職務（ST，219 葉） | 286 | 219 | 3 | 48 |
+| **tCodeDutyNM** | **職務小類（全職 Normal）— 本專案主用** | 694 | 617 | 3 | 57 |
+| tCodeDutyHL | 職務（精簡/高階 HL） | 137 | 79 | 3 | 40 |
+| tCodeDutyPT | 職務（兼職 Part-Time） | 605 | 528 | 3 | 57 |
+| tCodeDutyST | 職務（ST，219 葉） | 286 | 219 | 3 | 47 |
 | tCodeDutyTU | 職務（家教 TUtor） | 214 | 199 | 3 | 18 |
 | tCodeCertify | 證照／認證 | 2,621 | 2,451 | 3 | 149 |
 | tCodeCompSkill | 電腦／工作技能（Word, Excel…） | 790 | 765 | 2 | 26 |
-| tCodeWorkAbility | 工作能力／職能（談判、營運分析…） | 1,208 | 1,093 | 3 | 94 |
+| tCodeWorkAbility | 工作能力／職能（談判、營運分析…） | 1,207 | 1,092 | 3 | 94 |
 | tCodeCity | 縣市／鄉鎮區 | 1,077 | 999 | 3 | 67 |
 | tCodeCollege | 學校／大專院校 | 235 | 213 | 3 | 21 |
 | tCodeMajor | 科系／學門 | 216 | 183 | 3 | 25 |
@@ -29,10 +31,10 @@
 
 | 表名 | 現成 MD | 狀態 |
 |---|---|---|
-| tCodeDutyNM | [`data_tCodeDutyNM.md`](data_tCodeDutyNM.md) | ✅ 完整（20260701 已依 Google Sheet 即時匯出更新，617葉，含已套用 add/edit） |
-| tCodeDutyPT | [`data_tCodeDutyPT.md`](data_tCodeDutyPT.md) | ✅ 完整（20260701 已依 Google Sheet 即時匯出更新，528葉） |
-| tCodeDutyHL | [`data_tCodeDutyHL.md`](data_tCodeDutyHL.md) | ✅ 完整（20260701 新產出，Google Sheet 即時匯出，79葉） |
-| tCodeDutyST | [`data_tCodeDutyST.md`](data_tCodeDutyST.md) | ✅ 完整（20260701 新產出，Google Sheet 即時匯出，219葉） |
+| tCodeDutyNM | [`data_tCodeDutyNM.md`](data_tCodeDutyNM.md) | ✅ 完整（20260707 依官方 Excel 匯出重新產出並確認與 20260701 Google Sheet 版一致，617葉，add/edit 已正式落地） |
+| tCodeDutyPT | [`data_tCodeDutyPT.md`](data_tCodeDutyPT.md) | ✅ 完整（20260707 依官方 Excel 匯出重新產出，528葉；250513 資料錯誤仍未修正，見 [`change_request_tCodeDuty_engineering.md`](change_request_tCodeDuty_engineering.md)） |
+| tCodeDutyHL | [`data_tCodeDutyHL.md`](data_tCodeDutyHL.md) | ✅ 完整（20260707 依官方 Excel 匯出重新產出，79葉） |
+| tCodeDutyST | [`data_tCodeDutyST.md`](data_tCodeDutyST.md) | ✅ 完整（20260707 依官方 Excel 匯出重新產出，219葉） |
 | tCodeCompSkill | [`data_tCodeCompSkill.md`](data_tCodeCompSkill.md) | ✅ 完整 |
 | tCodeBenefit | [`data_tCodeBenefit.md`](data_tCodeBenefit.md) | ✅ 完整（含 CodeNo/CodeNoNew，供 B 公司>福利制度） |
 | tCodeCertify | [`data_tCodeCertify_summary.md`](data_tCodeCertify_summary.md) | ◑ 中類摘要（大表，葉太多） |
@@ -46,7 +48,8 @@
 | tCodeTrade | — | ⬜ 未產出，需先 export |
 
 > **待議新增／改名建議**（尚未寫入正式代碼表）：[`data_tCodeDutyNM_changes.md`](data_tCodeDutyNM_changes.md) — 20260420 討論表整理的 5 筆新增、30 筆改名（含 3 筆中類層級改名）。
-> **四表 ChangeType 同步檢查**（20260701）：[`data_tCodeDuty_changetype_sync.md`](data_tCodeDuty_changetype_sync.md) — 比對 Google Sheet 即時匯出中 NM/PT/ST/HL 四表已套用的 add/edit，找出跨表沒同步的項目（如 250510~250514 語言老師搬遷只有 PT 標記、NM 沒套用）。
+> **四表 ChangeType 同步檢查**（20260701，20260707 追加複查）：[`data_tCodeDuty_changetype_sync.md`](data_tCodeDuty_changetype_sync.md) — 比對 Google Sheet 即時匯出中 NM/PT/ST/HL 四表已套用的 add/edit，找出跨表沒同步的項目（如 250510~250514 語言老師搬遷只有 PT 標記、NM 沒套用）；20260707 官方 Excel 匯出到貨後複查確認上述異動已正式套用，但 2 項既有資料問題（PT 250513 誤植、中類改名未 cascade 到子節點）仍未修正。
+> **工程需求追蹤**：[`change_request_tCodeDuty_engineering.md`](change_request_tCodeDuty_engineering.md) — 逐表 ADD/EDIT 清單（已於 20260707 官方匯出確認套用）＋尚未修正的 2 項資料問題。
 
 ## 選表指南
 
@@ -70,5 +73,6 @@
 
 ## 注意
 
-- 各表 ChangeType 在 20260622 版全為 `UnChange`（無待處理異動）。若拿到含 新增/改名/合併 的版本，見 [tcode-excel-ops skill](../skills/) 與 [01-schema](01-schema.md) 的 ChangeType 說明。
+- 各表 ChangeType 在 20260622 版與 20260707 版都全為 `UnChange`（這個欄位不會自己標記異動；本 KB 是靠逐列比對 `Old_CodeNo` 前後版本內容差異來找異動，不能只看 ChangeType 欄）。若拿到別的管道（如 Google Sheet pubhtml）匯出且該欄有實際標記，見 [tcode-excel-ops skill](../skills/) 與 [01-schema](01-schema.md) 的 ChangeType 說明。
 - DutyNM / HL / PT / ST / TU 是**同一套職類的不同子集/版本**，中類名稱大致共用，葉的收錄範圍不同。比對差異見 [03-duty-tables](03-duty-tables.md)。
+- **拿到新版 tCode 匯出檔時的正確流程**：① 用 `scripts/tcode_to_md.py` 或逐列比對兩版 `Old_CodeNo`，不要憑空重寫文件；② 確認異動後覆蓋對應 `tcode/data_*.md`；③ 異動記錄追加進 `data_tCodeDuty_changetype_sync.md`／`change_request_tCodeDuty_engineering.md`，不要另開新檔案；④ 只有「公告」需求才套用 [tcode-excel-ops skill](../skills/tcode-excel-ops.md) 的聊天輸出格式，且不落地檔案。

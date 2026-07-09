@@ -3,6 +3,8 @@
 > 格式比照 tCodeCertify 異動記錄表（異動方式／CodeNo／CodeNameA）。**每一張表分別列出該表目前已標記的異動**，不跨表合併、不依 ChangeType 分類混排。
 > 資料來源：Google Sheet 即時匯出（`docs.google.com/spreadsheets/d/e/2PACX-1vQTd1PZBEo8Mk6IkVpC1GaCIKoQ3iOvy8GqEjgsTkaFtFMpk98jvcUkgpC9xwn7uCUAN1NUIPcDhdNT/pubhtml`），最後一次抓取為 20260701。
 
+> ✅ **20260707 更新：本清單所列項目已於官方匯出 `TCode_Export_20260707T090934846Z.xlsx` 中確認正式套用**（以 `Old_CodeNo` 逐筆比對舊版 KB 內 `TCode_Export.xlsx` 確認）。仍有 2 項問題尚未修正，見文末「⚠️ 20260707 複查發現：尚未修正的問題」。
+
 ---
 
 ## tCodeDutyNM（38 筆）
@@ -144,3 +146,16 @@
 
 - 250513（其他語系教師）在 tCodeDutyPT 已標記 `EDIT`，但 tCodeDutyNM 尚未套用（仍是 `UnChange`，名稱同為「其他語系教師」，名稱本身無誤植）。
 - 140224、200307、200308 只在 tCodeDutyNM 出現 `EDIT`，名稱文字與原討論資料一致，看不出具體改了哪個欄位，異動內容待查。
+
+---
+
+## ⚠️ 20260707 複查發現：尚未修正的問題
+
+> 官方匯出 `TCode_Export_20260707T090934846Z.xlsx` 到貨後複查，以上異動已正式套用，但下列 2 個問題原封不動地帶進了官方版本，需另外回報工程單位：
+
+| 表 | CodeNo | 問題 |
+|---|---|---|
+| tCodeDutyPT | 250513 | `New_CodeNo`／`CodeNo` 已被改成「麵點／港點師傅」／「餐飲烘焙」，但同一列的 `CodeNameA`（大類）仍是「學術研究／教育師資」、`CodeNameC`（工作說明）仍是語言教學相關文字——**欄位互相矛盾，明顯是批次編輯複製貼上錯位**，應該要是「其他語系教師」，不應沿用「麵點／港點師傅」這個值。 |
+| tCodeDutyNM／PT／ST | 250500 中類（教育師資→國教師資）、260300 中類（補習進修→補教師資） | 中類本身的名稱已改，但底下葉節點（250501～250514、260301～260309 等）的 `CodeNo`（上一層中類參照欄）**沒有跟著同步更新**，仍寫舊中類名稱——中類改名沒有 cascade 到子節點，樹狀結構父子名稱不一致。 |
+
+兩項問題均沿用自 20260701 版 Google Sheet 已發現的既有缺陷（見 [`data_tCodeDuty_changetype_sync.md`](data_tCodeDuty_changetype_sync.md) 「真的遺漏／不一致」段落），此次官方匯出未修正，需再次回報。

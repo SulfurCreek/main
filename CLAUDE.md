@@ -4,6 +4,20 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ---
 
+## Before creating ANY new documentation file
+
+This repo already has established owners for specific domains. **Before writing a new `.md` file, first check whether an existing skill or knowledge base already owns that topic** — grep `.claude/skills/*/SKILL.md` descriptions and the top-level directories for a match. Do not create parallel/duplicate documentation just because it seems convenient in the moment.
+
+**tCode / 職務分類 (job taxonomy) data specifically belongs to `job-classification-kb/`** — never create tCode-related files under `wiki/` or `notes/` (or anywhere else). That knowledge base already has:
+- `job-classification-kb/TCode_Export.xlsx` — the canonical source Excel (tracked in git; overwrite in place when a newer export arrives, don't keep manual `.bak` copies — git history already preserves the old version)
+- `job-classification-kb/scripts/tcode_to_md.py` — regenerates `tcode/data_tCodeDuty*.md` from the Excel; use it, don't hand-write the MD
+- `job-classification-kb/tcode/00-tcode-index.md` — index of all 15 tCode tables and which ones have a ready MD
+- `job-classification-kb/tcode/data_tCodeDuty_changetype_sync.md` and `change_request_tCodeDuty_engineering.md` — where cross-export diffs and engineering bug reports get logged
+
+When a new tCode export arrives: replace the Excel, rerun `tcode_to_md.py` per table, diff by `Old_CodeNo` against the previous version to find real changes (the `ChangeType` column is not reliable — it can read `UnChange` even when content differs across export versions), and append findings to the existing tracking docs above — don't create new standalone summary files for something that already has a home.
+
+---
+
 # HackMD API Reference
 
 Complete reference for authenticating and calling every HackMD API endpoint. Live interactive spec: `https://api.hackmd.io/v1/docs`.
