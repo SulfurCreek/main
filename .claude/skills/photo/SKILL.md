@@ -74,9 +74,10 @@ description: >
 
 ### 座標怎麼抓
 
-1. 用 Read 工具開圖確認視覺位置，用 Pillow 唯讀掃描算出目標元件的 pixel bounding box（沿用規則一的唯讀分析）。
-2. 換算成百分比：`top% = box_y / image_height * 100`、`left% = box_x / image_width * 100`。
-3. 圈選整個元件（如按鈕）用邊框style而非填色 badge：
+1. 用 Read 工具開圖確認視覺位置，用 Pillow 唯讀掃描算出目標元件的 pixel bounding box（沿用規則一的唯讀分析）。掃描時**用元件實際邊框顏色做遮罩**（例如按鈕邊框藍色 `r<130,g<180,b>190` 這類寬鬆但排他的顏色條件），對每一列/每一行加總遮罩像素數（`colsum`/`rowsum`），取非零區間頭尾當成 bounding box——比憑肉眼目測或憑經驗猜座標準確。
+2. 換算成百分比：`top% = box_y / image_height * 100`、`left% = box_x / image_width * 100`；寬高同理用 `(box_x1 - box_x0) / image_width * 100`。
+3. **下 PATCH 前必做視覺驗證**：用算出的百分比座標，在本地暫存檔（`/tmp`，不進 repo、不 commit）畫一次疊框確認精準對齊實際按鈕，Read 出來目視檢查沒問題後才寫進 HackMD——這張驗證圖只是核對用，不算「產生新圖檔覆寫原圖」，因為它從頭到尾不會落地存檔或引用進文件。上一版就是省略了這步驗證，直接憑掃描結果寫入，結果框偏移。
+4. 圈選整個元件（如按鈕）用邊框style而非填色 badge：
 
 ```html
 <div style="position:absolute; top:83.3%; left:50.2%; width:47%; height:6.3%; border:3px solid #FF5F57; border-radius:8px;"></div>
@@ -88,30 +89,31 @@ description: >
 
 ### 多圖流程／點擊跳轉（取代舊的 Pillow 合成拼圖）
 
-兩張以上截圖要表達「點擊 A 圖某按鈕 → 跳到 B 圖」時，不再用 Pillow 把兩張圖拼成一張新 PNG，改用 HTML flex 容器並排＋純 HTML 箭頭；**同樣要包在白色背景容器內**（理由同上，深色模式防呆）：
+兩張以上截圖要表達「點擊 A 圖某按鈕 → 跳到 B 圖」時，不再用 Pillow 把兩張圖拼成一張新 PNG，改用 HTML flex 容器並排＋純 HTML 箭頭；**同樣要包在白色背景容器內**（理由同上，深色模式防呆）。
+
+> ⚠️ **說明文字必須放在同一個直向欄位內、緊貼圖片下方**（`margin-top:6px` 左右），**不要把所有圖片排一列、說明文字另外分一列**放在下方——那樣圖片與對應文字會離很遠，尤其圖片高矮不一時，文字列對不齊圖片、視覺上像是「文字飄在遠處」。正確結構是每張圖與其說明文字包在同一個 `<div>` 直向欄位裡，欄位之間才用 flex 並排：
 
 ```html
 <div style="background:#fff; padding:14px; border-radius:8px;">
-  <div style="display:flex; align-items:center; gap:16px; flex-wrap:wrap;">
-    <div style="position:relative; display:inline-block; max-width:360px;">
-      <img src="<圖A網址>" style="display:block; width:100%;">
-      <div style="position:absolute; top:83%; left:52%; width:44%; height:6%; border:3px solid #FF5F57; border-radius:8px;"></div>
+  <div style="display:flex; align-items:flex-start; gap:14px; flex-wrap:wrap;">
+    <div style="max-width:260px;">
+      <div style="position:relative; display:inline-block; width:100%;">
+        <img src="<圖A網址>" style="display:block; width:100%;">
+        <div style="position:absolute; top:86.32%; left:2.71%; width:47.08%; height:5.49%; border:3px solid #FF5F57; border-radius:8px;"></div>
+      </div>
+      <div style="font-size:13px; color:#333; text-align:center; margin-top:6px;">圖 A 說明文字</div>
     </div>
-    <div style="font-size:28px; color:#FF5F57; font-weight:700;">→</div>
-    <div style="max-width:360px;">
+    <div style="font-size:26px; color:#FF5F57; font-weight:700; align-self:center;">→</div>
+    <div style="max-width:300px;">
       <img src="<圖B網址>" style="display:block; width:100%;">
+      <div style="font-size:13px; color:#333; text-align:center; margin-top:6px;">圖 B 說明文字</div>
     </div>
-  </div>
-  <div style="display:flex; gap:16px; margin-top:4px; flex-wrap:wrap;">
-    <div style="max-width:360px; font-size:13px; color:#333; text-align:center;">圖 A 說明文字</div>
-    <div style="width:44px;"></div>
-    <div style="max-width:360px; font-size:13px; color:#333; text-align:center;">圖 B 說明文字</div>
   </div>
 </div>
 ```
 
 - 兩張圖各自獨立存檔（規則一），HTML 只是排版容器，不產生新圖檔、不 commit 額外的拼接 PNG。
-- 箭頭用純文字 `→` 或簡單 CSS 三角形，不用圖片箭頭素材。
+- 箭頭用純文字 `→` 或簡單 CSS 三角形，不用圖片箭頭素材；`align-self:center` 讓箭頭在圖片直欄之間垂直置中，不受圖片高矮影響。
 - 多組流程（如同一來源圖分岔出兩個結果）分別各自包一層白底容器，不要共用同一層外框，保持每組流程獨立可讀。
 
 ---
