@@ -82,11 +82,13 @@ for row in parse_rows(DATA_MD):
     if not duties:
         n_no_duty0 += 1
         continue
-    primary = duties[0]
+    primary = duties[0]  # duty0，僅用來決定該列歸屬哪個大類/中類(分組用)
 
+    # 命中判定：duty0~duty4(現有全部 5 格) 任一格 命中 職類推薦1~10 任一項即算，
+    # 不要求順序/名次對齊，只看最先出現的名次落在哪個桶(top1/top3/top5/top10)。
     rank = None
     for idx, r in enumerate(recs):
-        if r == primary:
+        if r in duties:
             rank = idx + 1
             break
 
