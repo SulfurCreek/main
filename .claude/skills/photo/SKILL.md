@@ -50,14 +50,18 @@ description: >
 
 ### 基本結構
 
-外層 `position:relative` 容器包住 `<img>`，badge 用 `position:absolute` 疊在對應座標：
+**最外層一律加白色背景容器**（`background:#fff`），再放 `position:relative` 包住 `<img>`，badge 用 `position:absolute` 疊在對應座標：
 
 ```html
-<div style="position:relative; display:inline-block; max-width:400px;">
-  <img src="https://raw.githubusercontent.com/sulfurcreek/main/<sha>/.claude/assets/E1_change_vendor.png" style="display:block; width:100%;">
-  <div style="position:absolute; top:83%; left:50%; background:#FF5F57; color:#fff; font-family:Inter,Helvetica,Arial,sans-serif; font-size:13px; font-weight:700; padding:3px 9px; border-radius:10px; box-shadow:0 1px 3px rgba(0,0,0,0.3);">1</div>
+<div style="background:#fff; padding:14px; border-radius:8px;">
+  <div style="position:relative; display:inline-block; max-width:400px;">
+    <img src="https://raw.githubusercontent.com/sulfurcreek/main/<sha>/.claude/assets/E1_change_vendor.png" style="display:block; width:100%;">
+    <div style="position:absolute; top:83%; left:50%; background:#FF5F57; color:#fff; font-family:Inter,Helvetica,Arial,sans-serif; font-size:13px; font-weight:700; padding:3px 9px; border-radius:10px; box-shadow:0 1px 3px rgba(0,0,0,0.3);">1</div>
+  </div>
 </div>
 ```
+
+> ⚠️ **一定要包白底**：HackMD 深色模式（dark mode）下，頁面背景會變深色，但截圖裡的黑字說明文字／深色 UI 文字不會跟著反轉，導致深色模式下文字看不清楚甚至完全消失。外層 `background:#fff`（加 `padding` 讓白底有呼吸空間）確保截圖無論在淺色／深色模式下都維持原始可讀對比度。**這條規則不可省略**，是本 skill 所有 HTML 標註區塊的必要外層。
 
 | 項目 | 值 | 說明 |
 | :--- | :--- | :--- |
@@ -84,34 +88,38 @@ description: >
 
 ### 多圖流程／點擊跳轉（取代舊的 Pillow 合成拼圖）
 
-兩張以上截圖要表達「點擊 A 圖某按鈕 → 跳到 B 圖」時，不再用 Pillow 把兩張圖拼成一張新 PNG，改用 HTML flex 容器並排＋純 HTML 箭頭：
+兩張以上截圖要表達「點擊 A 圖某按鈕 → 跳到 B 圖」時，不再用 Pillow 把兩張圖拼成一張新 PNG，改用 HTML flex 容器並排＋純 HTML 箭頭；**同樣要包在白色背景容器內**（理由同上，深色模式防呆）：
 
 ```html
-<div style="display:flex; align-items:center; gap:16px; flex-wrap:wrap;">
-  <div style="position:relative; display:inline-block; max-width:360px;">
-    <img src="<圖A網址>" style="display:block; width:100%;">
-    <div style="position:absolute; top:83%; left:52%; width:44%; height:6%; border:3px solid #FF5F57; border-radius:8px;"></div>
+<div style="background:#fff; padding:14px; border-radius:8px;">
+  <div style="display:flex; align-items:center; gap:16px; flex-wrap:wrap;">
+    <div style="position:relative; display:inline-block; max-width:360px;">
+      <img src="<圖A網址>" style="display:block; width:100%;">
+      <div style="position:absolute; top:83%; left:52%; width:44%; height:6%; border:3px solid #FF5F57; border-radius:8px;"></div>
+    </div>
+    <div style="font-size:28px; color:#FF5F57; font-weight:700;">→</div>
+    <div style="max-width:360px;">
+      <img src="<圖B網址>" style="display:block; width:100%;">
+    </div>
   </div>
-  <div style="font-size:28px; color:#FF5F57; font-weight:700;">→</div>
-  <div style="max-width:360px;">
-    <img src="<圖B網址>" style="display:block; width:100%;">
+  <div style="display:flex; gap:16px; margin-top:4px; flex-wrap:wrap;">
+    <div style="max-width:360px; font-size:13px; color:#333; text-align:center;">圖 A 說明文字</div>
+    <div style="width:44px;"></div>
+    <div style="max-width:360px; font-size:13px; color:#333; text-align:center;">圖 B 說明文字</div>
   </div>
-</div>
-<div style="display:flex; gap:16px; margin-top:4px; flex-wrap:wrap;">
-  <div style="max-width:360px; font-size:13px; color:#333; text-align:center;">圖 A 說明文字</div>
-  <div style="width:44px;"></div>
-  <div style="max-width:360px; font-size:13px; color:#333; text-align:center;">圖 B 說明文字</div>
 </div>
 ```
 
 - 兩張圖各自獨立存檔（規則一），HTML 只是排版容器，不產生新圖檔、不 commit 額外的拼接 PNG。
 - 箭頭用純文字 `→` 或簡單 CSS 三角形，不用圖片箭頭素材。
+- 多組流程（如同一來源圖分岔出兩個結果）分別各自包一層白底容器，不要共用同一層外框，保持每組流程獨立可讀。
 
 ---
 
 ## Gotcha
 
 - **HackMD 對外層 `<div style="...">` 的支援**：HackMD 的 markdown 渲染器允許內嵌 HTML block，但每次寫完務必 PATCH 後 GET 回來確認渲染正常（尤其巢狀 `position:absolute` 在部分 markdown 解析器可能被過濾掉 style 屬性）——若發現 style 被吃掉，改用行內 `<img>` + 相鄰文字編號對照表當退場方案（`CLAUDE.md`「Markdown 標號對照表」選項）。
+- **深色模式（dark mode）務必包白底**：HackMD 有淺色／深色模式切換，深色模式下頁面背景變深，但截圖與說明文字顏色不會自動反轉——沒包白底的話深色模式下文字/淺色 UI 會看不清楚甚至消失。任何 HTML 標註區塊最外層一律加 `background:#fff`（見規則二範本），這是必要步驟不是可選項。
 - **禁止事項**（沿用 `CLAUDE.md`／`master_prompt.md` 既有規則）：不使用或提及任何外部 AI 圖像生成模型重繪畫面；不得用 Pillow 把 badge 燒進像素後才存檔——那是舊流程，本 skill 生效後棄用。
 - **舊資產保留**：先前用 Pillow 燒進像素的既有素材（`.claude/assets/` 內已存在的 badge 版本，如 `E1_offer_seeker_tag.png`）不用回頭重做，只有「之後新增」的標註任務才套用本 skill；若之後有人要求重繪舊圖才改。
 
