@@ -1,0 +1,1490 @@
+{
+  "n_rows": 183713,
+  "n_no_duty0": 0,
+  "baseline_miss_rate_pct": 41.47,
+  "global_levels": {
+    "top1": 40893,
+    "沾邊_中類": 42555,
+    "沾邊_大類": 11735,
+    "無關": 21902,
+    "top3": 30208,
+    "top5": 15174,
+    "top10": 21246
+  },
+  "unmapped_leaves_top20": [
+    [
+      "教育師資",
+      7
+    ],
+    [
+      "醫務護理",
+      2
+    ],
+    [
+      "門市銷售",
+      1
+    ]
+  ],
+  "category_table": [
+    {
+      "major": "美容美髮／餐飲旅遊",
+      "mid": "餐飲烘焙",
+      "n": 25772,
+      "top1_pct": 11.24,
+      "top3_cum_pct": 21.46,
+      "top5_cum_pct": 28.67,
+      "top10_cum_pct": 55.94,
+      "zhanbian_mid_pct": 41.54,
+      "zhanbian_major_pct": 0.71,
+      "irrelevant_pct": 1.81
+    },
+    {
+      "major": "業務／貿易／客服／門市",
+      "mid": "門市銷售",
+      "n": 17729,
+      "top1_pct": 30.77,
+      "top3_cum_pct": 65.49,
+      "top5_cum_pct": 79.76,
+      "top10_cum_pct": 89.37,
+      "zhanbian_mid_pct": 4.11,
+      "zhanbian_major_pct": 3.74,
+      "irrelevant_pct": 2.78
+    },
+    {
+      "major": "業務／貿易／客服／門市",
+      "mid": "業務推廣",
+      "n": 13067,
+      "top1_pct": 20.27,
+      "top3_cum_pct": 39.79,
+      "top5_cum_pct": 52.14,
+      "top10_cum_pct": 63.89,
+      "zhanbian_mid_pct": 22.86,
+      "zhanbian_major_pct": 9.5,
+      "irrelevant_pct": 3.76
+    },
+    {
+      "major": "管理幕僚／人資／行政",
+      "mid": "行政後勤／總務",
+      "n": 11456,
+      "top1_pct": 20.79,
+      "top3_cum_pct": 35.11,
+      "top5_cum_pct": 40.08,
+      "top10_cum_pct": 48.28,
+      "zhanbian_mid_pct": 22.33,
+      "zhanbian_major_pct": 2.61,
+      "irrelevant_pct": 26.78
+    },
+    {
+      "major": "醫療／護理／保健",
+      "mid": "醫務護理",
+      "n": 9238,
+      "top1_pct": 18.73,
+      "top3_cum_pct": 44.49,
+      "top5_cum_pct": 61.44,
+      "top10_cum_pct": 71.12,
+      "zhanbian_mid_pct": 17.43,
+      "zhanbian_major_pct": 3.93,
+      "irrelevant_pct": 7.52
+    },
+    {
+      "major": "機械模具／生產製程",
+      "mid": "生產製程",
+      "n": 7591,
+      "top1_pct": 30.93,
+      "top3_cum_pct": 46.07,
+      "top5_cum_pct": 55.67,
+      "top10_cum_pct": 63.18,
+      "zhanbian_mid_pct": 26.73,
+      "zhanbian_major_pct": 5.65,
+      "irrelevant_pct": 4.44
+    },
+    {
+      "major": "軍警消防／保全相關",
+      "mid": "保全相關",
+      "n": 7532,
+      "top1_pct": 47.49,
+      "top3_cum_pct": 53.28,
+      "top5_cum_pct": 55.39,
+      "top10_cum_pct": 58.44,
+      "zhanbian_mid_pct": 9.61,
+      "zhanbian_major_pct": 0.61,
+      "irrelevant_pct": 31.33
+    },
+    {
+      "major": "採購／物流／品質檢測",
+      "mid": "運輸物流",
+      "n": 6841,
+      "top1_pct": 17.88,
+      "top3_cum_pct": 61.42,
+      "top5_cum_pct": 71.99,
+      "top10_cum_pct": 78.5,
+      "zhanbian_mid_pct": 13.7,
+      "zhanbian_major_pct": 5.12,
+      "irrelevant_pct": 2.69
+    },
+    {
+      "major": "營建／製圖／施作",
+      "mid": "營造施作",
+      "n": 6286,
+      "top1_pct": 16.7,
+      "top3_cum_pct": 27.24,
+      "top5_cum_pct": 33.69,
+      "top10_cum_pct": 41.7,
+      "zhanbian_mid_pct": 33.65,
+      "zhanbian_major_pct": 13.59,
+      "irrelevant_pct": 11.07
+    },
+    {
+      "major": "生活服務／農林漁牧",
+      "mid": "生活服務",
+      "n": 6044,
+      "top1_pct": 23.99,
+      "top3_cum_pct": 29.0,
+      "top5_cum_pct": 33.9,
+      "top10_cum_pct": 40.32,
+      "zhanbian_mid_pct": 13.82,
+      "zhanbian_major_pct": 1.94,
+      "irrelevant_pct": 43.93
+    },
+    {
+      "major": "幼教才藝／補習進修",
+      "mid": "補習進修",
+      "n": 5917,
+      "top1_pct": 14.7,
+      "top3_cum_pct": 23.9,
+      "top5_cum_pct": 30.02,
+      "top10_cum_pct": 41.14,
+      "zhanbian_mid_pct": 40.19,
+      "zhanbian_major_pct": 7.77,
+      "irrelevant_pct": 10.9
+    },
+    {
+      "major": "操作／維修／技術服務",
+      "mid": "操作技術",
+      "n": 5521,
+      "top1_pct": 8.82,
+      "top3_cum_pct": 16.86,
+      "top5_cum_pct": 22.19,
+      "top10_cum_pct": 33.29,
+      "zhanbian_mid_pct": 38.89,
+      "zhanbian_major_pct": 11.23,
+      "irrelevant_pct": 16.59
+    },
+    {
+      "major": "幼教才藝／補習進修",
+      "mid": "幼兒教育",
+      "n": 4657,
+      "top1_pct": 37.56,
+      "top3_cum_pct": 62.27,
+      "top5_cum_pct": 75.69,
+      "top10_cum_pct": 81.94,
+      "zhanbian_mid_pct": 8.46,
+      "zhanbian_major_pct": 1.72,
+      "irrelevant_pct": 7.88
+    },
+    {
+      "major": "金融保險／財會／稽核",
+      "mid": "財務會計",
+      "n": 3969,
+      "top1_pct": 54.12,
+      "top3_cum_pct": 67.17,
+      "top5_cum_pct": 74.53,
+      "top10_cum_pct": 84.18,
+      "zhanbian_mid_pct": 12.35,
+      "zhanbian_major_pct": 1.44,
+      "irrelevant_pct": 2.04
+    },
+    {
+      "major": "醫療／護理／保健",
+      "mid": "醫事人員",
+      "n": 3781,
+      "top1_pct": 35.28,
+      "top3_cum_pct": 58.42,
+      "top5_cum_pct": 65.46,
+      "top10_cum_pct": 75.93,
+      "zhanbian_mid_pct": 11.8,
+      "zhanbian_major_pct": 5.98,
+      "irrelevant_pct": 6.29
+    },
+    {
+      "major": "機械模具／生產製程",
+      "mid": "機械工程",
+      "n": 3420,
+      "top1_pct": 9.5,
+      "top3_cum_pct": 23.1,
+      "top5_cum_pct": 29.68,
+      "top10_cum_pct": 40.76,
+      "zhanbian_mid_pct": 45.09,
+      "zhanbian_major_pct": 5.58,
+      "irrelevant_pct": 8.57
+    },
+    {
+      "major": "操作／維修／技術服務",
+      "mid": "維修／技術服務",
+      "n": 3223,
+      "top1_pct": 4.53,
+      "top3_cum_pct": 12.32,
+      "top5_cum_pct": 16.01,
+      "top10_cum_pct": 25.5,
+      "zhanbian_mid_pct": 32.02,
+      "zhanbian_major_pct": 27.46,
+      "irrelevant_pct": 15.02
+    },
+    {
+      "major": "美容美髮／餐飲旅遊",
+      "mid": "觀光旅遊",
+      "n": 3201,
+      "top1_pct": 25.4,
+      "top3_cum_pct": 42.08,
+      "top5_cum_pct": 52.01,
+      "top10_cum_pct": 64.7,
+      "zhanbian_mid_pct": 16.68,
+      "zhanbian_major_pct": 3.94,
+      "irrelevant_pct": 14.68
+    },
+    {
+      "major": "採購／物流／品質檢測",
+      "mid": "品管品保",
+      "n": 3036,
+      "top1_pct": 27.24,
+      "top3_cum_pct": 38.5,
+      "top5_cum_pct": 41.7,
+      "top10_cum_pct": 49.28,
+      "zhanbian_mid_pct": 24.08,
+      "zhanbian_major_pct": 12.12,
+      "irrelevant_pct": 14.53
+    },
+    {
+      "major": "營建／製圖／施作",
+      "mid": "營建規劃",
+      "n": 2643,
+      "top1_pct": 19.22,
+      "top3_cum_pct": 29.25,
+      "top5_cum_pct": 35.87,
+      "top10_cum_pct": 50.47,
+      "zhanbian_mid_pct": 37.46,
+      "zhanbian_major_pct": 4.35,
+      "irrelevant_pct": 7.72
+    },
+    {
+      "major": "管理幕僚／人資／行政",
+      "mid": "管理幕僚",
+      "n": 2578,
+      "top1_pct": 19.78,
+      "top3_cum_pct": 30.64,
+      "top5_cum_pct": 40.34,
+      "top10_cum_pct": 55.62,
+      "zhanbian_mid_pct": 12.02,
+      "zhanbian_major_pct": 6.25,
+      "irrelevant_pct": 26.11
+    },
+    {
+      "major": "採購／物流／品質檢測",
+      "mid": "採購資材",
+      "n": 2533,
+      "top1_pct": 61.78,
+      "top3_cum_pct": 75.01,
+      "top5_cum_pct": 77.97,
+      "top10_cum_pct": 81.56,
+      "zhanbian_mid_pct": 9.12,
+      "zhanbian_major_pct": 2.49,
+      "irrelevant_pct": 6.83
+    },
+    {
+      "major": "美容美髮／餐飲旅遊",
+      "mid": "美容美髮",
+      "n": 2528,
+      "top1_pct": 12.86,
+      "top3_cum_pct": 20.41,
+      "top5_cum_pct": 23.66,
+      "top10_cum_pct": 28.84,
+      "zhanbian_mid_pct": 21.12,
+      "zhanbian_major_pct": 27.77,
+      "irrelevant_pct": 22.27
+    },
+    {
+      "major": "金融保險／財會／稽核",
+      "mid": "金融保險",
+      "n": 1984,
+      "top1_pct": 10.48,
+      "top3_cum_pct": 19.35,
+      "top5_cum_pct": 23.99,
+      "top10_cum_pct": 33.32,
+      "zhanbian_mid_pct": 33.52,
+      "zhanbian_major_pct": 10.03,
+      "irrelevant_pct": 23.14
+    },
+    {
+      "major": "醫療／護理／保健",
+      "mid": "醫務行政",
+      "n": 1912,
+      "top1_pct": 31.59,
+      "top3_cum_pct": 57.9,
+      "top5_cum_pct": 64.28,
+      "top10_cum_pct": 75.63,
+      "zhanbian_mid_pct": 7.17,
+      "zhanbian_major_pct": 6.07,
+      "irrelevant_pct": 11.14
+    },
+    {
+      "major": "電腦系統／資訊／軟硬體",
+      "mid": "軟體工程",
+      "n": 1781,
+      "top1_pct": 13.76,
+      "top3_cum_pct": 31.72,
+      "top5_cum_pct": 39.81,
+      "top10_cum_pct": 55.47,
+      "zhanbian_mid_pct": 30.99,
+      "zhanbian_major_pct": 3.14,
+      "irrelevant_pct": 10.39
+    },
+    {
+      "major": "管理幕僚／人資／行政",
+      "mid": "人力資源",
+      "n": 1669,
+      "top1_pct": 9.95,
+      "top3_cum_pct": 17.56,
+      "top5_cum_pct": 23.73,
+      "top10_cum_pct": 29.06,
+      "zhanbian_mid_pct": 14.08,
+      "zhanbian_major_pct": 27.68,
+      "irrelevant_pct": 29.18
+    },
+    {
+      "major": "醫療／護理／保健",
+      "mid": "醫事保健",
+      "n": 1638,
+      "top1_pct": 40.17,
+      "top3_cum_pct": 51.95,
+      "top5_cum_pct": 57.88,
+      "top10_cum_pct": 63.06,
+      "zhanbian_mid_pct": 1.04,
+      "zhanbian_major_pct": 12.88,
+      "irrelevant_pct": 23.02
+    },
+    {
+      "major": "業務／貿易／客服／門市",
+      "mid": "客服開發",
+      "n": 1606,
+      "top1_pct": 8.72,
+      "top3_cum_pct": 17.75,
+      "top5_cum_pct": 27.02,
+      "top10_cum_pct": 42.47,
+      "zhanbian_mid_pct": 30.39,
+      "zhanbian_major_pct": 18.8,
+      "irrelevant_pct": 8.34
+    },
+    {
+      "major": "行銷／企劃／專案管理",
+      "mid": "行銷／廣告",
+      "n": 1373,
+      "top1_pct": 24.91,
+      "top3_cum_pct": 34.3,
+      "top5_cum_pct": 37.95,
+      "top10_cum_pct": 45.59,
+      "zhanbian_mid_pct": 27.53,
+      "zhanbian_major_pct": 15.08,
+      "irrelevant_pct": 11.8
+    },
+    {
+      "major": "學術研究／教育師資",
+      "mid": "教育師資",
+      "n": 1209,
+      "top1_pct": 13.48,
+      "top3_cum_pct": 23.49,
+      "top5_cum_pct": 28.7,
+      "top10_cum_pct": 36.64,
+      "zhanbian_mid_pct": 25.06,
+      "zhanbian_major_pct": 1.74,
+      "irrelevant_pct": 36.56
+    },
+    {
+      "major": "美編設計",
+      "mid": "美編設計",
+      "n": 1103,
+      "top1_pct": 19.22,
+      "top3_cum_pct": 41.16,
+      "top5_cum_pct": 46.6,
+      "top10_cum_pct": 51.86,
+      "zhanbian_mid_pct": 24.12,
+      "zhanbian_major_pct": 0.0,
+      "irrelevant_pct": 24.03
+    },
+    {
+      "major": "幼教才藝／補習進修",
+      "mid": "樂活才藝",
+      "n": 942,
+      "top1_pct": 18.26,
+      "top3_cum_pct": 34.93,
+      "top5_cum_pct": 45.86,
+      "top10_cum_pct": 56.9,
+      "zhanbian_mid_pct": 20.49,
+      "zhanbian_major_pct": 10.08,
+      "irrelevant_pct": 12.53
+    },
+    {
+      "major": "操作／維修／技術服務",
+      "mid": "工具機加工",
+      "n": 780,
+      "top1_pct": 35.9,
+      "top3_cum_pct": 46.41,
+      "top5_cum_pct": 49.49,
+      "top10_cum_pct": 57.05,
+      "zhanbian_mid_pct": 36.79,
+      "zhanbian_major_pct": 2.69,
+      "irrelevant_pct": 3.46
+    },
+    {
+      "major": "光電IC／電子通訊",
+      "mid": "光電半導體",
+      "n": 780,
+      "top1_pct": 11.67,
+      "top3_cum_pct": 16.54,
+      "top5_cum_pct": 19.49,
+      "top10_cum_pct": 26.79,
+      "zhanbian_mid_pct": 37.44,
+      "zhanbian_major_pct": 7.95,
+      "irrelevant_pct": 27.82
+    },
+    {
+      "major": "行銷／企劃／專案管理",
+      "mid": "專案管理",
+      "n": 737,
+      "top1_pct": 5.16,
+      "top3_cum_pct": 10.45,
+      "top5_cum_pct": 13.3,
+      "top10_cum_pct": 18.05,
+      "zhanbian_mid_pct": 27.68,
+      "zhanbian_major_pct": 22.93,
+      "irrelevant_pct": 31.34
+    },
+    {
+      "major": "行銷／企劃／專案管理",
+      "mid": "產品／企劃",
+      "n": 701,
+      "top1_pct": 20.68,
+      "top3_cum_pct": 31.81,
+      "top5_cum_pct": 37.38,
+      "top10_cum_pct": 48.36,
+      "zhanbian_mid_pct": 24.11,
+      "zhanbian_major_pct": 13.98,
+      "irrelevant_pct": 13.55
+    },
+    {
+      "major": "業務／貿易／客服／門市",
+      "mid": "國際貿易",
+      "n": 663,
+      "top1_pct": 27.75,
+      "top3_cum_pct": 56.11,
+      "top5_cum_pct": 62.9,
+      "top10_cum_pct": 73.45,
+      "zhanbian_mid_pct": 17.65,
+      "zhanbian_major_pct": 4.68,
+      "irrelevant_pct": 4.22
+    },
+    {
+      "major": "電腦系統／資訊／軟硬體",
+      "mid": "電腦網路管理/MIS",
+      "n": 643,
+      "top1_pct": 9.64,
+      "top3_cum_pct": 14.62,
+      "top5_cum_pct": 20.84,
+      "top10_cum_pct": 33.44,
+      "zhanbian_mid_pct": 19.28,
+      "zhanbian_major_pct": 32.04,
+      "irrelevant_pct": 15.24
+    },
+    {
+      "major": "電腦系統／資訊／軟硬體",
+      "mid": "網路管理",
+      "n": 585,
+      "top1_pct": 10.6,
+      "top3_cum_pct": 13.68,
+      "top5_cum_pct": 17.26,
+      "top10_cum_pct": 21.71,
+      "zhanbian_mid_pct": 9.23,
+      "zhanbian_major_pct": 49.57,
+      "irrelevant_pct": 19.49
+    },
+    {
+      "major": "學術研究／教育師資",
+      "mid": "研究協助",
+      "n": 488,
+      "top1_pct": 9.02,
+      "top3_cum_pct": 38.52,
+      "top5_cum_pct": 48.77,
+      "top10_cum_pct": 57.99,
+      "zhanbian_mid_pct": 10.45,
+      "zhanbian_major_pct": 10.66,
+      "irrelevant_pct": 20.9
+    },
+    {
+      "major": "生物科技／化學製藥",
+      "mid": "化工實驗",
+      "n": 488,
+      "top1_pct": 12.5,
+      "top3_cum_pct": 17.83,
+      "top5_cum_pct": 25.0,
+      "top10_cum_pct": 38.73,
+      "zhanbian_mid_pct": 23.16,
+      "zhanbian_major_pct": 4.1,
+      "irrelevant_pct": 34.02
+    },
+    {
+      "major": "機械模具／生產製程",
+      "mid": "模具相關",
+      "n": 472,
+      "top1_pct": 9.11,
+      "top3_cum_pct": 15.25,
+      "top5_cum_pct": 25.42,
+      "top10_cum_pct": 45.34,
+      "zhanbian_mid_pct": 33.05,
+      "zhanbian_major_pct": 15.68,
+      "irrelevant_pct": 5.93
+    },
+    {
+      "major": "光電IC／電子通訊",
+      "mid": "電子通訊",
+      "n": 467,
+      "top1_pct": 6.85,
+      "top3_cum_pct": 12.63,
+      "top5_cum_pct": 18.84,
+      "top10_cum_pct": 25.05,
+      "zhanbian_mid_pct": 37.9,
+      "zhanbian_major_pct": 15.2,
+      "irrelevant_pct": 21.84
+    },
+    {
+      "major": "生活服務／農林漁牧",
+      "mid": "農林漁牧",
+      "n": 451,
+      "top1_pct": 16.63,
+      "top3_cum_pct": 22.39,
+      "top5_cum_pct": 26.16,
+      "top10_cum_pct": 33.48,
+      "zhanbian_mid_pct": 9.31,
+      "zhanbian_major_pct": 4.43,
+      "irrelevant_pct": 52.77
+    },
+    {
+      "major": "法務專利／顧問諮詢",
+      "mid": "法務專利",
+      "n": 413,
+      "top1_pct": 25.67,
+      "top3_cum_pct": 35.11,
+      "top5_cum_pct": 49.39,
+      "top10_cum_pct": 55.21,
+      "zhanbian_mid_pct": 13.56,
+      "zhanbian_major_pct": 0.0,
+      "irrelevant_pct": 31.23
+    },
+    {
+      "major": "軍警消防／保全相關",
+      "mid": "軍警消防",
+      "n": 410,
+      "top1_pct": 29.51,
+      "top3_cum_pct": 33.66,
+      "top5_cum_pct": 33.9,
+      "top10_cum_pct": 34.15,
+      "zhanbian_mid_pct": 33.66,
+      "zhanbian_major_pct": 2.68,
+      "irrelevant_pct": 29.51
+    },
+    {
+      "major": "金融保險／財會／稽核",
+      "mid": "稽核審計",
+      "n": 343,
+      "top1_pct": 17.49,
+      "top3_cum_pct": 34.69,
+      "top5_cum_pct": 42.86,
+      "top10_cum_pct": 51.6,
+      "zhanbian_mid_pct": 20.7,
+      "zhanbian_major_pct": 16.03,
+      "irrelevant_pct": 11.66
+    },
+    {
+      "major": "電腦系統／資訊／軟硬體",
+      "mid": "電腦硬體",
+      "n": 313,
+      "top1_pct": 2.88,
+      "top3_cum_pct": 8.63,
+      "top5_cum_pct": 15.02,
+      "top10_cum_pct": 19.17,
+      "zhanbian_mid_pct": 4.47,
+      "zhanbian_major_pct": 61.66,
+      "irrelevant_pct": 14.7
+    },
+    {
+      "major": "影視傳媒／出版翻譯",
+      "mid": "幕後執行",
+      "n": 286,
+      "top1_pct": 18.18,
+      "top3_cum_pct": 30.42,
+      "top5_cum_pct": 35.66,
+      "top10_cum_pct": 43.36,
+      "zhanbian_mid_pct": 24.83,
+      "zhanbian_major_pct": 9.44,
+      "irrelevant_pct": 22.38
+    },
+    {
+      "major": "影視傳媒／出版翻譯",
+      "mid": "出版翻譯",
+      "n": 276,
+      "top1_pct": 18.84,
+      "top3_cum_pct": 27.9,
+      "top5_cum_pct": 30.8,
+      "top10_cum_pct": 46.74,
+      "zhanbian_mid_pct": 29.35,
+      "zhanbian_major_pct": 6.52,
+      "irrelevant_pct": 17.39
+    },
+    {
+      "major": "影視傳媒／出版翻譯",
+      "mid": "影視演藝",
+      "n": 220,
+      "top1_pct": 25.91,
+      "top3_cum_pct": 41.36,
+      "top5_cum_pct": 47.73,
+      "top10_cum_pct": 54.55,
+      "zhanbian_mid_pct": 20.45,
+      "zhanbian_major_pct": 10.0,
+      "irrelevant_pct": 15.0
+    },
+    {
+      "major": "生物科技／化學製藥",
+      "mid": "醫藥生技",
+      "n": 129,
+      "top1_pct": 6.2,
+      "top3_cum_pct": 18.6,
+      "top5_cum_pct": 30.23,
+      "top10_cum_pct": 48.06,
+      "zhanbian_mid_pct": 24.03,
+      "zhanbian_major_pct": 5.43,
+      "irrelevant_pct": 22.48
+    },
+    {
+      "major": "法務專利／顧問諮詢",
+      "mid": "顧問諮詢",
+      "n": 100,
+      "top1_pct": 14.0,
+      "top3_cum_pct": 27.0,
+      "top5_cum_pct": 31.0,
+      "top10_cum_pct": 40.0,
+      "zhanbian_mid_pct": 13.0,
+      "zhanbian_major_pct": 0.0,
+      "irrelevant_pct": 47.0
+    },
+    {
+      "major": "影視傳媒／出版翻譯",
+      "mid": "新聞媒體",
+      "n": 85,
+      "top1_pct": 15.29,
+      "top3_cum_pct": 38.82,
+      "top5_cum_pct": 41.18,
+      "top10_cum_pct": 51.76,
+      "zhanbian_mid_pct": 23.53,
+      "zhanbian_major_pct": 7.06,
+      "irrelevant_pct": 17.65
+    },
+    {
+      "major": "學術研究／教育師資",
+      "mid": "生物理工",
+      "n": 66,
+      "top1_pct": 7.58,
+      "top3_cum_pct": 16.67,
+      "top5_cum_pct": 22.73,
+      "top10_cum_pct": 45.45,
+      "zhanbian_mid_pct": 10.61,
+      "zhanbian_major_pct": 13.64,
+      "irrelevant_pct": 30.3
+    },
+    {
+      "major": "學術研究／教育師資",
+      "mid": "自然科學",
+      "n": 16,
+      "top1_pct": 6.25,
+      "top3_cum_pct": 6.25,
+      "top5_cum_pct": 6.25,
+      "top10_cum_pct": 6.25,
+      "zhanbian_mid_pct": 0.0,
+      "zhanbian_major_pct": 18.75,
+      "irrelevant_pct": 75.0
+    },
+    {
+      "major": "學術研究／教育師資",
+      "mid": "人文社會",
+      "n": 11,
+      "top1_pct": 0.0,
+      "top3_cum_pct": 9.09,
+      "top5_cum_pct": 9.09,
+      "top10_cum_pct": 9.09,
+      "zhanbian_mid_pct": 0.0,
+      "zhanbian_major_pct": 18.18,
+      "irrelevant_pct": 72.73
+    }
+  ],
+  "feature_table": [
+    {
+      "feature": "ascii",
+      "n": 30962,
+      "miss_n": 13976,
+      "miss_rate_pct": 45.14,
+      "lift_vs_baseline": 3.67
+    },
+    {
+      "feature": "deco",
+      "n": 93494,
+      "miss_n": 41450,
+      "miss_rate_pct": 44.33,
+      "lift_vs_baseline": 2.86
+    },
+    {
+      "feature": "long_ge10",
+      "n": 127163,
+      "miss_n": 55253,
+      "miss_rate_pct": 43.45,
+      "lift_vs_baseline": 1.98
+    },
+    {
+      "feature": "digit",
+      "n": 38368,
+      "miss_n": 16156,
+      "miss_rate_pct": 42.11,
+      "lift_vs_baseline": 0.64
+    },
+    {
+      "feature": "slash_multi",
+      "n": 24714,
+      "miss_n": 10229,
+      "miss_rate_pct": 41.39,
+      "lift_vs_baseline": -0.08
+    },
+    {
+      "feature": "generic_tail",
+      "n": 61440,
+      "miss_n": 23773,
+      "miss_rate_pct": 38.69,
+      "lift_vs_baseline": -2.78
+    },
+    {
+      "feature": "short_le3",
+      "n": 3625,
+      "miss_n": 823,
+      "miss_rate_pct": 22.7,
+      "lift_vs_baseline": -18.77
+    }
+  ],
+  "examples": {
+    "generic_tail": [
+      {
+        "title": "總經理室專員",
+        "duty0": "行政助理",
+        "top3_recs": [
+          "行政主管",
+          "經營管理主管",
+          "總務人員"
+        ],
+        "level": "沾邊_中類"
+      },
+      {
+        "title": "1.經營企劃專員",
+        "duty0": "產品管理師",
+        "top3_recs": [
+          "保險業務員／經紀人",
+          "產品企劃主管",
+          "國內業務主管"
+        ],
+        "level": "沾邊_大類"
+      },
+      {
+        "title": "產品部經理(藥品)/副理/專員",
+        "duty0": "藥師",
+        "top3_recs": [
+          "產品企劃主管",
+          "產品經理",
+          "客服主管"
+        ],
+        "level": "無關"
+      },
+      {
+        "title": "後台行政人員",
+        "duty0": "文字客服",
+        "top3_recs": [
+          "行政人員",
+          "電腦操作／資料輸入",
+          "秘書"
+        ],
+        "level": "沾邊_大類"
+      },
+      {
+        "title": "北港-工地行政人員",
+        "duty0": "工務助理",
+        "top3_recs": [
+          "行政人員",
+          "電腦操作／資料輸入",
+          "資料庫管理人員"
+        ],
+        "level": "無關"
+      },
+      {
+        "title": "業務助理",
+        "duty0": "工讀生",
+        "top3_recs": [
+          "業務助理",
+          "國貿助理",
+          "行政助理"
+        ],
+        "level": "沾邊_中類"
+      },
+      {
+        "title": "日本通路業務專員",
+        "duty0": "通路開發人員",
+        "top3_recs": [
+          "國外業務人員",
+          "國內業務人員",
+          "廣告AE"
+        ],
+        "level": "沾邊_中類"
+      },
+      {
+        "title": "正職-1111人力銀行徵招募助理",
+        "duty0": "人事助理",
+        "top3_recs": [
+          "財務／會計助理",
+          "電腦操作／資料輸入",
+          "行政人員"
+        ],
+        "level": "沾邊_大類"
+      }
+    ],
+    "deco": [
+      {
+        "title": "◎市議員助理◎",
+        "duty0": "行政助理",
+        "top3_recs": [
+          "電腦操作／資料輸入",
+          "行銷企劃助理",
+          "秘書"
+        ],
+        "level": "沾邊_中類"
+      },
+      {
+        "title": "主管特助($36300-$40800)",
+        "duty0": "儲備幹部",
+        "top3_recs": [
+          "特別助理",
+          "行銷企劃助理",
+          "秘書"
+        ],
+        "level": "沾邊_中類"
+      },
+      {
+        "title": "工務副理(具主任或品管證照）",
+        "duty0": "建築師",
+        "top3_recs": [
+          "業務工程師",
+          "軟體專案主管",
+          "客戶成功經理"
+        ],
+        "level": "沾邊_中類"
+      },
+      {
+        "title": "W【日班安全室組長】中壢工業區：工廠，薪62,000元/月上班24天(288H)，有供餐及特休",
+        "duty0": "保全人員／警衛",
+        "top3_recs": [
+          "智慧製程工程師",
+          "電機技師／工程師",
+          "電機設備裝配員"
+        ],
+        "level": "無關"
+      },
+      {
+        "title": "挪威森林(新店館)值班主任9H月休八天**",
+        "duty0": "飯店／旅館主管",
+        "top3_recs": [
+          "品管／品保主管",
+          "資材主管",
+          "店長／門市管理人員"
+        ],
+        "level": "沾邊_大類"
+      },
+      {
+        "title": "挪威森林(新店館)儲備幹部/輪班主任9H月休八天**請親洽面試",
+        "duty0": "飯店／旅館主管",
+        "top3_recs": [
+          "品管／品保主管",
+          "調酒師／吧台人員",
+          "樓面管理人員"
+        ],
+        "level": "沾邊_大類"
+      },
+      {
+        "title": "遠傳📞電信儲備幹部【薪42000起+業績獎金】",
+        "duty0": "門市／店員／專櫃人員",
+        "top3_recs": [
+          "客服主管",
+          "儲備幹部",
+          "國外業務主管"
+        ],
+        "level": "沾邊_大類"
+      },
+      {
+        "title": "W【勤務督導】桃園區中正路，薪58,000~68,000元(含全勤及津貼)/週休二日、見紅休",
+        "duty0": "總幹事",
+        "top3_recs": [
+          "資材主管",
+          "智慧製程工程師",
+          "資材人員"
+        ],
+        "level": "無關"
+      }
+    ],
+    "digit": [
+      {
+        "title": "主管特助($36300-$40800)",
+        "duty0": "儲備幹部",
+        "top3_recs": [
+          "特別助理",
+          "行銷企劃助理",
+          "秘書"
+        ],
+        "level": "沾邊_中類"
+      },
+      {
+        "title": "1.經營企劃專員",
+        "duty0": "產品管理師",
+        "top3_recs": [
+          "保險業務員／經紀人",
+          "產品企劃主管",
+          "國內業務主管"
+        ],
+        "level": "沾邊_大類"
+      },
+      {
+        "title": "W【日班安全室組長】中壢工業區：工廠，薪62,000元/月上班24天(288H)，有供餐及特休",
+        "duty0": "保全人員／警衛",
+        "top3_recs": [
+          "智慧製程工程師",
+          "電機技師／工程師",
+          "電機設備裝配員"
+        ],
+        "level": "無關"
+      },
+      {
+        "title": "挪威森林(新店館)值班主任9H月休八天**",
+        "duty0": "飯店／旅館主管",
+        "top3_recs": [
+          "品管／品保主管",
+          "資材主管",
+          "店長／門市管理人員"
+        ],
+        "level": "沾邊_大類"
+      },
+      {
+        "title": "挪威森林(新店館)儲備幹部/輪班主任9H月休八天**請親洽面試",
+        "duty0": "飯店／旅館主管",
+        "top3_recs": [
+          "品管／品保主管",
+          "調酒師／吧台人員",
+          "樓面管理人員"
+        ],
+        "level": "沾邊_大類"
+      },
+      {
+        "title": "遠傳📞電信儲備幹部【薪42000起+業績獎金】",
+        "duty0": "門市／店員／專櫃人員",
+        "top3_recs": [
+          "客服主管",
+          "儲備幹部",
+          "國外業務主管"
+        ],
+        "level": "沾邊_大類"
+      },
+      {
+        "title": "W【勤務督導】桃園區中正路，薪58,000~68,000元(含全勤及津貼)/週休二日、見紅休",
+        "duty0": "總幹事",
+        "top3_recs": [
+          "資材主管",
+          "智慧製程工程師",
+          "資材人員"
+        ],
+        "level": "無關"
+      },
+      {
+        "title": "👉 【早班產線組長｜月薪4萬↑｜週休二日】",
+        "duty0": "領班／管理幹部",
+        "top3_recs": [
+          "包裝員／作業員",
+          "技術人員",
+          "CNC車床人員"
+        ],
+        "level": "沾邊_中類"
+      }
+    ],
+    "long_ge10": [
+      {
+        "title": "主管特助($36300-$40800)",
+        "duty0": "儲備幹部",
+        "top3_recs": [
+          "特別助理",
+          "行銷企劃助理",
+          "秘書"
+        ],
+        "level": "沾邊_中類"
+      },
+      {
+        "title": "工務副理(具主任或品管證照）",
+        "duty0": "建築師",
+        "top3_recs": [
+          "業務工程師",
+          "軟體專案主管",
+          "客戶成功經理"
+        ],
+        "level": "沾邊_中類"
+      },
+      {
+        "title": "餐飲服務外場儲備幹部",
+        "duty0": "餐飲服務人員",
+        "top3_recs": [
+          "調酒師／吧台人員",
+          "品管／品保主管",
+          "餐飲主管"
+        ],
+        "level": "沾邊_中類"
+      },
+      {
+        "title": "W【日班安全室組長】中壢工業區：工廠，薪62,000元/月上班24天(288H)，有供餐及特休",
+        "duty0": "保全人員／警衛",
+        "top3_recs": [
+          "智慧製程工程師",
+          "電機技師／工程師",
+          "電機設備裝配員"
+        ],
+        "level": "無關"
+      },
+      {
+        "title": "挪威森林(新店館)值班主任9H月休八天**",
+        "duty0": "飯店／旅館主管",
+        "top3_recs": [
+          "品管／品保主管",
+          "資材主管",
+          "店長／門市管理人員"
+        ],
+        "level": "沾邊_大類"
+      },
+      {
+        "title": "挪威森林(新店館)儲備幹部/輪班主任9H月休八天**請親洽面試",
+        "duty0": "飯店／旅館主管",
+        "top3_recs": [
+          "品管／品保主管",
+          "調酒師／吧台人員",
+          "樓面管理人員"
+        ],
+        "level": "沾邊_大類"
+      },
+      {
+        "title": "遠傳📞電信儲備幹部【薪42000起+業績獎金】",
+        "duty0": "門市／店員／專櫃人員",
+        "top3_recs": [
+          "客服主管",
+          "儲備幹部",
+          "國外業務主管"
+        ],
+        "level": "沾邊_大類"
+      },
+      {
+        "title": "W【勤務督導】桃園區中正路，薪58,000~68,000元(含全勤及津貼)/週休二日、見紅休",
+        "duty0": "總幹事",
+        "top3_recs": [
+          "資材主管",
+          "智慧製程工程師",
+          "資材人員"
+        ],
+        "level": "無關"
+      }
+    ],
+    "無關_all": [
+      {
+        "title": "儲備幹部",
+        "duty0": "工務助理",
+        "top3_recs": [
+          "儲備幹部",
+          "基層管理幹部",
+          "經營管理主管"
+        ]
+      },
+      {
+        "title": "場務",
+        "duty0": "保全人員／警衛",
+        "top3_recs": [
+          "房務人員",
+          "遊樂景點工作人員",
+          "售票／收銀人員"
+        ]
+      },
+      {
+        "title": "W【日班安全室組長】中壢工業區：工廠，薪62,000元/月上班24天(288H)，有供餐及特休",
+        "duty0": "保全人員／警衛",
+        "top3_recs": [
+          "智慧製程工程師",
+          "電機技師／工程師",
+          "電機設備裝配員"
+        ]
+      },
+      {
+        "title": "W【勤務督導】桃園區中正路，薪58,000~68,000元(含全勤及津貼)/週休二日、見紅休",
+        "duty0": "總幹事",
+        "top3_recs": [
+          "資材主管",
+          "智慧製程工程師",
+          "資材人員"
+        ]
+      },
+      {
+        "title": "產線儲備幹部(冷氣廠房.供餐)",
+        "duty0": "機械操作人員",
+        "top3_recs": [
+          "智慧製程工程師",
+          "生管主管",
+          "電機技師／工程師"
+        ]
+      },
+      {
+        "title": "主任",
+        "duty0": "飯店／旅館主管",
+        "top3_recs": [
+          "儲備幹部",
+          "資材主管",
+          "品管／品保主管"
+        ]
+      },
+      {
+        "title": "社區住宅清潔-組長（板橋區 合宜路）",
+        "duty0": "清潔／資源回收人員",
+        "top3_recs": [
+          "房務人員",
+          "空服人員",
+          "神秘客"
+        ]
+      },
+      {
+        "title": "產品部經理(藥品)/副理/專員",
+        "duty0": "藥師",
+        "top3_recs": [
+          "產品企劃主管",
+          "產品經理",
+          "客服主管"
+        ]
+      },
+      {
+        "title": "門市督導助理(週休二日)",
+        "duty0": "店長／門市管理人員",
+        "top3_recs": [
+          "藥師助理",
+          "資訊助理人員",
+          "攝影助理"
+        ]
+      },
+      {
+        "title": "社區經理-北區(鄰近科博館)",
+        "duty0": "總幹事",
+        "top3_recs": [
+          "社群經營人員",
+          "金融營業人員",
+          "資材主管"
+        ]
+      },
+      {
+        "title": "社區經理-東區",
+        "duty0": "總幹事",
+        "top3_recs": [
+          "社群經營人員",
+          "資材主管",
+          "產品經理"
+        ]
+      },
+      {
+        "title": "行政兼職助教(工讀生)",
+        "duty0": "助教",
+        "top3_recs": [
+          "行政人員",
+          "電腦操作／資料輸入",
+          "總務人員"
+        ]
+      },
+      {
+        "title": "北港-工地行政人員",
+        "duty0": "工務助理",
+        "top3_recs": [
+          "行政人員",
+          "電腦操作／資料輸入",
+          "資料庫管理人員"
+        ]
+      },
+      {
+        "title": "1.課程規劃專員",
+        "duty0": "國內業務人員",
+        "top3_recs": [
+          "演算法開發工程師",
+          "RF通訊工程師",
+          "韌體工程師"
+        ]
+      },
+      {
+        "title": "行政助理",
+        "duty0": "工務助理",
+        "top3_recs": [
+          "行政助理",
+          "行政人員",
+          "秘書"
+        ]
+      }
+    ],
+    "short_le3": [
+      {
+        "title": "場務",
+        "duty0": "保全人員／警衛",
+        "top3_recs": [
+          "房務人員",
+          "遊樂景點工作人員",
+          "售票／收銀人員"
+        ],
+        "level": "無關"
+      },
+      {
+        "title": "主任",
+        "duty0": "飯店／旅館主管",
+        "top3_recs": [
+          "儲備幹部",
+          "資材主管",
+          "品管／品保主管"
+        ],
+        "level": "無關"
+      },
+      {
+        "title": "工讀生",
+        "duty0": "安親課輔老師",
+        "top3_recs": [
+          "工讀生",
+          "門市／店員／專櫃人員",
+          "售票／收銀人員"
+        ],
+        "level": "無關"
+      },
+      {
+        "title": "營運長",
+        "duty0": "工廠高階主管",
+        "top3_recs": [
+          "經營管理主管",
+          "儲備幹部",
+          "店長／門市管理人員"
+        ],
+        "level": "無關"
+      },
+      {
+        "title": "店經理",
+        "duty0": "餐飲領班",
+        "top3_recs": [
+          "店長／門市管理人員",
+          "門市／店員／專櫃人員",
+          "餐飲主管"
+        ],
+        "level": "沾邊_中類"
+      },
+      {
+        "title": "會計",
+        "duty0": "運輸調度管理人員",
+        "top3_recs": [
+          "會計／出納／記帳人員",
+          "財務／會計助理",
+          "會計師"
+        ],
+        "level": "無關"
+      },
+      {
+        "title": "工程師",
+        "duty0": "弱電工程師",
+        "top3_recs": [
+          "水電工程師",
+          "PLC／自動控制工程師",
+          "結構技師／工程師"
+        ],
+        "level": "無關"
+      },
+      {
+        "title": "操作員",
+        "duty0": "機械操作人員",
+        "top3_recs": [
+          "包裝員／作業員",
+          "倉管／物料管理員",
+          "CNC車床人員"
+        ],
+        "level": "沾邊_中類"
+      }
+    ],
+    "slash_multi": [
+      {
+        "title": "W【日班安全室組長】中壢工業區：工廠，薪62,000元/月上班24天(288H)，有供餐及特休",
+        "duty0": "保全人員／警衛",
+        "top3_recs": [
+          "智慧製程工程師",
+          "電機技師／工程師",
+          "電機設備裝配員"
+        ],
+        "level": "無關"
+      },
+      {
+        "title": "挪威森林(新店館)儲備幹部/輪班主任9H月休八天**請親洽面試",
+        "duty0": "飯店／旅館主管",
+        "top3_recs": [
+          "品管／品保主管",
+          "調酒師／吧台人員",
+          "樓面管理人員"
+        ],
+        "level": "沾邊_大類"
+      },
+      {
+        "title": "W【勤務督導】桃園區中正路，薪58,000~68,000元(含全勤及津貼)/週休二日、見紅休",
+        "duty0": "總幹事",
+        "top3_recs": [
+          "資材主管",
+          "智慧製程工程師",
+          "資材人員"
+        ],
+        "level": "無關"
+      },
+      {
+        "title": "產品部經理(藥品)/副理/專員",
+        "duty0": "藥師",
+        "top3_recs": [
+          "產品企劃主管",
+          "產品經理",
+          "客服主管"
+        ],
+        "level": "無關"
+      },
+      {
+        "title": "空運CS人員/有經驗32k起",
+        "duty0": "業務助理",
+        "top3_recs": [
+          "報關人員",
+          "生管／助理",
+          "國貿人員"
+        ],
+        "level": "沾邊_中類"
+      },
+      {
+        "title": "海運CS人員/有經驗32k起男女不拘",
+        "duty0": "業務助理",
+        "top3_recs": [
+          "報關人員",
+          "生管／助理",
+          "國貿人員"
+        ],
+        "level": "沾邊_中類"
+      },
+      {
+        "title": "Customer Care 客服部助理/專員 [歡迎身障朋友投遞]",
+        "duty0": "空運／船務",
+        "top3_recs": [
+          "國貿助理",
+          "業務助理",
+          "秘書"
+        ],
+        "level": "沾邊_中類"
+      },
+      {
+        "title": "行政/會計助理",
+        "duty0": "財務分析／財務人員",
+        "top3_recs": [
+          "財務／會計助理",
+          "秘書",
+          "行政人員"
+        ],
+        "level": "沾邊_中類"
+      }
+    ],
+    "ascii": [
+      {
+        "title": "W【日班安全室組長】中壢工業區：工廠，薪62,000元/月上班24天(288H)，有供餐及特休",
+        "duty0": "保全人員／警衛",
+        "top3_recs": [
+          "智慧製程工程師",
+          "電機技師／工程師",
+          "電機設備裝配員"
+        ],
+        "level": "無關"
+      },
+      {
+        "title": "挪威森林(新店館)值班主任9H月休八天**",
+        "duty0": "飯店／旅館主管",
+        "top3_recs": [
+          "品管／品保主管",
+          "資材主管",
+          "店長／門市管理人員"
+        ],
+        "level": "沾邊_大類"
+      },
+      {
+        "title": "挪威森林(新店館)儲備幹部/輪班主任9H月休八天**請親洽面試",
+        "duty0": "飯店／旅館主管",
+        "top3_recs": [
+          "品管／品保主管",
+          "調酒師／吧台人員",
+          "樓面管理人員"
+        ],
+        "level": "沾邊_大類"
+      },
+      {
+        "title": "W【勤務督導】桃園區中正路，薪58,000~68,000元(含全勤及津貼)/週休二日、見紅休",
+        "duty0": "總幹事",
+        "top3_recs": [
+          "資材主管",
+          "智慧製程工程師",
+          "資材人員"
+        ],
+        "level": "無關"
+      },
+      {
+        "title": "Mr.Wish-儲備幹部(永康大武店)",
+        "duty0": "餐飲服務人員",
+        "top3_recs": [
+          "品管／品保主管",
+          "調酒師／吧台人員",
+          "資材主管"
+        ],
+        "level": "沾邊_中類"
+      },
+      {
+        "title": "空運CS人員/有經驗32k起",
+        "duty0": "業務助理",
+        "top3_recs": [
+          "報關人員",
+          "生管／助理",
+          "國貿人員"
+        ],
+        "level": "沾邊_中類"
+      },
+      {
+        "title": "海運CS人員/有經驗32k起男女不拘",
+        "duty0": "業務助理",
+        "top3_recs": [
+          "報關人員",
+          "生管／助理",
+          "國貿人員"
+        ],
+        "level": "沾邊_中類"
+      },
+      {
+        "title": "Customer Care 客服部助理/專員 [歡迎身障朋友投遞]",
+        "duty0": "空運／船務",
+        "top3_recs": [
+          "國貿助理",
+          "業務助理",
+          "秘書"
+        ],
+        "level": "沾邊_中類"
+      }
+    ]
+  }
+}
