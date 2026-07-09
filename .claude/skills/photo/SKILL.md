@@ -75,9 +75,10 @@ description: >
 ### 座標怎麼抓
 
 1. 用 Read 工具開圖確認視覺位置，用 Pillow 唯讀掃描算出目標元件的 pixel bounding box（沿用規則一的唯讀分析）。掃描時**用元件實際邊框顏色做遮罩**（例如按鈕邊框藍色 `r<130,g<180,b>190` 這類寬鬆但排他的顏色條件），對每一列/每一行加總遮罩像素數（`colsum`/`rowsum`），取非零區間頭尾當成 bounding box——比憑肉眼目測或憑經驗猜座標準確。
-2. 換算成百分比：`top% = box_y / image_height * 100`、`left% = box_x / image_width * 100`；寬高同理用 `(box_x1 - box_x0) / image_width * 100`。
-3. **下 PATCH 前必做視覺驗證**：用算出的百分比座標，在本地暫存檔（`/tmp`，不進 repo、不 commit）畫一次疊框確認精準對齊實際按鈕，Read 出來目視檢查沒問題後才寫進 HackMD——這張驗證圖只是核對用，不算「產生新圖檔覆寫原圖」，因為它從頭到尾不會落地存檔或引用進文件。上一版就是省略了這步驗證，直接憑掃描結果寫入，結果框偏移。
-4. 圈選整個元件（如按鈕）用邊框style而非填色 badge：
+2. **框要蓋住整個 UI 元件、留出明顯呼吸空間，不要貼著像素邊緣**：算出 bounding box 後，四邊各加 padding 再轉百分比——外側（元件與畫面邊緣、或元件與相鄰元件之間空白較大的那側）多加一點（例如 8px），內側／相鄰元件較窄的那側少加（例如 3px，避免兩個框互相重疊），上下各加 6px 左右。目標是框線看起來完整包住整個按鈕（含其圓角、陰影），而不是剛好卡在文字或邊框上。
+3. 換算成百分比：`top% = box_y / image_height * 100`、`left% = box_x / image_width * 100`；寬高同理用 `(box_x1 - box_x0) / image_width * 100`。
+4. **下 PATCH 前必做視覺驗證**：用算出的百分比座標，在本地暫存檔（`/tmp`，不進 repo、不 commit）畫一次疊框確認完整覆蓋、留白足夠，Read 出來目視檢查沒問題後才寫進 HackMD——這張驗證圖只是核對用，不算「產生新圖檔覆寫原圖」，因為它從頭到尾不會落地存檔或引用進文件。曾經發生過兩次問題都是省略這步驗證：一次框偏移、一次框太貼邊不夠大，兩次都是先跳過驗證直接寫入才發生。
+5. 圈選整個元件（如按鈕）用邊框style而非填色 badge：
 
 ```html
 <div style="position:absolute; top:83.3%; left:50.2%; width:47%; height:6.3%; border:3px solid #FF5F57; border-radius:8px;"></div>
@@ -91,15 +92,18 @@ description: >
 
 兩張以上截圖要表達「點擊 A 圖某按鈕 → 跳到 B 圖」時，不再用 Pillow 把兩張圖拼成一張新 PNG，改用 HTML flex 容器並排＋純 HTML 箭頭；**同樣要包在白色背景容器內**（理由同上，深色模式防呆）。
 
-> ⚠️ **說明文字必須放在同一個直向欄位內、緊貼圖片下方**（`margin-top:6px` 左右），**不要把所有圖片排一列、說明文字另外分一列**放在下方——那樣圖片與對應文字會離很遠，尤其圖片高矮不一時，文字列對不齊圖片、視覺上像是「文字飄在遠處」。正確結構是每張圖與其說明文字包在同一個 `<div>` 直向欄位裡，欄位之間才用 flex 並排：
+兩條排版規則缺一不可：
+
+1. **文字跟著圖片走，不單獨分列**：說明文字必須放在同一個直向欄位內、緊貼圖片下方（`margin-top:6px` 左右）——每張圖與其說明文字包在同一個 `<div>` 直向欄位裡，欄位之間才用 flex 並排。不要把所有圖片排一列、說明文字另外分一列放在下方，那樣圖片與對應文字會離很遠。
+2. **兩張圖高矮不一時，欄位要垂直置中對齊**：外層 flex 容器用 `align-items:center`（不要用 `flex-start`）。來源圖（如直式手機畫面）通常比結果圖（如橫式表單截圖）高很多，`flex-start` 會讓矮的那張圖被推去跟高圖的頂部切齊、視覺上偏移不自然；`align-items:center` 讓兩欄以中線對齊，箭頭也用 `align-self:center` 確保垂直居中，不受任一欄圖片高度影響：
 
 ```html
 <div style="background:#fff; padding:14px; border-radius:8px;">
-  <div style="display:flex; align-items:flex-start; gap:14px; flex-wrap:wrap;">
+  <div style="display:flex; align-items:center; gap:14px; flex-wrap:wrap;">
     <div style="max-width:260px;">
       <div style="position:relative; display:inline-block; width:100%;">
         <img src="<圖A網址>" style="display:block; width:100%;">
-        <div style="position:absolute; top:86.32%; left:2.71%; width:47.08%; height:5.49%; border:3px solid #FF5F57; border-radius:8px;"></div>
+        <div style="position:absolute; top:85.71%; left:1.46%; width:47.08%; height:6.23%; border:3px solid #FF5F57; border-radius:8px;"></div>
       </div>
       <div style="font-size:13px; color:#333; text-align:center; margin-top:6px;">圖 A 說明文字</div>
     </div>
