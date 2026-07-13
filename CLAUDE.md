@@ -22,6 +22,8 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 涉及**數據分析／競品拆解／商業提案、跨部門溝通文案（公告/客服回覆/敏感溝通）、資料 Mapping Table 與資料庫正規化原則、OTP/MFA 類邊界條件檢查**時，用 `Skill` 工具載入 `.claude/skills/pm-toolkit/SKILL.md`（與 spec-doc-1111、mermaid_styling_rules.md 不重疊，僅收錄它們沒覆蓋的部分）。
 
+需要把數據**產出成一份可離線開啟的靜態 HTML 分析報告**（非規格書、非純文字結論）時，用 `Skill` 工具載入 `.claude/skills/report-generator/SKILL.md`（流程：pandas 聚合 → 讀官方 `dataviz` skill 畫圖 → 模板注入 → Playwright 雙模截圖驗證 → 可重跑 pipeline）。
+
 ---
 
 ## 🧠 Token 最佳化與全局索引
