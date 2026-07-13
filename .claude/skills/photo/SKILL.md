@@ -22,7 +22,13 @@ description: >
 
 ## 規則一：截圖存檔（不分來源）
 
-無論截圖是 Figma MCP 截的，還是使用者直接貼圖/上傳，一律走同一套存檔流程：
+**Step 0：先判斷這張圖是不是已經有穩定的 HackMD 網址了**——如果圖片本來就已經存在於某份 HackMD 文件裡（例如既有內容裡已經寫著 `![image](https://hackmd.io/_uploads/xxx.png)`，或使用者直接貼給你的就是一個 `hackmd.io/_uploads/...png` 連結），代表這張圖**已經有 HackMD 自己的圖床網址、本來就穩定可引用**，直接沿用這個既有網址即可：
+- **不要**下載、**不要** `cp` 進 `.claude/assets/`、**不要** commit、**不要** push。
+- 直接把這個 `hackmd.io/_uploads/...` 網址當成 `<img src="...">` 的來源，套用規則二的 HTML 標註／排版即可。
+- 只有在**需要用 Pillow 唯讀分析像素座標**（例如量測按鈕 bounding box 來定位紅框）時，才需要暫時 `curl` 下載一份到本地 `/tmp` 做分析用——這份本地暫存檔只是分析用途，分析完不用存進 repo，因為最終引用的還是原本的 HackMD 網址。
+- 這條規則的判斷依據很簡單：**這張圖現在能不能直接在瀏覽器打開一個 HackMD 網域的網址看到它？能，就沿用；不能（純聊天貼圖、Figma fetch 出來的短效網址、使用者本地檔案），才進下面完整存檔流程。**
+
+若圖片**沒有**既有的 HackMD 網址（Figma MCP 剛截的圖、使用者上傳的本地檔案等），才走以下完整存檔流程：
 
 1. **取得原始圖檔**
    - Figma 來源：呼叫 `get_screenshot`（或 `get_design_context` 取 asset URL）→ 立即 `curl -L -o` 下載到本地（scratchpad 或 `/tmp`），因為 Figma 回傳的網址是短效連結。
@@ -41,7 +47,7 @@ description: >
    ```
    https://raw.githubusercontent.com/sulfurcreek/main/<commit_sha>/.claude/assets/<檔名>.png
    ```
-   HackMD／規格書內一律引用這個網址，不要引用 HackMD 自己的 `_uploads` 暫存網址（除非該圖本來就是別人已經傳到 HackMD 的既有素材）。
+   HackMD／規格書內一律引用這個網址。（若該圖其實已有既有 HackMD 網址，見上方 Step 0——那種情況根本不會走到這一步）
 6. **PATCH 前確認資產已可達**：`curl -sI <raw url>` 確認 200 再寫進文件，避免文件裡出現 404 圖。
 
 ---
