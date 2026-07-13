@@ -70,6 +70,15 @@ seen_titles_for_examples = set()
 recoverable_examples = []                            # 正解卡在推薦6~10名(前5名看不到)的案例
 seen_recoverable = set()
 
+# ---- 多筆命中分析（廠商可能送出多個職類；AI 推薦是否覆蓋多個） ----
+n_selected_dist = Counter()          # 廠商送出幾個職類的分佈(1~5)
+top1_matched_position = Counter()    # AI第1筆命中時，打中的是廠商第幾個選擇(0=主選)
+top1_hit_total = 0                   # AI第1筆就命中的總數
+hits_in_top5_dist = Counter()        # AI前5名覆蓋了廠商幾個選擇(0~5)
+multi_select_jobs = 0                # 廠商送出>=2個職類的職缺數
+multi_select_2plus_covered = 0       # 其中前5名覆蓋到>=2個的數量
+recall_sum = 0.0                     # 前5名覆蓋率(覆蓋數/廠商送出數)累加
+
 n_rows = 0
 n_no_duty0 = 0
 
@@ -121,6 +130,24 @@ for row in parse_rows(DATA_MD):
     level_counter[lvl] += 1
     if cat:
         cat_stats[cat][lvl] += 1
+
+    # ---- 多筆命中分析 ----
+    sel_ordered = list(dict.fromkeys(duties))   # 去重但保留廠商送出順序
+    n_sel = len(sel_ordered)
+    n_selected_dist[n_sel] += 1
+    sel_set = set(sel_ordered)
+    top5_set = set(recs[:5])
+    covered_top5 = len(sel_set & top5_set)      # 前5名覆蓋了廠商幾個選擇
+    hits_in_top5_dist[covered_top5] += 1
+    recall_sum += covered_top5 / n_sel
+    if n_sel >= 2:
+        multi_select_jobs += 1
+        if covered_top5 >= 2:
+            multi_select_2plus_covered += 1
+    # AI第1筆命中時，打中的是廠商第幾個選擇
+    if recs and recs[0] in sel_set:
+        top1_hit_total += 1
+        top1_matched_position[sel_ordered.index(recs[0])] += 1
 
     # 收集「正解卡在推薦6~10名」的案例：命中(rank)但落在前5名之外，
     # 前端只顯示前5筆 → 這格答案使用者實際看不到，是順序優化的回收標的。
@@ -204,11 +231,26 @@ for fname, d in feature_miss.items():
     })
 feature_table.sort(key=lambda r: -(r['lift_vs_baseline'] or -999))
 
+n_classified = sum(level_counter.values())
+multi_hit = {
+    'n_selected_dist': {str(k): n_selected_dist[k] for k in sorted(n_selected_dist)},
+    'avg_selected': round(sum(k * v for k, v in n_selected_dist.items()) / n_classified, 2),
+    'top1_hit_total': top1_hit_total,
+    'top1_matched_position': {str(k): top1_matched_position[k] for k in sorted(top1_matched_position)},
+    'top1_matched_primary_pct': pct(top1_matched_position.get(0, 0), top1_hit_total),  # AI第1筆命中且打中廠商主選的比例
+    'hits_in_top5_dist': {str(k): hits_in_top5_dist[k] for k in sorted(hits_in_top5_dist)},
+    'avg_recall_top5': round(recall_sum / n_classified, 3),  # 前5名平均覆蓋率
+    'multi_select_jobs': multi_select_jobs,
+    'multi_select_2plus_covered': multi_select_2plus_covered,
+    'multi_select_2plus_covered_pct': pct(multi_select_2plus_covered, multi_select_jobs),
+}
+
 out = {
     'n_rows': n_rows,
     'n_no_duty0': n_no_duty0,
     'baseline_miss_rate_pct': baseline_rate,
     'global_levels': dict(level_counter),
+    'multi_hit': multi_hit,
     'unmapped_leaves_top20': unmapped_leaves.most_common(20),
     'category_table': cat_table,
     'feature_table': feature_table,
@@ -219,6 +261,7 @@ json.dump(out, open(OUT_JSON, 'w', encoding='utf-8'), ensure_ascii=False, indent
 
 print('rows:', n_rows, 'no_duty0:', n_no_duty0)
 print('global levels:', dict(level_counter))
+print('multi_hit:', json.dumps(multi_hit, ensure_ascii=False))
 print('baseline miss rate %:', baseline_rate)
 print('unmapped leaf top10:', unmapped_leaves.most_common(10))
 print('saved ->', OUT_JSON)

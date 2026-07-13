@@ -2,21 +2,25 @@
 
 把 `職類推薦精準度` 分析結果轉成可離線開啟的自包含 HTML 報告。
 
+術語：**推薦 = AI 語意推薦類別；實際選擇 = 廠商挑選送出的職類**。
+
 ## 檔案
 
-- `../scripts/analyze_duty_recommendation_accuracy.py` — 上游分析腳本，讀 MD 資料層、輸出 `../scripts/_duty_accuracy_stats.json`
-- `report_data.json` — 從 `_duty_accuracy_stats.json` 篩選出報告要用的聚合數字（TL;DR、Top/Bottom 10 中類、可回收排行、文字特徵表、抽樣案例）
+- `../scripts/analyze_duty_recommendation_accuracy.py` — 上游分析腳本，讀 MD 資料層、輸出 `../scripts/_duty_accuracy_stats.json`（含 `multi_hit` 多筆命中統計）
+- `build_data.py` — 從 `_duty_accuracy_stats.json` 篩出報告要用的聚合數字，輸出 `report_data.json`（TL;DR、多筆命中、指標定義+舉例、Top/Bottom 中類、可回收排行、文字特徵、抽樣案例）
+- `report_data.json` — build_data.py 的產物，餵給模板
 - `report_template.html` — 版面 + 圖表邏輯，內含 `__DATA__` 佔位符
 - `build_report.py` — 把 `report_data.json` 注入 `report_template.html`，輸出 `../analysis_推薦精準度_報告.html`
-- `shot.js` — Playwright 截圖腳本（深/淺色雙模驗證用，非必要不進版控）
+- `shot.js` — Playwright 截圖腳本（深/淺色雙模驗證用）
 
 ## 重跑
 
 ```bash
-# 1. 若上游資料變動，先重跑分析腳本
+# 1. 若上游資料變動，先重跑分析腳本（會重算 multi_hit 等統計）
 python3 ../scripts/analyze_duty_recommendation_accuracy.py
 
-# 2. 重新產生 report_data.json（見腳本內聚合邏輯，或手動更新）
+# 2. 從統計檔篩出報告聚合數字
+python3 build_data.py
 
 # 3. 注入模板出圖
 python3 build_report.py

@@ -11,6 +11,37 @@
     "無關": 17324,
     "top5": 17892
   },
+  "multi_hit": {
+    "n_selected_dist": {
+      "1": 58475,
+      "2": 62204,
+      "3": 54297,
+      "4": 2054,
+      "5": 6683
+    },
+    "avg_selected": 2.11,
+    "top1_hit_total": 58638,
+    "top1_matched_position": {
+      "0": 40893,
+      "1": 13225,
+      "2": 3724,
+      "3": 496,
+      "4": 300
+    },
+    "top1_matched_primary_pct": 69.74,
+    "hits_in_top5_dist": {
+      "0": 70162,
+      "1": 80914,
+      "2": 28869,
+      "3": 3602,
+      "4": 151,
+      "5": 15
+    },
+    "avg_recall_top5": 0.425,
+    "multi_select_jobs": 125238,
+    "multi_select_2plus_covered": 32637,
+    "multi_select_2plus_covered_pct": 26.06
+  },
   "unmapped_leaves_top20": [
     [
       "教育師資",
