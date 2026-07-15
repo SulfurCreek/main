@@ -6,15 +6,31 @@
 > 本章描述求才系統與求職系統之間的訊息收發後端／DB 邏輯，依完整系統流程圖整理。
 > 主動方＝求才廠商；求職者收到通知後回到「求職主網」回覆。
 
+## 版控紀錄
+
+| 版本 | 日期 | 調整說明（異動區段 + 摘要） |
+| :---: | :--- | :--- |
+| v6 | 2026-07-03 | [循序圖] 進頁一併載列表＋指定室明細＋建 SignalR；連線時機＝選定聊天室當下；`update-chatlog` 緊接寫主表；驗證失敗以 `break` 擋住不入庫；面試邀約額外寫面試行事曆；寄信收件人明確化；求職端頁面正名「聯絡公司」 |
+| v7 | 2026-07-03 | [循序圖／推播段] 依 `echat-realtime-push-flow` 真實鏈路重繪（EventBus→`apiSendMessage.ashx`→`onSignal`＋FCM／APNS）；新增 `senderType` 分流 |
+| v8 | 2026-07-03 | [送出／接收] 送出只走 WebAPI（前端不 invoke）；接收僅收 KEY，打 `get-detail` 整包重撈整室渲染 |
+| v9 | 2026-07-03 | [接收事件] 統一 `onSignal`（取代 `onTextMessage`），參數只增不改；同步翻修 SignalR 章節、標記廢止事件 |
+| v10 | 2026-07-06 | [送出 API] 不跨系統共用（求才 `eChatHandler.ashx`／求職自有）；保留 `setoUser`／`updateMsgReaded`／`settUser`；`onSignal` 內含打取對話 API 的參數 |
+| v11 | 2026-07-06 | [接收] `onSignal` 帶 `updateId` 判斷已存在資料；`bNo` 作 cursor 查新資料（唯一取對話 API 仍回整包） |
+| v12 | 2026-07-08 | [接收] 求才端接收流程正式確認：`onSignal`→`get-detail` 取全部、`updateId`＋`bNo` cursor |
+| v13 | 2026-07-08 | [接收] 結案：求職端取對話共用 `get-detail`（送出仍各端獨立）；`bNo` cursor 為伺服器端機制 |
+| v14 | 2026-07-15 | [三支查詢 API／循序圖搜尋段] 依工程端更新的 `get-by-condition` Query 補 `cursor`（＝`infoNo`）＋`limit` 分頁與星號／通知信分類／回覆狀態等篩選；釐清列表 cursor（`infoNo`）與接收 cursor（`bNo`）之別；同步 `notes/api/echat-get-by-condition.md` |
+
 ## 進入頁面／搜尋／進聊天室（三支查詢 API）
 
 聊天室相關資料載入，共用三支「信件即時通整併」API（權威文件見 `notes/api/` 對應檔）：
 
 | 場景 | API | 說明 |
 | :--- | :--- | :--- |
-| 進入聯絡人才頁，載入左側聊天列表 | `GET get-echat-mail-logs`（`notes/api/echat-get-echat-mail-logs.md`） | limit＋cursor 分頁；回傳含 `oLastViewDate`／`tLastViewDate`／`lastUpdate`，可推導列表未讀判斷 |
-| 搜尋關鍵字／切換一般·陌生訊息 Tab | `GET get-by-condition`（`notes/api/echat-get-by-condition.md`） | `sendType` 為陌生訊息判斷依據（0求才發信/1求職者先發信=陌生訊息/-1排除陌生訊息） |
+| 進入聯絡人才頁，載入左側聊天列表 | `GET get-echat-mail-logs`（`notes/api/echat-get-echat-mail-logs.md`） | `cursor`（＝`infoNo`）＋`limit` 分頁；回傳含 `oLastViewDate`／`tLastViewDate`／`lastUpdate`，可推導列表未讀判斷 |
+| 搜尋關鍵字／切換一般·陌生訊息 Tab | `GET get-by-condition`（`notes/api/echat-get-by-condition.md`） | `cursor`（＝`infoNo`）＋`limit` 分頁；篩選條件含已讀狀態、意願回覆、信件類別、面試類別、星號、通知信分類、回覆狀態；`sendType` 為陌生訊息判斷依據（0求才發信/1求職者先發信=陌生訊息/-1排除陌生訊息） |
 | 進入聊天室，載入單筆對話明細 | `GET get-detail/{infoNo}`（`notes/api/echat-get-detail-infoNo.md`） | `infoNo`＝列表回傳的 `rNo`；回傳 `oJsonB`／`tJsonB` 訊息明細 |
+
+> **兩種 cursor 勿混**：列表／搜尋分頁的 cursor＝`infoNo`（指標，見上表 `get-echat-mail-logs`／`get-by-condition`）；聊天室「接收新訊息」的 cursor＝`bNo`（訊息明細流水號，見〈[SignalR 連線機制](#signalr--websocket-即時通連線機制)〉§4）。前者用於翻頁、後者用於抓某對話 `bNo` 之後的新訊息，兩者是不同層級的指標。
 
 ## 共同發送行為（求才系統）
 
@@ -146,47 +162,6 @@ flowchart TD
 ## 完整流程圖（循序圖 Sequence Diagram）
 
 > 與上方 `完整流程圖` 同一套邏輯，改以循序圖呈現，並整合工程端提供的前後端技術流程（原始版見 `notes/api/echat-engineering-sequence-original.md`）＋四支 API 的實際呼叫位置。依時間順序排列，並把「使用者／系統端」與「每個 action」分開。
->
-> 修正記錄（v6，2026-07-03）：
-> - 整併原「進頁載列表」與「選聊天室載明細」：正常情況進「聯絡人才」頁即已指定聊天室，一併載入列表＋該室明細＋建立 SignalR；以 `alt` 分辨有／無指定聊天室兩種情況
-> - SignalR 連線時機＝選定／指定特定聊天室當下才建立（非進系統即連線）
-> - `update-chatlog` 整併同步緊接在「寫入信件主表」之後
-> - 驗證／檢查為前後端內部溝通（不觸碰資料庫），失敗以 `break` 表示擋住、請求根本不會送到資料庫
-> - 發送類別為面試邀約時，求才後端額外寫入一筆資料至面試行事曆資料表
-> - 寄信排程明確指向正確收件人：通知信→求職者 email；副本信→廠商副本收件人 email（可視為求才廠商）
-> - 求職者回覆：一般訊息走廠商帳號「收信區間排程」，意願回覆等其他類別為即時寄信，兩者終點都是求才廠商
-> - 求職端頁面正名為「聯絡公司」，同樣以 `alt` 分辨進頁是否已指定聊天室
->
-> 修正記錄（v7，依 `notes/api/echat-realtime-push-flow.md` 真實推播架構重繪）：
-> - 推播段落改用真實鏈路取代抽象「調用廣播服務」：`EventBus → 推播服務(apiSendMessage.ashx) → 驗簽/查對方線上狀態 → onSignal（在線時）＋FCM/APNS（一律）`
-> - 新增 `senderType` 分流：企業發送查 `GetTalentUserOnline`（`uType=1,Silent=0`）；求職者發送查 `GetOrganUserOnline`（`uType=2,Silent=1`）
->
-> 修正記錄（v8，2026-07-03，依工程端 Slack 討論確認）：
-> - 送出段補註：送出僅走 WebAPI（`eChatHandler.ashx kind=5`），前端不做 SignalR invoke；SignalR 連線只用於「接收」信號
-> - 接收 Note 修正：SignalR 只傳 KEY 值；當前聊天室收到通知後打 API **重撈該對話整包全部訊息**（`get-detail` 整包回傳、含最新一則，非單一新訊息）→ 整室重新渲染
->
-> 修正記錄（v9，2026-07-03，依工程端 Slack 討論二次確認）：
-> - 接收事件名確認：新版統一用 `onSignal`（取代舊版 `onTextMessage`），求職／求才兩端皆同
-> - `onSignal` 參數向後相容：原有參數都保留、只增不改，之後若擴充一律附加在後面（擴充項目確認中）
-> - 同步翻修下方〈SignalR / WebSocket 即時通連線機制〉章節：送出動作 `sendMsgPush` 與接收事件 `onTextMessage` 標記廢止，業務流程改為「送出走 WebAPI、SignalR 只收信號、整包重撈」
->
-> 修正記錄（v10，2026-07-06，依工程端 Ryder 三則答覆確認）：
-> - **送出 API 不跨系統共用**：`eChatHandler.ashx（kind=5）` 為**求才端專用**；求職端送訊息改用**求職自己提供的 API**（非 `eChatHandler.ashx`），登入認證（各自 cookie）與參數各端獨立、不共用。求才／求職送出的 API 名稱與參數不同
-> - **保留的原始 SignalR 事件**：`setoUser`、`updateMsgReaded`（求才端）、`settUser`（求職端）三者**保留、新版仍會使用**；求職端 `setRoomInfo`、`getUserStatus` 未列入保留清單 → 視為不再需要
-> - **`onSignal` 即取對話 API 的參數來源**：目前對話列表只有**1 支「取全部」API**；設計上 `onSignal` 推送的內容**包含可打「取得對話 API」的參數**，前端收到後即用這些 KEY 值去打該 API 重撈整包對話（求才端為 `get-detail`）
->
-> 修正記錄（v11，2026-07-06，依工程端 Ryder 補充答覆）：
-> - **`onSignal` 正常情況會帶 `updateId`**（同 `update-chatlog` 的「異動編號」欄位）：前端可靠此判斷「哪些資料已存在資料庫中、哪些還沒」
-> - **可用 `bNo`（`oJsonB`／`tJsonB` 訊息明細的流水號）當 cursor 指標查新資料，不必每次都打全部** —— 與 v8/v9 記錄的「一律整包重撈」互為補充：**目前唯一的取對話 API 仍是回傳整包**（無獨立的差異／delta 端點），`updateId`＋`bNo` cursor 是前端拿到整包後用來**判斷差異、避免整室重新渲染**的依據，而非另一支局部查詢 API
-> - 🚧 **待確認**：`bNo` cursor 具體如何「查新資料」——是既有取對話 API 未來會新增 cursor 查詢參數（伺服器端只回傳 `bNo` 之後的新資料），還是純前端用本地已存最大 `bNo` 與新回傳整包比對做差異渲染，兩種實作方式待工程端釐清後補充。**沿用先前判斷**：求職端收到 `onSignal` 後打的取對話 API 仍標記為「求職自有 API」（非 `get-detail`）——Ryder 本輪未進一步澄清求才／求職是否共用同一支，待確認
->
-> 修正記錄（v12，2026-07-08，工程端問答再確認）：
-> - **求才端接收流程定案**：針對「接收改成 `onSignal` 後，（求才）是否直接用 `get-detail` 打全部內容 API」的直球提問，工程端正面確認——目前對話列表只有 **1 支取全部的 API**，設計上收到 `onSignal` 時**內容即包含可打取得全部對話 API 的參數**；正常對話情況帶 `updateId` 更新（判斷哪些資料已存在資料庫、哪些還沒），可用 `bNo`（cursor 指標）查新資料、不必每次都打全部。與 v10／v11 記錄一致，本輪為正式確認、循序圖無需變更；同步補記於 E.1 規格書（`cj-xlto2SdOtVskt3TkhdA` §1.3）
->
-> 修正記錄（v13，2026-07-08，工程端確認 v11 兩項待確認結案）：
-> - **求職端取對話 API＝共用 `get-detail`（結案 v11 待確認）**：工程端確認「求職端取對話 API 是否與 `get-detail` 共用」→ **是**。求職端收到 `onSignal` 後打的「取全部」對話 API 即與求才端**共用同一支 `get-detail`**，先前 v10／v11 暫記的「求職自有取對話 API（非 get-detail）」更正作廢。⚠️ 注意：**送出（發送）** API 仍是各端獨立（求才 `eChatHandler.ashx kind=5`／求職自有送出 API，v10 確認）——共用的只有「接收後取對話」這支，送出不共用，兩者勿混。
-> - **`bNo` cursor 機制＝伺服器端（結案 v11 待確認）**：工程端確認「前端會傳 `bNo` 讓 SignalR／後端知道要從哪裡開始更新」→ 屬**伺服器端 cursor 查詢能力**（前端帶上本地已存最大 `bNo`，後端只回傳該 `bNo` 之後的新資料），而非純前端拿整包自行比對。v11 暫記的「兩種實作待釐清」就此定案為前者。
-> - 已同步更新：上方循序圖 求職前端／求才前端 兩處接收 Note、〈SignalR 連線機制〉§4 接收流程；E.1 規格書 §1.3。
 
 ```mermaid
 ---
@@ -264,7 +239,7 @@ sequenceDiagram
     rect rgb(255, 249, 230)
     opt 二、搜尋關鍵字 或 切換篩選 Tab（一般／陌生訊息）
         Emp->>RF: 輸入關鍵字／切換 Tab
-        RF->>RB: GET get-by-condition<br>（keyword、已讀未讀、意願回覆、信件類別、<br>面試類別、發送類型、日期區間…）
+        RF->>RB: GET get-by-condition<br>（keyword、已讀未讀、意願回覆、信件類別、面試類別、<br>發送類型、星號、通知信分類、回覆狀態、日期區間、<br>cursor=infoNo＋limit 分頁…）
         Note over RB: 發送類型判斷陌生訊息：<br>0＝求才發信／1＝求職者先發信（陌生訊息）<br>／-1＝排除陌生訊息
         RB->>DB: 依條件搜尋歷史記訊
         DB-->>RB: 符合條件的對話

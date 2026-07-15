@@ -1,6 +1,6 @@
 # 信件即時通整併-搜尋記訊內容
 
-UPDATE：2026/07/02
+UPDATE：2026/07/15（前端預期 Query 補分頁與篩選參數，見下）
 
 ## 求才環境
 
@@ -52,24 +52,32 @@ Referer : xxxxxxxx
 
 ### 前端預期 Query (網址參數)
 
+> 版本：依 2026/07 工程端更新的截圖補齊 `cursor`／`limit` 分頁與 `MailCategory`／`IsStar`／`mailStatus` 篩選、`oReadStatus`→`readStatus` 更名、`mailType`／`interviewKind` 停用值註記。
+
 | 參數名稱 | 型別 | 必填 | 說明 |
 | --- | --- | --- | --- |
-| keyword | string | 否 | 搜尋關鍵字 |
-| organNo | int | 否 | 廠編 |
-| empNo | int | 否 | 職缺編號 |
-| startDate | DateTime | 否 | 起始日 |
-| endDate | DateTime | 否 | 結束日 |
-| tName | String | 否 | 求職者姓名 |
-| talentNo | int | 否 | 求職者編號 |
-| oReadStatus | int | 否 | 讀取狀態 (1:已讀 0:未讀) |
-| wishStatus | int | 否 | 求職者意願回覆 (0:未回覆 1:有意願 2:婉拒 3:更改時間) |
-| userNos | string | 否 | 廠商使用者編號，用,分開 |
-| mailType | int | 否 | 信件類別 (0其他/一般訊息 1面試邀約 2詢問意願 5遺珠函/感謝函 6到職確認 8面試異動 9即時通訊) |
-| interviewKind | int | 否 | 面試類別 (0:不拘 1:實體 2:遠距 3:刪除) |
-| sendType | int | 否 | 求才端用 (0 求才發信 1 求職者先發信(陌生訊息) -1 排除陌生訊息) |
-| isStar | 否 | | 星號（求職端 是否為過濾訊息） |
+| keyword | string? | 否 | 關鍵字（求職：搜廠編、廠名、職編、職名；求才：搜求職編號、求職姓名、職編、職名） |
+| organNo | int? | 否 | 廠商編號 |
+| empNo | int? | 否 | 職缺編號 |
+| startDate | DateTime? | 否 | 開始日期 |
+| endDate | DateTime? | 否 | 結束日期 |
+| tName | string? | 否 | 求職者名稱 |
+| talentNo | int? | 否 | 求職者編號 |
+| readStatus | int? | 否 | 是否已讀：0-未讀; 1-已讀（舊命名 `oReadStatus`） |
+| wishStatus | string? | 否 | 求職者意願回覆 (0:未回覆 1:有意願 2:婉拒 3:更改時間) |
+| userNos | string? | 否 | 廠商使用者編號（用 , 可多筆） |
+| mailType | string? | 否 | 信件類別 (0其他/一般訊息 1面試邀約 2詢問意願(目前無使用) 3邀請加入(目前無使用) 4審核階段(目前無使用) 5遺珠函/感謝函 6到職確認 7面試確認(目前無使用) 8面試異動 9即時通訊) |
+| interviewKind | int? | 否 | 面試類別 (0不拘、1實體、2遠距(無用)、3刪除) |
+| sendType | int? | 否 | 發送類型（求才端）。0 = 求才發信（含 -1 = 排除陌生訊息）；1 = 求職者先發信（陌生訊息） |
+| cursor | string? | 否 | 指標 `infoNo`（分頁 cursor） |
+| limit | int? | 否 | 查詢頁面 size |
+| MailCategory | int? | 否 | 求職者過濾通知信分類。0 = 全部信件（含 null = 未處理）；1 = 您可能感興趣的工作 |
+| IsStar | bool? | 否 | 星號（true 星號；false 無星號） |
+| mailStatus | bool? | 否 | 回覆狀態（已回覆／未回覆）；信件狀態（1:廠商寄出 0:求職者回覆） |
 
-> **前端備註（本 repo 分析）**：`sendType` 是**陌生訊息判斷**的後端依據（E.1 §1.1.2 陌生訊息 Tab）。此處 `mailType` 為**查詢條件層級**代碼（含 `2:詢問意願`／`9:即時通訊`），與 `get-detail`／`get-by-condition` 回傳 JsonB 內 `type`（原始信件類別，無 `2`）是**兩層不同代碼**，勿混用比對。
+> ⚠️ **截圖裁切待確認**：來源截圖 `mailType` 欄右緣被裁切，`5` 僅見「遞…」；此處沿用先前已確認值 `5遺珠函/感謝函`、`6到職確認`，若工程端新版有異動請覆蓋。`2/3/4/7` 標「(目前無使用)」為截圖新增。
+>
+> **前端備註（本 repo 分析）**：`sendType` 是**陌生訊息判斷**的後端依據（E.1 §1.1.2 陌生訊息 Tab）。此處 `mailType` 為**查詢條件層級**代碼（含 `2:詢問意願`／`9:即時通訊`），與 `get-detail`／`get-by-condition` 回傳 JsonB 內 `type`（原始信件類別，無 `2`）是**兩層不同代碼**，勿混用比對。`cursor`（＝`infoNo`）為列表／搜尋分頁指標，與聊天室接收新訊息用的 `bNo` cursor 是**不同層級**，勿混（見 `notes/uS9` §兩種 cursor 勿混）。
 
 ## Response 回傳訊息
 
