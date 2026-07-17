@@ -1,0 +1,44 @@
+<!--markdownlint-disable MD033-->
+<!--markdownlint-disable MD013-->
+
+> 🧭 [← 職能框架首頁 / Home](../competency-framework.md) ｜ `career/` 個人職涯 wiki 分頁，非 1111 規格文件（規則見 [`career/CLAUDE.md`](../CLAUDE.md)）
+
+# 證據頁：維運工單 × 付費客戶交叉分析 / Evidence — Ticket-to-Paying-Customer Cross-Reference
+
+> **目的**：把 F11「工單幾乎全來自付費廠商」從定性敘述升級為**可驗證的量化證據**。
+> **方法**：以工單標題中的廠商編號，比對全量廠商 VIP 名冊（150,969 家、含 VIP 狀態與起訖日），
+> 判斷每張具名工單「開單當時」該廠商是否付費中。
+> **來源**：需求許願池求才原始檔（2020–2025/12，3,347 案）× 廠商 VIP 名冊匯出檔。原始檔含客戶識別資料，
+> **不進 repo**；本頁僅保留彙總統計。
+
+## 核心發現 / Key findings
+
+| 指標 / Metric | 數值 / Value |
+| :--- | :--- |
+| 具名特定廠商的工單 | 1,432 / 3,347 案（42.8%），其中 95.1% 可對上名冊 |
+| **開單當時付費中**（VIP 有效或彈性使用） | **96.5%**（1,315 / 1,362 案）——「工單幾乎全來自付費廠商」實證成立 |
+| 維運管線觸及的**相異付費廠商帳號** | **1,109 家** |
+| 被服務過的具名廠商**至今仍付費中** | **85.5%**（983 / 1,150）——**全名冊基準僅 44.0%，約 1.9 倍** |
+| 付費廠商工單完成率 | 85.9%（1,129 / 1,315 已完成；另重複提案 74、判定不處理 20） |
+
+## 誠實邊界 / Honest boundaries
+
+- **關聯非因果**：85.5% vs 44.0% 的留存差異是**關聯**——活躍付費客戶本就更常回報問題。對外表述應為
+  「**維運服務高度集中於付費客群（96.5% 開單當時付費中），且被服務客群的續存表現顯著優於全體基準（85.5% vs 44.0%）**」，
+  不宣稱「因為修工單所以續約」。
+- **角色切片**：具名廠商工單多為第一線回報，由 tech support／工程首線處理；本人角色是**二線評估（全池評估 222 案，
+  遠高於次位）與管線治理**（工單→Kanban→上線閉環），非逐張親自經手——與 [F11](F11-problem-solving-ops.md) 的
+  二線升級窗口定位一致。
+- 名冊為**時點快照**：狀態以匯出日為準；「開單當時付費中」由工單日期 ≤ VIP 到期日推算。
+
+## 履歷可用句 / Résumé-ready phrasing
+
+- **繁中**：主導的維運管線觸及 **1,109 家相異付費廠商帳號**；具名工單 **96.5% 來自開單當時付費中的客戶**，
+  被服務客群至今仍付費比例 **85.5%**、約為全體客戶基準（44.0%）的 **1.9 倍**——維運交付直接落在營收客群上。
+- **English**: *Ran an ops pipeline reaching 1,109 distinct paying employer accounts; 96.5% of vendor-named tickets
+  came from accounts actively paying at filing time, and serviced accounts remain paying at 85.5% today — roughly
+  1.9× the 44.0% all-customer baseline — anchoring operational delivery to the revenue base.*
+
+---
+
+**相關分頁 / Related**：[F11 問題解決與維運交付](F11-problem-solving-ops.md) ・ [下一步補強建議](growth-edges.md) ・ [履歷可用摘要](resume-extract.md)

@@ -75,7 +75,7 @@ I originate products from my own user stories and wireframes; I don't transcribe
 | F8 專案管理／路線圖交付 | [F08](wiki/F08-roadmap-delivery.md) | 管路線圖、配資源、追準時（94% on-time）、帶團隊委派 | 成熟的優先級與交付節奏管理，可直接接手 backlog |
 | F9 利害關係人／向上影響 | [F09](wiki/F09-stakeholder-influence.md) | 對齊 C-suite 目標、協調多團隊、用數據做決策 | 跨層級溝通與需求匯流能力，降低協作成本 |
 | F10 業務邏輯梳理 | [F10](wiki/F10-business-logic.md) | 把混亂規則盤成 MECE 決策邏輯、降低反工根因 | 規格上游的需求分析力，複雜規則一手接管 |
-| F11 問題解決與維運交付 | [F11](wiki/F11-problem-solving-ops.md) | 根因定位、~88% 結案；工單幾乎全來自付費廠商→直接連結客戶留存與業績 | 即戰力維運窗口，工單→Kanban→上線閉環、付費客戶留存可直接接手 |
+| F11 問題解決與維運交付 | [F11](wiki/F11-problem-solving-ops.md) | 根因定位、~88% 結案；96.5% 工單來自付費客戶（實證）、觸及 1,109 家付費帳號→直接連結客戶留存與業績 | 即戰力維運窗口，工單→Kanban→上線閉環、付費客戶留存可直接接手 |
 
 ---
 
@@ -87,7 +87,8 @@ I originate products from my own user stories and wireframes; I don't transcribe
 | [作品集：E.1 案例研究](portfolio/e1-cross-system-messaging.md) | 完整敘事（問題→研究→方法→結果）＋ 本人繪製的跨系統循序圖 |
 | [履歷可用摘要](wiki/resume-extract.md) | 11 條 action + scope + impact 雙語 bullet 草稿基底 |
 | [學歷・證照與語言](wiki/education-certifications.md) | 淡江國企 Class of 2013、CSUS 交換、TOEIC 980 Gold、TOEFL 93、GEPT 中高級、AWS CCP |
-| [下一步補強建議](wiki/growth-edges.md) | 誠實缺口盤點：硬性商業數字（續約率／採用率）、A/B 實驗 ownership |
+| [證據頁：工單 × 付費客戶](wiki/evidence-paying-customers.md) | F11 商業價值實證：96.5% 工單開單當時付費中、觸及 1,109 家付費帳號、留存 85.5% vs 基準 44% |
+| [下一步補強建議](wiki/growth-edges.md) | 誠實缺口盤點：真因果續約率、客訴下降、AI 採用率、A/B 實驗 ownership |
 
 ---
 

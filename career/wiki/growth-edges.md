@@ -15,12 +15,14 @@
   *Show end-to-end experiment ownership (hypothesis → test → decision), building on the existing tracking/A-B work.*
 
 > ✅ 原列為缺口的 **優先級與路線圖** 及 **跨團隊／向上影響**，已由 **F8／F9**（求才產品 Roadmap 證據）補齊；
-> **量化的維運交付結果**（1,279 工單／~88% 結案）由 **F11**（週報證據）補上，且因工單幾乎全來自**付費廠商**，已**定性連結到付費客戶留存與業績**。
-> 仍待補的是**硬性商業數字**：受影響付費帳號數、續約率、客訴下降、AI 功能採用率——拿到後即可把 F11 從「處理量」升級為「營收成效」。
-> *The former gaps "prioritization & roadmap" and "stakeholder & upward influence" are now covered by F8/F9
-> (roadmap evidence), and quantified operational delivery (1,279 tickets / ~88% close rate) is partly covered by F11
-> (weekly-report evidence); the remaining edge is tying this to business/user metrics (conversion, retention,
-> revenue, AI-feature adoption).*
+> **量化的維運交付結果**（1,279 工單／~88% 結案）由 **F11**（週報證據）補上。
+> ✅ **受影響付費帳號數已實證**（見[證據頁](evidence-paying-customers.md)）：具名工單 **96.5% 開單當時付費中**、
+> 觸及 **1,109 家相異付費帳號**、被服務客群至今仍付費 **85.5%（基準 44%，約 1.9 倍）**——F11 已從「處理量」升級為「營收客群覆蓋」。
+> 仍待補的**硬性商業數字**：真因果的**續約率**（需對照組）、客訴下降、**AI 功能採用率**——拿到後即可把關聯升級為成效。
+> *Prioritization/roadmap and stakeholder gaps are covered by F8/F9; quantified ops delivery by F11. The
+> paying-account reach is now evidenced (96.5% paying at filing, 1,109 distinct paying accounts, 85.5% still paying
+> vs a 44% baseline — association, not causation). Remaining edges: causal renewal rate (needs a control group),
+> complaint reduction, and AI-feature adoption.*
 
 ---
 
