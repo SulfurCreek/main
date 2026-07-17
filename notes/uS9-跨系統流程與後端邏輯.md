@@ -19,6 +19,7 @@
 | v12 | 2026-07-08 | [接收] 求才端接收流程正式確認：`onSignal`→`get-detail` 取全部、`updateId`＋`bNo` cursor |
 | v13 | 2026-07-08 | [接收] 結案：求職端取對話共用 `get-detail`（送出仍各端獨立）；`bNo` cursor 為伺服器端機制 |
 | v14 | 2026-07-15 | [三支查詢 API／循序圖搜尋段] 依工程端更新的 `get-by-condition` Query 補 `cursor`（＝`infoNo`）＋`limit` 分頁與星號／通知信分類／回覆狀態等篩選；釐清列表 cursor（`infoNo`）與接收 cursor（`bNo`）之別；同步 `notes/api/echat-get-by-condition.md` |
+| v15 | 2026-07-15 | [常用動作對照表] 修正 `setoUser`／`updateMsgReaded`／`settUser` 三列的觸發時機與參數（`setoUser`／`settUser` 改為無需額外參數；`updateMsgReaded` 參數改為 `oNo`／`uNo`／`eNo`／`tNo`） |
 
 ## 進入頁面／搜尋／進聊天室（三支查詢 API）
 
@@ -417,9 +418,9 @@ sequenceDiagram
 
 | 方向 | 動作名稱 | 端 | 新版狀態 | 說明 |
 | :--- | :--- | :--- | :--- | :--- |
-| 前端發送 | `setoUser` | 求才 | ✅ **保留**（新版仍使用） | 上線報到（公司名稱, 使用者名稱） |
-| 前端發送 | `updateMsgReaded` | 求才 | ✅ **保留**（新版仍使用） | 標記訊息已讀（已讀對象的 ID 陣列） |
-| 前端發送 | `settUser` | 求職 | ✅ **保留**（新版仍使用） | 求職端上線報到 |
+| 前端發送 | `setoUser` | 求才 | ✅ **保留**（新版仍使用） | 上線報到；觸發時機＝`signalR.on` 註冊後馬上觸發；不需帶額外參數 |
+| 前端發送 | `updateMsgReaded` | 求才 | ✅ **保留**（新版仍使用） | 標記訊息已讀；觸發時機＝使用者點擊通訊列表、進入對應的對話細節；需帶 `oNo`、`uNo`、`eNo`、`tNo` |
+| 前端發送 | `settUser` | 求職 | ✅ **保留**（新版仍使用） | 求職端上線報到；觸發時機＝`signalR.on` 註冊後馬上觸發；不需帶額外參數 |
 | 前端發送 | `setRoomInfo` | 求職 | ❌ **廢止**（未列入保留清單，不再需要） | 舊版設定聊天室資訊 |
 | 前端發送 | `getUserStatus` | 求職 | ❌ **廢止**（未列入保留清單，不再需要） | 舊版查詢對方線上狀態；新版線上狀態由後端 `apiSendMessage.ashx` 於推播前查（`GetTalentUserOnline`／`GetOrganUserOnline`） |
 | 前端發送 | `sendMsgPush` | 求才／求職 | ❌ **廢止** | 舊版送出文字訊息的 SignalR invoke；新版送出改走 WebAPI（求才 `eChatHandler.ashx kind=5`／求職自有送出 API），前端不再 invoke |
