@@ -17,3 +17,11 @@ Figma MCP 伺服器連線時，會自帶它自己的 skill 指示（`figma-use`�
 - **所有 HTML 標註區塊最外層一律加白色背景**（`background:#fff`）：避免 HackMD 深色模式下截圖文字/淺色 UI 看不清楚。
 
 若之後這套 photo skill 的規則需要調整，直接修改 `.claude/skills/photo/SKILL.md`，本檔僅維持指標、不重複內容。
+
+## 舊版 Pillow 燒像素做法 → 改用 `png` skill（棄用中，僅特殊情境備用）
+
+CLAUDE.md 原本收錄的「規格書 UI 截圖標號慣例」＋「以 Pillow 在截圖上標注／覆蓋文字」整套舊做法（直接把編號徽章／覆蓋文字燒進截圖像素），已搬遷並改用獨立 skill 管理：
+
+👉 `.claude/skills/png/SKILL.md`（skill 名稱 `png`）
+
+**預設一律用 `photo` skill**（HTML 覆蓋，不燒像素）；只有 `photo` 做不到的情況——最主要是**需要覆蓋改寫截圖裡既有的文字內容**（HTML 疊圖只能疊加、換不掉圖片本身的文字），或維護既有「截圖標號＝章節編號」舊格式規格書時——才用 `png` skill。

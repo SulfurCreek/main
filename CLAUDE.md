@@ -35,6 +35,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 | :--- | :--- |
 | 2026-06-16 | 新增本「CLAUDE.md 維護原則」區塊與本表格；新增「狀態邏輯寫進表格欄位、不另開小表格／合成截圖」之 Pillow 截圖慣例補充 |
 | 2026-06-24 | 修訂 badge 截圖慣例：badge 改打在「上緣擴增的純白留白處、不壓畫面」（取代原「直接疊在元素上 x=4」），白邊高度剛好容納 badge；badge 文字可帶「類型·視角」 |
+| 2026-07-14 | 移除本檔「規格書 UI 截圖標號慣例」＋「以 Pillow 在截圖上標注／覆蓋文字」整段舊做法，搬遷為獨立 `.claude/skills/png/SKILL.md`（棄用中，僅供 photo skill 做不到的情境備用，如覆蓋改寫截圖文字）；`wiki/figma_rules.md` 與 `spec-doc-1111` skill 同步更新指標 |
 | 2026-07-02 | 新增「Mermaid 循序圖格式慣例」區塊：所有 sequenceDiagram 一律套用 `mermaid-sequence-diagram` skill（frontmatter 配置注入冷灰／莫蘭迪色系、rightAngles、box 分組、Note 標邊界條件） |
 
 ---
@@ -472,59 +473,6 @@ curl "https://api.hackmd.io/v1/teams/1111-jobdocs/folders" \
 - **Folder hierarchy lives in the Folder API, not the notes endpoints.** To reconstruct a folder tree, read `parentFolderId` from `GET /folders` or `GET /teams/:teamPath/folders` — the notes list does not expose nesting.
 - **`folder-order` is personal and `PUT` replaces it wholesale** — fetch current order first, merge, then put back.
 - When in doubt, the **live Swagger docs at `https://api.hackmd.io/v1/docs`** are canonical.
-
----
-
-# 規格書 UI 截圖標號慣例（求才系統）
-
-來源：分析求才系統格式最完整的規格書 **[4.1 信件訊息對話規格文件](https://hackmd.io/@1111-jobdocs/r1ghrPxP-x)**（次選 [2.0 職缺內頁＞職缺內容](https://hackmd.io/@1111-jobdocs/BJ7Yob8W-g)）。新規格書（含 `E.1 聯繫人才`）的截圖標號與章節編號**一律依此慣例**。
-
-## 核心原則：截圖標號 == 章節編號（1:1 對應）
-
-截圖上標示的每個編號，**必對應一個同號的 Markdown heading**；反之每個編號 heading 應能在截圖上找到對應標號。標號是「畫面區塊 ↔ 規格章節」的唯一橋樑，RD/QA 靠它對照畫面與文字。
-
-## 編號階層與章節對應
-
-| 編號 | 標的 | Markdown | 截圖呈現 |
-| :--- | :--- | :--- | :--- |
-| `N`（整數） | 一個主要 UI 區塊（畫面分區） | `## N {區塊名}`（如 `## 2 對話區塊`） | 區塊**總覽截圖**緊接在 `## N` heading 下方；該截圖左上緣放一個**大號**標號 `N` |
-| `N.M` | 區塊內的元件／子區域 | `### N.M {元件名}`（如 `### 2.4 廠商訊息`） | 在同一張區塊總覽截圖上，於該元件左上角放**小號**標號 `N.M` |
-| `N.M.K` | 元件內的細項 | `#### N.M.K {細項名}`（如 `#### 2.4.1 信件類型`） | 視需要在更細的截圖或同張圖上標 `N.M.K` |
-
-* 每個 `## N` 區塊**自帶一張總覽截圖**（區塊內所有 `N.M` 標號集中標在這張圖上），緊接在 heading 之後。
-* 編號**連續**且**對應畫面標號**；`初始化` 不編號、固定放最前（見 spec-doc-1111 skill）。
-* 特殊變體用小寫字母後綴（如 `#### 2.2a 勾選兼職`、`2.2b`），對應同一元件的不同情境。
-
-## 標號徽章樣式（畫在截圖上）
-
-* **顏色**：紅／珊瑚紅底 `#FF5F57`、**白色粗體**數字。
-* **字型**：`Inter`、`font-weight:700`、`font-size:20px`、`line-height:24px`、置中、白色 `#FFFFFF`。
-* **形狀／尺寸**：圓角矩形 `border-radius:10px`、`padding:4px 10px`（單字元徽章約 `34×33px`）；整數區塊號 `N` 用較大、近正圓的徽章，子號 `N.M` 用較小的圓角矩形。
-* **位置**：
-  * 區塊號 `N`：放在該區塊總覽截圖的**左上緣／左外側**。
-  * 子號 `N.M`：放在所對應元件的**左上角**，緊貼元件。
-* **閱讀順序**：由上而下、由左至右，編號隨之遞增。
-
-## 套用步驟（從 Figma 畫面產生標號截圖）
-
-1. 從 Figma 對應 node 抓取目標區塊的乾淨截圖（design token / 畫面切圖）。
-2. 依「由上而下、由左至右」決定區塊與元件的編號。
-3. 在截圖上以上述徽章樣式（紅底白字圓角）標上 `N` / `N.M`。
-4. 規格文件以**編號為單位**建立／更新對應的 `## N` / `### N.M` 章節，使截圖標號與 heading 完全同步。
-5. 圖片寬度沿用既有慣例（手機版 `375px`、區塊總覽 `500`～`800px`）。
-
-## 以 Pillow 在截圖上標注／覆蓋文字
-
-設計稿與規格有落差時，可在 Figma 截圖上疊加標號、覆蓋改字、標注落差（不要求設計稿與規格一致，目的是示意）。完整步驟見 `spec-doc-1111` skill「截圖標注／覆蓋」一節，重點：
-
-* **抓圖**：`mcp__Figma__get_screenshot`（`nodeId`＋`fileKey`，回傳短效 URL→`curl` 下載）；定位座標再用 `get_design_context`。
-* **改字**：先畫白底矩形蓋舊內容，再 `ImageDraw.text` 重寫；中文字型用 `/usr/share/fonts/truetype/wqy/wqy-zenhei.ttc`（無 Noto TC 時後備）。
-* **標號徽章**：紅底白字圓角，底色 `#FF5F57`、`border-radius:10px`、`padding:4px 10px`、字型 `Inter` 700 / `20px` / `line-height:24px`，`N` / `N.M` 依慣例放置。
-* **落差標注**：黃框（`(255,200,0)`）圈出差異處，旁注「規格：XX／現況：OO」。
-* **入庫**：HackMD `upload` 端點不可用→圖 commit 到 `.claude/assets/`、push 後用 `raw.githubusercontent.com/sulfurcreek/main/{commit}/.claude/assets/{file}.png` 引用。
-* **限制**：只能蓋白重寫，無法智慧抹除；要乾淨換字改用 Figma MCP 編輯設計稿文字節點再重截。
-* **裁切精準＋badge 打在留白處不壓畫面**：截圖裁切至 UI 元件本身邊界，不含周圍聊天背景／空白；但 badge **不可壓在畫面元素上**——改用 `Image.new` 在元件上緣（或左緣）擴增一條純白邊（高度**剛好容納 badge**，約 33px＋上下各約 4px，不留多餘空白），原圖貼在白邊下方，badge 畫在這塊新留白內（`x=4`）。badge 文字可用「類型·視角」（如 `詢問意願·廠商發出`）讓截圖自我標示訊息類型。
-* **狀態邏輯收斂進表格欄位，不另開小表格／合成截圖**：同一元件在不同條件下的呈現差異（如按鈕 disabled 規則），優先用 `<ul><li>` 巢狀條列寫進對應表格欄位本身，不另立獨立子表格或段落重述；截圖維持單張完整 UI 元件原始畫面，不用多張局部裁切堆疊拼接成合成圖。
 
 ---
 
