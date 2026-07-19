@@ -17,10 +17,23 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 | 需要用專案縮寫/術語溝通、看不懂某個欄位名稱在講什麼 | `wiki/glossary.md` |
 | 產出/修改 Mermaid 圖表（流程圖、循序圖等） | `wiki/mermaid_styling_rules.md` |
 | 需判斷該用本 repo 自製 skill 還是執行環境內建的官方 Anthropic skill（docx/pdf/internal-comms/doc-coauthoring 等） | `wiki/platform_skills_reference.md` |
+| 產出/改寫「前端修改工程單」（視覺調整需求文件本體，給切版師/QA 驗收） | `wiki/frontend_change_ticket_rules.md` |
 
 規格書撰寫的格式細則（章節編號、MECE 狀態表、🚧 待補區塊模板等）由 `.claude/skills/spec-doc-1111/SKILL.md` 管理，用 `Skill` 工具載入，不在 wiki 裡重複。
 
 涉及**數據分析／競品拆解／商業提案、跨部門溝通文案（公告/客服回覆/敏感溝通）、資料 Mapping Table 與資料庫正規化原則、OTP/MFA 類邊界條件檢查**時，用 `Skill` 工具載入 `.claude/skills/pm-toolkit/SKILL.md`（與 spec-doc-1111、mermaid_styling_rules.md 不重疊，僅收錄它們沒覆蓋的部分）。
+
+涉及**前端切版／視覺改版（拿到被調整過的頁面 mock HTML/CSS、逐一盤點樣式更動、依 Figma 設計稿微調樣式、把改動整理成給人類前端工程師的需求文件、比對 mock 與正式環境 HTML 結構差異、產自包含預覽）**時，用 `Skill` 工具載入 `.claude/skills/frontend-slicing-1111/SKILL.md`（封裝「只改 CSS 不動結構、mock↔正式偏離稽核、自包含預覽、微軟正黑體字體規則」這套流程；需求文件**內文**的寫法改用 `frontend-change-ticket-1111`，HackMD 排版格式仍搭 spec-doc-1111）。「信件訊息」頁（`ResumePoolNoticeMail`）的實際交接包見 `handoff/INDEX.md`。
+
+---
+
+## 規格書 UI 截圖標號慣例
+
+規格書／需求文件的畫面截圖，要在圖上標「區塊編號」badge，編號與文件章節一致，方便 RD/QA 對照畫面。**一律以 Pillow 在截圖上程式化標注／覆蓋文字**，不要手動修圖：
+
+- **badge 樣式（固定）**：紅底 `#FF5F57`、白字 `Inter`／`700`／`20px`、圓角；打在截圖**上緣加出的白色留白**上，**不壓到畫面內容**。
+- **流程**：取圖（Figma `get_screenshot` 或現成截圖）→（URL 來源用 `curl` 下載）→ Pillow 加白邊＋打 badge → 裁切 → commit 到 `.claude/assets/` → 文件用 `https://raw.githubusercontent.com/<owner>/<repo>/<SHA>/.claude/assets/<file>`（URL 帶 commit SHA）引用，`<img>` 加 `alt`。
+- 完整步驟與 Pillow 範例碼見 `.claude/skills/spec-doc-1111/SKILL.md` 的「截圖標注／覆蓋」一節。
 
 ---
 
