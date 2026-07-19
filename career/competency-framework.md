@@ -87,7 +87,7 @@ I originate products from my own user stories and wireframes; I don't transcribe
 | [作品集：E.1 案例研究](portfolio/e1-cross-system-messaging.md) | 完整敘事（問題→研究→方法→結果）＋ 本人繪製的跨系統循序圖 |
 | [履歷可用摘要](wiki/resume-extract.md) | 11 條 action + scope + impact 雙語 bullet 草稿基底 |
 | [學歷・證照與語言](wiki/education-certifications.md) | 淡江國企 Class of 2013、CSUS 交換、TOEIC 980 Gold、TOEFL 93、GEPT 中高級、AWS CCP |
-| [證據頁：工單 × 付費客戶](wiki/evidence-paying-customers.md) | F11 商業價值實證：96.5% 工單開單當時付費中、觸及 1,109 家付費帳號、留存 85.5% vs 基準 44% |
+| [證據頁：工單 × 付費客戶](wiki/evidence-paying-customers.md) | F11 商業價值實證：96.5% 工單開單當時付費中、觸及 1,109 家付費帳號（牌價年值 NT$3–5 千萬量級）、留存 85.5% vs 基準 44% |
 | [下一步補強建議](wiki/growth-edges.md) | 誠實缺口盤點：真因果續約率、客訴下降、AI 採用率、A/B 實驗 ownership |
 
 ---

@@ -21,6 +21,28 @@
 | 被服務過的具名廠商**至今仍付費中** | **85.5%**（983 / 1,150）——**全名冊基準僅 44.0%，約 1.9 倍** |
 | 付費廠商工單完成率 | 85.9%（1,129 / 1,315 已完成；另重複提案 74、判定不處理 20） |
 
+## 價格對照與營收量級 / Pricing benchmark & revenue scale
+
+> 依 1111 **公開刊登方案牌價**（`recruit.1111.com.tw/dPrice.aspx`，含稅；除特殊議價帳號外多數依此計價）換算維運管線觸及客群的**年約當刊登價值**。
+
+| 約期 / Term | 價格（含稅）| 刊登天數 | 每日單價 |
+| :--- | ---: | ---: | ---: |
+| 全年繳 | NT$26,250 | 365 天 | 71 元/天 |
+| 半年繳 | NT$15,750 | 180 天 | 87 元/天 |
+| 季繳 | NT$8,400 | 90 天 | 93 元/天 |
+| 雙月繳 | NT$6,600 | 60 天 | 110 元/天 |
+| 月繳 | NT$4,200 | 30 天 | 140 元/天 |
+
+**換算（牌價、全年連續刊登假設）**：
+
+- 維運管線觸及的 **1,109 家付費帳號**：年約當刊登價值 **保守下限 ≈ NT$2,911 萬**（全數以最低單價的全年繳計）；
+  若以月繳單價計則上看 **≈ NT$5,589 萬**——量級落在 **NT$3–5 千萬／年**。
+- 其中**至今仍付費的 983 家**：以全年繳牌價計 **≈ NT$2,580 萬／年**的存續刊登價值。
+- **估算為保守值**：僅計基本刊登方案牌價，**未含**加強曝光、人才試搜、獵頭等加值服務（實際客戶錢包更大）；
+  另牌價未反映大客戶議價與優惠（雙向誤差，故以「量級」表述）。
+
+**一句話**：這條維運管線服務的不是抽象的「客戶」，而是**每年數千萬元牌價量級的付費刊登客群**——維運品質直接壓在這筆營收的續存上。
+
 ## 誠實邊界 / Honest boundaries
 
 - **關聯非因果**：85.5% vs 44.0% 的留存差異是**關聯**——活躍付費客戶本就更常回報問題。對外表述應為
@@ -33,11 +55,13 @@
 
 ## 履歷可用句 / Résumé-ready phrasing
 
-- **繁中**：主導的維運管線觸及 **1,109 家相異付費廠商帳號**；具名工單 **96.5% 來自開單當時付費中的客戶**，
-  被服務客群至今仍付費比例 **85.5%**、約為全體客戶基準（44.0%）的 **1.9 倍**——維運交付直接落在營收客群上。
-- **English**: *Ran an ops pipeline reaching 1,109 distinct paying employer accounts; 96.5% of vendor-named tickets
-  came from accounts actively paying at filing time, and serviced accounts remain paying at 85.5% today — roughly
-  1.9× the 44.0% all-customer baseline — anchoring operational delivery to the revenue base.*
+- **繁中**：主導的維運管線觸及 **1,109 家相異付費廠商帳號**（以公開牌價估算，年約當刊登價值 **NT$3–5 千萬量級**）；
+  具名工單 **96.5% 來自開單當時付費中的客戶**，被服務客群至今仍付費比例 **85.5%**、約為全體客戶基準（44.0%）的
+  **1.9 倍**——維運交付直接落在營收客群上。
+- **English**: *Ran an ops pipeline reaching 1,109 distinct paying employer accounts — an annualized posting value
+  on the order of NT$30–56M (US$1M+) at list price; 96.5% of vendor-named tickets came from accounts actively
+  paying at filing time, and serviced accounts remain paying at 85.5% today — roughly 1.9× the 44.0% all-customer
+  baseline — anchoring operational delivery to the revenue base.*
 
 ---
 

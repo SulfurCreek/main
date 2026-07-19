@@ -46,13 +46,14 @@
   *Acted as single intake point across 16 stakeholder units (from C-suite/board down to frontline CS), balancing
   top-down mandates with bottom-up needs and deciding by data (votes) rather than hierarchy; briefed a ~200-person
   business team on progress weekly.*
-- 作為求才系統維運單一窗口，年度累計處理 **1,279 張工單**（維運／企劃建議／工程 bug），**結案率約 88%**（1,131 張）；經與客戶名冊交叉實證，具名工單 **96.5% 來自開單當時付費中的廠商**、管線觸及 **1,109 家相異付費帳號**，被服務客群至今仍付費比例 **85.5%（約為全體基準 44% 的 1.9 倍）**——以**工單 → Kanban → 上線**閉環與**根因定位**（配對信異常、AI 推薦名單過舊、代碼體系競品重整）維護付費客戶體驗、**支撐業務業績與續約**。
+- 作為求才系統維運單一窗口，年度累計處理 **1,279 張工單**（維運／企劃建議／工程 bug），**結案率約 88%**（1,131 張）；經與客戶名冊交叉實證，具名工單 **96.5% 來自開單當時付費中的廠商**、管線觸及 **1,109 家相異付費帳號**（公開牌價估算年約當刊登價值 **NT$3–5 千萬量級**），被服務客群至今仍付費比例 **85.5%（約為全體基準 44% 的 1.9 倍）**——以**工單 → Kanban → 上線**閉環與**根因定位**（配對信異常、AI 推薦名單過舊、代碼體系競品重整）維護付費客戶體驗、**支撐業務業績與續約**。
   *Ran point on recruit-system operations, resolving 1,279 tickets YTD at ~88% close rate (1,131); verified against
   the customer roster, 96.5% of vendor-named tickets came from accounts paying at filing time, the pipeline reached
-  1,109 distinct paying employer accounts, and serviced accounts remain paying at 85.5% today (~1.9× the 44%
-  all-customer baseline) — via a ticket → Kanban → launch loop and root-cause fixes (matching-email anomaly, stale
-  AI recommendations, competitor-benchmarked code-table overhaul), protecting paying-customer experience and the
-  sales team's revenue retention.*
+  1,109 distinct paying employer accounts — an annualized posting value on the order of NT$30–56M (US$1M+) at list
+  price — and serviced accounts remain paying at 85.5% today (~1.9× the 44% all-customer baseline) — via a
+  ticket → Kanban → launch loop and root-cause fixes (matching-email anomaly, stale AI recommendations,
+  competitor-benchmarked code-table overhaul), protecting paying-customer experience and the sales team's revenue
+  retention.*
 
 ---
 
