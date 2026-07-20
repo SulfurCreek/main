@@ -54,6 +54,10 @@
   ticket → Kanban → launch loop and root-cause fixes (matching-email anomaly, stale AI recommendations,
   competitor-benchmarked code-table overhaul), protecting paying-customer experience and the sales team's revenue
   retention.*
+- 導入維運工單的**量化週期追蹤**，攤開並一次性清理多年累積的陳年積壓，轉入穩態營運後，2026 上半年處理週期**季度改善約 69%**（平均處理天數 100.4 天→30.9 天，已排除當日即時解決案件與難度變化的干擾）。
+  *Introduced quantified cycle-time tracking for ops tickets, surfacing and clearing years of inherited backlog in a
+  one-time sweep; once stabilized, resolution time improved ~69% quarter-over-quarter in H1 2026 (mean 100.4→30.9
+  days), net of same-day trivial closures and caseload-difficulty shifts.*
 
 ---
 
