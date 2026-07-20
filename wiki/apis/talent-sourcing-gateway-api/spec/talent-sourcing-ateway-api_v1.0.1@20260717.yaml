@@ -1,0 +1,420 @@
+openapi: 3.0.3
+info:
+  title: Talent Sourcing Gateway API
+  version: 1.0.1
+  description: |
+    將純文字、104 職缺網址、1111 職缺網址，或「職缺網址＋補充文字」
+    轉成 TalentRecommendation 查詢，回傳精簡的人才推薦結果。
+
+servers:
+  - url: https://{apiId}.execute-api.ap-northeast-1.amazonaws.com/dev
+    description: AWS API Gateway dev stage
+    variables:
+      apiId:
+        default: example
+        description: 部署後由 CloudFormation output 取得的 API ID
+
+paths:
+  /v1/recommend:
+    post:
+      operationId: recommendTalents
+      summary: 依職缺需求推薦人才
+      description: |
+        `query` 支援三種輸入模式：
+
+        1. 純文字：直接以文字內容查詢。
+        2. 單一 104／1111 職缺網址：取得來源 JD 後查詢。
+        3. 單一職缺網址加補充文字：將補充需求與來源 JD 一起查詢。
+
+        一次只能包含一個網址。若人才推薦為零筆，服務會回傳空陣列，
+        並在 `metadata.suggestion` 提供下一輪查詢建議；不會自動改寫後重查。
+      security:
+        - ApiKeyAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RecommendRequest'
+            examples:
+              text:
+                summary: 純文字
+                value:
+                  query: 熟悉 Python、AWS 與 REST API 的後端工程師
+                  client_id: crm-service
+              url:
+                summary: 104 職缺網址
+                value:
+                  query: https://www.104.com.tw/job/8siqc
+                  client_id: crm-service
+              urlWithText:
+                summary: 職缺網址與補充文字
+                value:
+                  query: https://www.1111.com.tw/job/123456 希望候選人具備帶領團隊經驗
+                  client_id: crm-service
+      responses:
+        '200':
+          description: 推薦完成；零結果同樣回傳 200 與空陣列
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RecommendResponse'
+              examples:
+                success:
+                  summary: 有推薦結果
+                  value:
+                    recommendations:
+                      - talentNo: '67890'
+                        resumeGuid: 550e8400-e29b-41d4-a716-446655440000
+                        final_score: 0.8732
+                        rank: 1
+                    metadata:
+                      request_id: 18da32d6-6450-4ef3-91d0-81e7780b15ba
+                      client_id: crm-service
+                      input_mode: url_text
+                      source:
+                        type: '104'
+                        url: https://www.104.com.tw/job/8siqc
+                        job_id: 8siqc
+                      query_used: |-
+                        【使用者補充需求】
+                        希望候選人熟悉 Python 與 AWS
+
+                        【來源職缺需求】
+                        【職缺名稱】資深後端工程師
+                        【工作內容】負責後端服務與雲端系統開發
+                      query_truncated: false
+                      result_count: 1
+                      suggestion:
+                        status: not_needed
+                        suggested_query: null
+                        reason: null
+                        missing_information: []
+                noResult:
+                  summary: 零結果與下一輪建議
+                  value:
+                    recommendations: []
+                    metadata:
+                      request_id: 18da32d6-6450-4ef3-91d0-81e7780b15ba
+                      client_id: crm-service
+                      input_mode: text
+                      source:
+                        type: direct
+                        url: null
+                        job_id: null
+                      query_used: 台北 Python 後端工程師
+                      query_truncated: false
+                      result_count: 0
+                      suggestion:
+                        status: generated
+                        suggested_query: 熟悉 Python、REST API 與 AWS 的後端工程師
+                        reason: 原查詢條件較少，可補上必要技能
+                        missing_information:
+                          - 必要技能與加分技能的區分
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '502':
+          $ref: '#/components/responses/BadGateway'
+        '504':
+          $ref: '#/components/responses/GatewayTimeout'
+
+  /health:
+    get:
+      operationId: healthCheck
+      summary: 服務存活檢查
+      description: |
+        只確認 Lambda handler 能正常回應，不檢查或揭露下游服務與 Secret 狀態。
+      security: []
+      responses:
+        '200':
+          description: 服務存活
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HealthResponse'
+              example:
+                status: ok
+
+components:
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: x-api-key
+
+  schemas:
+    RecommendRequest:
+      type: object
+      additionalProperties: false
+      required:
+        - query
+        - client_id
+      properties:
+        query:
+          type: string
+          minLength: 1
+          maxLength: 20000
+          description: 純文字、單一 104／1111 職缺網址，或網址加補充文字。
+          example: https://www.104.com.tw/job/8siqc 希望候選人熟悉 Python 與 AWS
+        client_id:
+          type: string
+          minLength: 1
+          maxLength: 64
+          pattern: '^[A-Za-z0-9._-]+$'
+          description: |
+            呼叫端識別碼，用於 audit、請求追蹤及預留 rate-limit 介面；
+            不作為認證資訊，v1 不實作 per-client rate limit。
+          example: crm-service
+
+    RecommendResponse:
+      type: object
+      additionalProperties: false
+      required:
+        - recommendations
+        - metadata
+      properties:
+        recommendations:
+          type: array
+          description: 依 `rank` 升冪排列的推薦結果；沒有候選人時為空陣列。
+          items:
+            $ref: '#/components/schemas/RecommendationItem'
+        metadata:
+          $ref: '#/components/schemas/RecommendMetadata'
+
+    RecommendationItem:
+      type: object
+      additionalProperties: false
+      required:
+        - talentNo
+        - resumeGuid
+        - final_score
+        - rank
+      properties:
+        talentNo:
+          type: string
+          minLength: 1
+          description: 人才編號。
+          example: '67890'
+        resumeGuid:
+          type: string
+          minLength: 1
+          description: 履歷唯一識別碼。
+          example: 550e8400-e29b-41d4-a716-446655440000
+        final_score:
+          type: number
+          format: double
+          description: TalentRecommendation 回傳的最終分數。
+          example: 0.8732
+        rank:
+          type: integer
+          format: int32
+          minimum: 1
+          description: 推薦排序名次，數字越小越優先。
+          example: 1
+
+    RecommendMetadata:
+      type: object
+      additionalProperties: false
+      required:
+        - request_id
+        - client_id
+        - input_mode
+        - source
+        - query_used
+        - query_truncated
+        - result_count
+        - suggestion
+      properties:
+        request_id:
+          type: string
+          minLength: 1
+          description: API Gateway request ID；若本地執行則由應用程式產生。
+        client_id:
+          type: string
+          description: 原請求的呼叫端識別碼。
+        input_mode:
+          type: string
+          enum:
+            - text
+            - url
+            - url_text
+          description: 本次辨識出的輸入模式。
+        source:
+          $ref: '#/components/schemas/SourceMetadata'
+        query_used:
+          type: string
+          description: 實際送至 TalentRecommendation 的完整查詢文字。
+        query_truncated:
+          type: boolean
+          description: query_used 是否因長度上限而被截斷。
+        result_count:
+          type: integer
+          minimum: 0
+          description: recommendations 的筆數。
+        suggestion:
+          $ref: '#/components/schemas/QuerySuggestion'
+
+    SourceMetadata:
+      type: object
+      additionalProperties: false
+      required:
+        - type
+        - url
+        - job_id
+      properties:
+        type:
+          type: string
+          enum:
+            - direct
+            - '104'
+            - '1111'
+        url:
+          type: string
+          format: uri
+          nullable: true
+          description: 來源職缺網址；純文字模式為 null。
+        job_id:
+          type: string
+          nullable: true
+          description: 104 job ID 或 1111 employee number；純文字模式為 null。
+
+    QuerySuggestion:
+      type: object
+      additionalProperties: false
+      required:
+        - status
+        - suggested_query
+        - reason
+        - missing_information
+      properties:
+        status:
+          type: string
+          enum:
+            - not_needed
+            - generated
+            - unavailable
+          description: |
+            `not_needed` 表示已有結果；`generated` 表示已產生下一輪建議；
+            `unavailable` 表示建議服務失敗，但推薦回應仍成功。
+        suggested_query:
+          type: string
+          nullable: true
+          description: 建議使用者下一次自行送出的查詢，不會由 Gateway 自動重查。
+        reason:
+          type: string
+          nullable: true
+          description: 產生建議的原因。
+        missing_information:
+          type: array
+          items:
+            type: string
+          description: 建議補充的資訊。
+
+    ErrorResponse:
+      type: object
+      additionalProperties: false
+      required:
+        - error
+      properties:
+        error:
+          $ref: '#/components/schemas/ErrorDetail'
+
+    ErrorDetail:
+      type: object
+      additionalProperties: false
+      required:
+        - code
+        - message
+        - request_id
+      properties:
+        code:
+          type: string
+          enum:
+            - INVALID_JSON
+            - INVALID_QUERY
+            - MULTIPLE_URLS
+            - UNSUPPORTED_URL
+            - INVALID_API_KEY
+            - JOB_NOT_FOUND
+            - JD_SOURCE_ERROR
+            - RECOMMENDATION_ERROR
+            - JD_SOURCE_TIMEOUT
+            - RECOMMENDATION_TIMEOUT
+        message:
+          type: string
+          description: 不含下游原始 body、查詢全文或 Secret 的安全錯誤訊息。
+        request_id:
+          type: string
+          minLength: 1
+
+    HealthResponse:
+      type: object
+      additionalProperties: false
+      required:
+        - status
+      properties:
+        status:
+          type: string
+          enum:
+            - ok
+
+  responses:
+    BadRequest:
+      description: Request JSON、欄位、網址數量或網址來源不合法
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          example:
+            error:
+              code: UNSUPPORTED_URL
+              message: 僅支援 104 與 1111 職缺網址
+              request_id: 18da32d6-6450-4ef3-91d0-81e7780b15ba
+    Forbidden:
+      description: 缺少或使用無效的 API key
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          example:
+            error:
+              code: INVALID_API_KEY
+              message: API key 無效
+              request_id: 18da32d6-6450-4ef3-91d0-81e7780b15ba
+    NotFound:
+      description: 來源職缺不存在或已下架
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          example:
+            error:
+              code: JOB_NOT_FOUND
+              message: 找不到指定職缺
+              request_id: 18da32d6-6450-4ef3-91d0-81e7780b15ba
+    BadGateway:
+      description: JD 來源或 TalentRecommendation 回應異常
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          example:
+            error:
+              code: RECOMMENDATION_ERROR
+              message: 人才推薦服務暫時無法使用
+              request_id: 18da32d6-6450-4ef3-91d0-81e7780b15ba
+    GatewayTimeout:
+      description: JD 來源或 TalentRecommendation 呼叫逾時
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          example:
+            error:
+              code: RECOMMENDATION_TIMEOUT
+              message: 人才推薦服務回應逾時
+              request_id: 18da32d6-6450-4ef3-91d0-81e7780b15ba
