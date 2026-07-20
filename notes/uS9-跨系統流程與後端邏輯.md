@@ -21,6 +21,7 @@
 | v14 | 2026-07-15 | [三支查詢 API／循序圖搜尋段] 依工程端更新的 `get-by-condition` Query 補 `cursor`（＝`infoNo`）＋`limit` 分頁與星號／通知信分類／回覆狀態等篩選；釐清列表 cursor（`infoNo`）與接收 cursor（`bNo`）之別；同步 `notes/api/echat-get-by-condition.md` |
 | v15 | 2026-07-15 | [常用動作對照表] 修正 `setoUser`／`updateMsgReaded`／`settUser` 三列的觸發時機與參數（`setoUser`／`settUser` 改為無需額外參數；`updateMsgReaded` 參數改為 `oNo`／`uNo`／`eNo`／`tNo`） |
 | v16 | 2026-07-15 | [常用動作對照表／新版業務流程 §5] 依工程端更新：`updateMsgReaded` 前端不再 invoke，已讀改打 WebAPI 寫 DB（API 再 call SignalR），前端只處理接收事件 `onUpdateReaded`（新增該列）；`updateMsgReaded` 由「保留」改列「廢止」 |
+| v17 | 2026-07-15 | [onSignal 參數] SignalR Hub 調整：`onSignal` 新增回傳 `infoNo`（該次異動對話的 `rNo`）與 `bNo`（訊息明細流水號）；同步更新循序圖兩處推播 Note、常用動作表 `onSignal` 列、新版業務流程 §4，移除先前推測性的「正常情況含 `updateId`」描述 |
 
 ## 進入頁面／搜尋／進聊天室（三支查詢 API）
 
@@ -289,14 +290,14 @@ sequenceDiagram
     activate Push
     Push->>Push: 驗證簽章／Token；senderType=1（企業）<br>→ 查詢求職者是否在線 GetTalentUserOnline(tNo)
     alt 求職者在線 且 MsgType=0
-        Push->>Hub: hubContext.Clients.User(tNo).onSignal<br>(ContextID="apiSendMessage", tNo, oNo, uNo, eNo, MsgLog)
-        Hub-->>SF: 即時推送 onSignal（接收事件名，取代舊版 onTextMessage）<br>（前端忽略 MsgLog；其餘 KEY 參數 tNo／oNo／uNo／eNo 即後續打「取對話 API」的參數；<br>參數原有的都保留、只增不改，新增參數一律附加在後面──擴充中）
+        Push->>Hub: hubContext.Clients.User(tNo).onSignal<br>(ContextID="apiSendMessage", tNo, oNo, uNo, eNo, MsgLog, infoNo, bNo)
+        Hub-->>SF: 即時推送 onSignal（接收事件名，取代舊版 onTextMessage）<br>（前端忽略 MsgLog；其餘 KEY 參數含 infoNo／bNo 即後續打「取對話 API」的參數<br>──infoNo＝該次異動對話的 rNo，可直接打 get-detail/{infoNo}；bNo＝該次異動的訊息明細流水號；<br>參數原有的都保留、只增不改，新增參數一律附加在後面）
     end
     Push->>Hub: DoApiPushMessage（uType=1, Silent=0）
     deactivate Push
     Hub-->>SF: FCM／APNS 手機推播（求職 App）
 
-    Note over SF: 求職前端收到 onSignal 後（SignalR 只傳 KEY 值，正常情況含 updateId）：<br>若為目前開啟中的聊天室 → 用 onSignal 帶的參數打 get-detail（求才／求職共用同一支取對話 API）<br>前端帶上本地已存最大 bNo，讓 SignalR／後端知道要從哪裡開始更新（只回該 bNo 之後的新資料）；<br>以 updateId 判斷已存在／未存在資料，不必每次都整室重新渲染<br>若非目前開啟的聊天室 → 僅更新未讀提示圖示，不打 API
+    Note over SF: 求職前端收到 onSignal 後（SignalR 只傳 KEY 值，含 infoNo／bNo）：<br>若為目前開啟中的聊天室 → 用 onSignal 帶的 infoNo 打 get-detail/{infoNo}（求才／求職共用同一支取對話 API）<br>前端帶上本地已存最大 bNo 作 cursor，讓後端只回傳該 bNo 之後的新資料，不必每次都整室重新渲染<br>若非目前開啟的聊天室 → 僅更新未讀提示圖示，不打 API
 
     %% ----- 寄信排程：兩封信最終各自寄到求職者 / 廠商副本收件人 -----
     RB-->>Seeker: 通知信加入寄信排程 → 寄至求職者 email<br>（非即時，由排程送出，處理時間很短）
@@ -354,14 +355,14 @@ sequenceDiagram
         activate Push
         Push->>Push: 驗證簽章／Token；senderType=2（求職者）<br>→ 查詢廠商該使用者是否在線 GetOrganUserOnline(oNo, uNo)
         alt 廠商在線 且 MsgType=0
-            Push->>Hub: hubContext.Clients.User(oNo_uNo).onSignal<br>(ContextID="apiSendMessage", tNo, oNo, uNo, eNo, MsgLog)
-            Hub-->>RF: 即時推送 onSignal（取代舊版 onTextMessage）<br>（前端忽略 MsgLog；其餘 KEY 參數即後續打「取對話 API」的參數）
+            Push->>Hub: hubContext.Clients.User(oNo_uNo).onSignal<br>(ContextID="apiSendMessage", tNo, oNo, uNo, eNo, MsgLog, infoNo, bNo)
+            Hub-->>RF: 即時推送 onSignal（取代舊版 onTextMessage）<br>（前端忽略 MsgLog；其餘 KEY 參數含 infoNo／bNo 即後續打「取對話 API」的參數<br>──infoNo＝該次異動對話的 rNo，可直接打 get-detail/{infoNo}；bNo＝該次異動的訊息明細流水號）
         end
         Push->>Hub: DoApiPushMessage（uType=2, Silent=1）
         deactivate Push
         Hub-->>RF: FCM／APNS 手機推播（求才 App）
 
-        Note over RF: 求才前端收到 onSignal 後（SignalR 只傳 KEY 值，正常情況含 updateId）：<br>若為目前開啟中的聊天室 → 用 onSignal 帶的參數打 get-detail（求才／求職共用同一支取對話 API）<br>前端帶上本地已存最大 bNo，讓 SignalR／後端知道要從哪裡開始更新（只回該 bNo 之後的新資料）；<br>以 updateId 判斷已存在／未存在資料後更新畫面，卡片狀態更新為「已接受」等（含插入意願狀態標籤）<br>若非目前開啟的聊天室 → 僅更新未讀提示
+        Note over RF: 求才前端收到 onSignal 後（SignalR 只傳 KEY 值，含 infoNo／bNo）：<br>若為目前開啟中的聊天室 → 用 onSignal 帶的 infoNo 打 get-detail/{infoNo}（求才／求職共用同一支取對話 API）<br>前端帶上本地已存最大 bNo 作 cursor，讓後端只回傳該 bNo 之後的新資料後更新畫面，卡片狀態更新為「已接受」等（含插入意願狀態標籤）<br>若非目前開啟的聊天室 → 僅更新未讀提示
 
         %% ----- 依回信類別決定寄信方式（兩種方式終點都是求才廠商） -----
         SB->>SB: 判斷回信類別
@@ -410,7 +411,7 @@ sequenceDiagram
    - **求職端**：打**求職自己提供的送出 API**（**非** `eChatHandler.ashx`）；登入認證用求職端各自的 cookie，API 名稱與參數與求才端**不同、不共用**。
 2. DB 寫入成功後，後端呼叫 `POST update-chatlog`（同步整合訊息 API）→ 發事件到 **EventBus** → 觸發 `eChatHub/apiSendMessage.ashx`。
 3. `apiSendMessage.ashx` 驗證簽章、查對方線上狀態，對在線接收端呼叫 `onSignal` 做 SignalR 即時推送，並統一分派 FCM／APNS 手機推播。
-4. **接收**：前端 `onSignal` 收到的只是「有新訊息」的**通知信號**；`MsgLog` 直接忽略，但**其餘 KEY 參數（`tNo`／`oNo`／`uNo`／`eNo`、正常情況下含 `updateId` 等）即後續打「取對話 API」所需的參數** —— 若為目前開啟中的聊天室，就用這些參數打**「取全部」對話 API**（目前**只有 1 支**取全部 API，**求才／求職共用同一支 `get-detail`**）取得該對話訊息；前端**帶上本地已存最大 `bNo`（訊息明細流水號）作 cursor 指標，讓 SignalR／後端知道要從哪裡開始更新**（後端只回傳該 `bNo` 之後的新資料），並以 `updateId` 判斷哪些資料已存在 DB、哪些還沒，**不必每次都整室重新渲染全部**；非當前聊天室僅更新未讀提示。
+4. **接收**：前端 `onSignal` 收到的只是「有新訊息」的**通知信號**；`MsgLog` 直接忽略，但**其餘 KEY 參數（`tNo`／`oNo`／`uNo`／`eNo`／`infoNo`／`bNo`）即後續打「取對話 API」所需的參數**——`infoNo`＝該次異動對話的 `rNo`，可直接打 `get-detail/{infoNo}`（目前**只有 1 支**取全部 API，**求才／求職共用同一支 `get-detail`**）取得該對話訊息；前端**帶上本地已存最大 `bNo`（訊息明細流水號）作 cursor 指標，讓後端只回傳該 `bNo` 之後的新資料**，**不必每次都整室重新渲染全部**；非當前聊天室僅更新未讀提示。
 5. **已讀回報**：接收者讀取後，前端**不做 SignalR invoke**，改打 WebAPI 把已讀紀錄寫進 DB；該 API 會幫忙 call SignalR，對方前端以 `onUpdateReaded` 事件接收後更新雙方的已讀狀態（與「送出走 WebAPI、SignalR 只收信號」同一套模式）。
 
 ### 常用動作（Action）對照表
@@ -426,5 +427,5 @@ sequenceDiagram
 | 前端發送 | `sendMsgPush` | 求才／求職 | ❌ **廢止** | 舊版送出文字訊息的 SignalR invoke；新版送出改走 WebAPI（求才 `eChatHandler.ashx kind=5`／求職自有送出 API），前端不再 invoke |
 | 前端發送 | `updateMsgReaded` | 求才 | ❌ **廢止（改走 WebAPI）** | 舊版由前端 invoke 標記已讀；新版**前端不再 invoke**——已讀改由前端**打 WebAPI 寫進 DB**，該 API 再幫忙 call SignalR，前端只需處理接收事件 `onUpdateReaded`（與訊息「送出走 WebAPI、SignalR 只收信號」同一套模式） |
 | 後端推播 | `onTextMessage` | 求才／求職 | ❌ **廢止（由 `onSignal` 取代）** | 舊版接收文字訊息事件（`signalr?.on('onTextMessage', handleReceive)`） |
-| 後端推播 | `onSignal` | 求才／求職 | ✅ **新版接收事件** | 參數 `(ContextID, tNo, oNo, uNo, eNo, MsgLog)`，`ContextID` 固定 `"apiSendMessage"` 供識別推送來源；**原有參數都保留、只增不改，之後若擴充一律附加在後面**（擴充項目確認中）。前端忽略 `MsgLog`，其餘 KEY 參數即後續打「取對話 API」的參數 |
+| 後端推播 | `onSignal` | 求才／求職 | ✅ **新版接收事件** | 參數 `(ContextID, tNo, oNo, uNo, eNo, MsgLog, infoNo, bNo)`，`ContextID` 固定 `"apiSendMessage"` 供識別推送來源；`infoNo`＝該次異動對話的 `rNo`（可直接打 `get-detail/{infoNo}`）；`bNo`＝該次異動的訊息明細流水號；**原有參數都保留、只增不改，之後若擴充一律附加在後面**。前端忽略 `MsgLog`，其餘 KEY 參數即後續打「取對話 API」的參數 |
 | 後端推播 | `onUpdateReaded` | 求才／求職 | ✅ **新版接收事件** | 對方讀取後、已讀寫入 DB 由後端（API）觸發 SignalR 推播；前端接收此事件後更新雙方的已讀狀態 |
