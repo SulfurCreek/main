@@ -20,6 +20,7 @@
 | v13 | 2026-07-08 | [接收] 結案：求職端取對話共用 `get-detail`（送出仍各端獨立）；`bNo` cursor 為伺服器端機制 |
 | v14 | 2026-07-15 | [三支查詢 API／循序圖搜尋段] 依工程端更新的 `get-by-condition` Query 補 `cursor`（＝`infoNo`）＋`limit` 分頁與星號／通知信分類／回覆狀態等篩選；釐清列表 cursor（`infoNo`）與接收 cursor（`bNo`）之別；同步 `notes/api/echat-get-by-condition.md` |
 | v15 | 2026-07-15 | [常用動作對照表] 修正 `setoUser`／`updateMsgReaded`／`settUser` 三列的觸發時機與參數（`setoUser`／`settUser` 改為無需額外參數；`updateMsgReaded` 參數改為 `oNo`／`uNo`／`eNo`／`tNo`） |
+| v16 | 2026-07-15 | [常用動作對照表／新版業務流程 §5] 依工程端更新：`updateMsgReaded` 前端不再 invoke，已讀改打 WebAPI 寫 DB（API 再 call SignalR），前端只處理接收事件 `onUpdateReaded`（新增該列）；`updateMsgReaded` 由「保留」改列「廢止」 |
 
 ## 進入頁面／搜尋／進聊天室（三支查詢 API）
 
@@ -410,19 +411,20 @@ sequenceDiagram
 2. DB 寫入成功後，後端呼叫 `POST update-chatlog`（同步整合訊息 API）→ 發事件到 **EventBus** → 觸發 `eChatHub/apiSendMessage.ashx`。
 3. `apiSendMessage.ashx` 驗證簽章、查對方線上狀態，對在線接收端呼叫 `onSignal` 做 SignalR 即時推送，並統一分派 FCM／APNS 手機推播。
 4. **接收**：前端 `onSignal` 收到的只是「有新訊息」的**通知信號**；`MsgLog` 直接忽略，但**其餘 KEY 參數（`tNo`／`oNo`／`uNo`／`eNo`、正常情況下含 `updateId` 等）即後續打「取對話 API」所需的參數** —— 若為目前開啟中的聊天室，就用這些參數打**「取全部」對話 API**（目前**只有 1 支**取全部 API，**求才／求職共用同一支 `get-detail`**）取得該對話訊息；前端**帶上本地已存最大 `bNo`（訊息明細流水號）作 cursor 指標，讓 SignalR／後端知道要從哪裡開始更新**（後端只回傳該 `bNo` 之後的新資料），並以 `updateId` 判斷哪些資料已存在 DB、哪些還沒，**不必每次都整室重新渲染全部**；非當前聊天室僅更新未讀提示。
-5. 接收者讀取後 → 前端回報「已讀」（求才端 `updateMsgReaded`），更新雙方的已讀狀態。
+5. **已讀回報**：接收者讀取後，前端**不做 SignalR invoke**，改打 WebAPI 把已讀紀錄寫進 DB；該 API 會幫忙 call SignalR，對方前端以 `onUpdateReaded` 事件接收後更新雙方的已讀狀態（與「送出走 WebAPI、SignalR 只收信號」同一套模式）。
 
 ### 常用動作（Action）對照表
 
-> **保留 vs 廢止**（依工程端 Ryder 確認）：原始事件中 `setoUser`、`updateMsgReaded`（求才端）、`settUser`（求職端）**保留、新版仍會使用**；求職端 `setRoomInfo`、`getUserStatus` 未列入保留清單、視為**不再需要**。送出用的 SignalR invoke（`sendMsgPush`）與接收 `onTextMessage` 兩端皆廢止。
+> **保留 vs 廢止**（依工程端確認）：原始事件中 `setoUser`（求才端）、`settUser`（求職端）**保留、新版仍會使用**（連線後馬上觸發、不需帶額外參數）；求職端 `setRoomInfo`、`getUserStatus` 未列入保留清單、視為**不再需要**。前端 invoke 的送出類事件——訊息 `sendMsgPush`、已讀 `updateMsgReaded`——與接收 `onTextMessage` 皆廢止：**訊息與已讀的「寫入」都改走 WebAPI（API 再幫忙 call SignalR）**，前端只處理接收事件（訊息 `onSignal`、已讀 `onUpdateReaded`）。
 
 | 方向 | 動作名稱 | 端 | 新版狀態 | 說明 |
 | :--- | :--- | :--- | :--- | :--- |
 | 前端發送 | `setoUser` | 求才 | ✅ **保留**（新版仍使用） | 上線報到；觸發時機＝`signalR.on` 註冊後馬上觸發；不需帶額外參數 |
-| 前端發送 | `updateMsgReaded` | 求才 | ✅ **保留**（新版仍使用） | 標記訊息已讀；觸發時機＝使用者點擊通訊列表、進入對應的對話細節；需帶 `oNo`、`uNo`、`eNo`、`tNo` |
 | 前端發送 | `settUser` | 求職 | ✅ **保留**（新版仍使用） | 求職端上線報到；觸發時機＝`signalR.on` 註冊後馬上觸發；不需帶額外參數 |
 | 前端發送 | `setRoomInfo` | 求職 | ❌ **廢止**（未列入保留清單，不再需要） | 舊版設定聊天室資訊 |
 | 前端發送 | `getUserStatus` | 求職 | ❌ **廢止**（未列入保留清單，不再需要） | 舊版查詢對方線上狀態；新版線上狀態由後端 `apiSendMessage.ashx` 於推播前查（`GetTalentUserOnline`／`GetOrganUserOnline`） |
 | 前端發送 | `sendMsgPush` | 求才／求職 | ❌ **廢止** | 舊版送出文字訊息的 SignalR invoke；新版送出改走 WebAPI（求才 `eChatHandler.ashx kind=5`／求職自有送出 API），前端不再 invoke |
+| 前端發送 | `updateMsgReaded` | 求才 | ❌ **廢止（改走 WebAPI）** | 舊版由前端 invoke 標記已讀；新版**前端不再 invoke**——已讀改由前端**打 WebAPI 寫進 DB**，該 API 再幫忙 call SignalR，前端只需處理接收事件 `onUpdateReaded`（與訊息「送出走 WebAPI、SignalR 只收信號」同一套模式） |
 | 後端推播 | `onTextMessage` | 求才／求職 | ❌ **廢止（由 `onSignal` 取代）** | 舊版接收文字訊息事件（`signalr?.on('onTextMessage', handleReceive)`） |
 | 後端推播 | `onSignal` | 求才／求職 | ✅ **新版接收事件** | 參數 `(ContextID, tNo, oNo, uNo, eNo, MsgLog)`，`ContextID` 固定 `"apiSendMessage"` 供識別推送來源；**原有參數都保留、只增不改，之後若擴充一律附加在後面**（擴充項目確認中）。前端忽略 `MsgLog`，其餘 KEY 參數即後續打「取對話 API」的參數 |
+| 後端推播 | `onUpdateReaded` | 求才／求職 | ✅ **新版接收事件** | 對方讀取後、已讀寫入 DB 由後端（API）觸發 SignalR 推播；前端接收此事件後更新雙方的已讀狀態 |
