@@ -105,7 +105,10 @@ def test_tsg_b1_query_min_length_1(live, validate):
 
 
 def test_tsg_b2_query_max_length_20000(live, validate):
-    body = assert_ok(post_recommend(live, "Python 後端工程師 " + "A" * 19989), validate)
+    prefix = "Python 後端工程師 "
+    query = prefix + "A" * (20000 - len(prefix))
+    assert len(query) == 20000
+    body = assert_ok(post_recommend(live, query), validate)
     assert body["metadata"]["query_truncated"] in (True, False)
 
 
