@@ -1,0 +1,1002 @@
+[
+  {
+    "case_id": "S2-001",
+    "band": "A",
+    "url": "https://www.104.com.tw/job/8xgno",
+    "supplement_text": "我要找40歲以下的男生",
+    "query": "https://www.104.com.tw/job/8xgno 我要找40歲以下的男生",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S2-002",
+    "band": "A",
+    "url": "https://www.104.com.tw/job/8m6cd",
+    "supplement_text": "限35歲以下女性",
+    "query": "https://www.104.com.tw/job/8m6cd 限35歲以下女性",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S2-003",
+    "band": "A",
+    "url": "https://www.104.com.tw/job/5nkre",
+    "supplement_text": "只要男性，年齡不超過30歲",
+    "query": "https://www.104.com.tw/job/5nkre 只要男性，年齡不超過30歲",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S2-004",
+    "band": "A",
+    "url": "https://www.104.com.tw/job/7ye2h",
+    "supplement_text": "需要未婚女性，方便配合輪班",
+    "query": "https://www.104.com.tw/job/7ye2h 需要未婚女性，方便配合輪班",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S2-005",
+    "band": "A",
+    "url": "https://www.104.com.tw/job/7dblm",
+    "supplement_text": "45歲以上不考慮",
+    "query": "https://www.104.com.tw/job/7dblm 45歲以上不考慮",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S2-006",
+    "band": "A",
+    "url": "https://www.104.com.tw/job/7jgvy",
+    "supplement_text": "限女性，外型亮眼佳",
+    "query": "https://www.104.com.tw/job/7jgvy 限女性，外型亮眼佳",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S2-007",
+    "band": "A",
+    "url": "https://www.104.com.tw/job/8ylll",
+    "supplement_text": "男性優先，需能搬重物",
+    "query": "https://www.104.com.tw/job/8ylll 男性優先，需能搬重物",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S2-008",
+    "band": "A",
+    "url": "https://www.104.com.tw/job/92w7j",
+    "supplement_text": "不要已婚有小孩的",
+    "query": "https://www.104.com.tw/job/92w7j 不要已婚有小孩的",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S2-009",
+    "band": "A",
+    "url": "https://www.104.com.tw/job/807yr",
+    "supplement_text": "30歲以下年輕人優先",
+    "query": "https://www.104.com.tw/job/807yr 30歲以下年輕人優先",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S2-010",
+    "band": "A",
+    "url": "https://www.104.com.tw/job/90bgk",
+    "supplement_text": "限本地籍貫，外縣市不收",
+    "query": "https://www.104.com.tw/job/90bgk 限本地籍貫，外縣市不收",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S2-011",
+    "band": "A",
+    "url": "https://www.104.com.tw/job/90xxw",
+    "supplement_text": "身高160公分以上的女性",
+    "query": "https://www.104.com.tw/job/90xxw 身高160公分以上的女性",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S2-012",
+    "band": "A",
+    "url": "https://www.104.com.tw/job/6ulyh",
+    "supplement_text": "不收身心障礙者",
+    "query": "https://www.104.com.tw/job/6ulyh 不收身心障礙者",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S2-013",
+    "band": "A",
+    "url": "https://www.104.com.tw/job/877xe",
+    "supplement_text": "限役畢男性，25到35歲",
+    "query": "https://www.104.com.tw/job/877xe 限役畢男性，25到35歲",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S2-014",
+    "band": "A",
+    "url": "https://www.104.com.tw/job/92e7u",
+    "supplement_text": "女性佳，需長相清秀",
+    "query": "https://www.104.com.tw/job/92e7u 女性佳，需長相清秀",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S2-015",
+    "band": "A",
+    "url": "https://www.104.com.tw/job/93mcj",
+    "supplement_text": "50歲以上請勿投遞",
+    "query": "https://www.104.com.tw/job/93mcj 50歲以上請勿投遞",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S2-016",
+    "band": "B",
+    "url": "https://www.104.com.tw/job/93mc7",
+    "supplement_text": "要年輕有活力、抗壓性高",
+    "query": "https://www.104.com.tw/job/93mc7 要年輕有活力、抗壓性高",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S2-017",
+    "band": "B",
+    "url": "https://www.104.com.tw/job/92o18",
+    "supplement_text": "草莓族勿擾",
+    "query": "https://www.104.com.tw/job/92o18 草莓族勿擾",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S2-018",
+    "band": "B",
+    "url": "https://www.104.com.tw/job/7doqc",
+    "supplement_text": "希望是剛畢業沒幾年的新鮮人",
+    "query": "https://www.104.com.tw/job/7doqc 希望是剛畢業沒幾年的新鮮人",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S2-019",
+    "band": "B",
+    "url": "https://www.104.com.tw/job/7aa0p",
+    "supplement_text": "家庭負擔輕、可全心投入工作",
+    "query": "https://www.104.com.tw/job/7aa0p 家庭負擔輕、可全心投入工作",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S2-020",
+    "band": "B",
+    "url": "https://www.104.com.tw/job/3rgrw",
+    "supplement_text": "能接受高工時文化的狼性人才",
+    "query": "https://www.104.com.tw/job/3rgrw 能接受高工時文化的狼性人才",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S2-021",
+    "band": "B",
+    "url": "https://www.104.com.tw/job/6sify",
+    "supplement_text": "體力好、能整天久站",
+    "query": "https://www.104.com.tw/job/6sify 體力好、能整天久站",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S2-022",
+    "band": "B",
+    "url": "https://www.104.com.tw/job/93f5r",
+    "supplement_text": "希望未來三年內沒有生育規劃",
+    "query": "https://www.104.com.tw/job/93f5r 希望未來三年內沒有生育規劃",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S2-023",
+    "band": "B",
+    "url": "https://www.104.com.tw/job/7iedp",
+    "supplement_text": "個性單純、好管理",
+    "query": "https://www.104.com.tw/job/7iedp 個性單純、好管理",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S2-024",
+    "band": "B",
+    "url": "https://www.104.com.tw/job/8zys9",
+    "supplement_text": "找沒有包袱的年輕世代",
+    "query": "https://www.104.com.tw/job/8zys9 找沒有包袱的年輕世代",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S2-025",
+    "band": "B",
+    "url": "https://www.104.com.tw/job/7pmfn",
+    "supplement_text": "需照片好看、形象陽光",
+    "query": "https://www.104.com.tw/job/7pmfn 需照片好看、形象陽光",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S2-026",
+    "band": "B",
+    "url": "https://www.104.com.tw/job/93qqr",
+    "supplement_text": "住家裡、經濟壓力小者佳",
+    "query": "https://www.104.com.tw/job/93qqr 住家裡、經濟壓力小者佳",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S2-027",
+    "band": "B",
+    "url": "https://www.104.com.tw/job/92uzj",
+    "supplement_text": "能配合老闆隨時加班",
+    "query": "https://www.104.com.tw/job/92uzj 能配合老闆隨時加班",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S2-028",
+    "band": "B",
+    "url": "https://www.104.com.tw/job/73uco",
+    "supplement_text": "不要換工作太頻繁的",
+    "query": "https://www.104.com.tw/job/73uco 不要換工作太頻繁的",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S2-029",
+    "band": "B",
+    "url": "https://www.104.com.tw/job/5kmaa",
+    "supplement_text": "學歷要漂亮，前段國立大學畢業",
+    "query": "https://www.104.com.tw/job/5kmaa 學歷要漂亮，前段國立大學畢業",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S2-030",
+    "band": "B",
+    "url": "https://www.104.com.tw/job/92qak",
+    "supplement_text": "只收應屆或畢業一年內",
+    "query": "https://www.104.com.tw/job/92qak 只收應屆或畢業一年內",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S2-031",
+    "band": "C",
+    "url": "https://www.104.com.tw/job/5hlnw",
+    "supplement_text": "希望住在公司附近30分鐘車程內",
+    "query": "https://www.104.com.tw/job/5hlnw 希望住在公司附近30分鐘車程內",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S2-032",
+    "band": "C",
+    "url": "https://www.104.com.tw/job/8tgsf",
+    "supplement_text": "可立即上班者優先",
+    "query": "https://www.104.com.tw/job/8tgsf 可立即上班者優先",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S2-033",
+    "band": "C",
+    "url": "https://www.104.com.tw/job/93cca",
+    "supplement_text": "穩定性高，希望至少待三年",
+    "query": "https://www.104.com.tw/job/93cca 穩定性高，希望至少待三年",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S2-034",
+    "band": "C",
+    "url": "https://www.104.com.tw/job/8wwtx",
+    "supplement_text": "可配合出差",
+    "query": "https://www.104.com.tw/job/8wwtx 可配合出差",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S2-035",
+    "band": "C",
+    "url": "https://www.104.com.tw/job/919ci",
+    "supplement_text": "需自備機車",
+    "query": "https://www.104.com.tw/job/919ci 需自備機車",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S2-036",
+    "band": "C",
+    "url": "https://www.104.com.tw/job/8x7ac",
+    "supplement_text": "可接受排班與假日輪值",
+    "query": "https://www.104.com.tw/job/8x7ac 可接受排班與假日輪值",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S2-037",
+    "band": "C",
+    "url": "https://www.104.com.tw/job/7mtn7",
+    "supplement_text": "希望具備團隊合作精神",
+    "query": "https://www.104.com.tw/job/7mtn7 希望具備團隊合作精神",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S2-038",
+    "band": "C",
+    "url": "https://www.104.com.tw/job/8fjd1",
+    "supplement_text": "學習能力強，願意跨領域",
+    "query": "https://www.104.com.tw/job/8fjd1 學習能力強，願意跨領域",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S2-039",
+    "band": "C",
+    "url": "https://www.104.com.tw/job/90ox9",
+    "supplement_text": "主動積極，不需人盯",
+    "query": "https://www.104.com.tw/job/90ox9 主動積極，不需人盯",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S2-040",
+    "band": "C",
+    "url": "https://www.104.com.tw/job/7nlh3",
+    "supplement_text": "可適應廠房環境",
+    "query": "https://www.104.com.tw/job/7nlh3 可適應廠房環境",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S2-041",
+    "band": "C",
+    "url": "https://www.104.com.tw/job/72fjj",
+    "supplement_text": "可配合夜班",
+    "query": "https://www.104.com.tw/job/72fjj 可配合夜班",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S2-042",
+    "band": "C",
+    "url": "https://www.104.com.tw/job/6wbuk",
+    "supplement_text": "願意外派東南亞",
+    "query": "https://www.104.com.tw/job/6wbuk 願意外派東南亞",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S2-043",
+    "band": "C",
+    "url": "https://www.104.com.tw/job/7nebo",
+    "supplement_text": "希望具備簡報能力",
+    "query": "https://www.104.com.tw/job/7nebo 希望具備簡報能力",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S2-044",
+    "band": "C",
+    "url": "https://www.104.com.tw/job/6tdmb",
+    "supplement_text": "溝通表達能力佳",
+    "query": "https://www.104.com.tw/job/6tdmb 溝通表達能力佳",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S2-045",
+    "band": "C",
+    "url": "https://www.104.com.tw/job/83lxg",
+    "supplement_text": "能獨立作業也能協作",
+    "query": "https://www.104.com.tw/job/83lxg 能獨立作業也能協作",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S2-046",
+    "band": "D",
+    "url": "https://www.104.com.tw/job/7j1ly",
+    "supplement_text": "需要3年以上相關經驗",
+    "query": "https://www.104.com.tw/job/7j1ly 需要3年以上相關經驗",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S2-047",
+    "band": "D",
+    "url": "https://www.104.com.tw/job/303a2",
+    "supplement_text": "至少帶過5人團隊",
+    "query": "https://www.104.com.tw/job/303a2 至少帶過5人團隊",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S2-048",
+    "band": "D",
+    "url": "https://www.104.com.tw/job/8fse7",
+    "supplement_text": "有新創公司經驗佳",
+    "query": "https://www.104.com.tw/job/8fse7 有新創公司經驗佳",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S2-049",
+    "band": "D",
+    "url": "https://www.104.com.tw/job/7ecvj",
+    "supplement_text": "具備從0到1的產品經驗",
+    "query": "https://www.104.com.tw/job/7ecvj 具備從0到1的產品經驗",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S2-050",
+    "band": "D",
+    "url": "https://www.104.com.tw/job/5u3w1",
+    "supplement_text": "有上市櫃公司經歷",
+    "query": "https://www.104.com.tw/job/5u3w1 有上市櫃公司經歷",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S2-051",
+    "band": "D",
+    "url": "https://www.104.com.tw/job/6ujq0",
+    "supplement_text": "需有大型專案管理經驗",
+    "query": "https://www.104.com.tw/job/6ujq0 需有大型專案管理經驗",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S2-052",
+    "band": "D",
+    "url": "https://www.104.com.tw/job/2ic3a",
+    "supplement_text": "五年以上資深等級",
+    "query": "https://www.104.com.tw/job/2ic3a 五年以上資深等級",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S2-053",
+    "band": "D",
+    "url": "https://www.104.com.tw/job/5fe03",
+    "supplement_text": "有跨部門協作經驗",
+    "query": "https://www.104.com.tw/job/5fe03 有跨部門協作經驗",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S2-054",
+    "band": "D",
+    "url": "https://www.104.com.tw/job/6lirv",
+    "supplement_text": "具電商產業背景",
+    "query": "https://www.104.com.tw/job/6lirv 具電商產業背景",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S2-055",
+    "band": "D",
+    "url": "https://www.104.com.tw/job/6a7xx",
+    "supplement_text": "有半導體廠經驗",
+    "query": "https://www.104.com.tw/job/6a7xx 有半導體廠經驗",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S2-056",
+    "band": "D",
+    "url": "https://www.104.com.tw/job/3llrh",
+    "supplement_text": "待過外商佳",
+    "query": "https://www.104.com.tw/job/3llrh 待過外商佳",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S2-057",
+    "band": "D",
+    "url": "https://www.104.com.tw/job/8wkd0",
+    "supplement_text": "有實際上線的作品集",
+    "query": "https://www.104.com.tw/job/8wkd0 有實際上線的作品集",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S2-058",
+    "band": "D",
+    "url": "https://www.104.com.tw/job/5uun1",
+    "supplement_text": "具客戶談判經驗",
+    "query": "https://www.104.com.tw/job/5uun1 具客戶談判經驗",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S2-059",
+    "band": "D",
+    "url": "https://www.104.com.tw/job/7z0w3",
+    "supplement_text": "熟悉政府標案流程",
+    "query": "https://www.104.com.tw/job/7z0w3 熟悉政府標案流程",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S2-060",
+    "band": "D",
+    "url": "https://www.104.com.tw/job/7nvln",
+    "supplement_text": "有門市管理經驗",
+    "query": "https://www.104.com.tw/job/7nvln 有門市管理經驗",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S2-061",
+    "band": "E",
+    "url": "https://www.104.com.tw/job/72ed6",
+    "supplement_text": "多益800分以上",
+    "query": "https://www.104.com.tw/job/72ed6 多益800分以上",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S2-062",
+    "band": "E",
+    "url": "https://www.104.com.tw/job/7e4nl",
+    "supplement_text": "日文N2以上",
+    "query": "https://www.104.com.tw/job/7e4nl 日文N2以上",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S2-063",
+    "band": "E",
+    "url": "https://www.104.com.tw/job/6z7b5",
+    "supplement_text": "需具備PMP證照",
+    "query": "https://www.104.com.tw/job/6z7b5 需具備PMP證照",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S2-064",
+    "band": "E",
+    "url": "https://www.104.com.tw/job/2rfka",
+    "supplement_text": "有室內配線乙級證照",
+    "query": "https://www.104.com.tw/job/2rfka 有室內配線乙級證照",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S2-065",
+    "band": "E",
+    "url": "https://www.104.com.tw/job/5qyj6",
+    "supplement_text": "英文可作為工作語言",
+    "query": "https://www.104.com.tw/job/5qyj6 英文可作為工作語言",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S2-066",
+    "band": "E",
+    "url": "https://www.104.com.tw/job/8nrz8",
+    "supplement_text": "需有會計師執照",
+    "query": "https://www.104.com.tw/job/8nrz8 需有會計師執照",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S2-067",
+    "band": "E",
+    "url": "https://www.104.com.tw/job/53o9g",
+    "supplement_text": "有堆高機操作證",
+    "query": "https://www.104.com.tw/job/53o9g 有堆高機操作證",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S2-068",
+    "band": "E",
+    "url": "https://www.104.com.tw/job/6x2i5",
+    "supplement_text": "韓文可日常溝通",
+    "query": "https://www.104.com.tw/job/6x2i5 韓文可日常溝通",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S2-069",
+    "band": "E",
+    "url": "https://www.104.com.tw/job/72tch",
+    "supplement_text": "需具備AWS解決方案架構師證照",
+    "query": "https://www.104.com.tw/job/72tch 需具備AWS解決方案架構師證照",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S2-070",
+    "band": "E",
+    "url": "https://www.104.com.tw/job/2jtm7",
+    "supplement_text": "有職業安全衛生管理員證照",
+    "query": "https://www.104.com.tw/job/2jtm7 有職業安全衛生管理員證照",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S2-071",
+    "band": "E",
+    "url": "https://www.104.com.tw/job/5lkrp",
+    "supplement_text": "多益700以上、可英文書信往來",
+    "query": "https://www.104.com.tw/job/5lkrp 多益700以上、可英文書信往來",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S2-072",
+    "band": "E",
+    "url": "https://www.104.com.tw/job/6xbeq",
+    "supplement_text": "具護理師執照",
+    "query": "https://www.104.com.tw/job/6xbeq 具護理師執照",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S2-073",
+    "band": "E",
+    "url": "https://www.104.com.tw/job/5ob0l",
+    "supplement_text": "有汽車駕照且可外勤",
+    "query": "https://www.104.com.tw/job/5ob0l 有汽車駕照且可外勤",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S2-074",
+    "band": "E",
+    "url": "https://www.104.com.tw/job/7zha0",
+    "supplement_text": "有ISO 27001稽核經驗",
+    "query": "https://www.104.com.tw/job/7zha0 有ISO 27001稽核經驗",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S2-075",
+    "band": "E",
+    "url": "https://www.104.com.tw/job/semd",
+    "supplement_text": "粵語流利",
+    "query": "https://www.104.com.tw/job/semd 粵語流利",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S2-076",
+    "band": "F",
+    "url": "https://www.104.com.tw/job/87jgn",
+    "supplement_text": "需要熟悉React與TypeScript",
+    "query": "https://www.104.com.tw/job/87jgn 需要熟悉React與TypeScript",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S2-077",
+    "band": "F",
+    "url": "https://www.104.com.tw/job/8y76j",
+    "supplement_text": "會用Figma做設計交付",
+    "query": "https://www.104.com.tw/job/8y76j 會用Figma做設計交付",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S2-078",
+    "band": "F",
+    "url": "https://www.104.com.tw/job/6yya0",
+    "supplement_text": "熟SQL與資料視覺化",
+    "query": "https://www.104.com.tw/job/6yya0 熟SQL與資料視覺化",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S2-079",
+    "band": "F",
+    "url": "https://www.104.com.tw/job/7y0mb",
+    "supplement_text": "需會Python自動化",
+    "query": "https://www.104.com.tw/job/7y0mb 需會Python自動化",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S2-080",
+    "band": "F",
+    "url": "https://www.104.com.tw/job/6fpnp",
+    "supplement_text": "熟悉SEO與GA4",
+    "query": "https://www.104.com.tw/job/6fpnp 熟悉SEO與GA4",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S2-081",
+    "band": "F",
+    "url": "https://www.104.com.tw/job/7d97o",
+    "supplement_text": "會操作CNC車床",
+    "query": "https://www.104.com.tw/job/7d97o 會操作CNC車床",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S2-082",
+    "band": "F",
+    "url": "https://www.104.com.tw/job/58j8o",
+    "supplement_text": "熟SolidWorks製圖",
+    "query": "https://www.104.com.tw/job/58j8o 熟SolidWorks製圖",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S2-083",
+    "band": "F",
+    "url": "https://www.104.com.tw/job/5ff1k",
+    "supplement_text": "需懂Kubernetes部署",
+    "query": "https://www.104.com.tw/job/5ff1k 需懂Kubernetes部署",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S2-084",
+    "band": "F",
+    "url": "https://www.104.com.tw/job/4cphs",
+    "supplement_text": "會剪輯短影音",
+    "query": "https://www.104.com.tw/job/4cphs 會剪輯短影音",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S2-085",
+    "band": "F",
+    "url": "https://www.104.com.tw/job/86mim",
+    "supplement_text": "熟悉薪資結算與勞健保作業",
+    "query": "https://www.104.com.tw/job/86mim 熟悉薪資結算與勞健保作業",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S2-086",
+    "band": "F",
+    "url": "https://www.104.com.tw/job/3xj7u",
+    "supplement_text": "需具備Java Spring Boot後端能力",
+    "query": "https://www.104.com.tw/job/3xj7u 需具備Java Spring Boot後端能力",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S2-087",
+    "band": "F",
+    "url": "https://www.104.com.tw/job/8ivcu",
+    "supplement_text": "會Excel進階函數與VBA",
+    "query": "https://www.104.com.tw/job/8ivcu 會Excel進階函數與VBA",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S2-088",
+    "band": "F",
+    "url": "https://www.104.com.tw/job/6o8h3",
+    "supplement_text": "熟悉FastAPI與LLM應用開發",
+    "query": "https://www.104.com.tw/job/6o8h3 熟悉FastAPI與LLM應用開發",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S2-089",
+    "band": "F",
+    "url": "https://www.104.com.tw/job/8rz6v",
+    "supplement_text": "需懂電商廣告投放",
+    "query": "https://www.104.com.tw/job/8rz6v 需懂電商廣告投放",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S2-090",
+    "band": "F",
+    "url": "https://www.104.com.tw/job/8roh7",
+    "supplement_text": "人才需要有tailwind專長",
+    "query": "https://www.104.com.tw/job/8roh7 人才需要有tailwind專長",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S2-091",
+    "band": "G",
+    "url": "https://www.104.com.tw/job/8plj3",
+    "supplement_text": "找40歲以下會React的工程師",
+    "query": "https://www.104.com.tw/job/8plj3 找40歲以下會React的工程師",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S2-092",
+    "band": "G",
+    "url": "https://www.104.com.tw/job/7l2fw",
+    "supplement_text": "要3年行銷經驗的年輕女生",
+    "query": "https://www.104.com.tw/job/7l2fw 要3年行銷經驗的年輕女生",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S2-093",
+    "band": "G",
+    "url": "https://www.104.com.tw/job/727nh",
+    "supplement_text": "男性，需有堆高機證照與倉管經驗",
+    "query": "https://www.104.com.tw/job/727nh 男性，需有堆高機證照與倉管經驗",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S2-094",
+    "band": "G",
+    "url": "https://www.104.com.tw/job/74ccl",
+    "supplement_text": "35歲內、多益800、可外派",
+    "query": "https://www.104.com.tw/job/74ccl 35歲內、多益800、可外派",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S2-095",
+    "band": "G",
+    "url": "https://www.104.com.tw/job/8mxii",
+    "supplement_text": "未婚女性佳，需熟薪資結算作業",
+    "query": "https://www.104.com.tw/job/8mxii 未婚女性佳，需熟薪資結算作業",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S2-096",
+    "band": "G",
+    "url": "https://www.104.com.tw/job/7amih",
+    "supplement_text": "找退伍青年，會CNC操作",
+    "query": "https://www.104.com.tw/job/7amih 找退伍青年，會CNC操作",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S2-097",
+    "band": "G",
+    "url": "https://www.104.com.tw/job/74f9t",
+    "supplement_text": "30出頭、有帶團隊經驗的專案經理",
+    "query": "https://www.104.com.tw/job/74f9t 30出頭、有帶團隊經驗的專案經理",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S2-098",
+    "band": "G",
+    "url": "https://www.104.com.tw/job/34k0g",
+    "supplement_text": "女生優先，要會Figma和簡報",
+    "query": "https://www.104.com.tw/job/34k0g 女生優先，要會Figma和簡報",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S2-099",
+    "band": "G",
+    "url": "https://www.104.com.tw/job/7h1ne",
+    "supplement_text": "45歲以下老師傅，熟SolidWorks",
+    "query": "https://www.104.com.tw/job/7h1ne 45歲以下老師傅，熟SolidWorks",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S2-100",
+    "band": "G",
+    "url": "https://www.104.com.tw/job/56d45",
+    "supplement_text": "年輕人，會tailwind跟TypeScript",
+    "query": "https://www.104.com.tw/job/56d45 年輕人，會tailwind跟TypeScript",
+    "expected": {
+      "http_status": 200
+    }
+  }
+]
