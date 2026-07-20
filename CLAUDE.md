@@ -24,6 +24,19 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ---
 
+## 🧪 API 測試（VM 分支專用）
+
+本分支（`claude/vm-api-testing-setup-wpf6y8`）兼作 API 測試環境。**本檔不存任何 API 本身的資料**，一律走下列路由：
+
+| 任務類型 | 讀取檔案 / 載入 Skill |
+| --- | --- |
+| API 測試資料結構、報告模板、機密規範、新增 API 的 SOP | `wiki/api_testing_rules.md` |
+| 分析 API 文件（端點/參數/狀態/錯誤碼/測試矩陣） | Skill `api` |
+| 產生/執行測試腳本、出測試報告 | Skill `auto-test` |
+| 某支 API 的文件、腳本與歷次報告 | `wiki/apis/<api名稱>/` |
+
+---
+
 ## 🧠 Token 最佳化與全局索引
 
 處理大量規格書／長文／代碼時，嚴守以下「上下文壓縮」規範：
