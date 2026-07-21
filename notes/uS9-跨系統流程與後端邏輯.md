@@ -23,6 +23,7 @@
 | v16 | 2026-07-15 | [常用動作對照表／新版業務流程 §5] 依工程端更新：`updateMsgReaded` 前端不再 invoke，已讀改打 WebAPI 寫 DB（API 再 call SignalR），前端只處理接收事件 `onUpdateReaded`（新增該列）；`updateMsgReaded` 由「保留」改列「廢止」 |
 | v17 | 2026-07-15 | [onSignal 參數] SignalR Hub 調整：`onSignal` 新增回傳 `infoNo`（該次異動對話的 `rNo`）與 `bNo`（訊息明細流水號）；同步更新循序圖兩處推播 Note、常用動作表 `onSignal` 列、新版業務流程 §4，移除先前推測性的「正常情況含 `updateId`」描述 |
 | v18 | 2026-07-20 | [查詢 API／發送流程] 依工程端最新進度：①`get-echat-mail-logs` **棄用**，列表載入改用 `get-by-condition`（回傳改對話摘要陣列，明細仍走 `get-detail`）；②列表／搜尋 cursor 由 `infoNo` 更正為 `{organNo}_{RNo}`；③**依 Perry 建議**調整送出／回覆流程為「各單位自更新 DB→自打 EventBus→EventBus 呼叫 `update-chatlog` API→該 API 呼叫 SignalR」（共同發送/回覆表、循序圖 send/reply 段、SignalR §新版業務流程、Push 參與者標籤同步）|
+| v19 | 2026-07-21 | [用詞清理] `apiSendMessage.ashx` 已被 `update-chatlog` API 取代，收乾淨相關描述（Push 參與者標籤、SignalR 章節 §4、`getUserStatus` 列說明；`onSignal` 的 `ContextID="apiSendMessage"` 為協定既有字面值，未變動）；移除內文中「依 Perry 建議」等歸因註記（共同發送/回覆表、循序圖 Note、SignalR §新版業務流程），僅保留版控紀錄表 |
 
 ## 進入頁面／搜尋／進聊天室（兩支查詢 API）
 
@@ -44,7 +45,7 @@
 | :--: | :--- | :--- |
 | 0 | 驗證廠商點數與職缺權限、計算並檢查履歷瀏覽數 —— **失敗則擋住，不寫入資料庫** | 求才後端 |
 | 1 | 寫入信件主表（更新 DB） | 求才後端 |
-| 1.5 | **各單位自行發事件到 EventBus**（DB 更新後自打）→ EventBus 呼叫 `update-chatlog` API（`notes/api/echat-update-chatlog.md`）同步整併記訊狀態 → 再由 `update-chatlog` 呼叫 SignalR（`onSignal`）通知求職主網、統一分派推播給求職 App（**依 Perry 建議**） | 求才後端 → EventBus → update API |
+| 1.5 | **各單位自行發事件到 EventBus**（DB 更新後自打）→ EventBus 呼叫 `update-chatlog` API（`notes/api/echat-update-chatlog.md`）同步整併記訊狀態 → 再由 `update-chatlog` 呼叫 SignalR（`onSignal`）通知求職主網、統一分派推播給求職 App | 求才後端 → EventBus → update API |
 | 2 | 將「給求職者的通知信」**加入寄信排程**（不即時寄出，處理很快但非馬上送出） | 求才後端 |
 | 3 | 將「給廠商副本收件人的信」加入寄信排程 | 求才後端 |
 | 4 | 計算履歷瀏覽數（與其他雜項判斷） | 求才後端 |
@@ -66,7 +67,7 @@
 | :--: | :--- | :--- |
 | 1 | 更新回覆／面試狀態（如「已接受」、`ReplyWishMsg`） | 求職後端 |
 | 2 | 寫入信件主表＝自動寫入系統對話紀錄（系統訊息 與 一般訊息） | 求職後端 |
-| 2.5 | **各單位自行發事件到 EventBus**（DB 更新後自打）→ EventBus 呼叫 `update-chatlog` API 同步整併記訊狀態 → 再由 `update-chatlog` 呼叫 SignalR（`onSignal`）通知求才系統、發送推播給求才 App（**依 Perry 建議**） | 求職後端 → EventBus → update API |
+| 2.5 | **各單位自行發事件到 EventBus**（DB 更新後自打）→ EventBus 呼叫 `update-chatlog` API 同步整併記訊狀態 → 再由 `update-chatlog` 呼叫 SignalR（`onSignal`）通知求才系統、發送推播給求才 App | 求職後端 → EventBus → update API |
 | 3 | 判斷回信類別：**一般訊息**→加入廠商帳號（信件收件人）的「**收信區間排程**」（每帳號設定的收信區間不同，依區間彙整寄出）；**其他類別**（意願回覆等）→加入一般寄信排程 | 求職後端 |
 | 4 | 將「給廠商副本收件人的信」加入寄信排程 | 求職後端 |
 | 5 | 計算回覆狀態（與其他雜項判斷） | 求職後端 |
@@ -204,7 +205,7 @@ sequenceDiagram
     box rgba(200,200,200,0.1) 共用基礎設施
         participant DB as 資料庫
         participant Bus as 事件匯流排<br>（EventBus）
-        participant Push as update-chatlog API<br>（整併＋apiSendMessage 推播）
+        participant Push as update-chatlog API<br>（整併記訊＋SignalR 推播）
         participant Hub as 即時推播<br>（eChatHub SignalR／FCM／APNS）
     end
 
@@ -277,8 +278,8 @@ sequenceDiagram
         RB->>DB: 額外寫入一筆面試資料至面試行事曆資料表<br>（求才端；面試欄位隨發送請求帶入）
     end
 
-    %% ----- 信件即時通整併（依 Perry 建議：各單位自更新 DB 後自打 EventBus → EventBus 呼叫 update-chatlog API → 該 API 呼叫 SignalR） -----
-    Note over RB,Bus: DB 更新後 → 求才後端自行發事件到 EventBus（依 Perry 建議）
+    %% ----- 信件即時通整併：各單位自更新 DB 後自打 EventBus → EventBus 呼叫 update-chatlog API → 該 API 呼叫 SignalR -----
+    Note over RB,Bus: DB 更新後 → 求才後端自行發事件到 EventBus
     RB->>Bus: 發送異動事件到 EventBus<br>（廠商編號、履歷編號、職缺編號、<br>異動類型 0兩表／1信件／2即時通、異動編號）
     activate Bus
     Bus->>Push: 呼叫 update-chatlog API<br>（整併記訊狀態，並由此 API 收斂 SignalR 推送）
@@ -341,8 +342,8 @@ sequenceDiagram
         SB->>DB: 更新回覆／面試狀態<br>（面試狀態「已接受」、意願回覆代碼）
         SB->>DB: 寫入信件主表＝自動寫入系統對話紀錄<br>（系統訊息 與 一般訊息；唯一寫入點）
 
-        %% ----- 信件即時通整併（依 Perry 建議：各單位自更新 DB 後自打 EventBus → EventBus 呼叫 update-chatlog API → 該 API 呼叫 SignalR） -----
-        Note over SB,Bus: DB 更新後 → 求職後端自行發事件到 EventBus（依 Perry 建議）
+        %% ----- 信件即時通整併：各單位自更新 DB 後自打 EventBus → EventBus 呼叫 update-chatlog API → 該 API 呼叫 SignalR -----
+        Note over SB,Bus: DB 更新後 → 求職後端自行發事件到 EventBus
         SB->>Bus: 發送異動事件到 EventBus<br>（廠商編號、履歷編號、職缺編號、<br>異動類型、異動編號）
         activate Bus
         Bus->>Push: 呼叫 update-chatlog API<br>（整併記訊狀態，並由此 API 收斂 SignalR 推送）
@@ -404,23 +405,21 @@ sequenceDiagram
 ### 新版業務流程（送出走 WebAPI、SignalR 只收信號）
 
 1. **送出**：前端**不做 SignalR invoke**，改打 WebAPI 存進 DB。
-   - **求才端**：打 `eChatHandler.ashx`（`kind=5`）WebAPI（`eChatFunc.SaveMsgLog()`＝唯一寫入點）。
+   - **求才端**：打 `eChatHandler.ashx`（`kind=0`）WebAPI（`eChatFunc.SaveMsgLog()`＝唯一寫入點）。
    - **求職端**：打**求職自己提供的送出 API**（**非** `eChatHandler.ashx`）；登入認證用求職端各自的 cookie，API 名稱與參數與求才端**不同、不共用**。
-2. **DB 寫入成功後，各單位自行發事件到 EventBus**（依 Perry 建議：不再由後端直接呼叫 `update-chatlog`）→ 由 **EventBus 呼叫 `update-chatlog` API**（同步整合訊息）。
-3. `update-chatlog` API 整併記訊狀態後**收斂 SignalR 推送**（內部經 `apiSendMessage.ashx` 驗證簽章、查對方線上狀態），對在線接收端呼叫 `onSignal` 做 SignalR 即時推送，並統一分派 FCM／APNS 手機推播。
+2. **DB 寫入成功後，各單位自行發事件到 EventBus** → 由 **EventBus 呼叫 `update-chatlog` API**（同步整合訊息）。
+3. `update-chatlog` API 整併記訊狀態後**收斂 SignalR 推送**（內部驗證簽章、查對方線上狀態），對在線接收端呼叫 `onSignal` 做 SignalR 即時推送，並統一分派 FCM／APNS 手機推播。
 4. **接收**：前端 `onSignal` 收到的只是「有新訊息」的**通知信號**；`MsgLog` 直接忽略，但**其餘 KEY 參數（`tNo`／`oNo`／`uNo`／`eNo`／`infoNo`／`bNo`）即後續打「取對話 API」所需的參數**——`infoNo`＝該次異動對話的 `rNo`，可直接打 `get-detail/{infoNo}`（目前**只有 1 支**取全部 API，**求才／求職共用同一支 `get-detail`**）取得該對話訊息；前端**帶上本地已存最大 `bNo`（訊息明細流水號）作 cursor 指標，讓後端只回傳該 `bNo` 之後的新資料**，**不必每次都整室重新渲染全部**；非當前聊天室僅更新未讀提示。
 5. **已讀回報**：接收者讀取後，前端**不做 SignalR invoke**，改打 WebAPI 把已讀紀錄寫進 DB；該 API 會幫忙 call SignalR，對方前端以 `onUpdateReaded` 事件接收後更新雙方的已讀狀態（與「送出走 WebAPI、SignalR 只收信號」同一套模式）。
 
 ### 常用動作（Action）對照表
-
-> **保留 vs 廢止**（依工程端確認）：原始事件中 `setoUser`（求才端）、`settUser`（求職端）**保留、新版仍會使用**（連線後馬上觸發、不需帶額外參數）；求職端 `setRoomInfo`、`getUserStatus` 未列入保留清單、視為**不再需要**。前端 invoke 的送出類事件——訊息 `sendMsgPush`、已讀 `updateMsgReaded`——與接收 `onTextMessage` 皆廢止：**訊息與已讀的「寫入」都改走 WebAPI（API 再幫忙 call SignalR）**，前端只處理接收事件（訊息 `onSignal`、已讀 `onUpdateReaded`）。
 
 | 方向 | 動作名稱 | 端 | 新版狀態 | 說明 |
 | :--- | :--- | :--- | :--- | :--- |
 | 前端發送 | `setoUser` | 求才 | ✅ **保留**（新版仍使用） | 上線報到；觸發時機＝`signalR.on` 註冊後馬上觸發；不需帶額外參數 |
 | 前端發送 | `settUser` | 求職 | ✅ **保留**（新版仍使用） | 求職端上線報到；觸發時機＝`signalR.on` 註冊後馬上觸發；不需帶額外參數 |
 | 前端發送 | `setRoomInfo` | 求職 | ❌ **廢止**（未列入保留清單，不再需要） | 舊版設定聊天室資訊 |
-| 前端發送 | `getUserStatus` | 求職 | ❌ **廢止**（未列入保留清單，不再需要） | 舊版查詢對方線上狀態；新版線上狀態由後端 `apiSendMessage.ashx` 於推播前查（`GetTalentUserOnline`／`GetOrganUserOnline`） |
+| 前端發送 | `getUserStatus` | 求職 | ❌ **廢止**（未列入保留清單，不再需要） | 舊版查詢對方線上狀態；新版線上狀態由後端 `update-chatlog` API 於推播前查（`GetTalentUserOnline`／`GetOrganUserOnline`） |
 | 前端發送 | `sendMsgPush` | 求才／求職 | ❌ **廢止** | 舊版送出文字訊息的 SignalR invoke；新版送出改走 WebAPI（求才 `eChatHandler.ashx kind=5`／求職自有送出 API），前端不再 invoke |
 | 前端發送 | `updateMsgReaded` | 求才 | ❌ **廢止（改走 WebAPI）** | 舊版由前端 invoke 標記已讀；新版**前端不再 invoke**——已讀改由前端**打 WebAPI 寫進 DB**，該 API 再幫忙 call SignalR，前端只需處理接收事件 `onUpdateReaded`（與訊息「送出走 WebAPI、SignalR 只收信號」同一套模式） |
 | 後端推播 | `onTextMessage` | 求才／求職 | ❌ **廢止（由 `onSignal` 取代）** | 舊版接收文字訊息事件（`signalr?.on('onTextMessage', handleReceive)`） |
