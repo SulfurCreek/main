@@ -24,6 +24,8 @@
 | v17 | 2026-07-15 | [onSignal 參數] SignalR Hub 調整：`onSignal` 新增回傳 `infoNo`（該次異動對話的 `rNo`）與 `bNo`（訊息明細流水號）；同步更新循序圖兩處推播 Note、常用動作表 `onSignal` 列、新版業務流程 §4，移除先前推測性的「正常情況含 `updateId`」描述 |
 | v18 | 2026-07-20 | [查詢 API／發送流程] 依工程端最新進度：①`get-echat-mail-logs` **棄用**，列表載入改用 `get-by-condition`（回傳改對話摘要陣列，明細仍走 `get-detail`）；②列表／搜尋 cursor 由 `infoNo` 更正為 `{organNo}_{RNo}`；③**依 Perry 建議**調整送出／回覆流程為「各單位自更新 DB→自打 EventBus→EventBus 呼叫 `update-chatlog` API→該 API 呼叫 SignalR」（共同發送/回覆表、循序圖 send/reply 段、SignalR §新版業務流程、Push 參與者標籤同步）|
 | v19 | 2026-07-21 | [用詞清理] `apiSendMessage.ashx` 已被 `update-chatlog` API 取代，收乾淨相關描述（Push 參與者標籤、SignalR 章節 §4、`getUserStatus` 列說明；`onSignal` 的 `ContextID="apiSendMessage"` 為協定既有字面值，未變動）；移除內文中「依 Perry 建議」等歸因註記（共同發送/回覆表、循序圖 Note、SignalR §新版業務流程），僅保留版控紀錄表 |
+| v20 | 2026-07-21 | [update-chatlog 內部架構／新版業務流程] 依工程端最新循序圖修正呼叫順序：呼叫端**同步呼叫 `update-chatlog` API**（非「自行發事件到 EventBus」）→ 該 API 內部先 Publish「chatlog 更新事件」拿 ACK 快速回應 → EventBus 非同步呼叫回 `update-chatlog` 的 Callback 端點才真正整併寫入 ChatLog DB → 再 Publish「推播事件」→ 直接呼叫 `eChatHub` 推播；新增〈update-chatlog 內部架構〉專屬循序圖；同步修正共同發送/回覆行為表 1.5／2.5 列與新版業務流程 §2–4 |
+| v21 | 2026-07-21 | [已讀規則] 新增：廠商進入特定聊天室時，該聊天室內來自求職者的全部未讀訊息一次性標記為已讀（不判斷捲動位置）；同步更新新版業務流程 §6、循序圖「一、進入聯絡人才頁」已指定聊天室分支（已讀標記 WebAPI＋`onUpdateReaded` 通知）；求職端對應規則待補 |
 
 ## 進入頁面／搜尋／進聊天室（兩支查詢 API）
 
@@ -45,13 +47,13 @@
 | :--: | :--- | :--- |
 | 0 | 驗證廠商點數與職缺權限、計算並檢查履歷瀏覽數 —— **失敗則擋住，不寫入資料庫** | 求才後端 |
 | 1 | 寫入信件主表（更新 DB） | 求才後端 |
-| 1.5 | **各單位自行發事件到 EventBus**（DB 更新後自打）→ EventBus 呼叫 `update-chatlog` API（`notes/api/echat-update-chatlog.md`）同步整併記訊狀態 → 再由 `update-chatlog` 呼叫 SignalR（`onSignal`）通知求職主網、統一分派推播給求職 App | 求才後端 → EventBus → update API |
+| 1.5 | **求才後端呼叫 `update-chatlog` API**（`notes/api/echat-update-chatlog.md`，同步呼叫）→ 該 API 內部 Publish 事件到 EventBus、等待非同步 Callback 回呼後才實際整併記訊狀態、寫入 ChatLog DB → 再次 Publish 推播事件 → 呼叫 SignalR（`onSignal`）通知求職主網、統一分派推播給求職 App（完整內部架構見〈[update-chatlog 內部架構](#update-chatlog-內部架構echatlog-以-eventbus--callback-做非同步整併)〉） | 求才後端 → update API → EventBus（非同步 Callback）→ DB → SignalR |
 | 2 | 將「給求職者的通知信」**加入寄信排程**（不即時寄出，處理很快但非馬上送出） | 求才後端 |
 | 3 | 將「給廠商副本收件人的信」加入寄信排程 | 求才後端 |
 | 4 | 計算履歷瀏覽數（與其他雜項判斷） | 求才後端 |
 | 5 | 廠商畫面即時更新 | 求才前端 |
 
-> 第 1.5 項（EventBus → `update-chatlog` → signalR／推播）為求職者收到通知、回到求職主網的觸發來源；連線機制見〈[SignalR / WebSocket 即時通連線機制](#signalr--websocket-即時通連線機制)〉。
+> 第 1.5 項（`update-chatlog` → EventBus 非同步 Callback → DB → signalR／推播）為求職者收到通知、回到求職主網的觸發來源；連線機制見〈[SignalR / WebSocket 即時通連線機制](#signalr--websocket-即時通連線機制)〉。
 >
 > **第 4 項「計算履歷瀏覽數」細節**（舊版 [4.1 §5.2](/r1ghrPxP-x)）：寄出時寫入發信排程，執行排程時即時檢查廠商當日履歷瀏覽數是否足夠 —— 不足則不執行發信排程；足夠且成功寄出後扣除履歷瀏覽數。
 >
@@ -67,7 +69,7 @@
 | :--: | :--- | :--- |
 | 1 | 更新回覆／面試狀態（如「已接受」、`ReplyWishMsg`） | 求職後端 |
 | 2 | 寫入信件主表＝自動寫入系統對話紀錄（系統訊息 與 一般訊息） | 求職後端 |
-| 2.5 | **各單位自行發事件到 EventBus**（DB 更新後自打）→ EventBus 呼叫 `update-chatlog` API 同步整併記訊狀態 → 再由 `update-chatlog` 呼叫 SignalR（`onSignal`）通知求才系統、發送推播給求才 App | 求職後端 → EventBus → update API |
+| 2.5 | **求職後端呼叫 `update-chatlog` API**（同步呼叫）→ 該 API 內部 Publish 事件到 EventBus、等待非同步 Callback 回呼後才實際整併記訊狀態、寫入 ChatLog DB → 再次 Publish 推播事件 → 呼叫 SignalR（`onSignal`）通知求才系統、發送推播給求才 App | 求職後端 → update API → EventBus（非同步 Callback）→ DB → SignalR |
 | 3 | 判斷回信類別：**一般訊息**→加入廠商帳號（信件收件人）的「**收信區間排程**」（每帳號設定的收信區間不同，依區間彙整寄出）；**其他類別**（意願回覆等）→加入一般寄信排程 | 求職後端 |
 | 4 | 將「給廠商副本收件人的信」加入寄信排程 | 求職後端 |
 | 5 | 計算回覆狀態（與其他雜項判斷） | 求職後端 |
@@ -230,11 +232,15 @@ sequenceDiagram
         DB-->>RB: 對話資料＋廠商視角／求職者視角訊息明細
         RB-->>RF: 回傳廠商視角訊息明細
         Note over RF: 依明細渲染右側聊天室：<br>寄件者代碼→泡泡左右與收回樣式<br>信件類別＋面試類別→一般訊息／邀約卡片<br>已讀未讀＝訊息已讀旗標＋雙方已讀日期
+        RF->>RB: 已讀標記 WebAPI（名稱待補）<br>將該聊天室內來自求職者的全部未讀訊息一次標記已讀<br>（不判斷是否捲動到特定訊息，整室未讀全部寫入；非 SignalR invoke）
+        RB->>DB: 寫入已讀狀態（Readflag／OViewDate）
+        RB-->>RF: 完成
+        Note over RB,Hub: 該 API 呼叫 SignalR 通知求職前端 onUpdateReaded<br>（與「送出走 WebAPI、SignalR 只收信號」同一套模式）
         RF->>Hub: 建立 SignalR 連線並加入該聊天室頻道<br>（登入憑證、公司編號、使用者編號，頻道 echathub）
         Note over Hub: 進入指定聊天室即連線；固定間隔心跳偵測、斷線自動重連
     else 未指定聊天室（僅載入列表，待點選）
         Emp->>RF: 點選左側某筆對話（選擇聊天室）
-        Note over RF,Hub: 走上方相同流程：GET get-detail 載入該室明細 → 建立 SignalR 連線並加入頻道
+        Note over RF,Hub: 走上方相同流程：GET get-detail 載入該室明細 → 已讀標記 WebAPI → 建立 SignalR 連線並加入頻道
     end
     end
 
@@ -407,10 +413,81 @@ sequenceDiagram
 1. **送出**：前端**不做 SignalR invoke**，改打 WebAPI 存進 DB。
    - **求才端**：打 `eChatHandler.ashx`（`kind=0`）WebAPI（`eChatFunc.SaveMsgLog()`＝唯一寫入點）。
    - **求職端**：打**求職自己提供的送出 API**（**非** `eChatHandler.ashx`）；登入認證用求職端各自的 cookie，API 名稱與參數與求才端**不同、不共用**。
-2. **DB 寫入成功後，各單位自行發事件到 EventBus** → 由 **EventBus 呼叫 `update-chatlog` API**（同步整合訊息）。
-3. `update-chatlog` API 整併記訊狀態後**收斂 SignalR 推送**（內部驗證簽章、查對方線上狀態），對在線接收端呼叫 `onSignal` 做 SignalR 即時推送，並統一分派 FCM／APNS 手機推播。
-4. **接收**：前端 `onSignal` 收到的只是「有新訊息」的**通知信號**；`MsgLog` 直接忽略，但**其餘 KEY 參數（`tNo`／`oNo`／`uNo`／`eNo`／`infoNo`／`bNo`）即後續打「取對話 API」所需的參數**——`infoNo`＝該次異動對話的 `rNo`，可直接打 `get-detail/{infoNo}`（目前**只有 1 支**取全部 API，**求才／求職共用同一支 `get-detail`**）取得該對話訊息；前端**帶上本地已存最大 `bNo`（訊息明細流水號）作 cursor 指標，讓後端只回傳該 `bNo` 之後的新資料**，**不必每次都整室重新渲染全部**；非當前聊天室僅更新未讀提示。
-5. **已讀回報**：接收者讀取後，前端**不做 SignalR invoke**，改打 WebAPI 把已讀紀錄寫進 DB；該 API 會幫忙 call SignalR，對方前端以 `onUpdateReaded` 事件接收後更新雙方的已讀狀態（與「送出走 WebAPI、SignalR 只收信號」同一套模式）。
+2. **DB 寫入成功後，各單位（求才／求職後端）同步呼叫 `update-chatlog` API**（非「自行發事件到 EventBus」，是直接呼叫這支 API 的進入點）。
+3. `update-chatlog` API 內部先 **Publish 一筆「chatlog 更新事件」到 EventBus**、取得 `ACK / Publish Accepted` 立即回應（此時尚未真正整併資料）；EventBus 之後**非同步呼叫回 `update-chatlog` API 的 Callback 端點**，才在這個 Callback 裡實際把 chatlog／訊息狀態整併寫入 ChatLog DB。
+4. DB 更新完成後，`update-chatlog`／`Callback` **再 Publish 一筆「推播事件」到 EventBus**（同樣先拿 `ACK` 再非同步處理），內部驗證簽章、查對方線上狀態後，直接呼叫 `eChatHub` 推播 API，對在線接收端呼叫 `onSignal` 做 SignalR 即時推送，並統一分派 FCM／APNS 手機推播。完整內部呼叫順序見下方〈[update-chatlog 內部架構](#update-chatlog-內部架構echatlog-以-eventbus--callback-做非同步整併)〉。
+5. **接收**：前端 `onSignal` 收到的只是「有新訊息」的**通知信號**；`MsgLog` 直接忽略，但**其餘 KEY 參數（`tNo`／`oNo`／`uNo`／`eNo`／`infoNo`／`bNo`）即後續打「取對話 API」所需的參數**——`infoNo`＝該次異動對話的 `rNo`，可直接打 `get-detail/{infoNo}`（目前**只有 1 支**取全部 API，**求才／求職共用同一支 `get-detail`**）取得該對話訊息；前端**帶上本地已存最大 `bNo`（訊息明細流水號）作 cursor 指標，讓後端只回傳該 `bNo` 之後的新資料**，**不必每次都整室重新渲染全部**；非當前聊天室僅更新未讀提示。
+6. **已讀回報**：**廠商進入特定聊天室時，將該聊天室內來自求職者的全部未讀訊息一次性標記為已讀**（不判斷是否捲動到特定訊息位置，整室未讀全部寫入已讀；求職端讀取廠商訊息的觸發規則待補）。標記已讀時前端**不做 SignalR invoke**，改打 WebAPI 把已讀紀錄寫進 DB；該 API 會幫忙 call SignalR，對方前端以 `onUpdateReaded` 事件接收後更新雙方的已讀狀態（與「送出走 WebAPI、SignalR 只收信號」同一套模式）。
+
+### update-chatlog 內部架構（EventBus + Callback 做非同步整併）
+
+> 對應上方新版業務流程 §2–4：`update-chatlog` API 不是「收到呼叫就同步整併完成」，而是先用 EventBus 做一次非同步解耦（Publish／Callback），實際整併與推播都發生在 Callback 之後；下圖依工程端提供的最新循序圖繪製。
+
+```mermaid
+---
+config:
+  theme: base
+  rightAngles: true
+  themeVariables:
+    fontFamily: "Inter, Helvetica, Arial, sans-serif"
+    primaryColor: "#F4F5F7"
+    primaryBorderColor: "#C1C7D0"
+    primaryTextColor: "#172B4D"
+    signalColor: "#42526E"
+    signalTextColor: "#333333"
+    noteBkgColor: "#FFF0B3"
+    noteBorderColor: "#FFC400"
+  sequence:
+    actorFontSize: 17
+    actorFontWeight: bold
+    messageFontSize: 16
+    noteFontSize: 15
+    wrap: true
+    wrapPadding: 12
+    actorMargin: 70
+    boxMargin: 12
+    boxTextMargin: 8
+    messageMargin: 42
+    mirrorActors: false
+---
+sequenceDiagram
+    autonumber
+
+    actor Sender as 訊息發送端<br>（各團隊服務）
+    participant API as 求才 API<br>（update-chatlog／Callback）
+
+    box rgba(200,200,200,0.15) 共用基礎設施
+        participant Bus as EventBus<br>（Publish API／Worker）
+        participant DB as ChatLog DB
+        participant Hub as eChatHub／SignalR
+    end
+
+    actor Recv as 訊息接收端<br>（求才前端／求職前端）
+
+    Sender->>API: 呼叫 update-chatlog API
+    activate API
+    API->>Bus: Publish chatlog 更新事件
+    Bus-->>API: ACK／Publish Accepted
+    Bus->>API: 呼叫 Callback API
+
+    rect rgb(150,150,150)
+    Note over API,DB: 求才內部邏輯
+    API->>DB: 更新 chatlog／訊息狀態
+    DB-->>API: 更新完成
+    API->>Bus: Publish 推播事件
+    Bus-->>API: ACK／Publish Accepted
+    end
+
+    API->>Hub: 呼叫 eChatHub 推播 API
+    deactivate API
+    Hub->>Recv: 透過 SignalR／WebSocket 推播訊息
+```
+
+* **步驟 1–2**：呼叫端（求才／求職後端）同步呼叫 `update-chatlog` API；該 API 只做「Publish 一筆更新事件到 EventBus」（步驟 2）並拿到 `ACK / Publish Accepted`（步驟 3），**尚未真正整併資料**——這一步是快速解耦，不等實際處理完成。
+* **步驟 4**：EventBus（透過 Worker）**非同步**呼叫回同一支 `update-chatlog` API 的 **Callback 端點**，真正的整併邏輯從這裡才開始。
+* **步驟 5–8（求才內部邏輯）**：Callback 端點更新 ChatLog DB（chatlog／訊息狀態整併，步驟 5–6），完成後**再 Publish 一次「推播事件」到 EventBus**（步驟 7）、拿到 `ACK` 確認已受理（步驟 8）。
+* **步驟 9–10**：`update-chatlog`／`Callback` 直接呼叫 `eChatHub` 的推播 API（步驟 9，非再經 EventBus 一次），由 `eChatHub` 透過 SignalR／WebSocket（`onSignal`）把訊息推送給接收端（求才前端／求職前端，步驟 10），並統一分派 FCM／APNS 手機推播。
+* 兩次 Publish／ACK（chatlog 更新事件、推播事件）是**兩個獨立的非同步事件**，不是同一次事件的兩個階段；圖中省略了 Worker 消費 Publish 事件、判斷觸發 Callback 的內部細節（屬 RD 實作範疇）。
 
 ### 常用動作（Action）對照表
 
