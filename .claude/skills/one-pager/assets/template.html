@@ -1,0 +1,165 @@
+<meta charset="utf-8">
+<title>one-pager</title>
+<style>
+  :root {
+    --bg-0: #0a0e1a; --bg-1: #111a2e; --surface: #17223b; --surface-2: #1e2b47;
+    --border: #2a3a5c; --ink: #f2f5fb; --ink-2: #aeb9d0; --ink-3: #74839f;
+    --accent: #3aa0ff; --good: #37d67a; --bad: #ff5c6c; --amber: #f5b342;
+    --good-dim: rgba(55,214,122,.14); --bad-dim: rgba(255,92,108,.13); --amber-dim: rgba(245,179,66,.14);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: var(--bg-0); }
+  .canvas {
+    width: 2000px; height: 1125px; position: relative; overflow: hidden;
+    background: radial-gradient(1400px 800px at 15% -10%, #17233f 0%, var(--bg-0) 55%), var(--bg-0);
+    color: var(--ink);
+    font-family: "WenQuanYi Zen Hei", "Noto Sans TC", system-ui, sans-serif;
+    padding: 46px 56px 40px; display: flex; flex-direction: column; gap: 22px;
+    -webkit-font-smoothing: antialiased;
+  }
+  /* kicker */
+  .kicker { display: flex; align-items: center; gap: 14px; color: var(--ink-2); font-size: 24px; letter-spacing: .5px; }
+  .kicker::before { content: ""; width: 6px; height: 30px; background: var(--accent); border-radius: 3px; }
+  /* headline */
+  .headline { font-size: 62px; font-weight: 700; line-height: 1.12; letter-spacing: .5px; }
+  .headline em { color: var(--accent); font-style: normal; }
+  /* body flex-grow */
+  .body { flex: 1; min-height: 0; }
+
+  /* ---- decision_matrix ---- */
+  .matrix { display: flex; flex-direction: column; height: 100%; }
+  .mx-row { display: grid; grid-template-columns: 1.15fr 1.75fr .62fr 1.7fr .82fr; gap: 18px; align-items: center; padding: 0 8px; }
+  .mx-head { color: var(--ink-3); font-size: 21px; padding-bottom: 12px; border-bottom: 1px solid var(--border); }
+  .mx-body { flex: 1; display: flex; flex-direction: column; }
+  .mx-data { flex: 1; border-bottom: 1px solid rgba(42,58,92,.5); font-size: 25px; }
+  .mx-opt { display: flex; align-items: center; gap: 12px; font-weight: 700; }
+  .mx-opt .emoji { font-size: 30px; }
+  .mx-action { color: var(--ink-2); font-size: 22px; line-height: 1.35; }
+  .mx-action b { color: var(--ink); font-weight: 700; }
+  .mx-ttl { color: var(--amber); font-weight: 700; font-size: 24px; }
+  .mx-learn { font-size: 21px; line-height: 1.32; }
+  .mx-learn .tag { font-weight: 700; }
+  .mx-learn.good .tag { color: var(--good); }
+  .mx-learn.bad .tag { color: var(--bad); }
+  .mx-verdict { display: flex; gap: 8px; }
+  .chip { border: 1px solid var(--border); border-radius: 9px; background: var(--surface); padding: 8px 10px; font-size: 21px; color: var(--ink-2); }
+  .chip.y { color: var(--good); } .chip.n { color: var(--bad); }
+
+  /* ---- comparison ---- */
+  .cmp { display: grid; height: 100%; gap: 16px; }
+  .cmp-row { display: grid; gap: 16px; align-items: stretch; }
+  .cmp-cell { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 16px 20px; font-size: 24px; }
+  .cmp-dim { color: var(--ink-3); font-size: 21px; display: flex; align-items: center; }
+  .cmp-cell.good { background: var(--good-dim); border-color: rgba(55,214,122,.4); }
+  .cmp-cell.bad { background: var(--bad-dim); border-color: rgba(255,92,108,.4); }
+  .cmp-head { font-weight: 700; font-size: 28px; text-align: center; }
+
+  /* ---- kpi ---- */
+  .kpi { display: grid; grid-auto-flow: column; gap: 22px; height: 100%; align-content: center; }
+  .kpi-tile { background: var(--surface); border: 1px solid var(--border); border-radius: 18px; padding: 30px 34px; display: flex; flex-direction: column; gap: 10px; justify-content: center; }
+  .kpi-label { color: var(--ink-3); font-size: 24px; }
+  .kpi-value { font-size: 76px; font-weight: 700; }
+  .kpi-value.good { color: var(--good); } .kpi-value.bad { color: var(--bad); } .kpi-value.accent { color: var(--accent); }
+  .kpi-delta { font-size: 24px; color: var(--ink-2); }
+
+  /* ---- checklist ---- */
+  .ckl { display: grid; grid-auto-flow: column; grid-auto-columns: 1fr; gap: 30px; height: 100%; }
+  .ckl-group { display: flex; flex-direction: column; gap: 12px; }
+  .ckl-gtitle { color: var(--accent); font-weight: 700; font-size: 26px; border-bottom: 1px solid var(--border); padding-bottom: 8px; }
+  .ckl-item { display: flex; gap: 12px; align-items: baseline; font-size: 24px; color: var(--ink-2); }
+  .ckl-item .dot { font-size: 22px; }
+  .ckl-item.done .dot { color: var(--good); } .ckl-item.todo .dot { color: var(--ink-3); } .ckl-item.warn .dot { color: var(--amber); }
+
+  /* cards */
+  .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 20px 24px; }
+  .card h4 { color: var(--accent); font-size: 25px; margin-bottom: 8px; }
+  .card p { color: var(--ink-2); font-size: 21px; line-height: 1.42; }
+  /* footer */
+  .footer { display: flex; align-items: center; gap: 24px; border-top: 1px solid var(--border); padding-top: 18px; }
+  .footer .btn { background: var(--accent); color: #04122a; font-weight: 700; font-size: 25px; padding: 12px 22px; border-radius: 12px; }
+  .footer .progress { color: var(--ink-2); font-size: 24px; }
+  .footer .legend { margin-left: auto; color: var(--ink-2); font-size: 23px; }
+  .footer .page { color: var(--ink-3); font-size: 22px; }
+</style>
+
+<div class="canvas" id="canvas">
+  <div class="kicker" id="kicker"></div>
+  <div class="headline" id="headline"></div>
+  <div class="body" id="body"></div>
+  <div class="cards" id="cards"></div>
+  <div class="footer" id="footer"></div>
+</div>
+
+<script>
+const DATA = __DATA__;
+const $ = (id) => document.getElementById(id);
+
+$("kicker").textContent = DATA.kicker || "";
+$("headline").innerHTML = DATA.headline || "";
+
+// ---- body renderers by layout ----
+function renderDecisionMatrix(m) {
+  const head = `<div class="mx-row mx-head">${m.columns.map(c => `<div>${c}</div>`).join("")}</div>`;
+  const rows = m.rows.map(r => `
+    <div class="mx-row mx-data">
+      <div class="mx-opt"><span class="emoji">${r.emoji || ""}</span><span>${r.option}</span></div>
+      <div class="mx-action">${r.action}</div>
+      <div class="mx-ttl">${r.ttl}</div>
+      <div class="mx-learn ${r.learn_status || ""}"><span class="tag">${r.learn_status === "good" ? "✅ " : r.learn_status === "bad" ? "❌ " : ""}</span>${r.learn}</div>
+      <div class="mx-verdict">
+        <span class="chip y">✅ 適合</span><span class="chip n">❌</span><span class="chip">💬</span>
+      </div>
+    </div>`).join("");
+  return `<div class="matrix">${head}<div class="mx-body">${rows}</div></div>`;
+}
+
+function renderComparison(c) {
+  const cols = c.options.length;
+  const grid = `grid-template-columns: 0.8fr repeat(${cols}, 1fr);`;
+  let html = `<div class="cmp" style="${grid.replace('grid-template-columns','--x')}">`;
+  html = `<div class="cmp" style="grid-template-rows: repeat(${c.rows.length + 1}, 1fr);">`;
+  html += `<div class="cmp-row" style="${grid}"><div class="cmp-dim"></div>${c.options.map(o => `<div class="cmp-head">${o}</div>`).join("")}</div>`;
+  html += c.rows.map(row => `<div class="cmp-row" style="${grid}"><div class="cmp-dim">${row.dim}</div>${row.cells.map(cell => `<div class="cmp-cell ${cell.status || ""}">${cell.text}</div>`).join("")}</div>`).join("");
+  html += `</div>`;
+  return html;
+}
+
+function renderKpi(k) {
+  return `<div class="kpi">${k.tiles.map(t => `
+    <div class="kpi-tile">
+      <div class="kpi-label">${t.label}</div>
+      <div class="kpi-value ${t.tone || ""}">${t.value}</div>
+      ${t.delta ? `<div class="kpi-delta">${t.delta}</div>` : ""}
+    </div>`).join("")}</div>`;
+}
+
+function renderChecklist(c) {
+  return `<div class="ckl">${c.groups.map(g => `
+    <div class="ckl-group">
+      <div class="ckl-gtitle">${g.title}</div>
+      ${g.items.map(it => `<div class="ckl-item ${it.state || "todo"}"><span class="dot">${it.state === "done" ? "✅" : it.state === "warn" ? "⚠️" : "◻️"}</span><span>${it.text}</span></div>`).join("")}
+    </div>`).join("")}</div>`;
+}
+
+const renderers = {
+  decision_matrix: () => renderDecisionMatrix(DATA.matrix),
+  comparison: () => renderComparison(DATA.comparison),
+  kpi: () => renderKpi(DATA.kpi),
+  checklist: () => renderChecklist(DATA.checklist),
+};
+$("body").innerHTML = (renderers[DATA.layout] || (() => "<div>unknown layout</div>"))();
+
+// ---- cards ----
+$("cards").innerHTML = (DATA.cards || []).map(c => `<div class="card"><h4>${c.title}</h4><p>${c.body}</p></div>`).join("");
+if (!DATA.cards || !DATA.cards.length) $("cards").style.display = "none";
+
+// ---- footer ----
+const f = DATA.footer || {};
+$("footer").innerHTML = `
+  ${f.action ? `<span class="btn">${f.action}</span>` : ""}
+  ${f.progress ? `<span class="progress">${f.progress}</span>` : ""}
+  ${f.legend ? `<span class="legend">${f.legend}</span>` : ""}
+  ${f.page ? `<span class="page">${f.page}</span>` : ""}
+`;
+</script>
