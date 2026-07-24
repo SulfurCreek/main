@@ -31,7 +31,7 @@ tree = json.load(open('/home/user/main/job-classification-kb/scripts/_dutynm_tre
 leaf2cat = {leaf:(M,mid) for M,mids in tree.items() for mid,ls in mids.items() for leaf in ls}
 
 rows_out = []
-status_count = {'already_top5':0, 'still_enhancement':0, 'still_worst':0}
+status_count = {'already_top5':0, 'still_enhancement':0, 'still_worst_dedup_skip':0}
 
 for i in range(n):
     o = old[i]
@@ -58,9 +58,10 @@ for i in range(n):
         tag = '萬用填充項擠壓-新模型仍未解決(排序6-10)'
         current_recs = new_recs
     else:
-        status_count['still_worst'] += 1
-        tag = '萬用填充項擠壓-新模型仍未解決(完全沒中)'
-        current_recs = new_recs
+        # 完全沒中＝與 4_worst_case_rescue_plan.csv 的退步定義完全重複（同一筆職缺、同一個正解），
+        # 已改由該檔單獨涵蓋，這裡不重複產生訓練標籤，避免同一筆資料出現在兩份回饋檔。
+        status_count['still_worst_dedup_skip'] += 1
+        continue
 
     ideal = [correct_duty] + [r for r in current_recs if r != correct_duty]
     ideal = ideal[:10]
