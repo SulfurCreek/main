@@ -16,9 +16,8 @@
 | 7. 逐桶案例確認 | [`../analysis_目標桶案例確認_20260720.md`](../analysis_目標桶案例確認_20260720.md) | 57 個高/中污染桶各抓 2 筆真實案例佐證 |
 | 8. 手術式修正驗證 | [`../feedback_模型退步問題清單_20260720.md`](../feedback_模型退步問題清單_20260720.md) | 3 桶逐一測試「revert 會不會誤傷本次救回」，分「可整桶修」vs「僅窄範圍修」 |
 | 9. 全量退步清單 | [`../tracking_退步案例_20260720.md`](../tracking_退步案例_20260720.md) | 14,412 筆全量存查追蹤 |
-| 10. 訓練回饋（拯救方案） | [`../training_feedback/4_worst_case_rescue_plan.csv`](../training_feedback/4_worst_case_rescue_plan.csv) | 14,412 筆逐筆理想推薦標籤，其中 615 筆額外驗證可整桶/窄範圍套規則 |
 | 11. enhancement（排序待優化）根因 | [`../analysis_排序待優化案例根因分析.md`](../analysis_排序待優化案例根因分析.md) | 舊模型基準：18,181 筆「AI有推到但排第6~10名」案例，找到「萬用填充項擠壓」機制 |
-| 12. enhancement 重排方案 | [`../training_feedback/5_enhancement_reorder_plan.csv`](../training_feedback/5_enhancement_reorder_plan.csv) | 18,181 筆逐筆理想重排標籤（正解移回第1名） |
+| 10+12. 訓練回饋合併檔（拯救方案＋重排方案） | [`../training_feedback/4_training_rescue_and_reorder_plan.csv`](../training_feedback/4_training_rescue_and_reorder_plan.csv) | worst_case 14,412 筆 ＋ enhancement 18,737 筆，合併成單檔（`情境`欄區分），共 33,149 筆逐筆理想推薦/理想重排標籤 |
 
 可重跑腳本都在 [`../scripts/`](../scripts/)：`analyze_duty_recommendation_accuracy.py`（基準）、`paired_compare_model_improvement.py`（配對比較）、`regression_causality.py`（因果/污染率）、`bucket_examples.py`（逐桶案例）、`surgical_test_23.py` / `precise_safety_check.py`（安全性驗證）、`build_rescue_csv.py`（拯救方案 CSV）、`enhancement_analysis.py`/`enhancement_analysis2.py`（排序問題挖掘）、`build_enhancement_csv.py`（重排方案 CSV）、`verify_enhancement_revert_risk.py`/`verify_enhancement_revert_risk2.py`（enhancement 修正是否會造成 revert 風險驗證）。
 
@@ -91,12 +90,12 @@ worst case 之外，同一批資料還有一種**排序**問題：AI 有推到�
 **教訓**：一開始把「餐廚助手」也算進「萬用填充項」清單，全量驗證合法率後發現它 76.2% 是真職缺，跟
 「侍酒師」(0.4%) 完全不同性質。**任何「這是萬用桶/填充項」的假說，都要跟 worst case 一樣算全量合法率
 才能下結論，不能只看「跨很多中類重複出現」這個表象**——出現頻率高不等於不合法。（影響範圍：
-`5_enhancement_reorder_plan.csv` 中僅 65/18,181 筆〔0.4%〕因此被誤標記，可忽略不需重建整份 CSV。）
+`4_training_rescue_and_reorder_plan.csv` 中僅 65/18,737 筆〔0.35%〕因此被誤標記，可忽略不需重建整份 CSV。）
 
 ### 修 enhancement 排序問題會不會抵銷 worst case 已經上線的修正？—— 不會，理由如下
 
-1. **本質是逐筆訓練標籤，不是全域規則**：`5_enhancement_reorder_plan.csv` 的「理想推薦」是把正解移回
-   第1名、其餘保留原順序遞補，跟 `4_worst_case_rescue_plan.csv` 同一套邏輯——每一列只主張「這筆職缺的
+1. **本質是逐筆訓練標籤，不是全域規則**：`4_training_rescue_and_reorder_plan.csv` 中 enhancement 情境的
+   「理想推薦」是把正解移回第1名、其餘保留原順序遞補，跟 worst_case 情境同一套邏輯——每一列只主張「這筆職缺的
    理想排序」，不對其他職缺的推薦下判斷，所以天生不需要像桶級規則那樣做安全性證明，也不會跟其他修正
    互相抵銷。
 2. **實證上，這批問題已經被新模型（20260720）大量自然解決**：抽查舊模型「被萬用填充項擠壓」的 7,707

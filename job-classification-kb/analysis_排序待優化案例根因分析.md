@@ -2,7 +2,7 @@
 
 > 對象：`training_feedback/2_enhancement.csv`（18,181筆，舊模型基準——AI 前5名完全沒中，但廠商送出職類出現在第6~10名）
 > 對照：本分析與 [`analysis_退步案例因果分析_20260720.md`](analysis_退步案例因果分析_20260720.md)（新模型更新後的退步案例）是**不同模型版本**——這份是舊模型基準的排序問題，尚未套用任何 worst case 修正。
-> 拯救方案：[`training_feedback/5_enhancement_reorder_plan.csv`](training_feedback/5_enhancement_reorder_plan.csv)（18,181筆逐筆理想重排）
+> 拯救方案：[`training_feedback/4_training_rescue_and_reorder_plan.csv`](training_feedback/4_training_rescue_and_reorder_plan.csv)（`情境`＝`enhancement_排序待優化`，18,737筆逐筆理想重排，與 worst_case 拯救方案合併為單一檔案）
 > 分析腳本：`scripts/`（enhancement_analysis.py 系列，可重跑）
 
 ## TL;DR
@@ -44,6 +44,6 @@ duty0=總機／接待／櫃檯人員，命中名次落在第6~7名，前5名固�
 初版分析把「餐廚助手」也算進「萬用型飲料/餐飲類」填充項清單。事後全量驗證合法率（該類被推薦第1名時，
 真的被廠商標記過的比例）發現餐廚助手高達 **76.2%（2,333/3,061）**，跟真正的填充項（如侍酒師 0.4%、
 調酒師／吧台人員 6.6%）性質完全不同——它是合法類別，不是誤判產物。此標記錯誤只影響
-`5_enhancement_reorder_plan.csv` 中 **65 筆（0.4%）** 的分類標籤，理想重排結果本身不受影響（正解一樣
+`4_training_rescue_and_reorder_plan.csv` 中 **65 筆（0.35%）** 的分類標籤，理想重排結果本身不受影響（正解一樣
 移回第1名），故未重建整份 CSV。完整合法率表與 revert-risk 驗證見
 [`wiki/04-ai-model-update-verification.md`](wiki/04-ai-model-update-verification.md#enhancement排序待優化案例的補充教訓萬用填充項是另一種撐大機制)。
