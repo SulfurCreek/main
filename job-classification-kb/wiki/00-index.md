@@ -9,6 +9,7 @@
 | 整個專案在幹嘛 | [01-project-overview](01-project-overview.md) |
 | 怎麼跑、改完怎麼套用 | [02-workflow](02-workflow.md) |
 | 「正解」「中類」「葉」是什麼 | [03-glossary](03-glossary.md) |
+| AI 推薦模型更新驗證、怎麼避免下次要 revert、污染率怎麼算 | [04-ai-model-update-verification](04-ai-model-update-verification.md) |
 | plan() 怎麼決定槓哪格、補哪格 | [../logic/01-plan-algorithm](../logic/01-plan-algorithm.md) |
 | 哪些判斷已經確認是對的 | [../logic/02-verified-logic](../logic/02-verified-logic.md) |
 | 以前犯過什麼錯、不要再犯 | [../logic/03-pitfalls](../logic/03-pitfalls.md) |
@@ -40,6 +41,7 @@
 | 管理詞保護 | 職稱有幹部/組長 → 管理職類受保護 | [logic/02](../logic/02-verified-logic.md) |
 | 機構行政共存 | 長照/醫療/學校 → 行政項目可共存 | [logic/02](../logic/02-verified-logic.md) |
 | 職稱拆解 | 居服組長 = 居服 + 組長，各自保護 | [logic/02](../logic/02-verified-logic.md) |
+| 污染率 / 萬用桶撐大 | AI 推薦模型退步的診斷指標與根因 | [04-ai-model-update-verification](04-ai-model-update-verification.md) |
 
 ## tCode 表關鍵字
 
