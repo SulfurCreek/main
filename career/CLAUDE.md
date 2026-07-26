@@ -1,37 +1,42 @@
 <!--markdownlint-disable MD033-->
 <!--markdownlint-disable MD013-->
 
-# ⚠️ career/ — 個人職涯資料，非 1111 規格文件 / Personal career material, NOT 1111 spec docs
+# career/ — 個人職涯資料 / Personal career material
 
-**給其他 Claude 工作階段的注意事項 / Caution for other Claude sessions reading this:**
+這裡是**使用者的個人職涯資料**（職能盤點、履歷素材、作品集），與本 repo 的 1111 規格文件工作**刻意分開**。
+當成一般 Markdown 文件處理即可。
 
-此資料夾（`career/`）存放的是**使用者的個人職涯資料**（職能盤點、履歷素材），與本 repo 的
-1111 人力銀行規格文件**完全分離**。它們不屬於同一套工具，請勿混用。
+*The user's personal career material — competency inventory, résumé source, portfolio. Deliberately kept apart
+from this repo's 1111 spec-documentation work. Treat as plain Markdown.*
 
-This folder holds the **user's personal career material** (competency inventory, résumé source). It is **strictly
-separate** from the 1111 recruitment spec-documentation workflow in this repo. They are not the same tooling — do
-not co-manage them.
+## 🚫 硬規則：不外流 / Hard rule: never publish
 
-## 規則 / Rules
+**絕不**把 `career/` 的任何內容推送、同步或建立到 HackMD `1111-jobdocs` 團隊工作區（或任何 HackMD note）。
+那是公司共用空間，一旦寫入即為不可逆的個人資料外洩。
 
-- 🚫 **不要套用 `spec-doc-1111` skill** 或任何 HackMD 規格書慣例（User Story/Use Case 區塊、初始化、MECE、版控表、
-  紅字、權限代碼表…）到 `career/` 下的任何檔案。這裡不是規格書。
-  *Do NOT apply the `spec-doc-1111` skill or any HackMD spec convention to files under `career/`. These are not specs.*
-- 🚫 **不要**把 `career/` 的內容推送、同步、或建立到 HackMD `1111-jobdocs` 團隊工作區（或任何 HackMD note）。
-  *Do NOT push, sync, or create `career/` content in the HackMD `1111-jobdocs` team workspace (or any HackMD note).*
-- 🚫 **不要**把這裡的內容與 repo 根目錄 `CLAUDE.md`（HackMD API 工具）混在一起；兩者刻意分開。
-  *Do NOT merge this with the root `CLAUDE.md` (HackMD API tooling); they are kept apart on purpose.*
-- ✅ 把 `career/` 當成一般文字檔處理：直接讀寫 Markdown，依使用者當下指示即可。
-  *Treat `career/` as plain documents: read/write Markdown directly, per the user's instructions.*
-- ✅ **履歷／作品集**相關工作（resume／CV／LinkedIn／portfolio／自傳、職能盤點、擷取個人成就）請使用 **`resume-craft`** skill；
-  分工是：`spec-doc-1111` = 規格書、`resume-craft` = 個人職涯。
-  *For résumé/portfolio work use the **`resume-craft`** skill — `spec-doc-1111` is for specs, `resume-craft` is for career.*
-- ✅ **Wiki 結構**：`competency-framework.md` 是 **wiki 入口（索引＋路由表）**，職能細節在 `wiki/`（F01–F11、旗艦專案、
-  履歷摘要、學歷證照、缺口盤點），作品集案例在 `portfolio/`。**依任務只載入需要的分頁**，勿整包讀入；更新職能內容時
-  改對應 `wiki/` 分頁，入口只維護索引與快照。
-  *`competency-framework.md` is the wiki home (index + routing table); details live in `wiki/` and case studies in
-  `portfolio/`. Load only the pages the task needs; edit content in the `wiki/` pages and keep the home as index.*
-- 🔒 **隔離原則 / Isolation policy**：`resume-craft` 與職涯素材**僅在使用者明確要求「整理履歷／盤點職能／擷取個人成就」時載入**；
-  執行一般 SA／PM 規格產出、打 HackMD API、看 Figma 規格、資料分析等日常任務時**請勿載入**，以免履歷情境污染日常開發／文件工作流的 Context。
-  *Load `resume-craft` / career material ONLY for explicit résumé / competency-inventory tasks; do NOT load it during
-  ordinary SA/PM spec work, HackMD API calls, Figma spec extraction, or data analysis — keep the dev workflow context clean.*
+*Never push, sync, or create `career/` content in the HackMD `1111-jobdocs` team workspace (or any HackMD note) —
+it is a shared company space and the leak would be irreversible.*
+
+同理，`career/` 的量化數字若來自 1111 內部資料（工單、客戶名冊、Roadmap），**對外版本必須抽象化**：
+可寫「跨系統即時訊息」「1,109 家付費帳號」，但**不外露**內部 API 名、欄位名、權限代碼、廠商編號與名稱。
+
+## 結構 / Structure
+
+| 路徑 | 內容 |
+| :--- | :--- |
+| `competency-framework.md` | **wiki 入口**：定位、Profile Snapshot、路由表、F1–F11 總覽 |
+| `wiki/` | 職能分頁（`F01`–`F11`）、旗艦專案、履歷摘要、學歷證照、證據頁、缺口盤點 |
+| `portfolio/` | 作品集 case study（完整敘事＋圖表）|
+
+**依任務只載入需要的分頁**（入口的路由表會指路），不要整包讀進來。更新職能內容時改對應的 `wiki/` 分頁，
+入口只維護索引與快照。
+
+## 工具分工 / Tooling
+
+- 履歷／CV／LinkedIn／作品集／職能盤點 → **`resume-craft`** skill
+- 1111 規格書 → **`spec-doc-1111`** skill（**不要**套用到 `career/`，這裡不是規格書：
+  沒有 User Story／Use Case 區塊、初始化、權限代碼表、版控表那一套）
+- 這兩者與根目錄 `CLAUDE.md`（HackMD API）是三條獨立的線，刻意不混用。
+
+> 做一般 SA／PM 規格產出、打 HackMD API、看 Figma、跑資料分析時，不需要載入 `career/` 或 `resume-craft`——
+> 保持日常工作流的 context 乾淨。
