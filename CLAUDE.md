@@ -10,7 +10,6 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 | 任務類型 | 讀取檔案 |
 | --- | --- |
-| **每次接到規格書／流程圖／跨文件統整／數據分析任務時的頂層行為規範**（零廢話、比對缺失標 `NULL` 不推測、Excel/CSV 走 pandas 漸進式分析、Figma 截圖 HTML 絕對定位標註） | `wiki/master_prompt.md`（含 `rNo`／`oTag` 範式與本專案實況的銜接警語） |
 | 涉及 HackMD API 呼叫（建立／讀取／更新／刪除 note 或 folder） | `wiki/hackmd_rules.md` |
 | 撰寫/修改 1111 規格書、需要求才系統業務代碼（`showfield`／`confirmed`／`oStatus` 等）、需先確認求才 vs 求職專案、**引用後端 API 契約（欄位／前端判斷／已讀未讀等）**、**任何 E.1 聯絡人才／信件即時通整併相關需求** | `wiki/recruitment_system_rules.md`（API 契約見 §3；**E.1／信件即時通整併素材與 inference 規則見 §6**，實體檔在 `notes/`、`notes/api/`） |
 | 涉及 Figma 畫面規格擷取、Figma → HackMD 轉換 | `wiki/figma_rules.md` |
@@ -32,7 +31,8 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - **靜態參照（拒絕重複生成）**：套用核心規則／業務代碼／設計變數時，直接讀對應指標檔，**禁止**在對話中重複貼出已知規則全文或大段原始碼——改用「檔名＋指標」引用。需要時才動態加載子文件，處理完即從工作記憶釋放，保持 context 乾淨。
 - **輸出極簡**：理解指令後回「ACK」或簡短進度即可，不寫冗長客套；規劃流程／邏輯優先用 Markdown 表格或 Mermaid，避免長段散文。截圖標註一律用「HTML 絕對定位覆蓋」或「Markdown 標號對照表」＋預覽網址掛圖，**禁止使用或提及任何外部 AI 圖像生成模型**渲染畫面。
 - **記憶垃圾回收**：單次任務完成後，總結 1–3 條核心變更寫入版控表／專案日誌，並提示使用者可開新對話視窗（New Chat）重置 Token 累積量。
-- **範本警語**：此能力範本中的範例（`oTag` 狀態表、`rNo` 無後綴鐵律、`figma_tokens.json`／`bg-primary` 等）只是格式示範，**非本專案實況**；索引與文件一律記真實檔案與規則，不杜撰。
+- **跨文件比對**：比對多份文件（新舊代碼表、API 規格差異）時，欄位定義與狀態描述要逐一對齊；**資料缺失就標 `NULL`，不要自行推測補齊**。
+- **Excel/CSV 走 pandas 漸進式分析**：不要把原始資料整份讀進 context。先用 Python 讀結構（`df.info()`）與極簡預覽 → 在 Python 環境內完成 JOIN／翻譯／交叉比對 → 對話裡只輸出最終統計表格或洞察結論，不印 raw data。
 
 ---
 
@@ -45,3 +45,16 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 curl "https://api.hackmd.io/v1/me" -H "Authorization: Bearer $HACKMD_TOKEN"
 ```
 Token 存在環境變數 `HACKMD_TOKEN`，`.env` 已列入 `.gitignore`，絕不寫死在程式碼或文件裡。
+
+**改既有 HackMD note 一律走安全回寫**（防蓋掉小聶的手動編輯）：先落地 baseline → 本地改 working → 用腳本回寫，遠端在期間被改過會 exit 1 中止、不盲蓋。
+```bash
+python3 scripts/hackmd_safe_patch.py --note-id <內部 noteId> \
+  --baseline "$SCRATCHPAD/<noteId>.md" --working "$SCRATCHPAD/<noteId>.working.md" \
+  --team-path 1111-jobdocs   # exit: 0 已更新／1 衝突／2 錯誤
+```
+
+**動到 Mermaid 就要渲染驗證**再 push（HackMD 上壞圖不會報錯，只會渲染失敗）：
+```bash
+npx -y @mermaid-js/mermaid-cli -p <puppeteer-cfg> -i x.mmd -o x.png
+# puppeteer cfg: {"executablePath":"/opt/pw-browsers/chromium","args":["--no-sandbox"]}
+```
