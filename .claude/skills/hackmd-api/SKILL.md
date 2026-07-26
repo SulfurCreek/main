@@ -1,11 +1,10 @@
 ---
 name: hackmd-api
 description: >
-  呼叫 HackMD API 時使用——讀取／建立／更新／刪除 note、列出 team notes、操作資料夾（folder）與資料夾排序、
-  重建文件樹（如 `tree.md`）、把規格書同步到 HackMD `1111-jobdocs` 團隊工作區。
-  只要任務涉及「打 HackMD API」「抓 note 內容」「建立／更新 note」「列出團隊文件」「folder / parentFolderId /
-  folder-order」「重建 tree.md」「HACKMD_TOKEN」，就載入本 skill 取得端點與欄位細節。
-  本 skill 只管 API 呼叫；規格書「怎麼寫」屬 `spec-doc-1111`，個人職涯資料屬 `resume-craft`。
+  以程式呼叫 HackMD API 時使用（只管怎麼呼叫，不管文件怎麼寫）——讀取／建立／更新／刪除 note、列出團隊文件、
+  操作資料夾與排序、重建文件樹。
+  觸發詞：HackMD API、抓 note 內容、建立／更新 note、列出團隊文件、parentFolderId、folder-order、
+  重建 tree.md、HACKMD_TOKEN。
 ---
 
 <!--markdownlint-disable MD033-->

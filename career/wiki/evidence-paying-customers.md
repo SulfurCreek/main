@@ -1,7 +1,7 @@
 <!--markdownlint-disable MD033-->
 <!--markdownlint-disable MD013-->
 
-> 🧭 [← 職能框架首頁 / Home](../competency-framework.md) ｜ `career/` 個人職涯 wiki 分頁，非 1111 規格文件（規則見 [`career/CLAUDE.md`](../CLAUDE.md)）
+> 🧭 [← 職能框架首頁 / Home](../competency-framework.md)
 
 # 證據頁：維運工單 × 付費客戶交叉分析 / Evidence — Ticket-to-Paying-Customer Cross-Reference
 

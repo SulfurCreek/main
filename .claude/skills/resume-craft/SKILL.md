@@ -1,14 +1,11 @@
 ---
 name: resume-craft
 description: >
-  撰寫、修改、批改、優化使用者**個人履歷／CV／LinkedIn／作品集（portfolio）**，或把職能、經歷、專案成果轉成
-  履歷 bullet、依特定職缺（JD）客製化履歷時使用。只要任務涉及「履歷」「resume」「CV」「自傳」「作品集」「portfolio」
-  「case study」「LinkedIn」「投遞」「應徵」「求職」「JD 客製」「把 F1–F11 職能或專案變成履歷條目」，務必使用本 skill
-  —— 即使使用者沒有明講「履歷」兩個字。
-  本 skill 依**大型企業招募標準**（ATS 解析、AI／LLM 履歷掃描、核心職能叢集、量化影響 bullet、作品集案例研究、
-  Amazon Leadership Principles 等）優化；以 **Senior PM / Product** 視角為主，**雙語**（英文 ATS 版 + 繁中在地版）。
-  證據來源為 `career/competency-framework.md`（wiki 入口／路由表）＋ `career/wiki/` 分頁。
-  ⚠️ 這是 `career/` 個人職涯工具，**不是 1111 規格書**：請勿套用 `spec-doc-1111`，請勿推送至 HackMD `1111-jobdocs`。
+  撰寫、修改、批改使用者個人履歷／CV／LinkedIn／作品集，或把職能、經歷、專案成果轉成履歷 bullet、依 JD 客製化時使用。
+  觸發詞：履歷、resume、CV、自傳、作品集、portfolio、case study、LinkedIn、投遞、應徵、求職、JD 客製、
+  把 F1–F11 職能或專案變成履歷條目——使用者沒明講「履歷」兩字也算。
+  以 Senior PM / Product 視角、大型企業招募標準（含 ATS 與 AI／LLM 履歷掃描）優化，雙語（英文 ATS 版 + 繁中在地版）。
+  證據來源是 `career/` 的職能框架 wiki。
 ---
 
 <!--markdownlint-disable MD033-->
