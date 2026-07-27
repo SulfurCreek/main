@@ -118,22 +118,42 @@ description: >
 單張截圖多標註時，**絕對不要把說明寫成圖片下方的編號清單**——那樣讀者得在「圖上的框」和「圖下的文字」之間來回跳，對不起來。正確做法是讓每則說明水平擺在它所標註的那個區域旁邊，視線直接平移過去：
 
 ```html
-<div style="background:#fff; padding:16px 340px 16px 16px; border-radius:8px;">
+<div style="background:#fff; padding:16px 360px 16px 16px; border-radius:8px;">
 <div style="position:relative; display:inline-block; width:400px;">
 <img src="<圖網址>" style="display:block; width:100%;">
 <div style="position:absolute; top:5.27%; left:17.34%; width:74.87%; height:4.6%; border:3px solid #FF5F57; border-radius:6px;"></div>
-<div style="position:absolute; top:2.5%; left:104%; width:300px; font-size:13px; color:#333; line-height:1.6;"><span style="color:#FF5F57; font-weight:700;">→</span> <b>①</b> 這個區域的說明文字</div>
+<div style="position:absolute; top:4.1%; left:14.5%; background:#FF5F57; color:#fff; font-family:Inter,Helvetica,Arial,sans-serif; font-size:15px; font-weight:700; width:26px; height:26px; line-height:26px; text-align:center; border-radius:50%; box-shadow:0 1px 3px rgba(0,0,0,0.4);">1</div>
+<div style="position:absolute; top:2.5%; left:104%; width:310px; font-size:15px; color:#222; line-height:1.65;"><span style="color:#FF5F57; font-weight:700;">→</span> <b>①</b> 這個區域的說明文字</div>
 </div>
 </div>
 ```
 
 技術要點（缺一不可）：
 
-- **外層容器右側預留空間**：用不對稱 padding（`padding:16px 340px 16px 16px`）把右邊空出來給 callout，否則 callout 會溢出白底容器、在 HackMD 上被裁掉。預留寬度 ≈ callout `width` ＋ 40px 餘裕。
+- **圖上一定要有編號 badge，不能只有側邊文字**：紅框只表示「這一塊」，讀者無從得知它對應右邊哪一則說明。每個紅框都要在**框的左上角外側**放一顆圓形數字 badge（`border-radius:50%`、`width/height:26px`、`line-height:26px` 讓數字垂直置中），側邊 callout 開頭再用同一個數字（`①②③`）呼應。**漏掉 badge 是實際被打回過的錯誤**。
+- **外層容器右側預留空間**：用不對稱 padding（`padding:16px 360px 16px 16px`）把右邊空出來給 callout，否則 callout 會溢出白底容器、在 HackMD 上被裁掉。預留寬度 ≈ callout `width` ＋ 50px 餘裕。
 - **圖片容器給固定寬度**（`width:400px`，不要用 `max-width:100%`）：callout 用 `left:104%` 定位是相對於這個容器寬度，容器寬度浮動的話 callout 位置會跟著飄。
 - **callout 用 `left:104%`** 貼在圖的右緣外側；`top` 設成**與它對應的紅框大致相同的百分比**（可微調 ±3% 讓多則之間不互相擠壓）。
+- **字級不要吝嗇**：callout `font-size` 用 **15px**（不要 12–13px）、`color:#222`（不要 `#333` 以下的淺灰）、`line-height:1.65`。截圖本身通常被縮到 400px 寬、裡面的 UI 文字已經很小，旁邊的說明文字若也小就整張圖都難讀。**「文字太小、清晰度不足」是實際被打回過的錯誤**。
 - **箭頭寫在 callout 文字裡**（`<span style="color:#FF5F57; font-weight:700;">→</span>` 開頭），不要另外做一個獨立的箭頭元素——獨立箭頭在絕對定位下很難跟文字對齊。
-- 若某個步驟是**純概念說明、畫面上沒有對應區域**（例如「後端分析並轉成 JSON」），一樣放一則 callout、但不畫紅框，`top` 放在流程順序的相應位置即可。
+- 若某個步驟是**純概念說明、畫面上沒有對應區域**（例如「後端分析並轉成 JSON」），一樣放一則 callout、但不畫紅框也不放 badge，`top` 放在流程順序的相應位置即可。
+
+#### ⚠️ 分辨「給我的指示」與「要顯示的說明文字」
+
+使用者描述步驟時，同一句話裡常常混著兩種東西，**只有後者可以出現在成品上**：
+
+| 類型 | 性質 | 處理方式 |
+| :--- | :--- | :--- |
+| **定位指示** | 告訴我「框要畫在哪」 | 我讀完拿去算座標，**不可寫進 callout 文字** |
+| **說明文案** | 要給讀者看的內容 | 原文照登進 callout |
+
+實例（使用者原話）：
+
+> 第四步：箭頭回到下方條件選擇區域（**工作經歷的或右方區域&與學歷限制以下的所有區塊**）
+
+粗體那段是在指我「紅框要涵蓋哪些區塊」，屬於定位指示；成品 callout 只該寫「分析結果自動帶入下方條件選擇區域」。**曾經把括號裡的定位指示原封不動印在圖上被打回**——紅框本身已經表達了範圍，再用文字複述一次既冗長又像是漏編輯的草稿。
+
+判斷訣竅：如果那段文字**拿掉之後、讀者看著紅框仍然知道在講哪裡**，它就是定位指示，該拿掉。反之若是講「這一步會發生什麼事／打哪支 API／帶入什麼資料」，才是說明文案。
 
 ### 多圖流程／點擊跳轉（取代舊的 Pillow 合成拼圖）
 
@@ -175,11 +195,28 @@ description: >
 
 ---
 
+## 交付預覽 PNG 給使用者
+
+使用者要「看成品」時一律給 PNG（原因見 Gotcha：`hackmd.io/_uploads` 的圖需登入憑證，交付 `.html` 只會破圖）。產這張 PNG 時：
+
+- **緊貼內容裁切，不要留大片空白**：不要用 `page.screenshot({fullPage:true})` 直接拍整個 body——版面右側／下方預留給 callout 的空間會變成一大塊灰白邊，使用者得自己再裁一次。改成**對最外層白底容器那個元素截圖**，或先量出它的 bounding box 再用 `clip` 參數：
+
+```js
+const el = await page.$('body > div');           // 最外層白底容器
+await el.screenshot({ path: 'preview.png' });    // 自動緊貼元素邊界
+```
+
+- **`deviceScaleFactor: 3`**（不是 2）：截圖裡的原始 UI 文字本來就小，再經過縮放與二次截圖會糊掉；拉到 3 倍才看得清楚。搭配上一節的 15px callout 字級一起做，兩者缺一都還是會被嫌「看不清楚」。
+- 產完 Read 出來自己先看一遍，確認**文字讀得清楚、四周沒有多餘空白**，再交付。
+
 ## PATCH 進 HackMD 前的自檢清單
 
 這幾項每一條都對應過至少一次「push 完被打回重做」。動手 PATCH 前逐條確認：
 
 - [ ] **版型選對了嗎**：單張圖多標註 → 說明在**側邊**；多張圖串流程 → 說明在**各自圖下方**。（最常見的打回原因）
+- [ ] **每個紅框都配了編號 badge 嗎**，且側邊 callout 用同一組數字呼應。
+- [ ] **callout 裡沒有混進「定位指示」**（那種描述「框要畫在哪些區塊」的話），只留給讀者看的說明文案。
+- [ ] **字級 15px、`color:#222`**，不是 12–13px 的淺灰小字。
 - [ ] **小元件的框放大檢查過了嗎**：短邊 < 60px 的目標，整頁渲染看不出準不準，要另外裁切放大核對。
 - [ ] **框線在元件外圍留白處**，沒有壓在按鈕本體／圓角上；框上緣在元件最上緣**之上**。
 - [ ] **整段 HTML 每行縮排 0 格**（沒有任何一行開頭 ≥4 個空白）。
@@ -194,7 +231,7 @@ description: >
 - **HackMD 對外層 `<div style="...">` 的支援**：HackMD 的 markdown 渲染器允許內嵌 HTML block，但每次寫完務必 PATCH 後 GET 回來確認渲染正常（尤其巢狀 `position:absolute` 在部分 markdown 解析器可能被過濾掉 style 屬性）——若發現 style 被吃掉，改用行內 `<img>` + 相鄰文字編號對照表當退場方案（`CLAUDE.md`「Markdown 標號對照表」選項）。
 - **深色模式（dark mode）務必包白底**：HackMD 有淺色／深色模式切換，深色模式下頁面背景變深，但截圖與說明文字顏色不會自動反轉——沒包白底的話深色模式下文字/淺色 UI 會看不清楚甚至消失。任何 HTML 標註區塊最外層一律加 `background:#fff`（見規則二範本），這是必要步驟不是可選項。
 - **「重畫一次」時要換掉整個區段，不是只換自己上次那段 HTML**：使用者說「重新繪製」時，往往同時**自己在文件裡貼了新截圖**（變成一行裸的 `![image](...)`）。若只用「上次那段 HTML 字串」當 anchor 去替換，結果會是「新貼的裸圖」＋「新版流程圖」兩份並存。正確做法：重新 GET 最新內容 → 找出目標 heading 到**下一個 heading 之間的整個區段** → 整段換成新的 HTML（順手把裸圖、舊 HTML 一起清掉）→ 驗證時明確檢查「舊圖網址已不存在於文件中」。
-- **不要交付引用 `hackmd.io/_uploads` 的獨立 `.html` 檔給使用者**：私人／團隊限閱筆記的圖片網址需要登入憑證才讀得到，瀏覽器的 `<img>` 沒辦法帶 token，使用者打開那個 HTML 只會看到一片破圖。使用者要「看成品」時**一律交付渲染好的 PNG**（本地 `file://` 版渲染出來的那張就可以）；只有在對方明確要 HTML 原始碼時才給，並附註圖片需登入才顯示。
+- **不要交付引用 `hackmd.io/_uploads` 的獨立 `.html` 檔給使用者**：私人／團隊限閱筆記的圖片網址需要登入憑證才讀得到，瀏覽器的 `<img>` 沒辦法帶 token，使用者打開那個 HTML 只會看到一片破圖。使用者要「看成品」時**一律交付渲染好的 PNG**，且要照〈[交付預覽 PNG 給使用者](#交付預覽-png-給使用者)〉的規格產（緊貼內容裁切、`deviceScaleFactor:3`），不是把驗證用的 fullPage 截圖直接丟過去；只有在對方明確要 HTML 原始碼時才給，並附註圖片需登入才顯示。
 - **禁止事項**（沿用 `CLAUDE.md`／`master_prompt.md` 既有規則）：不使用或提及任何外部 AI 圖像生成模型重繪畫面；不得用 Pillow 把 badge 燒進像素後才存檔——那是舊流程，本 skill 生效後棄用。
 - **舊資產保留**：先前用 Pillow 燒進像素的既有素材（`.claude/assets/` 內已存在的 badge 版本，如 `E1_offer_seeker_tag.png`）不用回頭重做，只有「之後新增」的標註任務才套用本 skill；若之後有人要求重繪舊圖才改。
 
