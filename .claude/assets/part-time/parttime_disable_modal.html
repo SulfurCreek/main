@@ -3,98 +3,113 @@
 <head>
 <meta charset="utf-8">
 <style>
+  /* Figma B.1 公司資料 / node 8681-2374 「Modal」 variables */
   :root{
+    --Basic-Grey-Primary:#212428;
+    --Basic-Grey-Secondary:#424751;
+    --Basic-White:#ffffff;
     --Surface-Primary-Primary:#1a66ff;
-    --Text-Primary-Primary:#1a66ff;
-    --Text-Neutral-Primary:#212529;
-    --Text-Neutral-Secondary:#495057;
-    --Text-Neutral-Hint:#939da7;
-    --Border-Neutral-Tertiary:#e9ecef;
-    --Border-Neutral-Secondary:#ced4da;
-    --Basic-White:#fff;
+    --Text-Primary-Tertiary:#0b378f;
+    --Icon-Primary-Primary:#1a66ff;
+    --Border-100:#dae1e7;
+    --Radius-Small:8px;
+    --Radius-Large:16px;
+    --Popup-Shadow:0 1px 6px rgba(37,38,40,.2);
   }
   *{box-sizing:border-box;margin:0;padding:0;}
   body{
-    width:760px;height:460px;
+    width:800px;min-height:100vh;
     display:flex;align-items:center;justify-content:center;
-    background:rgba(0,0,0,.40);
+    background:#f8f9fa;
     font-family:Roboto,"Noto Sans TC","Microsoft JhengHei",Arial,sans-serif;
     -webkit-font-smoothing:antialiased;
   }
-  .modal-container{
-    width:520px;
-    background:#fff;
-    border-radius:12px;
-    box-shadow:0 4px 20px rgba(0,0,0,.15);
+  .modal{
+    width:720px;height:488px;
     display:flex;flex-direction:column;
+    background:var(--Basic-White);
+    border-radius:var(--Radius-Large);
+    box-shadow:var(--Popup-Shadow);
     overflow:hidden;
   }
-  .modal-header{
-    display:flex;align-items:center;justify-content:space-between;
-    padding:12px 16px 12px 24px;
-    border-bottom:1px solid var(--Border-Neutral-Tertiary);
+  /* Content 720x428 */
+  .modal-content{
+    flex:1;
+    padding:114px 0 0 32px;   /* Text frame x=32 / y=114 */
+    padding-bottom:32px;
   }
-  .modal-title{
-    font-size:20px;font-weight:500;line-height:150%;
-    color:var(--Text-Neutral-Primary);
+  .text-col{width:332px;display:flex;flex-direction:column;}
+  .title{                     /* EN/Headline/24 M */
+    font-size:24px;font-weight:500;line-height:32px;
+    color:var(--Basic-Grey-Primary);
   }
-  .modal-close{
-    background:none;border:none;cursor:pointer;
-    font-size:24px;line-height:1;padding:0 4px;
-    color:var(--Text-Neutral-Hint);
+  .body-text{                 /* CH/Body/16 */
+    margin-top:16px;
+    font-size:16px;font-weight:400;line-height:24px;
+    color:var(--Basic-Grey-Secondary);
   }
-  .modal-body{
-    padding:20px 24px 24px;
-    font-size:14px;line-height:1.6;
-    color:#343a40;
-  }
-  .modal-footer{
-    display:flex;flex-direction:column;align-items:center;row-gap:12px;
-    padding:0 24px 24px;
-  }
-  .btnFilled-primary{
+  .btn-primary{               /* Button 156x48 / btn-l */
+    margin-top:32px;
     display:flex;align-items:center;justify-content:center;
-    padding:8px 20px;min-width:104px;height:40px;
+    min-width:156px;width:156px;height:48px;padding:12px 20px;
     font-size:16px;font-weight:500;line-height:24px;
-    border:none;border-radius:8px;cursor:pointer;
     color:var(--Basic-White);
     background:var(--Surface-Primary-Primary);
+    border:none;border-radius:var(--Radius-Small);cursor:pointer;
   }
-  .checkbox-row{display:flex;align-items:center;column-gap:8px;}
+  .checkbox-row{
+    margin-top:12px;
+    display:flex;align-items:center;column-gap:8px;
+  }
   .checkbox-box{
-    width:18px;height:18px;border-radius:4px;
-    border:1.5px solid var(--Border-Neutral-Secondary);
-    background:#fff;
+    width:20px;height:20px;border-radius:4px;
+    border:1.5px solid #bbc4cb;background:#fff;
   }
   .checkbox-label{
-    font-size:14px;line-height:22px;
-    color:var(--Text-Neutral-Secondary);
+    font-size:16px;font-weight:400;line-height:24px;
+    color:var(--Basic-Grey-Secondary);
   }
-  .btnLink{
+  /* Footer 720x60，link button 122x28 @ x=574 y=16 */
+  .modal-footer{
+    height:60px;flex-shrink:0;
+    display:flex;align-items:center;justify-content:flex-end;
+    padding:16px 24px;
+    border-top:1px solid var(--Border-100);
+  }
+  .btn-ghost{
+    display:flex;align-items:center;column-gap:4px;
+    height:28px;padding:2px 2px 2px 4px;
     background:none;border:none;cursor:pointer;
-    font-size:14px;font-weight:500;line-height:22px;
-    color:var(--Text-Primary-Primary);
-    text-decoration:underline;text-underline-offset:2px;
-    padding:4px 0;
+    font-size:16px;font-weight:500;line-height:24px;
+    color:var(--Text-Primary-Tertiary);
+  }
+  .btn-ghost .arrow{
+    width:16px;height:16px;display:inline-block;
+    color:var(--Icon-Primary-Primary);
   }
 </style>
 </head>
 <body>
-  <div class="modal-container">
-    <div class="modal-header">
-      <div class="modal-title">職務類別：工讀生停用說明</div>
-      <button class="modal-close">&times;</button>
-    </div>
-    <div class="modal-body">
-      為增加人才媒合精準度，我們已下架「工讀生」職務類別，請檢視您目前的職缺設定，將您的工讀生職缺改為新的類別
+  <div class="modal">
+    <div class="modal-content">
+      <div class="text-col">
+        <div class="title">職務類別：工讀生停用說明</div>
+        <div class="body-text">為增加人才媒合精準度，我們已下架「工讀生」職務類別，請檢視您目前的職缺設定，將您的工讀生職缺改為新的類別</div>
+        <button class="btn-primary">我知道了</button>
+        <div class="checkbox-row">
+          <span class="checkbox-box"></span>
+          <span class="checkbox-label">不再顯示</span>
+        </div>
+      </div>
     </div>
     <div class="modal-footer">
-      <button class="btnFilled-primary">我知道了</button>
-      <div class="checkbox-row">
-        <span class="checkbox-box"></span>
-        <span class="checkbox-label">不再顯示</span>
-      </div>
-      <button class="btnLink">前往職缺總覽確認職缺</button>
+      <button class="btn-ghost">
+        <span>前往職缺總覽確認職缺</span>
+        <svg class="arrow" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+          <path d="M3 8h9M8.5 4.5 12 8l-3.5 3.5" stroke="currentColor" stroke-width="1.6"
+                stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
     </div>
   </div>
 </body>
