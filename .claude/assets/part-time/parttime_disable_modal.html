@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<style>
+  :root{
+    --Surface-Primary-Primary:#1a66ff;
+    --Text-Primary-Primary:#1a66ff;
+    --Text-Neutral-Primary:#212529;
+    --Text-Neutral-Secondary:#495057;
+    --Text-Neutral-Hint:#939da7;
+    --Border-Neutral-Tertiary:#e9ecef;
+    --Border-Neutral-Secondary:#ced4da;
+    --Basic-White:#fff;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{
+    width:760px;height:460px;
+    display:flex;align-items:center;justify-content:center;
+    background:rgba(0,0,0,.40);
+    font-family:Roboto,"Noto Sans TC","Microsoft JhengHei",Arial,sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  .modal-container{
+    width:520px;
+    background:#fff;
+    border-radius:12px;
+    box-shadow:0 4px 20px rgba(0,0,0,.15);
+    display:flex;flex-direction:column;
+    overflow:hidden;
+  }
+  .modal-header{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:12px 16px 12px 24px;
+    border-bottom:1px solid var(--Border-Neutral-Tertiary);
+  }
+  .modal-title{
+    font-size:20px;font-weight:500;line-height:150%;
+    color:var(--Text-Neutral-Primary);
+  }
+  .modal-close{
+    background:none;border:none;cursor:pointer;
+    font-size:24px;line-height:1;padding:0 4px;
+    color:var(--Text-Neutral-Hint);
+  }
+  .modal-body{
+    padding:20px 24px 24px;
+    font-size:14px;line-height:1.6;
+    color:#343a40;
+  }
+  .modal-footer{
+    display:flex;flex-direction:column;align-items:center;row-gap:12px;
+    padding:0 24px 24px;
+  }
+  .btnFilled-primary{
+    display:flex;align-items:center;justify-content:center;
+    padding:8px 20px;min-width:104px;height:40px;
+    font-size:16px;font-weight:500;line-height:24px;
+    border:none;border-radius:8px;cursor:pointer;
+    color:var(--Basic-White);
+    background:var(--Surface-Primary-Primary);
+  }
+  .checkbox-row{display:flex;align-items:center;column-gap:8px;}
+  .checkbox-box{
+    width:18px;height:18px;border-radius:4px;
+    border:1.5px solid var(--Border-Neutral-Secondary);
+    background:#fff;
+  }
+  .checkbox-label{
+    font-size:14px;line-height:22px;
+    color:var(--Text-Neutral-Secondary);
+  }
+  .btnLink{
+    background:none;border:none;cursor:pointer;
+    font-size:14px;font-weight:500;line-height:22px;
+    color:var(--Text-Primary-Primary);
+    text-decoration:underline;text-underline-offset:2px;
+    padding:4px 0;
+  }
+</style>
+</head>
+<body>
+  <div class="modal-container">
+    <div class="modal-header">
+      <div class="modal-title">職務類別：工讀生停用說明</div>
+      <button class="modal-close">&times;</button>
+    </div>
+    <div class="modal-body">
+      為增加人才媒合精準度，我們已下架「工讀生」職務類別，請檢視您目前的職缺設定，將您的工讀生職缺改為新的類別
+    </div>
+    <div class="modal-footer">
+      <button class="btnFilled-primary">我知道了</button>
+      <div class="checkbox-row">
+        <span class="checkbox-box"></span>
+        <span class="checkbox-label">不再顯示</span>
+      </div>
+      <button class="btnLink">前往職缺總覽確認職缺</button>
+    </div>
+  </div>
+</body>
+</html>
