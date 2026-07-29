@@ -1,21 +1,22 @@
-"""產出單一訓練回饋檔：一個職缺標題一列、一個優化緣由。
+"""產出訓練回饋檔：一個職缺標題一列、一種優化緣由。
 
-設計要點
+定義（依業務端確認）
+--------------------
+以現行模型（20260720）的實際推薦為準，每個標題歸入唯一一種緣由：
+
+■ 推薦項目命中率改善（worst case：推薦1~10 完全沒命中廠商送出的任一職類）
+    負向推薦 = 模型推薦第1~5名（與廠商選擇有落差、沒命中的部分）
+    正向推薦 = 廠商實際送出的職類（讓模型學習與廠商選擇行為對齊）
+
+■ 順序調整（enhancement：前5名沒命中，但第6~10名有命中）
+    負向推薦 = 模型推薦第1~5名（要壓下去的）
+    正向推薦 = 第6~10名中命中廠商送出職類的項目（要推上來的），依原名次排序
+
+合併單位
 --------
-1. **一律以現行模型（20260720）的實際推薦為準**，不混用舊模型基準——避免同一筆職缺
-   因被不同模型版本評估而產生兩列、兩種緣由。
-2. **以職缺標題為合併單位**。已驗證模型輸出 100% 由標題決定（154,860 個標題中，
-   同標題推薦不一致者 0 個），因此同標題的多筆職缺對模型而言是同一個輸入；
-   若給出兩種不同答案即為矛盾訊號。同標題的各廠商送出職類取聯集，
-   依「幾家廠商送過」由多到少排序（共識優先）。
-3. **沿用原本「前5名完全沒命中」的問題定義**：若該標題的推薦前5名已含任何一個廠商送過的職類，
-   代表模型在使用者看得到的範圍內已給出正確答案，不列入回饋。
-
-欄位
-----
-負面推薦1~5 = 現行模型推薦1~5（定義上保證不含任何正向項）
-正向推薦1~5 = 該標題下廠商送出的職類（共識排序，不足留白、不補值）
-優化緣由    = 順序調整（正向項有出現在第6~10名）／推薦項目命中率改善（完全沒出現在推薦1~10）
+以「職缺標題」為單位。已驗證模型輸出 100% 由標題決定（154,860 個標題中，
+同標題推薦不一致者 0 個），故同標題的多筆職缺對模型是同一個輸入，只能給一種答案。
+同標題有多家廠商時，送出職類取聯集，依「幾家廠商送過」由多到少排序（共識優先）。
 """
 import pandas as pd
 import sys
@@ -27,7 +28,7 @@ OUT = "/home/user/main/job-classification-kb/training_feedback/推薦模型訓�
 
 DUTY = [f"duty{i}" for i in range(5)]
 REC = [f"職類推薦{i}" for i in range(1, 11)]
-NEG = [f'負面推薦{i}' for i in range(1, 6)]
+NEG = [f'負向推薦{i}' for i in range(1, 6)]
 POS = [f'正向推薦{i}' for i in range(1, 6)]
 MISS, REORDER = '推薦項目命中率改善', '順序調整'
 
@@ -59,6 +60,8 @@ def main():
     duty_votes = defaultdict(Counter)
     for i in range(n):
         title = old[i].get('職缺名稱', '')
+        if not title:
+            continue
         duties = list(dict.fromkeys(v for v in (old[i].get(c, '') for c in DUTY) if v))
         if not duties:
             continue
@@ -72,16 +75,18 @@ def main():
 
     rows = []
     for title, votes in duty_votes.items():
-        if not title:
-            continue
         recs = recs_of[title]
-        top5, rest = recs[:5], recs[5:10]
+        top5, rank6_10 = recs[:5], recs[5:10]
 
-        # 前5名已含任何廠商送過的職類 → 使用者看得到正確答案，不是問題
+        # 前5名已含廠商送過的職類 → 使用者看得到正確答案，不是問題
         if set(top5) & set(votes):
             continue
-        pos = [d for d, _ in votes.most_common()][:5]
-        reason = REORDER if any(p in rest for p in pos) else MISS
+
+        promote = [x for x in rank6_10 if x in votes]      # 第6~10名中命中的
+        if promote:
+            reason, pos = REORDER, promote[:5]
+        else:
+            reason, pos = MISS, [d for d, _ in votes.most_common()][:5]
 
         assert not (set(top5) & set(pos)), f"負正交集: {title}"
 
@@ -92,9 +97,13 @@ def main():
         rows.append(row)
 
     out = pd.DataFrame(rows)[['職缺名稱'] + NEG + POS + ['優化緣由']]
-    comment = ("# 推薦模型訓練回饋：每個職缺標題一列。負面推薦＝現行模型(20260720)推錯的前5項；"
-               "正向推薦＝該標題下廠商實際送出的職類（多家廠商時依共識排序，不足5項留白、不補值）。"
-               "優化緣由二擇一：順序調整＝正向項目前落在第6~10名；推薦項目命中率改善＝正向項完全沒出現在推薦1~10。\n")
+    comment = (
+        "# 推薦模型訓練回饋（每個職缺標題一列）。"
+        "負向推薦＝現行模型(20260720)推薦第1~5名，是要壓下去/修正的部分；"
+        "正向推薦＝應該推薦的職類與順序。"
+        "優化緣由二擇一：推薦項目命中率改善＝推薦1~10完全沒命中，正向推薦取廠商實際送出的職類；"
+        "順序調整＝命中落在第6~10名，正向推薦取那些要推上前5名的項目。不足5項即留白。\n"
+    )
     with open(OUT, 'w', encoding='utf-8-sig', newline='') as f:
         f.write(comment)
         out.to_csv(f, index=False)
@@ -106,42 +115,53 @@ def main():
         return [r[x] for x in cols if pd.notna(r.get(x)) and r.get(x)]
 
     ok = True
-    dup_title = chk['職缺名稱'].duplicated().sum()
-    print(f"[1] 重複職缺標題 {dup_title} 筆（每個標題只能一列、一種緣由）",
-          "✅" if dup_title == 0 else "❌")
-    ok &= dup_title == 0
+    dup = chk['職缺名稱'].duplicated().sum()
+    print(f"[1] 重複標題 {dup} 筆（每標題一列一緣由）", "✅" if dup == 0 else "❌")
+    ok &= dup == 0
 
     dist = chk['優化緣由'].value_counts().to_dict()
-    print(f"[2] 總列數 {len(chk):,}｜緣由分布 {dist}",
-          "✅" if set(dist) == {MISS, REORDER} else "❌")
+    print(f"[2] 總列數 {len(chk):,}｜{dist}", "✅" if set(dist) == {MISS, REORDER} else "❌")
     ok &= set(dist) == {MISS, REORDER}
 
-    neg_full = chk[NEG].notna().all(axis=1).sum()
-    overlap = sum(1 for _, r in chk.iterrows() if set(cells(r, NEG)) & set(cells(r, POS)))
+    negf = chk[NEG].notna().all(axis=1).sum()
+    ovl = sum(1 for _, r in chk.iterrows() if set(cells(r, NEG)) & set(cells(r, POS)))
     pos1 = chk['正向推薦1'].isna().sum()
-    print(f"[3] 負面5項全非空 {neg_full}/{len(chk)}｜正負交集 {overlap}｜正向1為空 {pos1}",
-          "✅" if (neg_full == len(chk) and overlap == 0 and pos1 == 0) else "❌")
-    ok &= (neg_full == len(chk) and overlap == 0 and pos1 == 0)
+    print(f"[3] 負向5項全非空 {negf}/{len(chk)}｜正負交集 {ovl}｜正向1為空 {pos1}",
+          "✅" if (negf == len(chk) and ovl == 0 and pos1 == 0) else "❌")
+    ok &= (negf == len(chk) and ovl == 0 and pos1 == 0)
 
-    bad = 0
+    bad_r = bad_m = 0
     for _, r in chk.iterrows():
         recs = recs_of[r['職缺名稱']]
         pos = cells(r, POS)
-        hit = any(p in recs[5:10] for p in pos)
-        if (REORDER if hit else MISS) != r['優化緣由']:
-            bad += 1
-    print(f"[4] 緣由與現行模型實際狀態不符 {bad} 筆", "✅" if bad == 0 else "❌")
-    ok &= bad == 0
-
-    k = chk[chk['職缺名稱'].str.contains('卡比音樂', na=False)]
-    print(f"[5] 抽查卡比音樂工作室 {len(k)} 個標題，緣由 {sorted(set(k['優化緣由']))}")
-    if len(k):
-        r = k.iloc[0]
-        print(f"    {r['職缺名稱']}")
-        print(f"    負面={cells(r, NEG)}")
-        print(f"    正向={cells(r, POS)}")
+        if r['優化緣由'] == REORDER:
+            # 正向項必須全部來自第6~10名，且順序與原名次一致
+            expect = [x for x in recs[5:10] if x in set(pos)]
+            if pos != expect:
+                bad_r += 1
+        else:
+            # 正向項必須全部是廠商送出職類，且完全沒出現在推薦1~10
+            if any(p in recs for p in pos):
+                bad_m += 1
+    print(f"[4] 順序調整-正向非來自6~10名或順序錯 {bad_r} 筆｜命中率改善-正向卻出現在推薦中 {bad_m} 筆",
+          "✅" if (bad_r == 0 and bad_m == 0) else "❌")
+    ok &= (bad_r == 0 and bad_m == 0)
 
     print("\n驗收", "全數通過 ✅" if ok else "未通過 ❌")
+
+    print("\n--- 範例：順序調整 ---")
+    s = chk[chk['優化緣由'] == REORDER].iloc[0]
+    print(f"  {s['職缺名稱']}")
+    print(f"  現行推薦1~10: {recs_of[s['職缺名稱']]}")
+    print(f"  負向(壓下去)={cells(s, NEG)}")
+    print(f"  正向(推上來)={cells(s, POS)}")
+    print("--- 範例：推薦項目命中率改善 ---")
+    s = chk[chk['優化緣由'] == MISS].iloc[0]
+    print(f"  {s['職缺名稱']}")
+    print(f"  現行推薦1~10: {recs_of[s['職缺名稱']]}")
+    print(f"  負向(沒命中)={cells(s, NEG)}")
+    print(f"  正向(廠商選的)={cells(s, POS)}")
+
     return 0 if ok else 1
 
 
