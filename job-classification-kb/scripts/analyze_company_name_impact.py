@@ -9,8 +9,12 @@ BASE = '/home/user/main/job-classification-kb/'
 tok = json.load(open(BASE + 'scripts/_company_tokens.json', encoding='utf-8'))
 labels = json.load(open(BASE + 'scripts/_company_brand_labels.json', encoding='utf-8'))
 
-brands = {w for w, l in labels.items() if l == '品牌'} | set(tok['corp'])
-brands = {b for b in brands if len(b) >= 2}
+# 直接沿用已清理過的清單（build_company_token_csv.py 的第6類），避免地區/產業誤入
+brands = set()
+with open(BASE + 'analysis_職缺名稱公司資訊清單.csv', encoding='utf-8-sig') as fh:
+    for r in csv.reader(fh):
+        if r and r[0] == '6_公司品牌名稱':
+            brands.add(r[1])
 brand_rx = re.compile('|'.join(sorted((re.escape(b) for b in brands), key=len, reverse=True)))
 
 ATTR_RX = re.compile('|'.join(
