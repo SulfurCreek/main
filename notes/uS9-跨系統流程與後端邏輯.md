@@ -3,43 +3,107 @@
 
 # 跨系統流程與後端邏輯
 
-> 本章描述求才系統與求職系統之間的訊息收發後端／DB 邏輯，依完整系統流程圖整理。
+> 本文描述求才系統與求職系統之間的訊息收發後端／DB 邏輯：四支「信件即時通整併」API 的角色分工、共同發送／回覆行為、完整流程圖與循序圖、SignalR 即時推播機制。
 > 主動方＝求才廠商；求職者收到通知後回到「求職主網」回覆。
+> 畫面規格見 [E.1 聯絡人才](/cj-xlto2SdOtVskt3TkhdA)；訊息泡泡樣式見 [訊息樣式](/_8_6BHe5Qhu4VXJqaYRKOA)。
 
 ## 版控紀錄
 
 | 版本 | 日期 | 調整說明（異動區段 + 摘要） |
 | :---: | :--- | :--- |
-| v6 | 2026-07-03 | [循序圖] 進頁一併載列表＋指定室明細＋建 SignalR；連線時機＝選定聊天室當下；`update-chatlog` 緊接寫主表；驗證失敗以 `break` 擋住不入庫；面試邀約額外寫面試行事曆；寄信收件人明確化；求職端頁面正名「聯絡公司」 |
-| v7 | 2026-07-03 | [循序圖／推播段] 依 `echat-realtime-push-flow` 真實鏈路重繪（EventBus→`apiSendMessage.ashx`→`onSignal`＋FCM／APNS）；新增 `senderType` 分流 |
-| v8 | 2026-07-03 | [送出／接收] 送出只走 WebAPI（前端不 invoke）；接收僅收 KEY，打 `get-detail` 整包重撈整室渲染 |
-| v9 | 2026-07-03 | [接收事件] 統一 `onSignal`（取代 `onTextMessage`），參數只增不改；同步翻修 SignalR 章節、標記廢止事件 |
-| v10 | 2026-07-06 | [送出 API] 不跨系統共用（求才 `eChatHandler.ashx`／求職自有）；保留 `setoUser`／`updateMsgReaded`／`settUser`；`onSignal` 內含打取對話 API 的參數 |
-| v11 | 2026-07-06 | [接收] `onSignal` 帶 `updateId` 判斷已存在資料；`bNo` 作 cursor 查新資料（唯一取對話 API 仍回整包） |
-| v12 | 2026-07-08 | [接收] 求才端接收流程正式確認：`onSignal`→`get-detail` 取全部、`updateId`＋`bNo` cursor |
-| v13 | 2026-07-08 | [接收] 結案：求職端取對話共用 `get-detail`（送出仍各端獨立）；`bNo` cursor 為伺服器端機制 |
-| v14 | 2026-07-15 | [三支查詢 API／循序圖搜尋段] 依工程端更新的 `get-by-condition` Query 補 `cursor`（＝`infoNo`）＋`limit` 分頁與星號／通知信分類／回覆狀態等篩選；釐清列表 cursor（`infoNo`）與接收 cursor（`bNo`）之別；同步 `notes/api/echat-get-by-condition.md` |
-| v15 | 2026-07-15 | [常用動作對照表] 修正 `setoUser`／`updateMsgReaded`／`settUser` 三列的觸發時機與參數（`setoUser`／`settUser` 改為無需額外參數；`updateMsgReaded` 參數改為 `oNo`／`uNo`／`eNo`／`tNo`） |
-| v16 | 2026-07-15 | [常用動作對照表／新版業務流程 §5] 依工程端更新：`updateMsgReaded` 前端不再 invoke，已讀改打 WebAPI 寫 DB（API 再 call SignalR），前端只處理接收事件 `onUpdateReaded`（新增該列）；`updateMsgReaded` 由「保留」改列「廢止」 |
-| v17 | 2026-07-15 | [onSignal 參數] SignalR Hub 調整：`onSignal` 新增回傳 `infoNo`（該次異動對話的 `rNo`）與 `bNo`（訊息明細流水號）；同步更新循序圖兩處推播 Note、常用動作表 `onSignal` 列、新版業務流程 §4，移除先前推測性的「正常情況含 `updateId`」描述 |
-| v18 | 2026-07-20 | [查詢 API／發送流程] 依工程端最新進度：①`get-echat-mail-logs` **棄用**，列表載入改用 `get-by-condition`（回傳改對話摘要陣列，明細仍走 `get-detail`）；②列表／搜尋 cursor 由 `infoNo` 更正為 `{organNo}_{RNo}`；③**依 Perry 建議**調整送出／回覆流程為「各單位自更新 DB→自打 EventBus→EventBus 呼叫 `update-chatlog` API→該 API 呼叫 SignalR」（共同發送/回覆表、循序圖 send/reply 段、SignalR §新版業務流程、Push 參與者標籤同步）|
-| v19 | 2026-07-21 | [用詞清理] `apiSendMessage.ashx` 已被 `update-chatlog` API 取代，收乾淨相關描述（Push 參與者標籤、SignalR 章節 §4、`getUserStatus` 列說明；`onSignal` 的 `ContextID="apiSendMessage"` 為協定既有字面值，未變動）；移除內文中「依 Perry 建議」等歸因註記（共同發送/回覆表、循序圖 Note、SignalR §新版業務流程），僅保留版控紀錄表 |
-| v20 | 2026-07-21 | [update-chatlog 內部架構／新版業務流程] 依工程端最新循序圖修正呼叫順序：呼叫端**同步呼叫 `update-chatlog` API**（非「自行發事件到 EventBus」）→ 該 API 內部先 Publish「chatlog 更新事件」拿 ACK 快速回應 → EventBus 非同步呼叫回 `update-chatlog` 的 Callback 端點才真正整併寫入 ChatLog DB → 再 Publish「推播事件」→ 直接呼叫 `eChatHub` 推播；新增〈update-chatlog 內部架構〉專屬循序圖；同步修正共同發送/回覆行為表 1.5／2.5 列與新版業務流程 §2–4 |
-| v21 | 2026-07-21 | [已讀規則] 新增：廠商進入特定聊天室時，該聊天室內來自求職者的全部未讀訊息一次性標記為已讀（不判斷捲動位置）；同步更新新版業務流程 §6、循序圖「一、進入聯絡人才頁」已指定聊天室分支（已讀標記 WebAPI＋`onUpdateReaded` 通知）；求職端對應規則待補 |
+| v1.0 | 2026-08-07 | 全文重構並重啟版號。依 2026/08 最新 API 文件（`get-by-condition`／`get-by-condition-count`／`get-detail`／`update-chatlog`）重整章節為「API 總覽 → 共同行為 → 流程圖 → SignalR 機制」四段式；新增 §1 API 總覽（含 `get-by-condition-count` 新 API、兩種 cursor 對照、`get-detail` 巢狀資料結構）與 §7.4 `notifyType` 通知型態；循序圖補 count API 呼叫與 `get-detail` 的 `organNo`／`cursor={organNo}_{bNo}`／`isFetchOldData` |
 
-## 進入頁面／搜尋／進聊天室（兩支查詢 API）
+---
 
-聊天室相關資料載入用兩支「信件即時通整併」API（權威文件見 `notes/api/` 對應檔）；**原列表 API `get-echat-mail-logs` 已棄用**，列表載入改直接用 `get-by-condition`：
+## 1 API 總覽
 
-| 場景 | API | 說明 |
+「信件即時通整併」共用 **3 支查詢 API ＋ 1 支同步 API**（權威文件見 `notes/api/` 對應檔）。**原列表 API `get-echat-mail-logs` 已棄用**，列表載入改用 `get-by-condition`。
+
+### 1.1 API 與使用場景
+
+| # | 場景 | API | 關鍵參數 | 回傳 |
+| :--: | :--- | :--- | :--- | :--- |
+| 1 | 載入左側聊天列表 | `GET get-by-condition` | 不帶 keyword／篩選即為列表；`organNo`、`empNo`、`talentNo`、`cursor`、`limit` | 對話摘要**陣列** |
+| 2 | 搜尋關鍵字／切換篩選 Tab | `GET get-by-condition`（同一支兼列表＋搜尋） | 加 `keyword` 與篩選條件（見 §1.2） | 同上 |
+| 3 | 列表筆數／Tab badge | `GET get-by-condition-count` | `organNo`、`empNo`、`talentNo`（皆選填） | 9 項統計數字（見 §1.4） |
+| 4 | 進聊天室載入對話明細 | `GET get-detail/{infoNo}` | `infoNo`（必）、`organNo`（必）、`cursor`、`limit`、`isFetchOldData` | 對話主體＋`oJsonB`／`tJsonB` 訊息明細 |
+| 5 | 資料異動後同步整併 | `POST update-chatlog` | `organNo`、`accountNo`、`employeesNo`、`updateType`、`updateId`、`notifyType` | `true` |
+
+> 訊息明細**只能**從 `get-detail` 取得；`get-by-condition` 只回對話層級摘要，不含 `oJsonB`／`tJsonB`。
+
+### 1.2 get-by-condition 篩選條件
+
+| 參數 | 說明 |
+| :--- | :--- |
+| `keyword` | 求才端搜求職編號、求職姓名、職編、職名（求職端搜廠編、廠名、職編、職名） |
+| `readStatus` | 是否已讀：`0` 未讀／`1` 已讀 |
+| `wishStatus` | 求職者意願回覆：`0` 未回覆／`1` 有意願／`2` 婉拒／`3` 更改時間 |
+| `mailType` | 信件類別（`0` 一般訊息／`1` 面試邀約／`5` 遺珠函感謝函／`6` 到職確認／`8` 面試異動／`9` 即時通訊；`2`、`3`、`4`、`7` 目前無使用） |
+| `interviewKind` | 面試類別：`0` 不拘／`1` 實體／`2` 遠距（無用）／`3` 刪除 |
+| `sendType` | **陌生訊息判斷依據**：`0` 求才發信／`1` 求職者先發信（＝陌生訊息）／`-1` 排除陌生訊息 |
+| `MailCategory` | （求職端）過濾通知信分類：`0` 全部信件（含 null 未處理）／`1` 您可能感興趣的工作 |
+| `IsStar` | 星號：`true` 有星號／`false` 無星號 |
+| `mailStatus` | 回覆狀態：`true` 已回覆／`false` 未回覆 |
+| `userNos` | 廠商使用者編號，可用 `,` 帶多筆 |
+| `startDate`／`endDate` | 日期區間 |
+| `isGetSpecifiedCursor` | `true` 時指定顯示特定 cursor 的那一筆，預設 `false` |
+
+### 1.3 兩種 cursor（勿混）
+
+兩支 API 的 cursor 都是 `{organNo}_{xxx}` 格式，但**指標層級不同**：
+
+| 用途 | API | 格式 | 指向 |
+| :--- | :--- | :--- | :--- |
+| 列表／搜尋翻頁 | `get-by-condition` | `{organNo}_{RNo}` | **對話**層級（`RNo`＝該筆對話編號） |
+| 聊天室取訊息 | `get-detail/{infoNo}` | `{organNo}_{bNo}` | **訊息明細**層級（`bNo`＝訊息流水號） |
+
+* 聊天室情境：前端帶上本地已存最大 `bNo` 組成 cursor，後端只回該 `bNo` 之後的新資料，不必整室重新渲染。
+* `isFetchOldData`：預設取**新**資料；往上捲載入歷史訊息時帶 `true` 取舊資料。
+
+:::warning
+🚧 **待確認：`get-detail` 的 cursor 格式表述不一致**
+
+<font style="color:red">API 文件（2026/08/06）內三處寫法不同：標題寫 `cursor={organNo}_{bNo}`、Query 參數表寫「指標 infoNo.bNo」、Body 範例寫 `cursor=1`。</font>
+
+* 現況：本文依**標題**的 `{organNo}_{bNo}` 撰寫（與 `get-by-condition` 的 `{organNo}_` 前綴一致）
+* 待確認：
+  * [ ] 正確格式為 `{organNo}_{bNo}`？分隔符號是 `_` 還是 `.`？
+* 來源：`信件即時通整併-取得指定記訊明細` API 文件 2026/08/06
+:::
+
+### 1.4 get-by-condition-count 回傳欄位
+
+供左側列表的 Tab 筆數與 badge 使用。
+
+| 欄位 | 說明 |
+| :--- | :--- |
+| `totalCount` | 當前條件下的總筆數 |
+| `byRecruitCount` | 求才發信筆數（`SendType <= 0`） |
+| `byMemberCenterCount` | **陌生訊息**筆數（`SendType == 1`） |
+| `recommendedCount` | 一般／非感興趣信件筆數（`MailCategory != 1` 或 null） |
+| `filteredCount` | 感興趣工作信件筆數（`MailCategory == 1`） |
+| `unreadCount` | 未讀筆數 |
+| `readCount` | 已讀筆數 |
+| `starCount` | 星號註記筆數 |
+| `wishedCount` | 求職者意願回覆筆數 |
+
+### 1.5 get-detail 巢狀資料結構
+
+`oJsonB`／`tJsonB` 內每筆訊息除既有欄位外，另含三組巢狀物件：
+
+| 物件 | 用途 | 主要欄位 |
 | :--- | :--- | :--- |
-| 進入聯絡人才頁，載入左側聊天列表 | `GET get-by-condition`（`notes/api/echat-get-by-condition.md`）<br>**（原 `get-echat-mail-logs` 已棄用）** | 不帶 keyword／篩選即為列表；`cursor`（＝`{organNo}_{RNo}`）＋`limit` 分頁；回傳對話摘要陣列（含 `oLastViewDate`／`tLastViewDate`／`lastUpdate`，可推導列表未讀判斷） |
-| 搜尋關鍵字／切換一般·陌生訊息 Tab | `GET get-by-condition`（同上，本支兼列表＋搜尋） | 帶 keyword／篩選條件（已讀狀態、意願回覆、信件類別、面試類別、星號、通知信分類、回覆狀態）；`cursor`（＝`{organNo}_{RNo}`）＋`limit` 分頁；`sendType` 為陌生訊息判斷依據（0求才發信/1求職者先發信=陌生訊息/-1排除陌生訊息） |
-| 進入聊天室，載入單筆對話明細 | `GET get-detail/{infoNo}`（`notes/api/echat-get-detail-infoNo.md`） | `infoNo`＝列表回傳的 `rNo`；回傳 `oJsonB`／`tJsonB` 訊息明細 |
+| `AttachFiles` | 附件 | `mailFileNo`、`mailDetailNo`、`addKind`（`0` 廠商／`1` 求職者建立）、`showFileName`（顯示檔名）、`fileName`（實際檔名）、`fileExt`（`1`doc `2`pdf `3`ppt `4`docx `5`pptx `6`xls `7`xlsx）、`dateIn`、`infoNo` |
+| `Calendar` | 面試行事曆 | `sNo`、`mailDetailNo`、`calendarNo`、`addKind`、`mailType`、`setDate`（邀約時間）、`zoomScheduleNo`、`isConfirm`（`1` 選取／`0` 未選取）、`confirmMailDetailNo`、`infoNo` |
+| `E2Calendar` | 舊行事曆 | `sNo`、`organNo`、`userNo`、`resumeNo`、`kind`、`title`、`memo`、`dates`、`meetUser`（面試官）、`infoNo` |
 
-> **兩種 cursor 勿混**：列表／搜尋分頁的 cursor＝`{organNo}_{RNo}`（`get-by-condition`）；聊天室「接收新訊息」的 cursor＝`bNo`（訊息明細流水號，見〈[SignalR 連線機制](#signalr--websocket-即時通連線機制)〉§4）。前者用於翻頁、後者用於抓某對話 `bNo` 之後的新訊息，兩者是不同層級的指標。
+面試邀約卡片相關的補充欄位：`contactPerson`（聯絡人）、`interViewPhone`（聯絡電話）、`interViewAddress`（面試地址）、`wishReplyDay`（希望回覆天數）、`wishReplyDate`（希望回覆日期）、`lastReplyDetailNo`（需回覆意願的 `mailDetailNo`，`mailType` 為 `1`／`6`／`8` 時有值）。
 
-## 共同發送行為（求才系統）
+> `FileName`／`FilePath` 兩個舊欄位仍列在 JsonB 欄位表中但實際回傳為 `null`，附件一律改讀 `AttachFiles`。
+
+---
+
+## 2 共同發送行為（求才系統）
 
 廠商送出任一類型（詢問意願／面試邀約／錄取通知／一般訊息／感謝函）後觸發：
 
@@ -47,13 +111,13 @@
 | :--: | :--- | :--- |
 | 0 | 驗證廠商點數與職缺權限、計算並檢查履歷瀏覽數 —— **失敗則擋住，不寫入資料庫** | 求才後端 |
 | 1 | 寫入信件主表（更新 DB） | 求才後端 |
-| 1.5 | **求才後端呼叫 `update-chatlog` API**（`notes/api/echat-update-chatlog.md`，同步呼叫）→ 該 API 內部 Publish 事件到 EventBus、等待非同步 Callback 回呼後才實際整併記訊狀態、寫入 ChatLog DB → 再次 Publish 推播事件 → 呼叫 SignalR（`onSignal`）通知求職主網、統一分派推播給求職 App（完整內部架構見〈[update-chatlog 內部架構](#update-chatlog-內部架構echatlog-以-eventbus--callback-做非同步整併)〉） | 求才後端 → update API → EventBus（非同步 Callback）→ DB → SignalR |
+| 1.5 | **呼叫 `update-chatlog` API**（同步呼叫，帶 `notifyType`）→ 該 API 內部 Publish 事件到 EventBus、等非同步 Callback 回呼後才實際整併寫入 ChatLog DB → 再 Publish 推播事件 → 呼叫 SignalR（`onSignal`）通知求職主網、統一分派推播給求職 App（內部架構見 §7.3） | 求才後端 → update API → EventBus → DB → SignalR |
 | 2 | 將「給求職者的通知信」**加入寄信排程**（不即時寄出，處理很快但非馬上送出） | 求才後端 |
 | 3 | 將「給廠商副本收件人的信」加入寄信排程 | 求才後端 |
 | 4 | 計算履歷瀏覽數（與其他雜項判斷） | 求才後端 |
 | 5 | 廠商畫面即時更新 | 求才前端 |
 
-> 第 1.5 項（`update-chatlog` → EventBus 非同步 Callback → DB → signalR／推播）為求職者收到通知、回到求職主網的觸發來源；連線機制見〈[SignalR / WebSocket 即時通連線機制](#signalr--websocket-即時通連線機制)〉。
+> 第 1.5 項為求職者收到通知、回到求職主網的觸發來源；連線機制見 §7。
 >
 > **第 4 項「計算履歷瀏覽數」細節**（舊版 [4.1 §5.2](/r1ghrPxP-x)）：寄出時寫入發信排程，執行排程時即時檢查廠商當日履歷瀏覽數是否足夠 —— 不足則不執行發信排程；足夠且成功寄出後扣除履歷瀏覽數。
 >
@@ -61,7 +125,7 @@
 > 1. 含指定關鍵字 `留下LINE`（不分大小寫全半形）／`留下賴`：訊息仍寫入資料庫並標 `DELFLAG`、**不寄送 Email**，前台依求職規則顯示或隱藏。
 > 2. 含違規字眼（如 `104`）：點「寄出」時不顯示 loading，直接 alert 阻擋送出（`內容含有違規字詞，請調整後再送出。`）。
 
-## 共同回覆行為（求職系統）
+## 3 共同回覆行為（求職系統）
 
 求職者於求職主網回覆後，鏡像對應「共同發送行為」，執行端改為求職系統（列於此處供跨系統脈絡參照）：
 
@@ -69,7 +133,7 @@
 | :--: | :--- | :--- |
 | 1 | 更新回覆／面試狀態（如「已接受」、`ReplyWishMsg`） | 求職後端 |
 | 2 | 寫入信件主表＝自動寫入系統對話紀錄（系統訊息 與 一般訊息） | 求職後端 |
-| 2.5 | **求職後端呼叫 `update-chatlog` API**（同步呼叫）→ 該 API 內部 Publish 事件到 EventBus、等待非同步 Callback 回呼後才實際整併記訊狀態、寫入 ChatLog DB → 再次 Publish 推播事件 → 呼叫 SignalR（`onSignal`）通知求才系統、發送推播給求才 App | 求職後端 → update API → EventBus（非同步 Callback）→ DB → SignalR |
+| 2.5 | **呼叫 `update-chatlog` API**（同步呼叫，帶 `notifyType`）→ 內部流程同 §2 第 1.5 項 → 呼叫 SignalR 通知求才系統、發送推播給求才 App | 求職後端 → update API → EventBus → DB → SignalR |
 | 3 | 判斷回信類別：**一般訊息**→加入廠商帳號（信件收件人）的「**收信區間排程**」（每帳號設定的收信區間不同，依區間彙整寄出）；**其他類別**（意願回覆等）→加入一般寄信排程 | 求職後端 |
 | 4 | 將「給廠商副本收件人的信」加入寄信排程 | 求職後端 |
 | 5 | 計算回覆狀態（與其他雜項判斷） | 求職後端 |
@@ -78,7 +142,7 @@
 > 回覆完成後另判斷：若回覆為同意面試，求職後端額外寫入面試行事曆（求才與求職雙方）。
 > 「回覆有無意願」分支由求職前端帶入系統預設文字（如「我有意願」）寫入一般訊息；自由文字回覆則由求職者自行輸入。
 
-## 類型 → 回覆方式對照
+## 4 類型 → 回覆方式對照
 
 | 發送的邀約類型 | 求職者回覆方式 | 回覆後特殊處理 |
 | :--- | :--- | :--- |
@@ -90,7 +154,9 @@
 
 > 後端 `ReplyWishMsg` 值對照（來源：`get-detail/{infoNo}` schema）：`0`未回覆／`1`有意願／`2`婉拒／`3`更改時間。
 
-## 完整流程圖
+---
+
+## 5 完整流程圖
 
 ```mermaid
 flowchart TD
@@ -164,9 +230,9 @@ flowchart TD
     style REPLY fill:#faf5ff,stroke:#a855f7,stroke-width:2px;
 ```
 
-## 完整流程圖（循序圖 Sequence Diagram）
+## 6 完整流程圖（循序圖 Sequence Diagram）
 
-> 與上方 `完整流程圖` 同一套邏輯，改以循序圖呈現，並整合工程端提供的前後端技術流程（原始版見 `notes/api/echat-engineering-sequence-original.md`）＋四支 API 的實際呼叫位置。依時間順序排列，並把「使用者／系統端」與「每個 action」分開。
+> 與 §5 同一套邏輯改以循序圖呈現，並整合前後端技術流程與各 API 的實際呼叫位置。依時間順序排列，並把「使用者／系統端」與「每個 action」分開。
 
 ```mermaid
 ---
@@ -224,10 +290,12 @@ sequenceDiagram
     RF->>RB: GET get-by-condition（列表載入，get-echat-mail-logs 已棄用）<br>（廠商編號／職缺編號，limit＋cursor={organNo}_{RNo} 分頁）
     RB->>DB: 查詢整併後的記訊列表
     DB-->>RB: 每筆對話摘要
-    RB-->>RF: 回傳列表（最後一則訊息、最後訊息類型、<br>雙方最後查看時間、意願回覆狀態、釘選、訊息數量統計）
-    Note over RF: 渲染左側聊天列表：<br>信件類型標籤＝最後訊息類型<br>未讀判斷＝比對「公司最後查看時間」與「最後更新時間」
+    RB-->>RF: 回傳列表（最後一則訊息、最後訊息類型、<br>雙方最後查看時間、意願回覆狀態、釘選）
+    RF->>RB: GET get-by-condition-count<br>（廠商編號／職缺編號／求職者編號）
+    RB-->>RF: 回傳筆數統計（總數、求才發信、陌生訊息、<br>一般、感興趣、未讀、已讀、星號、意願回覆）
+    Note over RF: 渲染左側聊天列表：<br>信件類型標籤＝最後訊息類型<br>未讀判斷＝比對「公司最後查看時間」與「最後更新時間」<br>Tab 筆數／badge＝count API 回傳的統計值
     alt 已指定聊天室（正常情況：由通知／URL 帶入 rNo）
-        RF->>RB: GET get-detail/{infoNo}<br>（載入指定聊天室明細，infoNo＝該筆 rNo）
+        RF->>RB: GET get-detail/{infoNo}<br>（infoNo＝該筆 rNo，organNo 必帶；<br>cursor={organNo}_{bNo}＋limit；<br>isFetchOldData 控制取新／取舊）
         RB->>DB: 取得該筆對話完整內容
         DB-->>RB: 對話資料＋廠商視角／求職者視角訊息明細
         RB-->>RF: 回傳廠商視角訊息明細
@@ -302,7 +370,7 @@ sequenceDiagram
     deactivate Push
     Hub-->>SF: FCM／APNS 手機推播（求職 App）
 
-    Note over SF: 求職前端收到 onSignal 後（SignalR 只傳 KEY 值，含 infoNo／bNo）：<br>若為目前開啟中的聊天室 → 用 onSignal 帶的 infoNo 打 get-detail/{infoNo}（求才／求職共用同一支取對話 API）<br>前端帶上本地已存最大 bNo 作 cursor，讓後端只回傳該 bNo 之後的新資料，不必每次都整室重新渲染<br>若非目前開啟的聊天室 → 僅更新未讀提示圖示，不打 API
+    Note over SF: 求職前端收到 onSignal 後（SignalR 只傳 KEY 值，含 infoNo／bNo）：<br>若為目前開啟中的聊天室 → 用 onSignal 帶的 infoNo 打 get-detail/{infoNo}（求才／求職共用同一支取對話 API）<br>前端帶上本地已存最大 bNo 組成 cursor={organNo}_{bNo}，讓後端只回傳該 bNo 之後的新資料，不必每次都整室重新渲染<br>若非目前開啟的聊天室 → 僅更新未讀提示圖示，不打 API
 
     %% ----- 寄信排程：兩封信最終各自寄到求職者 / 廠商副本收件人 -----
     RB-->>Seeker: 通知信加入寄信排程 → 寄至求職者 email<br>（非即時，由排程送出，處理時間很短）
@@ -366,7 +434,7 @@ sequenceDiagram
         deactivate Push
         Hub-->>RF: FCM／APNS 手機推播（求才 App）
 
-        Note over RF: 求才前端收到 onSignal 後（SignalR 只傳 KEY 值，含 infoNo／bNo）：<br>若為目前開啟中的聊天室 → 用 onSignal 帶的 infoNo 打 get-detail/{infoNo}（求才／求職共用同一支取對話 API）<br>前端帶上本地已存最大 bNo 作 cursor，讓後端只回傳該 bNo 之後的新資料後更新畫面，卡片狀態更新為「已接受」等（含插入意願狀態標籤）<br>若非目前開啟的聊天室 → 僅更新未讀提示
+        Note over RF: 求才前端收到 onSignal 後（SignalR 只傳 KEY 值，含 infoNo／bNo）：<br>若為目前開啟中的聊天室 → 用 onSignal 帶的 infoNo 打 get-detail/{infoNo}（求才／求職共用同一支取對話 API）<br>前端帶上本地已存最大 bNo 組成 cursor={organNo}_{bNo}，讓後端只回傳該 bNo 之後的新資料後更新畫面，卡片狀態更新為「已接受」等（含插入意願狀態標籤）<br>若非目前開啟的聊天室 → 僅更新未讀提示
 
         %% ----- 依回信類別決定寄信方式（兩種方式終點都是求才廠商） -----
         SB->>SB: 判斷回信類別
@@ -389,12 +457,13 @@ sequenceDiagram
     end
 ```
 
-## SignalR / WebSocket 即時通連線機制
+---
 
-> 聊天室的即時訊息採 **SignalR**（底層走 WebSocket）推播：本次「信件即時通整併」改版後，SignalR 連線**只負責「接收」信號**，訊息送出一律走 WebAPI（見下方新版流程）。本章只記錄業務邏輯與相關名稱供對照；協定握手、連線升級等技術細節屬 RD 範疇，不在此展開。
-> 推播鏈完整技術文件見 `notes/api/echat-realtime-push-flow.md`。
+## 7 SignalR / WebSocket 即時通連線機制
 
-### 連線時機與帶的資訊
+> 聊天室的即時訊息採 **SignalR**（底層走 WebSocket）推播：本次改版後 SignalR 連線**只負責「接收」信號**，訊息送出與已讀寫入一律走 WebAPI。本章只記錄業務邏輯與相關名稱供對照；協定握手、連線升級等技術細節屬 RD 範疇，不在此展開。
+
+### 7.1 連線時機與帶的資訊
 
 - **連線時機**：進入「聯絡人才」（求才）／「聯絡公司」（求職）頁後，**選定／指定特定聊天室當下**才建立連線（非進系統即連線）。
 - 建立連線時帶上以下資訊辨識身分與頻道：
@@ -408,20 +477,20 @@ sequenceDiagram
 
 > 為避免閒置斷線，系統會固定間隔自動偵測連線是否存活（心跳），斷線自動重連。
 
-### 新版業務流程（送出走 WebAPI、SignalR 只收信號）
+### 7.2 新版業務流程（送出走 WebAPI、SignalR 只收信號）
 
 1. **送出**：前端**不做 SignalR invoke**，改打 WebAPI 存進 DB。
-   - **求才端**：打 `eChatHandler.ashx`（`kind=0`）WebAPI（`eChatFunc.SaveMsgLog()`＝唯一寫入點）。
+   - **求才端**：打 `eChatHandler.ashx`（`kind=5`）WebAPI（`eChatFunc.SaveMsgLog()`＝唯一寫入點）。
    - **求職端**：打**求職自己提供的送出 API**（**非** `eChatHandler.ashx`）；登入認證用求職端各自的 cookie，API 名稱與參數與求才端**不同、不共用**。
-2. **DB 寫入成功後，各單位（求才／求職後端）同步呼叫 `update-chatlog` API**（非「自行發事件到 EventBus」，是直接呼叫這支 API 的進入點）。
+2. **DB 寫入成功後，各單位（求才／求職後端）同步呼叫 `update-chatlog` API**，並依異動性質帶入對應的 `notifyType`（見 §7.4）。
 3. `update-chatlog` API 內部先 **Publish 一筆「chatlog 更新事件」到 EventBus**、取得 `ACK / Publish Accepted` 立即回應（此時尚未真正整併資料）；EventBus 之後**非同步呼叫回 `update-chatlog` API 的 Callback 端點**，才在這個 Callback 裡實際把 chatlog／訊息狀態整併寫入 ChatLog DB。
-4. DB 更新完成後，`update-chatlog`／`Callback` **再 Publish 一筆「推播事件」到 EventBus**（同樣先拿 `ACK` 再非同步處理），內部驗證簽章、查對方線上狀態後，直接呼叫 `eChatHub` 推播 API，對在線接收端呼叫 `onSignal` 做 SignalR 即時推送，並統一分派 FCM／APNS 手機推播。完整內部呼叫順序見下方〈[update-chatlog 內部架構](#update-chatlog-內部架構echatlog-以-eventbus--callback-做非同步整併)〉。
-5. **接收**：前端 `onSignal` 收到的只是「有新訊息」的**通知信號**；`MsgLog` 直接忽略，但**其餘 KEY 參數（`tNo`／`oNo`／`uNo`／`eNo`／`infoNo`／`bNo`）即後續打「取對話 API」所需的參數**——`infoNo`＝該次異動對話的 `rNo`，可直接打 `get-detail/{infoNo}`（目前**只有 1 支**取全部 API，**求才／求職共用同一支 `get-detail`**）取得該對話訊息；前端**帶上本地已存最大 `bNo`（訊息明細流水號）作 cursor 指標，讓後端只回傳該 `bNo` 之後的新資料**，**不必每次都整室重新渲染全部**；非當前聊天室僅更新未讀提示。
-6. **已讀回報**：**廠商進入特定聊天室時，將該聊天室內來自求職者的全部未讀訊息一次性標記為已讀**（不判斷是否捲動到特定訊息位置，整室未讀全部寫入已讀；求職端讀取廠商訊息的觸發規則待補）。標記已讀時前端**不做 SignalR invoke**，改打 WebAPI 把已讀紀錄寫進 DB；該 API 會幫忙 call SignalR，對方前端以 `onUpdateReaded` 事件接收後更新雙方的已讀狀態（與「送出走 WebAPI、SignalR 只收信號」同一套模式）。
+4. DB 更新完成後，`update-chatlog`／`Callback` **再 Publish 一筆「推播事件」到 EventBus**（同樣先拿 `ACK` 再非同步處理），內部驗證簽章、查對方線上狀態後，直接呼叫 `eChatHub` 推播 API，對在線接收端呼叫 `onSignal` 做 SignalR 即時推送，並統一分派 FCM／APNS 手機推播。
+5. **接收**：前端 `onSignal` 收到的只是「有新訊息」的**通知信號**；`MsgLog` 直接忽略，但**其餘 KEY 參數（`tNo`／`oNo`／`uNo`／`eNo`／`infoNo`／`bNo`）即後續打「取對話 API」所需的參數**——`infoNo`＝該次異動對話的 `rNo`，可直接打 `get-detail/{infoNo}`（求才／求職共用同一支）取得該對話訊息；前端帶上本地已存最大 `bNo` 組成 `cursor={organNo}_{bNo}`，讓後端只回傳該 `bNo` 之後的新資料，**不必每次都整室重新渲染全部**；非當前聊天室僅更新未讀提示。
+6. **已讀回報**：**廠商進入特定聊天室時，將該聊天室內來自求職者的全部未讀訊息一次性標記為已讀**（不判斷是否捲動到特定訊息位置；求職端讀取廠商訊息的觸發規則待補）。標記已讀時前端**不做 SignalR invoke**，改打 WebAPI 把已讀紀錄寫進 DB，並以 `notifyType=1` 呼叫 `update-chatlog`；對方前端以 `onUpdateReaded` 事件接收後更新雙方的已讀狀態。
 
-### update-chatlog 內部架構（EventBus + Callback 做非同步整併）
+### 7.3 update-chatlog 內部架構（EventBus + Callback 做非同步整併）
 
-> 對應上方新版業務流程 §2–4：`update-chatlog` API 不是「收到呼叫就同步整併完成」，而是先用 EventBus 做一次非同步解耦（Publish／Callback），實際整併與推播都發生在 Callback 之後；下圖依工程端提供的最新循序圖繪製。
+> 對應 §7.2 第 2–4 步：`update-chatlog` API 不是「收到呼叫就同步整併完成」，而是先用 EventBus 做一次非同步解耦（Publish／Callback），實際整併與推播都發生在 Callback 之後。
 
 ```mermaid
 ---
@@ -483,22 +552,50 @@ sequenceDiagram
     Hub->>Recv: 透過 SignalR／WebSocket 推播訊息
 ```
 
-* **步驟 1–2**：呼叫端（求才／求職後端）同步呼叫 `update-chatlog` API；該 API 只做「Publish 一筆更新事件到 EventBus」（步驟 2）並拿到 `ACK / Publish Accepted`（步驟 3），**尚未真正整併資料**——這一步是快速解耦，不等實際處理完成。
+* **步驟 1–3**：呼叫端（求才／求職後端）同步呼叫 `update-chatlog` API；該 API 只做「Publish 一筆更新事件到 EventBus」並拿到 `ACK / Publish Accepted`，**尚未真正整併資料**——這一步是快速解耦，不等實際處理完成。
 * **步驟 4**：EventBus（透過 Worker）**非同步**呼叫回同一支 `update-chatlog` API 的 **Callback 端點**，真正的整併邏輯從這裡才開始。
-* **步驟 5–8（求才內部邏輯）**：Callback 端點更新 ChatLog DB（chatlog／訊息狀態整併，步驟 5–6），完成後**再 Publish 一次「推播事件」到 EventBus**（步驟 7）、拿到 `ACK` 確認已受理（步驟 8）。
-* **步驟 9–10**：`update-chatlog`／`Callback` 直接呼叫 `eChatHub` 的推播 API（步驟 9，非再經 EventBus 一次），由 `eChatHub` 透過 SignalR／WebSocket（`onSignal`）把訊息推送給接收端（求才前端／求職前端，步驟 10），並統一分派 FCM／APNS 手機推播。
-* 兩次 Publish／ACK（chatlog 更新事件、推播事件）是**兩個獨立的非同步事件**，不是同一次事件的兩個階段；圖中省略了 Worker 消費 Publish 事件、判斷觸發 Callback 的內部細節（屬 RD 實作範疇）。
+* **步驟 5–8（求才內部邏輯）**：Callback 端點更新 ChatLog DB，完成後**再 Publish 一次「推播事件」到 EventBus**、拿到 `ACK` 確認已受理。
+* **步驟 9–10**：直接呼叫 `eChatHub` 的推播 API（非再經 EventBus 一次），由 `eChatHub` 透過 SignalR／WebSocket（`onSignal`）把訊息推送給接收端，並統一分派 FCM／APNS 手機推播。
+* 兩次 Publish／ACK 是**兩個獨立的非同步事件**，不是同一次事件的兩個階段；圖中省略了 Worker 消費 Publish 事件、判斷觸發 Callback 的內部細節（屬 RD 實作範疇）。
 
-### 常用動作（Action）對照表
+**同步涵蓋的資料表**：`EChatLog`、`MailNotice`、`MailNoticeDetailxx`、`mailCalendar.infoNo`、`mailAttachFiles.infoNo`、`mailStarMark.infoNo`、`oCalendar.infoNo`。
+
+**其他請求欄位**：`updateType`（`0` 兩個表／`1` Mail／`2` EChatLog）、`updateId`（`MailNoticeDetail.mailDetailNo` 或 `EChatLog.aNo`，**帶 `0` 則視為完整同步**）。
+
+### 7.4 notifyType（SignalR 通知型態）
+
+呼叫 `update-chatlog` 時以 `notifyType` 標明異動性質，**同時決定要不要發 SignalR 通知、以及通知回傳什麼**：
+
+| `notifyType` | 異動性質 | SignalR 通知行為 |
+| :--: | :--- | :--- |
+| `0` | 更新／新增 | **單筆通知**，回傳 `infoNo`、`bNo` |
+| `1` | 已讀 | `updateId=0` 時**匯整成一筆通知**，回傳 `infoNo` |
+| `2` | 刪除 | **不做通知**（`updateId` 帶 `0`，API 會匯整一筆給 EventBus） |
+| `3` | 收回 | **不做通知** |
+| `4` | 星號 | 見下方待確認 |
+
+> 這說明了為何「收回訊息」沒有對應的 SignalR action：收回走 `notifyType=3`，後端**不發即時通知**，對方需重新取對話才會看到收回後的樣式。
+
+:::warning
+🚧 **待確認：`notifyType=4`（星號）的通知行為**
+
+<font style="color:red">API 文件列出 `4:星號` 的語意，但通知行為只寫到 `notifyType=3`，未載明 `4` 是否發通知、回傳什麼。</font>
+
+* 待確認：
+  * [ ] `notifyType=4` 是否發 SignalR 通知？若發，回傳 `infoNo` 還是 `infoNo`＋`bNo`？
+* 來源：`信件即時通整併-同步訊息狀態` API 文件 2026/08/05
+:::
+
+### 7.5 常用動作（Action）對照表
 
 | 方向 | 動作名稱 | 端 | 新版狀態 | 說明 |
 | :--- | :--- | :--- | :--- | :--- |
 | 前端發送 | `setoUser` | 求才 | ✅ **保留**（新版仍使用） | 上線報到；觸發時機＝`signalR.on` 註冊後馬上觸發；不需帶額外參數 |
 | 前端發送 | `settUser` | 求職 | ✅ **保留**（新版仍使用） | 求職端上線報到；觸發時機＝`signalR.on` 註冊後馬上觸發；不需帶額外參數 |
 | 前端發送 | `setRoomInfo` | 求職 | ❌ **廢止**（未列入保留清單，不再需要） | 舊版設定聊天室資訊 |
-| 前端發送 | `getUserStatus` | 求職 | ❌ **廢止**（未列入保留清單，不再需要） | 舊版查詢對方線上狀態；新版線上狀態由後端 `update-chatlog` API 於推播前查（`GetTalentUserOnline`／`GetOrganUserOnline`） |
+| 前端發送 | `getUserStatus` | 求職 | ❌ **廢止**（未列入保留清單，不再需要） | 舊版查詢對方線上狀態；新版線上狀態由後端於推播前查（`GetTalentUserOnline`／`GetOrganUserOnline`） |
 | 前端發送 | `sendMsgPush` | 求才／求職 | ❌ **廢止** | 舊版送出文字訊息的 SignalR invoke；新版送出改走 WebAPI（求才 `eChatHandler.ashx kind=5`／求職自有送出 API），前端不再 invoke |
-| 前端發送 | `updateMsgReaded` | 求才 | ❌ **廢止（改走 WebAPI）** | 舊版由前端 invoke 標記已讀；新版**前端不再 invoke**——已讀改由前端**打 WebAPI 寫進 DB**，該 API 再幫忙 call SignalR，前端只需處理接收事件 `onUpdateReaded`（與訊息「送出走 WebAPI、SignalR 只收信號」同一套模式） |
+| 前端發送 | `updateMsgReaded` | 求才 | ❌ **廢止（改走 WebAPI）** | 舊版由前端 invoke 標記已讀；新版**前端不再 invoke**——已讀改打 WebAPI 寫進 DB 並以 `notifyType=1` 同步，前端只需處理接收事件 `onUpdateReaded` |
 | 後端推播 | `onTextMessage` | 求才／求職 | ❌ **廢止（由 `onSignal` 取代）** | 舊版接收文字訊息事件（`signalr?.on('onTextMessage', handleReceive)`） |
 | 後端推播 | `onSignal` | 求才／求職 | ✅ **新版接收事件** | 參數 `(ContextID, tNo, oNo, uNo, eNo, MsgLog, infoNo, bNo)`，`ContextID` 固定 `"apiSendMessage"` 供識別推送來源；`infoNo`＝該次異動對話的 `rNo`（可直接打 `get-detail/{infoNo}`）；`bNo`＝該次異動的訊息明細流水號；**原有參數都保留、只增不改，之後若擴充一律附加在後面**。前端忽略 `MsgLog`，其餘 KEY 參數即後續打「取對話 API」的參數 |
-| 後端推播 | `onUpdateReaded` | 求才／求職 | ✅ **新版接收事件** | 對方讀取後、已讀寫入 DB 由後端（API）觸發 SignalR 推播；前端接收此事件後更新雙方的已讀狀態 |
+| 後端推播 | `onUpdateReaded` | 求才／求職 | ✅ **新版接收事件** | 對方讀取後、已讀寫入 DB 由後端（`notifyType=1`）觸發 SignalR 推播；前端接收此事件後更新雙方的已讀狀態 |
