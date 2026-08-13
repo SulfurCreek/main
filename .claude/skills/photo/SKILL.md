@@ -35,20 +35,32 @@ description: >
    - 使用者上傳／貼圖來源：若對話環境能讓工具直接讀到檔案路徑就直接用；**若拿不到原始檔案位元（純聊天貼圖、沒有落地路徑）**，明確告知使用者「無法讀取貼圖原始檔」，請對方提供檔案路徑、上傳連結，或 Figma node-id 讓我改用 Figma fetch——不可用其他截圖偽造替代，也不要用外部 AI 圖像生成模型「重畫」一張假設相似的圖。
 2. **不裁切、不疊字，維持原始像素**：下載下來的圖是最終素材，後續標註一律用 HTML overlay，不用 Pillow/PIL 二次繪製或壓字進圖檔。
    - 例外：若需要知道某個 UI 元件（如按鈕）在圖片中的**像素座標**以利定位 badge，可以用 Pillow/PIL **唯讀分析**像素（如掃描邊框顏色算 bounding box），但不能用 PIL 產生新圖檔或覆寫原圖。
-3. **檔名慣例**：`{章節代碼}_{語意}_{視角}.png`，例如 `E1_change_vendor.png`、`E1_offer_seeker_tag.png`。沿用既有專案慣例，勿加時間戳或亂數。
-4. **落地路徑固定為 `.claude/assets/`**：
+3. **檔名慣例**：`{章節代碼}_{語意}_{視角}.png`，例如 `E1_change_vendor.png`、`E1_offer_seeker_tag.png`。沿用既有專案慣例，勿加時間戳或亂數；上傳到 R2 時當作 object key（可加固定前綴，見下方）。
+4. **上傳到 Cloudflare R2 圖床**（取代舊版「commit 進 repo → `raw.githubusercontent.com`」做法）：
+
+   ```python
+   import boto3, os
+
+   s3 = boto3.client(
+       service_name='s3',
+       endpoint_url=os.environ['R2_ENDPOINT_URL'],       # 例：https://<account_id>.r2.cloudflarestorage.com
+       aws_access_key_id=os.environ['R2_ACCESS_KEY_ID'],
+       aws_secret_access_key=os.environ['R2_SECRET_ACCESS_KEY'],
+   )
+   bucket = os.environ.get('R2_BUCKET', 'agent-image-dump')
+   key = f"photo-skill/<檔名>.png"   # 固定前綴 photo-skill/ 方便之後盤點，檔名沿用規則 3
+   s3.upload_file('<本地下載的圖路徑>', bucket, key, ExtraArgs={'ContentType': 'image/png'})
+
+   public_url = f"{os.environ['R2_PUBLIC_URL_BASE']}/{key}"   # 例：https://pub-xxxx.r2.dev/<key>
+   print(public_url)
    ```
-   cp <下載的圖> /home/user/main/.claude/assets/<檔名>.png
-   git add .claude/assets/<檔名>.png
-   git commit -m "..."
-   git push -u origin <目前工作分支>
-   ```
-5. **取得 commit SHA 後組網址**：
-   ```
-   https://raw.githubusercontent.com/sulfurcreek/main/<commit_sha>/.claude/assets/<檔名>.png
-   ```
-   HackMD／規格書內一律引用這個網址。（若該圖其實已有既有 HackMD 網址，見上方 Step 0——那種情況根本不會走到這一步）
-6. **PATCH 前確認資產已可達**：`curl -sI <raw url>` 確認 200 再寫進文件，避免文件裡出現 404 圖。
+
+   - **憑證一律讀環境變數，絕對不把 Access Key／Secret 字面值寫進任何會進 repo 的檔案**（skill 本身、commit、程式碼都不行）——這幾把金鑰在 Cloudflare 後台可view/rotate，一旦被 commit 進 git history 就等於外洩，之後 rotate 也清不掉歷史紀錄。需要的四個環境變數：`R2_ENDPOINT_URL`、`R2_ACCESS_KEY_ID`、`R2_SECRET_ACCESS_KEY`、`R2_PUBLIC_URL_BASE`（`R2_BUCKET` 可選，沒設就預設 `agent-image-dump`）。
+   - 若當前環境沒設好這幾個變數（`os.environ[...]` 會直接 `KeyError`），停下來告知使用者「R2 環境變數未設定」，不要憑記憶／對話裡出現過的字面值硬編。
+   - `boto3` 若未安裝先 `pip install boto3`。
+5. **上傳後確認可達**：`curl -sI <public_url>` 確認 200 再寫進文件，避免文件裡出現破圖。
+
+> **舊版 GitHub repo 存檔法已棄用**：不再 `cp` 進 `.claude/assets/`、不再 `git commit`／`push`、不再組 `raw.githubusercontent.com` 網址。只有 R2 環境變數確實不可用時，才退回舊法當備案（此時要明確告知使用者「R2 無法使用，改用 GitHub repo 備援」）。
 
 ---
 
@@ -61,7 +73,7 @@ description: >
 ```html
 <div style="background:#fff; padding:14px; border-radius:8px;">
   <div style="position:relative; display:inline-block; max-width:400px;">
-    <img src="https://raw.githubusercontent.com/sulfurcreek/main/<sha>/.claude/assets/E1_change_vendor.png" style="display:block; width:100%;">
+    <img src="https://pub-xxxx.r2.dev/photo-skill/E1_change_vendor.png" style="display:block; width:100%;">
     <div style="position:absolute; top:83%; left:50%; background:#FF5F57; color:#fff; font-family:Inter,Helvetica,Arial,sans-serif; font-size:13px; font-weight:700; padding:3px 9px; border-radius:10px; box-shadow:0 1px 3px rgba(0,0,0,0.3);">1</div>
   </div>
 </div>
@@ -90,10 +102,10 @@ description: >
 3. 換算成百分比：`top% = box_y / image_height * 100`、`left% = box_x / image_width * 100`；寬高同理用 `(box_x1 - box_x0) / image_width * 100`。
 4. **下 PATCH 前必做「真實 HTML 渲染」驗證（不是只用 Pillow 疊框近似）**：Pillow 疊框只能大致核對座標，真正決定成品的是瀏覽器怎麼渲染那段 HTML。流程：
    - 把要寫進 HackMD 的整段 HTML（含 `position:absolute` 紅框）**存成一個暫時 `.html` 檔**放在 scratchpad（`/tmp/...`，**絕不放進 repo、絕不 commit**）。
-   - 圖片 `src` 暫時改成**本地檔案 `file://` 絕對路徑**（指向 `.claude/assets/` 內的圖）——因為沙箱瀏覽器載不到 `raw.githubusercontent.com`（會顯示破圖、框就浮掉）；用本地路徑才能真實渲染。
+   - 圖片 `src` 暫時改成**本地檔案 `file://` 絕對路徑**（指向下載到本地的原圖，或已存在的 HackMD `_uploads` 本地暫存）——因為沙箱瀏覽器連不到外部圖床（`raw.githubusercontent.com`、R2 public URL 都一樣，會顯示破圖、框就浮掉）；用本地路徑才能真實渲染。
    - 用 Playwright＋Chromium（`executablePath: '/opt/pw-browsers/chromium'`、`deviceScaleFactor:2`）開這個 `file://` 檔、`fullPage` 截圖，Read 出來目視確認紅框完整包住按鈕、上下都在按鈕外、兩張圖垂直置中、文字緊貼圖片。
    - **確認 OK 後把暫時 `.html` 檔刪掉**（`rm`），不要留在 repo 或工作區；渲染出來的驗證截圖 `.png` 留在 scratchpad 無妨（本來就不在 repo）。
-   - 唯有渲染驗證通過，才把 HTML（`src` 換回 `raw.githubusercontent.com` 正式網址）PATCH 進 HackMD。曾經發生過多次問題都是省略或只做 Pillow 近似驗證：框偏移、框太貼邊不夠大、框壓在按鈕上、兩圖沒垂直置中——全都是跳過真實渲染驗證才發生。
+   - 唯有渲染驗證通過，才把 HTML（`src` 換回 R2 `public_url` 正式網址）PATCH 進 HackMD。曾經發生過多次問題都是省略或只做 Pillow 近似驗證：框偏移、框太貼邊不夠大、框壓在按鈕上、兩圖沒垂直置中——全都是跳過真實渲染驗證才發生。
    - **⚠️ 整頁渲染看不出小元件的框準不準——小框一定要另外放大檢查**：文件裡的圖通常縮到 400–520px 寬顯示，一顆 40px 的按鈕在那個尺度下只有幾個 pixel，框歪了、框太大框到隔壁欄位，在整頁截圖上完全看不出來（看起來都「差不多對」）。所以除了整頁渲染，**對每個小元件（按鈕、icon、單一欄位這類短邊 < 60px 的目標）另外做一次原生解析度的裁切放大檢查**：用 Pillow 依算好的百分比座標在原圖上畫框 → `crop` 出該元件周邊一小塊 → 放大 2–4 倍 → Read 出來確認。這步只是唯讀核對、不落地存檔，跟規則一「不產生新圖檔」不衝突。這次「分析按鈕紅框不精準」就是只看了整頁渲染就 push 才被打回。
    - **小元件不要用肉眼讀網格圖猜座標**：本節第 1 點的顏色遮罩掃描對小元件一樣適用而且更該用。畫網格圖只適合「大致定位在畫面哪一區」，最終 bounding box 一律以遮罩掃描的數值為準。
 5. 圈選整個元件（如按鈕）用邊框style而非填色 badge：
@@ -222,7 +234,7 @@ await el.screenshot({ path: 'preview.png' });    // 自動緊貼元素邊界
 - [ ] **整段 HTML 每行縮排 0 格**（沒有任何一行開頭 ≥4 個空白）。
 - [ ] **最外層有 `background:#fff`**（深色模式防呆）。
 - [ ] **絕對定位的 callout 沒有溢出白底容器**（外層有預留右側 padding）。
-- [ ] **圖片網址對**：已有 HackMD 網址的沿用原網址、沒有多存一份進 repo；新圖則已 commit＋push 且 `curl -sI` 回 200。
+- [ ] **圖片網址對**：已有 HackMD 網址的沿用原網址、沒有多存一份進 R2；新圖則已上傳 R2 且 `curl -sI` 回 200，且 HTML 裡沒有殘留 `file://` 本地路徑。
 - [ ] **若是「重新繪製」**：整個區段換掉，舊 HTML 與使用者新貼的裸圖都已清乾淨。
 - [ ] **暫時 `.html` 驗證檔已刪除**，沒有留在 repo 或工作區。
 

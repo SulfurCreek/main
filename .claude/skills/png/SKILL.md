@@ -74,7 +74,7 @@ description: >
 * **改字**：先畫白底矩形蓋舊內容，再 `ImageDraw.text` 重寫；中文字型用 `/usr/share/fonts/truetype/wqy/wqy-zenhei.ttc`（無 Noto TC 時後備）。
 * **標號徽章**：紅底白字圓角，底色 `#FF5F57`、`border-radius:10px`、`padding:4px 10px`、字型 `Inter` 700 / `20px` / `line-height:24px`，`N` / `N.M` 依慣例放置。
 * **落差標注**：黃框（`(255,200,0)`）圈出差異處，旁注「規格：XX／現況：OO」。
-* **入庫**：HackMD `upload` 端點不可用→圖 commit 到 `.claude/assets/`、push 後用 `raw.githubusercontent.com/sulfurcreek/main/{commit}/.claude/assets/{file}.png` 引用。
+* **入庫**：HackMD `upload` 端點不可用→上傳到 Cloudflare R2 圖床（見 `.claude/skills/photo/SKILL.md` 規則一「上傳到 Cloudflare R2 圖床」的 boto3 流程與環境變數），用回傳的 `public_url` 引用；不再 commit 進 `.claude/assets/`／`raw.githubusercontent.com`（舊法棄用，僅 R2 環境變數不可用時當備案）。
 * **限制**：只能蓋白重寫，無法智慧抹除；要乾淨換字改用 Figma MCP 編輯設計稿文字節點再重截。
 * **裁切精準＋badge 打在留白處不壓畫面**：截圖裁切至 UI 元件本身邊界，不含周圍聊天背景／空白；但 badge **不可壓在畫面元素上**——改用 `Image.new` 在元件上緣（或左緣）擴增一條純白邊（高度**剛好容納 badge**，約 33px＋上下各約 4px，不留多餘空白），原圖貼在白邊下方，badge 畫在這塊新留白內（`x=4`）。badge 文字可用「類型·視角」（如 `詢問意願·廠商發出`）讓截圖自我標示訊息類型。
 * **狀態邏輯收斂進表格欄位，不另開小表格／合成截圖**：同一元件在不同條件下的呈現差異（如按鈕 disabled 規則），優先用 `<ul><li>` 巢狀條列寫進對應表格欄位本身，不另立獨立子表格或段落重述；截圖維持單張完整 UI 元件原始畫面，不用多張局部裁切堆疊拼接成合成圖。

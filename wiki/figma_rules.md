@@ -11,7 +11,7 @@ Figma MCP 伺服器連線時，會自帶它自己的 skill 指示（`figma-use`�
 👉 `.claude/skills/photo/SKILL.md`（skill 名稱 `photo`）
 
 涵蓋範圍：
-- 截圖存檔流程（Figma fetch 或使用者上傳圖片皆適用）：下載 → commit 進 `.claude/assets/` → push → `raw.githubusercontent.com` 網址引用。
+- 截圖存檔流程（Figma fetch 或使用者上傳圖片皆適用）：下載 → 上傳 Cloudflare R2 圖床（boto3，憑證讀環境變數）→ 用回傳的 `public_url` 引用。舊版 `commit` 進 `.claude/assets/`／`raw.githubusercontent.com` 做法已棄用。
 - 標註樣式：**一律用 HTML 絕對定位覆蓋**（`position:absolute` 疊 badge／紅框在 `<img>` 上），不再用 Pillow 把 badge 燒進圖片像素。
 - 多圖點擊流程（A 圖某按鈕 → B 圖）：HTML flex 並排＋純文字箭頭，取代舊的 Pillow 拼接大圖做法。
 - **所有 HTML 標註區塊最外層一律加白色背景**（`background:#fff`）：避免 HackMD 深色模式下截圖文字/淺色 UI 看不清楚。
