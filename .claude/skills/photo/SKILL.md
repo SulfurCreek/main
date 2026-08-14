@@ -104,8 +104,9 @@ description: >
    - 把要寫進 HackMD 的整段 HTML（含 `position:absolute` 紅框）**存成一個暫時 `.html` 檔**放在 scratchpad（`/tmp/...`，**絕不放進 repo、絕不 commit**）。
    - 圖片 `src` 暫時改成**本地檔案 `file://` 絕對路徑**（指向下載到本地的原圖，或已存在的 HackMD `_uploads` 本地暫存）——因為沙箱瀏覽器連不到外部圖床（`raw.githubusercontent.com`、R2 public URL 都一樣，會顯示破圖、框就浮掉）；用本地路徑才能真實渲染。
    - 用 Playwright＋Chromium（`executablePath: '/opt/pw-browsers/chromium'`、`deviceScaleFactor:2`）開這個 `file://` 檔、`fullPage` 截圖，Read 出來目視確認紅框完整包住按鈕、上下都在按鈕外、兩張圖垂直置中、文字緊貼圖片。
+   - **⚠️ viewport 一定要用窄寬度（760px）測，不能用寬螢幕（1400px 這種）**：曾經發生過用寬 viewport 測試「看起來完全正常」，PATCH 進 HackMD 後側邊說明文字卻被欄寬硬生生裁斷——因為寬 viewport 永遠有多餘空間，測不出「內容總寬度超過 HackMD 實際欄寬會被裁切」這件事。務必在 `page.setViewportSize`／`newPage` 時把寬度設成 `760`，並用程式化檢查（見上方「安全欄寬」小節的 `getBoundingClientRect` 範例）確認沒有元素右緣超出容器，不要只憑肉眼看寬螢幕渲染圖。
    - **確認 OK 後把暫時 `.html` 檔刪掉**（`rm`），不要留在 repo 或工作區；渲染出來的驗證截圖 `.png` 留在 scratchpad 無妨（本來就不在 repo）。
-   - 唯有渲染驗證通過，才把 HTML（`src` 換回 R2 `public_url` 正式網址）PATCH 進 HackMD。曾經發生過多次問題都是省略或只做 Pillow 近似驗證：框偏移、框太貼邊不夠大、框壓在按鈕上、兩圖沒垂直置中——全都是跳過真實渲染驗證才發生。
+   - 唯有窄欄寬渲染驗證通過（含程式化溢出檢查），才把 HTML（`src` 換回 R2 `public_url` 正式網址）PATCH 進 HackMD。曾經發生過多次問題都是省略或只做 Pillow 近似驗證、或用寬 viewport 測試：框偏移、框太貼邊不夠大、框壓在按鈕上、兩圖沒垂直置中、側邊文字被欄寬裁切——全都是跳過「窄欄寬＋程式化檢查」的真實渲染驗證才發生。
    - **⚠️ 整頁渲染看不出小元件的框準不準——小框一定要另外放大檢查**：文件裡的圖通常縮到 400–520px 寬顯示，一顆 40px 的按鈕在那個尺度下只有幾個 pixel，框歪了、框太大框到隔壁欄位，在整頁截圖上完全看不出來（看起來都「差不多對」）。所以除了整頁渲染，**對每個小元件（按鈕、icon、單一欄位這類短邊 < 60px 的目標）另外做一次原生解析度的裁切放大檢查**：用 Pillow 依算好的百分比座標在原圖上畫框 → `crop` 出該元件周邊一小塊 → 放大 2–4 倍 → Read 出來確認。這步只是唯讀核對、不落地存檔，跟規則一「不產生新圖檔」不衝突。這次「分析按鈕紅框不精準」就是只看了整頁渲染就 push 才被打回。
    - **小元件不要用肉眼讀網格圖猜座標**：本節第 1 點的顏色遮罩掃描對小元件一樣適用而且更該用。畫網格圖只適合「大致定位在畫面哪一區」，最終 bounding box 一律以遮罩掃描的數值為準。
 5. 圈選整個元件（如按鈕）用邊框style而非填色 badge：
@@ -127,28 +128,65 @@ description: >
 | **多張截圖**串成流程（A 圖點按鈕 → B 圖） | flex 橫向並排多張圖 | 各自**緊貼自己那張圖下方**（見下一節） |
 | **單張截圖**、圖上有多個標註區域要逐一解釋 | 圖固定寬度靠左，說明用絕對定位排在**圖的右側** | **側邊**，每則對齊自己那個紅框的高度 |
 
-單張截圖多標註時，**絕對不要把說明寫成圖片下方的編號清單**——那樣讀者得在「圖上的框」和「圖下的文字」之間來回跳，對不起來。正確做法是讓每則說明水平擺在它所標註的那個區域旁邊，視線直接平移過去：
+單張截圖多標註時，**絕對不要把說明寫成圖片下方的編號清單**——那樣讀者得在「圖上的框」和「圖下的文字」之間來回跳，對不起來。正確做法是讓每則說明擺在它所標註的那個區域旁邊，視線直接平移過去。
+
+#### ⚠️ 側邊說明文字一律用 flex 版面（正常文件流），不要用 `position:absolute; left:104%`
+
+**這條規則的教訓是真實事故**：曾經用 `position:absolute; left:104%` 把 callout 疊在圖片右側、外層用不對稱 `padding-right` 撐出空間（例如 `padding:20px 420px 20px 36px` + 圖片 `width:620px`，總寬度上看 1000px 以上）。PATCH 進 HackMD 後，callout 文字被硬生生從中間截斷（「或」「區、有」這種斷詞），因為：
+
+1. **HackMD 筆記的實際閱讀欄寬遠比想像窄**，超出欄寬的內容會被裁掉、不會自動換行或橫向捲動；absolute 定位的 callout 一旦總寬度算超，就是「整段消失在欄外」而不是「擠壓換行」。
+2. 本機 `file://` 驗證那步（見上方規則二第 4 點）如果用寬螢幕 viewport（例如 1400px）測試，**測不出這個問題**——寬 viewport 裡永遠有空間放得下，只有在接近 HackMD 真實欄寬的窄視窗下才會裁切。這是本 skill 先前唯一的驗證盲點。
+3. 就算總寬度沒超，**absolute 定位的垂直間距是用百分比手動算的**（`top:30%`、`top:74%` 這種），一旦事後調整 callout 寬度（想省空間而縮窄），文字換行行數增加，原本抓的百分比間距可能不夠，導致下一則 callout 疊字蓋上來——這是新舊兩個問題疊在一起會發生的。
+
+**正確做法：整個「圖＋側邊說明」用一個 flex row，callout 放在 flex column 裡（正常文件流，不用 `position:absolute`）**——文件流裡的元素永遠不會互相重疊（每一則自然把下一則往下推），也永遠不會超出容器寬度被裁掉（flex 子項只會換行或壓縮，不會被靜默吃掉）：
 
 ```html
-<div style="background:#fff; padding:16px 360px 16px 16px; border-radius:8px;">
-<div style="position:relative; display:inline-block; width:400px;">
+<div style="background:#fff; padding:20px; border-radius:8px;">
+<div style="display:flex; align-items:flex-start; gap:24px; flex-wrap:wrap;">
+<div style="position:relative; display:inline-block; width:400px; flex-shrink:0;">
 <img src="<圖網址>" style="display:block; width:100%;">
 <div style="position:absolute; top:5.27%; left:17.34%; width:74.87%; height:4.6%; border:3px solid #FF5F57; border-radius:6px;"></div>
-<div style="position:absolute; top:4.1%; left:14.5%; background:#FF5F57; color:#fff; font-family:Inter,Helvetica,Arial,sans-serif; font-size:15px; font-weight:700; width:26px; height:26px; line-height:26px; text-align:center; border-radius:50%; box-shadow:0 1px 3px rgba(0,0,0,0.4);">1</div>
-<div style="position:absolute; top:2.5%; left:104%; width:310px; font-size:15px; color:#222; line-height:1.65;"><span style="color:#FF5F57; font-weight:700;">→</span> <b>①</b> 這個區域的說明文字</div>
+<div style="position:absolute; top:4.1%; left:14.5%; background:#FF5F57; color:#fff; font-family:Inter,Helvetica,Arial,sans-serif; font-size:15px; font-weight:700; width:26px; height:26px; line-height:26px; text-align:center; border-radius:50%; box-shadow:0 1px 3px rgba(0,0,0,0.4); z-index:2;">1</div>
+</div>
+<div style="flex:1; min-width:220px; display:flex; flex-direction:column; gap:14px;">
+<div style="font-size:15px; color:#222; line-height:1.65;"><span style="color:#FF5F57; font-weight:700;">→</span> <b>①</b> 這個區域的說明文字</div>
+</div>
 </div>
 </div>
 ```
 
-技術要點（缺一不可）：
+要點：
 
-- **圖上一定要有編號 badge，不能只有側邊文字**：紅框只表示「這一塊」，讀者無從得知它對應右邊哪一則說明。每個紅框都要在**框的左上角外側**放一顆圓形數字 badge（`border-radius:50%`、`width/height:26px`、`line-height:26px` 讓數字垂直置中），側邊 callout 開頭再用同一個數字（`①②③`）呼應。**漏掉 badge 是實際被打回過的錯誤**。
-- **外層容器右側預留空間**：用不對稱 padding（`padding:16px 360px 16px 16px`）把右邊空出來給 callout，否則 callout 會溢出白底容器、在 HackMD 上被裁掉。預留寬度 ≈ callout `width` ＋ 50px 餘裕。
-- **圖片容器給固定寬度**（`width:400px`，不要用 `max-width:100%`）：callout 用 `left:104%` 定位是相對於這個容器寬度，容器寬度浮動的話 callout 位置會跟著飄。
-- **callout 用 `left:104%`** 貼在圖的右緣外側；`top` 設成**與它對應的紅框大致相同的百分比**（可微調 ±3% 讓多則之間不互相擠壓）。
-- **字級不要吝嗇**：callout `font-size` 用 **15px**（不要 12–13px）、`color:#222`（不要 `#333` 以下的淺灰）、`line-height:1.65`。截圖本身通常被縮到 400px 寬、裡面的 UI 文字已經很小，旁邊的說明文字若也小就整張圖都難讀。**「文字太小、清晰度不足」是實際被打回過的錯誤**。
-- **箭頭寫在 callout 文字裡**（`<span style="color:#FF5F57; font-weight:700;">→</span>` 開頭），不要另外做一個獨立的箭頭元素——獨立箭頭在絕對定位下很難跟文字對齊。
-- 若某個步驟是**純概念說明、畫面上沒有對應區域**（例如「後端分析並轉成 JSON」），一樣放一則 callout、但不畫紅框也不放 badge，`top` 放在流程順序的相應位置即可。
+- **紅框／badge 仍然用 `position:absolute`**（相對於圖片自己的 `position:relative` 容器）——這部分不變，因為它們要疊在圖片像素座標上，本來就該用絕對定位；只有「callout 文字」這層改成文件流。
+- **圖上一定要有編號 badge，不能只有側邊文字**：每個紅框都要在**框的左上角外側**放一顆圓形數字 badge（`border-radius:50%`、`width/height:26px`、`line-height:26px`），側邊 callout 開頭再用同一個數字（`①②③`）呼應。**漏掉 badge 是實際被打回過的錯誤**。
+- **圖片容器用固定 `width`（例：`400px`）＋ `flex-shrink:0`**：避免 flex 把圖片壓縮變形；具體像素值不重要（%座標會自動縮放跟著走），但整個 flex row（圖片 `width` ＋ `gap` ＋ callout 欄 `min-width`）加總抓在 **760px 以內**（見下方安全欄寬規則）。
+- **callout 欄用 `flex:1; min-width:220px`**，不設固定 `width`——讓它跟著實際可用空間伸縮，永遠不會超框。
+- **字級不要吝嗇**：callout `font-size` 用 **15px**（不要 12–13px）、`color:#222`（不要 `#333` 以下的淺灰）、`line-height:1.65`。**「文字太小、清晰度不足」是實際被打回過的錯誤**。
+- **箭頭寫在 callout 文字裡**（`<span style="color:#FF5F57; font-weight:700;">→</span>` 開頭），不要另外做一個獨立的箭頭元素。
+- 若某個步驟是**純概念說明、畫面上沒有對應區域**（例如「後端分析並轉成 JSON」），一樣放一則 callout、但不畫紅框也不放 badge，順序放在 callout 欄該有的位置即可（文件流會自動排好，不用手動算 `top`）。
+
+#### ⚠️ 安全欄寬：任何 HTML 區塊的總寬度不可超過 ~760px
+
+HackMD 筆記實際閱讀欄寬比看起來窄，且超寬內容是**直接裁切、不會橫向捲動也不會自動換行**（因為子項若用 `position:absolute` 或固定 `width` 就是這種行為）。所以：
+
+- 任何一個標註區塊（`background:#fff` 那層外框）的**總寬度**（圖片 `width` ＋ `gap` ＋ 文字欄寬度 ＋ 左右 `padding`）抓在 **760px 以內**，抓 700px 更保險。
+- **本機 `file://` 驗證一定要用窄 viewport 測**（建議 `760px`，不要用 1400px 這種寬螢幕），並且要**程式化檢查有沒有元素右緣超出容器右緣**（不能只靠肉眼看渲染圖，寬 viewport 下渲染完全正常、換到 HackMD 真實欄寬才會裁切，肉眼在寬 viewport 下看不出來）：
+
+```js
+const check = await page.evaluate(() => {
+  const col = document.querySelector('#col');  // 外層容器
+  const colRect = col.getBoundingClientRect();
+  const bad = [];
+  col.querySelectorAll('*').forEach(el => {
+    const r = el.getBoundingClientRect();
+    if (r.right > colRect.right + 1) bad.push(el.tagName);
+  });
+  return bad;
+});
+// bad.length 必須是 0，不是 0 就代表這個區塊會在 HackMD 上被裁切
+```
+
+- 圖片本身想要看得更清楚而放大顯示寬度時，**不要犧牲欄寬安全邊界**——寧可犧牲一點圖片顯示尺寸（例：`380–420px`），也不要讓總寬度衝到 900px 以上；使用者在乎「看得到完整內容」遠高於「圖片顯示大一點」。
 
 #### ⚠️ 分辨「給我的指示」與「要顯示的說明文字」
 
@@ -233,13 +271,15 @@ await el.screenshot({ path: 'preview.png' });    // 自動緊貼元素邊界
 - [ ] **框線在元件外圍留白處**，沒有壓在按鈕本體／圓角上；框上緣在元件最上緣**之上**。
 - [ ] **整段 HTML 每行縮排 0 格**（沒有任何一行開頭 ≥4 個空白）。
 - [ ] **最外層有 `background:#fff`**（深色模式防呆）。
-- [ ] **絕對定位的 callout 沒有溢出白底容器**（外層有預留右側 padding）。
+- [ ] **側邊 callout 用 flex 文件流，不是 `position:absolute; left:104%`**（見規則二「側邊說明文字」小節）；有側邊說明的區塊整體寬度（圖片＋gap＋文字欄＋padding）在 760px 以內。
+- [ ] **窄 viewport（760px）渲染過、且程式化檢查過沒有元素溢出容器右緣**，不是只用寬螢幕 viewport 目視確認。
 - [ ] **圖片網址對**：已有 HackMD 網址的沿用原網址、沒有多存一份進 R2；新圖則已上傳 R2 且 `curl -sI` 回 200，且 HTML 裡沒有殘留 `file://` 本地路徑。
 - [ ] **若是「重新繪製」**：整個區段換掉，舊 HTML 與使用者新貼的裸圖都已清乾淨。
 - [ ] **暫時 `.html` 驗證檔已刪除**，沒有留在 repo 或工作區。
 
 ## Gotcha
 
+- **側邊說明文字被 HackMD 欄寬裁切（真實事故）**：曾經用 `position:absolute; left:104%` 疊 callout、外層用大 `padding-right` 撐空間，區塊總寬度衝到 1000px 以上，本機用寬 viewport（1400px）測試「看起來正常」就 PATCH 上去，結果 HackMD 實際欄寬遠比 1400px 窄，超出欄寬的文字被直接裁斷（不換行、不橫向捲動，整段消失）。根因＋修法見規則二「側邊說明文字一律用 flex 版面」與「安全欄寬」兩小節——本質是 absolute 定位＋寬 viewport 測試互相掩蓋了問題，兩個修法（改用文件流、窄欄寬測試）缺一不可。
 - **HackMD 對外層 `<div style="...">` 的支援**：HackMD 的 markdown 渲染器允許內嵌 HTML block，但每次寫完務必 PATCH 後 GET 回來確認渲染正常（尤其巢狀 `position:absolute` 在部分 markdown 解析器可能被過濾掉 style 屬性）——若發現 style 被吃掉，改用行內 `<img>` + 相鄰文字編號對照表當退場方案（`CLAUDE.md`「Markdown 標號對照表」選項）。
 - **深色模式（dark mode）務必包白底**：HackMD 有淺色／深色模式切換，深色模式下頁面背景變深，但截圖與說明文字顏色不會自動反轉——沒包白底的話深色模式下文字/淺色 UI 會看不清楚甚至消失。任何 HTML 標註區塊最外層一律加 `background:#fff`（見規則二範本），這是必要步驟不是可選項。
 - **「重畫一次」時要換掉整個區段，不是只換自己上次那段 HTML**：使用者說「重新繪製」時，往往同時**自己在文件裡貼了新截圖**（變成一行裸的 `![image](...)`）。若只用「上次那段 HTML 字串」當 anchor 去替換，結果會是「新貼的裸圖」＋「新版流程圖」兩份並存。正確做法：重新 GET 最新內容 → 找出目標 heading 到**下一個 heading 之間的整個區段** → 整段換成新的 HTML（順手把裸圖、舊 HTML 一起清掉）→ 驗證時明確檢查「舊圖網址已不存在於文件中」。
