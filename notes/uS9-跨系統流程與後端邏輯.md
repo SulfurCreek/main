@@ -13,6 +13,7 @@
 | :---: | :--- | :--- |
 | v1.0 | 2026-08-07 | 全文重構並重啟版號：依 2026/08 最新 API 文件重整為「API 總覽 → 共同行為 → 流程圖 → SignalR 機制」四段式 |
 | v2.0 | 2026-08-07 | **轉為純查閱對照庫**：拆分「查閱型」與「敘事型」內容——§1–§7 改為純表格（API／參數／cursor／回傳欄位／代碼／回覆對照／SignalR 動作），不寫解釋句；原共同發送/回覆行為、完整流程圖、循序圖、update-chatlog 內部架構全數搬進 §8 附錄（`:::spoiler` 收合，內容零損失）。新增 §5 代碼對照（`Type`／`SendKind`／`InterViewKind`／`ReplyWishMsg`／`DisplayType`）集中查閱 |
+| v2.1 | 2026-08-18 | **收回機制調整**：依《信件即時通整併-收回機制》文件新增 §5.6 收回機制欄位（`mailNotice`／`mailNoticeDetailXX` 對話主表層級欄位：`oDeluNo`／`mailStatus`／`tLastReplyWishMsg`／`oLastViewDate`／`tLastViewDate`／`lastReplyDate`／`lastMailType`／`nonMsgLastReplyDate`）；新增 §8.7 收回機制三種情境（最後一筆有其他對話／唯一一筆／對話中間），各情境異動欄位範圍不同；來源圖片連結已過期無法擷取，三處皆標 🚧 待補圖 |
 
 ---
 
@@ -217,6 +218,24 @@ Request 為**陣列**，每筆一個異動：
 | `DisplayType` | `0` 一般字串／`1` JSON 格式字串／`2` 語音 JSON（`msgType:6`） |
 | `AttachFiles.fileExt` | `1` doc／`2` pdf／`3` ppt／`4` docx／`5` pptx／`6` xls／`7` xlsx |
 | `updateType`（`update-chatlog`） | `0` 兩個表／`1` Mail／`2` EChatLog |
+
+### 5.6 收回機制欄位（`mailNotice`／`mailNoticeDetailXX`）
+
+`mailNoticeDetailXX` 為單筆訊息明細表；`mailNotice` 為該筆對話的主表（存最新狀態的分母，供列表快速讀取）。收回訊息時，`mailNoticeDetailXX` 一律異動，`mailNotice` 是否異動、異動哪些欄位則依三種情境而定（見 §8.7）。
+
+| 資料表 | 欄位 | 說明 |
+| :--- | :--- | :--- |
+| `mailNoticeDetailXX` | `oDeluNo` | 廠商刪除／收回者編號 |
+| `mailNotice` | `mailStatus` | 信件狀態：`1` 廠商寄出／`0` 求職者回覆 |
+| `mailNotice` | `tLastReplyWishMsg` | 求職者最後意願回覆（代碼同 §5.4 `ReplyWishMsg`）；廠商信件狀態為 `mailType:1`（面試邀約）／`8`（面試異動）／`6`（到職確認）時，收回後清空為 `0` |
+| `mailNotice` | `oLastViewDate` | 廠商最後已讀日期（未讀＝`1911/1/1`） |
+| `mailNotice` | `tLastViewDate` | 求職者最後已讀日期（未讀＝`1911/1/1`） |
+| `mailNotice` | `lastReplyDate` | 求職者／廠商最後信件回覆日期 |
+| `mailNotice` | `lastMailType` | 最後一筆信件類別（求職端用；僅更新 `mailType:1／5／6／8`） |
+| `mailNotice` | `nonMsgLastReplyDate` | 求職者／廠商非一般訊息（`mailType:1／5／6／8`）的最後回覆日期（求職端用，判斷 90 天過期） |
+| `mailNotice` | `lastReplyDetailNo` | 需回覆意願的 `mailDetailNo`（`mailType:1／6／8` 時有值；即 §4.2 面試邀約卡片補充欄位） |
+
+> 收回後 `mailNoticeDetailXX.sendKind` 改為 `7`（求才回收）或 `8`（求職者回收，代碼見 §5.2）、`mailType` 清空為 `0`。
 
 ## 6 類型 → 回覆方式對照
 
@@ -698,5 +717,43 @@ sequenceDiagram
 * **步驟 5–8（求才內部邏輯）**：Callback 端點更新 ChatLog DB，完成後**再 Publish 一次「推播事件」到 EventBus**、拿到 `ACK` 確認已受理。
 * **步驟 9–10**：直接呼叫 `eChatHub` 的推播 API（非再經 EventBus 一次），由 `eChatHub` 透過 SignalR／WebSocket（`onSignal`）把訊息推送給接收端，並統一分派 FCM／APNS 手機推播。
 * 兩次 Publish／ACK 是**兩個獨立的非同步事件**，不是同一次事件的兩個階段；圖中省略了 Worker 消費 Publish 事件、判斷觸發 Callback 的內部細節（屬 RD 實作範疇）。
+
+:::
+
+:::spoiler 8.7 收回機制三種情境（欄位異動範圍，2026/08/18 更新）
+
+各自後端（求才／求職）處理收回：`update mailNoticeDetailXX set sendKind=7 or 8, oDeluNo, mailType=0`，再依「收回的訊息在整個對話中的位置」決定還要異動哪些 `mailNotice`（對話主表）欄位——欄位定義見 §5.6。
+
+**情境一：收回的訊息為最後一筆，但對話中還有其他未收回訊息**
+
+回推該對話中「最後一筆未收回且未刪除」的訊息，把它的內容還原寫回 `mailNotice`。
+
+* `update mailNoticeDetailXX set sendKind=7 or 8, oDeluNo, mailType=0`
+* `update mailNotice set mailStatus, tLastReplyWishMsg, oLastViewDate, tLastViewDate, lastReplyDate, lastMailType, nonMsgLastReplyDate, lastReplyDetailNo`
+
+:::warning
+🚧 待補圖：狀況一示意圖——來源為 Notion 簽章網址，貼過來時已過期（HTTP 400），無法擷取存檔；待取得有效圖檔或截圖後補上。
+:::
+
+**情境二：收回的訊息為該對話唯一一筆訊息（無其他對話）**
+
+* `update mailNoticeDetailXX set sendKind=7 or 8, oDeluNo, mailType=0`
+* `update mailNotice set oLastViewDate, tLastViewDate, lastMailType, nonMsgLastReplyDate`
+
+:::warning
+🚧 待補圖：狀況二示意圖（同上，連結已過期，待補）
+:::
+
+**情境三：收回的訊息為對話中間的一筆訊息（非最後一筆）**
+
+僅需處理該筆訊息本身，`mailNotice`（對話主表）不受影響：
+
+* `update mailNoticeDetailXX set sendKind=7 or 8, oDeluNo, mailType=0`
+
+:::warning
+🚧 待補圖：狀況三示意圖（同上，連結已過期，待補）
+:::
+
+> 來源：《信件即時通整併-收回機制》文件，2026/08/18 更新。
 
 :::
