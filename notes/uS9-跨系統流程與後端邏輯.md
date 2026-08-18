@@ -15,6 +15,7 @@
 | v2.0 | 2026-08-07 | **轉為純查閱對照庫**：拆分「查閱型」與「敘事型」內容——§1–§7 改為純表格（API／參數／cursor／回傳欄位／代碼／回覆對照／SignalR 動作），不寫解釋句；原共同發送/回覆行為、完整流程圖、循序圖、update-chatlog 內部架構全數搬進 §8 附錄（`:::spoiler` 收合，內容零損失）。新增 §5 代碼對照（`Type`／`SendKind`／`InterViewKind`／`ReplyWishMsg`／`DisplayType`）集中查閱 |
 | v2.1 | 2026-08-18 | **收回機制調整**：依《信件即時通整併-收回機制》文件新增 §5.6 收回機制欄位（`mailNotice`／`mailNoticeDetailXX` 對話主表層級欄位：`oDeluNo`／`mailStatus`／`tLastReplyWishMsg`／`oLastViewDate`／`tLastViewDate`／`lastReplyDate`／`lastMailType`／`nonMsgLastReplyDate`）；新增 §8.7 收回機制三種情境（最後一筆有其他對話／唯一一筆／對話中間），各情境異動欄位範圍不同；來源圖片連結已過期無法擷取，三處皆標 🚧 待補圖 |
 | v2.2 | 2026-08-18 | 補 §8.7 收回機制三種情境示意圖（狀況一／二／三，圖床 Cloudflare R2） |
+| v2.3 | 2026-08-18 | [§8.7] 補回情境二確認結果（唯一一筆訊息被收回後，該對話不再透過 `get-by-condition` 回傳給前端，非顯示成空狀態——上一版覆蓋時漏掉）；補**面試行事曆連動刪除**已確認：被收回訊息若為面試邀約／面試異動＋現場面試，無論情境一二三皆額外刪除該筆面試行事曆資料（廠商＋求職者端）；新增完整收回流程循序圖 |
 
 ---
 
@@ -739,6 +740,8 @@ sequenceDiagram
 * `update mailNoticeDetailXX set sendKind=7 or 8, oDeluNo, mailType=0`
 * `update mailNotice set oLastViewDate, tLastViewDate, lastMailType, nonMsgLastReplyDate`
 
+> 該對話整筆**不會再透過 `get-by-condition` 回傳給前端**——列表會直接看不到這筆對話，而不是顯示成「無訊息」的空狀態。
+
 ![狀況二示意圖](https://pub-e182ea2fe66a4e258c2d67d20890f892.r2.dev/photo-skill/uS9_revoke_scenario2.png)
 
 **情境三：收回的訊息為對話中間的一筆訊息（非最後一筆）**
@@ -749,6 +752,61 @@ sequenceDiagram
 
 ![狀況三示意圖](https://pub-e182ea2fe66a4e258c2d67d20890f892.r2.dev/photo-skill/uS9_revoke_scenario3.png)
 
-> 來源：《信件即時通整併-收回機制》文件，2026/08/18 更新。
+**面試行事曆連動刪除（已確認）**
+
+若被收回的訊息為面試邀約／面試異動＋現場面試（曾寫入面試行事曆資料表者），無論屬於情境一、二、三，一律額外刪除該筆面試行事曆資料（廠商端＋求職者端）。
+
+```mermaid
+sequenceDiagram
+    autonumber
+
+    actor Emp as 求才廠商
+    participant RF as 求才前端
+    participant RB as 求才後端
+    participant DB as 資料庫<br>（mailNotice／mailNoticeDetailXX）
+    participant Push as update-chatlog API<br>（整併同步，notifyType=3）
+
+    Note over Emp,Push: 收回企業通知
+
+    Emp->>RF: hover 該則企業通知
+    RF->>RF: 判斷可收回條件：<br>求職者尚未已讀　或　發送未超過 24 小時
+
+    alt 條件成立（可收回）
+        RF-->>Emp: 顯示「收回」按鈕
+        Emp->>RF: 點擊「收回」
+        RF-->>Emp: 顯示「確認收回」Modal
+        Emp->>RF: 於 Modal 點擊「確認收回」
+        RF->>RB: 送出收回請求（帶該則通知 mailDetailNo）
+        activate RB
+
+        RB->>DB: update mailNoticeDetailXX<br>set sendKind=7 或 8, oDeluNo, mailType=0<br>（單筆訊息，一律執行）
+
+        alt 情境一：該則為最後一筆，對話中還有其他未收回訊息
+            RB->>DB: 回推最後一筆未收回訊息，還原寫回 mailNotice：<br>mailStatus／tLastReplyWishMsg／oLastViewDate／tLastViewDate／<br>lastReplyDate／lastMailType／nonMsgLastReplyDate／lastReplyDetailNo
+            Note over RF: 列表：邀約種類 tag、最後訊息預覽　→ 退回上一筆訊息的狀態
+        else 情境二：該則為對話中唯一一筆訊息
+            RB->>DB: update mailNotice<br>set oLastViewDate, tLastViewDate, lastMailType, nonMsgLastReplyDate<br>（不動 mailStatus／tLastReplyWishMsg／lastReplyDate／lastReplyDetailNo）
+            Note over RF: 該對話整筆不會再透過 get-by-condition 回傳給前端<br>→ 列表直接看不到這筆對話（非顯示成「無訊息」狀態）
+        else 情境三：該則為對話中間的訊息（非最後一筆）
+            Note over RB,DB: mailNotice 完全不異動
+            Note over RF: 列表：tag／最後訊息預覽維持不變<br>（被收回的本來就不是最後一筆，畫面本來就不會顯示它）
+        end
+
+        opt 該則為面試邀約／面試異動＋現場面試
+            RB->>DB: 刪除面試行事曆資料（廠商端＋求職者端）
+        end
+
+        RB->>Push: 同步整併（notifyType=3 收回）
+        Note over Push: notifyType=3 不發 SignalR 通知<br>求職者需重新整理／重新進入聊天室<br>才會看到「已收回」樣式
+        RB-->>RF: 收回成功
+        deactivate RB
+        Note over RF: 該則訊息泡泡即時更換為「已收回」樣式<br>（此為單筆訊息層級效果，三種情境皆會發生）
+
+    else 已讀 且 已超過 24 小時
+        Note over RF: 不顯示「收回」按鈕，無法收回
+    end
+```
+
+> 來源：《信件即時通整併-收回機制》文件，2026/08/18 更新；面試行事曆連動刪除已與 PM 確認。
 
 :::
