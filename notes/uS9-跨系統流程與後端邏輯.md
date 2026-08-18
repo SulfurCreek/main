@@ -14,7 +14,7 @@
 | v1.0 | 2026-08-07 | 全文重構並重啟版號：依 2026/08 最新 API 文件重整為「API 總覽 → 共同行為 → 流程圖 → SignalR 機制」四段式 |
 | v2.0 | 2026-08-07 | **轉為純查閱對照庫**：拆分「查閱型」與「敘事型」內容——§1–§7 改為純表格（API／參數／cursor／回傳欄位／代碼／回覆對照／SignalR 動作），不寫解釋句；原共同發送/回覆行為、完整流程圖、循序圖、update-chatlog 內部架構全數搬進 §8 附錄（`:::spoiler` 收合，內容零損失）。新增 §5 代碼對照（`Type`／`SendKind`／`InterViewKind`／`ReplyWishMsg`／`DisplayType`）集中查閱 |
 | v2.1 | 2026-08-18 | **收回機制調整**：依《信件即時通整併-收回機制》文件新增 §5.6 收回機制欄位（`mailNotice`／`mailNoticeDetailXX` 對話主表層級欄位：`oDeluNo`／`mailStatus`／`tLastReplyWishMsg`／`oLastViewDate`／`tLastViewDate`／`lastReplyDate`／`lastMailType`／`nonMsgLastReplyDate`）；新增 §8.7 收回機制三種情境（最後一筆有其他對話／唯一一筆／對話中間），各情境異動欄位範圍不同；來源圖片連結已過期無法擷取，三處皆標 🚧 待補圖 |
-| v2.2 | 2026-08-18 | [§8.7] 補上情境一～三示意圖（改用 HackMD 原生上傳，取代已過期的 Notion 連結）；補充**情境二**確認結果：唯一一筆訊息被收回後，該對話整筆不再透過 `get-by-condition` 回傳給前端（列表直接看不到，非顯示成空狀態）。仍待確認：情境一/二是否需連動刪除面試行事曆資料（`mailCalendar`／`Calendar`），本次收回機制文件未提及此表 |
+| v2.2 | 2026-08-18 | 補 §8.7 收回機制三種情境示意圖（狀況一／二／三，圖床 Cloudflare R2） |
 
 ---
 
@@ -732,16 +732,14 @@ sequenceDiagram
 * `update mailNoticeDetailXX set sendKind=7 or 8, oDeluNo, mailType=0`
 * `update mailNotice set mailStatus, tLastReplyWishMsg, oLastViewDate, tLastViewDate, lastReplyDate, lastMailType, nonMsgLastReplyDate, lastReplyDetailNo`
 
-![狀況一示意圖](https://hackmd.io/_uploads/BkWsk3WvMe.png)
+![狀況一示意圖](https://pub-e182ea2fe66a4e258c2d67d20890f892.r2.dev/photo-skill/uS9_revoke_scenario1.png)
 
 **情境二：收回的訊息為該對話唯一一筆訊息（無其他對話）**
 
 * `update mailNoticeDetailXX set sendKind=7 or 8, oDeluNo, mailType=0`
 * `update mailNotice set oLastViewDate, tLastViewDate, lastMailType, nonMsgLastReplyDate`
 
-> 該對話整筆**不會再透過 `get-by-condition` 回傳給前端**——列表會直接看不到這筆對話，而不是顯示成「無訊息」的空狀態。
-
-![狀況二示意圖](https://hackmd.io/_uploads/S1Fo13bPGl.png)
+![狀況二示意圖](https://pub-e182ea2fe66a4e258c2d67d20890f892.r2.dev/photo-skill/uS9_revoke_scenario2.png)
 
 **情境三：收回的訊息為對話中間的一筆訊息（非最後一筆）**
 
@@ -749,7 +747,7 @@ sequenceDiagram
 
 * `update mailNoticeDetailXX set sendKind=7 or 8, oDeluNo, mailType=0`
 
-![狀況三示意圖](https://hackmd.io/_uploads/BJS21n-PGg.png)
+![狀況三示意圖](https://pub-e182ea2fe66a4e258c2d67d20890f892.r2.dev/photo-skill/uS9_revoke_scenario3.png)
 
 > 來源：《信件即時通整併-收回機制》文件，2026/08/18 更新。
 
