@@ -81,6 +81,27 @@ description: >
 
 > ⚠️ **一定要包白底**：HackMD 深色模式（dark mode）下，頁面背景會變深色，但截圖裡的黑字說明文字／深色 UI 文字不會跟著反轉，導致深色模式下文字看不清楚甚至完全消失。外層 `background:#fff`（加 `padding` 讓白底有呼吸空間）確保截圖無論在淺色／深色模式下都維持原始可讀對比度。**這條規則不可省略**，是本 skill 所有 HTML 標註區塊的必要外層。
 
+#### ⚠️⚠️ 硬性規定：`position:relative` 圖片容器一律要加 `aspect-ratio`，這是紅框「渲染出來位置不準／高度被壓扁成一條線」的根本原因（真實事故，反覆發生過）
+
+**這個問題已經在同一份文件裡發生兩次、每次都誤判成別的原因（座標算錯、圖片沒顯示），直到第三次才抓到真正的根因**：紅框／badge 用 `top`/`left`/`width`/`height` 百分比疊在 `<img>` 上時，這些百分比是相對於**外層 `position:relative` 容器的框**去計算的。如果這個容器**沒有明確指定高度**（只靠裡面的 `<img>` 內容撐出高度，這是最常見寫法），CSS 規範規定：子元素（紅框 `<div>`）的百分比 `height`（連帶可能影響 `top`）**必須視為 `auto`**——不是「等於容器算出來的實際高度乘以百分比」，而是直接被當成沒指定，很多情況下會讓紅框整個高度塌陷成幾乎 0px（畫面上看起來像一條扁扁的線貼在按鈕上緣，而不是包住整顆按鈕的框）。
+
+**這條規則在標準瀏覽器規範裡本來就是對的**，但本機用 Playwright 開一個乾淨的 `<html><body><div>...` 測試頁時，Chromium 常常會「寬鬆」處理、看起來完全正常；PATCH 進 HackMD 後，因為 HackMD 自己的頁面有更多層外部容器（`.markdown-body` 之類），瀏覽器改用規範規定的嚴格行為，紅框才會在**線上環境**塌陷、但本機驗證完全看不出來——這正是為什麼前兩次都以為是「座標算錯」或「圖片沒顯示」，其實是同一個問題的不同外顯症狀。
+
+**修法（每次用到百分比紅框的圖片容器都要做）**：在 `position:relative` 容器上直接寫死 `aspect-ratio: 原圖寬/原圖高`（例如原圖是 `718×476`，就寫 `aspect-ratio:718/476`），讓容器有一個**規範認可的明確高度**，不再是靠內容撐出來的 `auto`。`<img>` 本身改成 `width:100%; height:100%; object-fit:fill`（因為 `aspect-ratio` 已經跟原圖比例完全一致，`fill`／`cover`／`contain` 效果相同，不會變形）：
+
+```html
+<div style="background:#fff; padding:14px; border-radius:8px;">
+  <div style="position:relative; width:100%; max-width:400px; aspect-ratio:718/476;">
+    <img src="https://pub-xxxx.r2.dev/photo-skill/E1_change_vendor.png" style="display:block; width:100%; height:100%; object-fit:fill;">
+    <div style="position:absolute; top:83%; left:50%; width:20%; height:8%; border:3px solid #FF5F57; border-radius:8px;"></div>
+  </div>
+</div>
+```
+
+- **原圖的實際寬高從哪來**：下載到本地分析座標的那一步（規則二「座標怎麼抓」第 1 點）本來就會開圖，用 `Image.open(path).size` 順手記下寬高，直接拿來填 `aspect-ratio`，不用另外量。
+- **這條規則本 skill 裡任何一處「`position:relative` 包 `<img>` 再疊 `position:absolute` 百分比紅框」的地方都適用**——不只是本節的基本結構，側邊 callout 的圖片容器（規則二「側邊說明文字」小節）、多圖流程裡每一張帶紅框的圖（規則二「多圖流程」小節），只要那張圖上有用百分比定位紅框或 badge，容器就要加 `aspect-ratio`。純粹排版用的圖片容器（例如只是並排顯示、圖上沒有紅框百分比定位）不受影響，可以維持原本靠內容撐高度的寫法。
+- **驗證時要用「敵意模擬」測試，不能只信本機乾淨頁面渲染正常**：見規則二「座標怎麼抓」第 4 點的窄 viewport 驗證，額外在測試頁加一段模擬 HackMD 可能環境的 CSS（`.markdown-body img { max-width:100% !important; } .markdown-body div { box-sizing:border-box; }`，包一層 `class="markdown-body"` 容器）再測一次，確認紅框在這種較嚴格的環境下依然维持正確高度，而不是只看乾淨頁面的結果就當作過關。
+
 | 項目 | 值 | 說明 |
 | :--- | :--- | :--- |
 | badge 底色 | `#FF5F57` | 沿用既有紅色慣例（與舊 Pillow badge 同色，僅改實作方式） |
@@ -145,8 +166,8 @@ description: >
 ```html
 <div style="background:#fff; padding:20px; border-radius:8px;">
 <div style="display:flex; align-items:flex-start; gap:24px; flex-wrap:wrap;">
-<div style="position:relative; display:inline-block; width:400px; flex-shrink:0;">
-<img src="<圖網址>" style="display:block; width:100%;">
+<div style="position:relative; width:400px; flex-shrink:0; aspect-ratio:原圖寬/原圖高;">
+<img src="<圖網址>" style="display:block; width:100%; height:100%; object-fit:fill;">
 <div style="position:absolute; top:5.27%; left:17.34%; width:74.87%; height:4.6%; border:3px solid #FF5F57; border-radius:6px;"></div>
 <div style="position:absolute; top:4.1%; left:14.5%; background:#FF5F57; color:#fff; font-family:Inter,Helvetica,Arial,sans-serif; font-size:15px; font-weight:700; width:26px; height:26px; line-height:26px; text-align:center; border-radius:50%; box-shadow:0 1px 3px rgba(0,0,0,0.4); z-index:2;">1</div>
 </div>
@@ -220,8 +241,8 @@ const check = await page.evaluate(() => {
 <div style="background:#fff; padding:14px; border-radius:8px;">
   <div style="display:flex; align-items:center; gap:14px; flex-wrap:wrap;">
     <div style="max-width:260px;">
-      <div style="position:relative; display:inline-block; width:100%;">
-        <img src="<圖A網址>" style="display:block; width:100%;">
+      <div style="position:relative; width:100%; aspect-ratio:圖A原圖寬/圖A原圖高;">
+        <img src="<圖A網址>" style="display:block; width:100%; height:100%; object-fit:fill;">
         <div style="position:absolute; top:85.71%; left:1.46%; width:47.08%; height:6.23%; border:3px solid #FF5F57; border-radius:8px;"></div>
       </div>
       <div style="font-size:13px; color:#333; text-align:center; margin-top:6px;">圖 A 說明文字</div>
@@ -270,6 +291,8 @@ await el.screenshot({ path: 'preview.png' });    // 自動緊貼元素邊界
 - [ ] **callout 裡沒有混進「定位指示」**（那種描述「框要畫在哪些區塊」的話），只留給讀者看的說明文案。
 - [ ] **字級 15px、`color:#222`**，不是 12–13px 的淺灰小字。
 - [ ] **小元件的框放大檢查過了嗎**：短邊 < 60px 的目標，整頁渲染看不出準不準，要另外裁切放大核對；**這個裁切放大是對「Playwright 渲染截圖」做，不是對原始來源圖做**。
+- [ ] **每一個有百分比紅框／badge 疊在圖上的 `position:relative` 容器，都寫了 `aspect-ratio:原圖寬/原圖高`**（不是只靠 `<img>` 內容撐出高度）——這是「紅框渲染出來位置不準、高度被壓成一條線」的根本原因，見規則二「基本結構」小節。少了這條，本機驗證可能完全正常，PATCH 上 HackMD 才會塌陷。
+- [ ] **本機驗證有沒有用「敵意模擬」CSS 測過**（包一層 `class="markdown-body"`＋加 `img{max-width:100% !important}` 這類規則），不是只信乾淨獨立頁面渲染正常。
 - [ ] **相鄰元件顏色相同時，遮罩掃描沒有把兩個元件併成一個 bbox**（例：一組「取消／加入」按鈕共用同一個藍色，只掃「有沒有這個顏色」會把兩顆都框進去）——裁切放大核對時特別看有沒有吃到隔壁元件。
 - [ ] **沒有使用「CSS 視窗裁切」技巧**（`overflow:hidden` 容器＋寫死 px 寬度模擬局部放大顯示既有大圖）——這招在 HackMD 上會讓圖整張消失，已停用；需要局部畫面一律 Pillow 唯讀 `crop()` 另存新檔上傳 R2。
 - [ ] **若這個標註區塊用了任何「依賴 host CSS 不覆蓋 inline style」的技巧**，本機驗證時有沒有手動加一條 `img { max-width:100% !important; }` 模擬最壞情況重新測過，不是只看獨立 `.html` 頁面渲染正常就當作安全。
@@ -284,6 +307,7 @@ await el.screenshot({ path: 'preview.png' });    // 自動緊貼元素邊界
 
 ## Gotcha
 
+- **⚠️⚠️ 紅框「高度塌陷成一條線」＝ `position:relative` 容器沒有明確高度（真實事故，同一份文件連續發生三次才抓到根因）**：百分比 `height` 的紅框／badge 是相對於外層 `position:relative` 容器的高度去計算的；如果那個容器只靠裡面的 `<img>` 撐出高度（沒有寫死 `height` 或 `aspect-ratio`），CSS 規範規定子元素的百分比 `height` 必須視為 `auto`，很多環境下會讓紅框塌陷成幾乎 0px 高的一條線貼在元件上緣。本機用乾淨獨立 `.html` 頁面測試時 Chromium 常會寬鬆處理、看起來完全正常；PATCH 進 HackMD 後，因為 HackMD 頁面有更多層外部容器，瀏覽器改用規範規定的嚴格行為，紅框才會在**線上環境**塌陷——本機測試因此完全看不出問題。前兩次分別誤判成「座標算錯」「圖片沒顯示」，重畫了兩次都沒解決，第三次才發現是同一個根因。**修法（規則二「基本結構」小節有完整範例＋強制規則）：任何疊了百分比紅框／badge 的 `position:relative` 圖片容器，一律加 `aspect-ratio:原圖寬/原圖高`**，給容器一個規範認可的明確高度，不再依賴內容撐出的 `auto`。這條規則本 skill 全文所有圖片容器範例都已同步更新，新寫的 HTML 也必須套用，不能省略。
 - **側邊說明文字被 HackMD 欄寬裁切（真實事故）**：曾經用 `position:absolute; left:104%` 疊 callout、外層用大 `padding-right` 撐空間，區塊總寬度衝到 1000px 以上，本機用寬 viewport（1400px）測試「看起來正常」就 PATCH 上去，結果 HackMD 實際欄寬遠比 1400px 窄，超出欄寬的文字被直接裁斷（不換行、不橫向捲動，整段消失）。根因＋修法見規則二「側邊說明文字一律用 flex 版面」與「安全欄寬」兩小節——本質是 absolute 定位＋寬 viewport 測試互相掩蓋了問題，兩個修法（改用文件流、窄欄寬測試）缺一不可。
 - **⚠️ 禁止用「CSS 視窗裁切」技巧顯示既有大圖的局部——這個技巧在 HackMD 上會整張圖不見（真實事故）**：曾經想只顯示一張大截圖的局部（例如從完整畫面截圖裡只框出「訊息輸入區」那一小塊）又不想另存新檔，用「外層固定尺寸＋`overflow:hidden`，內層 `<img>` 加 `width:931px` 這種**寫死像素值**、搭配負值 `top`/`left` 位移」來模擬局部放大顯示。本機用獨立 `.html` 檔搭 Playwright 測試時完全正常，PATCH 進 HackMD 後**整張圖直接消失，只剩紅框／badge 浮在空白背景上**。根因：HackMD 的 markdown 渲染器對內文 `<img>` 套用了它自己的樣式（很可能是 `max-width:100%` 這類規則、優先權蓋過 inline `width`），而本機獨立 `.html` 測試檔沒有這層樣式，才會「本機正常、上線就破圖」——這正是規則二 Gotcha 提醒的「務必 PATCH 後 GET／實際打開確認渲染」該抓到、但這次只比對了 content 字串是否符合預期、沒有真的去看渲染結果才漏掉。
   **這個技巧本身已停用，不要再用**。需要顯示一張既有大圖的局部時，改成：Pillow 對本地暫存的原圖做一次唯讀 `crop()`（只讀來源圖，不覆寫），把裁出的局部**存成一個新的 PNG**，上傳 R2，再用規則二最基本的 `<img style="width:100%">` 標準寫法顯示——這個模式在全文件其他地方都驗證過穩定可用。這跟規則一「不裁切、不疊字」不衝突：那條規則指的是「不要為了畫 badge/紅框而破壞原始像素」，不是「絕對不能裁圖」；裁出一塊乾淨、未疊字的局部另存新檔，屬於「準備素材」而非「標註」，是被允許的。
