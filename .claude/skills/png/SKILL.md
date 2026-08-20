@@ -7,7 +7,9 @@ description: >
   （HTML 疊圖辦不到「換掉圖片本身的文字」，只能疊加在上面）、或需要產出「規格書 UI 截圖標號
   慣例」（截圖標號 1:1 對應章節編號 `## N`／`### N.M`）這種舊格式規格書的既有存量文件時，才用本
   skill。觸發時機：使用者明確要求「用 Pillow 疊字」「蓋掉截圖裡的文字重寫」「舊版標號慣例」
-  「章節編號徽章燒進圖片」。
+  「章節編號徽章燒進圖片」。另涵蓋「把整段流程／對照說明輸出成**單一張 PNG**」（而非在 HackMD
+  內嵌 HTML）的情境——此時版面仍用 HTML 組、再用 Playwright 截圖，**不可用 Pillow 手工排版**，
+  詳見下方「整段內容輸出成單一 PNG」。
 ---
 
 # PNG 像素標註（png，舊版工作流程）
@@ -22,7 +24,71 @@ description: >
 
 - 需要**蓋掉截圖裡的舊文字、寫上新文字**（設計稿與規格有落差、要示意修改後內容）。
 - 維護沿用「規格書 UI 截圖標號慣例」（見下方）既有格式的舊規格書時，需要產出同款編號徽章截圖。
+- 需要把**整段流程／對照說明輸出成單一張 PNG**（使用者說「整張圖存到 R2」「產出 PNG 給我」，
+  而不是在 HackMD 內嵌 HTML）——見下一節，**但排版方式不是 Pillow**。
 - 其餘情況（單純框紅框、加編號、多圖點擊流程、存檔進 repo）一律改用 `photo` skill。
+
+---
+
+## ⚠️⚠️ 整段內容輸出成單一 PNG —— 版面用 HTML 組，Pillow 只做像素級處理
+
+**這是真實事故、而且是「明明前面做得好、後面反而退步」那種**：同一份 HackMD 文件（人才推薦優化）
+裡，`Rex版本` 章節用 `photo` skill 的 HTML 版面（白底卡片＋步驟標題列＋圖左說明右 flex＋15px 說明
+文字＋紅框圓形 badge），品質很好；後來 `短解` 章節因為使用者要「整張圖存 R2」，我改用
+`PIL.ImageDraw` 手工把標題、說明文字、箭頭一個一個 `draw.text()` 畫上去合成一張 820px 寬的圖，
+結果**視覺品質明顯倒退**，被使用者直接指出「為什麼樣式差這麼多、後來退步了」。
+
+事後量化根因，有三個獨立的問題疊在一起：
+
+| # | 根因 | 實測數字 |
+| :-- | :--- | :--- |
+| 1 | **用 1x 光柵化**：Pillow 直接畫在 820px 畫布上，等同 `deviceScaleFactor:1`；HTML 那邊是 760px 版面 @ dsf=2 → 1568px | 820px vs 1568px，字的有效解析度差一倍 |
+| 2 | **把來源截圖縮小**：為了塞進畫布把 1102px 的原圖 resize 到 772px | img1 只剩 **70%** 像素，細節永久損失 |
+| 3 | **版面退化**：Pillow 手排只做得出「單欄置中＋圖下置中小字」，丟掉了卡片分組、步驟標題列、圖左說明右、15px 左對齊說明 | 視覺層次整個消失 |
+
+> 注意 1 和 2 是**方向相反**的兩個錯：一邊把文字畫得太小（1x），一邊把圖片縮得太小（70%）。
+> 兩者都源自「用一塊固定寬度的畫布硬塞」這個 Pillow 思維。
+
+### 鐵律
+
+1. **版面（layout）一律用 HTML 組，再用 Playwright 截圖成 PNG。**
+   `PIL.ImageDraw.text()` **只允許**用在「單張截圖的像素級處理」——蓋白重寫文字、畫紅框、裁切、
+   量測 bounding box。**任何標題、說明文字、箭頭、卡片、表格，都不准用 Pillow 畫。**
+2. **版面規則直接沿用 `photo` skill 規則二**（白底容器、步驟標題列、圖左說明右的 flex、
+   `font-size:15px; color:#222; line-height:1.65` 的 callout、紅框＋圓形 badge、badge 與 callout
+   數字呼應）。**不可以因為「這次輸出成 PNG」就退回置中單欄、圖下小字的簡化版面。**
+   輸出格式改變，版面標準不變。
+3. **`deviceScaleFactor` 至少 2**（截圖內原始 UI 文字很小的，用 3）。**絕不用 1。**
+4. **圖片顯示寬度要滿足 `CSS 寬度 × dsf ≥ 原生寬`**，否則等於在縮圖、細節會掉。
+   實務寫法：`disp = min(原生寬, 欄寬上限)`，欄寬上限抓 520–620px，搭配 dsf=2。
+   - 原生 1102px 的圖 → CSS 560px @ dsf2 = 1120 有效像素 ≥ 1102 ✅ 不失真
+   - 反過來也不要為了「像素完美」把 CSS 寬度壓到 `原生/2`（例如 498px 的對話框只給 249px），
+     那樣圖裡的 UI 文字會小到看不清楚——**可讀性優先於像素完美**，小圖用原生寬顯示即可。
+5. **截圖範圍貼齊最外層容器元素**，不要 `fullPage`（會留一大塊空白）：
+   `await (await page.$('.page')).screenshot({path})`。
+6. **產完一定要 `Read` 出來自己看過**，並且**跟同一份文件裡既有的區塊比對風格**——
+   同一份文件內不同章節的視覺風格必須一致，這正是本次被打回的原因。
+
+### 參考骨架
+
+```python
+# 版面用 HTML（沿用 photo skill 的樣式規則），Pillow 只在需要時先處理單張截圖
+disp = min(native_w, 560)                      # 規則 4
+fig = (f'<div style="position:relative; width:{disp}px; flex:none; aspect-ratio:{native_w}/{native_h};">'
+       f'<img src="file://...png" style="display:block; width:100%; height:100%; object-fit:fill;">'
+       f'{red_frames}{badges}</div>')          # 紅框/badge 用百分比絕對定位，容器必須有 aspect-ratio
+```
+
+```js
+// dsf=2（小字多就 3）、對最外層容器截圖，不要 fullPage
+const page = await browser.newPage({ viewport: {width: 1060, height: 900}, deviceScaleFactor: 2 });
+await page.goto('file://' + __dirname + '/page.html');
+await page.waitForLoadState('networkidle');
+await (await page.$('.page')).screenshot({ path: 'out.png' });
+```
+
+> **交付大圖給對話視窗的注意事項**：`SendUserFile` 對檔案大小有限制，實測 3000×8182 / 2.2MB 的 PNG
+> 會被伺服器擋掉（400）。R2 上傳全解析度那份，另外用 `im.resize((w//2, h//2))` 產一張縮圖給對話預覽。
 
 ---
 

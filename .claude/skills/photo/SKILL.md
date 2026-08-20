@@ -272,6 +272,13 @@ const check = await page.evaluate(() => {
 
 使用者要「看成品」時一律給 PNG（原因見 Gotcha：`hackmd.io/_uploads` 的圖需登入憑證，交付 `.html` 只會破圖）。產這張 PNG 時：
 
+> ⚠️ **要把整段內容做成「一張 PNG 放進文件」（不是預覽、是最終成品）時，版面規則完全不變**：
+> 還是用本節規則二那一套 HTML 版面（白底卡片、步驟標題列、圖左說明右的 flex、15px `#222` callout、
+> 紅框＋圓形 badge），只是最後不 PATCH HTML 進 HackMD，改用 Playwright 把它截成 PNG 再上 R2。
+> **絕對不可以改用 `PIL.ImageDraw.text()` 手工排版**——真實事故：同一份文件裡先做的 HTML 版本品質很好、
+> 後做的 Pillow 合成版本明顯退步（1x 光柵化＋來源圖被縮到 70%＋版面退化成置中單欄），被使用者直接指出
+> 「為什麼樣式差這麼多」。細節與鐵律見 `.claude/skills/png/SKILL.md`〈整段內容輸出成單一 PNG〉。
+
 - **緊貼內容裁切，不要留大片空白**：不要用 `page.screenshot({fullPage:true})` 直接拍整個 body——版面右側／下方預留給 callout 的空間會變成一大塊灰白邊，使用者得自己再裁一次。改成**對最外層白底容器那個元素截圖**，或先量出它的 bounding box 再用 `clip` 參數：
 
 ```js
@@ -305,6 +312,7 @@ await el.screenshot({ path: 'preview.png' });    // 自動緊貼元素邊界
 - [ ] **驗證過的網址跟最終 PATCH 進去的網址是同一批，不是分開兩套檔名**：從**最終要送出的 content 字串**裡用正規表達式撈出所有 `<img src="...">`（尤其 R2 網域）逐一 `curl -sI`，不要只驗證「upload 腳本自己記得的檔名變數」——上傳步驟與組 HTML 步驟如果各自維護一套檔名，兩邊可能對不上而沒發現。
 - [ ] **若是「重新繪製」**：整個區段換掉，舊 HTML 與使用者新貼的裸圖都已清乾淨。
 - [ ] **暫時 `.html` 驗證檔已刪除**，沒有留在 repo 或工作區。
+- [ ] **若這次是輸出成單一 PNG（而非內嵌 HTML）**：版面仍是本 skill 規則二那套（卡片／步驟標題／圖左說明右／15px callout），不是 Pillow 手排的置中單欄；`deviceScaleFactor ≥ 2`；每張圖 `CSS 寬度 × dsf ≥ 原生寬`。**並且跟同一份文件既有章節的視覺風格比對過、確認一致**（同文件內風格不一致是實際被打回過的錯誤）。
 
 ## Gotcha
 
