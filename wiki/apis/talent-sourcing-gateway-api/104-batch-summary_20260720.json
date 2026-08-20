@@ -1,0 +1,380 @@
+[
+  {
+    "index": 0,
+    "url": null,
+    "job_title": null,
+    "recommend_count": 190,
+    "talentNo_count": 189,
+    "resumeGuid_count": 190,
+    "counts_match": false
+  },
+  {
+    "index": 1,
+    "url": "https://www.104.com.tw/job/8xgno",
+    "job_title": "薄膜製程開發工程師",
+    "recommend_count": 128,
+    "talentNo_count": 123,
+    "resumeGuid_count": 128,
+    "counts_match": false
+  },
+  {
+    "index": 2,
+    "url": "https://www.104.com.tw/job/8m6cd?jobsource=college_B",
+    "job_title": "POP MART門市銷售人員工讀生(兼職)-高雄義享店",
+    "recommend_count": 188,
+    "talentNo_count": 188,
+    "resumeGuid_count": 188,
+    "counts_match": true
+  },
+  {
+    "index": 3,
+    "url": "https://www.104.com.tw/job/5nkre?jobsource=google",
+    "job_title": "【昭日堂鍋煮】-內場廚務正職專員(36000~45000)固定或變動薪資因個人經歷/績效而異/空班津貼另計",
+    "recommend_count": 65,
+    "talentNo_count": 64,
+    "resumeGuid_count": 65,
+    "counts_match": false
+  },
+  {
+    "index": 4,
+    "url": "https://www.104.com.tw/job/7ye2h?jobsource=index_job_c",
+    "job_title": "研發整合工程師",
+    "recommend_count": 176,
+    "talentNo_count": 173,
+    "resumeGuid_count": 176,
+    "counts_match": false
+  },
+  {
+    "index": 5,
+    "url": "https://www.104.com.tw/job/7dblm?jobsource=index_job_c",
+    "job_title": "技術開發良率工程師",
+    "recommend_count": 175,
+    "talentNo_count": 173,
+    "resumeGuid_count": 175,
+    "counts_match": false
+  },
+  {
+    "index": 6,
+    "url": "https://www.104.com.tw/job/7jgvy?jobsource=index_s",
+    "job_title": "業務專員(高雄市)#留任獎金#無經驗可#穩定客源#高業績獎金",
+    "recommend_count": 205,
+    "talentNo_count": 202,
+    "resumeGuid_count": 205,
+    "counts_match": false
+  },
+  {
+    "index": 7,
+    "url": "https://www.104.com.tw/job/8ylll?jobsource=index_s",
+    "job_title": "行銷活動企劃",
+    "recommend_count": 152,
+    "talentNo_count": 150,
+    "resumeGuid_count": 152,
+    "counts_match": false
+  },
+  {
+    "index": 8,
+    "url": "https://www.104.com.tw/job/92w7j?jobsource=index_job_c",
+    "job_title": "【苗栗銅鑼 】製程整合工程師 Process Integration ENGINEER",
+    "recommend_count": 42,
+    "talentNo_count": 42,
+    "resumeGuid_count": 42,
+    "counts_match": true
+  },
+  {
+    "index": 9,
+    "url": "https://www.104.com.tw/job/807yr?jobsource=index_s",
+    "job_title": "【企發中心】專案派駐人員(派駐教育部青年發展署)",
+    "recommend_count": 76,
+    "talentNo_count": 73,
+    "resumeGuid_count": 76,
+    "counts_match": false
+  },
+  {
+    "index": 10,
+    "url": "https://www.104.com.tw/job/90bgk?jobsource=index_s",
+    "job_title": "社群營運成長主管",
+    "recommend_count": 61,
+    "talentNo_count": 58,
+    "resumeGuid_count": 61,
+    "counts_match": false
+  },
+  {
+    "index": 11,
+    "url": "https://www.104.com.tw/job/90xxw?jobsource=joblist_r_list",
+    "job_title": "半導體封裝製程工程師(Process Engineer,DLP)",
+    "recommend_count": 52,
+    "talentNo_count": 52,
+    "resumeGuid_count": 52,
+    "counts_match": true
+  },
+  {
+    "index": 12,
+    "url": "https://www.104.com.tw/job/6ulyh?jobsource=index_job_c",
+    "job_title": "產品工程師",
+    "recommend_count": 156,
+    "talentNo_count": 153,
+    "resumeGuid_count": 156,
+    "counts_match": false
+  },
+  {
+    "index": 13,
+    "url": "https://www.104.com.tw/job/877xe?jobsource=index_s",
+    "job_title": "公關專員(公共關係室)",
+    "recommend_count": 106,
+    "talentNo_count": 100,
+    "resumeGuid_count": 106,
+    "counts_match": false
+  },
+  {
+    "index": 14,
+    "url": "https://www.104.com.tw/job/92e7u?jobsource=joblist_search",
+    "job_title": "Digital Marketing Specialist（Remote）",
+    "recommend_count": 32,
+    "talentNo_count": 32,
+    "resumeGuid_count": 32,
+    "counts_match": true
+  },
+  {
+    "index": 15,
+    "url": "https://www.104.com.tw/job/93mcj?jobsource=joblist_search",
+    "job_title": "短期專案－街景車駕駛（全台）【歡迎暑期工讀】",
+    "recommend_count": 32,
+    "talentNo_count": 32,
+    "resumeGuid_count": 32,
+    "counts_match": true
+  },
+  {
+    "index": 16,
+    "url": "https://www.104.com.tw/job/93mc7?jobsource=joblist_search",
+    "job_title": "寢具業務人員（南區業務代表）",
+    "recommend_count": 65,
+    "talentNo_count": 65,
+    "resumeGuid_count": 65,
+    "counts_match": true
+  },
+  {
+    "index": 17,
+    "url": "https://www.104.com.tw/job/92o18?jobsource=joblist_r_list",
+    "job_title": "卡店通路副理",
+    "recommend_count": 159,
+    "talentNo_count": 157,
+    "resumeGuid_count": 159,
+    "counts_match": false
+  },
+  {
+    "index": 18,
+    "url": "https://www.104.com.tw/job/7doqc?jobsource=index_s",
+    "job_title": "場館活動專案企劃(場館服務部-文化館)",
+    "recommend_count": 101,
+    "talentNo_count": 100,
+    "resumeGuid_count": 101,
+    "counts_match": false
+  },
+  {
+    "index": 19,
+    "url": "https://www.104.com.tw/job/7aa0p?jobsource=company_job",
+    "job_title": "【新竹經國店】陳列/收銀-8小時(33100~35300含加班費/津貼)",
+    "recommend_count": 205,
+    "talentNo_count": 203,
+    "resumeGuid_count": 205,
+    "counts_match": false
+  },
+  {
+    "index": 20,
+    "url": "https://www.104.com.tw/job/3rgrw?jobsource=tab_cs_to_job",
+    "job_title": "機械維修技術員（需輪班）",
+    "recommend_count": 182,
+    "talentNo_count": 181,
+    "resumeGuid_count": 182,
+    "counts_match": false
+  },
+  {
+    "index": 21,
+    "url": "https://www.104.com.tw/job/6sify?jobsource=joblist_search",
+    "job_title": "【高雄 UKAI】領檯接待",
+    "recommend_count": 77,
+    "talentNo_count": 77,
+    "resumeGuid_count": 77,
+    "counts_match": true
+  },
+  {
+    "index": 22,
+    "url": "https://www.104.com.tw/job/93f5r?jobsource=index_s",
+    "job_title": "遊戲營運企劃",
+    "recommend_count": 55,
+    "talentNo_count": 55,
+    "resumeGuid_count": 55,
+    "counts_match": true
+  },
+  {
+    "index": 23,
+    "url": "https://www.104.com.tw/job/7iedp?jobsource=google",
+    "job_title": "【御盟集團 SSAW餐廳 】甜點外場領班/服務員",
+    "recommend_count": 96,
+    "talentNo_count": 96,
+    "resumeGuid_count": 96,
+    "counts_match": true
+  },
+  {
+    "index": 24,
+    "url": "https://www.104.com.tw/job/8zys9?jobsource=joblist_search",
+    "job_title": "【數轉院/運動科技中心】計畫管理",
+    "recommend_count": 96,
+    "talentNo_count": 92,
+    "resumeGuid_count": 96,
+    "counts_match": false
+  },
+  {
+    "index": 25,
+    "url": "https://www.104.com.tw/job/7pmfn?jobsource=joblist_search",
+    "job_title": "身心障礙人才招募專區",
+    "recommend_count": 99,
+    "talentNo_count": 97,
+    "resumeGuid_count": 99,
+    "counts_match": false
+  },
+  {
+    "index": 26,
+    "url": "https://www.104.com.tw/job/7pmfn?jobsource=joblist_search",
+    "job_title": "身心障礙人才招募專區",
+    "recommend_count": 99,
+    "talentNo_count": 97,
+    "resumeGuid_count": 99,
+    "counts_match": false
+  },
+  {
+    "index": 27,
+    "url": "https://www.104.com.tw/job/93qqr?jobsource=hotjob_chr_exp",
+    "job_title": "#BT【客戶服務營運主管 】Customer Service Operations Lead",
+    "recommend_count": 158,
+    "talentNo_count": 153,
+    "resumeGuid_count": 158,
+    "counts_match": false
+  },
+  {
+    "index": 28,
+    "url": "https://www.104.com.tw/job/92uzj?jobsource=index_s",
+    "job_title": "行政助理",
+    "recommend_count": 214,
+    "talentNo_count": 208,
+    "resumeGuid_count": 214,
+    "counts_match": false
+  },
+  {
+    "index": 29,
+    "url": "https://www.104.com.tw/job/73uco?jobsource=index_s",
+    "job_title": "社群企劃(行銷推廣部)",
+    "recommend_count": 75,
+    "talentNo_count": 73,
+    "resumeGuid_count": 75,
+    "counts_match": false
+  },
+  {
+    "index": 30,
+    "url": "https://www.104.com.tw/job/5kmaa?jobsource=joblist_search",
+    "job_title": "診所行政夥伴【回到宜蘭，找回有溫度的生活與工作】",
+    "recommend_count": 213,
+    "talentNo_count": 209,
+    "resumeGuid_count": 213,
+    "counts_match": false
+  },
+  {
+    "index": 31,
+    "url": "https://www.104.com.tw/job/92qak?jobsource=joblist_search",
+    "job_title": "FAE電源工程師",
+    "recommend_count": 13,
+    "talentNo_count": 13,
+    "resumeGuid_count": 13,
+    "counts_match": true
+  },
+  {
+    "index": 32,
+    "url": "https://www.104.com.tw/job/5hlnw?jobsource=hotjob_chr_exp",
+    "job_title": "生產製程組長--彰濱廠 (近五年平均年薪16個月)",
+    "recommend_count": 96,
+    "talentNo_count": 96,
+    "resumeGuid_count": 96,
+    "counts_match": true
+  },
+  {
+    "index": 33,
+    "url": "https://www.104.com.tw/job/8tgsf?jobsource=hotjob_chr_exp",
+    "job_title": "藥師",
+    "recommend_count": 69,
+    "talentNo_count": 68,
+    "resumeGuid_count": 69,
+    "counts_match": false
+  },
+  {
+    "index": 34,
+    "url": "https://www.104.com.tw/job/93cca?jobsource=index_s",
+    "job_title": "電商客服助理",
+    "recommend_count": 200,
+    "talentNo_count": 196,
+    "resumeGuid_count": 200,
+    "counts_match": false
+  },
+  {
+    "index": 35,
+    "url": "https://www.104.com.tw/job/8wwtx?jobsource=joblist_search",
+    "job_title": "N26041【奈思｜信義館】諮詢師",
+    "recommend_count": 39,
+    "talentNo_count": 38,
+    "resumeGuid_count": 39,
+    "counts_match": false
+  },
+  {
+    "index": 36,
+    "url": "https://www.104.com.tw/job/919ci?jobsource=joblist_r_list",
+    "job_title": "設計部-內銷設計資深專員",
+    "recommend_count": 139,
+    "talentNo_count": 138,
+    "resumeGuid_count": 139,
+    "counts_match": false
+  },
+  {
+    "index": 37,
+    "url": "https://www.104.com.tw/job/8x7ac?jobsource=joblist_r_list",
+    "job_title": "B2B 企業業務代表 / 禮贈品開發經理 (高獎金+高抽成)",
+    "recommend_count": 206,
+    "talentNo_count": 202,
+    "resumeGuid_count": 206,
+    "counts_match": false
+  },
+  {
+    "index": 38,
+    "url": "https://www.104.com.tw/job/7mtn7?jobsource=hotjob_chr_exp",
+    "job_title": "【C++軟體開發工程師】C++ Software Engineer",
+    "recommend_count": 15,
+    "talentNo_count": 15,
+    "resumeGuid_count": 15,
+    "counts_match": true
+  },
+  {
+    "index": 39,
+    "url": "https://www.104.com.tw/job/8fjd1?jobsource=joblist_search",
+    "job_title": "離峰贗復數位牙技師_台北",
+    "recommend_count": 35,
+    "talentNo_count": 35,
+    "resumeGuid_count": 35,
+    "counts_match": true
+  },
+  {
+    "index": 40,
+    "url": "https://www.104.com.tw/job/90ox9?jobsource=joblist_search",
+    "job_title": "醫院-洗腎室勤務員-需輪白班及小夜班+小夜津貼",
+    "recommend_count": 192,
+    "talentNo_count": 190,
+    "resumeGuid_count": 192,
+    "counts_match": false
+  },
+  {
+    "index": 41,
+    "url": "https://www.104.com.tw/job/7nlh3?jobsource=joblist_search",
+    "job_title": "門市銷售顧問｜月均 45K~60K｜保障年薪 13 個月起｜月休8-10天｜週日公休",
+    "recommend_count": 156,
+    "talentNo_count": 154,
+    "resumeGuid_count": 156,
+    "counts_match": false
+  }
+]

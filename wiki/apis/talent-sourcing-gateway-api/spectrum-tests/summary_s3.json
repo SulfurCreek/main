@@ -1,0 +1,39 @@
+{
+  "scenario": "S3",
+  "total": 100,
+  "status_distribution": {
+    "200": 100
+  },
+  "unexpected": [],
+  "schema_violations": [],
+  "band_stats": {
+    "1": {
+      "n": 20,
+      "avg_result_count": 86.7,
+      "zero_result_cases": []
+    },
+    "2": {
+      "n": 20,
+      "avg_result_count": 58.3,
+      "zero_result_cases": []
+    },
+    "3": {
+      "n": 20,
+      "avg_result_count": 32.7,
+      "zero_result_cases": []
+    },
+    "4": {
+      "n": 20,
+      "avg_result_count": 60.5,
+      "zero_result_cases": []
+    },
+    "5": {
+      "n": 20,
+      "avg_result_count": 53.6,
+      "zero_result_cases": []
+    }
+  },
+  "zero_result_cases": [],
+  "zero_result_suggestions": [],
+  "exceptions": []
+}

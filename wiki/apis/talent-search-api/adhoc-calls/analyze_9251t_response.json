@@ -1,0 +1,7 @@
+{
+  "error": {
+    "code": "SOURCE_IP_NOT_ALLOWED",
+    "message": "來源 IP 不在允許清單",
+    "request_id": "20c05de0-d3b9-409f-aeb2-fcb8e2f4ab39"
+  }
+}

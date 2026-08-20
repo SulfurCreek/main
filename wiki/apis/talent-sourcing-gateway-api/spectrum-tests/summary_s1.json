@@ -1,0 +1,12 @@
+{
+  "scenario": "S1",
+  "total": 100,
+  "status_distribution": {
+    "200": 100
+  },
+  "unexpected": [],
+  "schema_violations": [],
+  "zero_result_cases": [],
+  "exceptions": [],
+  "avg_result_count": 96.91
+}
