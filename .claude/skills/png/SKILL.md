@@ -57,7 +57,11 @@ description: >
 2. **版面規則直接沿用 `photo` skill 規則二**（白底容器、步驟標題列、圖左說明右的 flex、
    `font-size:15px; color:#222; line-height:1.65` 的 callout、紅框＋圓形 badge、badge 與 callout
    數字呼應）。**不可以因為「這次輸出成 PNG」就退回置中單欄、圖下小字的簡化版面。**
-   輸出格式改變，版面標準不變。
+   輸出格式改變，版面標準不變。**這裡包含 `photo` skill 規則二的「純圖片（無紅框）也要用外層
+   `div` 帶 `max-width` 包住，不能只靠 `<img>` 自己的 inline `max-width`」**——雖然本 skill輸出的
+   是截圖成 PNG（不會再遇到 HackMD 覆寫 `img` 樣式的問題），但同一份版面組字的程式碼常常跟
+   `photo` skill 共用／複製，若沿用了「`<img>` 自己扛 `max-width`」的寫法，之後這段程式碼被
+   copy 回 HackMD HTML 情境時一樣會踩雷；一律照 `photo` skill 的容器包法寫，兩邊行為才一致。
 3. **`deviceScaleFactor` 至少 2**（截圖內原始 UI 文字很小的，用 3）。**絕不用 1。**
 4. **圖片顯示寬度要滿足 `CSS 寬度 × dsf ≥ 原生寬`**，否則等於在縮圖、細節會掉。
    實務寫法：`disp = min(原生寬, 欄寬上限)`，欄寬上限抓 520–620px，搭配 dsf=2。
