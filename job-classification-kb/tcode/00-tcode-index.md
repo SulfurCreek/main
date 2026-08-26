@@ -73,6 +73,6 @@
 
 ## 注意
 
-- 各表 ChangeType 在 20260622 版與 20260707 版都全為 `UnChange`（這個欄位不會自己標記異動；本 KB 是靠逐列比對 `Old_CodeNo` 前後版本內容差異來找異動，不能只看 ChangeType 欄）。若拿到別的管道（如 Google Sheet pubhtml）匯出且該欄有實際標記，見 [tcode-excel-ops skill](../skills/) 與 [01-schema](01-schema.md) 的 ChangeType 說明。
+- 各表 ChangeType 在 20260622 版與 20260707 版都全為 `UnChange`（這個欄位不會自己標記異動；本 KB 是靠逐列比對 `Old_CodeNo` 前後版本內容差異來找異動，不能只看 ChangeType 欄）。若拿到別的管道（如 Google Sheet pubhtml）匯出且該欄有實際標記，見 [tcode-bulletinboard skill](../skills/) 與 [01-schema](01-schema.md) 的 ChangeType 說明。
 - DutyNM / HL / PT / ST / TU 是**同一套職類的不同子集/版本**，中類名稱大致共用，葉的收錄範圍不同。比對差異見 [03-duty-tables](03-duty-tables.md)。
-- **拿到新版 tCode 匯出檔時的正確流程**：① 用 `scripts/tcode_to_md.py` 或逐列比對兩版 `Old_CodeNo`，不要憑空重寫文件；② 確認異動後覆蓋對應 `tcode/data_*.md`；③ 異動記錄追加進 `data_tCodeDuty_changetype_sync.md`／`change_request_tCodeDuty_engineering.md`，不要另開新檔案；④ 只有「公告」需求才套用 [tcode-excel-ops skill](../skills/tcode-excel-ops.md) 的聊天輸出格式，且不落地檔案。
+- **拿到新版 tCode 匯出檔時的正確流程**：① 用 `scripts/tcode_to_md.py` 或逐列比對兩版 `Old_CodeNo`，不要憑空重寫文件；② 確認異動後覆蓋對應 `tcode/data_*.md`；③ 異動記錄追加進 `data_tCodeDuty_changetype_sync.md`／`change_request_tCodeDuty_engineering.md`，不要另開新檔案；④ 只有「公告」需求才套用 [tcode-bulletinboard skill](../skills/tcode-bulletinboard.md) 的聊天輸出格式，且不落地檔案。

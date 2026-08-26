@@ -79,4 +79,4 @@ added   = new.keys() - old.keys()
 removed = old.keys() - new.keys()
 renamed = {k for k in old.keys() & new.keys() if old[k] != new[k]}
 ```
-> 完整異動清單/公告流程用 `tcode-excel-ops` skill。
+> 完整異動清單/公告流程用 `tcode-bulletinboard` skill。

@@ -1,6 +1,6 @@
-# Skill：tCode 異動清單／公告產出（tcode-excel-ops）
+# Skill：tCode 異動清單／公告產出（tcode-bulletinboard）
 
-> 引用來源：`tcode/01-schema.md`、`tcode/02-analysis-recipes.md` 早就提到「比對兩版 export、產生異動清單、發系統公告的流程，使用 `tcode-excel-ops` skill」，但這個 skill 檔案一直沒被建立——本檔補上，格式依使用者提供的既有公告範例（Certify／WorkAbility／DutyPT 公告）逆推而來。
+> 引用來源：`tcode/01-schema.md`、`tcode/02-analysis-recipes.md` 早就提到「比對兩版 export、產生異動清單、發系統公告的流程，使用 `tcode-bulletinboard` skill」，但這個 skill 檔案一直沒被建立——本檔補上，格式依使用者提供的既有公告範例（Certify／WorkAbility／DutyPT 公告）逆推而來。
 
 ## 時機
 

@@ -97,7 +97,7 @@ CodeNameA=經營管理主管 | CodeNameB=管理幕僚 | CodeNameC=管理幕僚�
 | 改名 / edit / rename | 名稱變更 | 依 Old_CodeNo→New_CodeNo 更新名稱 |
 | 合併 / merge | 多碼併一碼 | 舊碼資料轉掛到 New_CodeNo，停用舊碼 |
 
-> 比對兩版 export、產生異動清單、發系統公告的流程，使用 `tcode-excel-ops` skill（見 skills 目錄）。
+> 比對兩版 export、產生異動清單、發系統公告的流程，使用 `tcode-bulletinboard` skill（見 skills 目錄）。
 
 ## 載入程式（Python / openpyxl）
 
