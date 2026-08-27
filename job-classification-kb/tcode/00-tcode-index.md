@@ -50,6 +50,7 @@
 > **待議新增／改名／合併建議**（尚未寫入正式代碼表）：[`data_tCodeDutyNM_changes.md`](data_tCodeDutyNM_changes.md) — 職類校正討論表整理，20260420 CSV 首版（4 筆新增、34 筆改名）；20260716 改讀該表 Google Sheet 即時版後追加：1 筆新改名、**52 筆合併（`merge`，先前版本從未歸類的新類別）**、9 筆新的待人工判斷項目；已交叉確認先前建議無反悔案例。
 > **四表 ChangeType 同步檢查**（20260701，20260707 追加複查）：[`data_tCodeDuty_changetype_sync.md`](data_tCodeDuty_changetype_sync.md) — 比對 Google Sheet 即時匯出中 NM/PT/ST/HL 四表已套用的 add/edit，找出跨表沒同步的項目（如 250510~250514 語言老師搬遷只有 PT 標記、NM 沒套用）；20260707 官方 Excel 匯出到貨後複查確認上述異動已正式套用，但 2 項既有資料問題（PT 250513 誤植、中類改名未 cascade 到子節點）仍未修正。
 > **工程需求追蹤**：[`change_request_tCodeDuty_engineering.md`](change_request_tCodeDuty_engineering.md) — 逐表 ADD/EDIT 清單（已於 20260707 官方匯出確認套用）＋尚未修正的 2 項資料問題。
+> **tCodeBenefit 顯示排序對照**：[`tCodeBenefit_排序對照表.md`](tCodeBenefit_排序對照表.md) — 「福利制度項目清單」（法定項目優先＋11 分類）之項目名稱與 CodeNo 對照，保留清單原有的排序規則（現行 CodeNo 本身不含「法定優先」的跨中類排序）。
 
 ## 選表指南
 
