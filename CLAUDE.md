@@ -23,7 +23,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 | 數據分析報告寫作（MD 或靜態 HTML）、或濃縮成單張 PNG 摘要圖 | 用 `Skill` 載入 `report-generator`（報告本體）／`one-pager`（單張決策圖，出圖前需先給文字大綱確認） |
 | 1111 職務分類／不合理清單專案（`plan()` 規則、`sync_md.py`、廠商身分 Google Sheet、AI 職類推薦模型分析） | 用 `Skill` 載入 `job-classification-kb`（知識庫入口）／`gsheet-vendor-identity`／`md-datalayer`／`safe-excel-editor`／`tabular-token-min`／`rawdata`——**與本 repo 主線（1111 聊天室文件）是不同專案**，僅供其他 session 共用 skill 庫 |
 | 需要用專案縮寫/術語溝通、看不懂某個欄位名稱在講什麼 | `wiki/glossary.md` |
-| 產出/修改 Mermaid 圖表（流程圖、循序圖等） | `wiki/mermaid_styling_rules.md` |
+| 產出/修改 Mermaid 圖表（流程圖、循序圖等） | `wiki/mermaid_styling_rules.md`（§4 為循序圖專屬 frontmatter config，柔色系已裁定為準） |
 | 需判斷該用本 repo 自製 skill 還是執行環境內建的官方 Anthropic skill（docx/pdf/internal-comms/doc-coauthoring 等） | `wiki/platform_skills_reference.md` |
 
 規格書撰寫的格式細則（章節編號、MECE 狀態表、🚧 待補區塊模板等）由 `.claude/skills/spec-doc-1111/SKILL.md` 管理，用 `Skill` 工具載入，不在 wiki 裡重複。
@@ -43,7 +43,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 | 分支 | 最後更新 | 主題 | 帶有的獨有 skill | 狀態 |
 | :--- | :--- | :--- | :--- | :--- |
 | `main`＝`claude/claude-md-docs-BmaVo`（主幹） | — | 1111 求才系統 HackMD 規格書主線＋全部 21 個 skill 的集散地 | 全部（見 `.claude_index.md`〈skills〉） | 2026-08-31 起 main 為唯一主幹（PR #15），兩者同步演進 |
-| `claude/gifted-meitner-6eSoK` | 2026-08-26 | photo/png skill 改進（Figma 座標來源、跨區塊視覺比對） | （`photo`／`png` 已選擇性併入本分支，見下方） | 已部分吸收（PR #1 已關閉留言），其餘核心文件版本較舊不採用；mermaid-sequence-diagram 仍待裁示 |
+| `claude/gifted-meitner-6eSoK` | 2026-08-26 | photo/png skill 改進（Figma 座標來源、跨區塊視覺比對） | （`photo`／`png` 已選擇性併入本分支，見下方） | 已部分吸收（PR #1 已關閉留言），其餘核心文件版本較舊不採用；`mermaid-sequence-diagram` 已裁定採柔色系，機制併入 `wiki/mermaid_styling_rules.md` §4，skill 本身不獨立收錄 |
 | `claude/lofi-wireframer-skill-0u25rk` | 2026-08-21 | Balsamiq 風格 HTML 手繪線框圖 skill；**分岔點是本分支自己的近期 commit**（`0fc94c3`），血緣最近 | `lofi-wireframer` | ✅ 已併入；PR #14 已關閉留言 |
 | `claude/google-sheet-url-allowlist-GKFEU` | 2026-08-27 | 職務分類資料工作流；最後一筆是 TCode 福利代碼顯示順序對照表 | `gsheet-vendor-identity`／`job-classification-kb`／`md-datalayer`／`safe-excel-editor`／`tabular-token-min` | ✅ 2026-08-31 skill 已併入（與 `tcode-excel-ops` 無重疊，各管不同代碼表體系）；同日複查：`pm-toolkit`／`spec-doc-1111` 均與本分支相同或較舊，`.claude/settings.json` 的 Google Sheets/Docs WebFetch allowlist 已一併搬入（否則併入的兩個 skill 會因權限擋住無法用）；`job-classification-kb/` 資料目錄本體（scripts／tcode／wiki 等大量專案資料）維持不搬。PR #2 已關閉留言；**#11 已併入本分支**，職務分類專案自此收斂為這一支主線 |
 | `claude/extract-job-duty-markdown-4avmd6` | 2026-08-03 | 職務分類資料工作流（大量資料檔，200萬行級 diff） | `report-generator`／`rawdata`／`one-pager`／同上 job-classification 系列 | 整支分支 ❌ 不合併（規模/資料檔跟本 repo 無關）；2026-08-31 已抽出 `report-generator`／`rawdata`／`one-pager` 三個 skill 併入；同日複查：`job-classification-kb/skills/tcode-excel-ops.md` 是該專案內部文件（非 `.claude/skills/`），跟本 repo 的 `tcode-excel-ops` skill 同名但服務不同代碼表體系，維持不搬，避免混淆。其 PR #11（對 google-sheet 分支）已合併，該專案後續以 google-sheet 分支為主線 |
@@ -59,7 +59,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 **併入既有先例**：`png`／`generate-component-doc-figma`／`wiki/master_prompt.md`（選擇性從 `gifted-meitner-6eSoK` 併入）；2026-08-31 批次再從 6 支分支選擇性抽出 `lofi-wireframer`／`frontend-slicing-1111`／`frontend-change-ticket-1111`／`api`／`auto-test`／`resume-craft`／`report-generator`／`one-pager`／`rawdata`／`gsheet-vendor-identity`／`job-classification-kb`／`md-datalayer`／`safe-excel-editor`／`tabular-token-min`（完整清單與各自取捨理由見 `.claude_index.md`〈2026-08-31 分支整併批次〉）。決策與取捨記錄在該次的 commit message 裡，之後選擇性併入其他分支時比照辦理——只搬跟本 repo 主題相關、且不會覆蓋掉本分支已驗證內容的部分，整支 `git merge` 一律先評估分岔規模再決定，不要預設用。
 
-> **`main` 已於 2026-08-31 升格為唯一主幹（PR #15）**：文件主線＋全部 skill 的集散地，`claude/claude-md-docs-BmaVo` 與 main 同步演進。其他 session 需要用哪個 skill，直接從最新 `main` 拿，不要各自維護一份。已知未併入、待裁示的項目：`.claude/skills/hackmd-api/`（已逐節比對，內容併入 `wiki/hackmd_rules.md`，原路徑改放空殼重導向 SKILL.md，不要恢復完整版本）、`.claude/skills/mermaid-sequence-diagram/`（配色系統跟現有 `wiki/mermaid_styling_rules.md` 衝突，待使用者選定風格後再併）。
+> **`main` 已於 2026-08-31 升格為唯一主幹（PR #15）**：文件主線＋全部 skill 的集散地，`claude/claude-md-docs-BmaVo` 與 main 同步演進。其他 session 需要用哪個 skill，直接從最新 `main` 拿，不要各自維護一份。已知未併入、待裁示的項目：`.claude/skills/hackmd-api/`（已逐節比對，內容併入 `wiki/hackmd_rules.md`，原路徑改放空殼重導向 SKILL.md，不要恢復完整版本）、`.claude/skills/mermaid-sequence-diagram/`（配色系統跟現有 `wiki/mermaid_styling_rules.md` 衝突，**已裁定採柔色系**：配色不採用，非配色機制併入 `wiki/mermaid_styling_rules.md` §4，該 skill 不獨立收錄）。
 
 ---
 
