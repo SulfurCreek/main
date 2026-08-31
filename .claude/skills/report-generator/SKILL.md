@@ -114,9 +114,15 @@ Top/Bottom N 表 + ≤3 條白話結論；全表放附錄連結
 白話命名、案例節制、方法與限制放最後）全部照搬；本節只補**HTML 特有**的流程與踩坑經驗。
 範例產出：`data/未讀履歷統計/提醒信成效分析報告.html`（與其 `analysis/` pipeline）。
 
+**視覺規格先行**：動手寫 CSS 前，先照 `references/設計描述五層面.md` 把字體／級距／留白／
+配色／動態五個層面各寫成一句可量化的規格（「好看」「有質感」這種主觀詞不是規格）——參照最多
+選 3 個、分工不同（定調性／定版型／定互動），並標明借用哪一層；一次只調整一個變項。
+
 **版面設計卡關時**，先看 `references/html-templates/README.md`——裡面有 77 個從
 `nexu-io/html-anything`（Apache-2.0）匯入的版面參考，挑一個場景相近的（`data-report`／
 `dashboard`／`finance-report`／`exec-briefing-memo` 等）看它的區塊配置與 grid/flex 排法，
+把看到的轉成五層面的描述句再實作；版型庫不夠用時，五層面文件裡還列了 6 個公開設計資料庫
+（Awwwards／SiteInspire／Mobbin 等）與各自適合查什麼。
 **但一定要照下面第5點把外部 CDN 全部拔掉重寫，不能直接複製它的 `example.html`**。
 
 ### 標準流程
