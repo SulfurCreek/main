@@ -114,6 +114,11 @@ Top/Bottom N 表 + ≤3 條白話結論；全表放附錄連結
 白話命名、案例節制、方法與限制放最後）全部照搬；本節只補**HTML 特有**的流程與踩坑經驗。
 範例產出：`data/未讀履歷統計/提醒信成效分析報告.html`（與其 `analysis/` pipeline）。
 
+**版面設計卡關時**，先看 `references/html-templates/README.md`——裡面有 77 個從
+`nexu-io/html-anything`（Apache-2.0）匯入的版面參考，挑一個場景相近的（`data-report`／
+`dashboard`／`finance-report`／`exec-briefing-memo` 等）看它的區塊配置與 grid/flex 排法，
+**但一定要照下面第5點把外部 CDN 全部拔掉重寫，不能直接複製它的 `example.html`**。
+
 ### 標準流程
 
 1. **原始資料留在磁碟，不進 context**：依 `wiki/master_prompt.md` 的「Excel/CSV 漸進式分析」
