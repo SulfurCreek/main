@@ -247,6 +247,16 @@ post("/teams/1111-jobdocs/folders", {"name": "規格文件", "parentFolderId": "
 patch("/teams/1111-jobdocs/folders/FOLDER_ID", {"parentFolderId": "NEW_PARENT_ID"})
 ```
 
+### 無 token 時的替代讀法
+
+沒有 `HACKMD_TOKEN`（或想避免消耗 rate limit）時，可直接用內部 note id 抓 Markdown 原文，**不需要 Authorization header**（已對本專案 team note 實測 200）：
+
+```bash
+curl -sL "https://hackmd.io/<noteId>/download"
+```
+
+這條路徑也能取得 note 內嵌的 `{%hackmd <id> %}` 子文件——把子文件 id 再抓一次即可。仍是唯讀捷徑，**改寫一律走正規 `PATCH` API＋`scripts/hackmd_safe_patch.py`**，不要用這個端點做寫入判斷的依據。
+
 ### cURL
 
 ```bash
