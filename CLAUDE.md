@@ -19,7 +19,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 | 手繪風 lo-fi wireframe／線框圖草稿 | 用 `Skill` 載入 `lofi-wireframer` |
 | 1111 切版改版（mock↔正式偏離稽核、CSS 對照表）或前端修改工程單 | 用 `Skill` 載入 `frontend-slicing-1111`（改版稽核）／`frontend-change-ticket-1111`（工程單內文強制格式，兩者衝突時後者優先） |
 | 分析 API 文件產測試矩陣、或依矩陣產生並執行 pytest | 用 `Skill` 載入 `api`（文件→矩陣）／`auto-test`（矩陣→腳本→報告，需先跑過 `api`） |
-| 撰寫/修改個人履歷、CV、作品集 | 用 `Skill` 載入 `resume-craft`（⚠️ 依賴 `career/` 職能框架 wiki，本 repo 尚未併入該目錄） |
+| 撰寫/修改個人履歷、CV、作品集 | 用 `Skill` 載入 `resume-craft`（依賴的 `career/` 職能框架 wiki 已於 2026-08-31 併入本 repo，開箱即用） |
 | 數據分析報告寫作（MD 或靜態 HTML）、或濃縮成單張 PNG 摘要圖 | 用 `Skill` 載入 `report-generator`（報告本體）／`one-pager`（單張決策圖，出圖前需先給文字大綱確認） |
 | 1111 職務分類／不合理清單專案（`plan()` 規則、`sync_md.py`、廠商身分 Google Sheet、AI 職類推薦模型分析） | 用 `Skill` 載入 `job-classification-kb`（知識庫入口）／`gsheet-vendor-identity`／`md-datalayer`／`safe-excel-editor`／`tabular-token-min`／`rawdata`——**與本 repo 主線（1111 聊天室文件）是不同專案**，僅供其他 session 共用 skill 庫 |
 | 需要用專案縮寫/術語溝通、看不懂某個欄位名稱在講什麼 | `wiki/glossary.md` |
@@ -49,7 +49,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 | `claude/extract-job-duty-markdown-4avmd6` | 2026-08-03 | 職務分類資料工作流（大量資料檔，200萬行級 diff） | `report-generator`／`rawdata`／`one-pager`／同上 job-classification 系列 | 整支分支 ❌ 不合併（規模/資料檔跟本 repo 無關）；2026-08-31 已抽出 `report-generator`／`rawdata`／`one-pager` 三個 skill 併入；同日複查：`job-classification-kb/skills/tcode-excel-ops.md` 是該專案內部文件（非 `.claude/skills/`），跟本 repo 的 `tcode-excel-ops` skill 同名但服務不同代碼表體系，維持不搬，避免混淆 |
 | `claude/vm-api-testing-setup-wpf6y8` | 2026-08-03 | API 測試/VM 環境設置，含呼叫紀錄 | `api`／`auto-test` | ✅ 2026-08-31 已併入；同日複查：`pm-toolkit`／`spec-doc-1111` 逐位元組與本分支相同，`wiki/apis/` 下的 API 測試working data（talent-search-api／talent-sourcing-gateway-api 的 spec/報告/pytest）維持不搬，屬該分支專屬工作產出 |
 | `claude/part-time-modal-design-tmtt7n` | 2026-07-28 | 兼職相關 modal 設計調整 | 無獨有 skill | 🔍 未評估，較像功能分支非 skill 分支 |
-| `claude/happy-lamport-ljis8c` | 2026-07-26 | Context/token 精簡；含履歷撰寫、HackMD API skill 化 | `hackmd-api`／`resume-craft` | 部分評估：`resume-craft` 2026-08-31 已併入（依賴的 `career/` 職能框架未搬）；`hackmd-api` 逐節比對後與 `wiki/hackmd_rules.md` 幾乎全同，唯一新資訊已補進 wiki，原檔改放空殼重導向。此分支的 `spec-doc-1111` 是**精簡改寫版**（176 行 vs 本分支 387 行，不同檔名結構），未採用但值得之後參考其瘦身思路 |
+| `claude/happy-lamport-ljis8c` | 2026-07-26 | Context/token 精簡；含履歷撰寫、HackMD API skill 化 | `hackmd-api`／`resume-craft` | 部分評估：`resume-craft` 2026-08-31 已併入；`hackmd-api` 逐節比對後與 `wiki/hackmd_rules.md` 幾乎全同，唯一新資訊已補進 wiki，原檔改放空殼重導向；`career/` 職能框架（resume-craft 依賴）已於 2026-08-31 經使用者核准併入。此分支的 `spec-doc-1111` 是**精簡改寫版**（176 行 vs 本分支 387 行，不同檔名結構），未採用但值得之後參考其瘦身思路 |
 | `claude/email-layout-handoff-gjq5zu` | 2026-07-03 | 信件訊息頁前端修改工程單 | `frontend-change-ticket-1111`／`frontend-slicing-1111` | ✅ 2026-08-31 已併入（`frontend-slicing-1111` 取本分支版本，比 `eloquent-maxwell-j31ot5` 的舊版新）；同日複查：`spec-doc-1111` headers 逐項比對後與本分支完全相同（只是本分支拆進 `references/` 子目錄）；`wiki/frontend_change_ticket_rules.md` 只是指向 `frontend-change-ticket-1111` skill 的路由指標，內容已被 CLAUDE.md 路由表涵蓋，不重複搬入；`handoff/` 下的切版 before/after 資產維持不搬 |
 | `claude/csv-retrieval-retry-do5a9o` | 2026-07-13 | CSV 資料重試邏輯；`report-generator` skill 的另一個獨立來源 | `report-generator` | 內容與 `extract-job-duty-markdown-4avmd6` 版本逐位元組相同，已從該分支併入，這支不用再看 |
 | `claude/eloquent-maxwell-j31ot5` | 2026-06-29 | 前端切版交接；session 交接 INDEX.md 慣例 | `frontend-slicing-1111` | 舊版（06/29），已被 `email-layout-handoff-gjq5zu` 的新版取代並併入，這支不用再看 |
@@ -59,7 +59,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 **併入既有先例**：`png`／`generate-component-doc-figma`／`wiki/master_prompt.md`（選擇性從 `gifted-meitner-6eSoK` 併入）；2026-08-31 批次再從 6 支分支選擇性抽出 `lofi-wireframer`／`frontend-slicing-1111`／`frontend-change-ticket-1111`／`api`／`auto-test`／`resume-craft`／`report-generator`／`one-pager`／`rawdata`／`gsheet-vendor-identity`／`job-classification-kb`／`md-datalayer`／`safe-excel-editor`／`tabular-token-min`（完整清單與各自取捨理由見 `.claude_index.md`〈2026-08-31 分支整併批次〉）。決策與取捨記錄在該次的 commit message 裡，之後選擇性併入其他分支時比照辦理——只搬跟本 repo 主題相關、且不會覆蓋掉本分支已驗證內容的部分，整支 `git merge` 一律先評估分岔規模再決定，不要預設用。
 
-> **本 repo 現在是全部分支的 skill 集散地**：其他 session 需要用哪個 skill，直接切到 `claude/claude-md-docs-BmaVo` 這支分支（或之後的 `main`）拿，不要各自維護一份。已知未併入、待裁示的項目：`.claude/skills/hackmd-api/`（已逐節比對，內容併入 `wiki/hackmd_rules.md`，原路徑改放空殼重導向 SKILL.md，不要恢復完整版本）、`.claude/skills/mermaid-sequence-diagram/`（配色系統跟現有 `wiki/mermaid_styling_rules.md` 衝突，待使用者選定風格後再併）、`career/` 職能框架 wiki（`resume-craft` 的資料依賴，屬個人生涯資料非通用 skill）。
+> **本 repo 現在是全部分支的 skill 集散地**：其他 session 需要用哪個 skill，直接切到 `claude/claude-md-docs-BmaVo` 這支分支（或之後的 `main`）拿，不要各自維護一份。已知未併入、待裁示的項目：`.claude/skills/hackmd-api/`（已逐節比對，內容併入 `wiki/hackmd_rules.md`，原路徑改放空殼重導向 SKILL.md，不要恢復完整版本）、`.claude/skills/mermaid-sequence-diagram/`（配色系統跟現有 `wiki/mermaid_styling_rules.md` 衝突，待使用者選定風格後再併）、（原列待裁示的 `career/` 職能框架已於 2026-08-31 經使用者核准併入，resume-craft 依賴已就位）。
 
 ---
 
