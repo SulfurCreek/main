@@ -1,0 +1,3981 @@
+{
+  "n_rows": 183713,
+  "n_no_duty0": 0,
+  "baseline_miss_rate_pct": 27.82,
+  "global_levels": {
+    "top1": 58638,
+    "沾邊_中類": 24774,
+    "top10": 19053,
+    "沾邊_大類": 9011,
+    "top3": 37021,
+    "無關": 17324,
+    "top5": 17892
+  },
+  "multi_hit": {
+    "n_selected_dist": {
+      "1": 58475,
+      "2": 62204,
+      "3": 54297,
+      "4": 2054,
+      "5": 6683
+    },
+    "avg_selected": 2.11,
+    "top1_hit_total": 58638,
+    "top1_matched_position": {
+      "0": 40893,
+      "1": 13225,
+      "2": 3724,
+      "3": 496,
+      "4": 300
+    },
+    "top1_matched_primary_pct": 69.74,
+    "hits_in_top5_dist": {
+      "0": 70162,
+      "1": 80914,
+      "2": 28869,
+      "3": 3602,
+      "4": 151,
+      "5": 15
+    },
+    "avg_recall_top5": 0.425,
+    "multi_select_jobs": 125238,
+    "multi_select_2plus_covered": 32637,
+    "multi_select_2plus_covered_pct": 26.06
+  },
+  "unmapped_leaves_top20": [
+    [
+      "教育師資",
+      7
+    ],
+    [
+      "醫務護理",
+      2
+    ],
+    [
+      "門市銷售",
+      1
+    ]
+  ],
+  "category_table": [
+    {
+      "major": "美容美髮／餐飲旅遊",
+      "mid": "餐飲烘焙",
+      "n": 25772,
+      "top1_pct": 23.33,
+      "top3_cum_pct": 41.59,
+      "top5_cum_pct": 57.11,
+      "top10_cum_pct": 75.76,
+      "recoverable_6_10_pct": 18.65,
+      "zhanbian_mid_pct": 22.09,
+      "zhanbian_major_pct": 0.58,
+      "irrelevant_pct": 1.57
+    },
+    {
+      "major": "業務／貿易／客服／門市",
+      "mid": "門市銷售",
+      "n": 17729,
+      "top1_pct": 38.2,
+      "top3_cum_pct": 75.55,
+      "top5_cum_pct": 87.77,
+      "top10_cum_pct": 93.74,
+      "recoverable_6_10_pct": 5.97,
+      "zhanbian_mid_pct": 1.36,
+      "zhanbian_major_pct": 2.85,
+      "irrelevant_pct": 2.04
+    },
+    {
+      "major": "業務／貿易／客服／門市",
+      "mid": "業務推廣",
+      "n": 13067,
+      "top1_pct": 29.73,
+      "top3_cum_pct": 54.14,
+      "top5_cum_pct": 66.53,
+      "top10_cum_pct": 76.93,
+      "recoverable_6_10_pct": 10.41,
+      "zhanbian_mid_pct": 13.02,
+      "zhanbian_major_pct": 6.73,
+      "irrelevant_pct": 3.31
+    },
+    {
+      "major": "管理幕僚／人資／行政",
+      "mid": "行政後勤／總務",
+      "n": 11456,
+      "top1_pct": 35.25,
+      "top3_cum_pct": 57.07,
+      "top5_cum_pct": 65.21,
+      "top10_cum_pct": 73.94,
+      "recoverable_6_10_pct": 8.73,
+      "zhanbian_mid_pct": 10.97,
+      "zhanbian_major_pct": 1.89,
+      "irrelevant_pct": 13.19
+    },
+    {
+      "major": "醫療／護理／保健",
+      "mid": "醫務護理",
+      "n": 9238,
+      "top1_pct": 22.39,
+      "top3_cum_pct": 50.02,
+      "top5_cum_pct": 65.39,
+      "top10_cum_pct": 74.49,
+      "recoverable_6_10_pct": 9.09,
+      "zhanbian_mid_pct": 14.84,
+      "zhanbian_major_pct": 3.4,
+      "irrelevant_pct": 7.27
+    },
+    {
+      "major": "機械模具／生產製程",
+      "mid": "生產製程",
+      "n": 7591,
+      "top1_pct": 37.07,
+      "top3_cum_pct": 55.99,
+      "top5_cum_pct": 64.18,
+      "top10_cum_pct": 71.85,
+      "recoverable_6_10_pct": 7.67,
+      "zhanbian_mid_pct": 20.5,
+      "zhanbian_major_pct": 4.32,
+      "irrelevant_pct": 3.33
+    },
+    {
+      "major": "軍警消防／保全相關",
+      "mid": "保全相關",
+      "n": 7532,
+      "top1_pct": 54.42,
+      "top3_cum_pct": 61.6,
+      "top5_cum_pct": 64.21,
+      "top10_cum_pct": 67.94,
+      "recoverable_6_10_pct": 3.73,
+      "zhanbian_mid_pct": 3.05,
+      "zhanbian_major_pct": 0.61,
+      "irrelevant_pct": 28.4
+    },
+    {
+      "major": "採購／物流／品質檢測",
+      "mid": "運輸物流",
+      "n": 6841,
+      "top1_pct": 34.16,
+      "top3_cum_pct": 73.32,
+      "top5_cum_pct": 81.6,
+      "top10_cum_pct": 87.53,
+      "recoverable_6_10_pct": 5.93,
+      "zhanbian_mid_pct": 6.48,
+      "zhanbian_major_pct": 4.09,
+      "irrelevant_pct": 1.9
+    },
+    {
+      "major": "營建／製圖／施作",
+      "mid": "營造施作",
+      "n": 6286,
+      "top1_pct": 23.27,
+      "top3_cum_pct": 37.02,
+      "top5_cum_pct": 44.78,
+      "top10_cum_pct": 56.43,
+      "recoverable_6_10_pct": 11.64,
+      "zhanbian_mid_pct": 22.38,
+      "zhanbian_major_pct": 11.74,
+      "irrelevant_pct": 9.45
+    },
+    {
+      "major": "生活服務／農林漁牧",
+      "mid": "生活服務",
+      "n": 6044,
+      "top1_pct": 27.58,
+      "top3_cum_pct": 34.98,
+      "top5_cum_pct": 40.87,
+      "top10_cum_pct": 48.69,
+      "recoverable_6_10_pct": 7.83,
+      "zhanbian_mid_pct": 12.13,
+      "zhanbian_major_pct": 1.69,
+      "irrelevant_pct": 37.49
+    },
+    {
+      "major": "幼教才藝／補習進修",
+      "mid": "補習進修",
+      "n": 5917,
+      "top1_pct": 23.53,
+      "top3_cum_pct": 37.87,
+      "top5_cum_pct": 48.01,
+      "top10_cum_pct": 60.37,
+      "recoverable_6_10_pct": 12.35,
+      "zhanbian_mid_pct": 22.58,
+      "zhanbian_major_pct": 7.23,
+      "irrelevant_pct": 9.82
+    },
+    {
+      "major": "操作／維修／技術服務",
+      "mid": "操作技術",
+      "n": 5521,
+      "top1_pct": 20.61,
+      "top3_cum_pct": 36.19,
+      "top5_cum_pct": 45.57,
+      "top10_cum_pct": 60.26,
+      "recoverable_6_10_pct": 14.69,
+      "zhanbian_mid_pct": 19.76,
+      "zhanbian_major_pct": 7.57,
+      "irrelevant_pct": 12.41
+    },
+    {
+      "major": "幼教才藝／補習進修",
+      "mid": "幼兒教育",
+      "n": 4657,
+      "top1_pct": 61.67,
+      "top3_cum_pct": 75.78,
+      "top5_cum_pct": 82.71,
+      "top10_cum_pct": 87.05,
+      "recoverable_6_10_pct": 4.34,
+      "zhanbian_mid_pct": 4.1,
+      "zhanbian_major_pct": 1.55,
+      "irrelevant_pct": 7.3
+    },
+    {
+      "major": "金融保險／財會／稽核",
+      "mid": "財務會計",
+      "n": 3969,
+      "top1_pct": 72.46,
+      "top3_cum_pct": 84.53,
+      "top5_cum_pct": 89.49,
+      "top10_cum_pct": 93.85,
+      "recoverable_6_10_pct": 4.36,
+      "zhanbian_mid_pct": 3.33,
+      "zhanbian_major_pct": 1.03,
+      "irrelevant_pct": 1.79
+    },
+    {
+      "major": "醫療／護理／保健",
+      "mid": "醫事人員",
+      "n": 3781,
+      "top1_pct": 37.16,
+      "top3_cum_pct": 62.73,
+      "top5_cum_pct": 70.43,
+      "top10_cum_pct": 80.64,
+      "recoverable_6_10_pct": 10.21,
+      "zhanbian_mid_pct": 10.16,
+      "zhanbian_major_pct": 4.73,
+      "irrelevant_pct": 4.47
+    },
+    {
+      "major": "機械模具／生產製程",
+      "mid": "機械工程",
+      "n": 3420,
+      "top1_pct": 17.87,
+      "top3_cum_pct": 38.8,
+      "top5_cum_pct": 48.48,
+      "top10_cum_pct": 62.54,
+      "recoverable_6_10_pct": 14.06,
+      "zhanbian_mid_pct": 26.08,
+      "zhanbian_major_pct": 4.24,
+      "irrelevant_pct": 7.13
+    },
+    {
+      "major": "操作／維修／技術服務",
+      "mid": "維修／技術服務",
+      "n": 3223,
+      "top1_pct": 12.69,
+      "top3_cum_pct": 27.65,
+      "top5_cum_pct": 36.8,
+      "top10_cum_pct": 51.04,
+      "recoverable_6_10_pct": 14.24,
+      "zhanbian_mid_pct": 17.5,
+      "zhanbian_major_pct": 19.92,
+      "irrelevant_pct": 11.54
+    },
+    {
+      "major": "美容美髮／餐飲旅遊",
+      "mid": "觀光旅遊",
+      "n": 3201,
+      "top1_pct": 36.89,
+      "top3_cum_pct": 56.39,
+      "top5_cum_pct": 65.89,
+      "top10_cum_pct": 76.35,
+      "recoverable_6_10_pct": 10.47,
+      "zhanbian_mid_pct": 9.59,
+      "zhanbian_major_pct": 2.62,
+      "irrelevant_pct": 11.43
+    },
+    {
+      "major": "採購／物流／品質檢測",
+      "mid": "品管品保",
+      "n": 3036,
+      "top1_pct": 38.24,
+      "top3_cum_pct": 49.64,
+      "top5_cum_pct": 53.33,
+      "top10_cum_pct": 60.57,
+      "recoverable_6_10_pct": 7.25,
+      "zhanbian_mid_pct": 15.94,
+      "zhanbian_major_pct": 10.61,
+      "irrelevant_pct": 12.88
+    },
+    {
+      "major": "營建／製圖／施作",
+      "mid": "營建規劃",
+      "n": 2643,
+      "top1_pct": 30.27,
+      "top3_cum_pct": 47.86,
+      "top5_cum_pct": 57.74,
+      "top10_cum_pct": 70.45,
+      "recoverable_6_10_pct": 12.71,
+      "zhanbian_mid_pct": 20.58,
+      "zhanbian_major_pct": 2.99,
+      "irrelevant_pct": 5.98
+    },
+    {
+      "major": "管理幕僚／人資／行政",
+      "mid": "管理幕僚",
+      "n": 2578,
+      "top1_pct": 30.41,
+      "top3_cum_pct": 49.26,
+      "top5_cum_pct": 58.77,
+      "top10_cum_pct": 74.4,
+      "recoverable_6_10_pct": 15.63,
+      "zhanbian_mid_pct": 7.41,
+      "zhanbian_major_pct": 3.45,
+      "irrelevant_pct": 14.74
+    },
+    {
+      "major": "採購／物流／品質檢測",
+      "mid": "採購資材",
+      "n": 2533,
+      "top1_pct": 69.36,
+      "top3_cum_pct": 82.39,
+      "top5_cum_pct": 85.27,
+      "top10_cum_pct": 88.51,
+      "recoverable_6_10_pct": 3.24,
+      "zhanbian_mid_pct": 4.15,
+      "zhanbian_major_pct": 1.58,
+      "irrelevant_pct": 5.76
+    },
+    {
+      "major": "美容美髮／餐飲旅遊",
+      "mid": "美容美髮",
+      "n": 2528,
+      "top1_pct": 19.07,
+      "top3_cum_pct": 29.55,
+      "top5_cum_pct": 33.5,
+      "top10_cum_pct": 43.51,
+      "recoverable_6_10_pct": 10.01,
+      "zhanbian_mid_pct": 10.64,
+      "zhanbian_major_pct": 24.6,
+      "irrelevant_pct": 21.24
+    },
+    {
+      "major": "金融保險／財會／稽核",
+      "mid": "金融保險",
+      "n": 1984,
+      "top1_pct": 17.14,
+      "top3_cum_pct": 29.39,
+      "top5_cum_pct": 35.03,
+      "top10_cum_pct": 46.12,
+      "recoverable_6_10_pct": 11.09,
+      "zhanbian_mid_pct": 25.81,
+      "zhanbian_major_pct": 8.32,
+      "irrelevant_pct": 19.76
+    },
+    {
+      "major": "醫療／護理／保健",
+      "mid": "醫務行政",
+      "n": 1912,
+      "top1_pct": 41.06,
+      "top3_cum_pct": 66.89,
+      "top5_cum_pct": 71.71,
+      "top10_cum_pct": 81.54,
+      "recoverable_6_10_pct": 9.83,
+      "zhanbian_mid_pct": 3.77,
+      "zhanbian_major_pct": 5.18,
+      "irrelevant_pct": 9.52
+    },
+    {
+      "major": "電腦系統／資訊／軟硬體",
+      "mid": "軟體工程",
+      "n": 1781,
+      "top1_pct": 19.76,
+      "top3_cum_pct": 41.89,
+      "top5_cum_pct": 51.38,
+      "top10_cum_pct": 66.98,
+      "recoverable_6_10_pct": 15.61,
+      "zhanbian_mid_pct": 22.01,
+      "zhanbian_major_pct": 2.75,
+      "irrelevant_pct": 8.25
+    },
+    {
+      "major": "管理幕僚／人資／行政",
+      "mid": "人力資源",
+      "n": 1669,
+      "top1_pct": 22.23,
+      "top3_cum_pct": 33.49,
+      "top5_cum_pct": 42.06,
+      "top10_cum_pct": 49.91,
+      "recoverable_6_10_pct": 7.85,
+      "zhanbian_mid_pct": 8.39,
+      "zhanbian_major_pct": 17.08,
+      "irrelevant_pct": 24.63
+    },
+    {
+      "major": "醫療／護理／保健",
+      "mid": "醫事保健",
+      "n": 1638,
+      "top1_pct": 42.37,
+      "top3_cum_pct": 57.14,
+      "top5_cum_pct": 63.25,
+      "top10_cum_pct": 68.38,
+      "recoverable_6_10_pct": 5.13,
+      "zhanbian_mid_pct": 0.92,
+      "zhanbian_major_pct": 10.68,
+      "irrelevant_pct": 20.02
+    },
+    {
+      "major": "業務／貿易／客服／門市",
+      "mid": "客服開發",
+      "n": 1606,
+      "top1_pct": 16.75,
+      "top3_cum_pct": 31.32,
+      "top5_cum_pct": 45.52,
+      "top10_cum_pct": 63.45,
+      "recoverable_6_10_pct": 17.93,
+      "zhanbian_mid_pct": 20.86,
+      "zhanbian_major_pct": 8.59,
+      "irrelevant_pct": 7.1
+    },
+    {
+      "major": "行銷／企劃／專案管理",
+      "mid": "行銷／廣告",
+      "n": 1373,
+      "top1_pct": 32.7,
+      "top3_cum_pct": 46.69,
+      "top5_cum_pct": 53.61,
+      "top10_cum_pct": 64.02,
+      "recoverable_6_10_pct": 10.42,
+      "zhanbian_mid_pct": 17.12,
+      "zhanbian_major_pct": 9.61,
+      "irrelevant_pct": 9.25
+    },
+    {
+      "major": "學術研究／教育師資",
+      "mid": "教育師資",
+      "n": 1209,
+      "top1_pct": 23.08,
+      "top3_cum_pct": 35.07,
+      "top5_cum_pct": 41.94,
+      "top10_cum_pct": 50.7,
+      "recoverable_6_10_pct": 8.77,
+      "zhanbian_mid_pct": 15.8,
+      "zhanbian_major_pct": 1.65,
+      "irrelevant_pct": 31.84
+    },
+    {
+      "major": "美編設計",
+      "mid": "美編設計",
+      "n": 1103,
+      "top1_pct": 30.37,
+      "top3_cum_pct": 56.39,
+      "top5_cum_pct": 62.1,
+      "top10_cum_pct": 67.82,
+      "recoverable_6_10_pct": 5.71,
+      "zhanbian_mid_pct": 12.96,
+      "zhanbian_major_pct": 0.0,
+      "irrelevant_pct": 19.22
+    },
+    {
+      "major": "幼教才藝／補習進修",
+      "mid": "樂活才藝",
+      "n": 942,
+      "top1_pct": 26.75,
+      "top3_cum_pct": 47.24,
+      "top5_cum_pct": 58.28,
+      "top10_cum_pct": 69.11,
+      "recoverable_6_10_pct": 10.83,
+      "zhanbian_mid_pct": 13.27,
+      "zhanbian_major_pct": 6.9,
+      "irrelevant_pct": 10.72
+    },
+    {
+      "major": "操作／維修／技術服務",
+      "mid": "工具機加工",
+      "n": 780,
+      "top1_pct": 43.85,
+      "top3_cum_pct": 56.28,
+      "top5_cum_pct": 60.77,
+      "top10_cum_pct": 69.36,
+      "recoverable_6_10_pct": 8.59,
+      "zhanbian_mid_pct": 25.9,
+      "zhanbian_major_pct": 1.54,
+      "irrelevant_pct": 3.21
+    },
+    {
+      "major": "光電IC／電子通訊",
+      "mid": "光電半導體",
+      "n": 780,
+      "top1_pct": 16.92,
+      "top3_cum_pct": 24.1,
+      "top5_cum_pct": 29.23,
+      "top10_cum_pct": 39.36,
+      "recoverable_6_10_pct": 10.13,
+      "zhanbian_mid_pct": 29.87,
+      "zhanbian_major_pct": 7.05,
+      "irrelevant_pct": 23.72
+    },
+    {
+      "major": "行銷／企劃／專案管理",
+      "mid": "專案管理",
+      "n": 737,
+      "top1_pct": 8.82,
+      "top3_cum_pct": 19.27,
+      "top5_cum_pct": 24.15,
+      "top10_cum_pct": 31.61,
+      "recoverable_6_10_pct": 7.46,
+      "zhanbian_mid_pct": 22.52,
+      "zhanbian_major_pct": 18.45,
+      "irrelevant_pct": 27.41
+    },
+    {
+      "major": "行銷／企劃／專案管理",
+      "mid": "產品／企劃",
+      "n": 701,
+      "top1_pct": 32.52,
+      "top3_cum_pct": 48.5,
+      "top5_cum_pct": 53.5,
+      "top10_cum_pct": 66.05,
+      "recoverable_6_10_pct": 12.55,
+      "zhanbian_mid_pct": 15.26,
+      "zhanbian_major_pct": 8.7,
+      "irrelevant_pct": 9.99
+    },
+    {
+      "major": "業務／貿易／客服／門市",
+      "mid": "國際貿易",
+      "n": 663,
+      "top1_pct": 58.22,
+      "top3_cum_pct": 74.96,
+      "top5_cum_pct": 79.03,
+      "top10_cum_pct": 87.78,
+      "recoverable_6_10_pct": 8.75,
+      "zhanbian_mid_pct": 5.13,
+      "zhanbian_major_pct": 3.47,
+      "irrelevant_pct": 3.62
+    },
+    {
+      "major": "電腦系統／資訊／軟硬體",
+      "mid": "電腦網路管理/MIS",
+      "n": 643,
+      "top1_pct": 12.91,
+      "top3_cum_pct": 21.31,
+      "top5_cum_pct": 29.7,
+      "top10_cum_pct": 45.1,
+      "recoverable_6_10_pct": 15.4,
+      "zhanbian_mid_pct": 13.06,
+      "zhanbian_major_pct": 27.53,
+      "irrelevant_pct": 14.31
+    },
+    {
+      "major": "電腦系統／資訊／軟硬體",
+      "mid": "網路管理",
+      "n": 585,
+      "top1_pct": 14.19,
+      "top3_cum_pct": 21.71,
+      "top5_cum_pct": 27.35,
+      "top10_cum_pct": 35.9,
+      "recoverable_6_10_pct": 8.55,
+      "zhanbian_mid_pct": 6.32,
+      "zhanbian_major_pct": 40.34,
+      "irrelevant_pct": 17.44
+    },
+    {
+      "major": "學術研究／教育師資",
+      "mid": "研究協助",
+      "n": 488,
+      "top1_pct": 12.3,
+      "top3_cum_pct": 43.65,
+      "top5_cum_pct": 54.51,
+      "top10_cum_pct": 64.34,
+      "recoverable_6_10_pct": 9.84,
+      "zhanbian_mid_pct": 8.61,
+      "zhanbian_major_pct": 10.04,
+      "irrelevant_pct": 17.01
+    },
+    {
+      "major": "生物科技／化學製藥",
+      "mid": "化工實驗",
+      "n": 488,
+      "top1_pct": 18.03,
+      "top3_cum_pct": 31.15,
+      "top5_cum_pct": 42.62,
+      "top10_cum_pct": 54.92,
+      "recoverable_6_10_pct": 12.3,
+      "zhanbian_mid_pct": 11.89,
+      "zhanbian_major_pct": 3.48,
+      "irrelevant_pct": 29.71
+    },
+    {
+      "major": "機械模具／生產製程",
+      "mid": "模具相關",
+      "n": 472,
+      "top1_pct": 17.16,
+      "top3_cum_pct": 32.63,
+      "top5_cum_pct": 45.34,
+      "top10_cum_pct": 64.83,
+      "recoverable_6_10_pct": 19.49,
+      "zhanbian_mid_pct": 18.22,
+      "zhanbian_major_pct": 11.86,
+      "irrelevant_pct": 5.08
+    },
+    {
+      "major": "光電IC／電子通訊",
+      "mid": "電子通訊",
+      "n": 467,
+      "top1_pct": 12.85,
+      "top3_cum_pct": 24.84,
+      "top5_cum_pct": 33.19,
+      "top10_cum_pct": 46.68,
+      "recoverable_6_10_pct": 13.49,
+      "zhanbian_mid_pct": 28.48,
+      "zhanbian_major_pct": 10.71,
+      "irrelevant_pct": 14.13
+    },
+    {
+      "major": "生活服務／農林漁牧",
+      "mid": "農林漁牧",
+      "n": 451,
+      "top1_pct": 22.17,
+      "top3_cum_pct": 33.04,
+      "top5_cum_pct": 37.69,
+      "top10_cum_pct": 48.56,
+      "recoverable_6_10_pct": 10.86,
+      "zhanbian_mid_pct": 5.54,
+      "zhanbian_major_pct": 3.1,
+      "irrelevant_pct": 42.79
+    },
+    {
+      "major": "法務專利／顧問諮詢",
+      "mid": "法務專利",
+      "n": 413,
+      "top1_pct": 32.93,
+      "top3_cum_pct": 47.7,
+      "top5_cum_pct": 59.32,
+      "top10_cum_pct": 64.16,
+      "recoverable_6_10_pct": 4.84,
+      "zhanbian_mid_pct": 8.72,
+      "zhanbian_major_pct": 0.0,
+      "irrelevant_pct": 27.12
+    },
+    {
+      "major": "軍警消防／保全相關",
+      "mid": "軍警消防",
+      "n": 410,
+      "top1_pct": 45.37,
+      "top3_cum_pct": 56.1,
+      "top5_cum_pct": 61.22,
+      "top10_cum_pct": 62.93,
+      "recoverable_6_10_pct": 1.71,
+      "zhanbian_mid_pct": 14.15,
+      "zhanbian_major_pct": 0.98,
+      "irrelevant_pct": 21.95
+    },
+    {
+      "major": "金融保險／財會／稽核",
+      "mid": "稽核審計",
+      "n": 343,
+      "top1_pct": 34.4,
+      "top3_cum_pct": 46.65,
+      "top5_cum_pct": 52.19,
+      "top10_cum_pct": 59.18,
+      "recoverable_6_10_pct": 7.0,
+      "zhanbian_mid_pct": 16.03,
+      "zhanbian_major_pct": 13.7,
+      "irrelevant_pct": 11.08
+    },
+    {
+      "major": "電腦系統／資訊／軟硬體",
+      "mid": "電腦硬體",
+      "n": 313,
+      "top1_pct": 10.22,
+      "top3_cum_pct": 23.96,
+      "top5_cum_pct": 31.31,
+      "top10_cum_pct": 38.98,
+      "recoverable_6_10_pct": 7.67,
+      "zhanbian_mid_pct": 2.24,
+      "zhanbian_major_pct": 47.28,
+      "irrelevant_pct": 11.5
+    },
+    {
+      "major": "影視傳媒／出版翻譯",
+      "mid": "幕後執行",
+      "n": 286,
+      "top1_pct": 33.57,
+      "top3_cum_pct": 44.76,
+      "top5_cum_pct": 49.65,
+      "top10_cum_pct": 58.39,
+      "recoverable_6_10_pct": 8.74,
+      "zhanbian_mid_pct": 12.59,
+      "zhanbian_major_pct": 8.39,
+      "irrelevant_pct": 20.63
+    },
+    {
+      "major": "影視傳媒／出版翻譯",
+      "mid": "出版翻譯",
+      "n": 276,
+      "top1_pct": 25.36,
+      "top3_cum_pct": 39.49,
+      "top5_cum_pct": 45.29,
+      "top10_cum_pct": 64.49,
+      "recoverable_6_10_pct": 19.2,
+      "zhanbian_mid_pct": 17.75,
+      "zhanbian_major_pct": 4.71,
+      "irrelevant_pct": 13.04
+    },
+    {
+      "major": "影視傳媒／出版翻譯",
+      "mid": "影視演藝",
+      "n": 220,
+      "top1_pct": 35.0,
+      "top3_cum_pct": 57.27,
+      "top5_cum_pct": 67.27,
+      "top10_cum_pct": 77.27,
+      "recoverable_6_10_pct": 10.0,
+      "zhanbian_mid_pct": 1.82,
+      "zhanbian_major_pct": 8.64,
+      "irrelevant_pct": 12.27
+    },
+    {
+      "major": "生物科技／化學製藥",
+      "mid": "醫藥生技",
+      "n": 129,
+      "top1_pct": 13.18,
+      "top3_cum_pct": 30.23,
+      "top5_cum_pct": 44.96,
+      "top10_cum_pct": 62.79,
+      "recoverable_6_10_pct": 17.83,
+      "zhanbian_mid_pct": 14.73,
+      "zhanbian_major_pct": 3.88,
+      "irrelevant_pct": 18.6
+    },
+    {
+      "major": "法務專利／顧問諮詢",
+      "mid": "顧問諮詢",
+      "n": 100,
+      "top1_pct": 18.0,
+      "top3_cum_pct": 37.0,
+      "top5_cum_pct": 42.0,
+      "top10_cum_pct": 50.0,
+      "recoverable_6_10_pct": 8.0,
+      "zhanbian_mid_pct": 7.0,
+      "zhanbian_major_pct": 0.0,
+      "irrelevant_pct": 43.0
+    },
+    {
+      "major": "影視傳媒／出版翻譯",
+      "mid": "新聞媒體",
+      "n": 85,
+      "top1_pct": 20.0,
+      "top3_cum_pct": 47.06,
+      "top5_cum_pct": 49.41,
+      "top10_cum_pct": 63.53,
+      "recoverable_6_10_pct": 14.12,
+      "zhanbian_mid_pct": 15.29,
+      "zhanbian_major_pct": 7.06,
+      "irrelevant_pct": 14.12
+    },
+    {
+      "major": "學術研究／教育師資",
+      "mid": "生物理工",
+      "n": 66,
+      "top1_pct": 16.67,
+      "top3_cum_pct": 37.88,
+      "top5_cum_pct": 50.0,
+      "top10_cum_pct": 65.15,
+      "recoverable_6_10_pct": 15.15,
+      "zhanbian_mid_pct": 1.52,
+      "zhanbian_major_pct": 10.61,
+      "irrelevant_pct": 22.73
+    },
+    {
+      "major": "學術研究／教育師資",
+      "mid": "自然科學",
+      "n": 16,
+      "top1_pct": 12.5,
+      "top3_cum_pct": 75.0,
+      "top5_cum_pct": 75.0,
+      "top10_cum_pct": 81.25,
+      "recoverable_6_10_pct": 6.25,
+      "zhanbian_mid_pct": 0.0,
+      "zhanbian_major_pct": 12.5,
+      "irrelevant_pct": 6.25
+    },
+    {
+      "major": "學術研究／教育師資",
+      "mid": "人文社會",
+      "n": 11,
+      "top1_pct": 0.0,
+      "top3_cum_pct": 18.18,
+      "top5_cum_pct": 18.18,
+      "top10_cum_pct": 18.18,
+      "recoverable_6_10_pct": 0.0,
+      "zhanbian_mid_pct": 0.0,
+      "zhanbian_major_pct": 9.09,
+      "irrelevant_pct": 72.73
+    }
+  ],
+  "feature_table": [
+    {
+      "feature": "ascii",
+      "n": 30962,
+      "miss_n": 9713,
+      "miss_rate_pct": 31.37,
+      "lift_vs_baseline": 3.55
+    },
+    {
+      "feature": "deco",
+      "n": 93494,
+      "miss_n": 28110,
+      "miss_rate_pct": 30.07,
+      "lift_vs_baseline": 2.25
+    },
+    {
+      "feature": "long_ge10",
+      "n": 127163,
+      "miss_n": 37138,
+      "miss_rate_pct": 29.21,
+      "lift_vs_baseline": 1.39
+    },
+    {
+      "feature": "digit",
+      "n": 38368,
+      "miss_n": 10681,
+      "miss_rate_pct": 27.84,
+      "lift_vs_baseline": 0.02
+    },
+    {
+      "feature": "generic_tail",
+      "n": 61440,
+      "miss_n": 15995,
+      "miss_rate_pct": 26.03,
+      "lift_vs_baseline": -1.79
+    },
+    {
+      "feature": "slash_multi",
+      "n": 24714,
+      "miss_n": 6285,
+      "miss_rate_pct": 25.43,
+      "lift_vs_baseline": -2.39
+    },
+    {
+      "feature": "short_le3",
+      "n": 3625,
+      "miss_n": 611,
+      "miss_rate_pct": 16.86,
+      "lift_vs_baseline": -10.96
+    }
+  ],
+  "examples": {
+    "generic_tail": [
+      {
+        "title": "總經理室專員",
+        "duty0": "行政助理",
+        "top3_recs": [
+          "行政主管",
+          "經營管理主管",
+          "總務人員"
+        ],
+        "level": "沾邊_中類"
+      },
+      {
+        "title": "1.經營企劃專員",
+        "duty0": "產品管理師",
+        "top3_recs": [
+          "保險業務員／經紀人",
+          "產品企劃主管",
+          "國內業務主管"
+        ],
+        "level": "沾邊_大類"
+      },
+      {
+        "title": "1.課程規劃專員",
+        "duty0": "國內業務人員",
+        "top3_recs": [
+          "演算法開發工程師",
+          "RF通訊工程師",
+          "韌體工程師"
+        ],
+        "level": "無關"
+      },
+      {
+        "title": "【前鎮-臨廣加工區】食品公司徵正職生管人員",
+        "duty0": "生管／助理",
+        "top3_recs": [
+          "門市／店員／專櫃人員",
+          "品管／品保主管",
+          "資材主管"
+        ],
+        "level": "沾邊_中類"
+      },
+      {
+        "title": "📢【仁武正職】機械設備大廠-人資主管",
+        "duty0": "人事／人力資源主管",
+        "top3_recs": [
+          "電機工程主管",
+          "生管主管",
+          "智慧製程工程師"
+        ],
+        "level": "無關"
+      },
+      {
+        "title": "攝影美編助理",
+        "duty0": "美編人員",
+        "top3_recs": [
+          "資訊助理人員",
+          "行銷企劃助理",
+          "特別助理"
+        ],
+        "level": "無關"
+      },
+      {
+        "title": "外銷食品企劃人員",
+        "duty0": "國貿助理",
+        "top3_recs": [
+          "產品企劃主管",
+          "行銷企劃人員",
+          "門市／店員／專櫃人員"
+        ],
+        "level": "沾邊_大類"
+      },
+      {
+        "title": "國外部開發人員",
+        "duty0": "國貿人員",
+        "top3_recs": [
+          "硬體工程研發主管",
+          "零組件工程師",
+          "化學／化工工程師"
+        ],
+        "level": "無關"
+      }
+    ],
+    "digit": [
+      {
+        "title": "1.經營企劃專員",
+        "duty0": "產品管理師",
+        "top3_recs": [
+          "保險業務員／經紀人",
+          "產品企劃主管",
+          "國內業務主管"
+        ],
+        "level": "沾邊_大類"
+      },
+      {
+        "title": "W【日班安全室組長】中壢工業區：工廠，薪62,000元/月上班24天(288H)，有供餐及特休",
+        "duty0": "保全人員／警衛",
+        "top3_recs": [
+          "智慧製程工程師",
+          "電機技師／工程師",
+          "電機設備裝配員"
+        ],
+        "level": "無關"
+      },
+      {
+        "title": "W【勤務督導】桃園區中正路，薪58,000~68,000元(含全勤及津貼)/週休二日、見紅休",
+        "duty0": "總幹事",
+        "top3_recs": [
+          "資材主管",
+          "智慧製程工程師",
+          "資材人員"
+        ],
+        "level": "無關"
+      },
+      {
+        "title": "👉 【早班產線組長｜月薪4萬↑｜週休二日】",
+        "duty0": "領班／管理幹部",
+        "top3_recs": [
+          "包裝員／作業員",
+          "技術人員",
+          "CNC車床人員"
+        ],
+        "level": "沾邊_中類"
+      },
+      {
+        "title": "1.課程規劃專員",
+        "duty0": "國內業務人員",
+        "top3_recs": [
+          "演算法開發工程師",
+          "RF通訊工程師",
+          "韌體工程師"
+        ],
+        "level": "無關"
+      },
+      {
+        "title": "1111人力銀行-徵內部正職員工(常駐楠梓加工區)",
+        "duty0": "人事／人力資源專員",
+        "top3_recs": [
+          "稽核人員",
+          "餐廚助手",
+          "稽核主管"
+        ],
+        "level": "無關"
+      },
+      {
+        "title": "2.神秘客服務稽核調查專員",
+        "duty0": "專案業務主管",
+        "top3_recs": [
+          "神秘客",
+          "文字客服",
+          "國貿人員"
+        ],
+        "level": "沾邊_中類"
+      },
+      {
+        "title": "CNC銑床工程師/儲備幹部(薪35000~60000起)",
+        "duty0": "CNC銑床人員",
+        "top3_recs": [
+          "智慧製程工程師",
+          "電機工程主管",
+          "電機技師／工程師"
+        ],
+        "level": "無關"
+      }
+    ],
+    "deco": [
+      {
+        "title": "工務副理(具主任或品管證照）",
+        "duty0": "建築師",
+        "top3_recs": [
+          "業務工程師",
+          "軟體專案主管",
+          "客戶成功經理"
+        ],
+        "level": "沾邊_中類"
+      },
+      {
+        "title": "W【日班安全室組長】中壢工業區：工廠，薪62,000元/月上班24天(288H)，有供餐及特休",
+        "duty0": "保全人員／警衛",
+        "top3_recs": [
+          "智慧製程工程師",
+          "電機技師／工程師",
+          "電機設備裝配員"
+        ],
+        "level": "無關"
+      },
+      {
+        "title": "W【勤務督導】桃園區中正路，薪58,000~68,000元(含全勤及津貼)/週休二日、見紅休",
+        "duty0": "總幹事",
+        "top3_recs": [
+          "資材主管",
+          "智慧製程工程師",
+          "資材人員"
+        ],
+        "level": "無關"
+      },
+      {
+        "title": "產線儲備幹部(冷氣廠房.供餐)",
+        "duty0": "機械操作人員",
+        "top3_recs": [
+          "智慧製程工程師",
+          "生管主管",
+          "電機技師／工程師"
+        ],
+        "level": "無關"
+      },
+      {
+        "title": "👉 【早班產線組長｜月薪4萬↑｜週休二日】",
+        "duty0": "領班／管理幹部",
+        "top3_recs": [
+          "包裝員／作業員",
+          "技術人員",
+          "CNC車床人員"
+        ],
+        "level": "沾邊_中類"
+      },
+      {
+        "title": "門市督導人員(週休二日)",
+        "duty0": "店長／門市管理人員",
+        "top3_recs": [
+          "冷熱飲調製人員",
+          "調酒師／吧台人員",
+          "居家服務督導員"
+        ],
+        "level": "沾邊_中類"
+      },
+      {
+        "title": "門市督導助理(週休二日)",
+        "duty0": "店長／門市管理人員",
+        "top3_recs": [
+          "藥師助理",
+          "資訊助理人員",
+          "攝影助理"
+        ],
+        "level": "無關"
+      },
+      {
+        "title": "社區經理-北區(鄰近科博館)",
+        "duty0": "總幹事",
+        "top3_recs": [
+          "社群經營人員",
+          "金融營業人員",
+          "資材主管"
+        ],
+        "level": "無關"
+      }
+    ],
+    "long_ge10": [
+      {
+        "title": "工務副理(具主任或品管證照）",
+        "duty0": "建築師",
+        "top3_recs": [
+          "業務工程師",
+          "軟體專案主管",
+          "客戶成功經理"
+        ],
+        "level": "沾邊_中類"
+      },
+      {
+        "title": "W【日班安全室組長】中壢工業區：工廠，薪62,000元/月上班24天(288H)，有供餐及特休",
+        "duty0": "保全人員／警衛",
+        "top3_recs": [
+          "智慧製程工程師",
+          "電機技師／工程師",
+          "電機設備裝配員"
+        ],
+        "level": "無關"
+      },
+      {
+        "title": "W【勤務督導】桃園區中正路，薪58,000~68,000元(含全勤及津貼)/週休二日、見紅休",
+        "duty0": "總幹事",
+        "top3_recs": [
+          "資材主管",
+          "智慧製程工程師",
+          "資材人員"
+        ],
+        "level": "無關"
+      },
+      {
+        "title": "產線儲備幹部(冷氣廠房.供餐)",
+        "duty0": "機械操作人員",
+        "top3_recs": [
+          "智慧製程工程師",
+          "生管主管",
+          "電機技師／工程師"
+        ],
+        "level": "無關"
+      },
+      {
+        "title": "👉 【早班產線組長｜月薪4萬↑｜週休二日】",
+        "duty0": "領班／管理幹部",
+        "top3_recs": [
+          "包裝員／作業員",
+          "技術人員",
+          "CNC車床人員"
+        ],
+        "level": "沾邊_中類"
+      },
+      {
+        "title": "門市督導人員(週休二日)",
+        "duty0": "店長／門市管理人員",
+        "top3_recs": [
+          "冷熱飲調製人員",
+          "調酒師／吧台人員",
+          "居家服務督導員"
+        ],
+        "level": "沾邊_中類"
+      },
+      {
+        "title": "門市督導助理(週休二日)",
+        "duty0": "店長／門市管理人員",
+        "top3_recs": [
+          "藥師助理",
+          "資訊助理人員",
+          "攝影助理"
+        ],
+        "level": "無關"
+      },
+      {
+        "title": "社區經理-北區(鄰近科博館)",
+        "duty0": "總幹事",
+        "top3_recs": [
+          "社群經營人員",
+          "金融營業人員",
+          "資材主管"
+        ],
+        "level": "無關"
+      }
+    ],
+    "slash_multi": [
+      {
+        "title": "W【日班安全室組長】中壢工業區：工廠，薪62,000元/月上班24天(288H)，有供餐及特休",
+        "duty0": "保全人員／警衛",
+        "top3_recs": [
+          "智慧製程工程師",
+          "電機技師／工程師",
+          "電機設備裝配員"
+        ],
+        "level": "無關"
+      },
+      {
+        "title": "W【勤務督導】桃園區中正路，薪58,000~68,000元(含全勤及津貼)/週休二日、見紅休",
+        "duty0": "總幹事",
+        "top3_recs": [
+          "資材主管",
+          "智慧製程工程師",
+          "資材人員"
+        ],
+        "level": "無關"
+      },
+      {
+        "title": "外勞宿舍生活輔導員(台北/新北/桃園/新竹)",
+        "duty0": "人力／外勞仲介",
+        "top3_recs": [
+          "資材人員",
+          "調酒師／吧台人員",
+          "房務人員"
+        ],
+        "level": "沾邊_大類"
+      },
+      {
+        "title": "＜高雄小港區＞櫃台總機人員(長期免加班/夜校生可)",
+        "duty0": "工讀生",
+        "top3_recs": [
+          "資材人員",
+          "資料庫管理人員",
+          "生管／助理"
+        ],
+        "level": "無關"
+      },
+      {
+        "title": "CNC銑床工程師/儲備幹部(薪35000~60000起)",
+        "duty0": "CNC銑床人員",
+        "top3_recs": [
+          "智慧製程工程師",
+          "電機工程主管",
+          "電機技師／工程師"
+        ],
+        "level": "無關"
+      },
+      {
+        "title": "行政助理/廠務助理/品保助理/工讀生(長期約聘)",
+        "duty0": "行政助理",
+        "top3_recs": [
+          "行政人員",
+          "電腦操作／資料輸入",
+          "秘書"
+        ],
+        "level": "沾邊_中類"
+      },
+      {
+        "title": "🚖客戶服務人員/款項追蹤人員",
+        "duty0": "行政人員",
+        "top3_recs": [
+          "國貿人員",
+          "文字客服",
+          "資材人員"
+        ],
+        "level": "沾邊_中類"
+      },
+      {
+        "title": "總部徵才-美工編輯／行銷設計專員",
+        "duty0": "社群經營人員",
+        "top3_recs": [
+          "平面設計",
+          "廣告設計",
+          "產品企劃主管"
+        ],
+        "level": "沾邊_大類"
+      }
+    ],
+    "ascii": [
+      {
+        "title": "W【日班安全室組長】中壢工業區：工廠，薪62,000元/月上班24天(288H)，有供餐及特休",
+        "duty0": "保全人員／警衛",
+        "top3_recs": [
+          "智慧製程工程師",
+          "電機技師／工程師",
+          "電機設備裝配員"
+        ],
+        "level": "無關"
+      },
+      {
+        "title": "W【勤務督導】桃園區中正路，薪58,000~68,000元(含全勤及津貼)/週休二日、見紅休",
+        "duty0": "總幹事",
+        "top3_recs": [
+          "資材主管",
+          "智慧製程工程師",
+          "資材人員"
+        ],
+        "level": "無關"
+      },
+      {
+        "title": "【生技】電商營運商開企劃專員MD 【消費性保健美妝商品】",
+        "duty0": "行銷企劃人員",
+        "top3_recs": [
+          "國外業務人員",
+          "報關人員",
+          "國貿人員"
+        ],
+        "level": "沾邊_大類"
+      },
+      {
+        "title": "CNC銑床工程師/儲備幹部(薪35000~60000起)",
+        "duty0": "CNC銑床人員",
+        "top3_recs": [
+          "智慧製程工程師",
+          "電機工程主管",
+          "電機技師／工程師"
+        ],
+        "level": "無關"
+      },
+      {
+        "title": "OP助理人員(高雄)",
+        "duty0": "業務助理",
+        "top3_recs": [
+          "攝影助理",
+          "資訊助理人員",
+          "媒體公關人員"
+        ],
+        "level": "無關"
+      },
+      {
+        "title": "台中漢神洲際-島語自助餐廳廚房(點心) A廚師/B廚師",
+        "duty0": "西式廚師",
+        "top3_recs": [
+          "調酒師／吧台人員",
+          "侍酒師",
+          "冷熱飲調製人員"
+        ],
+        "level": "沾邊_中類"
+      },
+      {
+        "title": "外場晚班PT人員(明誠店)",
+        "duty0": "餐飲服務人員",
+        "top3_recs": [
+          "冷熱飲調製人員",
+          "調酒師／吧台人員",
+          "門市／店員／專櫃人員"
+        ],
+        "level": "沾邊_中類"
+      },
+      {
+        "title": "鍋in 百元風味鍋 晚班/假日班-工讀生/計時人員/服務生 (桃園成功店)",
+        "duty0": "餐飲服務人員",
+        "top3_recs": [
+          "飯店／旅館服務人員",
+          "調酒師／吧台人員",
+          "門市／店員／專櫃人員"
+        ],
+        "level": "沾邊_中類"
+      }
+    ],
+    "無關_all": [
+      {
+        "title": "W【日班安全室組長】中壢工業區：工廠，薪62,000元/月上班24天(288H)，有供餐及特休",
+        "duty0": "保全人員／警衛",
+        "top3_recs": [
+          "智慧製程工程師",
+          "電機技師／工程師",
+          "電機設備裝配員"
+        ]
+      },
+      {
+        "title": "W【勤務督導】桃園區中正路，薪58,000~68,000元(含全勤及津貼)/週休二日、見紅休",
+        "duty0": "總幹事",
+        "top3_recs": [
+          "資材主管",
+          "智慧製程工程師",
+          "資材人員"
+        ]
+      },
+      {
+        "title": "產線儲備幹部(冷氣廠房.供餐)",
+        "duty0": "機械操作人員",
+        "top3_recs": [
+          "智慧製程工程師",
+          "生管主管",
+          "電機技師／工程師"
+        ]
+      },
+      {
+        "title": "門市督導助理(週休二日)",
+        "duty0": "店長／門市管理人員",
+        "top3_recs": [
+          "藥師助理",
+          "資訊助理人員",
+          "攝影助理"
+        ]
+      },
+      {
+        "title": "社區經理-北區(鄰近科博館)",
+        "duty0": "總幹事",
+        "top3_recs": [
+          "社群經營人員",
+          "金融營業人員",
+          "資材主管"
+        ]
+      },
+      {
+        "title": "社區經理-東區",
+        "duty0": "總幹事",
+        "top3_recs": [
+          "社群經營人員",
+          "資材主管",
+          "產品經理"
+        ]
+      },
+      {
+        "title": "行政兼職助教(工讀生)",
+        "duty0": "助教",
+        "top3_recs": [
+          "行政人員",
+          "電腦操作／資料輸入",
+          "總務人員"
+        ]
+      },
+      {
+        "title": "1.課程規劃專員",
+        "duty0": "國內業務人員",
+        "top3_recs": [
+          "演算法開發工程師",
+          "RF通訊工程師",
+          "韌體工程師"
+        ]
+      },
+      {
+        "title": "晚班訂單處理人員(台北所)",
+        "duty0": "電腦操作／資料輸入",
+        "top3_recs": [
+          "倉管／物料管理員",
+          "倉儲物流人員",
+          "理貨人員"
+        ]
+      },
+      {
+        "title": "全職櫃台人員(三重區)",
+        "duty0": "醫院行政管理人員",
+        "top3_recs": [
+          "飯店／旅館櫃檯人員",
+          "飯店／旅館服務人員",
+          "房務人員"
+        ]
+      },
+      {
+        "title": "1111人力銀行-徵內部正職員工(常駐楠梓加工區)",
+        "duty0": "人事／人力資源專員",
+        "top3_recs": [
+          "稽核人員",
+          "餐廚助手",
+          "稽核主管"
+        ]
+      },
+      {
+        "title": "📢【仁武正職】機械設備大廠-人資主管",
+        "duty0": "人事／人力資源主管",
+        "top3_recs": [
+          "電機工程主管",
+          "生管主管",
+          "智慧製程工程師"
+        ]
+      },
+      {
+        "title": "攝影美編助理",
+        "duty0": "美編人員",
+        "top3_recs": [
+          "資訊助理人員",
+          "行銷企劃助理",
+          "特別助理"
+        ]
+      },
+      {
+        "title": "機房代班人員(北市南港)[派遣]駐點公部門班底",
+        "duty0": "系統工程師",
+        "top3_recs": [
+          "PLC／自動控制工程師",
+          "水電工",
+          "工業設計"
+        ]
+      },
+      {
+        "title": "【一宮壽喜燒】- 早晚班工讀（北屯總站店）",
+        "duty0": "工讀生",
+        "top3_recs": [
+          "飯店／旅館服務人員",
+          "冷熱飲調製人員",
+          "調酒師／吧台人員"
+        ]
+      }
+    ],
+    "short_le3": [
+      {
+        "title": "工程師",
+        "duty0": "生產線工程師",
+        "top3_recs": [
+          "水電工程師",
+          "PLC／自動控制工程師",
+          "結構技師／工程師"
+        ],
+        "level": "沾邊_中類"
+      },
+      {
+        "title": "業務",
+        "duty0": "電商行銷",
+        "top3_recs": [
+          "業務助理",
+          "國外業務人員",
+          "廣告AE"
+        ],
+        "level": "無關"
+      },
+      {
+        "title": "居服員",
+        "duty0": "照顧服務／指導員",
+        "top3_recs": [
+          "房務人員",
+          "神秘客",
+          "空服人員"
+        ],
+        "level": "無關"
+      },
+      {
+        "title": "人資",
+        "duty0": "教育訓練人員",
+        "top3_recs": [
+          "資材人員",
+          "資材主管",
+          "調酒師／吧台人員"
+        ],
+        "level": "無關"
+      },
+      {
+        "title": "生管",
+        "duty0": "生管／助理",
+        "top3_recs": [
+          "生管主管",
+          "資材主管",
+          "品管／品保主管"
+        ],
+        "level": "沾邊_中類"
+      },
+      {
+        "title": "助理",
+        "duty0": "業務助理",
+        "top3_recs": [
+          "資訊助理人員",
+          "人事助理",
+          "行銷企劃助理"
+        ],
+        "level": "無關"
+      },
+      {
+        "title": "西工",
+        "duty0": "生產設備工程師",
+        "top3_recs": [
+          "調酒師／吧台人員",
+          "工讀生",
+          "營建雜工／粗工"
+        ],
+        "level": "沾邊_中類"
+      },
+      {
+        "title": "環安",
+        "duty0": "環保／環境工程師／技師",
+        "top3_recs": [
+          "資材主管",
+          "房務人員",
+          "門市／店員／專櫃人員"
+        ],
+        "level": "無關"
+      }
+    ]
+  },
+  "recoverable_examples": [
+    {
+      "title": "◎市議員助理◎",
+      "hit_leaf": "業務助理",
+      "hit_rank": 8,
+      "top5_recs": [
+        "電腦操作／資料輸入",
+        "行銷企劃助理",
+        "秘書",
+        "行政人員",
+        "財務／會計助理"
+      ]
+    },
+    {
+      "title": "場務",
+      "hit_leaf": "門市／店員／專櫃人員",
+      "hit_rank": 8,
+      "top5_recs": [
+        "房務人員",
+        "遊樂景點工作人員",
+        "售票／收銀人員",
+        "資材人員",
+        "神秘客"
+      ]
+    },
+    {
+      "title": "挪威森林(新店館)儲備幹部/輪班主任9H月休八天**請親洽面試",
+      "hit_leaf": "店長／門市管理人員",
+      "hit_rank": 6,
+      "top5_recs": [
+        "品管／品保主管",
+        "調酒師／吧台人員",
+        "樓面管理人員",
+        "智慧製程工程師",
+        "資材主管"
+      ]
+    },
+    {
+      "title": "牙醫助理",
+      "hit_leaf": "牙醫助理",
+      "hit_rank": 6,
+      "top5_recs": [
+        "牙醫師",
+        "牙體技術人員",
+        "其他醫療從業人員",
+        "護理師",
+        "醫事檢驗師"
+      ]
+    },
+    {
+      "title": "(找合作)國際進口產品專業人員",
+      "hit_leaf": "國貿人員",
+      "hit_rank": 6,
+      "top5_recs": [
+        "神秘客",
+        "客服工程師",
+        "國外業務人員",
+        "工業設計",
+        "資材人員"
+      ]
+    },
+    {
+      "title": "📢合作專業經理人",
+      "hit_leaf": "國內業務主管",
+      "hit_rank": 6,
+      "top5_recs": [
+        "保險業務員／經紀人",
+        "國外業務人員",
+        "國內業務人員",
+        "廣告AE",
+        "產品企劃主管"
+      ]
+    },
+    {
+      "title": "美編設計人員【連鎖加盟總部 擴大徵才】",
+      "hit_leaf": "美編人員",
+      "hit_rank": 8,
+      "top5_recs": [
+        "平面設計",
+        "設計主管",
+        "建築繪圖／設計",
+        "軟體專案主管",
+        "CAD／CAM工程師"
+      ]
+    },
+    {
+      "title": "🎵 卡比音樂工作室｜儲備幹部招募（士林）.*.*.",
+      "hit_leaf": "儲備幹部",
+      "hit_rank": 7,
+      "top5_recs": [
+        "調酒師／吧台人員",
+        "店長／門市管理人員",
+        "品管／品保主管",
+        "餐飲主管",
+        "侍酒師"
+      ]
+    },
+    {
+      "title": "🎵 卡比音樂工作室｜儲備幹部招募（士林）**..––-",
+      "hit_leaf": "儲備幹部",
+      "hit_rank": 7,
+      "top5_recs": [
+        "調酒師／吧台人員",
+        "店長／門市管理人員",
+        "品管／品保主管",
+        "餐飲主管",
+        "侍酒師"
+      ]
+    },
+    {
+      "title": "🎵 卡比音樂工作室｜儲備幹部招募（士林）**.",
+      "hit_leaf": "儲備幹部",
+      "hit_rank": 6,
+      "top5_recs": [
+        "調酒師／吧台人員",
+        "店長／門市管理人員",
+        "品管／品保主管",
+        "餐飲主管",
+        "侍酒師"
+      ]
+    },
+    {
+      "title": "🎵 卡比音樂工作室｜儲備幹部招募（士林）**",
+      "hit_leaf": "儲備幹部",
+      "hit_rank": 7,
+      "top5_recs": [
+        "調酒師／吧台人員",
+        "店長／門市管理人員",
+        "品管／品保主管",
+        "餐飲主管",
+        "侍酒師"
+      ]
+    },
+    {
+      "title": "🎵 卡比音樂工作室｜儲備幹部招募（士林）**..",
+      "hit_leaf": "儲備幹部",
+      "hit_rank": 7,
+      "top5_recs": [
+        "調酒師／吧台人員",
+        "店長／門市管理人員",
+        "品管／品保主管",
+        "餐飲主管",
+        "侍酒師"
+      ]
+    },
+    {
+      "title": "🎵 卡比音樂工作室｜儲備幹部招募（士林）.**",
+      "hit_leaf": "儲備幹部",
+      "hit_rank": 6,
+      "top5_recs": [
+        "調酒師／吧台人員",
+        "店長／門市管理人員",
+        "品管／品保主管",
+        "餐飲主管",
+        "侍酒師"
+      ]
+    },
+    {
+      "title": "🎵 卡比音樂工作室｜儲備幹部招募（士林）.**.",
+      "hit_leaf": "儲備幹部",
+      "hit_rank": 6,
+      "top5_recs": [
+        "調酒師／吧台人員",
+        "店長／門市管理人員",
+        "品管／品保主管",
+        "餐飲主管",
+        "侍酒師"
+      ]
+    },
+    {
+      "title": "🎵 卡比音樂工作室｜儲備幹部招募（士林）*。",
+      "hit_leaf": "儲備幹部",
+      "hit_rank": 7,
+      "top5_recs": [
+        "調酒師／吧台人員",
+        "店長／門市管理人員",
+        "餐飲主管",
+        "品管／品保主管",
+        "侍酒師"
+      ]
+    },
+    {
+      "title": "🎵 卡比音樂工作室｜儲備幹部招募（士林）*",
+      "hit_leaf": "儲備幹部",
+      "hit_rank": 7,
+      "top5_recs": [
+        "調酒師／吧台人員",
+        "店長／門市管理人員",
+        "餐飲主管",
+        "品管／品保主管",
+        "侍酒師"
+      ]
+    },
+    {
+      "title": "🎵 卡比音樂工作室｜儲備幹部招募（士林）**..-",
+      "hit_leaf": "儲備幹部",
+      "hit_rank": 7,
+      "top5_recs": [
+        "調酒師／吧台人員",
+        "店長／門市管理人員",
+        "品管／品保主管",
+        "餐飲主管",
+        "侍酒師"
+      ]
+    },
+    {
+      "title": "🎵 卡比音樂工作室｜儲備幹部招募（士林）**..&ndash;&ndash;",
+      "hit_leaf": "儲備幹部",
+      "hit_rank": 7,
+      "top5_recs": [
+        "調酒師／吧台人員",
+        "品管／品保主管",
+        "店長／門市管理人員",
+        "侍酒師",
+        "餐飲主管"
+      ]
+    },
+    {
+      "title": "外場服務人員",
+      "hit_leaf": "冷熱飲調製人員",
+      "hit_rank": 6,
+      "top5_recs": [
+        "飯店／旅館服務人員",
+        "門市／店員／專櫃人員",
+        "調酒師／吧台人員",
+        "遊樂景點工作人員",
+        "房務人員"
+      ]
+    },
+    {
+      "title": "人資助理/專員",
+      "hit_leaf": "電腦操作／資料輸入",
+      "hit_rank": 8,
+      "top5_recs": [
+        "人事助理",
+        "資訊助理人員",
+        "生管／助理",
+        "媒體公關人員",
+        "執行製作／助理"
+      ]
+    },
+    {
+      "title": "【薪資31000起(未含加班費.國定假日.獎金)，請電洽】行政內勤人員",
+      "hit_leaf": "電腦操作／資料輸入",
+      "hit_rank": 6,
+      "top5_recs": [
+        "內勤業務",
+        "客服人員",
+        "行政助理",
+        "電話客服人員",
+        "廣告文案企劃人員"
+      ]
+    },
+    {
+      "title": "★台中公益館-活動指導專員",
+      "hit_leaf": "門市／店員／專櫃人員",
+      "hit_rank": 10,
+      "top5_recs": [
+        "活動企劃人員",
+        "公關企劃人員",
+        "傳播媒體編輯企劃",
+        "導演／導播",
+        "導遊／領隊／導覽"
+      ]
+    },
+    {
+      "title": "鐘點計時人員｜歡迎電洽0918237522 / 05-2601668 蔡小姐",
+      "hit_leaf": "餐飲服務人員",
+      "hit_rank": 6,
+      "top5_recs": [
+        "冷熱飲調製人員",
+        "洗碗人員",
+        "調酒師／吧台人員",
+        "餐廚助手",
+        "外送人員"
+      ]
+    },
+    {
+      "title": "派駐國外、管理幹部",
+      "hit_leaf": "經營管理主管",
+      "hit_rank": 6,
+      "top5_recs": [
+        "儲備幹部",
+        "資材主管",
+        "電機工程主管",
+        "客服主管",
+        "產品經理"
+      ]
+    },
+    {
+      "title": "OA事務商品維護工程師(無經驗薪$39000)",
+      "hit_leaf": "客服工程師",
+      "hit_rank": 7,
+      "top5_recs": [
+        "DevOps工程師",
+        "韌體工程師",
+        "IC設計工程師",
+        "FAE工程師",
+        "嵌入式工程師"
+      ]
+    },
+    {
+      "title": "(午班)電訪客服人員(13:30~17:30)",
+      "hit_leaf": "電話客服人員",
+      "hit_rank": 9,
+      "top5_recs": [
+        "國貿人員",
+        "文字客服",
+        "國貿助理",
+        "業務助理",
+        "採購助理"
+      ]
+    },
+    {
+      "title": "南台中商化專員（全聯通路）",
+      "hit_leaf": "門市／店員／專櫃人員",
+      "hit_rank": 10,
+      "top5_recs": [
+        "廣告設計",
+        "商化人員",
+        "文字記者",
+        "資材人員",
+        "神秘客"
+      ]
+    },
+    {
+      "title": "業務助理/美編/設計/網路/行銷",
+      "hit_leaf": "行政人員",
+      "hit_rank": 6,
+      "top5_recs": [
+        "國貿助理",
+        "業務助理",
+        "秘書",
+        "採購助理",
+        "活動企劃人員"
+      ]
+    },
+    {
+      "title": "🏢【工務助理／內業文書助理】",
+      "hit_leaf": "電腦操作／資料輸入",
+      "hit_rank": 7,
+      "top5_recs": [
+        "內勤業務",
+        "行政助理",
+        "業務助理",
+        "國貿助理",
+        "秘書"
+      ]
+    },
+    {
+      "title": "樹木巡查及文書資料處理(意者請洽0906-360-108李小姐)",
+      "hit_leaf": "檔案資料管理人員",
+      "hit_rank": 7,
+      "top5_recs": [
+        "電腦操作／資料輸入",
+        "秘書",
+        "行政人員",
+        "財務／會計助理",
+        "排版人員"
+      ]
+    },
+    {
+      "title": "直播小幫手(兼職)",
+      "hit_leaf": "電腦操作／資料輸入",
+      "hit_rank": 9,
+      "top5_recs": [
+        "媒體公關人員",
+        "行銷企劃助理",
+        "執行製作／助理",
+        "資訊助理人員",
+        "活動企劃人員"
+      ]
+    },
+    {
+      "title": "電商客服人員～台北市萬華區",
+      "hit_leaf": "業務助理",
+      "hit_rank": 7,
+      "top5_recs": [
+        "生管／助理",
+        "資材人員",
+        "文字客服",
+        "國貿人員",
+        "國貿助理"
+      ]
+    },
+    {
+      "title": "KEY單人員(意者請親洽或電話聯絡預約面試)",
+      "hit_leaf": "電腦操作／資料輸入",
+      "hit_rank": 8,
+      "top5_recs": [
+        "資材人員",
+        "生管／助理",
+        "神秘客",
+        "倉管／物料管理員",
+        "倉儲物流人員"
+      ]
+    },
+    {
+      "title": "北投-育苗W薇閣資優教室-國高中導師",
+      "hit_leaf": "升學補習班老師",
+      "hit_rank": 10,
+      "top5_recs": [
+        "國中教師",
+        "高中職教師",
+        "調酒師／吧台人員",
+        "冷熱飲調製人員",
+        "國小教師"
+      ]
+    },
+    {
+      "title": "早安胖丸  儲備幹部",
+      "hit_leaf": "儲備幹部",
+      "hit_rank": 7,
+      "top5_recs": [
+        "調酒師／吧台人員",
+        "品管／品保主管",
+        "店長／門市管理人員",
+        "門市／店員／專櫃人員",
+        "冷熱飲調製人員"
+      ]
+    },
+    {
+      "title": "小豬很忙蔬果滷味-儲備幹部(逢甲店)",
+      "hit_leaf": "儲備幹部",
+      "hit_rank": 8,
+      "top5_recs": [
+        "調酒師／吧台人員",
+        "品管／品保主管",
+        "門市／店員／專櫃人員",
+        "店長／門市管理人員",
+        "售票／收銀人員"
+      ]
+    },
+    {
+      "title": "引擎半技師",
+      "hit_leaf": "技術人員",
+      "hit_rank": 9,
+      "top5_recs": [
+        "放電加工技術人員",
+        "CNC車床人員",
+        "電機技師／工程師",
+        "汽車檢驗員",
+        "電機設備裝配員"
+      ]
+    },
+    {
+      "title": "現場儲備幹部",
+      "hit_leaf": "儲備幹部",
+      "hit_rank": 8,
+      "top5_recs": [
+        "資材主管",
+        "智慧製程工程師",
+        "資材人員",
+        "生管主管",
+        "PLC／自動控制工程師"
+      ]
+    },
+    {
+      "title": "中班計時人員(工讀兼職計時皆可)",
+      "hit_leaf": "工讀生",
+      "hit_rank": 10,
+      "top5_recs": [
+        "冷熱飲調製人員",
+        "飯店／旅館服務人員",
+        "調酒師／吧台人員",
+        "門市／店員／專櫃人員",
+        "外送人員"
+      ]
+    },
+    {
+      "title": "官東燒肉食堂-外場計時人員",
+      "hit_leaf": "餐廚助手",
+      "hit_rank": 7,
+      "top5_recs": [
+        "調酒師／吧台人員",
+        "冷熱飲調製人員",
+        "侍酒師",
+        "飯店／旅館服務人員",
+        "門市／店員／專櫃人員"
+      ]
+    },
+    {
+      "title": "🔥助理(休紅字👍彈性上下班👍薪32000~38000)",
+      "hit_leaf": "財務／會計助理",
+      "hit_rank": 7,
+      "top5_recs": [
+        "採購助理",
+        "電腦操作／資料輸入",
+        "資訊助理人員",
+        "行銷企劃助理",
+        "人事助理"
+      ]
+    },
+    {
+      "title": "編輯人員(瑞穗有機生態農場)",
+      "hit_leaf": "電腦操作／資料輸入",
+      "hit_rank": 10,
+      "top5_recs": [
+        "資材人員",
+        "生管／助理",
+        "影片製作技術人員",
+        "大圖輸出後製人員",
+        "資料庫管理人員"
+      ]
+    },
+    {
+      "title": "(鳳山)法拍撤回業務專員",
+      "hit_leaf": "國內業務人員",
+      "hit_rank": 6,
+      "top5_recs": [
+        "國外業務人員",
+        "廣告AE",
+        "國貿人員",
+        "報關人員",
+        "空運／船務"
+      ]
+    },
+    {
+      "title": "✿信用卡電催專員(純內勤且保障底薪,高獎金,誠徵正職人員)",
+      "hit_leaf": "帳款催收人員",
+      "hit_rank": 9,
+      "top5_recs": [
+        "稽核人員",
+        "稽核主管",
+        "客服人員",
+        "電話客服人員",
+        "核保／保險內勤人員"
+      ]
+    },
+    {
+      "title": "*葡萄酒美工企劃人員",
+      "hit_leaf": "活動企劃人員",
+      "hit_rank": 6,
+      "top5_recs": [
+        "門市／店員／專櫃人員",
+        "調酒師／吧台人員",
+        "冷熱飲調製人員",
+        "侍酒師",
+        "售票／收銀人員"
+      ]
+    },
+    {
+      "title": "【無經驗可】企劃助理",
+      "hit_leaf": "行銷企劃助理",
+      "hit_rank": 8,
+      "top5_recs": [
+        "秘書",
+        "採購助理",
+        "國貿助理",
+        "業務助理",
+        "電腦操作／資料輸入"
+      ]
+    },
+    {
+      "title": "【台北市信義區】電信業-客戶開發暨維繫處管理師(行銷/分析/營運)",
+      "hit_leaf": "產品管理師",
+      "hit_rank": 6,
+      "top5_recs": [
+        "客服主管",
+        "神秘客",
+        "國內業務人員",
+        "通路開發人員",
+        "資料庫管理人員"
+      ]
+    },
+    {
+      "title": "系統維護工程師",
+      "hit_leaf": "軟體工程師",
+      "hit_rank": 6,
+      "top5_recs": [
+        "IC設計工程師",
+        "電子設備維修人員",
+        "DevOps工程師",
+        "冷凍空調技術人員／安裝員",
+        "土木工程師"
+      ]
+    },
+    {
+      "title": "楠梓徵正職技術員/封裝測試大廠/固定班/留任獎金10000元",
+      "hit_leaf": "技術人員",
+      "hit_rank": 7,
+      "top5_recs": [
+        "汽車檢驗員",
+        "模具技術人員",
+        "電機設備裝配員",
+        "檢驗人員",
+        "電機技師／工程師"
+      ]
+    },
+    {
+      "title": "太陽能板巡視檢查人員",
+      "hit_leaf": "電信／配線繪圖",
+      "hit_rank": 7,
+      "top5_recs": [
+        "電子設備維修人員",
+        "神秘客",
+        "燈光技術人員",
+        "電器產品維修人員",
+        "水電工程師"
+      ]
+    },
+    {
+      "title": "工地主任(龍潭)",
+      "hit_leaf": "水電工程師",
+      "hit_rank": 6,
+      "top5_recs": [
+        "金屬建材架構人員",
+        "土木工程師",
+        "營建主管",
+        "工地主管／主任",
+        "結構技師／工程師"
+      ]
+    },
+    {
+      "title": "生產儲備幹部(大埔美廠)",
+      "hit_leaf": "技術人員",
+      "hit_rank": 9,
+      "top5_recs": [
+        "生管主管",
+        "智慧製程工程師",
+        "電機技師／工程師",
+        "電機設備裝配員",
+        "模具技術人員"
+      ]
+    },
+    {
+      "title": "倉管行政人員",
+      "hit_leaf": "行政人員",
+      "hit_rank": 8,
+      "top5_recs": [
+        "資材人員",
+        "文字客服",
+        "國貿人員",
+        "生管／助理",
+        "資料庫管理人員"
+      ]
+    },
+    {
+      "title": "現場機械組立《儲備幹部》",
+      "hit_leaf": "機械加工技術人員",
+      "hit_rank": 6,
+      "top5_recs": [
+        "電機設備裝配員",
+        "電機技師／工程師",
+        "電機工程主管",
+        "生管主管",
+        "模具技術人員"
+      ]
+    },
+    {
+      "title": "台糖-柳營尖山埤渡假村房務主任",
+      "hit_leaf": "飯店／旅館主管",
+      "hit_rank": 9,
+      "top5_recs": [
+        "調酒師／吧台人員",
+        "品管／品保主管",
+        "侍酒師",
+        "儲備幹部",
+        "餐飲主管"
+      ]
+    },
+    {
+      "title": "旅館訂房人員(孰悉OTA)",
+      "hit_leaf": "飯店／旅館櫃檯人員",
+      "hit_rank": 6,
+      "top5_recs": [
+        "票務人員／旅行社人員",
+        "神秘客",
+        "飯店／旅館服務人員",
+        "門市／店員／專櫃人員",
+        "房務人員"
+      ]
+    },
+    {
+      "title": "280 東勢中正餐廳 服務員(兼職)",
+      "hit_leaf": "餐飲服務人員",
+      "hit_rank": 10,
+      "top5_recs": [
+        "調酒師／吧台人員",
+        "侍酒師",
+        "飯店／旅館服務人員",
+        "冷熱飲調製人員",
+        "門市／店員／專櫃人員"
+      ]
+    },
+    {
+      "title": "236 田中中正餐廳 服務員(兼職)",
+      "hit_leaf": "餐飲服務人員",
+      "hit_rank": 10,
+      "top5_recs": [
+        "調酒師／吧台人員",
+        "飯店／旅館服務人員",
+        "侍酒師",
+        "冷熱飲調製人員",
+        "門市／店員／專櫃人員"
+      ]
+    },
+    {
+      "title": "勝博殿外場假日計時服務員[台南西門店]",
+      "hit_leaf": "餐飲服務人員",
+      "hit_rank": 7,
+      "top5_recs": [
+        "調酒師／吧台人員",
+        "冷熱飲調製人員",
+        "侍酒師",
+        "飯店／旅館服務人員",
+        "洗碗人員"
+      ]
+    },
+    {
+      "title": "外場麵包台人員",
+      "hit_leaf": "餐飲服務人員",
+      "hit_rank": 9,
+      "top5_recs": [
+        "調酒師／吧台人員",
+        "冷熱飲調製人員",
+        "侍酒師",
+        "門市／店員／專櫃人員",
+        "飯店／旅館服務人員"
+      ]
+    },
+    {
+      "title": "月薪【38,000~43,000】欣欣百貨店【涮乃葉】日式火鍋 正職人員",
+      "hit_leaf": "餐飲服務人員",
+      "hit_rank": 6,
+      "top5_recs": [
+        "調酒師／吧台人員",
+        "日式廚師",
+        "侍酒師",
+        "冷熱飲調製人員",
+        "門市／店員／專櫃人員"
+      ]
+    },
+    {
+      "title": "月薪【38,000~43,000】統一時代市府店【涮乃葉】-營運正職人員",
+      "hit_leaf": "餐飲服務人員",
+      "hit_rank": 7,
+      "top5_recs": [
+        "西式廚師",
+        "調酒師／吧台人員",
+        "侍酒師",
+        "門市／店員／專櫃人員",
+        "冷熱飲調製人員"
+      ]
+    },
+    {
+      "title": "月薪【38,000~43,000】板橋遠百店【涮乃葉】日式火鍋 -營運正職人員",
+      "hit_leaf": "餐飲服務人員",
+      "hit_rank": 10,
+      "top5_recs": [
+        "調酒師／吧台人員",
+        "侍酒師",
+        "門市／店員／專櫃人員",
+        "餐飲主管",
+        "日式廚師"
+      ]
+    },
+    {
+      "title": "月薪【38,000~43,000】汐止遠雄店【涮乃葉】日式火鍋-營運正職人員",
+      "hit_leaf": "餐飲服務人員",
+      "hit_rank": 10,
+      "top5_recs": [
+        "調酒師／吧台人員",
+        "侍酒師",
+        "門市／店員／專櫃人員",
+        "餐飲主管",
+        "日式廚師"
+      ]
+    },
+    {
+      "title": "46 新莊中正餐廳 服務員(兼職)",
+      "hit_leaf": "餐飲服務人員",
+      "hit_rank": 10,
+      "top5_recs": [
+        "調酒師／吧台人員",
+        "侍酒師",
+        "飯店／旅館服務人員",
+        "冷熱飲調製人員",
+        "門市／店員／專櫃人員"
+      ]
+    },
+    {
+      "title": "365 三重三和餐廳 服務員(兼職)",
+      "hit_leaf": "餐飲服務人員",
+      "hit_rank": 10,
+      "top5_recs": [
+        "調酒師／吧台人員",
+        "飯店／旅館服務人員",
+        "侍酒師",
+        "冷熱飲調製人員",
+        "門市／店員／專櫃人員"
+      ]
+    },
+    {
+      "title": "◆歡迎暑假打工族◆大寮上市櫃科技公司◆徵技術員",
+      "hit_leaf": "機械加工技術人員",
+      "hit_rank": 10,
+      "top5_recs": [
+        "電機技師／工程師",
+        "電機設備裝配員",
+        "技術人員",
+        "水電工",
+        "智慧製程工程師"
+      ]
+    },
+    {
+      "title": "管理部主管",
+      "hit_leaf": "經營管理主管",
+      "hit_rank": 7,
+      "top5_recs": [
+        "資材主管",
+        "店長／門市管理人員",
+        "儲備幹部",
+        "品管／品保主管",
+        "電機工程主管"
+      ]
+    },
+    {
+      "title": "456 台北台大餐廳 服務員(兼職)",
+      "hit_leaf": "餐飲服務人員",
+      "hit_rank": 10,
+      "top5_recs": [
+        "調酒師／吧台人員",
+        "飯店／旅館服務人員",
+        "侍酒師",
+        "冷熱飲調製人員",
+        "門市／店員／專櫃人員"
+      ]
+    },
+    {
+      "title": "晚班工讀15-23時薪$196起薪",
+      "hit_leaf": "售票／收銀人員",
+      "hit_rank": 10,
+      "top5_recs": [
+        "生鮮處理人員",
+        "冷熱飲調製人員",
+        "倉管／物料管理員",
+        "外務／快遞／送貨",
+        "倉儲物流人員"
+      ]
+    },
+    {
+      "title": "產品推廣人員/助理(台中)",
+      "hit_leaf": "活動企劃人員",
+      "hit_rank": 6,
+      "top5_recs": [
+        "國貿助理",
+        "行銷企劃助理",
+        "採購助理",
+        "秘書",
+        "業務助理"
+      ]
+    },
+    {
+      "title": "營業專員(籌備幹部)",
+      "hit_leaf": "國內業務人員",
+      "hit_rank": 8,
+      "top5_recs": [
+        "儲備幹部",
+        "客服主管",
+        "國內業務主管",
+        "國外業務主管",
+        "資材主管"
+      ]
+    },
+    {
+      "title": "業務司機(月薪40000元起，電洽0919-089168)",
+      "hit_leaf": "國內業務人員",
+      "hit_rank": 6,
+      "top5_recs": [
+        "國外業務人員",
+        "國貿人員",
+        "報關人員",
+        "廣告AE",
+        "空運／船務"
+      ]
+    },
+    {
+      "title": "豬烤官2.0 虎尾店誠徵 外場計時人員",
+      "hit_leaf": "餐廚助手",
+      "hit_rank": 7,
+      "top5_recs": [
+        "調酒師／吧台人員",
+        "冷熱飲調製人員",
+        "侍酒師",
+        "門市／店員／專櫃人員",
+        "飯店／旅館服務人員"
+      ]
+    },
+    {
+      "title": "行政／出貨助理（固定休六日）",
+      "hit_leaf": "行政人員",
+      "hit_rank": 7,
+      "top5_recs": [
+        "採購助理",
+        "秘書",
+        "國貿助理",
+        "電腦操作／資料輸入",
+        "業務助理"
+      ]
+    },
+    {
+      "title": "宴會訂席主管  業務經理職缺(新店館)",
+      "hit_leaf": "國內業務人員",
+      "hit_rank": 6,
+      "top5_recs": [
+        "國內業務主管",
+        "國外業務主管",
+        "儲備幹部",
+        "客服主管",
+        "產品企劃主管"
+      ]
+    },
+    {
+      "title": "兼職電銷工讀(新北S1150521004)",
+      "hit_leaf": "業務助理",
+      "hit_rank": 6,
+      "top5_recs": [
+        "行銷企劃人員",
+        "廣告設計",
+        "門市／店員／專櫃人員",
+        "活動企劃人員",
+        "廣告AE"
+      ]
+    },
+    {
+      "title": "行政門市倉管 (無經驗可) (✨有年終、績效獎金及抽成)",
+      "hit_leaf": "行政人員",
+      "hit_rank": 6,
+      "top5_recs": [
+        "資材人員",
+        "電腦操作／資料輸入",
+        "秘書",
+        "採購助理",
+        "業務助理"
+      ]
+    },
+    {
+      "title": "資訊服務顧問-台中",
+      "hit_leaf": "軟體相關管理師",
+      "hit_rank": 6,
+      "top5_recs": [
+        "神秘客",
+        "電話客服人員",
+        "平面設計",
+        "客服人員",
+        "資料庫管理人員"
+      ]
+    },
+    {
+      "title": "系統工程師-高雄",
+      "hit_leaf": "嵌入式工程師",
+      "hit_rank": 7,
+      "top5_recs": [
+        "軟體工程師",
+        "IC佈局工程師",
+        "水電工程師",
+        "PLC／自動控制工程師",
+        "IC設計工程師"
+      ]
+    },
+    {
+      "title": "【台南日商】半導體設備工程師(享年終+年中)",
+      "hit_leaf": "半導體設備工程師",
+      "hit_rank": 7,
+      "top5_recs": [
+        "數位IC設計工程師",
+        "RF通訊工程師",
+        "BIOS工程師",
+        "IC佈局工程師",
+        "測試工程師"
+      ]
+    },
+    {
+      "title": "台中 中科 ⭐半導體裝機工程師(享年終+年中)須出差",
+      "hit_leaf": "電機設備裝配員",
+      "hit_rank": 6,
+      "top5_recs": [
+        "BIOS工程師",
+        "工業設計",
+        "PLC／自動控制工程師",
+        "設備工程主管",
+        "電腦組裝／維修"
+      ]
+    },
+    {
+      "title": "機電工程師",
+      "hit_leaf": "水電工程師",
+      "hit_rank": 8,
+      "top5_recs": [
+        "智慧製程工程師",
+        "PLC／自動控制工程師",
+        "電機技師／工程師",
+        "電機設備裝配員",
+        "水電工"
+      ]
+    },
+    {
+      "title": "中區(雲林)機械維修工程師",
+      "hit_leaf": "機電技師／工程師",
+      "hit_rank": 8,
+      "top5_recs": [
+        "PLC／自動控制工程師",
+        "電機設備裝配員",
+        "電機技師／工程師",
+        "機構工程師",
+        "生產設備工程師"
+      ]
+    },
+    {
+      "title": "助理工程師",
+      "hit_leaf": "機械設計／繪圖人員",
+      "hit_rank": 9,
+      "top5_recs": [
+        "軟體助理工程師",
+        "軟體工程師",
+        "系統工程師",
+        "韌體工程師",
+        "光電／半導體工程助理"
+      ]
+    },
+    {
+      "title": "技術服務課 主管",
+      "hit_leaf": "機電技師／工程師",
+      "hit_rank": 10,
+      "top5_recs": [
+        "專案管理主管",
+        "設備工程主管",
+        "技術支援主管",
+        "電子設備維修人員",
+        "CAD／CAM工程師"
+      ]
+    },
+    {
+      "title": "風場運維人員",
+      "hit_leaf": "電機技師／工程師",
+      "hit_rank": 7,
+      "top5_recs": [
+        "理貨人員",
+        "倉管／物料管理員",
+        "資材人員",
+        "倉儲物流人員",
+        "服裝設計"
+      ]
+    },
+    {
+      "title": "工程師",
+      "hit_leaf": "電機設備裝配員",
+      "hit_rank": 8,
+      "top5_recs": [
+        "水電工程師",
+        "PLC／自動控制工程師",
+        "結構技師／工程師",
+        "土木工程師",
+        "電機工程主管"
+      ]
+    },
+    {
+      "title": "【中山區】商辦機電副理/機電組長/水電設備維護技師(日班見紅休)",
+      "hit_leaf": "機電技師／工程師",
+      "hit_rank": 6,
+      "top5_recs": [
+        "電子設備維修人員",
+        "冷凍空調技術人員／安裝員",
+        "電機維修人員",
+        "PLC／自動控制工程師",
+        "機械加工技術人員"
+      ]
+    },
+    {
+      "title": "夜班機電技術員(捷運板橋站-無經驗可))",
+      "hit_leaf": "水電工",
+      "hit_rank": 6,
+      "top5_recs": [
+        "機械加工技術人員",
+        "電機設備裝配員",
+        "電機技師／工程師",
+        "技術人員",
+        "電子設備維修人員"
+      ]
+    },
+    {
+      "title": "生產儲備幹部",
+      "hit_leaf": "技術人員",
+      "hit_rank": 10,
+      "top5_recs": [
+        "智慧製程工程師",
+        "生管主管",
+        "電機技師／工程師",
+        "電機設備裝配員",
+        "模具技術人員"
+      ]
+    },
+    {
+      "title": "繼光香香雞【京站門市】儲備副店薪資上看43600元!月休8-10天近捷運站",
+      "hit_leaf": "餐飲主管",
+      "hit_rank": 7,
+      "top5_recs": [
+        "調酒師／吧台人員",
+        "冷熱飲調製人員",
+        "門市／店員／專櫃人員",
+        "侍酒師",
+        "飯店／旅館服務人員"
+      ]
+    },
+    {
+      "title": "CNC車床人員",
+      "hit_leaf": "CNC車床人員",
+      "hit_rank": 6,
+      "top5_recs": [
+        "機械工程師",
+        "機械設計／繪圖人員",
+        "生產技術／製程工程師",
+        "模具技術人員",
+        "金屬模具技術人員"
+      ]
+    },
+    {
+      "title": "模具師傅（可獨立作業）",
+      "hit_leaf": "模具技術人員",
+      "hit_rank": 7,
+      "top5_recs": [
+        "CNC車床人員",
+        "電機技師／工程師",
+        "水電工",
+        "電機設備裝配員",
+        "機械加工技術人員"
+      ]
+    },
+    {
+      "title": "冷卻水塔維修學徒(薪40000元起)",
+      "hit_leaf": "學徒",
+      "hit_rank": 8,
+      "top5_recs": [
+        "CNC車床人員",
+        "水電工",
+        "汽車檢驗員",
+        "電機技師／工程師",
+        "電機設備裝配員"
+      ]
+    },
+    {
+      "title": "防水學徒.",
+      "hit_leaf": "泥水工相關人員",
+      "hit_rank": 10,
+      "top5_recs": [
+        "水電工",
+        "水電工程師",
+        "砌磚工及砌石工",
+        "CNC車床人員",
+        "電機設備裝配員"
+      ]
+    },
+    {
+      "title": "天然氣配管–學徒",
+      "hit_leaf": "學徒",
+      "hit_rank": 6,
+      "top5_recs": [
+        "天然瓦斯配管技師/助理",
+        "CNC車床人員",
+        "機車維修人員",
+        "電機技師／工程師",
+        "電機設備裝配員"
+      ]
+    },
+    {
+      "title": "弱電相關工程人員(半技工/學徒可)",
+      "hit_leaf": "弱電工程師",
+      "hit_rank": 6,
+      "top5_recs": [
+        "水電工程師",
+        "機電技師／工程師",
+        "電子設備維修人員",
+        "電信／配線繪圖",
+        "IC佈局工程師"
+      ]
+    },
+    {
+      "title": "鐵工技術人員/學徒、半技師、技師(有無經驗皆可)",
+      "hit_leaf": "技術人員",
+      "hit_rank": 9,
+      "top5_recs": [
+        "CNC車床人員",
+        "壓鑄模具技術人員",
+        "機車維修人員",
+        "電機技師／工程師",
+        "放電加工技術人員"
+      ]
+    },
+    {
+      "title": "病媒防治技術員（夜班）",
+      "hit_leaf": "技術人員",
+      "hit_rank": 6,
+      "top5_recs": [
+        "水產養殖人員",
+        "電子設備維修人員",
+        "電器產品維修人員",
+        "電機維修人員",
+        "燈光技術人員"
+      ]
+    },
+    {
+      "title": "病媒防治技術員",
+      "hit_leaf": "技術人員",
+      "hit_rank": 8,
+      "top5_recs": [
+        "水產養殖人員",
+        "維修技術人員",
+        "電子設備維修人員",
+        "電器產品維修人員",
+        "電機維修人員"
+      ]
+    },
+    {
+      "title": "【台南】病媒防治技術員",
+      "hit_leaf": "技術人員",
+      "hit_rank": 10,
+      "top5_recs": [
+        "水產養殖人員",
+        "電子設備維修人員",
+        "維修技術人員",
+        "電器產品維修人員",
+        "雷射技術操作員"
+      ]
+    },
+    {
+      "title": "鈑金折床技術人員",
+      "hit_leaf": "金屬模具技術人員",
+      "hit_rank": 7,
+      "top5_recs": [
+        "技術人員",
+        "電機設備裝配員",
+        "電機技師／工程師",
+        "雷射技術操作員",
+        "模具技術人員"
+      ]
+    },
+    {
+      "title": "技術學徒.",
+      "hit_leaf": "技術人員",
+      "hit_rank": 7,
+      "top5_recs": [
+        "CNC車床人員",
+        "機車維修人員",
+        "壓鑄模具技術人員",
+        "雷射技術操作員",
+        "汽車檢驗員"
+      ]
+    },
+    {
+      "title": "配管配線技術人員/學徒/半技工",
+      "hit_leaf": "電機技師／工程師",
+      "hit_rank": 8,
+      "top5_recs": [
+        "CNC車床人員",
+        "機車維修人員",
+        "機電技師／工程師",
+        "放電加工技術人員",
+        "壓鑄模具技術人員"
+      ]
+    },
+    {
+      "title": "高抽成分紅；有經驗獎金60％；「成交獎金50％當月業績10萬領5萬，業績越多領越多」到職第二年調60％-工業土地、廠房、商辦專業顧問 ‧ 退休者、無經驗可、提供專業培訓課程",
+      "hit_leaf": "國內業務人員",
+      "hit_rank": 9,
+      "top5_recs": [
+        "客戶成功經理",
+        "技術人員",
+        "國外業務人員",
+        "PLC／自動控制工程師",
+        "化學／化工工程師"
+      ]
+    },
+    {
+      "title": "魔菇部落-導覽銷售專員",
+      "hit_leaf": "國內業務人員",
+      "hit_rank": 8,
+      "top5_recs": [
+        "產品企劃主管",
+        "國內業務主管",
+        "儲備幹部",
+        "廣告／行銷企劃主管",
+        "專案業務主管"
+      ]
+    },
+    {
+      "title": "電商網拍行銷人員",
+      "hit_leaf": "網站企劃人員",
+      "hit_rank": 8,
+      "top5_recs": [
+        "行銷企劃人員",
+        "電商行銷",
+        "廣告設計",
+        "廣告AE",
+        "商化人員"
+      ]
+    },
+    {
+      "title": "營業部-營運管理副組長(歡迎無百貨經驗人才)",
+      "hit_leaf": "儲備幹部",
+      "hit_rank": 6,
+      "top5_recs": [
+        "資材主管",
+        "資材人員",
+        "運輸物流類主管",
+        "客服主管",
+        "國內業務主管"
+      ]
+    },
+    {
+      "title": "彰化文書專員月薪 3.2萬-4.9萬",
+      "hit_leaf": "檔案資料管理人員",
+      "hit_rank": 6,
+      "top5_recs": [
+        "電腦操作／資料輸入",
+        "行政人員",
+        "秘書",
+        "財務／會計助理",
+        "排版人員"
+      ]
+    },
+    {
+      "title": "台南文書專員月薪 3.2萬-4.9萬",
+      "hit_leaf": "檔案資料管理人員",
+      "hit_rank": 7,
+      "top5_recs": [
+        "電腦操作／資料輸入",
+        "行政人員",
+        "秘書",
+        "排版人員",
+        "財務／會計助理"
+      ]
+    },
+    {
+      "title": "辦公室小幫手 月薪 29500元起",
+      "hit_leaf": "業務助理",
+      "hit_rank": 6,
+      "top5_recs": [
+        "行政人員",
+        "電腦操作／資料輸入",
+        "秘書",
+        "生管／助理",
+        "採購助理"
+      ]
+    },
+    {
+      "title": "~擴廠徵才~廠務助理",
+      "hit_leaf": "採購助理",
+      "hit_rank": 9,
+      "top5_recs": [
+        "生管／助理",
+        "廠務助理",
+        "保稅人員",
+        "軟體助理工程師",
+        "工程助理"
+      ]
+    },
+    {
+      "title": "內業文書處理",
+      "hit_leaf": "業務助理",
+      "hit_rank": 10,
+      "top5_recs": [
+        "內勤業務",
+        "廣告文案企劃人員",
+        "客服人員",
+        "電話客服人員",
+        "票務人員／旅行社人員"
+      ]
+    },
+    {
+      "title": "資材助理",
+      "hit_leaf": "業務助理",
+      "hit_rank": 8,
+      "top5_recs": [
+        "電腦操作／資料輸入",
+        "秘書",
+        "採購助理",
+        "行政人員",
+        "財務／會計助理"
+      ]
+    },
+    {
+      "title": "56 台北林森二餐廳 服務員(兼職)",
+      "hit_leaf": "餐飲服務人員",
+      "hit_rank": 10,
+      "top5_recs": [
+        "飯店／旅館服務人員",
+        "調酒師／吧台人員",
+        "侍酒師",
+        "冷熱飲調製人員",
+        "門市／店員／專櫃人員"
+      ]
+    },
+    {
+      "title": "249 台北北安餐廳 服務員(兼職)",
+      "hit_leaf": "餐飲服務人員",
+      "hit_rank": 9,
+      "top5_recs": [
+        "飯店／旅館服務人員",
+        "調酒師／吧台人員",
+        "侍酒師",
+        "冷熱飲調製人員",
+        "門市／店員／專櫃人員"
+      ]
+    },
+    {
+      "title": "149 林口中山餐廳 服務員(兼職)",
+      "hit_leaf": "餐飲服務人員",
+      "hit_rank": 10,
+      "top5_recs": [
+        "飯店／旅館服務人員",
+        "調酒師／吧台人員",
+        "侍酒師",
+        "冷熱飲調製人員",
+        "門市／店員／專櫃人員"
+      ]
+    },
+    {
+      "title": "269 淡水中山餐廳 服務員(兼職)",
+      "hit_leaf": "餐飲服務人員",
+      "hit_rank": 10,
+      "top5_recs": [
+        "飯店／旅館服務人員",
+        "調酒師／吧台人員",
+        "侍酒師",
+        "冷熱飲調製人員",
+        "門市／店員／專櫃人員"
+      ]
+    },
+    {
+      "title": "219 汐止大同餐廳 服務員(兼職)",
+      "hit_leaf": "餐飲服務人員",
+      "hit_rank": 10,
+      "top5_recs": [
+        "調酒師／吧台人員",
+        "飯店／旅館服務人員",
+        "侍酒師",
+        "冷熱飲調製人員",
+        "門市／店員／專櫃人員"
+      ]
+    },
+    {
+      "title": "6 台北光復餐廳 服務員(兼職)",
+      "hit_leaf": "餐飲服務人員",
+      "hit_rank": 10,
+      "top5_recs": [
+        "飯店／旅館服務人員",
+        "調酒師／吧台人員",
+        "侍酒師",
+        "冷熱飲調製人員",
+        "門市／店員／專櫃人員"
+      ]
+    },
+    {
+      "title": "150 台北民生二餐廳 服務員(兼職)",
+      "hit_leaf": "餐飲服務人員",
+      "hit_rank": 10,
+      "top5_recs": [
+        "調酒師／吧台人員",
+        "飯店／旅館服務人員",
+        "侍酒師",
+        "冷熱飲調製人員",
+        "門市／店員／專櫃人員"
+      ]
+    },
+    {
+      "title": "133 新店北新二餐廳 服務員(兼職)",
+      "hit_leaf": "餐飲服務人員",
+      "hit_rank": 10,
+      "top5_recs": [
+        "調酒師／吧台人員",
+        "飯店／旅館服務人員",
+        "侍酒師",
+        "冷熱飲調製人員",
+        "門市／店員／專櫃人員"
+      ]
+    },
+    {
+      "title": "356 永和永安餐廳 服務員(兼職)",
+      "hit_leaf": "餐飲服務人員",
+      "hit_rank": 9,
+      "top5_recs": [
+        "飯店／旅館服務人員",
+        "侍酒師",
+        "調酒師／吧台人員",
+        "冷熱飲調製人員",
+        "門市／店員／專櫃人員"
+      ]
+    },
+    {
+      "title": "428 三重愛買餐廳 服務員(兼職)",
+      "hit_leaf": "餐飲服務人員",
+      "hit_rank": 9,
+      "top5_recs": [
+        "調酒師／吧台人員",
+        "侍酒師",
+        "飯店／旅館服務人員",
+        "冷熱飲調製人員",
+        "門市／店員／專櫃人員"
+      ]
+    },
+    {
+      "title": "客服人員(福利優)",
+      "hit_leaf": "電話客服人員",
+      "hit_rank": 6,
+      "top5_recs": [
+        "資材人員",
+        "生管／助理",
+        "文字客服",
+        "客服主管",
+        "國貿人員"
+      ]
+    },
+    {
+      "title": "(日班)網路遊戲幣商客服",
+      "hit_leaf": "電話客服人員",
+      "hit_rank": 10,
+      "top5_recs": [
+        "國貿人員",
+        "報關人員",
+        "文字客服",
+        "國外業務人員",
+        "空運／船務"
+      ]
+    },
+    {
+      "title": "「無經驗可、有培訓」團隊派駐院區個人電腦助理工程師(臺北院區)-【JD-00000065】",
+      "hit_leaf": "資訊助理人員",
+      "hit_rank": 8,
+      "top5_recs": [
+        "室內設計助理",
+        "冷凍空調繪圖／設計",
+        "設計助理",
+        "軟體助理工程師",
+        "機械設計／繪圖人員"
+      ]
+    },
+    {
+      "title": "製圖工程師(請電洽約面試~）新鮮人可~",
+      "hit_leaf": "機構工程師",
+      "hit_rank": 6,
+      "top5_recs": [
+        "工業設計",
+        "PLC／自動控制工程師",
+        "智慧製程工程師",
+        "電機技師／工程師",
+        "CNC程式設計師"
+      ]
+    },
+    {
+      "title": "機電消防 全職/點工/兼職 專業工務/保養技術人員",
+      "hit_leaf": "水電工",
+      "hit_rank": 9,
+      "top5_recs": [
+        "電子設備維修人員",
+        "水電工程師",
+        "PLC／自動控制工程師",
+        "消防專業人員",
+        "機械加工技術人員"
+      ]
+    },
+    {
+      "title": "🚀【運營管理人員｜月薪45,000元起｜桃園中壢】🚀 ✨ 品牌行銷 × 直播數據分析 × 市場策略規劃 ✨",
+      "hit_leaf": "行銷企劃人員",
+      "hit_rank": 7,
+      "top5_recs": [
+        "產品經理",
+        "產品企劃主管",
+        "醫藥業務代表",
+        "神秘客",
+        "國內業務主管"
+      ]
+    },
+    {
+      "title": "網路行銷小編",
+      "hit_leaf": "網站企劃人員",
+      "hit_rank": 6,
+      "top5_recs": [
+        "行銷企劃人員",
+        "廣告／行銷企劃主管",
+        "產品企劃主管",
+        "國內業務主管",
+        "廣告AE"
+      ]
+    },
+    {
+      "title": "電子工程助理",
+      "hit_leaf": "軟體助理工程師",
+      "hit_rank": 6,
+      "top5_recs": [
+        "冷凍空調繪圖／設計",
+        "室內設計助理",
+        "機械設計／繪圖人員",
+        "工程助理",
+        "設計助理"
+      ]
+    },
+    {
+      "title": "(研發部系統發展組)Project Assistant",
+      "hit_leaf": "軟體助理工程師",
+      "hit_rank": 6,
+      "top5_recs": [
+        "機械設計／繪圖人員",
+        "冷凍空調繪圖／設計",
+        "設計助理",
+        "工程助理",
+        "CAD／CAM工程師"
+      ]
+    },
+    {
+      "title": "R2: AXI 系統軟體研發工程師 -243",
+      "hit_leaf": "軟體工程師",
+      "hit_rank": 7,
+      "top5_recs": [
+        "韌體工程師",
+        "軟／韌體測試工程師",
+        "嵌入式工程師",
+        "IC設計工程師",
+        "RF通訊工程師"
+      ]
+    },
+    {
+      "title": "建築機電設計師",
+      "hit_leaf": "建築繪圖／設計",
+      "hit_rank": 6,
+      "top5_recs": [
+        "水電工程師",
+        "PLC／自動控制工程師",
+        "工業設計",
+        "土木工程師",
+        "機構工程師"
+      ]
+    },
+    {
+      "title": "CNC電腦彈簧機操作師傅",
+      "hit_leaf": "機械操作人員",
+      "hit_rank": 10,
+      "top5_recs": [
+        "CNC車床人員",
+        "水電工",
+        "雷射技術操作員",
+        "鍋爐相關人員",
+        "電機技師／工程師"
+      ]
+    },
+    {
+      "title": "廠務人員",
+      "hit_leaf": "技術人員",
+      "hit_rank": 10,
+      "top5_recs": [
+        "廠務助理",
+        "領班／管理幹部",
+        "工廠高階主管",
+        "鍋爐相關人員",
+        "CNC車床人員"
+      ]
+    },
+    {
+      "title": "弱電工程人員(學徒.半技.師傅)",
+      "hit_leaf": "電子設備維修人員",
+      "hit_rank": 7,
+      "top5_recs": [
+        "水電工程師",
+        "機電技師／工程師",
+        "IC佈局工程師",
+        "BIOS工程師",
+        "冷凍空調技術人員／安裝員"
+      ]
+    },
+    {
+      "title": "機電工程人員(無經驗可，薪40K)",
+      "hit_leaf": "水電工",
+      "hit_rank": 6,
+      "top5_recs": [
+        "PLC／自動控制工程師",
+        "電機設備裝配員",
+        "電機技師／工程師",
+        "機構工程師",
+        "工業設計"
+      ]
+    },
+    {
+      "title": "🔥【CNC銑床學徒｜月薪33,000元起｜無經驗可｜週休二日】🔥 ✨ 有人帶你學 × 技術入門首選 × 穩定日班 ✨",
+      "hit_leaf": "CNC銑床人員",
+      "hit_rank": 6,
+      "top5_recs": [
+        "汽車檢驗員",
+        "CNC車床人員",
+        "壓鑄模具技術人員",
+        "傳統銑床人員",
+        "機車維修人員"
+      ]
+    },
+    {
+      "title": "組裝人員",
+      "hit_leaf": "技術人員",
+      "hit_rank": 6,
+      "top5_recs": [
+        "汽車檢驗員",
+        "電機設備裝配員",
+        "電機技師／工程師",
+        "包裝員／作業員",
+        "CNC車床人員"
+      ]
+    },
+    {
+      "title": "設備操作",
+      "hit_leaf": "技術人員",
+      "hit_rank": 6,
+      "top5_recs": [
+        "PLC／自動控制工程師",
+        "水電工",
+        "電機技師／工程師",
+        "電機設備裝配員",
+        "水電工程師"
+      ]
+    },
+    {
+      "title": "機械製造人員",
+      "hit_leaf": "機械加工技術人員",
+      "hit_rank": 7,
+      "top5_recs": [
+        "智慧製程工程師",
+        "電機技師／工程師",
+        "電機設備裝配員",
+        "PLC／自動控制工程師",
+        "水電工"
+      ]
+    },
+    {
+      "title": "生產技術人員",
+      "hit_leaf": "包裝員／作業員",
+      "hit_rank": 10,
+      "top5_recs": [
+        "電機技師／工程師",
+        "技術人員",
+        "電機設備裝配員",
+        "智慧製程工程師",
+        "模具技術人員"
+      ]
+    },
+    {
+      "title": "半技工",
+      "hit_leaf": "技術人員",
+      "hit_rank": 8,
+      "top5_recs": [
+        "智慧製程工程師",
+        "放電加工技術人員",
+        "CNC車床人員",
+        "電機技師／工程師",
+        "電機設備裝配員"
+      ]
+    },
+    {
+      "title": "《週休二日/日薪$1800~$2700起》玻璃安裝/玻璃師傅/半技師/學徒(電洽優先面試)",
+      "hit_leaf": "技術人員",
+      "hit_rank": 9,
+      "top5_recs": [
+        "機車維修人員",
+        "噴漆技術人員",
+        "CNC車床人員",
+        "電鍍相關技術人員",
+        "壓鑄模具技術人員"
+      ]
+    },
+    {
+      "title": "CNC銑床技術員(無經驗可)",
+      "hit_leaf": "技術人員",
+      "hit_rank": 7,
+      "top5_recs": [
+        "汽車檢驗員",
+        "CNC車床人員",
+        "電機設備裝配員",
+        "電機技師／工程師",
+        "塑膠押出技術人員"
+      ]
+    },
+    {
+      "title": "冷氣空調半技師&學徒",
+      "hit_leaf": "技術人員",
+      "hit_rank": 8,
+      "top5_recs": [
+        "CNC車床人員",
+        "水電工",
+        "電機設備裝配員",
+        "電機技師／工程師",
+        "機車維修人員"
+      ]
+    },
+    {
+      "title": "【林口】專業門窗/紗窗安裝工程師 (保障底薪/外勤)",
+      "hit_leaf": "裝潢工程人員",
+      "hit_rank": 10,
+      "top5_recs": [
+        "冷凍空調技術人員／安裝員",
+        "電腦組裝／維修",
+        "水電工程師",
+        "軟體專案主管",
+        "消防專業人員"
+      ]
+    },
+    {
+      "title": "自行車技師",
+      "hit_leaf": "技術人員",
+      "hit_rank": 8,
+      "top5_recs": [
+        "CNC車床人員",
+        "電機技師／工程師",
+        "電機設備裝配員",
+        "智慧製程工程師",
+        "汽車檢驗員"
+      ]
+    },
+    {
+      "title": "電子商務行政人員【週休二日】",
+      "hit_leaf": "行政人員",
+      "hit_rank": 6,
+      "top5_recs": [
+        "國貿人員",
+        "文字客服",
+        "採購助理",
+        "報關人員",
+        "秘書"
+      ]
+    },
+    {
+      "title": "網拍美編人員 網拍小幫手 商業設計",
+      "hit_leaf": "美編人員",
+      "hit_rank": 8,
+      "top5_recs": [
+        "UI/UX設計師",
+        "設計助理",
+        "廣告設計",
+        "媒體公關人員",
+        "軟體助理工程師"
+      ]
+    },
+    {
+      "title": ".企劃人員(歡迎應屆畢業生)",
+      "hit_leaf": "行銷企劃助理",
+      "hit_rank": 8,
+      "top5_recs": [
+        "活動企劃人員",
+        "傳播媒體編輯企劃",
+        "執行製作／助理",
+        "國貿人員",
+        "公關企劃人員"
+      ]
+    },
+    {
+      "title": "企劃人員(歡迎應屆畢業生)",
+      "hit_leaf": "行銷企劃助理",
+      "hit_rank": 7,
+      "top5_recs": [
+        "活動企劃人員",
+        "傳播媒體編輯企劃",
+        "執行製作／助理",
+        "公關企劃人員",
+        "國貿人員"
+      ]
+    },
+    {
+      "title": "美編企劃專員",
+      "hit_leaf": "行銷企劃助理",
+      "hit_rank": 6,
+      "top5_recs": [
+        "傳播媒體編輯企劃",
+        "活動企劃人員",
+        "秘書",
+        "行政人員",
+        "國貿人員"
+      ]
+    },
+    {
+      "title": "美編設計/平台經營/網路行銷設計",
+      "hit_leaf": "美編人員",
+      "hit_rank": 7,
+      "top5_recs": [
+        "建築繪圖／設計",
+        "廣告設計",
+        "平面設計",
+        "產品企劃主管",
+        "軟體專案主管"
+      ]
+    },
+    {
+      "title": "PC-Based/自動化軟體工程師-后科廠",
+      "hit_leaf": "軟體工程師",
+      "hit_rank": 7,
+      "top5_recs": [
+        "IC佈局工程師",
+        "BIOS工程師",
+        "工業設計",
+        "軟／韌體測試工程師",
+        "嵌入式工程師"
+      ]
+    },
+    {
+      "title": "【台中三民】資訊業務助理//最強後勤團隊 幸福企業福利優//團隊合作環境氛圍佳//稀有職缺工作單純/無經驗可/歡迎應屆畢業生",
+      "hit_leaf": "行政人員",
+      "hit_rank": 6,
+      "top5_recs": [
+        "業務助理",
+        "國貿助理",
+        "秘書",
+        "採購助理",
+        "電腦操作／資料輸入"
+      ]
+    },
+    {
+      "title": "短期報表自動化支援專員（實習生或工讀生）(台北S1150527001)",
+      "hit_leaf": "資訊助理人員",
+      "hit_rank": 6,
+      "top5_recs": [
+        "軟體助理工程師",
+        "生管／助理",
+        "設計助理",
+        "客服工程師",
+        "冷凍空調繪圖／設計"
+      ]
+    },
+    {
+      "title": "資訊人員",
+      "hit_leaf": "資料庫管理人員",
+      "hit_rank": 8,
+      "top5_recs": [
+        "資材人員",
+        "神秘客",
+        "倉管／物料管理員",
+        "倉儲物流人員",
+        "理貨人員"
+      ]
+    },
+    {
+      "title": "【台北】資訊部 系統分析師",
+      "hit_leaf": "資安工程師",
+      "hit_rank": 9,
+      "top5_recs": [
+        "資料科學工程師",
+        "系統分析師",
+        "故障分析工程師",
+        "IC設計工程師",
+        "硬體工程研發主管"
+      ]
+    },
+    {
+      "title": "DevOps 工程師",
+      "hit_leaf": "DevOps工程師",
+      "hit_rank": 7,
+      "top5_recs": [
+        "IC設計工程師",
+        "RF通訊工程師",
+        "IC佈局工程師",
+        "可靠度工程師",
+        "BIOS工程師"
+      ]
+    },
+    {
+      "title": "【大寮夜班36k~47K】🦉正職作業員~月休15天/上班時數就是比別人少🦉",
+      "hit_leaf": "包裝員／作業員",
+      "hit_rank": 9,
+      "top5_recs": [
+        "調酒師／吧台人員",
+        "冷熱飲調製人員",
+        "生鮮處理人員",
+        "門市／店員／專櫃人員",
+        "資材人員"
+      ]
+    },
+    {
+      "title": "誠徵搬家隨車人員 (日領現金，月領7萬起（業界最高），無經驗可，請電洽)",
+      "hit_leaf": "搬運人員",
+      "hit_rank": 9,
+      "top5_recs": [
+        "吊車／起重機相關操作人員",
+        "堆高機操作人員",
+        "CNC車床人員",
+        "運輸物流類主管",
+        "理貨人員"
+      ]
+    },
+    {
+      "title": "隨車助手人員(無經驗可)",
+      "hit_leaf": "小客車／小貨車司機",
+      "hit_rank": 9,
+      "top5_recs": [
+        "隨車人員",
+        "CNC車床人員",
+        "學徒",
+        "車縫人員",
+        "機械操作人員"
+      ]
+    },
+    {
+      "title": "告別式會場佈置硬體人員（無經驗可）",
+      "hit_leaf": "舞台搭設工程人員",
+      "hit_rank": 8,
+      "top5_recs": [
+        "資材人員",
+        "大圖輸出後製人員",
+        "神秘客",
+        "資料庫管理人員",
+        "國貿人員"
+      ]
+    },
+    {
+      "title": "車城光泉經銷商營業所-外務司機 薪30K起",
+      "hit_leaf": "小客車／小貨車司機",
+      "hit_rank": 6,
+      "top5_recs": [
+        "運輸物流類主管",
+        "國內業務主管",
+        "保險業務員／經紀人",
+        "國外業務人員",
+        "國外業務主管"
+      ]
+    },
+    {
+      "title": "478 三重龍門餐廳 服務員(兼職)",
+      "hit_leaf": "餐飲服務人員",
+      "hit_rank": 9,
+      "top5_recs": [
+        "調酒師／吧台人員",
+        "飯店／旅館服務人員",
+        "侍酒師",
+        "門市／店員／專櫃人員",
+        "冷熱飲調製人員"
+      ]
+    },
+    {
+      "title": "263 三重正義二餐廳 服務員(兼職)",
+      "hit_leaf": "餐飲服務人員",
+      "hit_rank": 10,
+      "top5_recs": [
+        "調酒師／吧台人員",
+        "飯店／旅館服務人員",
+        "侍酒師",
+        "冷熱飲調製人員",
+        "門市／店員／專櫃人員"
+      ]
+    },
+    {
+      "title": "514 三重重陽餐廳 服務員(兼職)",
+      "hit_leaf": "餐飲服務人員",
+      "hit_rank": 10,
+      "top5_recs": [
+        "調酒師／吧台人員",
+        "飯店／旅館服務人員",
+        "侍酒師",
+        "冷熱飲調製人員",
+        "門市／店員／專櫃人員"
+      ]
+    },
+    {
+      "title": "201 三重五華餐廳 服務員(兼職)",
+      "hit_leaf": "餐飲服務人員",
+      "hit_rank": 9,
+      "top5_recs": [
+        "調酒師／吧台人員",
+        "飯店／旅館服務人員",
+        "侍酒師",
+        "冷熱飲調製人員",
+        "門市／店員／專櫃人員"
+      ]
+    },
+    {
+      "title": "425 新台北１０１餐廳 服務員(兼職)",
+      "hit_leaf": "餐飲服務人員",
+      "hit_rank": 10,
+      "top5_recs": [
+        "調酒師／吧台人員",
+        "飯店／旅館服務人員",
+        "侍酒師",
+        "冷熱飲調製人員",
+        "門市／店員／專櫃人員"
+      ]
+    },
+    {
+      "title": "455 新莊龍華餐廳 服務員(兼職)",
+      "hit_leaf": "餐飲服務人員",
+      "hit_rank": 10,
+      "top5_recs": [
+        "調酒師／吧台人員",
+        "飯店／旅館服務人員",
+        "侍酒師",
+        "冷熱飲調製人員",
+        "門市／店員／專櫃人員"
+      ]
+    },
+    {
+      "title": "225 蘆洲長安餐廳 服務員(兼職)",
+      "hit_leaf": "餐飲服務人員",
+      "hit_rank": 10,
+      "top5_recs": [
+        "飯店／旅館服務人員",
+        "調酒師／吧台人員",
+        "侍酒師",
+        "冷熱飲調製人員",
+        "門市／店員／專櫃人員"
+      ]
+    },
+    {
+      "title": "242 永和得和餐廳 服務員(兼職)",
+      "hit_leaf": "餐飲服務人員",
+      "hit_rank": 9,
+      "top5_recs": [
+        "調酒師／吧台人員",
+        "飯店／旅館服務人員",
+        "侍酒師",
+        "冷熱飲調製人員",
+        "門市／店員／專櫃人員"
+      ]
+    },
+    {
+      "title": "209 中和興南餐廳 服務員(兼職)",
+      "hit_leaf": "餐飲服務人員",
+      "hit_rank": 10,
+      "top5_recs": [
+        "飯店／旅館服務人員",
+        "調酒師／吧台人員",
+        "侍酒師",
+        "冷熱飲調製人員",
+        "門市／店員／專櫃人員"
+      ]
+    },
+    {
+      "title": "346 林口復興餐廳 服務員(兼職)",
+      "hit_leaf": "餐飲服務人員",
+      "hit_rank": 10,
+      "top5_recs": [
+        "調酒師／吧台人員",
+        "飯店／旅館服務人員",
+        "侍酒師",
+        "冷熱飲調製人員",
+        "門市／店員／專櫃人員"
+      ]
+    },
+    {
+      "title": "406 桃園大興西餐廳 服務員(兼職)",
+      "hit_leaf": "餐飲服務人員",
+      "hit_rank": 10,
+      "top5_recs": [
+        "調酒師／吧台人員",
+        "飯店／旅館服務人員",
+        "侍酒師",
+        "冷熱飲調製人員",
+        "門市／店員／專櫃人員"
+      ]
+    },
+    {
+      "title": "330 南崁中正餐廳 服務員(兼職)",
+      "hit_leaf": "餐飲服務人員",
+      "hit_rank": 10,
+      "top5_recs": [
+        "調酒師／吧台人員",
+        "飯店／旅館服務人員",
+        "侍酒師",
+        "冷熱飲調製人員",
+        "門市／店員／專櫃人員"
+      ]
+    },
+    {
+      "title": "175 新竹中正餐廳 服務員(兼職)",
+      "hit_leaf": "餐飲服務人員",
+      "hit_rank": 10,
+      "top5_recs": [
+        "調酒師／吧台人員",
+        "飯店／旅館服務人員",
+        "侍酒師",
+        "冷熱飲調製人員",
+        "門市／店員／專櫃人員"
+      ]
+    },
+    {
+      "title": "220 新竹南大餐廳 服務員(兼職)",
+      "hit_leaf": "餐飲服務人員",
+      "hit_rank": 10,
+      "top5_recs": [
+        "飯店／旅館服務人員",
+        "調酒師／吧台人員",
+        "侍酒師",
+        "冷熱飲調製人員",
+        "門市／店員／專櫃人員"
+      ]
+    },
+    {
+      "title": "外務/業務司機",
+      "hit_leaf": "國內業務人員",
+      "hit_rank": 8,
+      "top5_recs": [
+        "國外業務人員",
+        "廣告AE",
+        "國貿人員",
+        "國外業務主管",
+        "保險業務員／經紀人"
+      ]
+    },
+    {
+      "title": "【徵的就是你！】飛達團隊｜誠徵房地產菁英夥伴",
+      "hit_leaf": "國內業務人員",
+      "hit_rank": 7,
+      "top5_recs": [
+        "門市／店員／專櫃人員",
+        "房務人員",
+        "儲備幹部",
+        "調酒師／吧台人員",
+        "售票／收銀人員"
+      ]
+    },
+    {
+      "title": "品牌行銷/企劃助理",
+      "hit_leaf": "活動企劃人員",
+      "hit_rank": 6,
+      "top5_recs": [
+        "秘書",
+        "行銷企劃助理",
+        "行政人員",
+        "國貿助理",
+        "業務助理"
+      ]
+    },
+    {
+      "title": "汽車維修半技師-週休二日，月薪30000~35000元起，固定上班8小時 意者請直接電洽055970688李老闆詳",
+      "hit_leaf": "技術人員",
+      "hit_rank": 6,
+      "top5_recs": [
+        "汽車檢驗員",
+        "CNC車床人員",
+        "電機技師／工程師",
+        "電機設備裝配員",
+        "放電加工技術人員"
+      ]
+    },
+    {
+      "title": "電梯保養維修工程師(高雄)",
+      "hit_leaf": "電機技師／工程師",
+      "hit_rank": 6,
+      "top5_recs": [
+        "水電工程師",
+        "PLC／自動控制工程師",
+        "冷凍空調技術人員／安裝員",
+        "機械設備組裝測試人員",
+        "土木技師"
+      ]
+    },
+    {
+      "title": "乙級鍋爐操作技術人員(大安區)",
+      "hit_leaf": "電機設備裝配員",
+      "hit_rank": 7,
+      "top5_recs": [
+        "鍋爐相關人員",
+        "電器產品維修人員",
+        "雷射技術操作員",
+        "機械加工技術人員",
+        "燈光技術人員"
+      ]
+    },
+    {
+      "title": "船邊外務人員",
+      "hit_leaf": "外務／快遞／送貨",
+      "hit_rank": 8,
+      "top5_recs": [
+        "票務人員／旅行社人員",
+        "國貿人員",
+        "國貿助理",
+        "資材人員",
+        "報關人員"
+      ]
+    },
+    {
+      "title": "長期兼職櫃枱助教",
+      "hit_leaf": "總機／接待／櫃檯人員",
+      "hit_rank": 10,
+      "top5_recs": [
+        "飯店／旅館櫃檯人員",
+        "電腦補習班老師",
+        "禮賓接待人員",
+        "專任管理員",
+        "飯店／旅館服務人員"
+      ]
+    },
+    {
+      "title": "影片.美編 人員 (動態/平面)",
+      "hit_leaf": "美編人員",
+      "hit_rank": 10,
+      "top5_recs": [
+        "排版人員",
+        "行政人員",
+        "電腦操作／資料輸入",
+        "秘書",
+        "國貿人員"
+      ]
+    },
+    {
+      "title": "美編剪輯人員(有經驗者佳,但須具備以下工作條件)",
+      "hit_leaf": "影片製作技術人員",
+      "hit_rank": 9,
+      "top5_recs": [
+        "傳播媒體編輯企劃",
+        "國貿人員",
+        "報關人員",
+        "神秘客",
+        "資材人員"
+      ]
+    },
+    {
+      "title": "正職儲備幹部人員",
+      "hit_leaf": "門市／店員／專櫃人員",
+      "hit_rank": 6,
+      "top5_recs": [
+        "調酒師／吧台人員",
+        "店長／門市管理人員",
+        "品管／品保主管",
+        "冷熱飲調製人員",
+        "儲備幹部"
+      ]
+    },
+    {
+      "title": "(關西六福莊)餐飲部領班",
+      "hit_leaf": "儲備幹部",
+      "hit_rank": 8,
+      "top5_recs": [
+        "餐飲領班",
+        "品管／品保主管",
+        "補習班主任／主管",
+        "調酒師／吧台人員",
+        "飯店／旅館主管"
+      ]
+    },
+    {
+      "title": "【大巨蛋旗艦店】精緻歐陸餐酒館｜外場主任",
+      "hit_leaf": "門市／店員／專櫃人員",
+      "hit_rank": 8,
+      "top5_recs": [
+        "調酒師／吧台人員",
+        "品管／品保主管",
+        "侍酒師",
+        "餐飲主管",
+        "店長／門市管理人員"
+      ]
+    },
+    {
+      "title": "幹部【京都勝牛-南港Lalaport店】無經驗可！月薪44000-46000#另有門市達標獎金!",
+      "hit_leaf": "餐廚助手",
+      "hit_rank": 7,
+      "top5_recs": [
+        "調酒師／吧台人員",
+        "品管／品保主管",
+        "西式廚師",
+        "冷熱飲調製人員",
+        "其他料理廚師"
+      ]
+    },
+    {
+      "title": "【鬼匠拉麵-青埔店】儲備店長【基本底薪+分紅(1個月過後可參與)】二度就業可",
+      "hit_leaf": "餐飲服務人員",
+      "hit_rank": 8,
+      "top5_recs": [
+        "調酒師／吧台人員",
+        "侍酒師",
+        "門市／店員／專櫃人員",
+        "冷熱飲調製人員",
+        "飯店／旅館服務人員"
+      ]
+    },
+    {
+      "title": "幹部【京都勝牛-新店裕隆城店】無經驗可！月薪44000-46000#另有門市達標獎金!",
+      "hit_leaf": "餐廚助手",
+      "hit_rank": 7,
+      "top5_recs": [
+        "品管／品保主管",
+        "調酒師／吧台人員",
+        "西式廚師",
+        "其他料理廚師",
+        "冷熱飲調製人員"
+      ]
+    },
+    {
+      "title": "達美樂 儲備店長 【大安店】",
+      "hit_leaf": "店長／門市管理人員",
+      "hit_rank": 6,
+      "top5_recs": [
+        "調酒師／吧台人員",
+        "門市／店員／專櫃人員",
+        "飯店／旅館服務人員",
+        "冷熱飲調製人員",
+        "侍酒師"
+      ]
+    },
+    {
+      "title": "達美樂 儲備店長 【三重集美店】",
+      "hit_leaf": "店長／門市管理人員",
+      "hit_rank": 6,
+      "top5_recs": [
+        "調酒師／吧台人員",
+        "門市／店員／專櫃人員",
+        "侍酒師",
+        "冷熱飲調製人員",
+        "餐飲主管"
+      ]
+    }
+  ]
+}
