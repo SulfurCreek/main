@@ -28,6 +28,33 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ---
 
+## 🌿 分支索引（Branch Index）
+
+**本 repo 有多支 Claude session 各自獨立開的分支，經常各自長出專屬 skill、彼此不知道對方存在。** 開始任何「新增 skill」「找有沒有人做過類似的事」類任務前，先掃一眼下表；找不到才動手，避免重工或跟其他分支撞名。
+
+> 查最新狀態：`git fetch origin --prune && git branch -r`。下表為 2026-08-31 稽核快照，之後有新分支或有分支被合併/刪除，比對後更新本表（含刪除已消失的列）。
+
+| 分支 | 最後更新 | 主題 | 帶有的獨有 skill | 狀態 |
+| :--- | :--- | :--- | :--- | :--- |
+| `claude/claude-md-docs-BmaVo`（本分支） | — | 1111 求才系統 HackMD 規格書維運（E.1／uS9／A.5 等）、repo 結構整理 | `spec-doc-1111`／`pm-toolkit`／`photo`／`png`／`tcode-excel-ops`／`generate-component-doc-figma` | 使用中 |
+| `claude/gifted-meitner-6eSoK` | 2026-08-26 | photo/png skill 改進（Figma 座標來源、跨區塊視覺比對） | （`photo`／`png` 已選擇性併入本分支，見下方） | 已部分吸收，其餘核心文件版本較舊不採用 |
+| `claude/lofi-wireframer-skill-0u25rk` | 2026-08-21 | Balsamiq 風格 HTML 手繪線框圖 skill；**分岔點是本分支自己的近期 commit**（`0fc94c3`），血緣最近 | `lofi-wireframer` | 🔍 未評估，值得優先看——跟 wireframe/示意圖需求可能有重疊 |
+| `claude/google-sheet-url-allowlist-GKFEU` | 2026-08-27 | 職務分類資料工作流；最後一筆是 TCode 福利代碼顯示順序對照表 | `gsheet-vendor-identity`／`job-classification-kb`／`md-datalayer`／`safe-excel-editor`／`tabular-token-min` | 🔍 未評估，跟 `tcode-excel-ops` 可能有主題重疊 |
+| `claude/extract-job-duty-markdown-4avmd6` | 2026-08-03 | 職務分類資料工作流（大量資料檔，200萬行級 diff） | `report-generator`／`rawdata`／`one-pager`／同上 job-classification 系列 | ❌ 使用者已裁示不合併（規模/領域跟本 repo 無關） |
+| `claude/vm-api-testing-setup-wpf6y8` | 2026-08-03 | API 測試/VM 環境設置，含呼叫紀錄 | `api`／`auto-test` | 🔍 未評估 |
+| `claude/part-time-modal-design-tmtt7n` | 2026-07-28 | 兼職相關 modal 設計調整 | 無獨有 skill | 🔍 未評估，較像功能分支非 skill 分支 |
+| `claude/happy-lamport-ljis8c` | 2026-07-26 | Context/token 精簡；含履歷撰寫、HackMD API skill 化 | `hackmd-api`／`resume-craft` | 🔍 未評估，`hackmd-api` 可能與 `wiki/hackmd_rules.md` 重疊 |
+| `claude/email-layout-handoff-gjq5zu` | 2026-07-03 | 信件訊息頁前端修改工程單 | `frontend-change-ticket-1111`／`frontend-slicing-1111` | 🔍 未評估 |
+| `claude/csv-retrieval-retry-do5a9o` | 2026-07-13 | CSV 資料重試邏輯；`report-generator` skill 的另一個獨立來源 | `report-generator` | 🔍 未評估 |
+| `claude/eloquent-maxwell-j31ot5` | 2026-06-29 | 前端切版交接；session 交接 INDEX.md 慣例 | `frontend-slicing-1111` | 🔍 未評估 |
+| `claude/static-html-github-deploy-1h0w1c` | 2026-06-15 | GitHub Pages 靜態部署設定，僅 18 檔 | 無 | 🔍 未評估，最舊、規模最小 |
+
+**已知重複造輪**：`report-generator` 至少有兩支分支各自產出一份（`csv-retrieval-retry-do5a9o`、`extract-job-duty-markdown-4avmd6`）；`frontend-slicing-1111` 也出現在兩支（`eloquent-maxwell-j31ot5`、`email-layout-handoff-gjq5zu`）。挑選要不要併入時，同名 skill 要先比對哪一份較新/較完整，不要兩份都拿。
+
+**併入既有先例**：`png`／`generate-component-doc-figma`／`wiki/master_prompt.md`（選擇性從 `gifted-meitner-6eSoK` 併入，該分支核心文件版本較舊未整支採用）；決策與取捨記錄在該次的 commit message 裡，之後選擇性併入其他分支時比照辦理——只搬跟本 repo 主題相關、且不會覆蓋掉本分支已驗證內容的部分，整支 `git merge` 一律先評估分岔規模再決定，不要預設用。
+
+---
+
 ## 🧠 Token 最佳化與全局索引
 
 處理大量規格書／長文／代碼時，嚴守以下「上下文壓縮」規範：
