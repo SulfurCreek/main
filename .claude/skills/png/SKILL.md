@@ -102,6 +102,30 @@ await (await page.$('.page')).screenshot({ path: 'out.png' });
 > **交付大圖給對話視窗的注意事項**：`SendUserFile` 對檔案大小有限制，實測 3000×8182 / 2.2MB 的 PNG
 > 會被伺服器擋掉（400）。R2 上傳全解析度那份，另外用 `im.resize((w//2, h//2))` 產一張縮圖給對話預覽。
 
+### 延伸版面選項：正式卡片容器與手繪風便利貼（借鏡 html-anything design tokens）
+
+預設版面仍是規則二「參考骨架」的白底容器＋紅色 badge。以下兩種是**額外場景**才切換的版面風格，不是取代預設：
+
+**A. 正式卡片容器**（單張 PNG 需要更接近「決策備忘錄／執行摘要」質感時，取代純白 `background:#fff`）：
+
+```css
+.card { background:rgba(255,255,255,.72); border:1px solid #e4dfd4; border-radius:6px; padding:16px 20px; }
+.eyebrow { font-size:11px; text-transform:uppercase; letter-spacing:.1em; font-weight:800; color:#667085; }
+```
+
+適用時機：整段輸出成單一 PNG、且內容偏向「給主管看的結論摘要」而非「給 RD/QA 對照畫面的規格截圖」——兩種場景用不同容器質感，不要混用（規格截圖仍用純白 `#fff`，避免半透明底色在深色模式下對比度不穩）。
+
+**B. 手繪便利貼風格**（僅用於**流程說明／教學向**的示意圖，例如跟非技術背景的人解釋一個流程概念，不用於正式規格書截圖標註）：
+
+```css
+.sticky { width:240px; padding:14px; border-radius:4px; transform:rotate(-2deg); box-shadow:0 6px 14px rgba(0,0,0,.12); }
+/* 顏色輪替：黃 #fcd34d／珊瑚 #fca5a5／薄荷 #a7f3d0／天藍 #a5b4fc */
+```
+
+連接線用 SVG `<path>` 貝茲曲線（`stroke:#2a2a2a; stroke-width:2.5; stroke-linecap:round`），一般流程實線、條件分支用 `stroke-dasharray:8 6`。
+
+> **A／B 都是選用，且互斥於同一張圖內**——正式規格書截圖標註（本 skill 的主要用途）預設不套用任何一種，只有使用者明確要求「更正式的摘要質感」或「手繪解說風格」時才切換，切換後仍要遵守規則二安全欄寬／dsf≥2 等鐵律，不因換了版面風格就放寬驗證。
+
 ---
 
 ## 規格書 UI 截圖標號慣例（求才系統，舊格式）

@@ -141,6 +141,33 @@ description: >
 - 純「編號說明」：用規則二開頭那種實心圓角 badge。
 - 兩者可疊加使用（框住元件＋角落標號）。
 
+### 延伸樣式：語意色卡與狀態標籤（借鏡 html-anything design tokens）
+
+紅色圓形數字 badge（規則二開頭）是**唯一**的編號系統，不要因為下面這兩個新元件而混用其他顏色當編號。以下兩個是額外場景才用的**狀態標記**，兩者職責不同：badge 回答「這是第幾點」，這裡的色卡／標籤回答「這一點目前是什麼狀態」。
+
+**語意色卡**（側邊 callout 需要標示確認狀態時，包在 callout 文字外層，取代單純的白底）：
+
+```html
+<div style="border-left:4px solid #1f7a58; background:rgba(31,122,88,0.06); border-radius:0 6px 6px 0; padding:10px 14px;">
+  <div style="font-size:15px; color:#222; line-height:1.65;"><span style="color:#FF5F57; font-weight:700;">→</span> <b>①</b> 這個區域的說明文字</div>
+</div>
+```
+
+| 狀態 | `border-left` 色 | `background` |
+| :--- | :--- | :--- |
+| 已確認／核准 | `#1f7a58`（綠） | `rgba(31,122,88,0.06)` |
+| 🚧 待確認（呼應 `spec-doc-1111` 的 🚧 警示色） | `#f0b45b`（琥珀） | `rgba(240,180,91,0.08)` |
+| 已否決／有問題 | `#c0392b`（紅，刻意跟 badge 的 `#FF5F57` 錯開避免混淆） | `rgba(192,57,43,0.06)` |
+
+**狀態標籤**（小標籤，用於在圖說或標題旁標「新增／棄用／第二階段」這類簡短狀態，不取代任何既有的紅字新需求標記）：
+
+```html
+<span style="display:inline-block; border-radius:999px; padding:3px 10px; font-size:11px; font-weight:800; text-transform:uppercase; letter-spacing:.05em; background:#eef2f6; color:#42526e; border:1px solid #c1c7d0;">第二階段</span>
+```
+
+- 兩者都是**選用**，預設仍是規則二的紅色數字 badge＋白底 callout；只有在真的需要標示「狀態」而非「順序」時才加這層。
+- 色卡與標籤都要過安全欄寬與 `aspect-ratio` 的既有規則，不因為是新元件就例外。
+
 ### 單張截圖＋多個標註區域 → 說明文字放「側邊」，不是放下面
 
 **先判斷是哪一種版型再動手**，這兩種很容易搞混、用錯會被打回：
