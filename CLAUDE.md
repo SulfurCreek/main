@@ -16,13 +16,19 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 | TCode 代碼表 Excel（`TCode_Export`、證照／工作技能／職務／福利代碼表的比對、異動清單、公告） | 用 `Skill` 載入 `tcode-excel-ops` |
 | 需要**覆蓋改寫截圖裡既有文字**、維護舊版「截圖標號＝章節編號」規格書、或把整段說明輸出成單一 PNG | 用 `Skill` 載入 `png`（`photo` 的舊版備用流程，一般標註任務仍優先用 `photo`） |
 | 需要產生 Figma 元件的完整文件（anatomy／design tokens／variants／a11y，非 1111 專屬） | 用 `Skill` 載入 `generate-component-doc-figma` |
+| 手繪風 lo-fi wireframe／線框圖草稿 | 用 `Skill` 載入 `lofi-wireframer` |
+| 1111 切版改版（mock↔正式偏離稽核、CSS 對照表）或前端修改工程單 | 用 `Skill` 載入 `frontend-slicing-1111`（改版稽核）／`frontend-change-ticket-1111`（工程單內文強制格式，兩者衝突時後者優先） |
+| 分析 API 文件產測試矩陣、或依矩陣產生並執行 pytest | 用 `Skill` 載入 `api`（文件→矩陣）／`auto-test`（矩陣→腳本→報告，需先跑過 `api`） |
+| 撰寫/修改個人履歷、CV、作品集 | 用 `Skill` 載入 `resume-craft`（⚠️ 依賴 `career/` 職能框架 wiki，本 repo 尚未併入該目錄） |
+| 數據分析報告寫作（MD 或靜態 HTML）、或濃縮成單張 PNG 摘要圖 | 用 `Skill` 載入 `report-generator`（報告本體）／`one-pager`（單張決策圖，出圖前需先給文字大綱確認） |
+| 1111 職務分類／不合理清單專案（`plan()` 規則、`sync_md.py`、廠商身分 Google Sheet、AI 職類推薦模型分析） | 用 `Skill` 載入 `job-classification-kb`（知識庫入口）／`gsheet-vendor-identity`／`md-datalayer`／`safe-excel-editor`／`tabular-token-min`／`rawdata`——**與本 repo 主線（1111 聊天室文件）是不同專案**，僅供其他 session 共用 skill 庫 |
 | 需要用專案縮寫/術語溝通、看不懂某個欄位名稱在講什麼 | `wiki/glossary.md` |
 | 產出/修改 Mermaid 圖表（流程圖、循序圖等） | `wiki/mermaid_styling_rules.md` |
 | 需判斷該用本 repo 自製 skill 還是執行環境內建的官方 Anthropic skill（docx/pdf/internal-comms/doc-coauthoring 等） | `wiki/platform_skills_reference.md` |
 
 規格書撰寫的格式細則（章節編號、MECE 狀態表、🚧 待補區塊模板等）由 `.claude/skills/spec-doc-1111/SKILL.md` 管理，用 `Skill` 工具載入，不在 wiki 裡重複。
 
-> **本專案專屬的 skill 一律放在 `.claude/skills/`（進版控）**：`spec-doc-1111`、`pm-toolkit`、`photo`、`tcode-excel-ops`。不要放在帳號層的雲端同步區（`~/.claude/skills/synced/`）——那裡只該有與專案無關的通用／官方 skill，兩邊同名會造成載到舊版。
+> **本專案專屬的 skill 一律放在 `.claude/skills/`（進版控）**，完整清單見 `.claude_index.md`〈skills〉一節（2026-08-31 起本 repo 已成為跨分支的 skill 集散地，不只 1111 聊天室文件這條主線的 skill）。不要放在帳號層的雲端同步區（`~/.claude/skills/synced/`）——那裡只該有與專案無關的通用／官方 skill，兩邊同名會造成載到舊版。
 
 涉及**數據分析／競品拆解／商業提案、跨部門溝通文案（公告/客服回覆/敏感溝通）、資料 Mapping Table 與資料庫正規化原則、OTP/MFA 類邊界條件檢查**時，用 `Skill` 工具載入 `.claude/skills/pm-toolkit/SKILL.md`（與 spec-doc-1111、mermaid_styling_rules.md 不重疊，僅收錄它們沒覆蓋的部分）。
 
@@ -38,20 +44,22 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 | :--- | :--- | :--- | :--- | :--- |
 | `claude/claude-md-docs-BmaVo`（本分支） | — | 1111 求才系統 HackMD 規格書維運（E.1／uS9／A.5 等）、repo 結構整理 | `spec-doc-1111`／`pm-toolkit`／`photo`／`png`／`tcode-excel-ops`／`generate-component-doc-figma` | 使用中 |
 | `claude/gifted-meitner-6eSoK` | 2026-08-26 | photo/png skill 改進（Figma 座標來源、跨區塊視覺比對） | （`photo`／`png` 已選擇性併入本分支，見下方） | 已部分吸收，其餘核心文件版本較舊不採用 |
-| `claude/lofi-wireframer-skill-0u25rk` | 2026-08-21 | Balsamiq 風格 HTML 手繪線框圖 skill；**分岔點是本分支自己的近期 commit**（`0fc94c3`），血緣最近 | `lofi-wireframer` | 🔍 未評估，值得優先看——跟 wireframe/示意圖需求可能有重疊 |
-| `claude/google-sheet-url-allowlist-GKFEU` | 2026-08-27 | 職務分類資料工作流；最後一筆是 TCode 福利代碼顯示順序對照表 | `gsheet-vendor-identity`／`job-classification-kb`／`md-datalayer`／`safe-excel-editor`／`tabular-token-min` | 🔍 未評估，跟 `tcode-excel-ops` 可能有主題重疊 |
-| `claude/extract-job-duty-markdown-4avmd6` | 2026-08-03 | 職務分類資料工作流（大量資料檔，200萬行級 diff） | `report-generator`／`rawdata`／`one-pager`／同上 job-classification 系列 | ❌ 使用者已裁示不合併（規模/領域跟本 repo 無關） |
-| `claude/vm-api-testing-setup-wpf6y8` | 2026-08-03 | API 測試/VM 環境設置，含呼叫紀錄 | `api`／`auto-test` | 🔍 未評估 |
+| `claude/lofi-wireframer-skill-0u25rk` | 2026-08-21 | Balsamiq 風格 HTML 手繪線框圖 skill；**分岔點是本分支自己的近期 commit**（`0fc94c3`），血緣最近 | `lofi-wireframer` | ✅ 2026-08-31 已併入 |
+| `claude/google-sheet-url-allowlist-GKFEU` | 2026-08-27 | 職務分類資料工作流；最後一筆是 TCode 福利代碼顯示順序對照表 | `gsheet-vendor-identity`／`job-classification-kb`／`md-datalayer`／`safe-excel-editor`／`tabular-token-min` | ✅ 2026-08-31 skill 已併入（與 `tcode-excel-ops` 無重疊，各管不同代碼表體系） |
+| `claude/extract-job-duty-markdown-4avmd6` | 2026-08-03 | 職務分類資料工作流（大量資料檔，200萬行級 diff） | `report-generator`／`rawdata`／`one-pager`／同上 job-classification 系列 | 整支分支 ❌ 不合併（規模/資料檔跟本 repo 無關）；但 2026-08-31 已單獨抽出 `report-generator`／`rawdata`／`one-pager` 三個 skill 併入 |
+| `claude/vm-api-testing-setup-wpf6y8` | 2026-08-03 | API 測試/VM 環境設置，含呼叫紀錄 | `api`／`auto-test` | ✅ 2026-08-31 已併入 |
 | `claude/part-time-modal-design-tmtt7n` | 2026-07-28 | 兼職相關 modal 設計調整 | 無獨有 skill | 🔍 未評估，較像功能分支非 skill 分支 |
-| `claude/happy-lamport-ljis8c` | 2026-07-26 | Context/token 精簡；含履歷撰寫、HackMD API skill 化 | `hackmd-api`／`resume-craft` | 🔍 未評估，`hackmd-api` 可能與 `wiki/hackmd_rules.md` 重疊 |
-| `claude/email-layout-handoff-gjq5zu` | 2026-07-03 | 信件訊息頁前端修改工程單 | `frontend-change-ticket-1111`／`frontend-slicing-1111` | 🔍 未評估 |
-| `claude/csv-retrieval-retry-do5a9o` | 2026-07-13 | CSV 資料重試邏輯；`report-generator` skill 的另一個獨立來源 | `report-generator` | 🔍 未評估 |
-| `claude/eloquent-maxwell-j31ot5` | 2026-06-29 | 前端切版交接；session 交接 INDEX.md 慣例 | `frontend-slicing-1111` | 🔍 未評估 |
+| `claude/happy-lamport-ljis8c` | 2026-07-26 | Context/token 精簡；含履歷撰寫、HackMD API skill 化 | `hackmd-api`／`resume-craft` | 部分評估：`resume-craft` 2026-08-31 已併入（依賴的 `career/` 職能框架未搬）；`hackmd-api` 與 `wiki/hackmd_rules.md` 重複，不併入。此分支的 `spec-doc-1111` 是**精簡改寫版**（176 行 vs 本分支 387 行，不同檔名結構），未採用但值得之後參考其瘦身思路 |
+| `claude/email-layout-handoff-gjq5zu` | 2026-07-03 | 信件訊息頁前端修改工程單 | `frontend-change-ticket-1111`／`frontend-slicing-1111` | ✅ 2026-08-31 已併入（`frontend-slicing-1111` 取本分支版本，比 `eloquent-maxwell-j31ot5` 的舊版新） |
+| `claude/csv-retrieval-retry-do5a9o` | 2026-07-13 | CSV 資料重試邏輯；`report-generator` skill 的另一個獨立來源 | `report-generator` | 內容與 `extract-job-duty-markdown-4avmd6` 版本逐位元組相同，已從該分支併入，這支不用再看 |
+| `claude/eloquent-maxwell-j31ot5` | 2026-06-29 | 前端切版交接；session 交接 INDEX.md 慣例 | `frontend-slicing-1111` | 舊版（06/29），已被 `email-layout-handoff-gjq5zu` 的新版取代並併入，這支不用再看 |
 | `claude/static-html-github-deploy-1h0w1c` | 2026-06-15 | GitHub Pages 靜態部署設定，僅 18 檔 | 無 | 🔍 未評估，最舊、規模最小 |
 
 **已知重複造輪**：`report-generator` 至少有兩支分支各自產出一份（`csv-retrieval-retry-do5a9o`、`extract-job-duty-markdown-4avmd6`）；`frontend-slicing-1111` 也出現在兩支（`eloquent-maxwell-j31ot5`、`email-layout-handoff-gjq5zu`）。挑選要不要併入時，同名 skill 要先比對哪一份較新/較完整，不要兩份都拿。
 
-**併入既有先例**：`png`／`generate-component-doc-figma`／`wiki/master_prompt.md`（選擇性從 `gifted-meitner-6eSoK` 併入，該分支核心文件版本較舊未整支採用）；決策與取捨記錄在該次的 commit message 裡，之後選擇性併入其他分支時比照辦理——只搬跟本 repo 主題相關、且不會覆蓋掉本分支已驗證內容的部分，整支 `git merge` 一律先評估分岔規模再決定，不要預設用。
+**併入既有先例**：`png`／`generate-component-doc-figma`／`wiki/master_prompt.md`（選擇性從 `gifted-meitner-6eSoK` 併入）；2026-08-31 批次再從 6 支分支選擇性抽出 `lofi-wireframer`／`frontend-slicing-1111`／`frontend-change-ticket-1111`／`api`／`auto-test`／`resume-craft`／`report-generator`／`one-pager`／`rawdata`／`gsheet-vendor-identity`／`job-classification-kb`／`md-datalayer`／`safe-excel-editor`／`tabular-token-min`（完整清單與各自取捨理由見 `.claude_index.md`〈2026-08-31 分支整併批次〉）。決策與取捨記錄在該次的 commit message 裡，之後選擇性併入其他分支時比照辦理——只搬跟本 repo 主題相關、且不會覆蓋掉本分支已驗證內容的部分，整支 `git merge` 一律先評估分岔規模再決定，不要預設用。
+
+> **本 repo 現在是全部分支的 skill 集散地**：其他 session 需要用哪個 skill，直接切到 `claude/claude-md-docs-BmaVo` 這支分支（或之後的 `main`）拿，不要各自維護一份。已知未併入、待裁示的項目：`.claude/skills/hackmd-api/`（與 `wiki/hackmd_rules.md` 重複，不建議併入）、`.claude/skills/mermaid-sequence-diagram/`（配色系統跟現有 `wiki/mermaid_styling_rules.md` 衝突，待使用者選定風格後再併）、`career/` 職能框架 wiki（`resume-craft` 的資料依賴，屬個人生涯資料非通用 skill）。
 
 ---
 
