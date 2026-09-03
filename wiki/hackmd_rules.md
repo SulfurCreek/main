@@ -58,6 +58,33 @@ Use `1111-jobdocs` as `:teamPath` in all team note endpoints.
 
 > 新建（`POST`）或只改幾行的小幅修補不必硬套這套流程；本規範主要針對「讀取既有長文 → 大幅編輯 → 寫回」這種會讓全文重複出現在 context 裡的情境。
 
+* **規則 D — 安全回寫契約（防覆蓋 / anti-clobber）**：規則 A 落地 baseline 到規則 C 一次性 PATCH 之間，遠端可能已被別人（如小聶手改）改動；直接 `PATCH` 會把對方的編輯**盲蓋掉**。回寫前務必先「重抓 → 比對 → 才寫」：
+  1. **baseline**：規則 A 落地當下那份就是 baseline，別動它。
+  2. **recheck**：PATCH 前再 `GET` 一次遠端 `content`。
+  3. **diff**：`diff(baseline, recheck)`——
+     * **無差異** → 遠端沒被動過，安全 `PATCH` working 內容。
+     * **有差異** → 遠端在你編輯期間被改過，**中止、不要 PATCH**；重新 fetch 最新內容、把本地修改重套上去後再跑一次。
+  4. 用現成腳本一次做完 recheck+diff+PATCH（衝突時 exit 1、不寫入）：
+     ```bash
+     python3 scripts/hackmd_safe_patch.py \
+       --note-id <內部 noteId> \
+       --baseline "$SCRATCHPAD/<noteId>.md" \
+       --working  "$SCRATCHPAD/<noteId>.working.md" \
+       --team-path 1111-jobdocs
+     ```
+     Exit code：`0` 已更新／`1` 衝突（遠端已變，未寫入）／`2` 參數或 API 錯誤。這正是本 repo 每次改 E.1／uS9 前「重抓確認小聶有沒有手動編輯」那步的自動化版本。
+  > 移植自官方 `hackmd-skills/shared/scripts/safe-sync.sh`（原版用 `hackmd-cli`），改用本 repo 的 REST API＋`HACKMD_TOKEN` 慣例。
+
+### short id／team URL → 內部 note id
+
+`PATCH`／`export`／API 路徑一律要**內部長 id**（如 `uS9yE837SYedY9hQFneb6Q`），不是網址上的 short slug。拿到 `https://hackmd.io/@1111-jobdocs/<shortId>` 這種 team 短連結時，用 team notes 清單反查：
+
+```bash
+curl -s "https://api.hackmd.io/v1/teams/1111-jobdocs/notes" \
+  -H "Authorization: Bearer $HACKMD_TOKEN" \
+  | jq -r --arg s "<shortId>" '[.[] | select(.shortId==$s or .id==$s)][0].id'
+```
+
 ---
 
 ## Endpoint Summary
@@ -155,266 +182,11 @@ Use `1111-jobdocs` as `:teamPath` in all team note endpoints.
 
 ---
 
-## Endpoints — Full Detail
+## Endpoints 完整規格／Folder API／程式碼範例
 
-### Get current user
-```
-GET /me
-```
-Returns authenticated user's profile.
+各端點的 request body、response 欄位、Folder API 全套操作，以及 Node.js／Python／cURL 範例——**需要時才讀** → `wiki/references/hackmd-api-endpoints.md`
 
-### List user notes
-```
-GET /notes
-```
-Returns array of note objects. No `content` field — call `GET /notes/:noteId` to fetch body.
-
-### Get a note
-```
-GET /notes/:noteId
-```
-Returns single note object **including** `content`.
-
-### Create a note
-```
-POST /notes
-```
-Body (all optional):
-```json
-{
-  "title": "New note",
-  "content": "# Heading",
-  "readPermission": "owner",
-  "writePermission": "owner",
-  "commentPermission": "everyone",
-  "permalink": "custom-slug"
-}
-```
-Returns `201` with created note object.
-
-### Update a note
-```
-PATCH /notes/:noteId
-```
-Body (all optional):
-```json
-{
-  "content": "# Updated",
-  "readPermission": "signed_in",
-  "writePermission": "owner",
-  "permalink": "new-slug"
-}
-```
-Returns `202` with body `Accepted`.
-
-### Delete a note
-```
-DELETE /notes/:noteId
-```
-Returns `204` (no body).
-
-### Get read history
-```
-GET /history
-```
-Returns array of recently read note objects.
-
-### List teams
-```
-GET /teams
-```
-Returns array of team objects:
-
-| Field | Type | Notes |
-|-------|------|-------|
-| `id` | string (uuid) | |
-| `ownerId` | string (uuid) | |
-| `path` | string | Use as `:teamPath` in team endpoints |
-| `name` | string | |
-| `logo` | string | Data URI |
-| `description` | string | |
-| `visibility` | string | e.g. `public` |
-| `createdAt` | string | ISO 8601 (unlike note timestamps which are epoch ms) |
-
-### List team notes
-```
-GET /teams/:teamPath/notes
-```
-Returns array of note objects (no `content`).
-
-### Create a team note
-```
-POST /teams/:teamPath/notes
-```
-Same body as Create a note. Returns `201` with created note (includes `teamPath`).
-
-### Update a team note
-```
-PATCH /teams/:teamPath/notes/:noteId
-```
-Same body as Update a note. Returns `202`.
-
-### Delete a team note
-```
-DELETE /teams/:teamPath/notes/:noteId
-```
-Returns `204`.
-
-### Upload attachment (experimental)
-```
-POST /notes/:noteId/upload
-```
-Multipart form field: `file`. Verify against live Swagger docs before relying on this endpoint.
-
----
-
-## Folder API
-
-Management API for organising notes into folders. Folders can be nested (a folder may have a `parentFolderId`). Find a folder's id via the folder's URL in `https://hackmd.io/?nav=overview`. Each set of endpoints exists for both the user workspace (`/folders`) and a team workspace (`/teams/:teamPath/folders`); the team variants take `:teamPath` (e.g. `1111-jobdocs`) and otherwise behave identically.
-
-> **Why this matters here:** the notes list endpoints (`GET /notes`, `GET /teams/:teamPath/notes`) return a per-note `folderPaths`/parent that the API reports flat (top-level), so true nesting can't be reconstructed from notes alone. The Folder API's `parentFolderId` is the authoritative source for the folder tree — use it when building a hierarchy (e.g. `tree.md`).
-
-### List folders
-```
-GET /folders
-GET /teams/:teamPath/folders
-```
-Returns an array of `ApiFolder` objects.
-
-### Create a folder
-```
-POST /folders
-POST /teams/:teamPath/folders
-```
-Body (all optional):
-```json
-{
-  "name": "New folder",
-  "description": "…",
-  "icon": "…",
-  "color": "…",
-  "parentFolderId": "PARENT_FOLDER_ID"
-}
-```
-Omit `parentFolderId` (or pass top-level) to create at workspace root; set it to nest inside another folder.
-
-### Get a single folder
-```
-GET /folders/:folderId
-GET /teams/:teamPath/folders/:folderId
-```
-Returns one `ApiFolder` object.
-
-### Update a folder
-```
-PATCH /folders/:folderId
-PATCH /teams/:teamPath/folders/:folderId
-```
-Body (all optional; nullable fields can be set to `null` to clear): `name`, `description`, `icon`, `color`, `parentFolderId`. Set `parentFolderId` to move the folder under a new parent.
-
-### Delete a folder
-```
-DELETE /folders/:folderId
-DELETE /teams/:teamPath/folders/:folderId
-```
-Returns `204` (no body).
-
-### Get / set folder ordering
-```
-GET /folders/folder-order
-PUT /folders/folder-order
-GET /teams/:teamPath/folders/folder-order
-PUT /teams/:teamPath/folders/folder-order
-```
-`GET` returns an `ApiFolderOrder` (parent folder id or `root` → ordered array of child folder ids). `PUT` **replaces** the personal ordering; body:
-```json
-{ "order": { "root": ["folderIdA", "folderIdB"], "folderIdA": ["childId1", "childId2"] } }
-```
-
----
-
-## Code Snippets
-
-### Node.js (fetch)
-
-```javascript
-const BASE = "https://api.hackmd.io/v1";
-const TOKEN = process.env.HACKMD_TOKEN;
-
-async function hackmd(path, options = {}) {
-  const res = await fetch(`${BASE}${path}`, {
-    ...options,
-    headers: {
-      Authorization: `Bearer ${TOKEN}`,
-      "Content-Type": "application/json",
-      ...(options.headers || {}),
-    },
-  });
-  if (!res.ok) throw new Error(`${res.status} ${await res.text()}`);
-  return res.status === 204 ? null : res.json();
-}
-
-// Usage
-await hackmd("/me");
-await hackmd("/notes");
-await hackmd("/notes/NOTE_ID");
-await hackmd("/teams/1111-jobdocs/notes");
-await hackmd("/notes", { method: "POST", body: JSON.stringify({ content: "# Hello" }) });
-await hackmd("/notes/NOTE_ID", {
-  method: "PATCH",
-  body: JSON.stringify({ content: "# Updated", readPermission: "owner", writePermission: "owner" }),
-});
-await hackmd("/notes/NOTE_ID", { method: "DELETE" });
-// Folders
-await hackmd("/teams/1111-jobdocs/folders");
-await hackmd("/teams/1111-jobdocs/folders", { method: "POST", body: JSON.stringify({ name: "規格文件", parentFolderId: "PARENT_ID" }) });
-await hackmd("/teams/1111-jobdocs/folders/FOLDER_ID", { method: "PATCH", body: JSON.stringify({ parentFolderId: "NEW_PARENT_ID" }) });
-```
-
-### Python (requests)
-
-```python
-import os, requests
-
-BASE = "https://api.hackmd.io/v1"
-HEADERS = {"Authorization": f"Bearer {os.environ['HACKMD_TOKEN']}"}
-
-def get(path): r = requests.get(BASE + path, headers=HEADERS); r.raise_for_status(); return r.json()
-def post(path, data): r = requests.post(BASE + path, headers=HEADERS, json=data); r.raise_for_status(); return r.json()
-def patch(path, data): r = requests.patch(BASE + path, headers=HEADERS, json=data); r.raise_for_status(); return r.status_code
-def delete(path): r = requests.delete(BASE + path, headers=HEADERS); r.raise_for_status(); return r.status_code
-
-# Usage
-get("/me")
-get("/notes")
-get("/notes/NOTE_ID")
-get("/teams/1111-jobdocs/notes")
-post("/notes", {"content": "# Hello"})
-patch("/notes/NOTE_ID", {"content": "# Updated", "readPermission": "owner", "writePermission": "owner"})
-delete("/notes/NOTE_ID")
-# Folders
-get("/teams/1111-jobdocs/folders")
-post("/teams/1111-jobdocs/folders", {"name": "規格文件", "parentFolderId": "PARENT_ID"})
-patch("/teams/1111-jobdocs/folders/FOLDER_ID", {"parentFolderId": "NEW_PARENT_ID"})
-```
-
-### cURL
-
-```bash
-# List team notes
-curl "https://api.hackmd.io/v1/teams/1111-jobdocs/notes" \
-  -H "Authorization: Bearer $HACKMD_TOKEN"
-
-# Create a team note
-curl -X POST "https://api.hackmd.io/v1/teams/1111-jobdocs/notes" \
-  -H "Authorization: Bearer $HACKMD_TOKEN" \
-  -H "Content-Type: application/json" \
-  -d '{"content":"# Hello from API"}'
-
-# List team folders (real hierarchy via parentFolderId)
-curl "https://api.hackmd.io/v1/teams/1111-jobdocs/folders" \
-  -H "Authorization: Bearer $HACKMD_TOKEN"
-```
+> 日常回寫走 `scripts/hackmd_safe_patch.py`（見上方規則 D），不必展開本節。
 
 ---
 
@@ -454,4 +226,6 @@ curl "https://api.hackmd.io/v1/teams/1111-jobdocs/folders" \
 - **Folder hierarchy lives in the Folder API, not the notes endpoints.** To reconstruct a folder tree, read `parentFolderId` from `GET /folders` or `GET /teams/:teamPath/folders` — the notes list does not expose nesting.
 - **`folder-order` is personal and `PUT` replaces it wholesale** — fetch current order first, merge, then put back.
 - **Moving a note into a folder**: `PATCH /teams/:teamPath/notes/:noteId` with body `{"parentFolderId": "<folder UUID>"}`. The UUID must be the folder's **internal UUID** (from the note's `folderPaths[].id` or the Folder API `id`), **not** the short `clientId` seen in folder URLs — passing `folderId` or the short id returns `202` but silently does nothing. Verify by re-fetching the note and checking `folderPaths`.
+- **內嵌 HTML 區塊遇空行會斷掉。** HackMD 走 markdown-it（CommonMark），Type 6 HTML 區塊（`<div>` 等）**在遇到空行時就結束**——之後的內容會被當成一般 markdown 或 code block 而跑版。寫「HTML 絕對定位覆蓋」標註或整段 `<div>` 版面時：body 內不要留空行、行首不要 4 格縮排、避免 `<main>`（改用 `<div>`）。`<style>` 要生效還需在該 note 開啟 Custom CSS 預覽（工具列油漆刷 → Custom CSS）。（來源：官方 `hackmd-skills/visualize-hmd`。）
 - When in doubt, the **live Swagger docs at `https://api.hackmd.io/v1/docs`** are canonical.
+- **無 token 也能唯讀**：`GET https://hackmd.io/<noteId>/download` 不需要 Authorization header 就能拿到 Markdown 原文（已實測），適合快速核對內容；改寫仍一律走正規 API＋安全回寫（規則 D），細節見 `wiki/references/hackmd-api-endpoints.md`。

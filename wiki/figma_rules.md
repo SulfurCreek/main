@@ -1,13 +1,8 @@
 # Figma 規則
 
-## 現況
+**已收斂，本檔不再維護內容。**
 
-Figma MCP 伺服器連線時，會自帶它自己的 skill 指示（`figma-use`、`figma-generate-design`、`figma-generate-library`、`figma-code-connect` 等），那些指示由 Figma MCP 原生提供，不需要、也不應該在這裡重複。涉及讀取/產生 Figma 設計、Code Connect 對照時，直接遵循 Figma MCP 自帶的指示即可。
+- **截圖存檔＋標註**（Figma MCP 截圖、使用者上傳圖、badge／紅框／編號、存進 repo 供 HackMD 引用）→ 用 `Skill` 工具載入 `.claude/skills/photo/SKILL.md`。
+- **讀取／產生 Figma 設計、Code Connect 對照** → Figma MCP 伺服器連線時自帶 skill 指示（`figma-use`、`figma-generate-design` 等），直接遵循，本 repo 不重複。
 
-## 待補：本專案特有的 Figma 轉換慣例
-
-目前尚未建立任何「本專案特有」的 Figma ↔ HackMD 規格書轉換慣例（例如：Figma 設計稿欄位要怎麼對照到規格書表格、裁切圖命名規則、Figma 連結要放在規格書哪個章節）。
-
-之前處理過的案例（如 AxShare prototype → HackMD 規格書）用的是 AxShare 網頁文字擷取，不是 Figma 設計稿，沒有產生可沿用的 Figma 專屬規則。
-
-**若之後制定出本專案特有的 Figma 轉換規則，補充於此檔案**，不要在沒有實際慣例前先寫死格式。
+本專案目前沒有「Figma 設計稿 → HackMD 規格書」的專屬轉換慣例（過去案例走的是 AxShare 網頁文字擷取，非 Figma）。若之後制定出來，寫進 `photo` skill，不要在這裡另開一套。
