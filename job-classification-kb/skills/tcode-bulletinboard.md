@@ -95,6 +95,25 @@ MICROSOFT	Microsoft Certified: Power Platform Fundamentals、Security, Complianc
 
 （DutyPT 這節示範了「該表沒有新增分類」的情況：直接省略 `🆕 新增分類`，只留 `🆕 新增項目`。）
 
+## 資料來源鐵則：ChangeType 只是「指標」，不是「證據」
+
+**慘痛教訓**（實例：ChangeType 為 edit/add 的項目公告，第一版做錯了）：只憑「修改需求文件」（使用者持續在編輯的 Google Sheet）自己的 `ChangeType` 欄位＋自己當下的 `CodeNameA`/`CodeNameB`，或是拿專案裡任何一份舊 baseline（如 `TCode_Export.xlsx`、之前手動整理的異動清單）去跟它比對，**都不足以判定真的改了什麼**。原因：
+
+1. `ChangeType` 常常「掛著沒清」——一筆之前為了別的原因（例如補 `CodeAlike` 相似詞）被標成 `edit`，但 `CodeNameA`／`CodeNameB` 其實從未變動；直接拿 ChangeType=edit 的清單去發公告，會生出一堆「原名稱→新名稱」兩邊寫得一模一樣的假異動。
+2. 用來對照的 baseline 版本不對，也會生出反方向或無關的假異動（例如把「這次要新增的代碼」誤判成「原本不存在」）。
+
+**正確做法**：使用者會提供三份**各自獨立**的檔案／連結，缺一不可：
+
+| 檔案 | 角色 | 怎麼用 |
+|---|---|---|
+| 修改需求文件 | 這一輪異動的「索引」，`ChangeType` 欄位標記哪些 CodeNo 這輪有動 | 只拿它篩「候選列」（`ChangeType` in `edit`/`add`），**不要**信它自己的 CodeNameA/CodeNameB |
+| 修改前檔案 | 真正的「舊」內容 | 依候選列的 CodeNo 查這份檔案的 CodeNameA/CodeNameB/CodeNameC，當作「原本」 |
+| 修改後檔案 | 真正的「新」內容 | 依候選列的 CodeNo 查這份檔案的 CodeNameA/CodeNameB/CodeNameC，當作「改成」 |
+
+流程：① 用需求文件篩出 `ChangeType` 為 `edit`/`add` 的 CodeNo；② 對每個 CodeNo 分別去「修改前」「修改後」兩份檔案各查一次 CodeNameA/CodeNameB/CodeNameC；③ **逐欄比較前後兩份檔案的值**（不是需求文件本身的值）——完全相同的直接排除（噪音標記，不進公告），只有 A/B/C 任一欄真的不同才算數；④ 前後皆有但 A 不同＝改名，B/C 不同但 A 相同＝中類／大類調整，前面查不到（`None`）但後面有＝真新增。
+
+**技術細節**：xlsx 讀出來的 CodeNo 常是 `float`（如 `1006.0`），需求文件的 CSV 是字串（`"1006"`）——比對前先正規化成同一型別（如 `str(int(float(x)))`），不然會全部對不上、誤判成「查無此代碼」。
+
 ## 與其他文件的關係
 
 - 各表現況資料：`tcode/data_*.md`
