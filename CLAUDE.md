@@ -25,6 +25,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 | 需要用專案縮寫/術語溝通、看不懂某個欄位名稱在講什麼 | `wiki/glossary.md` |
 | 產出/修改 Mermaid 圖表（流程圖、循序圖等） | `wiki/mermaid_styling_rules.md`（§4 為循序圖專屬 frontmatter config，柔色系已裁定為準） |
 | 需判斷該用本 repo 自製 skill 還是執行環境內建的官方 Anthropic skill（docx/pdf/internal-comms/doc-coauthoring 等） | `wiki/platform_skills_reference.md` |
+| repo 治理：分支怎麼合、要不要收某個 skill、改路由表、重整 wiki、repo 健檢 | 用 `Skill` 載入 `repo-steward`（**主幹管理 session 專用**；交接現況見 `references/handoff.md`、外部可用 skill 清單見 `references/external-skills.md`） |
 
 規格書撰寫的格式細則（章節編號、MECE 狀態表、🚧 待補區塊模板等）由 `.claude/skills/spec-doc-1111/SKILL.md` 管理，用 `Skill` 工具載入，不在 wiki 裡重複。
 
@@ -67,6 +68,9 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 多支 session 平行工作造成品質漂移的根因是「從古老 commit 分岔、帶著舊規則與舊 skill 繼續產出」（實例：`gifted-meitner` 分岔後仍用已棄用的 GitHub-raw 圖床）。自 `main` 升格為唯一主幹起，一律遵守：
 
+0. **兩個常駐 session 的分工（2026-09-10 起）**：**Repo Steward**（主幹管理，用 `repo-steward` skill）管共用資產與治理；
+   **HackMD 文件 session** 管 HackMD 規格書內容與 `notes/` 快取。兩邊不動對方主場檔案；
+   skill 內容與 HackMD 規格衝突時**以 HackMD 為準**，回頭修 skill。
 1. **新 session 一律從最新 `main` 開分支**。開工第一件事 `git fetch origin main` 確認基準點，繼承最新路由表＋全部 skill。
 2. **共用資產唯一變更入口＝主幹管理 session**：`CLAUDE.md`／`.claude/skills/`／`wiki/`／`scripts/`／`.claude_index.md`／`.claude/settings.json` 只由主幹管理 session 修改。其他 session 需要改共用檔時，在自己的 PR 描述註明「請主幹對照吸收」，**不要直接改**——直接改必然跟主幹撞衝突，且會被主幹版本覆蓋。
 3. **各專案工作產出放各自目錄**（`job-classification-kb/`、`wiki/apis/`、`handoff/`、`notes/`…），不碰共用檔，PR 就不會互撞。專案 deliverable **不進主幹**，留在各自分支（位置記錄於分支索引）；主幹只收文件主線＋skill。
@@ -108,6 +112,12 @@ Token 存在環境變數 `HACKMD_TOKEN`，`.env` 已列入 `.gitignore`，絕不
 python3 scripts/hackmd_safe_patch.py --note-id <內部 noteId> \
   --baseline "$SCRATCHPAD/<noteId>.md" --working "$SCRATCHPAD/<noteId>.working.md" \
   --team-path 1111-jobdocs   # exit: 0 已更新／1 衝突／2 錯誤
+```
+
+**Repo 健檢**（分支耦合／skill 重複／索引完整性／體積，輸出 Markdown 報告，不要 commit 報告本身）：
+```bash
+python3 scripts/repo_healthcheck.py                          # 全部四段
+python3 scripts/repo_healthcheck.py --section branches       # 只看分支耦合
 ```
 
 **動到 Mermaid 就要渲染驗證**再 push（HackMD 上壞圖不會報錯，只會渲染失敗）：
