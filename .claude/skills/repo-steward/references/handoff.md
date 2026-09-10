@@ -1,35 +1,37 @@
 # 交接文件：Repo Steward session
 
-> 交接日：2026-09-10　來源：HackMD 文件 session（`claude/claude-md-docs-BmaVo`）
+> 交接日：2026-09-10　來源：HackMD 文件 session
+> 最後更新：2026-09-10（第一批收斂已完成，見下方第二節）
 > 這份是**當下狀態快照＋已知的坑**，會過期。開工先跑 `python3 scripts/repo_healthcheck.py` 拿即時事實，
 > 兩者衝突時信健檢報告，然後回來更新這份與 CLAUDE.md 分支索引。
 
-## 一、現況快照（2026-09-10）
+## 一、現況快照（2026-09-10 收斂後）
 
 | 項目 | 狀態 |
 | :--- | :--- |
-| 主幹 | `main` == `claude/claude-md-docs-BmaVo` == `2faeb26`（2026-08-31 由 PR #15 升格） |
-| 遠端分支 | 13 支（含 main），其中 11 支是各 Claude session 的獨立產出 |
-| Skill 總數 | 21 個，全在 `.claude/skills/`，全部已進 CLAUDE.md 路由表與 `.claude_index.md` |
-| Open PR | #9（email-layout）／#10（csv-retrieval）／#12（vm-api）／#13（part-time-modal） |
+| 主幹 | `main`（唯一主幹，2026-08-31 由 PR #15 升格） |
+| 遠端分支 | 13 支（含 main）；`claude/claude-md-docs-BmaVo` 已停用、🚧 待手動刪除 |
+| Skill 總數 | 22 個，全在 `.claude/skills/`，全部已進 CLAUDE.md 路由表與 `.claude_index.md` |
+| Open PR | #9（email-layout）／#10（csv-retrieval）／#12（vm-api）／#13（part-time-modal），base 均已改指 `main` |
 | 索引健康度 | ✅ 受管檔案都有進索引、所有 skill 都有路由列、無 >1MB 版控檔 |
 
-⚠️ **注意：4 個 open PR 的 base 都指向 `claude/claude-md-docs-BmaVo`，不是 `main`。**
-兩者目前同 commit 所以看起來沒差，但之後只要主幹往前走就會分岔。要嘛把 base 改成 `main`，
-要嘛維持「這 4 支是專案 deliverable、本來就不進主幹」的既有裁示（2026-08-31 已留言說明政策）。
+## 二、第一批收斂（2026-09-10，已完成）
 
-## 二、開工第一批任務（照順序做）
+三支「2026-08-31 稽核後又動過」的分支已處理完，結論已沉澱進 CLAUDE.md 分支索引：
 
-1. **`photo` skill 有分支版比主幹新** — `claude/gifted-meitner-6eSoK` 的 `photo` 是 2026-09-01，
-   主幹版是 2026-08-31。該分支的主題正是 photo/png skill 改進，很可能有主幹沒吸收的東西。
-   逐段比對後決定吸收哪些，**不要整包覆蓋**（主幹版已有其他 session 驗證過的內容）。
-2. **3 支分支在 2026-08-31 稽核後又動過**，分支索引的「最後更新」欄已過期：
-   `google-sheet-url-allowlist-GKFEU`（09-08，超前 108 commit）、`email-layout-handoff-gjq5zu`（09-03）、
-   `gifted-meitner-6eSoK`（09-01）。先看它們新增了什麼，再更新索引表。
-3. **`email-layout-handoff-gjq5zu` 動到 `CLAUDE.md` 與 `wiki/`** — 這是治理規則 #2 明文禁止的
-   （共用檔只有主幹能改）。處理方式：共用檔取 main 版本、只保留該分支自己的 `handoff/` deliverable，
-   並在 PR #9 留言提醒。
-4. 跑一次完整健檢，把有動作價值的發現沉澱進 CLAUDE.md 分支索引。
+1. **`gifted-meitner-6eSoK` → 全數吸收**：`photo/SKILL.md` 併入，含使用者裁定採用的
+   **「圖片一律遷移 R2」政策異動**（不再沿用既有 `hackmd.io/_uploads` 網址），
+   連帶修正 `spec-doc-1111/references/styling.md` 的圖床與限寬寫法。
+2. **`google-sheet-url-allowlist-GKFEU` → 收版型庫、砍 PDF**：`references/設計描述五層面.md`
+   與 `references/html-templates/`（77 版型，Apache-2.0）併入 `report-generator`；
+   1.8MB 來源 PDF 不收（超過 1MB 門檻，內容已萃取）。
+3. **`email-layout-handoff-gjq5zu` → 一律不吸收**：3 處共用檔改動逐段複查，
+   其中〈規格書 UI 截圖標號慣例〉是**已棄用規則**（Pillow 燒 badge＋GitHub raw 圖床），
+   與主幹現行的 `photo` skill（HTML overlay＋R2）直接衝突，吸收會讓主幹倒退。
+
+**下一批可做的**：`vm-api-testing-setup-wpf6y8`（落後 59、動到 4 類共用檔）與
+`happy-lamport-ljis8c`／`csv-retrieval-retry-do5a9o`／`eloquent-maxwell-j31ot5` 都只是血緣落後，
+健檢已判定「分支較舊」，**不需要逐支去合**；只有健檢標 `🔺分支較新` 的才要人工比對。
 
 ## 三、已知的坑（別踩）
 
@@ -44,6 +46,12 @@
   （1111 求才系統規格書）無關，只是借放當共用 skill 庫。不要試圖把它整合進主線敘事，
   也不要把該專案的資料目錄搬進主幹。
 * **`spec-doc-1111` 在 7 支分支上都是舊版**——那是正常的血緣落後，不是分歧，別逐支去合。
+* **舊分支的共用檔改動可能是「已棄用規則」，不是「主幹漏收的新東西」**：`email-layout-handoff-gjq5zu`
+  往 CLAUDE.md 加的〈規格書 UI 截圖標號慣例〉要求 Pillow 燒 badge＋GitHub raw 圖床，兩者主幹都已棄用。
+  **判斷方法：先看該分支的分岔點日期，再看它改的規則在主幹是不是已經被更新過**——分支較舊卻動到共用檔，
+  預設是倒退而不是補充。
+* **本環境不能刪遠端分支**：`git push origin --delete` 會被 proxy 擋（HTTP 403），
+  GitHub MCP 也沒有 delete branch 工具。要刪分支只能請使用者在 GitHub 網頁操作。
 * **不要 force-push**，不要整支 `git merge` 老分支（分岔規模動輒 100+ commit，衝突成本遠大於選擇性搬運）。
 * `career/` 是使用者的個人職能框架，2026-08-31 經明確同意才併入（`resume-craft` skill 依賴它）。
   已做過 secret 掃描。不要再對它做結構性改動。
