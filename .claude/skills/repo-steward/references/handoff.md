@@ -10,7 +10,7 @@
 | 項目 | 狀態 |
 | :--- | :--- |
 | 主幹 | `main`（唯一主幹，2026-08-31 由 PR #15 升格） |
-| 遠端分支 | 13 支（含 main）；`claude/claude-md-docs-BmaVo` 已停用、🚧 待手動刪除 |
+| 遠端分支 | 13 支（含 main）；`claude/claude-md-docs-BmaVo` ⚠️**先前誤判可刪除，已收回**——「文件助手」session 仍在用它當 outcome 分支，見 `wiki/session_directory.md`〈特別注意〉 |
 | Skill 總數 | 22 個，全在 `.claude/skills/`，全部已進 CLAUDE.md 路由表與 `.claude_index.md` |
 | Open PR | #9（email-layout）／#10（csv-retrieval）／#12（vm-api）／#13（part-time-modal），base 均已改指 `main` |
 | 索引健康度 | ✅ 受管檔案都有進索引、所有 skill 都有路由列、無 >1MB 版控檔 |

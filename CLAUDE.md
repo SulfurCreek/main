@@ -26,6 +26,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 | 產出/修改 Mermaid 圖表（流程圖、循序圖等） | `wiki/mermaid_styling_rules.md`（§4 為循序圖專屬 frontmatter config，柔色系已裁定為準） |
 | 需判斷該用本 repo 自製 skill 還是執行環境內建的官方 Anthropic skill（docx/pdf/internal-comms/doc-coauthoring 等） | `wiki/platform_skills_reference.md` |
 | repo 治理：分支怎麼合、要不要收某個 skill、改路由表、重整 wiki、repo 健檢 | 用 `Skill` 載入 `repo-steward`（**主幹管理 session 專用**；交接現況見 `references/handoff.md`、外部可用 skill 清單見 `references/external-skills.md`） |
+| **不確定這個請求算不算自己的工作**、使用者問「這個誰負責」「要換去哪個 session」「幫我 cue 一下」 | 用 `Skill` 載入 `session-router`，查 `wiki/session_directory.md`（跨 session／分支職責對照表，含側欄名稱與即時查詢方法） |
 
 規格書撰寫的格式細則（章節編號、MECE 狀態表、🚧 待補區塊模板等）由 `.claude/skills/spec-doc-1111/SKILL.md` 管理，用 `Skill` 工具載入，不在 wiki 裡重複。
 
@@ -43,7 +44,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 | 分支 | 最後更新 | 主題 | 帶有的獨有 skill | 狀態 |
 | :--- | :--- | :--- | :--- | :--- |
-| `main`（唯一主幹） | — | 1111 求才系統 HackMD 規格書主線＋全部 22 個 skill 的集散地 | 全部（見 `.claude_index.md`〈skills〉） | 2026-08-31 起 main 為唯一主幹（PR #15）。**2026-09-10：`claude/claude-md-docs-BmaVo` 已停用**——4 個 open PR（#9／#10／#12／#13）的 base 全數改指 `main`，該分支內容已完全含於 main，🚧 **待手動刪除**（本環境 git push --delete 被 proxy 擋 403，需在 GitHub 網頁刪）。刪掉之前不要再往那支推東西。同日 UI 自動開的 PR #17（`main` → `BmaVo`，方向反了、內容早已在 main 上）已留言說明並關閉 |
+| `main`（唯一主幹） | — | 1111 求才系統 HackMD 規格書主線＋全部 22 個 skill 的集散地 | 全部（見 `.claude_index.md`〈skills〉） | 2026-08-31 起 main 為唯一主幹（PR #15）。4 個 open PR（#9／#10／#12／#13）的 base 已改指 `main`。同日 UI 自動開的 PR #17（`main` → `BmaVo`，方向反了、內容早已在 main 上）已留言說明並關閉。⚠️ **`claude/claude-md-docs-BmaVo` 先前誤判「可安全刪除」，已收回**：2026-09-10 用 `list_sessions` 即時查證，側欄「文件助手」session（`session_01Cd8ro9qHrxAgVDh98ePdZf`）當時仍是 RUNNING 狀態，且它的 outcome 分支還是這支——刪掉會讓它下次推送失敗。**在確認「文件助手」已改用 main 當 outcome 之前，這支分支不能刪**，詳見 `wiki/session_directory.md`〈特別注意〉 |
 | `claude/gifted-meitner-6eSoK` | 2026-09-01 | photo/png skill 改進（Figma 座標來源、跨區塊視覺比對） | （`photo`／`png` 已選擇性併入本分支，見下方） | ✅ 2026-09-10 `photo/SKILL.md` 已**全數吸收**（含使用者裁定採用的「圖片一律遷移 R2」政策異動，連帶修正 `spec-doc-1111/references/styling.md` 的圖床與限寬寫法）；此分支的 skill 已無主幹未吸收項目。先前：PR #1 已關閉留言，其餘核心文件版本較舊不採用；`mermaid-sequence-diagram` 已裁定採柔色系，機制併入 `wiki/mermaid_styling_rules.md` §4，skill 本身不獨立收錄 |
 | `claude/lofi-wireframer-skill-0u25rk` | 2026-08-21 | Balsamiq 風格 HTML 手繪線框圖 skill；**分岔點是本分支自己的近期 commit**（`0fc94c3`），血緣最近 | `lofi-wireframer` | ✅ 已併入；PR #14 已關閉留言 |
 | `claude/google-sheet-url-allowlist-GKFEU` | 2026-09-08 | 職務分類資料工作流；近期新增 report-generator 的視覺規格方法與 77 個 HTML 版型庫 | `gsheet-vendor-identity`／`job-classification-kb`／`md-datalayer`／`safe-excel-editor`／`tabular-token-min` | ✅ 2026-08-31 skill 已併入（與 `tcode-excel-ops` 無重疊，各管不同代碼表體系）；同日複查：`pm-toolkit`／`spec-doc-1111` 均與本分支相同或較舊，`.claude/settings.json` 的 Google Sheets/Docs WebFetch allowlist 已一併搬入（否則併入的兩個 skill 會因權限擋住無法用）；`job-classification-kb/` 資料目錄本體（scripts／tcode／wiki 等大量專案資料）維持不搬。PR #2 已關閉留言；**#11 已併入本分支**，職務分類專案自此收斂為這一支主線。**2026-09-10 第二批**：`report-generator` 的「視覺規格先行」段落、`references/設計描述五層面.md`、`references/html-templates/`（77 版型＋LICENSE）已全數併入主幹；唯一放棄的是 1.8MB 的來源 PDF（超過健檢 1MB 門檻，內容已萃取進 md） |
