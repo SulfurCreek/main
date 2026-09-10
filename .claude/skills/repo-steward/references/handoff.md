@@ -59,7 +59,14 @@
 * 你發現 skill 內容與 HackMD 規格衝突 → **以 HackMD 為準**，回頭修 skill。
 * 兩邊都不要動對方的主場檔案。真的需要，開 PR 並在描述註明請對方吸收。
 
-## 五、新 session 的 kickoff prompt
+## 五、怎麼啟動（兩種都可以）
+
+### A. subagent（建議，有跨 session 記憶）
+
+`.claude/agents/repo-steward.md` 已經建好，帶 `memory: project`。直接叫它即可，
+它會把「上次收斂到哪、哪些議題已裁示」寫進 `.claude/agent-memory/repo-steward/`，下次接得上。
+
+### B. 獨立 session — kickoff prompt
 
 開新 session 時貼這段：
 

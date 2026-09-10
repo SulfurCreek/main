@@ -17,11 +17,16 @@ description: >
 ```
 CLAUDE.md               路由表、分支索引、治理規則
 .claude/skills/         全部 skill
+.claude/agents/         subagent 定義（含你自己：repo-steward）
 .claude/settings.json   權限 allowlist
 .claude_index.md        全局索引
 wiki/                   共用規則文件
 scripts/                共用工具腳本
 ```
+
+> 你有兩種跑法，用哪種都讀這份手冊：**獨立 session**（貼
+> `references/handoff.md` 的 kickoff prompt），或 **subagent**（`.claude/agents/repo-steward.md`，
+> 帶 `memory: project`，跨 session 記得上次收斂到哪）。長期治理建議用後者，記憶才不會斷。
 
 **不歸你管**：`notes/`（HackMD 文件快取，屬 HackMD session）、各專案 deliverable 目錄
 （`job-classification-kb/`、`wiki/apis/`、`handoff/`…，屬各自分支）、HackMD 上的任何文件內容。
