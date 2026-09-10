@@ -32,11 +32,12 @@
 
 ### 圖片
 
-- 圖片來源兩種皆可：HackMD `_uploads`（手動拖入）或 GitHub raw URL（repo `.claude/assets/` 下，URL 帶 commit SHA）
-- 全寬示意圖：`![image](https://hackmd.io/_uploads/xxxx.png)`
-- 限寬內嵌圖兩種寫法：
+- **圖片來源一律走 Cloudflare R2**，權威規則見 `.claude/skills/photo/SKILL.md` 規則一。本檔不重複那套流程，只列排版寫法。
+  - 只有規格書裡**這次完全沒動到**的既有 `hackmd.io/_uploads` 裸圖不用主動回頭遷移；只要這次要處理／納入新產出，一律下載後上傳 R2、改用 R2 網址。GitHub raw 圖床已棄用，不要再用。
+- 全寬示意圖：`![image](https://pub-xxxx.r2.dev/photo-skill/xxxx.png)`
+- 限寬內嵌圖：**限寬責任一律交給外層 `div`，不可只寫在 `<img>` 自己的 inline style**（HackMD 對內文 `img` 的樣式會蓋掉 inline `max-width`，圖片會被撐大；見 `photo` skill 規則二「純圖片限寬」事故）
   - `<div style="max-width:375px">![image](...)</div>`（markdown 圖包 div）
-  - `<img style="max-width:600px" src="..." alt="{章節編號＋元件說明}">`（GitHub raw 圖用 img tag，**必加 alt** 描述對應章節）
+  - `<div style="width:100%; max-width:600px;"><img style="display:block; width:100%;" src="..." alt="{章節編號＋元件說明}"></div>`（img tag 寫法，**必加 alt** 描述對應章節）
 - 常見寬度：選單 `200px`、手機版 `375px`、空狀態／lightbox `500px`、聊天室全景 `600px`、列表 `800px`、tooltip `300px`
 
 ### 截圖標注／覆蓋（從 Figma 產生規格截圖）
