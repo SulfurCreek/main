@@ -94,7 +94,7 @@
 
 ### 6.3 兩層 mailType 代碼（易混淆，務必分清）
 
-- **查詢參數層**（`get-by-condition` 的 `mailType`）：`0一般 1面試邀約 2詢問意願 5感謝函 6到職確認 8面試異動 9即時通訊` —— 整併後語意，含 `2`。
+- **查詢參數層**（`get-by-condition` 的 `mailType`）：`0一般 1面試邀約 2詢問意願 5感謝函 6到職確認 8面試異動 9即時通訊` —— 整併後語意，含 `2`。（`6` 的**目標名稱是「錄取通知」**，E.1 上線後統一；現階段「到職確認」可接受，見 `wiki/glossary.md`。）
 - **jsonB 原始層**（`get-detail` 的 `type`）：原始信件類別，**無 `2`**，詢問意願靠 `type1+interViewKind0` 表達，前端才轉出 `mailType=2`。
 - 兩者不可直接比對，`notes/api/echat-get-by-condition.md` 已標註。
 

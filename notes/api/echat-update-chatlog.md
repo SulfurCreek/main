@@ -108,3 +108,27 @@ Status Code 401
 ```
 
 > **前端備註（本 repo 分析）**：此 API 是「共同發送行為」與「共同回覆行為」中，緊接在「寫入信件主表」之後觸發的**整併同步**步驟，把即時通 `EChatLog` 與信件 `MailNoticeDetail` 兩個來源整併成 `get-detail` 的 `oJsonB`／`tJsonB` 合併視角（對應 `msgKind` 0即時通/1信件）。詳見 `notes/e1_seq_backend.md` 循序圖第四、五段。
+
+## 內部機制（工程端提供，非同步整併）
+
+呼叫端（各系統後端／EHR／前端皆可）打本 API 後，**立即回傳 `200 true`（非同步、不等待整併完成）**；實際的整併寫入是後續非同步流程：
+
+```mermaid
+sequenceDiagram
+    autonumber
+    participant Caller as 呼叫端<br/>（各系統後端／EHR／前端）
+    participant API as Recruit WebAPI
+    participant Bus as EventBus
+    participant Handler as MergeRecruitMailChatEventHandler
+    participant DB as EChatMailMerge 資料表
+
+    Caller->>API: POST /update-chatlog
+    API->>Bus: 發布 MergeRecruitMailChat 事件<br/>（每筆異動一個事件）
+    API-->>Caller: 200 true（非同步，立即回）
+    Bus->>Handler: callback POST /callback/mergeRecruitMailChat
+    Handler->>DB: SyncEChatMailLogJsonBAsync<br/>（部分或全量重建 JSONB）
+```
+
+> **呼叫端如何看到最新狀態**：本 API 是 fire-and-forget，回應的 `true` 只代表「事件已發布」，不代表整併已完成。呼叫端需**重新呼叫查詢 API**（`get-by-condition`／`get-detail`）才能看到整併後的最新狀態；聊天室情境則另由 `onSignal` 主動通知（見 `notes/uS9-跨系統流程與後端邏輯.md` 共同發送／回覆行為表 1.5／2.5 項）。
+>
+> ⚠️ 來源截圖中「開啟訊息中心」步驟仍顯示呼叫 `GET /get-echat-mail-logs` 取得列表——與該 API 已棄用、列表改用 `get-by-condition` 的既有記錄不一致，可能是示意圖沿用舊端點名稱繪製。列表載入請仍以 `get-by-condition` 為準（見 `notes/api/echat-get-echat-mail-logs.md` 棄用說明），此處保留原圖用詞供工程端核對。

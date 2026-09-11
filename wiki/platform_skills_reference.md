@@ -5,16 +5,15 @@
 
 ## 查核方式與結論
 
-執行環境的 `/mnt/skills/public/` 與 `/mnt/skills/examples/` 各是獨立 squashfs 唯讀掛載點（`mount` 確認），用 `find` 逐一核對檔名後：
+執行環境的 `/mnt/skills/public/` 與 `/mnt/skills/examples/` 各是獨立唯讀掛載點，用 `ls`/`find` 逐一核對檔名後，**實際存在**的官方 skill 如下（未列出的名稱＝查無實體、不存在，不記錄）：
 
-| 使用者提供的 17 個名稱 | 在 `/mnt/skills` 確認存在？ |
+| 官方 skill | 位置 |
 | :--- | :--- |
 | docx／pdf／pptx／xlsx | ✅ `/mnt/skills/public/` |
 | doc-coauthoring／mcp-builder／frontend-design／web-artifacts-builder／canvas-design／algorithmic-art／theme-factory／brand-guidelines／internal-comms／slack-gif-creator／skill-creator | ✅ `/mnt/skills/examples/` |
-| `claude-api` | ❌ 兩個掛載點都找不到對應目錄或檔案（雖然此 session 的可用 skill 清單裡有一個同名項目，但其來源不是這兩個掛載路徑，無法在檔案系統上確認） |
-| `webapp-testing` | ❌ 兩個掛載點、全機檔案系統都找不到，與「都有」的說法不符 |
+| `claude-api` | ✅ 以 session 註冊 skill 形式存在（出現在 Skill 工具的可用清單，可直接載入），`/mnt/skills` 下無實體檔——屬 harness 內建，非掛載點檔案 |
 
-**結論**：17 個裡有 15 個查到實體檔案；`claude-api`、`webapp-testing` 兩個目前在本環境查無對應檔案，與「在 Claude 的 skill directory 裡面都有」的說法有落差，先記錄於此，不臆測其內容。
+（歷史紀錄：曾核對過的 `webapp-testing` 在掛載點與全機檔案系統均查無實體、session 清單也沒有，視為不存在，已自本表移除。）
 
 ## 分工決策：哪些值得跟本 repo 的 skill 互相引用
 
