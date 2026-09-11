@@ -39,10 +39,21 @@ def remote_branches() -> list[str]:
     return [b for b in out.splitlines() if b != "origin/HEAD"]
 
 
+def merge_conflicts_with_trunk(br: str) -> list[str]:
+    """真實文字衝突的檔案清單（git merge-tree 乾跑，不落地）；沒有衝突回傳空陣列。"""
+    out = git("merge-tree", "--write-tree", TRUNK, br)
+    return sorted({
+        line.split("Merge conflict in ", 1)[1]
+        for line in out.splitlines()
+        if "CONFLICT" in line and "Merge conflict in " in line
+    })
+
+
 def check_branches() -> list[str]:
     lines = ["## 1. 分支耦合與漂移", ""]
-    lines += ["| 分支 | 最後更新 | 落後 main | 超前 main | 動到的共用資產 |", "| :--- | :--- | ---: | ---: | :--- |"]
+    lines += ["| 分支 | 最後更新 | 落後 main | 超前 main | 動到的共用資產 | 現在合併會衝突？ |", "| :--- | :--- | ---: | ---: | :--- | :--- |"]
     coupled = []
+    conflicting = []
     for br in remote_branches():
         if br == TRUNK:
             continue
@@ -53,7 +64,11 @@ def check_branches() -> list[str]:
         hits = sorted({p for p in SHARED_PATHS for f in changed.splitlines() if f.startswith(p)})
         if hits:
             coupled.append((br, hits))
-        lines.append(f"| `{br.removeprefix('origin/')}` | {date} | {behind} | {ahead} | {'／'.join(hits) if hits else '—'} |")
+        conflicts = merge_conflicts_with_trunk(br)
+        if conflicts:
+            conflicting.append((br, conflicts))
+        conflict_cell = f"🔴 {'、'.join(conflicts)}" if conflicts else "✅"
+        lines.append(f"| `{br.removeprefix('origin/')}` | {date} | {behind} | {ahead} | {'／'.join(hits) if hits else '—'} | {conflict_cell} |")
     lines.append("")
     if coupled:
         lines.append(f"⚠️ **{len(coupled)} 支分支改到共用資產**，合併時必然衝突。處理原則：共用檔一律以 main 為準，分支只保留自己的 deliverable。")
@@ -61,6 +76,18 @@ def check_branches() -> list[str]:
             lines.append(f"* `{br.removeprefix('origin/')}` → {'、'.join(hits)}")
     else:
         lines.append("✅ 沒有分支改到共用資產。")
+    lines.append("")
+    if conflicting:
+        lines.append(
+            f"🔴 **{len(conflicting)} 支分支跟目前 main 已經是真實文字衝突**（不只是「動到共用資產」，"
+            "是現在真的合不下去）——若該分支有 open PR，PR 頁面會顯示 conflict。"
+            "處理方式：`git worktree add` 該分支、`git merge origin/main`、共用檔衝突一律 "
+            "`git checkout --theirs <path>` 採 main 版本、驗證分支自己的 deliverable 沒被動到，"
+            "再 push 回該分支（不是 push 到 main）。這是**每次修改共用資產後都該跑一次**的檢查，"
+            "不要等使用者發現才處理。"
+        )
+        for br, files in conflicting:
+            lines.append(f"* `{br.removeprefix('origin/')}` → {'、'.join(files)}")
     return lines
 
 
