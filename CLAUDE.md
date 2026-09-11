@@ -25,7 +25,8 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 | 需要用專案縮寫/術語溝通、看不懂某個欄位名稱在講什麼 | `wiki/glossary.md` |
 | 產出/修改 Mermaid 圖表（流程圖、循序圖等） | `wiki/mermaid_styling_rules.md`（§4 為循序圖專屬 frontmatter config，柔色系已裁定為準） |
 | 需判斷該用本 repo 自製 skill 還是執行環境內建的官方 Anthropic skill（docx/pdf/internal-comms/doc-coauthoring 等） | `wiki/platform_skills_reference.md` |
-| 產出/改寫「前端修改工程單」（視覺調整需求文件本體，給切版師/QA 驗收） | `wiki/frontend_change_ticket_rules.md` |
+| repo 治理：分支怎麼合、要不要收某個 skill、改路由表、重整 wiki、repo 健檢 | 用 `Skill` 載入 `repo-steward`（**主幹管理 session 專用**；交接現況見 `references/handoff.md`、外部可用 skill 清單見 `references/external-skills.md`） |
+| **不確定這個請求算不算自己的工作**、使用者問「這個誰負責」「要換去哪個 session」「幫我 cue 一下」 | 用 `Skill` 載入 `session-router`，查 `wiki/session_directory.md`（跨 session／分支職責對照表，含側欄名稱與即時查詢方法） |
 
 規格書撰寫的格式細則（章節編號、MECE 狀態表、🚧 待補區塊模板等）由 `.claude/skills/spec-doc-1111/SKILL.md` 管理，用 `Skill` 工具載入，不在 wiki 裡重複。
 
@@ -33,37 +34,25 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 涉及**數據分析／競品拆解／商業提案、跨部門溝通文案（公告/客服回覆/敏感溝通）、資料 Mapping Table 與資料庫正規化原則、OTP/MFA 類邊界條件檢查**時，用 `Skill` 工具載入 `.claude/skills/pm-toolkit/SKILL.md`（與 spec-doc-1111、mermaid_styling_rules.md 不重疊，僅收錄它們沒覆蓋的部分）。
 
-涉及**前端切版／視覺改版（拿到被調整過的頁面 mock HTML/CSS、逐一盤點樣式更動、依 Figma 設計稿微調樣式、把改動整理成給人類前端工程師的需求文件、比對 mock 與正式環境 HTML 結構差異、產自包含預覽）**時，用 `Skill` 工具載入 `.claude/skills/frontend-slicing-1111/SKILL.md`（封裝「只改 CSS 不動結構、mock↔正式偏離稽核、自包含預覽、微軟正黑體字體規則」這套流程；需求文件**內文**的寫法改用 `frontend-change-ticket-1111`，HackMD 排版格式仍搭 spec-doc-1111）。「信件訊息」頁（`ResumePoolNoticeMail`）的實際交接包見 `handoff/INDEX.md`。
-
----
-
-## 規格書 UI 截圖標號慣例
-
-規格書／需求文件的畫面截圖，要在圖上標「區塊編號」badge，編號與文件章節一致，方便 RD/QA 對照畫面。**一律以 Pillow 在截圖上程式化標注／覆蓋文字**，不要手動修圖：
-
-- **badge 樣式（固定）**：紅底 `#FF5F57`、白字 `Inter`／`700`／`20px`、圓角；打在截圖**上緣加出的白色留白**上，**不壓到畫面內容**。
-- **流程**：取圖（Figma `get_screenshot` 或現成截圖）→（URL 來源用 `curl` 下載）→ Pillow 加白邊＋打 badge → 裁切 → commit 到 `.claude/assets/` → 文件用 `https://raw.githubusercontent.com/<owner>/<repo>/<SHA>/.claude/assets/<file>`（URL 帶 commit SHA）引用，`<img>` 加 `alt`。
-- 完整步驟與 Pillow 範例碼見 `.claude/skills/spec-doc-1111/SKILL.md` 的「截圖標注／覆蓋」一節。
-
 ---
 
 ## 🌿 分支索引（Branch Index）
 
 **本 repo 有多支 Claude session 各自獨立開的分支，經常各自長出專屬 skill、彼此不知道對方存在。** 開始任何「新增 skill」「找有沒有人做過類似的事」類任務前，先掃一眼下表；找不到才動手，避免重工或跟其他分支撞名。
 
-> 查最新狀態：`git fetch origin --prune && git branch -r`。下表為 2026-08-31 稽核快照（同日 PR 全面清理：#15 升格 main；#1/#2/#4/#7/#8/#14 已關閉；#11 已併入職務分類主線；#9/#10/#12/#13 留 open 屬各專案 deliverable）。之後有新分支或分支被合併/刪除，比對後更新本表。
+> 查最新狀態：**`python3 scripts/repo_healthcheck.py --section branches`**（本表會過期，健檢報告才是當下事實）。下表為 **2026-09-10 稽核快照**：該日收斂 3 支「稽核後又動過」的分支（`gifted-meitner` photo skill 全數吸收、`google-sheet` 版型庫全收只砍 PDF、`email-layout` 共用檔改動一律不吸收），並把 #9/#10/#12/#13 的 base 從 `claude-md-docs-BmaVo` 改指 `main`。先前 2026-08-31 PR 全面清理：#15 升格 main；#1/#2/#4/#7/#8/#14 已關閉；#11 已併入職務分類主線；#9/#10/#12/#13 留 open 屬各專案 deliverable。之後有新分支或分支被合併/刪除，比對後更新本表。
 
 | 分支 | 最後更新 | 主題 | 帶有的獨有 skill | 狀態 |
 | :--- | :--- | :--- | :--- | :--- |
-| `main`＝`claude/claude-md-docs-BmaVo`（主幹） | — | 1111 求才系統 HackMD 規格書主線＋全部 21 個 skill 的集散地 | 全部（見 `.claude_index.md`〈skills〉） | 2026-08-31 起 main 為唯一主幹（PR #15），兩者同步演進 |
-| `claude/gifted-meitner-6eSoK` | 2026-08-26 | photo/png skill 改進（Figma 座標來源、跨區塊視覺比對） | （`photo`／`png` 已選擇性併入本分支，見下方） | 已部分吸收（PR #1 已關閉留言），其餘核心文件版本較舊不採用；`mermaid-sequence-diagram` 已裁定採柔色系，機制併入 `wiki/mermaid_styling_rules.md` §4，skill 本身不獨立收錄 |
+| `main`（唯一主幹） | — | 1111 求才系統 HackMD 規格書主線＋全部 22 個 skill 的集散地 | 全部（見 `.claude_index.md`〈skills〉） | 2026-08-31 起 main 為唯一主幹（PR #15）。4 個 open PR（#9／#10／#12／#13）的 base 已改指 `main`。同日 UI 自動開的 PR #17（`main` → `BmaVo`，方向反了、內容早已在 main 上）已留言說明並關閉。⚠️ **`claude/claude-md-docs-BmaVo` 先前誤判「可安全刪除」，已收回**：2026-09-10 用 `list_sessions` 即時查證，側欄「文件助手」session（`session_01Cd8ro9qHrxAgVDh98ePdZf`）當時仍是 RUNNING 狀態，且它的 outcome 分支還是這支——刪掉會讓它下次推送失敗。**在確認「文件助手」已改用 main 當 outcome 之前，這支分支不能刪**，詳見 `wiki/session_directory.md`〈特別注意〉 |
+| `claude/gifted-meitner-6eSoK` | 2026-09-01 | photo/png skill 改進（Figma 座標來源、跨區塊視覺比對） | （`photo`／`png` 已選擇性併入本分支，見下方） | ✅ 2026-09-10 `photo/SKILL.md` 已**全數吸收**（含使用者裁定採用的「圖片一律遷移 R2」政策異動，連帶修正 `spec-doc-1111/references/styling.md` 的圖床與限寬寫法）；此分支的 skill 已無主幹未吸收項目。先前：PR #1 已關閉留言，其餘核心文件版本較舊不採用；`mermaid-sequence-diagram` 已裁定採柔色系，機制併入 `wiki/mermaid_styling_rules.md` §4，skill 本身不獨立收錄 |
 | `claude/lofi-wireframer-skill-0u25rk` | 2026-08-21 | Balsamiq 風格 HTML 手繪線框圖 skill；**分岔點是本分支自己的近期 commit**（`0fc94c3`），血緣最近 | `lofi-wireframer` | ✅ 已併入；PR #14 已關閉留言 |
-| `claude/google-sheet-url-allowlist-GKFEU` | 2026-08-27 | 職務分類資料工作流；最後一筆是 TCode 福利代碼顯示順序對照表 | `gsheet-vendor-identity`／`job-classification-kb`／`md-datalayer`／`safe-excel-editor`／`tabular-token-min` | ✅ 2026-08-31 skill 已併入（與 `tcode-excel-ops` 無重疊，各管不同代碼表體系）；同日複查：`pm-toolkit`／`spec-doc-1111` 均與本分支相同或較舊，`.claude/settings.json` 的 Google Sheets/Docs WebFetch allowlist 已一併搬入（否則併入的兩個 skill 會因權限擋住無法用）；`job-classification-kb/` 資料目錄本體（scripts／tcode／wiki 等大量專案資料）維持不搬。PR #2 已關閉留言；**#11 已併入本分支**，職務分類專案自此收斂為這一支主線 |
-| `claude/extract-job-duty-markdown-4avmd6` | 2026-08-03 | 職務分類資料工作流（大量資料檔，200萬行級 diff） | `report-generator`／`rawdata`／`one-pager`／同上 job-classification 系列 | 整支分支 ❌ 不合併（規模/資料檔跟本 repo 無關）；2026-08-31 已抽出 `report-generator`／`rawdata`／`one-pager` 三個 skill 併入；同日複查：`job-classification-kb/skills/tcode-excel-ops.md` 是該專案內部文件（非 `.claude/skills/`），跟本 repo 的 `tcode-excel-ops` skill 同名但服務不同代碼表體系，維持不搬，避免混淆。其 PR #11（對 google-sheet 分支）已合併，該專案後續以 google-sheet 分支為主線 |
+| `claude/google-sheet-url-allowlist-GKFEU` | 2026-09-08 | 職務分類資料工作流；近期新增 report-generator 的視覺規格方法與 77 個 HTML 版型庫 | `gsheet-vendor-identity`／`job-classification-kb`／`md-datalayer`／`safe-excel-editor`／`tabular-token-min` | ✅ 2026-08-31 skill 已併入（與 `tcode-excel-ops` 無重疊，各管不同代碼表體系）；同日複查：`pm-toolkit`／`spec-doc-1111` 均與本分支相同或較舊，`.claude/settings.json` 的 Google Sheets/Docs WebFetch allowlist 已一併搬入（否則併入的兩個 skill 會因權限擋住無法用）；`job-classification-kb/` 資料目錄本體（scripts／tcode／wiki 等大量專案資料）維持不搬。PR #2 已關閉留言；**#11 已併入本分支**，職務分類專案自此收斂為這一支主線。**2026-09-10 第二批**：`report-generator` 的「視覺規格先行」段落、`references/設計描述五層面.md`、`references/html-templates/`（77 版型＋LICENSE）已全數併入主幹；唯一放棄的是 1.8MB 的來源 PDF（超過健檢 1MB 門檻，內容已萃取進 md） |
+| `claude/extract-job-duty-markdown-4avmd6` | 2026-08-31 | 職務分類資料工作流（大量資料檔，200萬行級 diff） | `report-generator`／`rawdata`／`one-pager`／同上 job-classification 系列 | 整支分支 ❌ 不合併（規模/資料檔跟本 repo 無關）；2026-08-31 已抽出 `report-generator`／`rawdata`／`one-pager` 三個 skill 併入；同日複查：`job-classification-kb/skills/tcode-excel-ops.md` 是該專案內部文件（非 `.claude/skills/`），跟本 repo 的 `tcode-excel-ops` skill 同名但服務不同代碼表體系，維持不搬，避免混淆。其 PR #11（對 google-sheet 分支）已合併，該專案後續以 google-sheet 分支為主線 |
 | `claude/vm-api-testing-setup-wpf6y8` | 2026-08-03 | API 測試/VM 環境設置，含呼叫紀錄 | `api`／`auto-test` | ✅ 2026-08-31 已併入；同日複查：`pm-toolkit`／`spec-doc-1111` 逐位元組與本分支相同，`wiki/apis/` 下的 API 測試working data（talent-search-api／talent-sourcing-gateway-api 的 spec/報告/pytest）維持不搬，屬該分支專屬工作產出。PR #12 留 open（專案 deliverable 不進主幹），已留言說明政策 |
 | `claude/part-time-modal-design-tmtt7n` | 2026-07-28 | 兼職相關 modal 設計調整 | 無獨有 skill | 功能分支非 skill 分支；PR #13 留 open（專案 deliverable 不進主幹），已留言說明政策 |
 | `claude/happy-lamport-ljis8c` | 2026-07-26 | Context/token 精簡；含履歷撰寫、HackMD API skill 化 | `hackmd-api`／`resume-craft` | 部分評估：`resume-craft` 2026-08-31 已併入；`hackmd-api` 逐節比對後與 `wiki/hackmd_rules.md` 幾乎全同，唯一新資訊已補進 wiki，原檔改放空殼重導向；`career/` 職能框架（resume-craft 依賴）已於 2026-08-31 經使用者核准併入。此分支的 `spec-doc-1111` 是**精簡改寫版**（176 行 vs 本分支 387 行，不同檔名結構），未採用但值得之後參考其瘦身思路。PR #7 已關閉留言（career/ 已併入） |
-| `claude/email-layout-handoff-gjq5zu` | 2026-07-03 | 信件訊息頁前端修改工程單 | `frontend-change-ticket-1111`／`frontend-slicing-1111` | ✅ 2026-08-31 已併入（`frontend-slicing-1111` 取本分支版本，比 `eloquent-maxwell-j31ot5` 的舊版新）；同日複查：`spec-doc-1111` headers 逐項比對後與本分支完全相同（只是本分支拆進 `references/` 子目錄）；`wiki/frontend_change_ticket_rules.md` 只是指向 `frontend-change-ticket-1111` skill 的路由指標，內容已被 CLAUDE.md 路由表涵蓋，不重複搬入；`handoff/` 下的切版 before/after 資產維持不搬。PR #9 留 open（專案 deliverable 不進主幹）、PR #8（舊版 mockup）已關閉留言 |
+| `claude/email-layout-handoff-gjq5zu` | 2026-09-03 | 信件訊息頁前端修改工程單 | `frontend-change-ticket-1111`／`frontend-slicing-1111` | ✅ 2026-08-31 已併入（`frontend-slicing-1111` 取本分支版本，比 `eloquent-maxwell-j31ot5` 的舊版新）；同日複查：`spec-doc-1111` headers 逐項比對後與本分支完全相同（只是本分支拆進 `references/` 子目錄）；`wiki/frontend_change_ticket_rules.md` 只是指向 `frontend-change-ticket-1111` skill 的路由指標，內容已被 CLAUDE.md 路由表涵蓋，不重複搬入；`handoff/` 下的切版 before/after 資產維持不搬。PR #9 留 open（專案 deliverable 不進主幹）、PR #8（舊版 mockup）已關閉留言。**2026-09-10 複查該分支對共用檔的 3 處改動，結論一律不吸收**：(a) `wiki/frontend_change_ticket_rules.md` 維持 08-31 裁示不搬（純路由指標，CLAUDE.md 路由表已涵蓋）；(b) 路由表新增列與 `frontend-slicing-1111` 段落，主幹既有路由列已等效涵蓋；(c) ⚠️ 新增的〈規格書 UI 截圖標號慣例〉一節**是已棄用規則**——它要求「一律用 Pillow 在截圖上打 badge」＋「GitHub raw URL 帶 commit SHA 引用圖片」，主幹現行規則是 `photo` skill 的 HTML 絕對定位覆蓋＋R2 圖床，兩者直接衝突。這正是治理規則開頭講的「從古老 commit 分岔、帶著舊規則繼續產出」實例，吸收會讓主幹倒退 |
 | `claude/csv-retrieval-retry-do5a9o` | 2026-07-13 | CSV 資料重試邏輯；`report-generator` skill 的另一個獨立來源 | `report-generator` | 內容與 `extract-job-duty-markdown-4avmd6` 版本逐位元組相同，已從該分支併入。PR #10 留 open（專案 deliverable 不進主幹），已留言說明政策 |
 | `claude/eloquent-maxwell-j31ot5` | 2026-06-29 | 前端切版交接；session 交接 INDEX.md 慣例 | `frontend-slicing-1111` | 舊版（06/29），已被 `email-layout-handoff-gjq5zu` 的新版取代並併入，這支不用再看 |
 | `claude/static-html-github-deploy-1h0w1c` | 2026-06-15 | GitHub Pages 靜態部署設定，僅 18 檔 | 無 | EPK 頁面在 main 已 merge 過又 revert（#5→#6）；PR #4 已關閉留言，此分支結案 |
@@ -80,8 +69,11 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 多支 session 平行工作造成品質漂移的根因是「從古老 commit 分岔、帶著舊規則與舊 skill 繼續產出」（實例：`gifted-meitner` 分岔後仍用已棄用的 GitHub-raw 圖床）。自 `main` 升格為唯一主幹起，一律遵守：
 
+0. **兩個常駐 session 的分工（2026-09-10 起）**：**Repo Steward**（主幹管理，用 `repo-steward` skill）管共用資產與治理；
+   **HackMD 文件 session** 管 HackMD 規格書內容與 `notes/` 快取。兩邊不動對方主場檔案；
+   skill 內容與 HackMD 規格衝突時**以 HackMD 為準**，回頭修 skill。
 1. **新 session 一律從最新 `main` 開分支**。開工第一件事 `git fetch origin main` 確認基準點，繼承最新路由表＋全部 skill。
-2. **共用資產唯一變更入口＝主幹管理 session**：`CLAUDE.md`／`.claude/skills/`／`wiki/`／`scripts/`／`.claude_index.md`／`.claude/settings.json` 只由主幹管理 session 修改。其他 session 需要改共用檔時，在自己的 PR 描述註明「請主幹對照吸收」，**不要直接改**——直接改必然跟主幹撞衝突，且會被主幹版本覆蓋。
+2. **共用資產唯一變更入口＝主幹管理 session**：`CLAUDE.md`／`.claude/skills/`／`.claude/agents/`／`wiki/`／`scripts/`／`.claude_index.md`／`.claude/settings.json` 只由主幹管理 session 修改。其他 session 需要改共用檔時，在自己的 PR 描述註明「請主幹對照吸收」，**不要直接改**——直接改必然跟主幹撞衝突，且會被主幹版本覆蓋。
 3. **各專案工作產出放各自目錄**（`job-classification-kb/`、`wiki/apis/`、`handoff/`、`notes/`…），不碰共用檔，PR 就不會互撞。專案 deliverable **不進主幹**，留在各自分支（位置記錄於分支索引）；主幹只收文件主線＋skill。
 4. **新增 skill 前先查分支索引＋`.claude_index.md`**——重複造輪已發生兩例（`report-generator`×2、`frontend-slicing-1111`×2）。真的要新增，通知主幹 session 統一納管。
 5. **PR 送出前先 rebase 最新 `main`**；一個 PR 一個主題。
@@ -121,6 +113,12 @@ Token 存在環境變數 `HACKMD_TOKEN`，`.env` 已列入 `.gitignore`，絕不
 python3 scripts/hackmd_safe_patch.py --note-id <內部 noteId> \
   --baseline "$SCRATCHPAD/<noteId>.md" --working "$SCRATCHPAD/<noteId>.working.md" \
   --team-path 1111-jobdocs   # exit: 0 已更新／1 衝突／2 錯誤
+```
+
+**Repo 健檢**（分支耦合／skill 重複／索引完整性／體積，輸出 Markdown 報告，不要 commit 報告本身）：
+```bash
+python3 scripts/repo_healthcheck.py                          # 全部四段
+python3 scripts/repo_healthcheck.py --section branches       # 只看分支耦合
 ```
 
 **動到 Mermaid 就要渲染驗證**再 push（HackMD 上壞圖不會報錯，只會渲染失敗）：
