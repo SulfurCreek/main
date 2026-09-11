@@ -1,5 +1,7 @@
 # /api/v1/echat/get-detail/{infoNo}
 
+> UPDATE 2026/07/20（工程端）：移除 `FileName`／`FilePath` 兩欄位（已自下方欄位表刪除）；另有部分欄位類別／名稱修正（工程端以黃底標示，未提供完整清單，待新版全文覆蓋時再逐欄核對）。
+
 ### API 描述
 
 根據列表回傳的 `rNo` (infoNo) 取得該筆記訊的完整對話內容。
@@ -389,8 +391,6 @@
 | **StartTalk** | DateTime? | 開始(視訊)通話時間 |  |  |
 | **EndTalk** | DateTime? | 結束(視訊)通話時間 |  |  |
 | **DuringTime** | int | (視訊)通話經過時間(秒) |  |  |
-| **FileName** | string | 檔案名稱 |  |  |
-| **FilePath** | string | 檔案路徑：125/eChatFile/ |  |  |
 | **ReplyWishMsg** | byte? | 求職者意願回覆 (0:未回覆 1:有意願 2:婉拒 3:更改時間) |  |  |
 | **OViewDate** | DateTime? | 廠商已讀日期 |  |  |
 | **TViewDate** | DateTime? | 求職者已讀日期 |  |  |

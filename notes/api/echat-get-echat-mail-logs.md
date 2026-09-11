@@ -1,6 +1,8 @@
 # 信件即時通整併-取得訊息紀錄列表
 
-UPDATE：2026/7/02
+> ⚠️ **已棄用（2026/07/20 工程端）**：此支 API 停用，列表載入改直接使用 `get-by-condition`（見 `notes/api/echat-get-by-condition.md`）——不帶 keyword／篩選即等同原列表。以下內容保留供歷史對照，勿再作為新版契約引用。
+
+UPDATE：2026/7/02（棄用；後續請見 get-by-condition）
 
 ## 求才環境
 
