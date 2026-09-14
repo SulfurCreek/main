@@ -54,6 +54,11 @@
   ticket → Kanban → launch loop and root-cause fixes (matching-email anomaly, stale AI recommendations,
   competitor-benchmarked code-table overhaul), protecting paying-customer experience and the sales team's revenue
   retention.*
+- 以 **14.9 萬家廠商名冊的雙快照世代分析**驗證維運的商業成效：所治理的工單管線覆蓋 **1,279 家活躍付費廠商**，
+  其**年化留存 81.2%、高於全站基準 74.2%**（**+7pt、流失相對降低 30%、p=0.011**），對應單一 68 天窗口約 **NT$55 萬**的超額留存合約價值。
+  *Validated the commercial impact of operations with a two-snapshot cohort analysis across a 149.5K-account roster:
+  the ops pipeline I own covered 1,279 active paying accounts retaining at 81.2% annualized versus a 74.2% platform
+  baseline (+7pt, 30% lower relative churn, p=0.011) — ~NT$550K of excess retained contract value in the observed window.*
 - 導入維運工單的**量化週期追蹤**，攤開並一次性清理多年累積的陳年積壓，轉入穩態營運後，2026 上半年處理週期**季度改善約 69%**（平均處理天數 100.4 天→30.9 天，已排除當日即時解決案件與難度變化的干擾）。
   *Introduced quantified cycle-time tracking for ops tickets, surfacing and clearing years of inherited backlog in a
   one-time sweep; once stabilized, resolution time improved ~69% quarter-over-quarter in H1 2026 (mean 100.4→30.9
