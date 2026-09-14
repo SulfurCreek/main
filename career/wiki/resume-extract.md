@@ -63,6 +63,12 @@
   *Introduced quantified cycle-time tracking for ops tickets, surfacing and clearing years of inherited backlog in a
   one-time sweep; once stabilized, resolution time improved ~69% quarter-over-quarter in H1 2026 (mean 100.4→30.9
   days), net of same-day trivial closures and caseload-difficulty shifts.*
+- 設計並治理一套**多代理 AI 工作系統**以承載單一對話無法負荷的工作量：**12 條長駐領域分身、23 個共用 skill、
+  單一共用規則書**；建立單一事實來源制度、重複建置偵測（已攔截 2 次重工），並在一次跨分支衝突事故後，
+  將健檢從路徑比對升級為 `git merge-tree` 乾跑偵測、把規則寫回治理手冊。
+  *Designed and governed a multi-agent AI working system — 12 long-running domain branches, 23 shared skills and a
+  single shared rulebook — instituting source-of-truth control and duplicate-build detection (two caught), and after
+  a cross-branch conflict incident, upgrading the health check to a `git merge-tree` dry run and codifying the rule.*
 
 ---
 

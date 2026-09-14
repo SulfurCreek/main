@@ -18,7 +18,7 @@
 
 **標記**：✅ 有具體證據可直接主張 ｜ 🟡 部分符合，**需限定說法** ｜ ⚠️ 缺口，**不可主張**
 
-**覆蓋現況：✅ 21 項 ｜ 🟡 19 項 ｜ ⚠️ 10 項（共 50）**
+**覆蓋現況：✅ 23 項 ｜ 🟡 17 項 ｜ ⚠️ 10 項（共 50）**　（F15 加入後，#43 Prompt Engineering 與 #45 AI Agents 由 🟡 升 ✅）
 
 ---
 
@@ -108,10 +108,10 @@
 | # | 概念 | 狀態 | 你的證據 ／ 缺口說明 |
 | :-- | :--- | :--: | :--- |
 | 41 | LLM | ✅ | [F4](F04-ai-product.md)：把 LLM 能力轉譯為廠商可用工作流（公司簡介生成、JD 生成）。 |
-| 42 | RAG | ✅✅ | **你真的做過，而且是完整實作**：E.1 的知識庫工程——**wiki 路由表 ＋ 輕量全局索引 ＋ 依任務動態載入以節省 context**，並訂立「一律 inference based on 素材集」的檢索鐵律。本 repo 的 `career/wiki/` 與 skill `references/` 拆分是同一套方法的再次應用。 |
-| 43 | Prompt Engineering | 🟡 | [F4](F04-ai-product.md) 生成式功能的輸入設計；本 repo 的 skill 體系撰寫本身即 prompt 工程，但**未以此為職稱職責**。 |
+| 42 | RAG | ✅✅ | **你真的做過，而且是完整實作**：E.1 的知識庫工程——**wiki 路由表 ＋ 輕量全局索引 ＋ 依任務動態載入以節省 context**，並訂立「一律 inference based on 素材集」的檢索鐵律。本 repo 的 `career/wiki/` 與 skill `references/` 拆分是同一套方法的再次應用；[F15](F15-ai-workflow-governance.md) 的 12 條分身**各自帶自己的 skill 與 wiki**，即為多代理版的同一架構。 |
+| 43 | Prompt Engineering | ✅ | [F15](F15-ai-workflow-governance.md)：**撰寫並維護 23 個 skill**（7 個工種），含漸進揭露的 `SKILL.md`＋`references/` 拆分與 context 工程；[F4](F04-ai-product.md) 生成式功能的輸入設計。 |
 | 44 | Generative AI | ✅✅ | [F4](F04-ai-product.md)：**4 項生成式功能已交付**（公司簡介生成、JD 生成、職缺匯入解析、職缺健檢）。 |
-| 45 | AI Agents | 🟡 | 求才智能客服為**提案**階段；本 repo 的 Claude Code skill／漸進揭露架構屬 agent 工作流設計，但非產品交付。 |
+| 45 | AI Agents | ✅ | [F15](F15-ai-workflow-governance.md)：**營運中的多代理工作系統**——12 條分支／14 常駐 session，各自帶領域 skill 與記憶，以共用規則書路由。<br>限定說法：你建的是**治理層**（SSOT、重複偵測、`git merge-tree` 健檢、職責路由），**非自建 agent 框架**；且屬內部系統非產品。 |
 | 46 | ML Pipeline | ⚠️ | AI 推薦人才是**與資科團隊協作**，非你建置管線。 |
 | 47 | NLP | 🟡 | AI 履歷＆職缺打標、**正則檢查改為 AI 檢查**（[F10](F10-business-logic.md) 規則演進）；屬應用層而非模型層。 |
 | 48 | Model Hallucination | ✅ | [F4](F04-ai-product.md) 的核心：為**非確定性輸出**設計狀態（loading／成功／失敗／**品質與邊界**）——這正是產品側處理幻覺的做法。面試可直接這樣答。 |

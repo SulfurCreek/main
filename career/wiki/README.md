@@ -20,6 +20,7 @@
 - [F12 C 端行動產品與 0→1 初創](F12-consumer-mobile.md)
 - [F13 變現、定價與金流](F13-monetization-pricing.md)
 - [F14 國際化與跨文化在地化](F14-localization-intl.md)
+- [F15 AI 協作系統設計與治理](F15-ai-workflow-governance.md)
 - [完整職涯時間軸（2013–2022 前段職涯）](prior-roles.md)
 - [旗艦專案 E.1 跨系統聯絡人才](flagship-e1.md)
 - [履歷可用摘要](resume-extract.md)

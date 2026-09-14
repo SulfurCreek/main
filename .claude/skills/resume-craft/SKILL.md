@@ -3,7 +3,7 @@ name: resume-craft
 description: >
   撰寫、修改、批改使用者個人履歷／CV／LinkedIn／作品集，或把職能、經歷、專案成果轉成履歷 bullet、依 JD 客製化時使用。
   觸發詞：履歷、resume、CV、自傳、作品集、portfolio、case study、LinkedIn、投遞、應徵、求職、JD 客製、
-  把 F1–F14 職能或專案變成履歷條目——使用者沒明講「履歷」兩字也算。
+  把 F1–F15 職能或專案變成履歷條目——使用者沒明講「履歷」兩字也算。
   以 Senior PM / Product 視角、大型企業招募標準（含 ATS 與 AI／LLM 履歷掃描）優化，雙語（英文 ATS 版 + 繁中在地版）。
   證據來源是 `career/` 的職能框架 wiki。
 ---
@@ -122,6 +122,7 @@ description: >
 | 0→1 & Consumer Mobile | **F12** | 3 個 0→1 ＋ 4 個既有產品；iOS／Android／RWD 三端；MVP 交付 |
 | Monetization & Pricing | **F13** | IAP 模型與價格點、第三方金流串接、配額計價、牌價結構分析 |
 | Internationalization | **F14** | 7 市場在地化、跨文化團隊、TOEIC 980 |
+| AI Workflow & Agent Governance | **F15** | 12 條分身／23 skill 的多代理系統；SSOT、重複偵測、事故後機制修復 |
 
 **強寫法**：`執行與交付 — roadmap 優先級（P0–P3）、時間盒交付、版控治理；主導 227 項 roadmap，半年 111 項上線、94% 準時。`
 **弱寫法（勿用）**：`產品管理、roadmap、A/B、Agile、SQL、溝通、領導、策略…`
@@ -147,7 +148,7 @@ description: >
 以 `career/competency-framework.md`（**wiki 入口**）為唯一證據源，依其路由表只載入需要的 `career/wiki/` 分頁：
 
 1. 取 `wiki/resume-extract.md`（action+scope+impact 條目）作為 bullet 草稿基底。
-2. 取 `wiki/F01…F14-*.md` → 映射到上方叢集表，挑 5–7 個最相關的。
+2. 取 `wiki/F01…F15-*.md` → 映射到上方叢集表，挑 5–7 個最相關的。
 3. 取入口的 Profile Snapshot／Positioning → 寫 Summary/Headline；學歷證照取 `wiki/education-certifications.md`；
    **工作經歷區段的公司／職稱／起訖取 `wiki/prior-roles.md`**（該頁也記錄了待釐清的畢業年份與職涯空檔）。
 4. 遇到 `〔待補數據〕`：**先問使用者拿真實數字**；拿不到就保留標記，不要編。
@@ -179,7 +180,7 @@ description: >
 - [ ] **Top-third 衝擊**：Summary + 前 2–3 bullet 鏡射 JD、6 秒看得到 2–3 個差異點。
 - [ ] **Bullet 公式**：每條 = 強動詞 + 任務 + 量化結果，1–3 行。
 - [ ] **量化覆蓋**：≥ 80% bullet 有數字；無硬數據處用代理指標。
-- [ ] **職能叢集**：5–7 叢集 + 證據點，已映射 F1–F14。
+- [ ] **職能叢集**：5–7 叢集 + 證據點，已映射 F1–F15。
 - [ ] **作品集**：資深者於 header 放連結；3–5 篇（含一個誠實的失敗實驗）。
 - [ ] **大企業訊號**：對映 4–5 條目標公司價值；範圍、模糊度、跨職能影響、商業成果到位。
 - [ ] **強動詞**：spearheaded／orchestrated／architected／shipped／scaled／validated。
