@@ -34,4 +34,9 @@
 
 ---
 
-**相關分頁 / Related**：[F11 問題解決與維運交付](F11-problem-solving-ops.md) ・ [F4 AI 產品企劃](F04-ai-product.md) ・ [履歷可用摘要](resume-extract.md)
+> 📋 更完整的盤點見 [PM 語彙對照表](pm-vocabulary-map.md)：50 個產業標準概念逐一標註「有證據／部分／缺口」，
+> 並依補起來的投報率排序。
+
+---
+
+**相關分頁 / Related**：[PM 語彙對照表](pm-vocabulary-map.md) ・ [F11 問題解決與維運交付](F11-problem-solving-ops.md) ・ [F4 AI 產品企劃](F04-ai-product.md) ・ [履歷可用摘要](resume-extract.md)

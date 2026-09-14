@@ -56,7 +56,8 @@ Before this, six years in **B2C mobile** (dating and influencer-marketplace apps
 | 講**旗艦專案**（跨系統訊息）| [`wiki/flagship-e1.md`](wiki/flagship-e1.md) → 完整敘事見 [`portfolio/e1-cross-system-messaging.md`](portfolio/e1-cross-system-messaging.md) |
 | 講**前段職涯／0→1／變現／國際化** | [`wiki/prior-roles.md`](wiki/prior-roles.md) ＋ F12／F13／F14 分頁 |
 | 填**學歷／證照／語言** | [`wiki/education-certifications.md`](wiki/education-certifications.md) |
-| 檢視**還缺什麼證據** | [`wiki/growth-edges.md`](wiki/growth-edges.md) |
+| **JD 關鍵字覆蓋／面試概念對應** | [`wiki/pm-vocabulary-map.md`](wiki/pm-vocabulary-map.md)（50 個 PM 概念 → 你的證據／缺口）|
+| 檢視**還缺什麼證據** | [`wiki/growth-edges.md`](wiki/growth-edges.md) ＋ 上表的 ⚠️ 欄 |
 | 履歷**方法論**（ATS／bullet 公式／AI 掃描優化） | `.claude/skills/resume-craft/SKILL.md`（本框架的下游工具） |
 
 ---
@@ -95,6 +96,7 @@ Before this, six years in **B2C mobile** (dating and influencer-marketplace apps
 | [學歷・證照與語言](wiki/education-certifications.md) | 淡江國企 Class of 2013、CSUS 交換、TOEIC 980 Gold、TOEFL 93、GEPT 中高級、AWS CCP |
 | [完整職涯時間軸](wiki/prior-roles.md) | 2013–2022 前段職涯（尚凡／思維特／Newegg）、產品下架的處理方式、兩處待釐清不一致 |
 | [證據頁：工單 × 付費客戶](wiki/evidence-paying-customers.md) | F11 商業價值實證＋**雙快照留存世代分析**：覆蓋 1,279 家付費帳號，年化留存 81.2% vs 全站基準 74.2%（+7pt、p=0.011）|
+| [PM 語彙對照表](wiki/pm-vocabulary-map.md) | 50 個產業標準概念 → 你的證據／缺口（✅21 🟡19 ⚠️10）；含由留存率推導的 LTV |
 | [下一步補強建議](wiki/growth-edges.md) | 誠實缺口盤點：AI 功能採用率、因果歸因、A/B 實驗 ownership、個人層級切片 |
 
 ---

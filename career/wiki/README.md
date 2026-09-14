@@ -25,4 +25,5 @@
 - [履歷可用摘要](resume-extract.md)
 - [學歷・證照與語言](education-certifications.md)
 - [證據頁：工單 × 付費客戶交叉分析](evidence-paying-customers.md)
+- [PM 語彙對照表（50 概念 → 證據／缺口）](pm-vocabulary-map.md)
 - [下一步補強建議](growth-edges.md)

@@ -26,7 +26,8 @@ description: >
 | 產第一版履歷 | 本檔全部 | `competency-framework.md` → `wiki/resume-extract.md` ＋ 相關 F 分頁 |
 | 改寫 bullet／把日常產出變 bullet | 本檔 Bullet 公式 ＋ [`references/reverse-xyz.md`](references/reverse-xyz.md) | 對應 `wiki/F0x-*.md` |
 | 投遞硬技術公司（NVIDIA-tier）| [`references/reverse-xyz.md`](references/reverse-xyz.md) | `wiki/flagship-e1.md`、`wiki/F02`、`wiki/F10` |
-| 依 JD 客製／ATS／HR 用 AI 掃履歷 | [`references/ats-and-ai-screening.md`](references/ats-and-ai-screening.md) | `wiki/resume-extract.md` |
+| 依 JD 客製／ATS／HR 用 AI 掃履歷 | [`references/ats-and-ai-screening.md`](references/ats-and-ai-screening.md) | `wiki/resume-extract.md` ＋ **`wiki/pm-vocabulary-map.md`**（查 JD 關鍵字有無證據）|
+| 面試準備／被問某個 PM 概念 | 本檔 Bullet 公式（STAR／SOAR）| **`wiki/pm-vocabulary-map.md`** → 對應 F 分頁 |
 | 作品集 case study | [`references/portfolio.md`](references/portfolio.md) ＋ [`assets/portfolio-case-study.md`](assets/portfolio-case-study.md) | `portfolio/e1-cross-system-messaging.md`（範例）|
 | 目標公司價值觀對映（Amazon LP 等）| [`references/portfolio.md`](references/portfolio.md) | — |
 | 高顏值可列印版（HTML／LaTeX）| [`references/visual-output.md`](references/visual-output.md) | 已定稿的內容版履歷 |
