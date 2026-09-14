@@ -18,7 +18,7 @@ from this repo's 1111 spec-documentation work. Treat as plain Markdown.*
 it is a shared company space and the leak would be irreversible.*
 
 同理，`career/` 的量化數字若來自 1111 內部資料（工單、客戶名冊、Roadmap），**對外版本必須抽象化**：
-可寫「跨系統即時訊息」「1,109 家付費帳號」，但**不外露**內部 API 名、欄位名、權限代碼、廠商編號與名稱。
+可寫「跨系統即時訊息」「1,279 家付費帳號」，但**不外露**內部 API 名、欄位名、權限代碼、廠商編號與名稱。
 
 ## 結構 / Structure
 

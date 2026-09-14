@@ -46,11 +46,11 @@
   *Acted as single intake point across 16 stakeholder units (from C-suite/board down to frontline CS), balancing
   top-down mandates with bottom-up needs and deciding by data (votes) rather than hierarchy; briefed a ~200-person
   business team on progress weekly.*
-- 作為求才系統維運單一窗口，年度累計處理 **1,279 張工單**（維運／企劃建議／工程 bug），**結案率約 88%**（1,131 張）；經與客戶名冊交叉實證，具名工單 **96.5% 來自開單當時付費中的廠商**、管線觸及 **1,109 家相異付費帳號**（公開牌價估算年約當刊登價值 **NT$3–5 千萬量級**），被服務客群至今仍付費比例 **85.5%（約為全體基準 44% 的 1.9 倍）**——以**工單 → Kanban → 上線**閉環與**根因定位**（配對信異常、AI 推薦名單過舊、代碼體系競品重整）維護付費客戶體驗、**支撐業務業績與續約**。
+- 作為求才系統維運單一窗口，年度累計處理 **1,279 張工單**（維運／企劃建議／工程 bug），**結案率約 88%**（1,131 張）；經與客戶名冊交叉實證，具名工單 **96.5% 來自開單當時付費中的廠商**、管線覆蓋 **1,279 家相異付費帳號**（公開牌價估算年約當合約價值 **NT$3 千萬量級**），被服務客群至今仍付費 **86.1%**（全站同期 43.6%）——以**工單 → Kanban → 上線**閉環與**根因定位**（配對信異常、AI 推薦名單過舊、代碼體系競品重整）維護付費客戶體驗、**支撐業務業績與續約**。
   *Ran point on recruit-system operations, resolving 1,279 tickets YTD at ~88% close rate (1,131); verified against
-  the customer roster, 96.5% of vendor-named tickets came from accounts paying at filing time, the pipeline reached
-  1,109 distinct paying employer accounts — an annualized posting value on the order of NT$30–56M (US$1M+) at list
-  price — and serviced accounts remain paying at 85.5% today (~1.9× the 44% all-customer baseline) — via a
+  the customer roster, 96.5% of vendor-named tickets came from accounts paying at filing time, the pipeline covered
+  1,279 distinct paying employer accounts (~NT$30M annualized contract value at list price), and 86.1% of served
+  accounts remain paying versus 43.6% platform-wide — via a
   ticket → Kanban → launch loop and root-cause fixes (matching-email anomaly, stale AI recommendations,
   competitor-benchmarked code-table overhaul), protecting paying-customer experience and the sales team's revenue
   retention.*
@@ -66,4 +66,29 @@
 
 ---
 
-**相關分頁 / Related**：[旗艦專案 E.1](flagship-e1.md) ・ [學歷與證照](education-certifications.md) ・ [下一步補強建議](growth-edges.md)
+## 前段職涯 / Prior roles（2013–2022，B2C 行動產品）
+
+> 證據見[完整職涯時間軸](prior-roles.md)。舊履歷幾乎無量化，以下標 `〔待補數據〕` 處請補上真實數字後再對外使用。
+
+- 於交友與網紅媒合平台主導 **3 個 0→1 新產品**與 **4 個既有產品**的定義與營運，涵蓋 **iOS／Android／RWD** 三端；
+  從 user story、wireframe 到 prototype 獨立產出，並在嚴格時程下交付多次初版上線、達成可用 MVP。
+  *Owned 3 products from zero to launch plus 4 existing products across iOS, Android and responsive web at dating
+  and influencer-marketplace companies — driving definition from user story through wireframe and prototype, and
+  shipping initial launches to a stable MVP under tight timelines.*
+- **調整應用內購（IAP）變現模型與價格點**並搭配促銷節奏，提升營收與獲利〔待補數據：成長 %〕；
+  將**第三方金流導入成熟產品**以擴大可觸及銷售，並擔任串接與營運全期的單一窗口。
+  *Tuned the in-app-purchase model and price points with staged promotions to grow revenue and margin 〔TODO: %〕,
+  and integrated third-party payment rails into mature products as the single point of contact through launch and ops.*
+- 以**用戶召回策略降低流失**（策略源自中國行動應用市場案例研究）〔待補數據：流失下降 %〕，
+  並以 iOS／Android 後台與 **App Annie** 等數據源監測趨勢、產出改版與促銷決策。
+  *Cut churn with new call-back strategies drawn from China mobile-market case studies 〔TODO: %〕, monitoring
+  iOS/Android consoles and App Annie to drive update and promotion decisions.*
+- 與 **7 個市場**（美國／墨西哥／巴西／印尼／馬來西亞／日本／韓國）背景的行銷團隊協作，**完成整個 App 的在地化**
+  並透過各市場社群切入；與母語使用者共同改版使用者體驗，交付道地而非直譯的在地化。
+  *Localized an entire app with a marketing team spanning seven markets (US, Mexico, Brazil, Indonesia, Malaysia,
+  Japan, Korea) and broke into them through local social communities, revamping UX with native speakers to ship
+  authentic localization rather than translated UI.*
+
+---
+
+**相關分頁 / Related**：[完整職涯時間軸](prior-roles.md) ・ [旗艦專案 E.1](flagship-e1.md) ・ [學歷與證照](education-certifications.md) ・ [下一步補強建議](growth-edges.md)
