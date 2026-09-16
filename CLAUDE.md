@@ -9,7 +9,7 @@
 | 任務 | 用什麼 |
 | :--- | :--- |
 | 寫／改規格書、需求文件、Use Case | `spec-doc-1111` skill（含求才／求職兩套範本）|
-| 打 HackMD API（讀寫 note、資料夾、重建 `tree.md`）| `hackmd-api` skill |
+| 打 HackMD API（讀寫 note、資料夾、重建 `tree.md`）| **主幹的 `wiki/hackmd_rules.md`**（端點細節見 `wiki/references/hackmd-api-endpoints.md`）——勿另開 `hackmd-api` skill |
 | 履歷／作品集／職能盤點 | `resume-craft` skill ＋ `career/`（見 `career/CLAUDE.md`）|
 | 查團隊現有文件位置 | `tree.md` |
 

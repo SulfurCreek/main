@@ -48,9 +48,11 @@
 - 將 Newegg.com 的商品資訊、規格與描述**英翻中**。
 - 改善既有上架內容的**可讀性與台灣在地化**。
 
+> 📊 **公開數據佐證見[證據頁：前段職涯產品的公開數據](evidence-prior-products.md)**——上櫃公司財報、App 上架日與下載量、16 種語言、榜單成績與**拿不到的資料（DAU／單一 App 營收）**。
+
 ## 產品已下架該怎麼寫 / Handling sunset products
 
-部分服務（JustDating、KOOL、SweetRing）已下架或轉型。**這不影響履歷的有效性**：
+部分服務已下架（**KOOL**、**Juicy** 雙平台皆已移除）；**JustDating 與 SweetRing 至今仍在營運**。**這不影響履歷的有效性**：
 
 - 履歷寫的是**你的角色與成果**，不是產品的現況——「主導 X 產品從 0 到上線」是已發生的事實。
 - **不要**在履歷主動標註「已下架」；被問到就是中性事實：「該產品於 20XX 年結束營運。」
@@ -79,4 +81,4 @@
 
 ---
 
-**相關分頁 / Related**：[F12 C 端行動產品與 0→1](F12-consumer-mobile.md) ・ [F13 變現、定價與金流](F13-monetization-pricing.md) ・ [F14 國際化與在地化](F14-localization-intl.md) ・ [學歷・證照](education-certifications.md)
+**相關分頁 / Related**：[證據頁：前段產品公開數據](evidence-prior-products.md) ・ [F12 C 端行動產品與 0→1](F12-consumer-mobile.md) ・ [F13 變現、定價與金流](F13-monetization-pricing.md) ・ [F14 國際化與在地化](F14-localization-intl.md) ・ [學歷・證照](education-certifications.md)

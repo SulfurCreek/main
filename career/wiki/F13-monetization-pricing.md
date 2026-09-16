@@ -24,6 +24,7 @@ integrate third-party payment rails into mature products.*
     - 定義跨系統訊息的**計價機制**：寄送前檢查並扣除廠商「履歷瀏覽數」配額，不足即不寄（見[旗艦專案](flagship-e1.md)）；
     - 以**公開刊登方案牌價結構**（全年繳至月繳五階、含可暫停天數）換算維運客群的年約當合約價值
       （見[證據頁](evidence-paying-customers.md)）。
+- **商業脈絡（公開佐證）/ Context**（見[證據頁](evidence-prior-products.md)）：任職的尚凡為**上櫃公司（TPEx 5278）**，**直播打賞與會員 VIP 各約貢獻 50% 營收**——即你調整 IAP 模型的商業模型；任內公司營收自 **NT$8.3 億成長至 16.5 億**。所屬產品內購價格帶 US$0.99–234.99／項。**JustDating 與 Juicy 曾登上暢銷榜**〔待補細節〕——暢銷榜名次是變現成效的公認指標。
 - **工作證據 / Evidence**：前一版履歷所載 Sunfun 的 IAP／金流成果；1111 的 E.1 計價規格與牌價分析。
 - **資深度訊號 / Seniority signal**：多數 PM 只交付功能，**碰過定價與金流的 PM 是少數**。
   這條職能把「功能交付者」升級為「**對 P&L 有感的產品負責人**」，也是 `resume-craft`
@@ -35,4 +36,4 @@ integrate third-party payment rails into mature products.*
 
 ---
 
-**相關分頁 / Related**：[F12 C 端行動產品與 0→1](F12-consumer-mobile.md) ・ [證據頁：工單 × 付費客戶](evidence-paying-customers.md) ・ [旗艦專案 E.1](flagship-e1.md) ・ [完整職涯時間軸](prior-roles.md)
+**相關分頁 / Related**：[證據頁：前段產品公開數據](evidence-prior-products.md) ・ [F12 C 端行動產品與 0→1](F12-consumer-mobile.md) ・ [證據頁：工單 × 付費客戶](evidence-paying-customers.md) ・ [旗艦專案 E.1](flagship-e1.md) ・ [完整職涯時間軸](prior-roles.md)

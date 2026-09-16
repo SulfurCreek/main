@@ -98,6 +98,7 @@ Before this, six years in **B2C mobile** (dating and influencer-marketplace apps
 | [履歷可用摘要](wiki/resume-extract.md) | action + scope + impact 雙語 bullet 草稿基底 |
 | [學歷・證照與語言](wiki/education-certifications.md) | 淡江國企 Class of 2013、CSUS 交換、TOEIC 980 Gold、TOEFL 93、GEPT 中高級、AWS CCP |
 | [完整職涯時間軸](wiki/prior-roles.md) | 2013–2022 前段職涯（尚凡／思維特／Newegg）、產品下架的處理方式、兩處待釐清不一致 |
+| [證據頁：前段產品公開數據](wiki/evidence-prior-products.md) | 上櫃公司 5278 任內營收 8.3→16.5 億、SweetRing 5M+ 下載／16 語言、JustDating 1M+、KOOL 與 Juicy 已下架、榜單成績與資料取得邊界 |
 | [證據頁：工單 × 付費客戶](wiki/evidence-paying-customers.md) | F11 商業價值實證＋**雙快照留存世代分析**：覆蓋 1,279 家付費帳號，年化留存 81.2% vs 全站基準 74.2%（+7pt、p=0.011）|
 | [PM 語彙對照表](wiki/pm-vocabulary-map.md) | 50 個產業標準概念 → 你的證據／缺口（✅23 🟡17 ⚠️10）；含由留存率推導的 LTV |
 | [下一步補強建議](wiki/growth-edges.md) | 誠實缺口盤點：AI 功能採用率、因果歸因、A/B 實驗 ownership、個人層級切片 |
