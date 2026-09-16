@@ -22,7 +22,7 @@
 | API 測試（Talent Sourcing Gateway API 等）、pytest 測試矩陣 | 虛擬機器 API 測試環境 | `claude/vm-api-testing-setup-wpf6y8` | `session_01THk1wnhhqk5NheyvzBqncj` | IDLE，blocked（等待回覆是否記錄回歸結果） |
 | 信件訊息頁前端修改工程單／未讀履歷提醒統計／切版 | 未讀提醒 **或** 網頁分析工具（⚠️見下方特別注意） | `claude/email-layout-handoff-gjq5zu` | 未讀提醒＝`session_01ERFbn8cEWMfmDPEdMxJs4T`；網頁分析工具＝`session_0155Dp5oiYKgfH9BRhStd5T6` | 未讀提醒＝review_ready；網頁分析工具＝blocked（push 403，卡在確認 PR base 該不該改 main） |
 | 兼職職缺（工讀生停用說明）modal 設計 | （已封存，不在側欄） | `claude/part-time-modal-design-tmtt7n` | `session_01UCest88UyhV6wBo2myhk1A` | ARCHIVED——有新需求要另開 session |
-| 履歷／個人職能框架撰寫（resume-craft 相關舊分支） | Career move function definition | `claude/happy-lamport-ljis8c` | `session_018VJFZiuZYfnPhMppvaGFcR` | IDLE，review_ready——但 `resume-craft` skill 本體已併入 main，**新的履歷需求直接找「文件助手」（main）即可**，不必回這支舊分支 |
+| **個人成長／職能萃取／履歷**：讀既有產出 → 提煉成 F 系列職能、portfolio、履歷素材 | Career move function definition | `claude/happy-lamport-ljis8c` | `session_018VJFZiuZYfnPhMppvaGFcR` | **活躍**（2026-09-16 仍在動）。🔒 **唯讀角色**：全 repo 可讀，但**只能寫 `career/`**——要改 `career/` 以外的東西一律寫進 `career/_requests-to-main.md` 請主幹施作。規則見 `career/CLAUDE.md`〈硬規則一〉，護欄見 `scripts/guard_career_scope.sh` |
 | Figma 截圖標註／規格書示意圖 | 規格文件html示意圖助手 | `claude/gifted-meitner-6eSoK` | `session_01HouvBCKKpMkZARx7CKhh6X` | IDLE，completed——`photo` skill 已全數併入 main，**新需求直接找「文件助手」（main）即可** |
 | CSV／Excel／Google Sheet 資料分析（新需求、尚無指定分支） | CSV/Excel data analysis | `csv-excel-gsheet-analysis-9kQmZ2`（⚠️不在 CLAUDE.md 既有分支索引，2026-09-10 才新建） | `session_01Fug6iscZrsqXo3Msi4yAbW` | IDLE，等待提供資料或任務——**目前是空的，適合接手任何新的 CSV/Excel/GSheet 分析需求** |
 
