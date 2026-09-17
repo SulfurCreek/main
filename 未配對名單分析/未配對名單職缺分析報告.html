@@ -98,6 +98,17 @@
   .limits li { margin-bottom: 6px; }
   .limits code { background: var(--surface-2); padding: 1px 5px; border-radius: 4px; }
 
+  .badge { display: inline-block; font-size: 0.72rem; font-weight: 700; padding: 2px 9px; border-radius: 20px; vertical-align: middle; margin-left: 8px; }
+  .badge.worse { background: var(--series-3); color: #fff; }
+  .badge.warn { background: var(--series-2); color: #1a1a19; }
+  .nav-perspectives { display: flex; gap: 10px; margin: 14px 0 24px; }
+  .nav-perspectives a { font-size: 0.82rem; text-decoration: none; color: var(--series-1); background: var(--surface-2); border: 1px solid var(--border); border-radius: 20px; padding: 6px 14px; }
+  .relation-box { background: var(--surface-2); border: 1px solid var(--series-3); border-radius: 10px; padding: 12px 16px; margin: 12px 0; font-size: 0.88rem; color: var(--text-secondary); }
+  .relation-box b { color: var(--text-primary); }
+  .conc-flag { font-size: 0.72rem; font-weight: 700; padding: 1px 7px; border-radius: 4px; margin-left: 6px; }
+  .conc-flag.pure { background: var(--series-3); color: #fff; }
+  .conc-flag.mixed { background: var(--series-2); color: #1a1a19; }
+
   .theme-toggle { position: fixed; top: 16px; right: 16px; background: var(--surface-2); border: 1px solid var(--border); border-radius: 20px; padding: 6px 12px; font-size: 0.78rem; cursor: pointer; color: var(--text-secondary); }
 </style>
 
@@ -109,6 +120,10 @@
 <div class="scenario">
   情境：3 份原始廠商配對檔合併去重後，共 <b>4,693 個職缺</b>屬於「廠商沒收到配對名單」的缺工職缺。本報告拆解<b>哪一類職缺最缺、缺在哪個區域</b>，供配對資源優先投放判斷。
 </div>
+<div class="nav-perspectives">
+  <a href="#batch1">① 無配對名單（4,693 筆）</a>
+  <a href="#batch2">② 更嚴重：無主投＋無配對（4,630 筆）</a>
+</div>
 <div class="meta">
   來源：3 份原始檔（<code>8b2ac51a-1935970_1.xlsx</code>／<code>e9aea04d-1935970.xlsx</code>／<code>7d78bd35-1935970_2.xlsx</code>），以「職缺編號」為唯一鍵合併去重，零重複
   腳本：<code>analyze.py</code>（可重跑，分類規則見末節）
@@ -118,7 +133,7 @@
 
 <div class="tiles" id="tiles"></div>
 
-<h2>怎麼讀這份報告</h2>
+<h2 id="batch1">怎麼讀這份報告</h2>
 <table class="defs" id="defs-table"></table>
 <div class="note">⚠️「其他/未分類」不是一個真正的職缺類別，而是關鍵字規則覆蓋不到的客製化職稱——數量大到不能忽略，但不該單獨當成決策依據，見第四節樣態。</div>
 
@@ -147,7 +162,206 @@
   <li>完整明細（4,693 筆原始分類結果）存於 <code>cat_stats.csv</code>／<code>region_cat.csv</code>，未貼入本報告；本 HTML 為既有彙整結果的視覺化呈現，原始 3 份 xlsx 與 <code>analyze.py</code> 腳本本身不在本次可存取範圍內，如需重跑請向來源提供者取得。</li>
 </ul>
 
+<h2 id="batch2">六、新視角：更嚴重批次（無主投＋無配對）<span class="badge worse">更嚴重</span></h2>
+<div class="scenario">
+  情境：另一批 <b>4,630 個職缺</b>同時符合「無主投」與「無配對」——求職者沒有主動投遞，廠商也沒收到配對名單，雙重沒有動靜，比上面的批次一（僅無配對、可能仍有主投）更需要優先處理。
 </div>
+<div class="meta">
+  來源：<code>18a5c1b5-1935970_VIP_____.xlsx</code>（單一 sheet，4,630 筆，<code>無主投</code>／<code>無配對</code> 兩欄全數為 V）
+  腳本：<code>analyze2.py</code>（可重跑，分類規則見末節）
+</div>
+<div class="relation-box" id="relation-box"></div>
+
+<div class="tldr"><ul id="tldr2-list"></ul></div>
+<div class="tiles" id="tiles2"></div>
+
+<h3>與批次一的口徑差異</h3>
+<table class="defs" id="defs2-table"></table>
+
+<h2>七、批次二整體分類排行（官方職務中類，Top 15）</h2>
+<p style="font-size:0.9rem;color:var(--text-secondary)">跟批次一不同：這裡的分類是<b>資料自帶的官方 <code>職務中類</code> 欄位</b>（56 類），不是關鍵字猜測，可直接對照系統既有職類代碼，準確度更高。</p>
+<div class="bars" id="cat2-bars"></div>
+<table id="cat2-table"></table>
+<ul class="conclusions" id="cat2-conclusions"></ul>
+
+<h2>八、集中度警示：哪些排名是「單一廠商灌量」造成的</h2>
+<p style="font-size:0.9rem;color:var(--text-secondary)"><b>集中度</b> = 該中類職缺數中，來自同一家廠商的最大占比——用來判斷「這是產業性缺工，還是單一大廠灌量」。</p>
+<div class="bars" id="conc-bars"></div>
+<table id="conc-table"></table>
+<ul class="conclusions" id="conc-conclusions"></ul>
+
+<h2>九、批次二依區域拆解＋最大量廠商</h2>
+<table id="region2-table"></table>
+<h3>整體最大量廠商 Top 5（跨全部中類）</h3>
+<table id="vendor-table"></table>
+<ul class="conclusions" id="region2-conclusions"></ul>
+
+<h2>十、批次二方法與限制</h2>
+<ul class="limits">
+  <li>判斷條件：<code>無主投</code>＝V 且 <code>無配對</code>＝V，兩欄本批 4,630 筆全部符合，未做額外篩選。</li>
+  <li>分類欄位 <code>職務中類</code> 為原始資料自帶，共 56 類，比批次一用關鍵字猜測的分類準確，但仍建議跟正式 tCode 職類代碼表核對後再對外發布。</li>
+  <li>區域分組：依 <code>區域</code> 欄位前綴（台北→北／台中→中／高雄→南），與批次一分析口徑一致但分組更粗（僅北/中/南三區，無再細分一/二/三區）。</li>
+  <li>完整明細（4,630 筆分類結果、56 類集中度全表）存於 <code>cat_stats2.csv</code>／<code>conc2.csv</code>／<code>region_cat2.csv</code>，未貼入正文；原始 xlsx 與 <code>analyze2.py</code> 腳本不在本次可存取範圍內。</li>
+  <li><b>批次一、批次二的分類系統不同</b>（關鍵字猜測 vs 官方職務中類），兩批的分類名稱即使字面相似（如批次一「業務銷售」vs 批次二「業務推廣」）也不能直接視為同一類別逐一對照。</li>
+</ul>
+
+</div>
+
+<script>
+function toggleTheme() {
+  const root = document.documentElement;
+  const cur = root.getAttribute('data-theme');
+  if (!cur) {
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    root.setAttribute('data-theme', prefersDark ? 'light' : 'dark');
+  } else {
+    root.setAttribute('data-theme', cur === 'dark' ? 'light' : 'dark');
+  }
+}
+function pct(n) { return n.toFixed(1) + '%'; }
+function nf(n) { return n.toLocaleString(); }
+
+const DATA2 = {
+  total_jobs: 4630,
+  total_vendors: 753,
+  overlap_jobs: 191,
+  overlap_vendors: 147,
+  categories: [
+    { name: "餐飲烘焙", jobs: 978, vendors: 130, pct: 21.1, top: true },
+    { name: "門市銷售", jobs: 281, vendors: 55, pct: 6.1 },
+    { name: "業務推廣", jobs: 254, vendors: 118, pct: 5.5 },
+    { name: "行政後勤／總務", jobs: 242, vendors: 84, pct: 5.2 },
+    { name: "生產製程", jobs: 234, vendors: 51, pct: 5.1 },
+    { name: "影視演藝", jobs: 227, vendors: 1, pct: 4.9, flagged: true },
+    { name: "醫務護理", jobs: 213, vendors: 46, pct: 4.6 },
+    { name: "美容美髮", jobs: 193, vendors: 17, pct: 4.2 },
+    { name: "運輸物流", jobs: 165, vendors: 83, pct: 3.6 },
+    { name: "操作技術", jobs: 158, vendors: 69, pct: 3.4 },
+    { name: "維修／技術服務", jobs: 155, vendors: 49, pct: 3.3 },
+    { name: "醫事人員", jobs: 121, vendors: 28, pct: 2.6 },
+    { name: "營造施作", jobs: 105, vendors: 69, pct: 2.3 },
+    { name: "品管品保", jobs: 100, vendors: 46, pct: 2.2 },
+    { name: "生活服務", jobs: 95, vendors: 34, pct: 2.1 },
+  ],
+  concentration: [
+    { cat: "影視演藝", jobs: 227, conc: 100.0, vendor: "冰孚娛樂事業有限公司" },
+    { cat: "金融保險", jobs: 52, conc: 98.1, vendor: "永豐金融控股股份有限公司" },
+    { cat: "美容美髮", jobs: 193, conc: 45.6, vendor: "專美百元快速剪髮" },
+    { cat: "門市銷售", jobs: 281, conc: 44.8, vendor: "康達盛通生活事業股份有限公司" },
+    { cat: "生產製程", jobs: 234, conc: 36.8, vendor: "頂航人力資源有限公司" },
+    { cat: "維修／技術服務", jobs: 155, conc: 31.6, vendor: "YouBike微笑單車/捷安特/巨大機械" },
+    { cat: "餐飲烘焙", jobs: 978, conc: 25.4, vendor: "路易莎職人咖啡股份有限公司" },
+  ],
+  region: [
+    { region: "北區", jobs: 2958, vendors: 413 },
+    { region: "南區", jobs: 875, vendors: 158 },
+    { region: "中區", jobs: 797, vendors: 182 },
+  ],
+  topVendors: [
+    { name: "康達盛通生活事業股份有限公司", jobs: 284 },
+    { name: "路易莎職人咖啡股份有限公司", jobs: 260 },
+    { name: "冰孚娛樂事業有限公司", jobs: 228 },
+    { name: "頂航人力資源有限公司", jobs: 149 },
+    { name: "YouBike微笑單車／捷安特／巨大機械", jobs: 131 },
+  ],
+};
+
+const D2 = DATA2;
+const D2top = D2.categories[0];
+const D2topVendorTotal = D2.topVendors.reduce((s, v) => s + v.jobs, 0);
+const D2topVendorPct = (D2topVendorTotal / D2.total_jobs * 100).toFixed(1);
+const D2effective = D2top.jobs - Math.round(D2top.jobs * 0.254);
+
+document.getElementById('relation-box').innerHTML =
+  `⚠️ 與批次一的重疊：本批 4,630 筆中有 <b>191 筆職缺編號、147 家廠編</b>與批次一（無配對名單）重疊——
+  代表這些職缺原本就沒配對名單，現在連求職者主動投遞也是 0，情況更差；其餘約 96% 是全新出現的廠商／職缺，
+  不在批次一的統計範圍內。`;
+
+document.getElementById('tldr2-list').innerHTML = `
+  <li>本批共 <b>${nf(D2.total_jobs)} 個職缺、${nf(D2.total_vendors)} 家廠商</b>同時「無主投、無配對」，比批次一（無配對但仍有主投）更嚴重。</li>
+  <li>官方 <code>職務中類</code> 欄位直接可用（56 類），不用再靠關鍵字猜：<b>餐飲烘焙類最缺，${nf(D2top.jobs)} 個職缺（${pct(D2top.pct)}）</b>，是第二名「門市銷售」（${nf(D2.categories[1].jobs)} 個）的 3.5 倍，斷層領先。</li>
+  <li><b>集中度警示</b>：餐飲烘焙 ${nf(D2top.jobs)} 件中有 25.4% 集中在單一廠商「路易莎職人咖啡」；影視演藝（227件）<b>100% 來自單一廠商</b>「冰孚娛樂事業」，不是產業性缺工；金融保險（52件）98.1% 來自永豐金控——這三類排名意義不同，見第八節。</li>
+  <li>就算扣掉單一廠商灌量重新排序，<b>餐飲烘焙仍是斷層第一</b>（去集中度後仍有約 ${nf(D2effective)} 個等效缺口），是唯一值得優先投入配對資源的類別。</li>
+  <li>區域上，<b>北區占 63.9%</b>（${nf(D2.region[0].jobs)} 個／${nf(D2.region[0].vendors)} 家廠商），是中區＋南區的近兩倍。</li>
+`;
+
+document.getElementById('tiles2').innerHTML = `
+  <div class="tile"><div class="label">批次二職缺總數</div><div class="value bad">${nf(D2.total_jobs)}</div></div>
+  <div class="tile"><div class="label">與批次一重疊</div><div class="value bad">${nf(D2.overlap_jobs)} 筆</div></div>
+  <div class="tile"><div class="label">最缺類別</div><div class="value gap">${D2top.name}（${pct(D2top.pct)}）</div></div>
+  <div class="tile"><div class="label">單一廠商灌量最高</div><div class="value bad">影視演藝 100%</div></div>
+`;
+
+document.getElementById('defs2-table').innerHTML = `
+  <thead><tr><th>指標</th><th>白話意思</th></tr></thead>
+  <tbody>
+    <tr><td>職缺數</td><td>分母＝本批全部 ${nf(D2.total_jobs)} 筆，分子＝該 <code>職務中類</code> 命中的職缺數。</td></tr>
+    <tr><td>職務中類</td><td>資料本身自帶的官方欄位（非批次一用關鍵字猜的粗分類），可直接對照系統既有職類代碼，比批次一分析口徑更準。</td></tr>
+    <tr><td>集中度</td><td>該中類職缺數中，來自同一家廠商的最大占比——用來判斷這是產業性缺工還是單一大廠灌量。</td></tr>
+  </tbody>
+`;
+
+// batch2 category bars + table
+const cat2Sorted = D2.categories.slice().sort((a, b) => b.jobs - a.jobs);
+const maxCat2 = Math.max(...cat2Sorted.map(c => c.jobs));
+document.getElementById('cat2-bars').innerHTML = cat2Sorted.map(c => `
+  <div class="bar-row">
+    <div class="bar-label">${c.name}${c.flagged ? '<span class="conc-flag pure">單廠灌量</span>' : ''}</div>
+    <div class="bar-track"><div class="bar-fill" style="width:${(c.jobs / maxCat2 * 100).toFixed(1)}%;background:${c.top ? 'var(--series-1)' : (c.flagged ? 'var(--series-3)' : 'var(--series-2)')}"></div></div>
+    <div class="bar-val">${nf(c.jobs)} 個（${pct(c.pct)}）</div>
+  </div>
+`).join('');
+document.getElementById('cat2-table').innerHTML = `
+  <thead><tr><th>職務中類</th><th>職缺數</th><th>廠商數</th><th class="emph">占比</th></tr></thead>
+  <tbody>${cat2Sorted.map(c => `
+    <tr${c.top ? ' style="font-weight:700"' : ''}>
+      <td>${c.name}</td><td>${nf(c.jobs)}</td><td>${nf(c.vendors)}</td>
+      <td class="emph">${pct(c.pct)}</td>
+    </tr>`).join('')}</tbody>
+`;
+document.getElementById('cat2-conclusions').innerHTML = `
+  <li>餐飲烘焙職缺數是第二名的 3.5 倍，是本批唯一稱得上「斷層領先」的類別。</li>
+  <li>業務推廣（118家）、行政後勤（84家）、運輸物流（83家）是廠商數分散、非單一大廠主導的類別，代表性較高（廠商多、職缺分散＝真正跨產業普遍缺人）。</li>
+`;
+
+// concentration bars + table
+document.getElementById('conc-bars').innerHTML = D2.concentration.map(c => {
+  const color = c.conc >= 90 ? 'var(--series-3)' : (c.conc >= 30 ? 'var(--series-2)' : 'var(--series-1)');
+  return `
+  <div class="bar-row">
+    <div class="bar-label">${c.cat}</div>
+    <div class="bar-track"><div class="bar-fill" style="width:${c.conc.toFixed(1)}%;background:${color}"></div></div>
+    <div class="bar-val">${c.conc.toFixed(1)}%</div>
+  </div>`;
+}).join('');
+document.getElementById('conc-table').innerHTML = `
+  <thead><tr><th>職務中類</th><th>職缺數</th><th>集中度</th><th style="text-align:left">最大廠商</th></tr></thead>
+  <tbody>${D2.concentration.map(c => `
+    <tr>
+      <td>${c.cat}</td><td>${nf(c.jobs)}</td>
+      <td class="emph">${c.conc.toFixed(1)}%${c.conc >= 90 ? '<span class="conc-flag pure">純灌量</span>' : (c.conc >= 30 ? '<span class="conc-flag mixed">混合</span>' : '')}</td>
+      <td style="text-align:left">${c.vendor}</td>
+    </tr>`).join('')}</tbody>
+`;
+document.getElementById('conc-conclusions').innerHTML = `
+  <li><code>影視演藝</code>、<code>金融保險</code> 排進 Top 榜完全是單一廠商衝出來的，不代表「這個職類全產業都缺人」，解讀時要拿掉這兩類。</li>
+  <li><code>餐飲烘焙</code> 雖然也有路易莎(248件)、瓦城(78件)等連鎖品牌貢獻，但集中度只有 25.4%，扣掉最大廠商後仍有 730 個職缺分散在其餘 129 家廠商，<b>仍是真正意義上最缺名單的類別</b>。</li>
+`;
+
+// region2 + vendor tables
+document.getElementById('region2-table').innerHTML = `
+  <thead><tr><th>區域</th><th>職缺數</th><th>廠商數</th></tr></thead>
+  <tbody>${D2.region.map(r => `<tr><td>${r.region}</td><td>${nf(r.jobs)}</td><td>${nf(r.vendors)}</td></tr>`).join('')}</tbody>
+`;
+document.getElementById('vendor-table').innerHTML = `
+  <thead><tr><th>公司名稱</th><th>職缺數</th></tr></thead>
+  <tbody>${D2.topVendors.map(v => `<tr><td style="text-align:left">${v.name}</td><td class="emph">${nf(v.jobs)}</td></tr>`).join('')}</tbody>
+`;
+document.getElementById('region2-conclusions').innerHTML = `
+  <li>北區職缺量是中、南區總和的近 2 倍，配對資源應優先往北區傾斜；但北區廠商數（413）也最多，平均每廠商職缺數（7.2）其實跟中區（4.4）、南區（5.5）比不算特別誇張，量大主要是廠商基數大，不是單一廠商極端灌量。</li>
+  <li>Top 5 廠商合計貢獻 ${nf(D2topVendorTotal)} 個職缺（占全批 ${D2topVendorPct}%），若要優先處理，直接跟這幾家廠商的負責客服確認職缺是否仍有效、是否要批次關閉/續開，投報率會比逐筆處理其他長尾廠商高很多。</li>
+`;
+</script>
 
 <script>
 const DATA = {
