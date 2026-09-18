@@ -18,7 +18,7 @@
 
 **標記**：✅ 有具體證據可直接主張 ｜ 🟡 部分符合，**需限定說法** ｜ ⚠️ 缺口，**不可主張**
 
-**覆蓋現況：✅ 23 項 ｜ 🟡 17 項 ｜ ⚠️ 10 項（共 50）**　（F15 加入後，#43 Prompt Engineering 與 #45 AI Agents 由 🟡 升 ✅）
+**覆蓋現況：✅ 25 項 ｜ 🟡 15 項 ｜ ⚠️ 10 項（共 50）**　（F15 加入後 #43／#45 由 🟡 升 ✅；2026/09 跨業 API 合約新證據後 #32／#35 由 🟡 升 ✅）
 
 ---
 
@@ -91,10 +91,10 @@
 | # | 概念 | 狀態 | 你的證據 ／ 缺口說明 |
 | :-- | :--- | :--: | :--- |
 | 31 | Technical Debt | ✅✅ | **多個實例**：E.1 整併**兩條 legacy 通道**、代碼體系老化重整（證照／專長／職類）、[F11](F11-problem-solving-ops.md) 清倉多年積壓工單、**iframe 向後相容漸進遷移**。 |
-| 32 | API Integration & Rate Limits | 🟡 | **API 整合 ✅**：4 支後端 API 契約文件化、欄位級規格、前後端契約落差盤點；**Rate limits ⚠️** 未見證據，別提。 |
+| 32 | API Integration & Rate Limits | ✅ | 4 支後端 API 契約文件化、欄位級規格、前後端契約落差盤點；**Rate limits 已有證據**（2026/09 起）：主責跨業夥伴查詢 API 定義 RPS 限流與 429 回應（見 [F2](F02-spec-systems-thinking.md)）。 |
 | 33 | Database Logic & Relational Models | ✅ | 信件主表寫入、`oJsonB`／`tJsonB` **雙視角訊息明細**、記訊整併（合併去重為單一對話）、追蹤狀態隔離至獨立資料表以提升正規化。 |
 | 34 | Microservices | 🟡 | 接觸過 EventBus／下游整併服務、跨兩套後端，但**你不是架構決策者**。說法：「在微服務架構下定義跨服務的業務契約」。 |
-| 35 | External User Authentication | 🟡 | P0 資安項目（auth token httponly、移除 password、封鎖詐騙 IP）、權限代碼建模；但**非你設計認證機制**。 |
+| 35 | External User Authentication | ✅ | P0 資安項目（auth token httponly、移除 password、封鎖詐騙 IP）、權限代碼建模；**2026/09 起你親自設計認證機制**：跨業夥伴 API 的 HMAC-SHA256 簽章驗證＋5 分鐘重放窗口（見 [F2](F02-spec-systems-thinking.md)）。上一版標註「非你設計」已過時。 |
 | 36 | Data Encryption | ⚠️ | 無證據。 |
 | 37 | Security Cooldown States | 🟡 | 〔**待你確認**〕`resume-craft` 曾寫入「MFA 邊界條件與冷卻防呆」——若非實際做過，**請從素材中移除**（誠實契約）。 |
 | 38 | Scalability | 🟡 | 有具體設計選擇：`limit+cursor` 分頁、**E-mail 改為排程而非即時寄送**、心跳與斷線自動重連、收信區間彙整；但非負載／容量規劃層級。 |
