@@ -19,6 +19,11 @@ Operations on 1111 TCode export spreadsheets. Read `references/export-schema.md`
 first when touching column data; it is the single source of truth for column
 positions, CodeType, and translation columns.
 
+**不是所有職缺/求職者代碼都在 `TCode_Export`**：例如 `DisabledType`（身障類別）／
+`DisabledLevel`（身障程度）不屬於本 skill 管的 tCode 體系，權威來源在 HackMD
+`[REF] 系統代碼表`（note id `B1j3sN-bzx`）§7。遇到 Excel 裡找不到的代碼時，先確認
+是不是這種「非 tCode、只存在 HackMD 系統代碼表」的情況，不要臆造數值。
+
 ## Token-efficient Excel analysis (核心原則)
 
 NEVER dump whole sheets into context. openpyxl in `read_only=True` + targeted
