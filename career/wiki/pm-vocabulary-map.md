@@ -82,7 +82,7 @@
 | 27 | Cross-functional Alignment | ✅ | [F6](F06-collaboration-handoff.md)／[F9](F09-stakeholder-influence.md)：PM／RD／QA／設計樞紐、跨組同步會議、共用 API 規格定義。 |
 | 28 | Scope Creep | ✅ | [F5](F05-delivery-quality.md)：**第二階段內容拆成獨立文件**、第一階段僅保留畫面入口——這是教科書級的範疇控制，且有 E.1 實例。 |
 | 29 | Feature Bloat | 🟡 | 有規則收斂與代碼體系重整（[F10](F10-business-logic.md)）、「暫停／取消附理由」，但**無「砍掉既有功能」**的明確案例。 |
-| 30 | Regular QA & Testing | ✅ | [F8](F08-roadmap-delivery.md) 狀態工作流含 `QA／企劃測試 → 待上線`；[F5](F05-delivery-quality.md) 交付前檢查清單；滑期原因可追溯（如 QA 返修致延期）。 |
+| 30 | Regular QA & Testing | ✅ | [F8](F08-roadmap-delivery.md) 狀態工作流含 `QA／企劃測試 → 待上線`；[F5](F05-delivery-quality.md) 交付前檢查清單；滑期原因可追溯（如 QA 返修致延期）。**2026/09 新證據**：由規格推導 **11 條驗收測試案例**並沉澱為可重用流程；與 QA 共同產出案例、執行期間管理範圍異動（如圖片上傳 WAF 案：QA／Staging 雙環境驗證、100% 通過）。**仍缺**：Test Plan 層級產出、本人親自執行測試的證據。 |
 
 ---
 

@@ -39,6 +39,10 @@
 - 擔任 **PM／RD／QA／設計**間的樞紐，產出交接文件、功能說明頁、競品分析與跨組同步會議記錄，降低 key-person 風險。
   *Served as the cross-functional hub, producing handoff docs, feature guides, competitive analyses, and sync
   meeting notes that reduced key-person risk.*
+- 由規格直接推導**驗收測試案例**（跨系統即時訊息第二階段 **11 條**，逐條回連規格章節），並將寫法沉澱為可重用流程；與 QA 共同產出案例、於測試執行期間管理範圍與方案異動，雙環境驗證通過後結案。
+  *Derived acceptance test cases directly from specs (11 for a cross-system messaging release, each traced to its spec
+  section) and codified the method into a reusable workflow; co-authored cases with QA and managed scope changes during
+  execution through two-environment verification.*
 - 主導 **227 項求才產品 Roadmap** 的優先級（P0–P3）與時間盒交付，**直屬管理 2 名企劃**（蔡育琳、楊丞佳）並委派工單給工程，近半年交付 **111 項上線、94%（84/89）準時或提前**。
   *Owned a 227-item product roadmap — prioritization (P0–P3) and time-boxed delivery — directly managing 2 product
   planners and delegating to engineering; shipped 111 items in ~5 months at 94% (84/89) on-or-ahead-of-schedule.*
