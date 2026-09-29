@@ -3,7 +3,8 @@
 # 交接 / Session Handoff — career session
 
 > 前任：`session_018VJFZiuZYfnPhMppvaGFcR`（側欄「Career move function definition」），2026-09-29 交接。
-> **接手**：`session_01PKC4scvp58BuQxq5JKMHPw`（側欄「Career move function definition (v2)」），2026-09-29 接手。
+> **接手**：`session_01PKC4scvp58BuQxq5JKMHPw`（側欄「Career move function definition (v2)」），2026-09-29 接手；
+> 同日因需載入 `CAREER_OPS_ROOT` 環境變數再換手給 v3（新 session 開工時自行回填 ID 於此行下方），v2 自此停止寫入。
 > 接手的 session **沿用同一分支 `claude/happy-lamport-ljis8c`**，前任自交接起停止寫入，不會撞推送。
 > **開工順序**：本檔 → [`CLAUDE.md`](CLAUDE.md)（硬規則一、二）→ [`competency-framework.md`](competency-framework.md)（wiki 入口）。其餘依任務按需讀取。
 
@@ -105,6 +106,15 @@
 | 2014/02–2016/06 空檔說明 | 等使用者提供 | `wiki/prior-roles.md` |
 | 各 F 頁 `〔待補數據〕`：規格份數、AI 功能採用率、規則數、缺陷率、IAP 營收成長 %、流失下降 % | 等使用者提供 | `resume-extract.md` 等 |
 | growth-edges 缺口：AI 功能採用、續約因果歸因、A/B 實驗主導 | 長期 | `wiki/growth-edges.md` |
+
+### v2 session 未結案項目（2026-09-29）
+
+| 項目 | 狀態 |
+| :--- | :--- |
+| 104 職缺無法直接抓（Cloudflare 擋 curl／WebFetch；內建 Chromium 不信任代理憑證） | 請使用者貼 JD 全文 |
+| 已評估：和泰聯網「去趣」旅遊 App PM（3.4/5，職級偏低、Test Plan／親自執行測試待確認、無旅遊產業經驗）；評估結果只在對話中，**未寫成 report** | 使用者尚未決定是否投遞 |
+| F5 已補測試案例設計＋QA 協作證據（`9512810`）；待確認：Test Plan 產出、是否親自執行測試與工具 | 等使用者回答 |
+| T11669 在留言紀錄中看不到使用者名字：面試只能講「單據 owner、追蹤測試與範圍異動、必要時介入」 | 使用者可補具體介入內容 |
 
 ## 6. 常用指令
 
