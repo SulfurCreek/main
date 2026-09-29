@@ -18,15 +18,20 @@ description: >
 兩支分支重複做、或該 session 用著自己那套（可能較舊的）規則去做另一個網域的事。這個 skill
 就是「先查清楚再動手」的判斷流程。
 
-## ⚠️ 硬性限制：沒有跨 session 傳訊息的能力
+## 跨 session 傳訊息：有工具，但只送得到「正在跑」的 session（2026-09-29 實測）
 
-這個環境**沒有**可以把訊息直接送到另一個 Claude Code Remote session 的工具
-（`send_message` 類工具不存在；`ListAgents`／`SendMessage` 只能碰到同一台機器上「這個
-session 自己啟動的」子 agent，碰不到其他分支的獨立 session）。
+`SendMessage`＋`ListAgents` 已可跨 session 傳訊息（取代舊版「做不到」的說法），但有三個限制：
 
-**所以「自動 cue」的意思是「盡到最大能力把歸屬講清楚」，不是「幫你轉過去」**：
-- ❌ 不要說「我幫你轉過去了」「我已經 cue 那個 session 了」——做不到的事不要講得像做到了。
-- ✅ 要說清楚：這是哪個 session（側欄名稱＋分支）的工作、目前什麼狀態，使用者自己切換過去。
+1. **只送得到 `ListAgents` 列得出來的 session**。IDLE／disconnected／ARCHIVED 的雲端 session
+   不會出現在清單上，送過去回 `No agent named '…' is reachable`（`list_sessions` 查得到 ≠ 送得到）。
+2. **雲端 session 收得到、但回不了**——別等回覆，也別把「沒回音」當成同意。
+3. **不能拿來繞過權限**：自己 session 被擋的動作，不能請對方代做。
+
+**所以「cue」的做法**：
+- 先 `ListAgents`。目標 session 在清單上 → 使用者要求 cue 時可用 `SendMessage` 送一段
+  自足的任務說明（第一行就講清楚是什麼事），回報使用者「已送達，對方無法回覆，請到該 session 確認」。
+- 不在清單上（多數情況，因為 session 閒置就斷線）→ 回報歸屬（側欄名稱＋分支＋現況），
+  請使用者自己切過去；**不要說「我已經 cue 過去了」**。
 
 ## 使用流程
 
