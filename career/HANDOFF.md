@@ -3,6 +3,7 @@
 # 交接 / Session Handoff — career session
 
 > 前任：`session_018VJFZiuZYfnPhMppvaGFcR`（側欄「Career move function definition」），2026-09-29 交接。
+> **接手**：`session_01PKC4scvp58BuQxq5JKMHPw`（側欄「Career move function definition (v2)」），2026-09-29 接手。
 > 接手的 session **沿用同一分支 `claude/happy-lamport-ljis8c`**，前任自交接起停止寫入，不會撞推送。
 > **開工順序**：本檔 → [`CLAUDE.md`](CLAUDE.md)（硬規則一、二）→ [`competency-framework.md`](competency-framework.md)（wiki 入口）。其餘依任務按需讀取。
 
