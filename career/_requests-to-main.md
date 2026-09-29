@@ -31,3 +31,14 @@ skill 若停在 F1–F11，會在「依框架產出履歷」時漏掉四個職�
 ```
 
 ---
+
+## 2026-09-29：career session 換手，`wiki/session_directory.md` 需更新 session ID
+
+**想改什麼**：`wiki/session_directory.md:25` 的 career 列，session ID 由 `session_018VJFZiuZYfnPhMppvaGFcR`
+改為新 session 的 ID（見本分支 `career/HANDOFF.md` 開頭；新 session 開好後會回填）。分支不變，仍是
+`claude/happy-lamport-ljis8c`，唯讀邊界與護欄不變。
+
+**為什麼**：使用者 2026-09-29 決定改由新 session 接手 career 工作（新 session 的環境 setup script 會自動安裝
+career-ops）。舊 session 停止寫入；目錄若留舊 ID，`session-router` 會把人導去已不再工作的 session。
+
+---

@@ -52,6 +52,7 @@ it is a shared company space and the leak would be irreversible.*
 
 | 路徑 | 內容 |
 | :--- | :--- |
+| `HANDOFF.md` | **新 session 開工先讀**：角色邊界、慣例、完整檔案清單、未完成事項 |
 | `competency-framework.md` | **wiki 入口**：定位、Profile Snapshot、路由表、F1–F15 總覽 |
 | `wiki/` | 職能分頁（`F01`–`F15`）、旗艦專案、履歷摘要、學歷證照、證據頁、PM 語彙對照、缺口盤點 |
 | `portfolio/` | 作品集 case study（完整敘事＋圖表）|
