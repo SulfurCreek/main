@@ -17,3 +17,10 @@
 merge main 不會刪掉它們。請主幹決定：直接在本分支刪除（career session 依硬規則一不能自己刪），或確認無害保留。
 
 **為什麼**：若日後本分支任何內容被整支合回 main，這兩檔會被重新帶回，造成 skill 新舊版並存。
+
+## 2026-09-29：`wiki/session_directory.md` career 列 session ID 換成 v3
+
+**想改什麼**：career 列的 session ID 由 `session_01PKC4scvp58BuQxq5JKMHPw` 改為 `session_017u5Po6SGpjD3iLBZ2VL2HH`，
+側欄名稱改為「Career move function definition (v3)」。分支不變（`claude/happy-lamport-ljis8c`）。
+
+**為什麼**：v2 為載入 `CAREER_OPS_ROOT` 環境變數換手，已停止寫入；不改的話 session-router 會把 career 工作導到已停用的 session。
