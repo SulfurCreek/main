@@ -36,7 +36,7 @@
 | [`CLAUDE.md`](CLAUDE.md) | 硬規則一（只寫 career/）、硬規則二（不外流）、目錄結構 |
 | [`HANDOFF.md`](HANDOFF.md) | 本檔 |
 | [`competency-framework.md`](competency-framework.md) | **wiki 入口**：定位、Profile Snapshot、路由表、F1–F15 總覽 |
-| [`_requests-to-main.md`](_requests-to-main.md) | 給主幹的變更請求（目前無待處理） |
+| [`_requests-to-main.md`](_requests-to-main.md) | 給主幹的變更請求（1 條：殘留 skill 檔，見檔內） |
 | [`wiki/README.md`](wiki/README.md) | wiki 分頁目錄 |
 
 ### 職能分頁 `wiki/F01`–`F15`（定義 → 實際展現 → 證據 → 資深度訊號）
