@@ -55,6 +55,7 @@ it is a shared company space and the leak would be irreversible.*
 | `competency-framework.md` | **wiki 入口**：定位、Profile Snapshot、路由表、F1–F15 總覽 |
 | `wiki/` | 職能分頁（`F01`–`F15`）、旗艦專案、履歷摘要、學歷證照、證據頁、PM 語彙對照、缺口盤點 |
 | `portfolio/` | 作品集 case study（完整敘事＋圖表）|
+| `career-ops/` | [career-ops](https://github.com/career-ops-hq/career-ops) 求職工具的個人資料層（`cv.md`、`profile.yml`），由 `wiki/` 單向同步 |
 
 **依任務只載入需要的分頁**（入口的路由表會指路），不要整包讀進來。更新職能內容時改對應的 `wiki/` 分頁，
 入口只維護索引與快照。
