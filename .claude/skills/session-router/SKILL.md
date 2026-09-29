@@ -18,20 +18,17 @@ description: >
 兩支分支重複做、或該 session 用著自己那套（可能較舊的）規則去做另一個網域的事。這個 skill
 就是「先查清楚再動手」的判斷流程。
 
-## 跨 session 傳訊息：有工具，但只送得到「正在跑」的 session（2026-09-29 實測）
+## 跨 session 傳訊息：雲端 session 之間實際送不到（2026-09-29 實測）
 
-`SendMessage`＋`ListAgents` 已可跨 session 傳訊息（取代舊版「做不到」的說法），但有三個限制：
+環境裡有 `SendMessage`／`ListAgents`，但**雲端 session 之間實際送不到**。2026-09-29 從 Repo Housekeeping
+對「規格文件html示意圖助手」（RUNNING＋connected）與「文件助手」（connected）分別用側欄名稱、
+session ID 定址，全部回 `No agent named '…' is reachable`；`ListAgents` 也列不出任何 session。
+`list_sessions` 查得到、狀態是 RUNNING，都**不代表**送得到。
 
-1. **只送得到 `ListAgents` 列得出來的 session**。IDLE／disconnected／ARCHIVED 的雲端 session
-   不會出現在清單上，送過去回 `No agent named '…' is reachable`（`list_sessions` 查得到 ≠ 送得到）。
-2. **雲端 session 收得到、但回不了**——別等回覆，也別把「沒回音」當成同意。
-3. **不能拿來繞過權限**：自己 session 被擋的動作，不能請對方代做。
-
-**所以「cue」的做法**：
-- 先 `ListAgents`。目標 session 在清單上 → 使用者要求 cue 時可用 `SendMessage` 送一段
-  自足的任務說明（第一行就講清楚是什麼事），回報使用者「已送達，對方無法回覆，請到該 session 確認」。
-- 不在清單上（多數情況，因為 session 閒置就斷線）→ 回報歸屬（側欄名稱＋分支＋現況），
-  請使用者自己切過去；**不要說「我已經 cue 過去了」**。
+**所以「cue」＝盡力把歸屬講清楚，不是代為轉發**：
+- 仍先跑一次 `ListAgents`（工具之後可能開放）。真的列出目標才用 `SendMessage`，並提醒對方無法回覆。
+- 列不出來（目前一律如此）→ 回報歸屬（側欄名稱＋分支＋現況）＋一段使用者可直接貼過去的指令。
+- ❌ 不要說「我已經 cue 過去了」。不能請別的 session 代做自己被擋的動作。
 
 ## 使用流程
 
