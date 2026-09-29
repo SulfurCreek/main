@@ -36,7 +36,7 @@
 | [`CLAUDE.md`](CLAUDE.md) | 硬規則一（只寫 career/）、硬規則二（不外流）、目錄結構 |
 | [`HANDOFF.md`](HANDOFF.md) | 本檔 |
 | [`competency-framework.md`](competency-framework.md) | **wiki 入口**：定位、Profile Snapshot、路由表、F1–F15 總覽 |
-| [`_requests-to-main.md`](_requests-to-main.md) | 給主幹的變更請求（目前 2 條，見 §5） |
+| [`_requests-to-main.md`](_requests-to-main.md) | 給主幹的變更請求（目前無待處理） |
 | [`wiki/README.md`](wiki/README.md) | wiki 分頁目錄 |
 
 ### 職能分頁 `wiki/F01`–`F15`（定義 → 實際展現 → 證據 → 資深度訊號）
@@ -77,9 +77,10 @@
 
 | 檔案 | 內容 |
 | :--- | :--- |
-| [`career-ops/README.md`](career-ops/README.md) | 資料層說明、複製指令、同步規則（wiki → 這裡，單向） |
-| [`career-ops/cv.md`](career-ops/cv.md) | 英文 CV（複製到 career-ops 根目錄） |
-| [`career-ops/profile.yml`](career-ops/profile.yml) | 設定檔（複製到 `config/profile.yml`），含 TODO |
+| [`career-ops/README.md`](career-ops/README.md) | 資料層說明、`CAREER_OPS_ROOT` 設定、版控規則（PDF ≤ 1MB）、同步規則（wiki → 這裡，單向） |
+| [`career-ops/cv.md`](career-ops/cv.md) | 英文 CV |
+| [`career-ops/config/profile.yml`](career-ops/config/profile.yml) | 設定檔，含 TODO |
+| `career-ops/reports/`、`output/`、`data/` | career-ops 產出（評估報告、PDF、投遞追蹤），經 `CAREER_OPS_ROOT` 直接寫在這裡 |
 
 ## 4. 工作歷程摘要
 
@@ -92,19 +93,18 @@
 7. 2026-09-16 同步主幹、接受唯讀邊界、還原越界檔案。
 8. 異業 API 合約（2026/09 起，進行中）→ 併入 F2、F13；pm-vocabulary-map #32、#35 升 ✅。
 9. 2026-09-29 建立 career-ops 資料層；career-ops 本體由環境 setup script clone 到 `/home/user/career-ops`。
+10. 2026-09-29 換手；主幹施作兩條請求（`7a0dbee`）；改用 `CAREER_OPS_ROOT` 讓產出直接落在 `career/career-ops/`。
 
 ## 5. 未完成事項
 
 | 項目 | 狀態 | 位置 |
 | :--- | :--- | :--- |
-| **啟動 career-ops**：複製資料 → `npm run doctor` | 接手後第一件事 | `career-ops/README.md` |
-| career-ops TODO：LinkedIn／作品集網址、電話、薪資區間、目標職稱、輸出語言、預告期 | 等使用者提供 | `career-ops/profile.yml` |
+| **`CAREER_OPS_ROOT` 環境變數**：已改為直接讀寫 repo（不再 cp）；需使用者在環境設定加入 | 等使用者設定 | `career-ops/README.md` |
+| career-ops TODO：LinkedIn／作品集網址、電話、薪資區間、目標職稱、輸出語言、預告期 | 等使用者提供 | `career-ops/config/profile.yml` |
 | **畢業年份**：2013 或 2014 | 等使用者確認（背調會查） | `wiki/prior-roles.md`、`education-certifications.md` |
 | 2014/02–2016/06 空檔說明 | 等使用者提供 | `wiki/prior-roles.md` |
 | 各 F 頁 `〔待補數據〕`：規格份數、AI 功能採用率、規則數、缺陷率、IAP 營收成長 %、流失下降 % | 等使用者提供 | `resume-extract.md` 等 |
 | growth-edges 缺口：AI 功能採用、續約因果歸因、A/B 實驗主導 | 長期 | `wiki/growth-edges.md` |
-| 給主幹：`resume-craft` F1–F11 → F1–F15 | 等 Repo Steward | `_requests-to-main.md` |
-| 給主幹：`wiki/session_directory.md` 更新 career session ID | 等 Repo Steward | `_requests-to-main.md` |
 
 ## 6. 常用指令
 
