@@ -42,5 +42,6 @@ description: >-
 
 - 一份 Markdown（放 `user-journey/`，檔名 `*_journey_map.md`），先放 Mermaid
   `journey` 總覽圖，再放各階段表格與文件關係表；動到 Mermaid 要先渲染驗證。
+- 檔案開頭的〈路由〉表是給 AI 定位用的索引，須標註「非給人看」；階段編碼沿用 HackMD 資料夾編碼。
 - 階段 × 泳道適合用表格（短、同形）；單一階段內容很長時改 `####`＋條列
   （見 `spec-doc-1111/references/styling.md`〈表格 vs 標題＋條列〉）。
