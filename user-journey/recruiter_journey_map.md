@@ -23,17 +23,19 @@
 
 階段編碼**沿用 HackMD 資料夾編碼**（`求才系統/` 下的 A.～E.、5.～7.，登入為 `J.`），不自編；Sitemap 的 1～9 是另一套 module 序號，僅在「Sitemap 第N節」引用。
 
-| 編碼 | HackMD 資料夾 | 文件數 | 本檔章節 | Sitemap | 起手文件 |
-| :--- | :--- | :---: | :--- | :--- | :--- |
-| J | `求才系統/J. 登入流程與登入前` | 9 | 表 A | 第1節 | r11ad8Okfe（登入前頁） |
-| A | `求才系統/A. 首頁` | 12 | 表 A | 第2節 | Hym116n3-x（A.1 topbar） |
-| B | `B. 公司`＋`B.2 帳號設定`＋`B.4 刊登設定` | 23 | 表 A | 第3節 | S1jhD6RRbe（B.1） |
-| C | `C. 職缺` | 13 | 表 B | 第4節 | S1SfBeXxfe（2.2 新增職缺） |
-| D | `求才系統/D. 人才` | 21 | 表 B | 第5節 | HyYq_GgXWl（履歷詳細頁） |
-| E | `E. 聯繫`＋`信件即時通合併專案` | 9＋12 | 表 B | 第6節 | BJ0R8ocgGl（E.1 聯絡人才） |
-| 5 | `求才系統/5. 紀錄` | 4 | 表 C | 第7節 | S13Zy8rKze（5.5 人才點數） |
-| 6／7 | `求才系統/6. 服務`、`求才系統/7. 購買` | 2＋3 | 表 C | 第8、9節 | ByKdpLaWZe（7.1 線上續約） |
-| 共用 | `M. Modal&Lightbox`、`[REF]` 代碼表 | 15＋ | 附錄〈文件關係〉末段 | — | B1j3sN-bzx（REF 系統代碼表） |
+**版本判定**：頁面／文件編號英文字母開頭＝新版求才；純數字＝現版求才（兩者架構不同）。資料夾字母不代表版本，例如 `C. 職缺` 內的 `2.x` 文件都是現版。IA 異動時本檔與 [Sitemap](https://hackmd.io/@1111-jobdocs/rkGFjjlPWe) 要一起更新。
+
+| 編碼 | HackMD 資料夾 | 版本 | 文件數 | 本檔章節 | Sitemap | 起手文件 |
+| :--- | :--- | :--- | :---: | :--- | :--- | :--- |
+| J | `求才系統/J. 登入流程與登入前` | 新版 | 9 | 表 A | 第1節 | r11ad8Okfe（登入前頁） |
+| A | `求才系統/A. 首頁` | 新版 | 12 | 表 A | 第2節 | Hym116n3-x（A.1 topbar） |
+| B | `B. 公司`＋`B.2 帳號設定`＋`B.4 刊登設定` | 新版（例外：`1.2.3` 開關天數、`1.2.4` 群組設定為現版） | 23 | 表 A | 第3節 | S1jhD6RRbe（B.1） |
+| C | `C. 職缺` | 現版（`2.x`） | 13 | 表 B | 第4節 | S1SfBeXxfe（2.2 新增職缺） |
+| D | `求才系統/D. 人才` | 現版（`3.x`） | 21 | 表 B | 第5節 | HyYq_GgXWl（履歷詳細頁） |
+| E | `E. 聯繫`＋`信件即時通合併專案` | 混合：`4.x` 現版；`E.1`／`E.2.x` 新版 | 9＋12 | 表 B | 第6節 | BJ0R8ocgGl（E.1 聯絡人才） |
+| 5 | `求才系統/5. 紀錄` | 現版 | 4 | 表 C | 第7節 | S13Zy8rKze（5.5 人才點數） |
+| 6／7 | `求才系統/6. 服務`、`求才系統/7. 購買` | 現版（例外：`A.7.1` 文件下載、`H.3` 合約上傳為新版） | 2＋3 | 表 C | 第8、9節 | ByKdpLaWZe（7.1 線上續約） |
+| 共用 | `M. Modal&Lightbox`、`[REF]` 代碼表 | 依各文件編號 | 15＋ | 附錄〈文件關係〉末段 | — | B1j3sN-bzx（REF 系統代碼表） |
 
 編輯流程：改事實 → 先到上表「HackMD 資料夾」找原文件修 → 再改對應章節的表格與〈文件關係〉。完整目錄見 repo 根目錄 `tree.md`。
 
@@ -57,7 +59,7 @@
 
 | 階段 (Phases) | C 職缺 | D 人才 | E 聯繫 |
 | :--- | :--- | :--- | :--- |
-| **User Actions**<br>(用戶行為) | 快速新增／複製／全新／匯入職缺 → 設應徵過濾 → 總覽多筆操作（更新日期、開關、改工作時間）→ 排序、移轉、排廣告<br>[2.2](https://hackmd.io/@1111-jobdocs/S1SfBeXxfe)、[複製](https://hackmd.io/@1111-jobdocs/HJW-MWp4Wg)、[匯入](https://hackmd.io/@1111-jobdocs/Bk854rrtGe)、[應徵過濾](https://hackmd.io/@1111-jobdocs/r1AirkvF-x)、[2.1 總覽](https://hackmd.io/@1111-jobdocs/HJvxSmNMWe)、[多筆修改](https://hackmd.io/@1111-jobdocs/HkHIwU8Y-x)、[2.3](https://hackmd.io/@1111-jobdocs/B1Srfpi7bg)、[2.4](https://hackmd.io/@1111-jobdocs/rJ5KsWEG-e)、[2.7](https://hackmd.io/@1111-jobdocs/Sy7bgNuzZg) | 看主動應徵 → 開履歷詳細頁 → 追蹤／備註／封鎖／轉寄／列印 → 看來訪名單 → AI 推薦／配對／簡易／進階／大專搜尋<br>[3.1.1](https://hackmd.io/@1111-jobdocs/ry9S7kjuWe)、[履歷詳細頁](https://hackmd.io/@1111-jobdocs/HyYq_GgXWl)、[追蹤人才](https://hackmd.io/@1111-jobdocs/r1V8b3ZDWg)、[備註](https://hackmd.io/@1111-jobdocs/rkX_P2qqZl)、[轉寄](https://hackmd.io/@1111-jobdocs/ByoEYp2a-g)、[列印](https://hackmd.io/@1111-jobdocs/SJMq3nfkGe)、[3.2.6](https://hackmd.io/@1111-jobdocs/r1TBqJjeGx)、[3.2.1](https://hackmd.io/@1111-jobdocs/Bk06kDtf-l)、[3.2.3](https://hackmd.io/@1111-jobdocs/Syn7AN87Wl) | 開通知 Lightbox → 選範本 → 發詢問意願／面試邀約 → 聊天室對話 → 建立／改期／取消面試 → 錄取通知；求職者失約時回報<br>[4.0](https://hackmd.io/@1111-jobdocs/r1qJb-uXbx)、[範本](https://hackmd.io/@1111-jobdocs/SJ8KDMo8fl)、[4.1](https://hackmd.io/@1111-jobdocs/rJkyKgeGWl)、[信件對話](https://hackmd.io/@1111-jobdocs/r1ghrPxP-x)、[第二階段](https://hackmd.io/@1111-jobdocs/ry_GPNuZze)、[4.3](https://hackmd.io/@1111-jobdocs/HydajKbPfl)、[失約回報](https://hackmd.io/@1111-jobdocs/Sy70gCPKGe) |
+| **User Actions**<br>(用戶行為) | 快速新增／複製／全新／匯入職缺 → 設應徵過濾 → 總覽多筆操作（更新日期、開關、改工作時間）→ 排序、移轉、排廣告<br>完整流程（循序圖）：[2.2 新增職缺＞流程圖](https://hackmd.io/@1111-jobdocs/S1SfBeXxfe#流程圖)<br>[2.2](https://hackmd.io/@1111-jobdocs/S1SfBeXxfe)、[複製](https://hackmd.io/@1111-jobdocs/HJW-MWp4Wg)、[匯入](https://hackmd.io/@1111-jobdocs/Bk854rrtGe)、[應徵過濾](https://hackmd.io/@1111-jobdocs/r1AirkvF-x)、[2.1 總覽](https://hackmd.io/@1111-jobdocs/HJvxSmNMWe)、[多筆修改](https://hackmd.io/@1111-jobdocs/HkHIwU8Y-x)、[2.3](https://hackmd.io/@1111-jobdocs/B1Srfpi7bg)、[2.4](https://hackmd.io/@1111-jobdocs/rJ5KsWEG-e)、[2.7](https://hackmd.io/@1111-jobdocs/Sy7bgNuzZg) | 看主動應徵 → 開履歷詳細頁 → 追蹤／備註／封鎖／轉寄／列印 → 看來訪名單 → AI 推薦／配對／簡易／進階／大專搜尋<br>[3.1.1](https://hackmd.io/@1111-jobdocs/ry9S7kjuWe)、[履歷詳細頁](https://hackmd.io/@1111-jobdocs/HyYq_GgXWl)、[追蹤人才](https://hackmd.io/@1111-jobdocs/r1V8b3ZDWg)、[備註](https://hackmd.io/@1111-jobdocs/rkX_P2qqZl)、[轉寄](https://hackmd.io/@1111-jobdocs/ByoEYp2a-g)、[列印](https://hackmd.io/@1111-jobdocs/SJMq3nfkGe)、[3.2.6](https://hackmd.io/@1111-jobdocs/r1TBqJjeGx)、[3.2.1](https://hackmd.io/@1111-jobdocs/Bk06kDtf-l)、[3.2.3](https://hackmd.io/@1111-jobdocs/Syn7AN87Wl) | 開通知 Lightbox → 選範本 → 發詢問意願／面試邀約 → 聊天室對話 → 建立／改期／取消面試 → 錄取通知；求職者失約時回報<br>[4.0](https://hackmd.io/@1111-jobdocs/r1qJb-uXbx)、[範本](https://hackmd.io/@1111-jobdocs/SJ8KDMo8fl)、[4.1](https://hackmd.io/@1111-jobdocs/rJkyKgeGWl)、[信件對話](https://hackmd.io/@1111-jobdocs/r1ghrPxP-x)、[第二階段](https://hackmd.io/@1111-jobdocs/ry_GPNuZze)、[4.3](https://hackmd.io/@1111-jobdocs/HydajKbPfl)、[失約回報](https://hackmd.io/@1111-jobdocs/Sy70gCPKGe) |
 | **Touchpoints**<br>(接觸點) | PublishList／PublishOpening／PublishEmpSort／PublishEmpTrans／BuyScheduleBooking.aspx（Sitemap 第4節） | ResumePool\*.aspx、ResumeSearch\*.aspx、ResumeDetailShow.aspx（Sitemap 第5節） | ResumePoolNoticeMail(Detail).aspx、Exemplar.aspx、oInterView.aspx、SMS.aspx、右下角即時通面板（Sitemap 第6節）[即時通面板](https://hackmd.io/@1111-jobdocs/SJsYLtmr-g) |
 | **Thoughts**<br>(內心 OS) | 〔推論〕「別家已經刊過了，為什麼要重打？」依據：匯入提案 User Story 要把其他人力銀行職缺直接匯入 [來源](https://hackmd.io/@1111-jobdocs/BJATOLPwbx) | 〔推論〕「誰關注了我？數字怎麼對不上？」依據：關注名單設計理念要避免廠商抱怨數字不一致 [來源](https://hackmd.io/@1111-jobdocs/B1jNIrMBZl) | 〔推論〕「回了怎麼還算沒回應？」依據：即時通與信件分開判斷，廠商抱怨限時回應 [來源](https://hackmd.io/@1111-jobdocs/SJJY3isYZe) |
 | **Emotions**<br>(情緒感受) | 😤 挫折〔推論〕依據同上 | 😤 挫折〔推論〕依據同上 | 😤 挫折〔推論〕依據同上 |
