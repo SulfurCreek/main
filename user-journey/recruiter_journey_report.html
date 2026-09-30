@@ -111,15 +111,14 @@
   .stagepick .lb { font-size:0.78rem; color:var(--ink-3); margin-right:4px; }
   .stagepick button, .tabs button { font:inherit; font-size:0.8rem; padding:4px 12px; border:1px solid var(--line); border-radius:20px; background:var(--paper); color:var(--ink-2); cursor:pointer; }
   .stagepick button.on { background:var(--phase); border-color:var(--phase); color:var(--phase-ink); }
-  .tabs { display:flex; gap:4px; margin:0 0 10px; border-bottom:1px solid var(--line); }
-  .tabs button { border-radius:8px 8px 0 0; border-bottom:none; margin-bottom:-1px; padding:6px 16px; }
-  .tabs button[aria-selected="true"] { background:var(--paper); color:var(--ink); font-weight:700; border-color:var(--line); border-bottom:1px solid var(--paper); }
   .panel-blank { min-height:320px; border:2px dashed var(--line); border-radius:14px; background:var(--paper); display:flex; align-items:center; justify-content:center; text-align:center; color:var(--ink-3); padding:24px; }
-  .flow-item { margin-bottom:18px; }
-  .flow-item h3 { margin:0 0 4px; font-size:1rem; }
+  .flow-stage { font-size:0.8rem; font-weight:700; color:var(--ink-2); margin:22px 0 8px; letter-spacing:0.02em; }
+  .flow-stage:first-child { margin-top:0; }
+  .flow-item { background:var(--paper); border:1px solid var(--line); border-radius:14px; padding:14px 16px 16px; margin-bottom:16px; }
+  .flow-item h3 { margin:0 0 4px; font-size:1rem; text-wrap:balance; }
   .flow-item .meta { font-size:0.78rem; color:var(--ink-3); margin-bottom:8px; }
-  .flow-canvas { background:#ffffff; border:1px solid var(--line); border-radius:12px; padding:12px; overflow:auto; max-height:80vh; }
-  .flow-canvas svg { display:block; width:100%; min-width:1000px; height:auto; max-width:none !important; }
+  .flow-canvas { background:#ffffff; border-radius:10px; padding:12px; }
+  .flow-canvas svg { display:block; width:100%; height:auto; max-width:none !important; }
   .libdocs { margin:0; padding:0; list-style:none; } .libdocs li { margin-bottom:3px; }
   .libdocs li a { font-size:0.86rem; }
 
@@ -172,17 +171,13 @@
   <div class="part-hd"><h2 id="grid-h"></h2></div>
   <p class="hint" id="grid-intro"></p>
   <div class="stagepick" id="stagepick" role="group" aria-label="選擇階段"></div>
-  <div class="tabs" role="tablist" aria-label="檢視">
-    <button type="button" role="tab" id="tab-grid" aria-selected="true" aria-controls="panel-grid">旅程矩陣</button>
-    <button type="button" role="tab" id="tab-flow" aria-selected="false" aria-controls="panel-flow" tabindex="-1">流程圖</button>
-  </div>
-  <div id="panel-grid" role="tabpanel" aria-labelledby="tab-grid">
     <div class="board-wrap"><div class="board" id="board"></div></div>
-    <p class="hint" style="margin-top:8px">看板可左右捲動，列標固定。選擇階段後，其他階段欄會停用，下方文件庫同步只顯示該階段。</p>
-  </div>
-  <div id="panel-flow" role="tabpanel" aria-labelledby="tab-flow" hidden>
-    <div id="flow-body"></div>
-  </div>
+    <p class="hint" style="margin-top:8px">看板可左右捲動，列標固定。選擇階段後，其他階段欄會停用，下方流程圖與文件庫同步只顯示該階段。</p>
+</section>
+
+<section class="part" id="flows">
+  <div class="part-hd"><h2>流程圖</h2></div>
+  <div id="flow-body"></div>
 </section>
 
 <section class="part" id="library">
@@ -302,15 +297,6 @@ function setSel(i) {
 board.addEventListener('click', e => { const p = e.target.closest('.ph'); if (p && !p.classList.contains('dim')) setSel(+p.dataset.col); });
 board.addEventListener('keydown', e => { const p = e.target.closest('.ph'); if (p && (e.key === 'Enter' || e.key === ' ') && !p.classList.contains('dim')) { e.preventDefault(); setSel(+p.dataset.col); } });
 
-// ---------- Panel 切換 ----------
-const tabs = { grid: ['tab-grid', 'panel-grid'], flow: ['tab-flow', 'panel-flow'] };
-function showPanel(k) {
-  Object.entries(tabs).forEach(([key, [t, p]]) => { const on = key === k; const tb = document.getElementById(t);
-    tb.setAttribute('aria-selected', String(on)); tb.tabIndex = on ? 0 : -1; document.getElementById(p).hidden = !on; });
-}
-Object.entries(tabs).forEach(([k, [t]]) => document.getElementById(t).onclick = () => showPanel(k));
-document.querySelector('.tabs').addEventListener('keydown', e => { if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') { const cur = document.getElementById('tab-grid').getAttribute('aria-selected') === 'true' ? 'grid' : 'flow';
-  const nx = cur === 'grid' ? 'flow' : 'grid'; showPanel(nx); document.getElementById(tabs[nx][0]).focus(); } });
 function renderFlow() {
   const code = sel === null ? null : ST[sel].code;
   const items = (DATA.flows || []).filter(f => code === null || f.stage === code);
@@ -320,9 +306,11 @@ function renderFlow() {
     body.innerHTML = '<div class="panel-blank"><div>' + (L ? esc(L.code + ' ' + L.name) + ' 流程圖' : '各階段流程圖') + '<br><span style="font-size:0.82rem">留白，內容待補</span></div></div>';
     return;
   }
-  body.innerHTML = items.map(f => '<div class="flow-item"><h3>' + esc(f.stage_name) + '｜' + esc(f.name) + '</h3><div class="meta">' + esc(f.type) + '　來源文件：' +
+  const groups = [...new Set(items.map(f => f.stage_name))];
+  body.innerHTML = groups.map(g => (code === null ? '<div class="flow-stage">' + esc(g) + '</div>' : '') + items.filter(f => f.stage_name === g).map(f =>
+    '<div class="flow-item"><h3>' + esc(f.name) + '</h3><div class="meta">' + esc(f.type) + '　來源文件：' +
     (f.link ? '<a href="' + esc(f.link) + '" target="_blank" rel="noopener">' + esc(f.doc_title) + '</a>' : esc(f.doc_title)) + '</div>' +
-    (f.svgs.length ? f.svgs.map(v => '<div class="flow-canvas" role="img" aria-label="' + esc(f.name) + '">' + v + '</div>').join('') : '<div class="panel-blank"><div>留白，內容待補</div></div>') + '</div>').join('');
+    (f.svgs.length ? f.svgs.map(v => '<div class="flow-canvas" role="img" aria-label="' + esc(f.name) + '">' + v + '</div>').join('') : '<div class="panel-blank" style="min-height:120px"><div>留白，內容待補</div></div>') + '</div>').join('')).join('');
 }
 
 // ---------- 附錄：文件庫（依 HackMD Sitemap）----------

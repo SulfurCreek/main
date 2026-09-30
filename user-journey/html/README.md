@@ -12,6 +12,6 @@
 
 重跑：`python3 step0_fetch_sitemap.py`（Sitemap 有異動時）→ `python3 step1_parse_journey.py && python3 step2_build_report.py`
 
-目前呈現規則（使用者指示）：痛點相關資訊（Pain Points 列、Persona 核心痛點、含「痛點」的缺口）與 Key Takeaways 段先不呈現，素材本身不改；流程圖 panel 依〈流程圖索引〉呈現已有的流程圖（目前只有 C 職缺的新增職缺流程），其餘階段留白。
+目前呈現規則（使用者指示）：痛點相關資訊（Pain Points 列、Persona 核心痛點、含「痛點」的缺口）與 Key Takeaways 段先不呈現，素材本身不改；獨立的「流程圖」區塊（在矩陣下方、跟隨階段篩選）依〈流程圖索引〉呈現已有的流程圖（目前只有 C 職缺的新增職缺流程），其餘階段留白。
 
 規則：`US`／`US*`／`〔推論〕`／`NULL` 照原標記；素材格式若再改（見 skill〈下游〉），step1 要跟著改。圖片與標註不在本資料夾範圍（見 `../README.md`）。
