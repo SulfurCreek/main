@@ -10,3 +10,13 @@
 | HTML 產出放哪 | 本資料夾下（例如 `html/`），不放 repo 根目錄、不動 `CLAUDE.md`／`wiki/`／`.claude/` 等共用檔 |
 | 標記規則 | `US`＝真實 User Story；`US*`＝套版句；`NULL`＝文件未記載，一律照原標記呈現，不推測補齊 |
 | 圖片 | 依 `photo` skill：成品圖一律存 R2；紅框／badge 等標註繪製仍歸「規格文件html示意圖助手」 |
+
+## 檔案所有權（2026-09-30 起）
+
+| 檔案 | 唯一編輯者 | 其他 session |
+| :--- | :--- | :--- |
+| `user-journey/*.md`（含 `recruiter_journey_map.md`） | **HackMD 文件 session（文件助手）** | 唯讀。發現缺口／錯誤 → 回報使用者轉給文件助手 |
+| `user-journey/html/`（HTML 產出） | 「產生HTML報告」session | 唯讀 |
+| `user-journey/README.md` | Repo Steward | 唯讀 |
+
+素材位置從 repo 根目錄 `recruiter_journey_map.md` 搬到 `user-journey/recruiter_journey_map.md`（commit `00025aa`）；`git pull` 後舊路徑會消失，`.claude/skills/user-journey-map/SKILL.md` 若有寫舊路徑，請文件助手順手改成新路徑。
