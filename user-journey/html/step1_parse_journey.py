@@ -57,6 +57,14 @@ head = text.split("\n---", 1)[0]
 title = re.search(r"^# (.+)$", head, re.M).group(1)
 head_bullets = [l[2:] for l in head.splitlines() if l.startswith("- ")]
 
+intro_h, intro_b = h2("給沒有專案背景的讀者")
+paras = [l.strip() for l in intro_b.splitlines() if l.startswith("**") or l.startswith("> ")]
+tbls = [t for t in re.split(r"\n\s*\n", intro_b) if t.strip().startswith("|")]
+intro = {"heading": intro_h,
+         "notes": [l for l in paras if not l.startswith("**術語**") and not l.startswith("**階段讀法**")],
+         "stage_hdr": table_rows(tbls[0])[0], "stage_rows": table_rows(tbls[0])[1:],
+         "term_hdr": table_rows(tbls[1])[0], "term_rows": table_rows(tbls[1])[1:]}
+
 ctx_h, ctx_b = h2("1. Context")
 context = bullets(ctx_b)
 for it in context:
@@ -103,7 +111,16 @@ library = json.loads((HERE / "sitemap_docs.json").read_text(encoding="utf-8"))  
 gap_h, gap_b = h3(app_b, "缺口")
 gaps = [l[2:] for l in gap_b.splitlines() if l.startswith("- ") and HIDE_GAP_KEYWORD not in l]
 
-data = {"title": title, "head_bullets": head_bullets,
+todo = re.search(r"^### 待辦[^\n]*\n(.*?)(?=^#{2,3} |\Z)", app_b, re.M | re.S)
+todo_h = re.search(r"^### (待辦[^\n]*)", app_b, re.M)
+todo_items = []
+for ln in (todo.group(1).splitlines() if todo else []):
+    m = re.match(r"^[*-] (.*)$", ln)
+    if m: todo_items.append({"text": m.group(1), "children": []})
+    m = re.match(r"^\s+[*-] (.*)$", ln)
+    if m and todo_items: todo_items[-1]["children"].append(m.group(1))
+
+data = {"title": title, "intro": intro, "todo": {"heading": todo_h.group(1) if todo_h else "", "items": todo_items}, "head_bullets": head_bullets,
         "context": {"heading": ctx_h, "items": context, "marker_note": marker_note},
         "grid": {"heading": grid_h, "intro": grid_intro, "groups": groups,
                  "lanes": [{"en": k, "zh": lane_meta[k]} for k in lane_order], "stages": stages},

@@ -125,6 +125,11 @@
   .sm-node.grp { font-weight:700; color:var(--ink-2); margin-top:4px; }
   .sm-node.flash { background:var(--usx); color:var(--usx-ink); }
   .sm-node .mk { margin-left:6px; }
+  .intro-grid { display:grid; grid-template-columns:minmax(0,1fr); gap:20px; margin-top:12px; }
+  @media (min-width:1024px) { .intro-grid { grid-template-columns:minmax(0,5fr) minmax(0,6fr); } }
+  #intro-notes p { margin:0 0 6px; font-size:0.86rem; color:var(--ink-2); }
+  .tp-mail { margin-top:6px; font-size:0.74rem; color:var(--ink-3); }
+  .mk.tag { color:var(--ink-2); border:1px solid var(--line); background:var(--band); }
   .tp { display:flex; flex-wrap:wrap; gap:4px; }
   .tp a, .tp span { font-size:0.74rem; line-height:1.3; padding:2px 7px; border-radius:12px; border:1px solid var(--line); background:var(--paper); color:var(--ink-2); }
   .tp a { color:var(--phase); border-color:var(--phase); } .tp a:hover { background:var(--phase-soft); text-decoration:none; }
@@ -171,6 +176,15 @@
   <details class="about"><summary>素材說明</summary><ul id="about"></ul></details>
 </header>
 
+<section class="part" id="intro">
+  <div class="part-hd"><h2 id="intro-h"></h2></div>
+  <div id="intro-notes"></div>
+  <div class="intro-grid">
+    <div><h3 class="ap" style="margin-top:0">階段讀法</h3><div class="tw"><table id="intro-stages"></table></div></div>
+    <div><h3 class="ap" style="margin-top:0">術語</h3><div class="tw"><table id="intro-terms"></table></div></div>
+  </div>
+</section>
+
 <section class="part" id="context">
   <div class="part-hd"><h2 id="ctx-h"></h2></div>
   <div class="ctx" id="ctx"></div>
@@ -211,6 +225,8 @@
   <div class="shared" id="shared"></div>
   <h3 class="ap" id="gap-h"></h3>
   <ul class="list" id="gap-list"></ul>
+  <h3 class="ap" id="todo-h"></h3>
+  <ul class="list" id="todo-list"></ul>
 </section>
 
 </div>
@@ -228,7 +244,7 @@ const MK = /〔推論〕|(?<![A-Za-z])(?:US\*|US(?![A-Za-z])|NULL)/g;
 const marks = t => t.replace(MK, m => m === '〔推論〕' ? '<span class="mk inf">推論</span>' : m === 'US*' ? '<span class="mk usx">US*</span>' : m === 'US' ? '<span class="mk us">US</span>' : '<span class="mk null">NULL</span>');
 function md(raw) {
   const s = esc(String(raw).replace(/\\\*/g, '*')), out = []; let last = 0, m; const rx = /\[([^\]]+)\]\((https?:\/\/[^)\s]+)\)/g;
-  const seg = t => marks(t.replace(/`([^`]+)`/g, '<code>$1</code>').replace(/\*\*([^*]+)\*\*/g, '<b>$1</b>'));
+  const seg = t => marks(t.replace(/`(【[^】`]+】)`/g, '<span class="mk tag">$1</span>').replace(/`([^`]+)`/g, '<code>$1</code>').replace(/\*\*([^*]+)\*\*/g, '<b>$1</b>'));
   while ((m = rx.exec(s))) { out.push(seg(s.slice(last, m.index))); out.push('<a href="' + m[2] + '" target="_blank" rel="noopener">' + m[1] + '</a>'); last = rx.lastIndex; }
   out.push(seg(s.slice(last))); return out.join('');
 }
@@ -237,6 +253,14 @@ const isLinkLine = p => /^(US\s*)?\[/.test(p.trim());
 
 document.getElementById('ttl').textContent = DATA.title;
 document.getElementById('about').innerHTML = DATA.head_bullets.map(b => '<li>' + md(b) + '</li>').join('');
+
+// ---------- 給沒有專案背景的讀者 ----------
+const IN = DATA.intro;
+document.getElementById('intro-h').textContent = IN.heading;
+document.getElementById('intro-notes').innerHTML = IN.notes.map(t => '<p>' + md(t.replace(/^>\s*/, '')) + '</p>').join('');
+const tbl = (h, rows) => '<thead><tr>' + h.map(c => '<th>' + md(c) + '</th>').join('') + '</tr></thead><tbody>' + rows.map(r => '<tr>' + r.map((c, i) => '<td' + (i === 0 ? ' class="k"' : '') + '>' + md(c) + '</td>').join('') + '</tr>').join('') + '</tbody>';
+document.getElementById('intro-stages').innerHTML = tbl(IN.stage_hdr, IN.stage_rows);
+document.getElementById('intro-terms').innerHTML = tbl(IN.term_hdr, IN.term_rows);
 
 // ---------- Context ----------
 const C = DATA.context;
@@ -269,7 +293,8 @@ function tpHtml(i) {
   const st = ST[i], link = sel === i, out = [];
   modsOf(colCode(st)).forEach(m => m.tree.forEach((nd, k) => { if (nd.group) return;
     out.push(link ? '<a href="#sm-' + m.no + '-' + k + '" data-sm="sm-' + m.no + '-' + k + '">' + esc(nd.name) + '</a>' : '<span>' + esc(nd.name) + '</span>'); }));
-  return out.length ? '<div class="tp">' + out.join('') + '</div>' : '<span class="none">Sitemap 無對應頁面</span>';
+  const mail = (st.cells['Touchpoints'] || '').split(/<br\s*\/?>/i).filter(x => /^Email[：:]/.test(x.trim()));
+  return (out.length ? '<div class="tp">' + out.join('') + '</div>' : '<span class="none">Sitemap 無對應頁面</span>') + mail.map(x => '<div class="tp-mail">' + md(x) + '</div>').join('');
 }
 const label = (en, zh, cls) => '<div class="rl ' + (cls || '') + '">' + esc(en) + (zh ? '<small>' + esc(zh) + '</small>' : '') + '</div>';
 cells.push('<div class="rl grp">素材分表</div>');
@@ -381,5 +406,7 @@ document.getElementById('shared').innerHTML = LIB.shared.map(d => '<div><a href=
 document.getElementById('gap-h').textContent = A.gap_heading;
 document.getElementById('gap-list').innerHTML = A.gaps.map(g => '<li>' + md(g) + '</li>').join('');
 
+document.getElementById('todo-h').textContent = DATA.todo.heading;
+document.getElementById('todo-list').innerHTML = DATA.todo.items.map(i => '<li>' + md(i.text) + (i.children.length ? '<ul class="list">' + i.children.map(c => '<li>' + md(c) + '</li>').join('') + '</ul>' : '') + '</li>').join('');
 renderPick(); renderFlow(); renderDocs(); renderSitemap();
 </script>
