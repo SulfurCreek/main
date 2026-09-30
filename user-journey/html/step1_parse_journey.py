@@ -1,7 +1,7 @@
 """解析 ../recruiter_journey_map.md → report_data.json（只搬運，不改寫、不補齊、不自編編號）。
 
-各階段泳道（目標／行動／…）依文件助手指示改按「各頁面 sub user flow」繪製，
-待補 md，故本腳本不解析、HTML 不呈現泳道內容。
+版面採 user-journey-map skill 三段式（Context／Journey Grid／Key Takeaways）＋附錄；
+素材尚為舊版「每階段一張泳道表」，本腳本把既有泳道原樣搬進 Grid，不拆分、不改寫。
 """
 import re, json, pathlib
 
@@ -53,7 +53,12 @@ for ln in mer.splitlines():
         cur["tasks"].append({"name": m.group(1).strip(), "score": int(m.group(2)), "actor": m.group(3).strip()})
 score_note = re.search(r"^> (.+)$", ov, re.M).group(1)
 
-stage_names = re.findall(r"^### (.+)$", section("各階段"), re.M)
+stages = []
+for m in re.finditer(r"^### (.+?)$(.*?)(?=^### |\Z)", section("各階段"), re.M | re.S):
+    name, body = m.group(1).strip(), m.group(2)
+    lanes = {r[0]: {"content": r[1], "source": r[2] if len(r) > 2 else ""} for r in table_rows(body) if r[0] != "泳道"}
+    stages.append({"name": name, "code": re.split(r"[.\s]", name)[0], "lanes": lanes})
+stage_names = [st["name"] for st in stages]
 
 doc_block = section("文件關係")
 docmap = [{"stage": r[0], "func": r[1], "docs": [d.strip() for d in r[2].split("、") if d.strip()]}
@@ -63,9 +68,9 @@ gaps = [l[2:] for l in section("缺口").splitlines() if l.startswith("- ")]
 
 data = {"title": title, "head_bullets": head_bullets,
         "headings": {k: heading(k) for k in ["Persona", "路由", "總覽", "各階段", "文件關係", "缺口"]},
-        "persona": persona, "route": {"head": route_head, "rows": route_rows},
+        "persona": persona,
         "journey": {"title": journey_title, "sections": sections_, "note": score_note},
-        "stage_names": stage_names, "docmap": docmap, "shared": shared, "gaps": gaps}
+        "stage_names": stage_names, "stages": stages, "docmap": docmap, "shared": shared, "gaps": gaps}
 OUT.write_text(json.dumps(data, ensure_ascii=False, indent=1), encoding="utf-8")
 print(f"sections={len(sections_)} tasks={sum(len(s['tasks']) for s in sections_)} stages={len(stage_names)} route={len(route_rows)} docmap={len(docmap)} gaps={len(gaps)}")
 print("stage_names:", stage_names)
