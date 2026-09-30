@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>求才端 User Journey × 流程 × 文件</title>
+<title>求才端 User Journey Map</title>
 <!--
 視覺規格（五層面，report-generator 設計描述五層面）
 字體：系統字體堆疊（PingFang TC / Microsoft JhengHei），數字 tabular-nums；標題 700、內文 400。
@@ -21,7 +21,8 @@
     --on-fill:#fff; --on-amber:#1a1a19;
   }
   @media (prefers-color-scheme: dark) {
-    :root {
+    :root:not([data-theme="light"]) { color-scheme: dark; }
+    :root:not([data-theme="light"]) {
       --surface-1:#1a1a19; --surface-2:#232320; --border:#3a392f;
       --text-primary:#ffffff; --text-secondary:#c3c2b7; --text-muted:#8f8e85;
       --series-1:#3987e5; --series-2:#c98500; --series-3:#e66767; --series-track:#3a392f;
@@ -33,6 +34,7 @@
     --series-1:#2a78d6; --series-2:#eda100; --series-3:#e34948; --series-track:#e2e0da;
   }
   :root[data-theme="dark"] {
+    color-scheme: dark;
     --surface-1:#1a1a19; --surface-2:#232320; --border:#3a392f;
     --text-primary:#ffffff; --text-secondary:#c3c2b7; --text-muted:#8f8e85;
     --series-1:#3987e5; --series-2:#c98500; --series-3:#e66767; --series-track:#3a392f;
@@ -120,57 +122,50 @@
   .filters button.on { background:var(--series-1); border-color:var(--series-1); color:var(--on-fill); }
   .ids a { display:inline-block; margin:0 8px 2px 0; font-size:0.8rem; font-family:ui-monospace,Menlo,Consolas,monospace; }
   .list { padding-left:1.2em; margin:6px 0; } .list li { margin-bottom:6px; }
-  .theme-toggle { position:fixed; top:10px; right:14px; z-index:9; background:var(--surface-2); border:1px solid var(--border); border-radius:20px; padding:5px 11px; font-size:0.75rem; cursor:pointer; color:var(--text-secondary); }
+  .blank { border:2px dashed var(--border); border-radius:12px; min-height:180px; display:flex; align-items:center; justify-content:center; text-align:center; color:var(--text-muted); padding:24px; background:var(--surface-2); }
+  .theme-toggle { position:fixed; top:calc(10px + env(safe-area-inset-top, 0px)); right:14px; z-index:9; background:var(--surface-2); border:1px solid var(--border); border-radius:20px; padding:5px 11px; font-size:0.75rem; cursor:pointer; color:var(--text-secondary); }
 </style>
 </head>
 <body>
 <button class="theme-toggle" onclick="toggleTheme()">🌓 切換深淺色</button>
 <div class="page">
 
-<h1>求才端 User Journey × 流程 × 文件</h1>
-<div class="meta">來源：<code>user-journey/recruiter_journey_map.md</code>（2026-09-30 由 HackMD 文件 session 產出）　腳本：<code>html/step1_parse_journey.py</code> → <code>html/step2_build_report.py</code>（可重跑）</div>
+<h1 id="ttl"></h1>
+<div class="meta">來源：<code>user-journey/recruiter_journey_map.md</code>　腳本：<code>html/step1_parse_journey.py</code> → <code>html/step2_build_report.py</code>（可重跑）</div>
 <div class="scenario" id="legend"></div>
 
 <div class="tldr"><ul id="tldr"></ul></div>
 <div class="tiles" id="tiles"></div>
 
-<nav class="stagenav" id="stagenav"></nav>
-
-<h2 id="persona">一、Persona 與情境</h2>
+<h2 id="persona"></h2>
 <div class="tw"><table id="persona-table"></table></div>
 
-<h2 id="overview">二、旅程總覽：階段流程與相對分數</h2>
+<h2 id="route"></h2>
+<div class="tw"><table id="route-table"></table></div>
+
+<h2 id="overview"></h2>
 <div class="flow" id="flow"></div>
 <div class="chart" id="chart"></div>
 <div class="note" id="score-note"></div>
 
-<h2 id="coverage">三、素材完整度：哪些泳道有記載、哪些是 NULL</h2>
-<p style="color:var(--text-secondary);margin:0 0 8px">每格照素材原標記呈現：<span class="mk us">US</span>真實 User Story　<span class="mk usx">US*</span>套版句　<span class="mk null">NULL</span>文件未載　<span class="mk none">無標記</span>有內容但素材未標註類型；<b>—</b> 表示該階段素材沒有這一列。</p>
-<div class="tw"><table class="matrix" id="matrix"></table></div>
-<ul class="list" id="coverage-notes"></ul>
+<h2 id="stages"></h2>
+<div class="blank" id="lanes-blank"></div>
 
-<h2 id="stages">四、各階段泳道</h2>
-<div id="stage-list"></div>
-
-<h2 id="docs">五、文件關係（階段 → 功能 → 文件）</h2>
+<h2 id="docs"></h2>
 <div class="filters" id="filters"></div>
 <div class="tw"><table id="doc-table"></table></div>
 <p style="color:var(--text-secondary)"><b>跨階段共用元件</b>（不屬單一階段）：</p>
 <div class="ids" id="shared"></div>
 
-<h2 id="gaps">六、缺口與待文件 session 處理</h2>
-<p style="color:var(--text-secondary);margin:0 0 6px"><b>素材自帶缺口</b>（原文照錄，來源：<code>recruiter_journey_map.md</code> §5）：</p>
+<h2 id="gaps"></h2>
 <ul class="list" id="gap-list"></ul>
-<p style="color:var(--text-secondary);margin:14px 0 6px"><b>建置時自檢發現</b>（不屬素材內容，本 HTML 未修改素材，僅回報）：</p>
-<ul class="list" id="check-list"></ul>
 
-<h2 id="method">七、方法與限制</h2>
+<h2>方法與限制</h2>
 <ul class="list">
-  <li>本頁只搬運 <code>recruiter_journey_map.md</code> 的內容：<code>US</code>／<code>US*</code>／<code>NULL</code> 標記照原樣呈現，不推測補齊、不改寫文案。</li>
-  <li>「相對分數」來自素材 §2 的 mermaid journey，素材已註明是依文件記載的痛點多寡相對標示，<b>不是用戶研究數據</b>（見第二節註記）。</li>
-  <li>「階段流程」為素材 Sitemap module 順序；每階段「行動」欄以 <code>→</code> 拆成步驟，未新增素材沒有的步驟或分支。</li>
-  <li>第三節完整度矩陣為程式依素材欄位機械判定（內容以 <code>NULL</code> 開頭＝NULL；來源欄含 <code>US*</code>／<code>US</code>＝對應標記），不含任何主觀評分。</li>
-  <li>圖片／標註示意圖不在本專案 HTML 範圍（見 <code>user-journey/README.md</code>）；素材內連結一律指向 <code>hackmd.io/@1111-jobdocs/&lt;shortId&gt;</code>，未驗證連結是否可開。</li>
+  <li>本頁只搬運 <code>recruiter_journey_map.md</code>：標題、階段編碼、<code>US</code>／<code>US*</code>／<code>NULL</code> 標記一律照素材原樣，不自編編號、不改寫、不推測補齊。</li>
+  <li>「相對分數」來自素材「總覽」的 mermaid journey，素材已註明是依文件記載的痛點多寡相對標示，<b>不是用戶研究數據</b>。</li>
+  <li>各階段泳道依指示改按「各頁面 sub user flow」繪製，內容待文件助手以 md 提供，本頁目前留白，不沿用舊的 module 層級泳道。</li>
+  <li>圖片／標註示意圖不在本專案 HTML 範圍（見 <code>user-journey/README.md</code>）；連結指向 <code>hackmd.io/@1111-jobdocs/&lt;shortId&gt;</code>，未驗證連結是否可開。</li>
 </ul>
 
 </div>
@@ -188,124 +183,86 @@ const MK = /(?<![A-Za-z])(US\*|US(?![A-Za-z])|NULL)/g;
 function marks(seg) {
   return seg.replace(MK, m => m === 'US*' ? '<span class="mk usx">US*</span>' : (m === 'US' ? '<span class="mk us">US</span>' : '<span class="mk null">NULL</span>'));
 }
-// 迷你 inline markdown：`code`、[text](url)、US／US*／NULL 標記；先 escape 再處理
 function md(raw) {
   const s = esc(raw), out = []; let last = 0; const rx = /\[([^\]]+)\]\((https?:\/\/[^)\s]+)\)/g; let m;
-  const seg = t => marks(t.replace(/`([^`]+)`/g, '<code>$1</code>'));
+  const seg = t => marks(t.replace(/`([^`]+)`/g, '<code>$1</code>').replace(/\*\*([^*]+)\*\*/g, '<b>$1</b>'));
   while ((m = rx.exec(s))) { out.push(seg(s.slice(last, m.index))); out.push('<a href="' + m[2] + '" target="_blank" rel="noopener">' + m[1] + '</a>'); last = rx.lastIndex; }
   out.push(seg(s.slice(last))); return out.join('');
 }
 const idLink = id => '<a href="' + BASE + id + '" target="_blank" rel="noopener">' + id + '</a>';
-const nf = n => n.toLocaleString();
+const H = DATA.headings, J = DATA.journey, jsec = J.sections;
+const setH = (id, t) => { document.getElementById(id).textContent = t; };
 
-const LANES = ['目標','行動','接觸點','想法／情緒','痛點','機會點'];
-const sid = st => 'stage-' + st.num.replace('.','-');
-function laneState(l) {
-  const nul = /^NULL/.test(l.content.trim());
-  const usx = /US\*/.test(l.source) || /US\*/.test(l.content);
-  const us = /(?<![A-Za-z])US(?![A-Za-z*])/.test(l.source);
-  return { nul, usx, us };
-}
-const jsec = DATA.journey.sections;
-// 素材 journey section 名稱 "1 登入" → 對應 stage 3.1
-const scoreOf = st => { const k = st.num.split('.')[1]; const s = jsec.find(x => x.name.startsWith(k + ' ')); return s ? s.tasks : null; };
-
-// ---- 圖例 ----
+document.getElementById('ttl').textContent = DATA.title;
 document.getElementById('legend').innerHTML = '<b>素材說明與標記規則</b><ul>' + DATA.head_bullets.map(b => '<li>' + md(b) + '</li>').join('') + '</ul>';
 
-// ---- 統計 ----
-let cells = 0, nullCells = 0, usC = 0, usxC = 0;
-DATA.stages.forEach(st => st.lanes.forEach(l => { cells++; const s = laneState(l); if (s.nul) nullCells++; if (s.us) usC++; if (s.usx) usxC++; }));
+// ---- TL;DR / tiles（只用素材內可數的東西）----
 const docIds = new Set(); DATA.docmap.forEach(r => r.docs.forEach(d => docIds.add(d.split('（')[0])));
 const nTasks = jsec.reduce((a, s) => a + s.tasks.length, 0);
 const minScore = Math.min(...jsec.flatMap(s => s.tasks.map(t => t.score)));
-const lowSecs = jsec.filter(s => s.tasks.some(t => t.score === minScore)).map(s => s.name.replace(/^\d+ /, ''));
-const emoStages = DATA.stages.filter(st => { const l = st.lanes.find(x => x.lane === '想法／情緒'); return l && !/^NULL/.test(l.content.trim()); }).map(st => st.name);
-
+const lowSecs = jsec.filter(s => s.tasks.some(t => t.score === minScore)).map(s => s.name);
+const codes = new Set(jsec.map(s => s.name.split(' ')[0]));
+const support = DATA.stage_names.filter(n => !codes.has(n.split(/[.\s]/)[0]));
 document.getElementById('tldr').innerHTML =
-  '<li>旅程共 <b>' + jsec.length + ' 個主線階段＋1 條支援泳道</b>（登入→首頁→公司→職缺→人才→聯繫→紀錄；服務／購買可在任何階段插入），涵蓋 <b>' + docIds.size + ' 份</b>文件關係表內的 HackMD 文件。</li>' +
-  '<li>素材的相對分數以 <b>' + esc(lowSecs.join('、')) + '</b> 階段最低（' + minScore + ' 分＝文件記載痛點最多）；分數不是用戶研究數據。</li>' +
-  '<li>階段×泳道共 <b>' + cells + ' 格</b>，其中 <b>' + nullCells + ' 格為 NULL</b>（文件未載）；「想法／情緒」僅 <b>' + (emoStages.length ? emoStages.join('、') : '無') + '</b> 有記載，其餘階段皆 NULL。</li>' +
-  '<li>目標欄的證據強度：<b>' + usC + ' 格含真實 US</b>、<b>' + usxC + ' 格含套版句 US*</b>（只證明功能存在，不證明動機）。</li>' +
-  '<li>下一步（交文件 session）：素材缺口 ' + DATA.gaps.length + ' 項與自檢發現見第六節；本頁不自行補齊。</li>';
+  '<li>旅程共 <b>' + jsec.length + ' 個主線階段</b>' + (support.length ? '＋<b>' + support.length + ' 條支援泳道</b>' : '') + '，<b>' + nTasks + ' 個步驟</b>；文件關係表涵蓋 <b>' + docIds.size + ' 份</b> HackMD 文件。</li>' +
+  '<li>相對分數以 <b>' + esc(lowSecs.join('、')) + '</b> 最低（' + minScore + ' 分＝文件記載痛點最多）；分數不是用戶研究數據。</li>' +
+  '<li>各階段泳道尚未繪製：改依各頁面 sub user flow，<b>留白待文件助手補 md</b>。</li>' +
+  '<li>素材自帶缺口 <b>' + DATA.gaps.length + ' 項</b>，原文見「' + esc(H['缺口']) + '」。</li>';
 document.getElementById('tiles').innerHTML =
-  '<div class="tile"><div class="label">階段（含支援泳道）</div><div class="value">' + DATA.stages.length + '</div></div>' +
+  '<div class="tile"><div class="label">主線階段</div><div class="value">' + jsec.length + '</div></div>' +
   '<div class="tile"><div class="label">旅程步驟</div><div class="value">' + nTasks + '</div></div>' +
   '<div class="tile"><div class="label">關聯文件</div><div class="value">' + docIds.size + '</div></div>' +
-  '<div class="tile"><div class="label">NULL 泳道格</div><div class="value warn">' + nullCells + ' / ' + cells + '</div></div>' +
   '<div class="tile"><div class="label">最低相對分數</div><div class="value bad">' + minScore + '</div></div>';
 
-document.getElementById('stagenav').innerHTML = DATA.stages.map(st => '<a href="#' + sid(st) + '">' + st.num + ' ' + esc(st.name.replace(/（.*/, '')) + '</a>').join('');
-
-// ---- 一、Persona ----
+// ---- Persona ----
+setH('persona', H['Persona']);
 document.getElementById('persona-table').innerHTML = '<thead><tr><th>項目</th><th>內容</th></tr></thead><tbody>' +
   DATA.persona.map(r => '<tr><td class="k">' + esc(r[0]) + '</td><td>' + md(r[1]) + '</td></tr>').join('') + '</tbody>';
 
-// ---- 二、流程 chips ＋ SVG ----
-const flowHtml = [];
-DATA.stages.forEach((st, i) => {
-  const sup = !/^\d/.test(st.name) && /支援/.test(st.name);
-  const sc = scoreOf(st);
-  if (sup && i > 0) flowHtml.push('<span class="arrow">＋</span>');
-  else if (i > 0) flowHtml.push('<span class="arrow">→</span>');
-  flowHtml.push('<a class="st' + (sup ? ' support' : '') + '" href="#' + sid(st) + '"><div class="n">' + st.num + '</div><div class="t">' + esc(st.name.replace(/（.*/, '').replace(/^支援泳道：/, '')) + '</div><div class="s">' +
-    (sc ? sc.map(t => t.score).join('・') + ' 分' : '無分數（素材未列入總覽）') + '</div></a>');
-});
-document.getElementById('flow').innerHTML = flowHtml.join('');
+// ---- 路由（略去指向 md 內部錨點的「本檔章節」欄）----
+setH('route', H['路由']);
+(function () {
+  const hd = DATA.route.head, drop = hd.indexOf('本檔章節');
+  const keep = r => r.filter((_, i) => i !== drop);
+  const cell = (c, isStart) => { const m = isStart && c.match(/^([A-Za-z0-9_-]{9,10})(（.*）)?$/); return m ? idLink(m[1]) + (m[2] ? esc(m[2]) : '') : md(c); };
+  const last = hd.length - 1 - (drop >= 0 && drop < hd.length - 1 ? 1 : 0);
+  document.getElementById('route-table').innerHTML = '<thead><tr>' + keep(hd).map(h => '<th>' + esc(h) + '</th>').join('') + '</tr></thead><tbody>' +
+    DATA.route.rows.map(r => '<tr>' + keep(r).map((c, i) => '<td' + (i === 0 ? ' class="k"' : '') + '>' + cell(c, i === last) + '</td>').join('') + '</tr>').join('') + '</tbody>';
+})();
+
+// ---- 總覽：流程 chips ＋ 分數折線 ----
+setH('overview', H['總覽']);
+const scoreLine = s => s.tasks.map(t => t.score).join('・') + ' 分';
+document.getElementById('flow').innerHTML = jsec.map((s, i) =>
+  (i ? '<span class="arrow">→</span>' : '') + '<div class="st"><div class="t">' + esc(s.name) + '</div><div class="s">' + scoreLine(s) + '</div></div>').join('') +
+  support.map(n => '<span class="arrow">＋</span><div class="st support"><div class="t">' + esc(n) + '</div><div class="s">總覽未列入分數</div></div>').join('');
 
 (function chart() {
-  const tasks = []; jsec.forEach((s, si) => s.tasks.forEach(t => tasks.push({ ...t, sec: s.name, si })));
-  const W = 920, H = 270, L = 40, R = 20, T = 34, B = 70, n = tasks.length;
-  const x = i => L + (W - L - R) * (i + 0.5) / n, y = v => T + (H - T - B) * (5 - v) / 4;
-  let g = '';
-  let start = 0;
+  const tasks = []; jsec.forEach(s => s.tasks.forEach(t => tasks.push({ ...t, sec: s.name })));
+  const W = 920, H2 = 270, L = 40, R = 20, T = 34, B = 70, n = tasks.length;
+  const x = i => L + (W - L - R) * (i + 0.5) / n, y = v => T + (H2 - T - B) * (5 - v) / 4;
+  let g = '', start = 0;
   jsec.forEach((s, si) => { const w = (W - L - R) / n, x0 = L + w * start, len = s.tasks.length;
-    if (si % 2 === 0) g += '<rect class="band" x="' + x0 + '" y="' + T + '" width="' + w * len + '" height="' + (H - T - B) + '"/>';
+    if (si % 2 === 0) g += '<rect class="band" x="' + x0 + '" y="' + T + '" width="' + w * len + '" height="' + (H2 - T - B) + '"/>';
     g += '<text class="sec" x="' + (x0 + w * len / 2) + '" y="' + (T - 14) + '">' + esc(s.name) + '</text>'; start += len; });
   for (let v = 1; v <= 5; v++) g += '<line class="axis" x1="' + L + '" x2="' + (W - R) + '" y1="' + y(v) + '" y2="' + y(v) + '"/><text x="' + (L - 8) + '" y="' + (y(v) + 4) + '" text-anchor="end">' + v + '</text>';
   g += '<polyline class="ln" points="' + tasks.map((t, i) => x(i) + ',' + y(t.score)).join(' ') + '"/>';
   tasks.forEach((t, i) => {
     g += '<circle class="pt' + (t.score === minScore ? ' low' : '') + '" cx="' + x(i) + '" cy="' + y(t.score) + '" r="6"><title>' + esc(t.sec + '｜' + t.name + '：' + t.score + ' 分（' + t.actor + '）') + '</title></circle>';
     g += '<text class="sc" x="' + x(i) + '" y="' + (y(t.score) - 12) + '">' + t.score + '</text>';
-    const nm = t.name, a = nm.slice(0, 7), b = nm.slice(7, 14), c = nm.slice(14);
-    [a, b, c].filter(Boolean).forEach((line, k) => g += '<text class="tk" x="' + x(i) + '" y="' + (H - B + 18 + k * 13) + '">' + esc(line) + '</text>');
+    const nm = t.name;
+    [nm.slice(0, 7), nm.slice(7, 14), nm.slice(14)].filter(Boolean).forEach((line, k) => g += '<text class="tk" x="' + x(i) + '" y="' + (H2 - B + 18 + k * 13) + '">' + esc(line) + '</text>');
   });
-  document.getElementById('chart').innerHTML = '<svg viewBox="0 0 ' + W + ' ' + H + '" role="img" aria-label="旅程各步驟相對分數折線圖">' + g + '</svg>';
+  document.getElementById('chart').innerHTML = '<svg viewBox="0 0 ' + W + ' ' + H2 + '" role="img" aria-label="旅程各步驟相對分數折線圖">' + g + '</svg>';
 })();
-document.getElementById('score-note').innerHTML = '⚠️ ' + md(DATA.journey.note) + '（分數越高越順暢；紅點＝最低分）';
+document.getElementById('score-note').innerHTML = '⚠️ ' + md(J.note) + '（分數越高越順暢；紅點＝最低分）';
 
-// ---- 三、完整度矩陣 ----
-function chips(l) {
-  if (!l) return '<span class="absent">—</span>';
-  const s = laneState(l), out = [];
-  if (s.nul) out.push('<span class="mk null">NULL</span>');
-  if (s.us) out.push('<span class="mk us">US</span>');
-  if (s.usx) out.push('<span class="mk usx">US*</span>');
-  if (!out.length) out.push('<span class="mk none">無標記</span>');
-  return '<div class="cell">' + out.join('') + '</div>';
-}
-document.getElementById('matrix').innerHTML = '<thead><tr><th>階段</th>' + LANES.map(l => '<th>' + l + '</th>').join('') + '</tr></thead><tbody>' +
-  DATA.stages.map(st => '<tr><td class="k"><a href="#' + sid(st) + '">' + st.num + ' ' + esc(st.name.replace(/（.*/, '')) + '</a></td>' +
-    LANES.map(ln => '<td>' + chips(st.lanes.find(x => x.lane === ln)) + '</td>').join('') + '</tr>').join('') + '</tbody>';
-const perLane = LANES.map(ln => { const ls = DATA.stages.map(st => st.lanes.find(x => x.lane === ln)).filter(Boolean); return { ln, n: ls.length, nul: ls.filter(l => /^NULL/.test(l.content.trim())).length }; });
-document.getElementById('coverage-notes').innerHTML = perLane.map(p => '<li><b>' + p.ln + '</b>：' + p.n + ' 個階段有此列，其中 ' + p.nul + ' 格 NULL</li>').join('');
+// ---- 各階段：留白 ----
+setH('stages', H['各階段']);
+document.getElementById('lanes-blank').innerHTML = '<div>此區留白<br><span style="font-size:0.82rem">泳道將依各頁面 sub user flow 繪製，內容待文件助手提供 md 後補齊。</span></div>';
 
-// ---- 四、各階段 ----
-const LCLS = { '痛點': 'pain', '機會點': 'opp' };
-document.getElementById('stage-list').innerHTML = DATA.stages.map(st => {
-  const sc = scoreOf(st);
-  const rows = st.lanes.map(l => {
-    let c;
-    if (l.lane === '行動') c = '<div class="steps">' + l.content.split(/\s*→\s*/).map((s, i) => (i ? '<span class="ar">→</span>' : '') + '<span class="step">' + md(s) + '</span>').join('') + '</div>';
-    else if (/^NULL/.test(l.content.trim())) c = '<span class="nullc">' + md(l.content) + '</span>';
-    else c = md(l.content);
-    return '<div class="lane ' + (LCLS[l.lane] || '') + '"><div class="ln-name">' + esc(l.lane) + '</div><div>' + c + '</div><div class="src">' + (l.source && l.source !== '—' ? md(l.source) : '<span class="nullc">—</span>') + '</div></div>';
-  }).join('');
-  return '<section class="stage" id="' + sid(st) + '"><div class="hd"><h3>' + st.num + ' ' + esc(st.name) + '</h3><div class="sc">' +
-    (sc ? '總覽分數：' + sc.map(t => esc(t.name) + ' ' + t.score).join('／') : '總覽未列入分數') + '</div></div>' + rows + '</section>';
-}).join('');
-
-// ---- 五、文件關係（可篩選） ----
+// ---- 文件關係（可篩選）----
+setH('docs', H['文件關係']);
 const stageKeys = [...new Set(DATA.docmap.map(r => r.stage))];
 let curFilter = '全部';
 function renderDocs() {
@@ -320,9 +277,9 @@ renderDocs();
 document.getElementById('shared').innerHTML = DATA.shared.split(/[、，,]/).map(s => { const m = s.trim().match(/^(.*?)\s*([A-Za-z0-9_-]{9,10}(?:／[A-Za-z0-9_-]{9,10})*)$/); if (!m) return '<span>' + esc(s.trim()) + '</span>';
   return '<div style="margin:2px 0">' + esc(m[1]) + '：' + m[2].split('／').map(idLink).join('') + '</div>'; }).join('');
 
-// ---- 六、缺口 ＋ 自檢 ----
+// ---- 缺口（素材原文）----
+setH('gaps', H['缺口']);
 document.getElementById('gap-list').innerHTML = DATA.gaps.map(g => '<li>' + md(g) + '</li>').join('');
-document.getElementById('check-list').innerHTML = (DATA.checks || []).map(c => '<li>' + md(c) + '</li>').join('') || '<li>無</li>';
 </script>
 </body>
 </html>
