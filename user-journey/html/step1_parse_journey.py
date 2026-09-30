@@ -6,6 +6,10 @@
 import re, json, pathlib
 
 HERE = pathlib.Path(__file__).parent
+# 使用者指示：痛點相關資訊先不呈現（素材不改，只在 HTML 端略過）
+HIDE_LANES = {"Pain Points"}
+HIDE_CONTEXT_PREFIX = ("核心痛點",)
+HIDE_GAP_KEYWORD = "痛點"
 SRC = HERE.parent / "recruiter_journey_map.md"
 OUT = HERE / "report_data.json"
 text = SRC.read_text(encoding="utf-8")
@@ -55,6 +59,8 @@ head_bullets = [l[2:] for l in head.splitlines() if l.startswith("- ")]
 
 ctx_h, ctx_b = h2("1. Context")
 context = bullets(ctx_b)
+for it in context:
+    it["children"] = [c for c in it["children"] if not c.startswith(HIDE_CONTEXT_PREFIX)]
 marker_note = next((l[2:].strip() for l in ctx_b.splitlines() if l.startswith("> ")), "")
 
 grid_h, grid_b = h2("2. The Journey Grid")
@@ -67,6 +73,8 @@ for m in re.finditer(r"^### (.+?)$(.*?)(?=^### |\Z)", grid_b, re.M | re.S):
     groups.append({"title": gtitle, "start": len(stages), "count": len(phases)})
     cols = [{"name": p, "code": p.split()[0], "cells": {}} for p in phases]
     for r in rows[1:]:
+        if re.match(r"\*\*(.+?)\*\*", r[0]).group(1).strip() in HIDE_LANES:
+            continue
         lm = re.match(r"\*\*(.+?)\*\*(?:<br>\((.+?)\))?", r[0])
         en, zh = lm.group(1).strip(), (lm.group(2) or "").strip()
         if en not in lane_meta:
@@ -75,28 +83,22 @@ for m in re.finditer(r"^### (.+?)$(.*?)(?=^### |\Z)", grid_b, re.M | re.S):
             c["cells"][en] = r[i + 1] if i + 1 < len(r) else ""
     stages.extend(cols)
 
-tk_h, tk_b = h2("3. Key Takeaways")
-takeaways = bullets(tk_b)
-
 app_h, app_b = h2("附錄")
 doc_h, doc_b = h3(app_b, "文件關係")
-docmap = [{"stage": r[0], "func": r[1], "docs": [d.strip() for d in r[2].split("、") if d.strip()]}
-          for r in table_rows(doc_b) if r[0] != "階段"]
-shared = re.search(r"\*\*跨階段共用元件\*\*[^：]*：(.+)", doc_b).group(1).strip().rstrip("。")
+library = json.loads((HERE / "sitemap_docs.json").read_text(encoding="utf-8"))   # 由 step0 依 HackMD Sitemap 產生
 gap_h, gap_b = h3(app_b, "缺口")
-gaps = [l[2:] for l in gap_b.splitlines() if l.startswith("- ")]
+gaps = [l[2:] for l in gap_b.splitlines() if l.startswith("- ") and HIDE_GAP_KEYWORD not in l]
 
 data = {"title": title, "head_bullets": head_bullets,
         "context": {"heading": ctx_h, "items": context, "marker_note": marker_note},
         "grid": {"heading": grid_h, "intro": grid_intro, "groups": groups,
                  "lanes": [{"en": k, "zh": lane_meta[k]} for k in lane_order], "stages": stages},
-        "takeaways": {"heading": tk_h, "items": takeaways},
-        "appendix": {"heading": app_h, "doc_heading": doc_h, "docmap": docmap, "shared": shared,
+        "appendix": {"heading": app_h, "doc_heading": doc_h, "library": library,
                      "gap_heading": gap_h, "gaps": gaps}}
 OUT.write_text(json.dumps(data, ensure_ascii=False, indent=1), encoding="utf-8")
 
 # 自檢：Grid 每格都有值（空字串代表解析漏抓）
 empty = [(s["name"], k) for s in stages for k in lane_order if not s["cells"].get(k)]
 print(f"context={len(context)} lanes={lane_order} stages={[s['name'] for s in stages]} groups={len(groups)}")
-print(f"takeaways={[t['label'] for t in takeaways]} next_steps={len(takeaways[-1]['children'])} docmap={len(docmap)} gaps={len(gaps)}")
+print(f"gaps={len(gaps)} library_modules={len(library['modules'])}")
 print("空格（應為 0）:", empty)

@@ -1,6 +1,6 @@
 <title>求才端 User Journey Map</title>
 <!--
-版型：User Journey Map 看板（user-journey-map skill 三段式：Context／Journey Grid／Key Takeaways＋附錄文件庫）。
+版型：User Journey Map 看板（Context／Journey Grid／流程圖 panel＋附錄文件庫；Key Takeaways 與痛點依指示移除）。
 視覺規格（report-generator 設計描述五層面）
 字體：系統字體堆疊（PingFang TC / Microsoft JhengHei），標題 700、內文 400，數字 tabular-nums。
 級距：h1 1.7rem／段標 1.2rem／看板內文 0.84rem／來源與標籤 0.72rem；行高 1.55；Emotions 表情 1.5rem。
@@ -94,26 +94,28 @@
   .q { display:block; background:var(--quote); border-radius:10px 10px 10px 2px; padding:6px 9px; font-weight:600; margin:4px 0 2px; }
   .emo { font-size:1.5rem; line-height:1.2; display:block; }
   .emo-w { font-weight:700; } .emo-w .mk { margin-left:5px; }
-  .r-pain { background:var(--pain); } .board .r-pain.rl { background:var(--band); color:var(--pain-ink); }
   .r-opp { background:var(--opp); } .board .r-opp.rl { background:var(--band); color:var(--opp-ink); }
   .col-hover { box-shadow:inset 0 0 0 2px var(--phase-soft); }
+  .board [data-col].dim { opacity:0.32; filter:grayscale(1); pointer-events:none; user-select:none; }
+  .board .ph { cursor:pointer; }
+  .board [data-col].sel { box-shadow:inset 0 0 0 2px var(--phase); }
+  .board .ph[aria-disabled="true"] { cursor:default; }
+  .stagepick { display:flex; flex-wrap:wrap; gap:6px; margin:0 0 12px; align-items:center; }
+  .stagepick .lb { font-size:0.78rem; color:var(--ink-3); margin-right:4px; }
+  .stagepick button, .tabs button { font:inherit; font-size:0.8rem; padding:4px 12px; border:1px solid var(--line); border-radius:20px; background:var(--paper); color:var(--ink-2); cursor:pointer; }
+  .stagepick button.on { background:var(--phase); border-color:var(--phase); color:var(--phase-ink); }
+  .tabs { display:flex; gap:4px; margin:0 0 10px; border-bottom:1px solid var(--line); }
+  .tabs button { border-radius:8px 8px 0 0; border-bottom:none; margin-bottom:-1px; padding:6px 16px; }
+  .tabs button[aria-selected="true"] { background:var(--paper); color:var(--ink); font-weight:700; border-color:var(--line); border-bottom:1px solid var(--paper); }
+  .panel-blank { min-height:320px; border:2px dashed var(--line); border-radius:14px; background:var(--paper); display:flex; align-items:center; justify-content:center; text-align:center; color:var(--ink-3); padding:24px; }
+  .libdocs { margin:0; padding:0; list-style:none; } .libdocs li { margin-bottom:3px; }
+  .libdocs li a { font-size:0.86rem; }
 
   .mk { display:inline-block; font-size:0.66rem; font-weight:700; line-height:1; padding:3px 5px; border-radius:4px; margin-right:3px; vertical-align:1px; white-space:nowrap; }
   .mk.us { background:var(--us); color:var(--paper); }
   .mk.usx { background:var(--usx); color:var(--usx-ink); }
   .mk.inf { color:var(--inf); border:1px dashed var(--inf); }
   .mk.null { color:var(--ink-3); border:1px dashed var(--ink-3); }
-
-  /* ---------- Takeaways ---------- */
-  .tk { display:grid; grid-template-columns:repeat(2, minmax(0, 1fr)); gap:14px; align-items:stretch; }
-  @media (max-width:640px) { .tk { grid-template-columns:1fr; } }
-  .tk-card { background:var(--paper); border:1px solid var(--line); border-radius:12px; padding:14px 16px; min-width:0; }
-  .tk-card h3 { margin:0; font-size:1rem; }
-  .tk-card .sub { font-size:0.74rem; color:var(--ink-3); margin-bottom:8px; }
-  .tk-card.risk { border-top:3px solid var(--pain-ink); }
-  .tk-card.aha { border-top:3px solid var(--opp-ink); }
-  .tk-card.next { border-top:3px solid var(--phase); grid-column:1 / -1; }
-  .tk-card ol { margin:0; padding-left:1.3em; } .tk-card li { margin-bottom:7px; }
 
   /* ---------- Appendix ---------- */
   .filters { display:flex; flex-wrap:wrap; gap:6px; margin:4px 0 10px; }
@@ -124,10 +126,9 @@
   th, td { padding:7px 10px; border-bottom:1px solid var(--line); text-align:left; vertical-align:top; }
   th { color:var(--ink-2); font-size:0.76rem; white-space:nowrap; background:var(--band); }
   td.k { font-weight:600; white-space:nowrap; }
-  .ids a { display:inline-block; margin:0 8px 2px 0; font-family:ui-monospace, Menlo, Consolas, monospace; font-size:0.78rem; }
-  .none { color:var(--ink-3); }
+    .none { color:var(--ink-3); }
   h3.ap { font-size:0.95rem; margin:18px 0 8px; }
-  .shared { display:grid; grid-template-columns:repeat(auto-fit, minmax(240px, 1fr)); gap:4px 16px; font-size:0.84rem; }
+  .shared { display:grid; grid-template-columns:repeat(auto-fit, minmax(240px, 1fr)); gap:4px 16px; font-size:0.86rem; }
   .list { padding-left:1.2em; margin:6px 0; font-size:0.86rem; } .list li { margin-bottom:6px; }
 
   .theme-toggle { position:fixed; top:calc(10px + env(safe-area-inset-top, 0px)); right:12px; z-index:9; background:var(--paper); border:1px solid var(--line); border-radius:20px; padding:5px 11px; font:inherit; font-size:0.75rem; cursor:pointer; color:var(--ink-2); }
@@ -158,19 +159,24 @@
 <section class="part" id="grid">
   <div class="part-hd"><h2 id="grid-h"></h2></div>
   <p class="hint" id="grid-intro"></p>
-  <div class="board-wrap"><div class="board" id="board"></div></div>
-  <p class="hint" style="margin-top:8px">看板可左右捲動，列標固定；滑過任一格會標出同一階段欄。</p>
-</section>
-
-<section class="part" id="takeaways">
-  <div class="part-hd"><h2 id="tk-h"></h2></div>
-  <div class="tk" id="tk"></div>
+  <div class="stagepick" id="stagepick" role="group" aria-label="選擇階段"></div>
+  <div class="tabs" role="tablist" aria-label="檢視">
+    <button type="button" role="tab" id="tab-grid" aria-selected="true" aria-controls="panel-grid">旅程矩陣</button>
+    <button type="button" role="tab" id="tab-flow" aria-selected="false" aria-controls="panel-flow" tabindex="-1">流程圖</button>
+  </div>
+  <div id="panel-grid" role="tabpanel" aria-labelledby="tab-grid">
+    <div class="board-wrap"><div class="board" id="board"></div></div>
+    <p class="hint" style="margin-top:8px">看板可左右捲動，列標固定。選擇階段後，其他階段欄會停用，下方文件庫同步只顯示該階段。</p>
+  </div>
+  <div id="panel-flow" role="tabpanel" aria-labelledby="tab-flow" hidden>
+    <div class="panel-blank" id="flow-blank"></div>
+  </div>
 </section>
 
 <section class="part" id="library">
   <div class="part-hd"><h2 id="ap-h"></h2></div>
   <h3 class="ap" id="doc-h"></h3>
-  <div class="filters" id="filters" role="group" aria-label="依階段篩選"></div>
+  <p class="hint" id="lib-note"></p>
   <div class="tw"><table id="doc-table"></table></div>
   <h3 class="ap">跨階段共用元件</h3>
   <div class="shared" id="shared"></div>
@@ -222,23 +228,21 @@ document.getElementById('grid-intro').innerHTML = md(G.intro);
 const board = document.getElementById('board');
 board.style.setProperty('--n', n);
 const isSupport = st => /支援/.test(st.name);
+const stageLabel = st => { const m = st.name.match(/^(\S+)\s+(.*)$/) || [null, st.code, st.name]; return { code: m[1], name: m[2].replace(/（.*）$/, '') }; };
+// 篩選鍵：階段編碼（J、A、B、C、D、E、5、6→含 6／7 兩個 Sitemap 模組）
+const colCode = st => st.code;
 const cells = [];
 const label = (en, zh, cls) => '<div class="rl ' + (cls || '') + '">' + esc(en) + (zh ? '<small>' + esc(zh) + '</small>' : '') + '</div>';
-
-// 分表帶（素材表 A／B／C）
 cells.push('<div class="rl grp">素材分表</div>');
 G.groups.forEach(g => cells.push('<div class="grp" style="grid-column:span ' + g.count + '">' + esc(g.title) + '</div>'));
-// 階段
 cells.push(label('Phases', '階段'));
 ST.forEach((st, i) => {
-  const m = st.name.match(/^(\S+)\s+(.*)$/) || [null, st.code, st.name];
-  const name = m[2], note = name.match(/（(.*)）$/);
-  const next = ST[i + 1];
-  cells.push('<div class="ph' + (isSupport(st) ? ' support' : '') + '" data-col="' + i + '"><span class="code">' + esc(m[1]) + '</span><span class="nm">' +
-    esc(note ? name.replace(/（.*）$/, '') : name) + (note ? '<small>' + esc(note[1]) + '</small>' : '') + '</span>' +
+  const L = stageLabel(st), note = st.name.match(/（(.*)）$/), next = ST[i + 1];
+  cells.push('<div class="ph' + (isSupport(st) ? ' support' : '') + '" data-col="' + i + '" tabindex="0" role="button" aria-pressed="false"><span class="code">' + esc(L.code) + '</span><span class="nm">' +
+    esc(L.name) + (note ? '<small>' + esc(note[1]) + '</small>' : '') + '</span>' +
     (next && !isSupport(next) ? '<span class="arw" aria-hidden="true">›</span>' : '') + '</div>');
 });
-const CLS = { 'Pain Points': 'r-pain', 'Opportunities': 'r-opp' };
+const CLS = { 'Opportunities': 'r-opp' };
 G.lanes.forEach((ln, li) => {
   const last = li === G.lanes.length - 1 ? ' last' : '';
   cells.push(label(ln.en, ln.zh, (CLS[ln.en] || '') + last));
@@ -252,12 +256,11 @@ function cellHtml(raw, lane) {
   const parts = t.split(/<br\s*\/?>/i);
   let main = parts.shift(), extra = [], cites = [];
   parts.forEach(p => (isLinkLine(p) ? cites : extra).push(p));
-  // 「依據」拆到來源行（Thoughts／Emotions／Metrics 的推論依據）
   const bm = main.match(/^(.*?)[；;]?\s*(依據[：:同].*)$/);
   if (bm && bm[1].trim()) { main = bm[1]; cites.unshift(bm[2]); }
   let body;
   if (lane === 'User Actions') body = '<ol class="steps">' + main.split(/\s*→\s*/).map(s => '<li>' + md(s) + '</li>').join('') + '</ol>';
-  else if (lane === 'Emotions') { const em = main.match(/^(\p{Extended_Pictographic}️?)\s*(.*)$/u);
+  else if (lane === 'Emotions') { const em = main.match(/^(\p{Extended_Pictographic}\uFE0F?)\s*(.*)$/u);
     body = em ? '<span class="emo" aria-hidden="true">' + em[1] + '</span><span class="emo-w">' + md(em[2]) + '</span>' : md(main); }
   else if (lane === 'Thoughts') body = md(main).replace(/「([^」]+)」/g, '<span class="q">「$1」</span>');
   else body = md(main);
@@ -265,34 +268,60 @@ function cellHtml(raw, lane) {
   return body + (cites.length ? '<div class="cite">' + cites.map(md).join('<br>') + '</div>' : '');
 }
 board.addEventListener('mouseover', e => { const c = e.target.closest('[data-col]'); board.querySelectorAll('.col-hover').forEach(x => x.classList.remove('col-hover'));
-  if (c) board.querySelectorAll('[data-col="' + c.dataset.col + '"]').forEach(x => x.classList.add('col-hover')); });
+  if (c && !c.classList.contains('dim')) board.querySelectorAll('[data-col="' + c.dataset.col + '"]').forEach(x => x.classList.add('col-hover')); });
 board.addEventListener('mouseleave', () => board.querySelectorAll('.col-hover').forEach(x => x.classList.remove('col-hover')));
 
-// ---------- Key Takeaways ----------
-const T = DATA.takeaways;
-document.getElementById('tk-h').textContent = T.heading;
-const kind = l => /Aha/.test(l) ? 'aha' : /Drop-off/.test(l) ? 'risk' : /Next/.test(l) ? 'next' : '';
-document.getElementById('tk').innerHTML = T.items.map(it => '<div class="tk-card ' + kind(it.label) + '"><h3>' + esc(it.label) + '</h3>' +
-  (it.sub ? '<div class="sub">' + esc(it.sub) + '</div>' : '') + (it.text ? '<div>' + md(it.text) + '</div>' : '') +
-  (it.children.length ? '<ol>' + it.children.map(c => '<li>' + md(c) + '</li>').join('') + '</ol>' : '') + '</div>').join('');
-
-// ---------- 附錄：文件庫 ----------
-const A = DATA.appendix;
-document.getElementById('ap-h').textContent = A.heading;
-document.getElementById('doc-h').textContent = A.doc_heading;
-const stageKeys = [...new Set(A.docmap.map(r => r.stage))];
-let cur = '全部';
-function renderDocs() {
-  document.getElementById('filters').innerHTML = ['全部', ...stageKeys].map(k => '<button type="button" class="' + (k === cur ? 'on' : '') + '" data-k="' + esc(k) + '" aria-pressed="' + (k === cur) + '">' + esc(k) + '</button>').join('');
-  document.querySelectorAll('#filters button').forEach(b => b.onclick = () => { cur = b.dataset.k; renderDocs(); });
-  const rows = A.docmap.filter(r => cur === '全部' || r.stage === cur);
-  document.getElementById('doc-table').innerHTML = '<thead><tr><th>階段</th><th>功能</th><th>文件（shortId → HackMD）</th></tr></thead><tbody>' +
-    rows.map(r => '<tr><td class="k">' + esc(r.stage) + '</td><td class="k">' + esc(r.func) + '</td><td class="ids">' +
-      r.docs.map(d => { const m = d.match(/^([A-Za-z0-9_-]+)(（.*）)?$/); return m ? idLink(m[1]) + (m[2] ? '<span class="none">' + esc(m[2]) + '</span> ' : '') : esc(d); }).join('') + '</td></tr>').join('') + '</tbody>';
+// ---------- 階段篩選：控制矩陣啟用欄、流程圖面板、文件庫 ----------
+let sel = null;   // null＝全部；否則為欄索引
+const pick = document.getElementById('stagepick');
+function renderPick() {
+  pick.innerHTML = '<span class="lb">階段</span><button type="button" class="' + (sel === null ? 'on' : '') + '" data-i="" aria-pressed="' + (sel === null) + '">全部</button>' +
+    ST.map((st, i) => { const L = stageLabel(st); return '<button type="button" class="' + (sel === i ? 'on' : '') + '" data-i="' + i + '" aria-pressed="' + (sel === i) + '">' + esc(L.code + ' ' + L.name) + '</button>'; }).join('');
+  pick.querySelectorAll('button').forEach(b => b.onclick = () => setSel(b.dataset.i === '' ? null : +b.dataset.i));
 }
-renderDocs();
-document.getElementById('shared').innerHTML = A.shared.split(/[、，,]/).map(s => { const m = s.trim().match(/^(.*?)\s*([A-Za-z0-9_-]{9,10}(?:／[A-Za-z0-9_-]{9,10})*)$/);
-  return m ? '<div>' + esc(m[1]) + '：<span class="ids">' + m[2].split('／').map(idLink).join('') + '</span></div>' : '<div>' + esc(s.trim()) + '</div>'; }).join('');
+function setSel(i) {
+  sel = (i !== null && sel === i) ? null : i;
+  renderPick();
+  board.querySelectorAll('[data-col]').forEach(el => { const on = sel === null || +el.dataset.col === sel;
+    el.classList.toggle('dim', !on); el.classList.toggle('sel', sel !== null && on);
+    if (el.classList.contains('ph')) { el.setAttribute('aria-disabled', on ? 'false' : 'true'); el.setAttribute('aria-pressed', String(sel !== null && on)); } });
+  renderFlow(); renderDocs();
+}
+board.addEventListener('click', e => { const p = e.target.closest('.ph'); if (p && !p.classList.contains('dim')) setSel(+p.dataset.col); });
+board.addEventListener('keydown', e => { const p = e.target.closest('.ph'); if (p && (e.key === 'Enter' || e.key === ' ') && !p.classList.contains('dim')) { e.preventDefault(); setSel(+p.dataset.col); } });
+
+// ---------- Panel 切換 ----------
+const tabs = { grid: ['tab-grid', 'panel-grid'], flow: ['tab-flow', 'panel-flow'] };
+function showPanel(k) {
+  Object.entries(tabs).forEach(([key, [t, p]]) => { const on = key === k; const tb = document.getElementById(t);
+    tb.setAttribute('aria-selected', String(on)); tb.tabIndex = on ? 0 : -1; document.getElementById(p).hidden = !on; });
+}
+Object.entries(tabs).forEach(([k, [t]]) => document.getElementById(t).onclick = () => showPanel(k));
+document.querySelector('.tabs').addEventListener('keydown', e => { if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') { const cur = document.getElementById('tab-grid').getAttribute('aria-selected') === 'true' ? 'grid' : 'flow';
+  const nx = cur === 'grid' ? 'flow' : 'grid'; showPanel(nx); document.getElementById(tabs[nx][0]).focus(); } });
+function renderFlow() {
+  const L = sel === null ? null : stageLabel(ST[sel]);
+  document.getElementById('flow-blank').innerHTML = '<div>' + (L ? esc(L.code + ' ' + L.name) + ' 流程圖' : '各階段流程圖') + '<br><span style="font-size:0.82rem">留白，內容待補</span></div>';
+}
+
+// ---------- 附錄：文件庫（依 HackMD Sitemap）----------
+const A = DATA.appendix, LIB = A.library;
+document.getElementById('ap-h').textContent = A.heading;
+document.getElementById('doc-h').textContent = '文件關係（依 HackMD Sitemap 對齊）';
+document.getElementById('lib-note').textContent = '只列文件名稱（連到 HackMD）；Sitemap 沒掛文件的節點不列。階段依上方篩選切換。';
+const docHref = d => BASE + d.shortId;
+const stageName = code => { const st = ST.find(x => x.code === code || (code === '6／7' && x.code === '6')); return st ? stageLabel(st) : null; };
+function renderDocs() {
+  const code = sel === null ? null : ST[sel].code;
+  const mods = LIB.modules.filter(m => code === null || m.stage === code || (code === '6' && m.stage === '6／7'));
+  document.getElementById('doc-table').innerHTML = '<thead><tr><th>階段</th><th>Sitemap 模組</th><th>文件名稱</th></tr></thead><tbody>' +
+    mods.map(m => { const sn = m.stage === '6／7' ? { code: '6／7', name: '服務／購買' } : stageName(m.stage);
+      return '<tr><td class="k">' + esc(sn ? sn.code + ' ' + sn.name : m.stage) + '</td><td class="k">' + esc(m.no + ' ' + m.name) + '</td><td>' +
+        (m.docs.length ? '<ul class="libdocs">' + m.docs.map(d => '<li><a href="' + docHref(d) + '" target="_blank" rel="noopener">' + esc(d.title) + '</a></li>').join('') + '</ul>' : '<span class="none">Sitemap 未掛文件</span>') + '</td></tr>'; }).join('') + '</tbody>';
+}
+document.getElementById('shared').innerHTML = LIB.shared.map(d => '<div><a href="' + docHref(d) + '" target="_blank" rel="noopener">' + esc(d.title) + '</a></div>').join('');
 document.getElementById('gap-h').textContent = A.gap_heading;
 document.getElementById('gap-list').innerHTML = A.gaps.map(g => '<li>' + md(g) + '</li>').join('');
+
+renderPick(); renderFlow(); renderDocs();
 </script>

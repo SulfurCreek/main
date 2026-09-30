@@ -14,7 +14,6 @@
     "sub": "目標用戶",
     "text": "企業 HR／招募人員（主帳號可開副帳號、分群組與權限）。",
     "children": [
-     "核心痛點（文件有載）：面試邀約與即時通兩套工具各自溝通、副帳號通知有兩組設定、限時回應被分開計算而抱怨 [來源](https://hackmd.io/@1111-jobdocs/SJJY3isYZe)；新廠商學習成本高、薪資行情與法規疑問需問客服 [來源](https://hackmd.io/@1111-jobdocs/Hy95Qz7g-e)。",
      "變體：VIP／免費VIP／關權／到期（刊登與權限不同，見 [B.4 刊登設定](https://hackmd.io/@1111-jobdocs/ryEY3vBZbl)、[REF 系統代碼表](https://hackmd.io/@1111-jobdocs/B1j3sN-bzx)）；Cake 特殊廠商部分人才功能不可用。"
     ]
    },
@@ -71,10 +70,6 @@
     "zh": "情緒感受"
    },
    {
-    "en": "Pain Points",
-    "zh": "痛點/摩擦力"
-   },
-   {
     "en": "Opportunities",
     "zh": "產品機會點"
    },
@@ -92,7 +87,6 @@
      "Touchpoints": "login.aspx、AgentVerify.aspx、AgentVerifyCheck.aspx（Sitemap 第1節）",
      "Thoughts": "〔推論〕「我沒有信箱，怎麼驗證？」依據：客服反映部分廠商沒有信箱，無法通過現行驗證 [同步會議 2026.04.08](https://hackmd.io/@1111-jobdocs/Sk8KaX73Wl)",
      "Emotions": "🤔 困惑〔推論〕依據同上",
-     "Pain Points": "部分廠商沒有信箱，新驗證機制造成登入困難（客服反映）[來源](https://hackmd.io/@1111-jobdocs/Sk8KaX73Wl)",
      "Opportunities": "登入異常統一 Alert；登入前智能客服（每日 3 次）<br>[特殊狀態與Alert](https://hackmd.io/@1111-jobdocs/HJb5FnCGZg)、[智能客服](https://hackmd.io/@1111-jobdocs/Hy95Qz7g-e)",
      "Metrics": "〔推論〕登入成功率（含雙重驗證完成率）；依據：雙重驗證為登入必經步驟"
     }
@@ -105,7 +99,6 @@
      "Touchpoints": "首頁；Topbar（公告、通知、帳號選單、異常狀態列）（Sitemap 第2節）<br>[A.1](https://hackmd.io/@1111-jobdocs/Hym116n3-x)、[A.1.7](https://hackmd.io/@1111-jobdocs/SkJEsXNWMx)",
      "Thoughts": "NULL",
      "Emotions": "NULL",
-     "Pain Points": "會員／刊登異常不易察覺（異常狀態列存在的理由）US [A.1.7](https://hackmd.io/@1111-jobdocs/SkJEsXNWMx)",
      "Opportunities": "Topbar 通知收斂為只剩來訪人才（第三階段）[來源](https://hackmd.io/@1111-jobdocs/Hk3SOQrFfg)",
      "Metrics": "〔推論〕首頁區塊點擊率（職缺、面試行事曆）；依據：首頁以入口導流為主"
     }
@@ -118,7 +111,6 @@
      "Touchpoints": "/company/\\*、/settings/\\*、VipSchedule.aspx、PublishEmpGroup.aspx（Sitemap 第3節）",
      "Thoughts": "NULL",
      "Emotions": "NULL",
-     "Pain Points": "內部 IP 上傳的圖片有侵權風險，需對外下架 [B.1.4](https://hackmd.io/@1111-jobdocs/Sy6vKV4FZx)",
      "Opportunities": "三種新增帳號方式（含複製帳號）；刊登設定取代開關天數設定<br>[功能說明頁](https://hackmd.io/@1111-jobdocs/rynOybVWZx)、[新增帳號Modal](https://hackmd.io/@1111-jobdocs/rkciNnFHMg)",
      "Metrics": "〔推論〕公司資料完成度；依據：B.1 設有填寫進度條"
     }
@@ -127,11 +119,10 @@
     "name": "C 職缺",
     "code": "C",
     "cells": {
-     "User Actions": "快速新增／複製／全新／匯入職缺 → 設應徵過濾 → 總覽多筆操作（更新日期、開關、改工作時間）→ 排序、移轉、排廣告<br>[2.2](https://hackmd.io/@1111-jobdocs/S1SfBeXxfe)、[複製](https://hackmd.io/@1111-jobdocs/HJW-MWp4Wg)、[匯入](https://hackmd.io/@1111-jobdocs/Bk854rrtGe)、[應徵過濾](https://hackmd.io/@1111-jobdocs/r1AirkvF-x)、[2.1 總覽](https://hackmd.io/@1111-jobdocs/HJvxSmNMWe)、[多筆修改](https://hackmd.io/@1111-jobdocs/HkHIwU8Y-x)、[2.3](https://hackmd.io/@1111-jobdocs/B1Srfpi7bg)、[2.4](https://hackmd.io/@1111-jobdocs/rJ5KsWEG-e)、[2.7](https://hackmd.io/@1111-jobdocs/Sy7bgNuzZg)",
+     "User Actions": "快速新增／複製／全新／匯入職缺 → 設應徵過濾 → 總覽多筆操作（更新日期、開關、改工作時間）→ 排序、移轉、排廣告<br>完整流程（循序圖）：[2.2 新增職缺＞流程圖](https://hackmd.io/@1111-jobdocs/S1SfBeXxfe#流程圖)<br>[2.2](https://hackmd.io/@1111-jobdocs/S1SfBeXxfe)、[複製](https://hackmd.io/@1111-jobdocs/HJW-MWp4Wg)、[匯入](https://hackmd.io/@1111-jobdocs/Bk854rrtGe)、[應徵過濾](https://hackmd.io/@1111-jobdocs/r1AirkvF-x)、[2.1 總覽](https://hackmd.io/@1111-jobdocs/HJvxSmNMWe)、[多筆修改](https://hackmd.io/@1111-jobdocs/HkHIwU8Y-x)、[2.3](https://hackmd.io/@1111-jobdocs/B1Srfpi7bg)、[2.4](https://hackmd.io/@1111-jobdocs/rJ5KsWEG-e)、[2.7](https://hackmd.io/@1111-jobdocs/Sy7bgNuzZg)",
      "Touchpoints": "PublishList／PublishOpening／PublishEmpSort／PublishEmpTrans／BuyScheduleBooking.aspx（Sitemap 第4節）",
      "Thoughts": "〔推論〕「別家已經刊過了，為什麼要重打？」依據：匯入提案 User Story 要把其他人力銀行職缺直接匯入 [來源](https://hackmd.io/@1111-jobdocs/BJATOLPwbx)",
      "Emotions": "😤 挫折〔推論〕依據同上",
-     "Pain Points": "在其他人力銀行已刊登的職缺要手動重建 US [來源](https://hackmd.io/@1111-jobdocs/BJATOLPwbx)",
      "Opportunities": "職缺匯入；AI 職缺審核<br>[匯入提案](https://hackmd.io/@1111-jobdocs/BJATOLPwbx)、[AI審核提案](https://hackmd.io/@1111-jobdocs/B1bkIvMhZx)",
      "Metrics": "〔推論〕職缺建立完成率、匯入使用率；依據：提案以「不需手動建職缺」為價值"
     }
@@ -144,7 +135,6 @@
      "Touchpoints": "ResumePool\\*.aspx、ResumeSearch\\*.aspx、ResumeDetailShow.aspx（Sitemap 第5節）",
      "Thoughts": "〔推論〕「誰關注了我？數字怎麼對不上？」依據：關注名單設計理念要避免廠商抱怨數字不一致 [來源](https://hackmd.io/@1111-jobdocs/B1jNIrMBZl)",
      "Emotions": "😤 挫折〔推論〕依據同上",
-     "Pain Points": "來訪名單無法過濾（狀態、日期、性別、年齡）；追蹤名單不能直接刪除；看不到誰關注公司／職缺<br>US [來訪拉皮](https://hackmd.io/@1111-jobdocs/SJ5oUbXv-g)、[追蹤人才](https://hackmd.io/@1111-jobdocs/r1V8b3ZDWg)、[關注名單](https://hackmd.io/@1111-jobdocs/B1jNIrMBZl)",
      "Opportunities": "關注名單（數字與名單一致）；來訪名單過濾<br>[關注名單](https://hackmd.io/@1111-jobdocs/B1jNIrMBZl)、[來訪拉皮](https://hackmd.io/@1111-jobdocs/SJ5oUbXv-g)",
      "Metrics": "〔推論〕來訪名單→聯絡轉換率；依據：來訪名單 User Story 目的是「主動接觸有意願的人才」"
     }
@@ -157,7 +147,6 @@
      "Touchpoints": "ResumePoolNoticeMail(Detail).aspx、Exemplar.aspx、oInterView.aspx、SMS.aspx、右下角即時通面板（Sitemap 第6節）[即時通面板](https://hackmd.io/@1111-jobdocs/SJsYLtmr-g)",
      "Thoughts": "〔推論〕「回了怎麼還算沒回應？」依據：即時通與信件分開判斷，廠商抱怨限時回應 [來源](https://hackmd.io/@1111-jobdocs/SJJY3isYZe)",
      "Emotions": "😤 挫折〔推論〕依據同上",
-     "Pain Points": "兩套工具各自溝通、副帳號通知兩組設定；勾「希望 N 天內回覆」後訊息未顯示期限；範本不能排序置頂；求職者失約<br>[SJJY3isYZe](https://hackmd.io/@1111-jobdocs/SJJY3isYZe)、[信件對話](https://hackmd.io/@1111-jobdocs/r1ghrPxP-x)、US [E.2.1](https://hackmd.io/@1111-jobdocs/HyDIQwJUWg)、US [失約回報](https://hackmd.io/@1111-jobdocs/Sy70gCPKGe)",
      "Opportunities": "信件＋即時通整併、訊息收回、已讀、附檔；詢問意願與面試邀約拆開；同意面試後自動建立行事曆<br>[SJJY3isYZe](https://hackmd.io/@1111-jobdocs/SJJY3isYZe)、[各階段內容](https://hackmd.io/@1111-jobdocs/r1eNVEfmMx)、[第三階段](https://hackmd.io/@1111-jobdocs/Hk3SOQrFfg)",
      "Metrics": "面試邀約使用率（文件預期會增加）、限時回應達成率〔推論〕；依據：[SJJY3isYZe](https://hackmd.io/@1111-jobdocs/SJJY3isYZe) 載明預期面試邀約使用率增加、回覆主投者皆計入限時回應"
     }
@@ -170,7 +159,6 @@
      "Touchpoints": "Log\\*.aspx（Sitemap 第7節）",
      "Thoughts": "NULL",
      "Emotions": "NULL",
-     "Pain Points": "NULL",
      "Opportunities": "錄取通知作為招募成效數據，與 E 聯繫連動 [來源](https://hackmd.io/@1111-jobdocs/SJJY3isYZe)",
      "Metrics": "〔推論〕數據統計查詢造訪率；依據：5.6 為成效回看入口（US*，未載動機）"
     }
@@ -183,251 +171,265 @@
      "Touchpoints": "vipContract.aspx、BuyExposure.aspx、SMSorder.aspx、/download、外部連結（Sitemap 第8、9節）",
      "Thoughts": "NULL",
      "Emotions": "NULL",
-     "Pain Points": "合約要另外用 E-mail 寄給客服 US [H.3](https://hackmd.io/@1111-jobdocs/HJD1Eu0c-e)；薪資行情與法規疑問、新廠商學習成本 US [智能客服](https://hackmd.io/@1111-jobdocs/Hy95Qz7g-e)",
      "Opportunities": "線上合約上傳；智能客服",
      "Metrics": "〔推論〕線上續約完成率；依據：7.1 為續約入口"
     }
    }
   ]
  },
- "takeaways": {
-  "heading": "3. Key Takeaways & PM Action Items",
-  "items": [
-   {
-    "label": "🤩 Aha Moment",
-    "sub": "頓悟時刻",
-    "text": "E 聯繫：求職者同意面試後，系統自動建立面試行事曆，廠商不必再手動排程。選它的證據：整併專案文件明載此為預期價值 [SJJY3isYZe](https://hackmd.io/@1111-jobdocs/SJJY3isYZe)（屬「預期」，文件無實測資料）。",
-    "children": []
-   },
-   {
-    "label": "⚠️ Biggest Drop-off Risk",
-    "sub": "最大流失風險",
-    "text": "E 聯繫：溝通被拆在兩套工具，限時回應被分開計算。選它的證據：文件載有廠商抱怨與副帳號雙組通知設定 [SJJY3isYZe](https://hackmd.io/@1111-jobdocs/SJJY3isYZe)；聯繫階段記載的痛點最多。",
-    "children": []
-   },
-   {
-    "label": "🚀 Next Steps",
-    "sub": "下一步行動",
-    "text": "",
-    "children": [
-     "**E 聯繫**：第三階段「面試提醒系統訊息」的觸發時機、文案、收件對象目前皆 `待補` [來源](https://hackmd.io/@1111-jobdocs/Hk3SOQrFfg)，需先定義才能取代舊提醒（對應痛點：兩套工具、面試管理分散）。",
-     "**D 人才**：來訪名單過濾與關注名單併入同一名單，避免人數與名單不一致（對應痛點：來訪名單無法過濾、看不到關注者）。",
-     "**5 紀錄**：補上真實 User Story 與痛點（目前為套版句），否則無法設計成效回看（對應缺口）。",
-     "**全站**：Sitemap 上約 11 個頁面（職缺同步、自動更新、即時通記錄等）沒有規格文件，列入補文件清單。"
-    ]
-   }
-  ]
- },
  "appendix": {
   "heading": "附錄｜文件關係與缺口",
   "doc_heading": "文件關係（階段 → 功能 → 文件）",
-  "docmap": [
-   {
-    "stage": "J 登入",
-    "func": "登入前頁／試搜",
-    "docs": [
-     "r11ad8Okfe",
-     "Sk4CnTjgMg",
-     "Hyt5LqcyMl"
-    ]
-   },
-   {
-    "stage": "J 登入",
-    "func": "登入／驗證／找回",
-    "docs": [
-     "rych3fo0bl",
-     "HJb5FnCGZg",
-     "rk0aZy0aZg",
-     "ryqrsG2lWg",
-     "HJT3dH_vWg",
-     "SJNKOS_D-g"
-    ]
-   },
-   {
-    "stage": "A 首頁",
-    "func": "Topbar",
-    "docs": [
-     "Hym116n3-x",
-     "HkTiVy7Z-e",
-     "SJsQkWsWbg",
-     "ryik5PAZWl",
-     "SkJEsXNWMx"
-    ]
-   },
-   {
-    "stage": "A 首頁",
-    "func": "首頁區塊",
-    "docs": [
-     "Bye3E5tl-g",
-     "HJIK-sUGbe",
-     "B1MejWhvGl",
-     "BkIIbQYfWe"
-    ]
-   },
-   {
-    "stage": "B 公司",
-    "func": "公司資料",
-    "docs": [
-     "S1jhD6RRbe",
-     "ryUoKHCG-e",
-     "SJhAVOy8Wg",
-     "SkztPlKsbx",
-     "Sy6vKV4FZx",
-     "Hk7HExLUWx",
-     "HJvhE8BFWe",
-     "BJEWK648bx",
-     "S1HPE5EU-e",
-     "ByA4t_-cZg",
-     "H1ZbConBbl",
-     "HkSJkuy8bx"
-    ]
-   },
-   {
-    "stage": "B 公司",
-    "func": "設定",
-    "docs": [
-     "SkfafU2WZg",
-     "BytSsxD8be",
-     "Bk1uH5fXbx",
-     "BJGdoePUWl",
-     "SyKtjeP8We",
-     "rkciNnFHMg",
-     "SkdiYvsnZe",
-     "S1G_8GQbZe",
-     "ryEY3vBZbl",
-     "Bkw7pIVLbx",
-     "By5Eo8NvZx",
-     "SJ0mjWHvZx"
-    ]
-   },
-   {
-    "stage": "C 職缺",
-    "func": "建立",
-    "docs": [
-     "S1SfBeXxfe",
-     "HJW-MWp4Wg",
-     "Bk854rrtGe",
-     "BJATOLPwbx",
-     "B1bkIvMhZx",
-     "BJ7Yob8W-g（職缺內容欄位）"
-    ]
-   },
-   {
-    "stage": "C 職缺",
-    "func": "管理",
-    "docs": [
-     "HJvxSmNMWe",
-     "B1pOwHZQ-e",
-     "rJvOFkwFbl",
-     "HkHIwU8Y-x",
-     "r1AirkvF-x",
-     "B1Srfpi7bg",
-     "rJ5KsWEG-e",
-     "Sy7bgNuzZg"
-    ]
-   },
-   {
-    "stage": "D 人才",
-    "func": "履歷",
-    "docs": [
-     "ry9S7kjuWe",
-     "S1I24H-lzl",
-     "Byy7rOTM-x",
-     "B19dalQ-Zx",
-     "rkMnZsqu-g",
-     "SJ5oUbXv-g",
-     "rk8RQxMXzg",
-     "rkkn5BZQ-g",
-     "B1jNIrMBZl",
-     "HyYq_GgXWl",
-     "H18Vo3zyMx"
-    ]
-   },
-   {
-    "stage": "D 人才",
-    "func": "搜尋",
-    "docs": [
-     "r1TBqJjeGx",
-     "Bk06kDtf-l",
-     "BkMNTH_Pfe",
-     "Syn7AN87Wl",
-     "SJleDiy9bl",
-     "SkyLndUmWe",
-     "BkCVW1nXbg",
-     "SyvesCVEbg",
-     "rygtdmRNZl"
-    ]
-   },
-   {
-    "stage": "E 聯繫",
-    "func": "發通知",
-    "docs": [
-     "r1qJb-uXbx",
-     "S1XwSUPBZg",
-     "H1OpoEs7fe",
-     "SJ8KDMo8fl",
-     "HyDIQwJUWg",
-     "BJt1Rj59Ze",
-     "BkXGV4BW-e"
-    ]
-   },
-   {
-    "stage": "E 聯繫",
-    "func": "對話（整併專案）",
-    "docs": [
-     "BJ0R8ocgGl",
-     "ry_GPNuZze",
-     "Hk3SOQrFfg",
-     "rJkyKgeGWl",
-     "r1ghrPxP-x",
-     "BJmM2cDGfl",
-     "SJJY3isYZe",
-     "r1eNVEfmMx",
-     "Hk87bluGMg",
-     "SkKwqvUFfg",
-     "SJsYLtmr-g"
-    ]
-   },
-   {
-    "stage": "E 聯繫",
-    "func": "面試",
-    "docs": [
-     "HydajKbPfl",
-     "Sy70gCPKGe"
-    ]
-   },
-   {
-    "stage": "5 紀錄",
-    "func": "紀錄",
-    "docs": [
-     "rJ5Bp4RE-g",
-     "S1-Wt68M-e",
-     "SJeZiGSMbx",
-     "S13Zy8rKze",
-     "Sk4AvcZ-We"
-    ]
-   },
-   {
-    "stage": "6／7 服務購買",
-    "func": "服務／購買",
-    "docs": [
-     "Sk5kyX6ubx",
-     "S1fR49Fg-l",
-     "ByKdpLaWZe",
-     "HJzsieKfWe",
-     "HJD1Eu0c-e",
-     "Hy95Qz7g-e",
-     "SJtErv_lZl",
-     "rynOybVWZx"
-    ]
-   }
-  ],
-  "shared": "無權限Alert ryACpaCAWe、帳號選擇 S13ZYP9jbg、群組選擇 ByhoS3trGg、職缺選單 r1jXRIzqGg、現版職缺選擇 BkxSWZuGWx、通訊錄 B1iOzIB9-e、新增封鎖 H1guSxywZe、代碼參考 B1j3sN-bzx／ryjSpM-tzg",
+  "library": {
+   "source": "HackMD [求才系統] Sitemap",
+   "sitemap_shortId": "rkGFjjlPWe",
+   "modules": [
+    {
+     "no": "1",
+     "name": "登入",
+     "stage": "J",
+     "docs": []
+    },
+    {
+     "no": "2",
+     "name": "首頁",
+     "stage": "A",
+     "docs": [
+      {
+       "shortId": "Hym116n3-x",
+       "title": "A.1 topbar"
+      },
+      {
+       "shortId": "HkTiVy7Z-e",
+       "title": "A.1.3 公告"
+      },
+      {
+       "shortId": "Bye3E5tl-g",
+       "title": "A.2 首頁快訊 & A.3刊登狀態"
+      },
+      {
+       "shortId": "HJIK-sUGbe",
+       "title": "A.4 近期修改職缺"
+      },
+      {
+       "shortId": "B1MejWhvGl",
+       "title": "A.5 面試行事曆"
+      },
+      {
+       "shortId": "BkIIbQYfWe",
+       "title": "A.10 人才秒搜"
+      }
+     ]
+    },
+    {
+     "no": "3",
+     "name": "公司（公司資料 與 設定）",
+     "stage": "B",
+     "docs": [
+      {
+       "shortId": "ryUoKHCG-e",
+       "title": "B.1.1 基本資料"
+      },
+      {
+       "shortId": "SJhAVOy8Wg",
+       "title": "B.1.2 公司形象"
+      },
+      {
+       "shortId": "Sy6vKV4FZx",
+       "title": "B.1.4 工作環境"
+      },
+      {
+       "shortId": "Hk7HExLUWx",
+       "title": "B.1.5 產品服務"
+      },
+      {
+       "shortId": "HJvhE8BFWe",
+       "title": "B.1.6 福利制度"
+      },
+      {
+       "shortId": "BJEWK648bx",
+       "title": "B.1.7 更多介紹"
+      },
+      {
+       "shortId": "S1HPE5EU-e",
+       "title": "B.1.8 面試須知上傳"
+      },
+      {
+       "shortId": "ByA4t_-cZg",
+       "title": "B.1.9 變更版型"
+      },
+      {
+       "shortId": "HkSJkuy8bx",
+       "title": "公司資料＞確定送出按鈕"
+      },
+      {
+       "shortId": "H1ZbConBbl",
+       "title": "公司資料預覽"
+      },
+      {
+       "shortId": "SkfafU2WZg",
+       "title": "B.2 帳號設定"
+      },
+      {
+       "shortId": "Bk1uH5fXbx",
+       "title": "B.2.1&B.2.2&B.2.3 新增帳號/修改個人帳號/修改他人帳號"
+      },
+      {
+       "shortId": "rkciNnFHMg",
+       "title": "新增帳號Modal"
+      },
+      {
+       "shortId": "BJGdoePUWl",
+       "title": "B.2.2 通知設定"
+      },
+      {
+       "shortId": "SyKtjeP8We",
+       "title": "B.2.3 權限設定"
+      },
+      {
+       "shortId": "SkdiYvsnZe",
+       "title": "B.3 聯絡人設定"
+      },
+      {
+       "shortId": "Bkw7pIVLbx",
+       "title": "(現版)1.2.3 開關天數設定"
+      },
+      {
+       "shortId": "ryEY3vBZbl",
+       "title": "B.4 刊登設定"
+      },
+      {
+       "shortId": "By5Eo8NvZx",
+       "title": "2.2.1 排程開關權Modal"
+      },
+      {
+       "shortId": "SJ0mjWHvZx",
+       "title": "2.2.2 暫停刊登Modal"
+      }
+     ]
+    },
+    {
+     "no": "4",
+     "name": "職缺",
+     "stage": "C",
+     "docs": [
+      {
+       "shortId": "B1pOwHZQ-e",
+       "title": "職缺列印"
+      }
+     ]
+    },
+    {
+     "no": "5",
+     "name": "人才（履歷 與 搜尋）",
+     "stage": "D",
+     "docs": [
+      {
+       "shortId": "HyYq_GgXWl",
+       "title": "3.0 履歷詳細頁"
+      },
+      {
+       "shortId": "H18Vo3zyMx",
+       "title": "3.0 履歷列印頁"
+      }
+     ]
+    },
+    {
+     "no": "6",
+     "name": "聯繫",
+     "stage": "E",
+     "docs": [
+      {
+       "shortId": "HydajKbPfl",
+       "title": "4.3 面試行事曆"
+      },
+      {
+       "shortId": "BJ0R8ocgGl",
+       "title": "E.1 聯絡人才"
+      },
+      {
+       "shortId": "HyDIQwJUWg",
+       "title": "E.2.1 信件範本"
+      },
+      {
+       "shortId": "BJt1Rj59Ze",
+       "title": "簡訊範本"
+      }
+     ]
+    },
+    {
+     "no": "7",
+     "name": "紀錄",
+     "stage": "5",
+     "docs": [
+      {
+       "shortId": "S13Zy8rKze",
+       "title": "5.5 人才點數查詢"
+      }
+     ]
+    },
+    {
+     "no": "8",
+     "name": "服務",
+     "stage": "6／7",
+     "docs": []
+    },
+    {
+     "no": "9",
+     "name": "購買",
+     "stage": "6／7",
+     "docs": []
+    }
+   ],
+   "shared": [
+    {
+     "shortId": "ryACpaCAWe",
+     "title": "無權限Alert Modal"
+    },
+    {
+     "shortId": "S13ZYP9jbg",
+     "title": "帳號選擇 Modal"
+    },
+    {
+     "shortId": "ByhoS3trGg",
+     "title": "群組選擇Modal"
+    },
+    {
+     "shortId": "r1jXRIzqGg",
+     "title": "職缺選單 Modal"
+    },
+    {
+     "shortId": "BkxSWZuGWx",
+     "title": "現版職缺選擇 Lightbox"
+    },
+    {
+     "shortId": "B1iOzIB9-e",
+     "title": "通訊錄 Lightbox"
+    },
+    {
+     "shortId": "H1guSxywZe",
+     "title": "新增封鎖Lightbox"
+    },
+    {
+     "shortId": "B1j3sN-bzx",
+     "title": "[REF] 系統代碼表"
+    },
+    {
+     "shortId": "ryjSpM-tzg",
+     "title": "[REF] 職缺資料欄位表與代碼表"
+    }
+   ],
+   "unmatched_refs": [
+    {
+     "module": "3 公司（公司資料 與 設定）",
+     "ref": "HJe0Qv5pLWg"
+    }
+   ]
+  },
   "gap_heading": "缺口（寫 journey 時發現）",
   "gaps": [
    "約 30 份文件的 User Story 是套版句「以便提高求才效率」，沒有寫出真正動機（如 A.2、A.4、5.x、3.2.x、7.x）——這些階段的「目標」只能標 US*。",
    "全部文件都**沒有情緒／想法**的記載（沒有訪談或可用性測試資料），情緒曲線只能從「抱怨」「客服反映」推。",
-   "`紀錄` 階段沒有任何痛點或動機記載。",
    "Sitemap 上沒掛文件連結、這次也沒找到對應規格的頁面：公司相關訊息、上傳檔案、職缺同步、自動更新、職缺所屬群組、匯入名單、還原刪除履歷、問題履歷回報、即時通記錄、簡訊通知紀錄、帳號使用紀錄（除購買紀錄外）。"
   ]
  }
