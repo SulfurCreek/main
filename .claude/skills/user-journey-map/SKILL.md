@@ -40,7 +40,7 @@ description: >-
 
 ## 輸出
 
-- 一份 Markdown（預設 repo 根目錄，檔名 `*_journey_map.md`），先放 Mermaid
+- 一份 Markdown（放 `user-journey/`，檔名 `*_journey_map.md`），先放 Mermaid
   `journey` 總覽圖，再放各階段表格與文件關係表；動到 Mermaid 要先渲染驗證。
 - 階段 × 泳道適合用表格（短、同形）；單一階段內容很長時改 `####`＋條列
   （見 `spec-doc-1111/references/styling.md`〈表格 vs 標題＋條列〉）。
