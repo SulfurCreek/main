@@ -4,5 +4,19 @@
       "WebFetch(domain:docs.google.com)",
       "WebFetch(domain:spreadsheets.google.com)"
     ]
+  },
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Write|Edit|NotebookEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash scripts/guard_career_scope.sh",
+            "timeout": 10
+          }
+        ]
+      }
+    ]
   }
 }
