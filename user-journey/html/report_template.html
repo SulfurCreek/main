@@ -112,6 +112,22 @@
   .flow-item .meta { font-size:0.78rem; color:var(--ink-3); margin-bottom:8px; }
   .flow-canvas { background:#ffffff; border-radius:10px; padding:12px; }
   .flow-canvas svg { display:block; width:100%; height:auto; max-width:1500px !important; margin:0 auto; }
+  .sm-row { display:grid; grid-template-columns:minmax(0,1fr); gap:24px; align-items:start; }
+  @media (min-width:1024px) { .sm-row { grid-template-columns:minmax(0,1fr) minmax(0,1fr); } }
+  .sm-row h2 { font-size:1.2rem; margin:0 0 6px; text-wrap:balance; }
+  .sm-scroll { max-height:72vh; overflow:auto; border:1px solid var(--line); border-radius:12px; background:var(--paper); padding:6px 14px 14px; }
+  .sm-mod { margin-top:12px; padding:6px 10px 8px; border-radius:10px; border:1px solid transparent; transition:opacity .15s; }
+  .sm-mod.dim { opacity:0.32; }
+  .sm-mod.lit { background:var(--phase-soft); border-color:var(--phase); }
+  .sm-mod h4 { margin:0 0 4px; font-size:0.86rem; color:var(--ink-2); }
+  .sm-mod h4 small { font-weight:400; color:var(--ink-3); margin-left:6px; }
+  .sm-node { font-size:0.84rem; line-height:1.6; padding:1px 6px; border-radius:6px; }
+  .sm-node.grp { font-weight:700; color:var(--ink-2); margin-top:4px; }
+  .sm-node.flash { background:var(--usx); color:var(--usx-ink); }
+  .sm-node .mk { margin-left:6px; }
+  .tp { display:flex; flex-wrap:wrap; gap:4px; }
+  .tp a, .tp span { font-size:0.74rem; line-height:1.3; padding:2px 7px; border-radius:12px; border:1px solid var(--line); background:var(--paper); color:var(--ink-2); }
+  .tp a { color:var(--phase); border-color:var(--phase); } .tp a:hover { background:var(--phase-soft); text-decoration:none; }
   .libdocs { margin:0; padding:0; list-style:none; } .libdocs li { margin-bottom:3px; }
   .libdocs li a { font-size:0.86rem; }
 
@@ -165,7 +181,23 @@
   <p class="hint" id="grid-intro"></p>
   <div class="stagepick" id="stagepick" role="group" aria-label="選擇階段"></div>
     <div class="board-wrap"><div class="board" id="board"></div></div>
-    <p class="hint" style="margin-top:8px">看板可左右捲動，列標固定。選擇階段後，其他階段欄會停用，下方流程圖與文件庫同步只顯示該階段。</p>
+    <p class="hint" style="margin-top:8px">看板可左右捲動，列標固定。選擇階段後，其他階段欄會停用，下方 Sitemap、文件與流程圖同步切換。</p>
+</section>
+
+<section class="part" id="sitemap">
+  <div class="sm-row">
+    <div>
+      <h2>Sitemap</h2>
+      <p class="hint" id="sm-note"></p>
+      <div class="sm-scroll" id="sm-tree"></div>
+    </div>
+    <div>
+      <h2 id="ap-h"></h2>
+      <h3 class="ap" id="doc-h" style="margin-top:6px"></h3>
+      <p class="hint" id="lib-note"></p>
+      <div class="tw"><table id="doc-table"></table></div>
+    </div>
+  </div>
 </section>
 
 <section class="part" id="flows">
@@ -174,11 +206,8 @@
 </section>
 
 <section class="part" id="library">
-  <div class="part-hd"><h2 id="ap-h"></h2></div>
-  <h3 class="ap" id="doc-h"></h3>
-  <p class="hint" id="lib-note"></p>
-  <div class="tw"><table id="doc-table"></table></div>
-  <h3 class="ap">跨階段共用元件</h3>
+  <div class="part-hd"><h2>附錄｜共用元件與缺口</h2></div>
+  <h3 class="ap" style="margin-top:0">跨階段共用元件</h3>
   <div class="shared" id="shared"></div>
   <h3 class="ap" id="gap-h"></h3>
   <ul class="list" id="gap-list"></ul>
@@ -231,7 +260,17 @@ const isSupport = st => /支援/.test(st.name);
 const stageLabel = st => { const m = st.name.match(/^(\S+)\s+(.*)$/) || [null, st.code, st.name]; return { code: m[1], name: m[2].replace(/（.*）$/, '') }; };
 // 篩選鍵：階段編碼（J、A、B、C、D、E、5、6→含 6／7 兩個 Sitemap 模組）
 const colCode = st => st.code;
+let sel = null;   // 階段篩選：null＝全部；否則為欄索引
 const cells = [];
+const LIB0 = DATA.appendix.library;
+const modsOf = code => LIB0.modules.filter(m => m.stage === code || (code === '6' && m.stage === '6／7'));
+// 接觸點＝Sitemap 頁面名稱；選了階段後每個名稱變成連往 Sitemap 節點的錨點
+function tpHtml(i) {
+  const st = ST[i], link = sel === i, out = [];
+  modsOf(colCode(st)).forEach(m => m.tree.forEach((nd, k) => { if (nd.group) return;
+    out.push(link ? '<a href="#sm-' + m.no + '-' + k + '" data-sm="sm-' + m.no + '-' + k + '">' + esc(nd.name) + '</a>' : '<span>' + esc(nd.name) + '</span>'); }));
+  return out.length ? '<div class="tp">' + out.join('') + '</div>' : '<span class="none">Sitemap 無對應頁面</span>';
+}
 const label = (en, zh, cls) => '<div class="rl ' + (cls || '') + '">' + esc(en) + (zh ? '<small>' + esc(zh) + '</small>' : '') + '</div>';
 cells.push('<div class="rl grp">素材分表</div>');
 G.groups.forEach(g => cells.push('<div class="grp" style="grid-column:span ' + g.count + '">' + esc(g.title) + '</div>'));
@@ -246,7 +285,7 @@ const CLS = { 'Opportunities': 'r-opp' };
 G.lanes.forEach((ln, li) => {
   const last = li === G.lanes.length - 1 ? ' last' : '';
   cells.push(label(ln.en, ln.zh, (CLS[ln.en] || '') + last));
-  ST.forEach((st, i) => cells.push('<div class="' + (CLS[ln.en] || '') + last + '" data-col="' + i + '">' + cellHtml(st.cells[ln.en] || '', ln.en) + '</div>'));
+  ST.forEach((st, i) => cells.push('<div class="' + (CLS[ln.en] || '') + last + '" data-col="' + i + '"' + (ln.en === 'Touchpoints' ? ' data-tp="1"' : '') + '>' + (ln.en === 'Touchpoints' ? tpHtml(i) : cellHtml(st.cells[ln.en] || '', ln.en)) + '</div>'));
 });
 board.innerHTML = cells.join('');
 
@@ -272,7 +311,6 @@ board.addEventListener('mouseover', e => { const c = e.target.closest('[data-col
 board.addEventListener('mouseleave', () => board.querySelectorAll('.col-hover').forEach(x => x.classList.remove('col-hover')));
 
 // ---------- 階段篩選：控制矩陣啟用欄、流程圖面板、文件庫 ----------
-let sel = null;   // null＝全部；否則為欄索引
 const pick = document.getElementById('stagepick');
 function renderPick() {
   pick.innerHTML = '<span class="lb">階段</span><button type="button" class="' + (sel === null ? 'on' : '') + '" data-i="" aria-pressed="' + (sel === null) + '">全部</button>' +
@@ -285,22 +323,32 @@ function setSel(i) {
   board.querySelectorAll('[data-col]').forEach(el => { const on = sel === null || +el.dataset.col === sel;
     el.classList.toggle('dim', !on); el.classList.toggle('sel', sel !== null && on);
     if (el.classList.contains('ph')) { el.setAttribute('aria-disabled', on ? 'false' : 'true'); el.setAttribute('aria-pressed', String(sel !== null && on)); } });
-  renderFlow(); renderDocs();
+  board.querySelectorAll('[data-tp]').forEach(el => { el.innerHTML = tpHtml(+el.dataset.col); });
+  renderFlow(); renderDocs(); renderSitemap();
 }
+board.addEventListener('click', e => { const a = e.target.closest('a[data-sm]'); if (!a) return; e.preventDefault(); e.stopPropagation();
+  const t = document.getElementById(a.dataset.sm); if (!t) return;
+  document.getElementById('sitemap').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  const box = document.getElementById('sm-tree'); box.scrollTo({ top: t.offsetTop - box.offsetTop - 40, behavior: 'smooth' });
+  t.classList.add('flash'); setTimeout(() => t.classList.remove('flash'), 1800); });
 board.addEventListener('click', e => { const p = e.target.closest('.ph'); if (p && !p.classList.contains('dim')) setSel(+p.dataset.col); });
 board.addEventListener('keydown', e => { const p = e.target.closest('.ph'); if (p && (e.key === 'Enter' || e.key === ' ') && !p.classList.contains('dim')) { e.preventDefault(); setSel(+p.dataset.col); } });
 
 function renderFlow() {
   const code = sel === null ? null : ST[sel].code;
-  const items = (DATA.flows || []).filter(f => code === null || f.stage === code);
   const body = document.getElementById('flow-body');
+  if (code === null) {   // 進入畫面＝空狀態，選了階段才載入 SVG
+    body.innerHTML = '<div class="panel-blank"><div>各階段流程圖<br><span style="font-size:0.82rem">請先在上方選擇階段</span></div></div>';
+    return;
+  }
+  const items = (DATA.flows || []).filter(f => f.stage === code);
   if (!items.length) {
-    const L = sel === null ? null : stageLabel(ST[sel]);
-    body.innerHTML = '<div class="panel-blank"><div>' + (L ? esc(L.code + ' ' + L.name) + ' 流程圖' : '各階段流程圖') + '<br><span style="font-size:0.82rem">留白，內容待補</span></div></div>';
+    const L = stageLabel(ST[sel]);
+    body.innerHTML = '<div class="panel-blank"><div>' + esc(L.code + ' ' + L.name) + ' 流程圖<br><span style="font-size:0.82rem">留白，內容待補</span></div></div>';
     return;
   }
   const groups = [...new Set(items.map(f => f.stage_name))];
-  body.innerHTML = groups.map(g => (code === null ? '<div class="flow-stage">' + esc(g) + '</div>' : '') + items.filter(f => f.stage_name === g).map(f =>
+  body.innerHTML = groups.map(g => items.filter(f => f.stage_name === g).map(f =>
     '<div class="flow-item"><h3>' + esc(f.name) + '</h3><div class="meta">' + esc(f.type) + '　來源文件：' +
     (f.link ? '<a href="' + esc(f.link) + '" target="_blank" rel="noopener">' + esc(f.doc_title) + '</a>' : esc(f.doc_title)) + '</div>' +
     (f.svgs.length ? f.svgs.map(v => '<div class="flow-canvas" role="img" aria-label="' + esc(f.name) + '">' + v + '</div>').join('') : '<div class="panel-blank" style="min-height:120px"><div>留白，內容待補</div></div>') + '</div>').join('')).join('');
@@ -310,9 +358,17 @@ function renderFlow() {
 const A = DATA.appendix, LIB = A.library;
 document.getElementById('ap-h').textContent = A.heading;
 document.getElementById('doc-h').textContent = '文件關係（依 HackMD Sitemap 對齊）';
-document.getElementById('lib-note').textContent = '只列文件名稱（連到 HackMD）；Sitemap 沒掛文件的節點不列。階段依上方篩選切換。';
+document.getElementById('lib-note').textContent = '只列文件名稱（連到 HackMD）。階段依上方篩選切換。';
 const docHref = d => BASE + d.shortId;
 const stageName = code => { const st = ST.find(x => x.code === code || (code === '6／7' && x.code === '6')); return st ? stageLabel(st) : null; };
+function renderSitemap() {
+  const code = sel === null ? null : ST[sel].code, on = new Set(code === null ? [] : modsOf(code).map(m => m.no));
+  document.getElementById('sm-tree').innerHTML = LIB.modules.map(m => {
+    const cls = code === null ? '' : on.has(m.no) ? ' lit' : ' dim';
+    return '<div class="sm-mod' + cls + '" id="sm-mod-' + m.no + '"><h4>' + esc(m.no + ' ' + m.name) + '</h4>' + (m.tree.length ? m.tree.map((nd, k) =>
+      '<div class="sm-node' + (nd.group ? ' grp' : '') + '" id="sm-' + m.no + '-' + k + '" style="margin-left:' + Math.max(0, nd.depth - 1) * 16 + 'px">' + esc(nd.name) + (nd.tag ? '<span class="mk usx">' + esc(nd.tag) + '</span>' : '') + '</div>').join('') : '<span class="none">Sitemap 無頁面</span>') + '</div>'; }).join('');
+}
+document.getElementById('sm-note').textContent = '資料來源：HackMD Sitemap。預設顯示全部模組；選擇階段後，對應模組亮起，其餘變淡。接觸點的頁面名稱可跳到這裡。';
 function renderDocs() {
   const code = sel === null ? null : ST[sel].code;
   const mods = LIB.modules.filter(m => code === null || m.stage === code || (code === '6' && m.stage === '6／7'));
@@ -325,5 +381,5 @@ document.getElementById('shared').innerHTML = LIB.shared.map(d => '<div><a href=
 document.getElementById('gap-h').textContent = A.gap_heading;
 document.getElementById('gap-list').innerHTML = A.gaps.map(g => '<li>' + md(g) + '</li>').join('');
 
-renderPick(); renderFlow(); renderDocs();
+renderPick(); renderFlow(); renderDocs(); renderSitemap();
 </script>

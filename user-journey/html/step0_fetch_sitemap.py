@@ -22,6 +22,25 @@ STAGE = {"1": "J", "2": "A", "3": "B", "4": "C", "5": "D", "6": "E", "7": "5", "
 REF = re.compile(r"/([A-Za-z0-9_-]{9,22})(?![A-Za-z0-9_/.-])")
 
 
+def parse_tree(blk):
+    """Sitemap 程式碼區塊 → 頁面節點 [{name, depth, group, tag}]。只留頁面名稱，不留 URL／aspx 對照（登入節點本身即以 aspx 命名者除外）"""
+    m = re.search(r"```\n(.*?)```", blk, re.S)
+    nodes = []
+    for i, ln in enumerate(m.group(1).splitlines() if m else []):
+        pm = re.match(r"^([│├└─\s]*)(.+)$", ln)
+        if not pm or i == 0 or pm.group(2).startswith(("🔧", "🚧")):
+            continue
+        depth, t = len(pm.group(1)) // 4, pm.group(2)
+        t = re.sub(r"^✅\s*開發中新功能：", "", t)
+        tag = "new" if "【new】" in t else ""
+        t = t.replace("【new】", "")
+        name = (t.split("→")[0] if "→" in t else re.split(r"\s*【|（", t)[0]).strip()
+        name = re.sub(r"\s*【[^】]*】.*$", "", name)
+        if name:
+            nodes.append({"name": name.rstrip("/"), "depth": depth, "group": name.endswith("/"), "tag": tag})
+    return nodes
+
+
 def doc_of(token):
     n = by_id.get(token) or by_sid.get(token)
     return None if not n else {"shortId": n["shortId"], "title": " ".join(n["title"].split())}
@@ -40,7 +59,7 @@ for m in re.finditer(r"^### (\d+)\. (.+?)$(.*?)(?=^### \d+\. |\Z)", body, re.M |
             continue
         if d["shortId"] not in seen and d["shortId"] not in used:
             seen.add(d["shortId"]); used.add(d["shortId"]); docs.append(d)
-    modules.append({"no": no, "name": name.strip(), "stage": STAGE.get(no, ""), "docs": docs})
+    modules.append({"no": no, "name": name.strip(), "stage": STAGE.get(no, ""), "docs": docs, "tree": parse_tree(blk)})
 
 # 「待確認差異總覽」內以文件連結列出的聯繫新版文件，歸入該 Module
 tail = sm.split("## 🚧 待確認差異總覽")[1] if "## 🚧 待確認差異總覽" in sm else ""

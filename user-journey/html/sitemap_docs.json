@@ -6,7 +6,27 @@
    "no": "1",
    "name": "登入",
    "stage": "J",
-   "docs": []
+   "docs": [],
+   "tree": [
+    {
+     "name": "登入驗證",
+     "depth": 1,
+     "group": false,
+     "tag": ""
+    },
+    {
+     "name": "AgentVerify.aspx",
+     "depth": 2,
+     "group": false,
+     "tag": ""
+    },
+    {
+     "name": "AgentVerifyCheck.aspx",
+     "depth": 2,
+     "group": false,
+     "tag": ""
+    }
+   ]
   },
   {
    "no": "2",
@@ -36,6 +56,44 @@
     {
      "shortId": "BkIIbQYfWe",
      "title": "A.10 人才秒搜"
+    }
+   ],
+   "tree": [
+    {
+     "name": "Topbar",
+     "depth": 1,
+     "group": false,
+     "tag": ""
+    },
+    {
+     "name": "公告",
+     "depth": 2,
+     "group": false,
+     "tag": ""
+    },
+    {
+     "name": "首頁快訊 & 刊登狀態",
+     "depth": 1,
+     "group": false,
+     "tag": ""
+    },
+    {
+     "name": "近期修改職缺",
+     "depth": 1,
+     "group": false,
+     "tag": ""
+    },
+    {
+     "name": "面試行事曆",
+     "depth": 1,
+     "group": false,
+     "tag": ""
+    },
+    {
+     "name": "人才秒搜",
+     "depth": 1,
+     "group": false,
+     "tag": ""
     }
    ]
   },
@@ -124,6 +182,152 @@
      "shortId": "SJ0mjWHvZx",
      "title": "2.2.2 暫停刊登Modal"
     }
+   ],
+   "tree": [
+    {
+     "name": "公司資料",
+     "depth": 1,
+     "group": true,
+     "tag": ""
+    },
+    {
+     "name": "公司資料修改",
+     "depth": 2,
+     "group": false,
+     "tag": ""
+    },
+    {
+     "name": "公司形象",
+     "depth": 3,
+     "group": false,
+     "tag": ""
+    },
+    {
+     "name": "工作環境",
+     "depth": 3,
+     "group": false,
+     "tag": ""
+    },
+    {
+     "name": "產品服務",
+     "depth": 3,
+     "group": false,
+     "tag": ""
+    },
+    {
+     "name": "福利制度",
+     "depth": 3,
+     "group": false,
+     "tag": ""
+    },
+    {
+     "name": "更多介紹",
+     "depth": 3,
+     "group": false,
+     "tag": ""
+    },
+    {
+     "name": "面試須知上傳",
+     "depth": 3,
+     "group": false,
+     "tag": ""
+    },
+    {
+     "name": "變更版型",
+     "depth": 3,
+     "group": false,
+     "tag": ""
+    },
+    {
+     "name": "查看公司頁",
+     "depth": 2,
+     "group": false,
+     "tag": ""
+    },
+    {
+     "name": "公司相關訊息",
+     "depth": 2,
+     "group": false,
+     "tag": ""
+    },
+    {
+     "name": "設定",
+     "depth": 1,
+     "group": true,
+     "tag": ""
+    },
+    {
+     "name": "群組設定",
+     "depth": 2,
+     "group": false,
+     "tag": "new"
+    },
+    {
+     "name": "帳號設定",
+     "depth": 2,
+     "group": false,
+     "tag": ""
+    },
+    {
+     "name": "新增帳號",
+     "depth": 3,
+     "group": false,
+     "tag": ""
+    },
+    {
+     "name": "通知設定",
+     "depth": 4,
+     "group": false,
+     "tag": ""
+    },
+    {
+     "name": "修改帳號",
+     "depth": 3,
+     "group": false,
+     "tag": ""
+    },
+    {
+     "name": "通知設定",
+     "depth": 4,
+     "group": false,
+     "tag": ""
+    },
+    {
+     "name": "修改權限",
+     "depth": 3,
+     "group": false,
+     "tag": ""
+    },
+    {
+     "name": "聯絡人名單",
+     "depth": 2,
+     "group": false,
+     "tag": ""
+    },
+    {
+     "name": "開關天數設定",
+     "depth": 2,
+     "group": false,
+     "tag": ""
+    },
+    {
+     "name": "刊登設定",
+     "depth": 3,
+     "group": false,
+     "tag": ""
+    },
+    {
+     "name": "上傳檔案",
+     "depth": 2,
+     "group": false,
+     "tag": ""
+    },
+    {
+     "name": "更換公司版型",
+     "depth": 2,
+     "group": false,
+     "tag": ""
+    }
    ]
   },
   {
@@ -134,6 +338,62 @@
     {
      "shortId": "B1pOwHZQ-e",
      "title": "職缺列印"
+    }
+   ],
+   "tree": [
+    {
+     "name": "職缺總覽",
+     "depth": 1,
+     "group": false,
+     "tag": ""
+    },
+    {
+     "name": "職缺列印",
+     "depth": 2,
+     "group": false,
+     "tag": ""
+    },
+    {
+     "name": "新增職缺",
+     "depth": 1,
+     "group": false,
+     "tag": ""
+    },
+    {
+     "name": "修改排序",
+     "depth": 1,
+     "group": false,
+     "tag": ""
+    },
+    {
+     "name": "職缺移轉",
+     "depth": 1,
+     "group": false,
+     "tag": ""
+    },
+    {
+     "name": "自動更新",
+     "depth": 1,
+     "group": false,
+     "tag": ""
+    },
+    {
+     "name": "職缺同步",
+     "depth": 1,
+     "group": false,
+     "tag": ""
+    },
+    {
+     "name": "職缺廣告排程",
+     "depth": 1,
+     "group": false,
+     "tag": ""
+    },
+    {
+     "name": "職缺所屬群組",
+     "depth": 1,
+     "group": false,
+     "tag": ""
     }
    ]
   },
@@ -149,6 +409,134 @@
     {
      "shortId": "H18Vo3zyMx",
      "title": "3.0 履歷列印頁"
+    }
+   ],
+   "tree": [
+    {
+     "name": "履歷",
+     "depth": 1,
+     "group": true,
+     "tag": ""
+    },
+    {
+     "name": "主動應徵",
+     "depth": 2,
+     "group": false,
+     "tag": ""
+    },
+    {
+     "name": "追蹤名單",
+     "depth": 2,
+     "group": false,
+     "tag": ""
+    },
+    {
+     "name": "追蹤資料夾管理",
+     "depth": 2,
+     "group": false,
+     "tag": ""
+    },
+    {
+     "name": "來訪名單",
+     "depth": 2,
+     "group": false,
+     "tag": ""
+    },
+    {
+     "name": "備註名單",
+     "depth": 2,
+     "group": false,
+     "tag": ""
+    },
+    {
+     "name": "匯入名單",
+     "depth": 2,
+     "group": false,
+     "tag": ""
+    },
+    {
+     "name": "還原刪除履歷",
+     "depth": 2,
+     "group": false,
+     "tag": ""
+    },
+    {
+     "name": "封鎖名單",
+     "depth": 2,
+     "group": false,
+     "tag": ""
+    },
+    {
+     "name": "失約名單",
+     "depth": 2,
+     "group": false,
+     "tag": ""
+    },
+    {
+     "name": "問題履歷回報",
+     "depth": 2,
+     "group": false,
+     "tag": ""
+    },
+    {
+     "name": "履歷共用頁面",
+     "depth": 1,
+     "group": true,
+     "tag": ""
+    },
+    {
+     "name": "履歷詳細頁",
+     "depth": 2,
+     "group": false,
+     "tag": ""
+    },
+    {
+     "name": "履歷列印",
+     "depth": 2,
+     "group": false,
+     "tag": ""
+    },
+    {
+     "name": "搜尋",
+     "depth": 1,
+     "group": true,
+     "tag": ""
+    },
+    {
+     "name": "AI推薦人才",
+     "depth": 2,
+     "group": false,
+     "tag": "new"
+    },
+    {
+     "name": "配對名單搜尋",
+     "depth": 2,
+     "group": false,
+     "tag": ""
+    },
+    {
+     "name": "簡易搜尋",
+     "depth": 2,
+     "group": false,
+     "tag": ""
+    },
+    {
+     "name": "進階搜尋",
+     "depth": 2,
+     "group": false,
+     "tag": ""
+    },
+    {
+     "name": "大專人才搜尋",
+     "depth": 2,
+     "group": false,
+     "tag": ""
+    },
+    {
+     "name": "代碼搜尋",
+     "depth": 2,
+     "group": false,
+     "tag": ""
     }
    ]
   },
@@ -173,6 +561,50 @@
      "shortId": "BJt1Rj59Ze",
      "title": "簡訊範本"
     }
+   ],
+   "tree": [
+    {
+     "name": "信件訊息（列表）",
+     "depth": 1,
+     "group": false,
+     "tag": ""
+    },
+    {
+     "name": "信件訊息（聊天室）",
+     "depth": 2,
+     "group": false,
+     "tag": ""
+    },
+    {
+     "name": "範本管理",
+     "depth": 1,
+     "group": false,
+     "tag": ""
+    },
+    {
+     "name": "面試行事曆",
+     "depth": 1,
+     "group": false,
+     "tag": ""
+    },
+    {
+     "name": "即時通記錄",
+     "depth": 1,
+     "group": false,
+     "tag": ""
+    },
+    {
+     "name": "簡訊服務",
+     "depth": 1,
+     "group": false,
+     "tag": ""
+    },
+    {
+     "name": "簡訊通知紀錄",
+     "depth": 2,
+     "group": false,
+     "tag": ""
+    }
    ]
   },
   {
@@ -184,19 +616,121 @@
      "shortId": "S13Zy8rKze",
      "title": "5.5 人才點數查詢"
     }
+   ],
+   "tree": [
+    {
+     "name": "帳號邀約紀錄",
+     "depth": 1,
+     "group": false,
+     "tag": ""
+    },
+    {
+     "name": "履歷瀏覽紀錄",
+     "depth": 1,
+     "group": false,
+     "tag": ""
+    },
+    {
+     "name": "帳號使用紀錄",
+     "depth": 1,
+     "group": false,
+     "tag": ""
+    },
+    {
+     "name": "數據統計查詢",
+     "depth": 1,
+     "group": false,
+     "tag": ""
+    },
+    {
+     "name": "人才點數查詢",
+     "depth": 1,
+     "group": false,
+     "tag": ""
+    }
    ]
   },
   {
    "no": "8",
    "name": "服務",
    "stage": "6／7",
-   "docs": []
+   "docs": [],
+   "tree": [
+    {
+     "name": "功能說明頁",
+     "depth": 1,
+     "group": false,
+     "tag": ""
+    },
+    {
+     "name": "品牌行銷頁",
+     "depth": 1,
+     "group": false,
+     "tag": ""
+    },
+    {
+     "name": "查詢薪資行情",
+     "depth": 1,
+     "group": false,
+     "tag": ""
+    },
+    {
+     "name": "查詢電子發票",
+     "depth": 1,
+     "group": false,
+     "tag": ""
+    },
+    {
+     "name": "1HR系統免費試用",
+     "depth": 1,
+     "group": false,
+     "tag": ""
+    },
+    {
+     "name": "文件資源下載",
+     "depth": 1,
+     "group": false,
+     "tag": ""
+    },
+    {
+     "name": "滿意度調查",
+     "depth": 1,
+     "group": false,
+     "tag": ""
+    }
+   ]
   },
   {
    "no": "9",
    "name": "購買",
    "stage": "6／7",
-   "docs": []
+   "docs": [],
+   "tree": [
+    {
+     "name": "線上續約",
+     "depth": 1,
+     "group": false,
+     "tag": ""
+    },
+    {
+     "name": "購買優先排序",
+     "depth": 1,
+     "group": false,
+     "tag": ""
+    },
+    {
+     "name": "簡訊加值",
+     "depth": 1,
+     "group": false,
+     "tag": ""
+    },
+    {
+     "name": "購買廣告版位",
+     "depth": 1,
+     "group": false,
+     "tag": ""
+    }
+   ]
   }
  ],
  "shared": [
