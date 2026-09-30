@@ -1,7 +1,7 @@
-"""解析 ../recruiter_journey_map.md → report_data.json（只搬運，不改寫、不補齊、不自編編號）。
+"""解析 ../recruiter_journey_map.md → report_data.json。
 
-版面採 user-journey-map skill 三段式（Context／Journey Grid／Key Takeaways）＋附錄；
-素材尚為舊版「每階段一張泳道表」，本腳本把既有泳道原樣搬進 Grid，不拆分、不改寫。
+素材格式＝user-journey-map skill 三段式（1. Context／2. The Journey Grid／3. Key Takeaways）＋附錄。
+只搬運，不改寫、不補齊、不自編編號；〈路由〉是給 AI 的索引，不進 HTML。
 """
 import re, json, pathlib
 
@@ -11,15 +11,18 @@ OUT = HERE / "report_data.json"
 text = SRC.read_text(encoding="utf-8")
 
 
-def section(prefix):
-    m = re.search(rf"^## {re.escape(prefix)}[^\n]*\n(.*?)(?=^## |\Z)", text, re.M | re.S)
+def h2(prefix):
+    m = re.search(rf"^## ({re.escape(prefix)}[^\n]*)\n(.*?)(?=^## |\Z)", text, re.M | re.S)
     if not m:
         raise SystemExit(f"找不到章節：{prefix}")
-    return m.group(1)
+    return m.group(1).strip(), m.group(2)
 
 
-def heading(prefix):
-    return re.search(rf"^## ({re.escape(prefix)}[^\n]*)$", text, re.M).group(1).strip()
+def h3(block, prefix):
+    m = re.search(rf"^### ({re.escape(prefix)}[^\n]*)\n(.*?)(?=^### |\Z)", block, re.M | re.S)
+    if not m:
+        raise SystemExit(f"找不到小節：{prefix}")
+    return m.group(1).strip(), m.group(2)
 
 
 def table_rows(block):
@@ -32,45 +35,68 @@ def table_rows(block):
     return rows
 
 
+def bullets(block):
+    """`* **Label (Sub):** text` 與縮排子項 → [{label, sub, text, children}]"""
+    items = []
+    for ln in block.splitlines():
+        m = re.match(r"^[*-] \*\*(.+?)(?:\s*\(([^)]*)\))?:\*\*\s*(.*)$", ln)
+        if m:
+            items.append({"label": m.group(1).strip(), "sub": (m.group(2) or "").strip(), "text": m.group(3).strip(), "children": []})
+            continue
+        m = re.match(r"^\s+(?:[*-]|\d+\.)\s+(.*)$", ln)
+        if m and items:
+            items[-1]["children"].append(m.group(1).strip())
+    return items
+
+
 head = text.split("\n---", 1)[0]
 title = re.search(r"^# (.+)$", head, re.M).group(1)
 head_bullets = [l[2:] for l in head.splitlines() if l.startswith("- ")]
 
-persona = [r for r in table_rows(section("Persona")) if r[0] != "項目"]
-route = table_rows(section("路由"))
-route_head, route_rows = route[0], route[1:]
+ctx_h, ctx_b = h2("1. Context")
+context = bullets(ctx_b)
+marker_note = next((l[2:].strip() for l in ctx_b.splitlines() if l.startswith("> ")), "")
 
-ov = section("總覽")
-mer = re.search(r"```mermaid\n(.*?)```", ov, re.S).group(1)
-journey_title = re.search(r"title (.+)", mer).group(1).strip()
-sections_, cur = [], None
-for ln in mer.splitlines():
-    m = re.match(r"\s+section (.+)", ln)
-    if m:
-        cur = {"name": m.group(1).strip(), "tasks": []}; sections_.append(cur); continue
-    m = re.match(r"\s+(.+?): (\d+): (.+)", ln)
-    if m and cur is not None:
-        cur["tasks"].append({"name": m.group(1).strip(), "score": int(m.group(2)), "actor": m.group(3).strip()})
-score_note = re.search(r"^> (.+)$", ov, re.M).group(1)
+grid_h, grid_b = h2("2. The Journey Grid")
+grid_intro = next((l.strip() for l in grid_b.splitlines() if l.strip() and not l.startswith(("#", "|"))), "")
+lane_order, lane_meta, stages, groups = [], {}, [], []
+for m in re.finditer(r"^### (.+?)$(.*?)(?=^### |\Z)", grid_b, re.M | re.S):
+    gtitle, body = m.group(1).strip(), m.group(2)
+    rows = table_rows(body)
+    phases = rows[0][1:]
+    groups.append({"title": gtitle, "start": len(stages), "count": len(phases)})
+    cols = [{"name": p, "code": p.split()[0], "cells": {}} for p in phases]
+    for r in rows[1:]:
+        lm = re.match(r"\*\*(.+?)\*\*(?:<br>\((.+?)\))?", r[0])
+        en, zh = lm.group(1).strip(), (lm.group(2) or "").strip()
+        if en not in lane_meta:
+            lane_order.append(en); lane_meta[en] = zh
+        for i, c in enumerate(cols):
+            c["cells"][en] = r[i + 1] if i + 1 < len(r) else ""
+    stages.extend(cols)
 
-stages = []
-for m in re.finditer(r"^### (.+?)$(.*?)(?=^### |\Z)", section("各階段"), re.M | re.S):
-    name, body = m.group(1).strip(), m.group(2)
-    lanes = {r[0]: {"content": r[1], "source": r[2] if len(r) > 2 else ""} for r in table_rows(body) if r[0] != "泳道"}
-    stages.append({"name": name, "code": re.split(r"[.\s]", name)[0], "lanes": lanes})
-stage_names = [st["name"] for st in stages]
+tk_h, tk_b = h2("3. Key Takeaways")
+takeaways = bullets(tk_b)
 
-doc_block = section("文件關係")
+app_h, app_b = h2("附錄")
+doc_h, doc_b = h3(app_b, "文件關係")
 docmap = [{"stage": r[0], "func": r[1], "docs": [d.strip() for d in r[2].split("、") if d.strip()]}
-          for r in table_rows(doc_block) if r[0] != "階段"]
-shared = re.search(r"\*\*跨階段共用元件\*\*[^：]*：(.+)", doc_block).group(1).strip().rstrip("。")
-gaps = [l[2:] for l in section("缺口").splitlines() if l.startswith("- ")]
+          for r in table_rows(doc_b) if r[0] != "階段"]
+shared = re.search(r"\*\*跨階段共用元件\*\*[^：]*：(.+)", doc_b).group(1).strip().rstrip("。")
+gap_h, gap_b = h3(app_b, "缺口")
+gaps = [l[2:] for l in gap_b.splitlines() if l.startswith("- ")]
 
 data = {"title": title, "head_bullets": head_bullets,
-        "headings": {k: heading(k) for k in ["Persona", "路由", "總覽", "各階段", "文件關係", "缺口"]},
-        "persona": persona,
-        "journey": {"title": journey_title, "sections": sections_, "note": score_note},
-        "stage_names": stage_names, "stages": stages, "docmap": docmap, "shared": shared, "gaps": gaps}
+        "context": {"heading": ctx_h, "items": context, "marker_note": marker_note},
+        "grid": {"heading": grid_h, "intro": grid_intro, "groups": groups,
+                 "lanes": [{"en": k, "zh": lane_meta[k]} for k in lane_order], "stages": stages},
+        "takeaways": {"heading": tk_h, "items": takeaways},
+        "appendix": {"heading": app_h, "doc_heading": doc_h, "docmap": docmap, "shared": shared,
+                     "gap_heading": gap_h, "gaps": gaps}}
 OUT.write_text(json.dumps(data, ensure_ascii=False, indent=1), encoding="utf-8")
-print(f"sections={len(sections_)} tasks={sum(len(s['tasks']) for s in sections_)} stages={len(stage_names)} route={len(route_rows)} docmap={len(docmap)} gaps={len(gaps)}")
-print("stage_names:", stage_names)
+
+# 自檢：Grid 每格都有值（空字串代表解析漏抓）
+empty = [(s["name"], k) for s in stages for k in lane_order if not s["cells"].get(k)]
+print(f"context={len(context)} lanes={lane_order} stages={[s['name'] for s in stages]} groups={len(groups)}")
+print(f"takeaways={[t['label'] for t in takeaways]} next_steps={len(takeaways[-1]['children'])} docmap={len(docmap)} gaps={len(gaps)}")
+print("空格（應為 0）:", empty)

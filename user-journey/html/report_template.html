@@ -3,11 +3,11 @@
 版型：User Journey Map 看板（user-journey-map skill 三段式：Context／Journey Grid／Key Takeaways＋附錄文件庫）。
 視覺規格（report-generator 設計描述五層面）
 字體：系統字體堆疊（PingFang TC / Microsoft JhengHei），標題 700、內文 400，數字 tabular-nums。
-級距：h1 1.7rem／段標 1.2rem／看板內文 0.84rem／來源與標籤 0.72rem；行高 1.55。
-留白：外框 max 1180px、側邊 16px；看板欄寬 236px、列標欄 128px 固定；區塊間距 48px；卡片內距 12px。
-配色：墨藍文字＋冷灰底兩階；階段頭用單一藍色系深淺；痛點列淡紅底、機會點列淡綠底（語意色，非強調色）；US 藍、US* 琥珀、NULL 灰虛線框。
-動態：無進場動畫；僅 hover 高亮欄位與文件庫篩選。
-借用層面：看板＝傳統 journey map 的「階段在欄、泳道在列」＋情緒曲線橫跨階段；不借任何外部版型原始碼，無外部資源。
+級距：h1 1.7rem／段標 1.2rem／看板內文 0.84rem／來源與標籤 0.72rem；行高 1.55；Emotions 表情 1.5rem。
+留白：外框 max 1180px、側邊 16px；看板欄寬 250px、列標欄 132px 固定；區塊間距 48px；卡片內距 14px。
+配色：墨藍文字＋冷灰底兩階；階段頭單一藍色系；痛點列淡紅、機會點列淡綠（語意色）；US 藍、US* 琥珀、推論 紫灰虛線、NULL 灰虛線。
+動態：無進場動畫；僅 hover 高亮同一階段欄與文件庫篩選。
+借用層面：看板＝傳統 journey map「階段在欄、泳道在列」，分表帶沿用素材的表 A／B／C 分組；不借外部版型原始碼、無外部資源。
 -->
 <style>
   :root {
@@ -15,7 +15,7 @@
     --ink:#18202e; --ink-2:#4a5466; --ink-3:#7c8596;
     --phase:#2d5bb8; --phase-soft:#e3ebfa; --phase-ink:#ffffff;
     --pain:#fbeceb; --pain-ink:#b0342c; --opp:#e8f5ec; --opp-ink:#207144;
-    --us:#2d5bb8; --usx:#d99400; --usx-ink:#1d1a10; --curve:#2d5bb8; --low:#d2443b;
+    --us:#2d5bb8; --usx:#d99400; --usx-ink:#1d1a10; --inf:#6b5fa6; --quote:#f1f3f8;
     color-scheme: light;
   }
   @media (prefers-color-scheme: dark) {
@@ -24,7 +24,7 @@
       --ink:#eef1f6; --ink-2:#b6bdcb; --ink-3:#848d9e;
       --phase:#5f8ee8; --phase-soft:#243352; --phase-ink:#0d1220;
       --pain:#3a2225; --pain-ink:#f19088; --opp:#1c3326; --opp-ink:#7fd3a0;
-      --us:#5f8ee8; --usx:#e0a526; --usx-ink:#1d1a10; --curve:#7aa3f0; --low:#f1776d;
+      --us:#5f8ee8; --usx:#e0a526; --usx-ink:#1d1a10; --inf:#b3a8ee; --quote:#232a38;
       color-scheme: dark;
     }
   }
@@ -33,7 +33,7 @@
     --ink:#eef1f6; --ink-2:#b6bdcb; --ink-3:#848d9e;
     --phase:#5f8ee8; --phase-soft:#243352; --phase-ink:#0d1220;
     --pain:#3a2225; --pain-ink:#f19088; --opp:#1c3326; --opp-ink:#7fd3a0;
-    --us:#5f8ee8; --usx:#e0a526; --usx-ink:#1d1a10; --curve:#7aa3f0; --low:#f1776d;
+    --us:#5f8ee8; --usx:#e0a526; --usx-ink:#1d1a10; --inf:#b3a8ee; --quote:#232a38;
     color-scheme: dark;
   }
   * { box-sizing:border-box; }
@@ -42,75 +42,78 @@
     line-height:1.55; font-size:0.92rem; font-variant-numeric:tabular-nums; }
   .wrap { max-width:1180px; margin:0 auto; padding-inline:16px; padding-block:28px 80px; }
   a { color:var(--phase); text-decoration:none; } a:hover { text-decoration:underline; }
-  a:focus-visible, button:focus-visible { outline:2px solid var(--phase); outline-offset:2px; }
+  a:focus-visible, button:focus-visible, summary:focus-visible { outline:2px solid var(--phase); outline-offset:2px; }
   code { background:var(--band); padding:1px 5px; border-radius:4px; font-size:0.85em; }
 
-  header.top { display:flex; flex-direction:column; gap:6px; margin-bottom:28px; }
+  header.top { display:flex; flex-direction:column; gap:6px; margin-bottom:8px; }
   .eyebrow { font-size:0.72rem; letter-spacing:0.08em; color:var(--ink-3); text-transform:uppercase; }
   h1 { font-size:1.7rem; margin:0; text-wrap:balance; }
   .src { font-size:0.78rem; color:var(--ink-3); }
-  .legend { display:flex; flex-wrap:wrap; gap:6px 14px; font-size:0.78rem; color:var(--ink-2); margin-top:6px; }
+  .legend { display:flex; flex-wrap:wrap; gap:6px 14px; font-size:0.78rem; color:var(--ink-2); margin-top:8px; }
   .legend span { display:inline-flex; align-items:center; gap:5px; }
+  .about { font-size:0.8rem; color:var(--ink-2); margin-top:4px; }
+  .about summary { cursor:pointer; color:var(--ink-3); }
+  .about ul { margin:6px 0 0; padding-left:1.2em; }
 
-  section.part { margin-top:48px; }
-  .part-hd { display:flex; align-items:baseline; gap:10px; margin-bottom:14px; border-bottom:1px solid var(--line); padding-bottom:8px; }
-  .part-hd h2 { font-size:1.2rem; margin:0; }
-  .part-hd .en { font-size:0.78rem; color:var(--ink-3); }
+  section.part { margin-top:44px; }
+  .part-hd { margin-bottom:14px; border-bottom:1px solid var(--line); padding-bottom:8px; }
+  .part-hd h2 { font-size:1.2rem; margin:0; text-wrap:balance; }
+  .hint { font-size:0.78rem; color:var(--ink-3); margin:0 2px 10px; }
 
-  /* ---------- 1. Context ---------- */
-  .ctx { display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:14px; }
+  /* ---------- Context ---------- */
+  .ctx { display:grid; grid-template-columns:1.4fr 1fr; gap:14px; align-items:start; }
+  @media (max-width:760px) { .ctx { grid-template-columns:1fr; } }
+  .ctx-stack { display:grid; gap:14px; }
   .ctx-card { background:var(--paper); border:1px solid var(--line); border-radius:12px; padding:14px 16px; min-width:0; }
   .ctx-card .k { font-size:0.72rem; letter-spacing:0.06em; color:var(--ink-3); text-transform:uppercase; }
-  .ctx-card .t { font-weight:700; margin:2px 0 6px; }
-  .ctx-card dl { margin:0; display:grid; grid-template-columns:auto 1fr; gap:6px 10px; font-size:0.85rem; }
-  .ctx-card dt { color:var(--ink-2); font-weight:600; white-space:nowrap; }
-  .ctx-card dd { margin:0; min-width:0; }
+  .ctx-card .t { font-weight:700; margin:3px 0 8px; font-size:1rem; }
+  .ctx-stack .ctx-card .t { font-weight:500; }
+  .ctx-card .facet { display:grid; gap:2px; margin-top:10px; font-size:0.86rem; }
+  .ctx-card .facet b { color:var(--ink-2); font-size:0.78rem; }
 
-  /* ---------- 2. Journey board ---------- */
+  /* ---------- Journey board ---------- */
   .board-wrap { overflow-x:auto; border:1px solid var(--line); border-radius:14px; background:var(--paper); }
-  .board { display:grid; grid-template-columns: 128px repeat(var(--n), minmax(236px, 1fr)); min-width:calc(128px + var(--n) * 236px); font-size:0.84rem; }
+  .board { display:grid; grid-template-columns:132px repeat(var(--n), minmax(250px, 1fr)); min-width:calc(132px + var(--n) * 250px); font-size:0.84rem; }
   .board > div { padding:10px 12px; border-bottom:1px solid var(--line); border-left:1px solid var(--line); min-width:0; }
   .board .rl { position:sticky; left:0; z-index:2; background:var(--band); border-left:none; font-weight:700; color:var(--ink-2); font-size:0.8rem; }
-  .board .rl small { display:block; font-weight:400; color:var(--ink-3); font-size:0.7rem; }
-  .board .row-last { border-bottom:none; }
+  .board .rl small { display:block; font-weight:400; color:var(--ink-3); font-size:0.72rem; }
+  .board .last { border-bottom:none; }
 
+  .grp { background:var(--band); font-size:0.74rem; color:var(--ink-3); padding-block:5px !important; letter-spacing:0.02em; }
   .ph { background:var(--phase-soft); position:relative; }
   .ph .code { display:inline-block; min-width:26px; text-align:center; font-weight:800; background:var(--phase); color:var(--phase-ink); border-radius:6px; padding:1px 7px; margin-right:6px; }
   .ph .nm { font-weight:700; }
-  .ph .sub { display:block; margin-top:6px; color:var(--ink-2); font-size:0.78rem; }
-  .ph.support { background:repeating-linear-gradient(135deg, var(--phase-soft), var(--phase-soft) 8px, var(--band) 8px, var(--band) 16px); }
+  .ph .nm small { display:block; font-weight:400; color:var(--ink-2); font-size:0.74rem; margin-top:4px; }
+  .ph.support { background:repeating-linear-gradient(135deg, var(--phase-soft) 0 8px, var(--band) 8px 16px); }
   .ph .arw { position:absolute; right:-9px; top:50%; transform:translateY(-50%); z-index:1; width:16px; height:16px; background:var(--phase); color:var(--phase-ink); border-radius:50%; font-size:10px; line-height:16px; text-align:center; }
 
-  .curve-cell { grid-column:2 / -1; position:relative; height:132px; padding:0 !important; background:linear-gradient(var(--line) 1px, transparent 1px) 0 18px / 100% 24px; }
-  .curve-cell svg { position:absolute; inset:0; width:100%; height:100%; overflow:visible; }
-  .curve-cell polyline { fill:none; stroke:var(--curve); stroke-width:2.5; vector-effect:non-scaling-stroke; }
-  .dot { position:absolute; transform:translate(-50%, -50%); width:12px; height:12px; border-radius:50%; background:var(--curve); border:2px solid var(--paper); }
-  .dot.low { background:var(--low); }
-  .dot b { position:absolute; bottom:12px; left:50%; transform:translateX(-50%); font-size:0.78rem; color:var(--ink); }
-  .dot i { position:absolute; top:12px; left:50%; transform:translateX(-50%); font-style:normal; white-space:nowrap; font-size:0.68rem; color:var(--ink-2); }
-  .curve-gap { position:absolute; top:50%; transform:translate(-50%,-50%); font-size:0.72rem; color:var(--ink-3); text-align:center; }
-
   .steps { margin:0; padding-left:1.25em; } .steps li { margin-bottom:3px; }
-  .cite { margin-top:6px; font-size:0.72rem; color:var(--ink-3); line-height:1.5; }
+  .cite { margin-top:7px; font-size:0.72rem; color:var(--ink-3); line-height:1.5; }
   .cite a { color:var(--ink-3); text-decoration:underline; text-decoration-color:var(--line); }
   .cite a:hover { color:var(--phase); }
-  .none { color:var(--ink-3); font-size:0.78rem; }
-  .blank { color:var(--ink-3); font-size:0.78rem; font-style:italic; }
-  .r-pain { background:var(--pain); } .r-pain.rl { color:var(--pain-ink); }
-  .r-opp { background:var(--opp); } .r-opp.rl { color:var(--opp-ink); }
-  .board .r-pain.rl, .board .r-opp.rl { background:var(--band); }
-  .col-hover { box-shadow: inset 0 0 0 2px var(--phase-soft); }
+  .q { display:block; background:var(--quote); border-radius:10px 10px 10px 2px; padding:6px 9px; font-weight:600; margin:4px 0 2px; }
+  .emo { font-size:1.5rem; line-height:1.2; display:block; }
+  .emo-w { font-weight:700; } .emo-w .mk { margin-left:5px; }
+  .r-pain { background:var(--pain); } .board .r-pain.rl { background:var(--band); color:var(--pain-ink); }
+  .r-opp { background:var(--opp); } .board .r-opp.rl { background:var(--band); color:var(--opp-ink); }
+  .col-hover { box-shadow:inset 0 0 0 2px var(--phase-soft); }
 
-  .mk { display:inline-block; font-size:0.66rem; font-weight:700; line-height:1; padding:3px 5px; border-radius:4px; margin-right:3px; vertical-align:1px; }
+  .mk { display:inline-block; font-size:0.66rem; font-weight:700; line-height:1; padding:3px 5px; border-radius:4px; margin-right:3px; vertical-align:1px; white-space:nowrap; }
   .mk.us { background:var(--us); color:var(--paper); }
   .mk.usx { background:var(--usx); color:var(--usx-ink); }
+  .mk.inf { color:var(--inf); border:1px dashed var(--inf); }
   .mk.null { color:var(--ink-3); border:1px dashed var(--ink-3); }
-  .hint { font-size:0.78rem; color:var(--ink-3); margin:8px 2px 0; }
 
-  /* ---------- 3. Takeaways ---------- */
-  .tk { display:grid; grid-template-columns:repeat(auto-fit, minmax(240px, 1fr)); gap:14px; }
-  .tk-card { background:var(--paper); border:1px dashed var(--line); border-radius:12px; padding:14px 16px; min-height:110px; }
-  .tk-card h3 { margin:0 0 6px; font-size:0.95rem; }
+  /* ---------- Takeaways ---------- */
+  .tk { display:grid; grid-template-columns:repeat(2, minmax(0, 1fr)); gap:14px; align-items:stretch; }
+  @media (max-width:640px) { .tk { grid-template-columns:1fr; } }
+  .tk-card { background:var(--paper); border:1px solid var(--line); border-radius:12px; padding:14px 16px; min-width:0; }
+  .tk-card h3 { margin:0; font-size:1rem; }
+  .tk-card .sub { font-size:0.74rem; color:var(--ink-3); margin-bottom:8px; }
+  .tk-card.risk { border-top:3px solid var(--pain-ink); }
+  .tk-card.aha { border-top:3px solid var(--opp-ink); }
+  .tk-card.next { border-top:3px solid var(--phase); grid-column:1 / -1; }
+  .tk-card ol { margin:0; padding-left:1.3em; } .tk-card li { margin-bottom:7px; }
 
   /* ---------- Appendix ---------- */
   .filters { display:flex; flex-wrap:wrap; gap:6px; margin:4px 0 10px; }
@@ -122,59 +125,57 @@
   th { color:var(--ink-2); font-size:0.76rem; white-space:nowrap; background:var(--band); }
   td.k { font-weight:600; white-space:nowrap; }
   .ids a { display:inline-block; margin:0 8px 2px 0; font-family:ui-monospace, Menlo, Consolas, monospace; font-size:0.78rem; }
-  .shared { display:grid; grid-template-columns:repeat(auto-fit, minmax(240px, 1fr)); gap:4px 16px; font-size:0.84rem; margin-top:8px; }
+  .none { color:var(--ink-3); }
+  h3.ap { font-size:0.95rem; margin:18px 0 8px; }
+  .shared { display:grid; grid-template-columns:repeat(auto-fit, minmax(240px, 1fr)); gap:4px 16px; font-size:0.84rem; }
   .list { padding-left:1.2em; margin:6px 0; font-size:0.86rem; } .list li { margin-bottom:6px; }
-  details { margin-top:14px; } summary { cursor:pointer; color:var(--ink-2); font-weight:600; }
 
   .theme-toggle { position:fixed; top:calc(10px + env(safe-area-inset-top, 0px)); right:12px; z-index:9; background:var(--paper); border:1px solid var(--line); border-radius:20px; padding:5px 11px; font:inherit; font-size:0.75rem; cursor:pointer; color:var(--ink-2); }
-  @media (prefers-reduced-motion: reduce) { html { scroll-behavior:auto; } }
 </style>
 
 <button class="theme-toggle" id="theme-toggle" type="button">深淺色</button>
 <div class="wrap">
 
 <header class="top">
-  <div class="eyebrow">User Journey Map · Current State 依素材待定</div>
+  <div class="eyebrow" id="eyebrow">User Journey Map</div>
   <h1 id="ttl"></h1>
   <div class="src">素材：<code>user-journey/recruiter_journey_map.md</code>（文件助手維護）　建置：<code>html/step1_parse_journey.py</code> → <code>html/step2_build_report.py</code></div>
   <div class="legend">
-    <span><span class="mk us">US</span>文件內真實 User Story</span>
+    <span><span class="mk us">US</span>真實 User Story</span>
     <span><span class="mk usx">US*</span>套版句（只證明功能存在）</span>
-    <span><span class="mk null">NULL</span>文件未記載</span>
-    <span><span class="blank">留白</span>素材尚無此欄</span>
+    <span><span class="mk inf">推論</span>依同格文件事實推出</span>
+    <span><span class="mk null">NULL</span>文件未載也無可推論</span>
+    <span>無標記＝文件明載（附連結）</span>
   </div>
+  <details class="about"><summary>素材說明</summary><ul id="about"></ul></details>
 </header>
 
 <section class="part" id="context">
-  <div class="part-hd"><h2>情境設定</h2><span class="en">1 · Context</span></div>
+  <div class="part-hd"><h2 id="ctx-h"></h2></div>
   <div class="ctx" id="ctx"></div>
 </section>
 
 <section class="part" id="grid">
-  <div class="part-hd"><h2>旅程矩陣</h2><span class="en">2 · The Journey Grid</span></div>
+  <div class="part-hd"><h2 id="grid-h"></h2></div>
+  <p class="hint" id="grid-intro"></p>
   <div class="board-wrap"><div class="board" id="board"></div></div>
-  <p class="hint" id="curve-note"></p>
+  <p class="hint" style="margin-top:8px">看板可左右捲動，列標固定；滑過任一格會標出同一階段欄。</p>
 </section>
 
 <section class="part" id="takeaways">
-  <div class="part-hd"><h2>重點與 PM 行動</h2><span class="en">3 · Key Takeaways &amp; PM Action Items</span></div>
-  <div class="tk">
-    <div class="tk-card"><h3>🤩 Aha Moment</h3><div class="blank">留白：素材尚未記載</div></div>
-    <div class="tk-card"><h3>⚠️ Biggest Drop-off Risk</h3><div class="blank">留白：素材尚未記載</div></div>
-    <div class="tk-card"><h3>🚀 Next Steps</h3><div class="blank">留白：素材尚未記載</div></div>
-  </div>
+  <div class="part-hd"><h2 id="tk-h"></h2></div>
+  <div class="tk" id="tk"></div>
 </section>
 
 <section class="part" id="library">
-  <div class="part-hd"><h2 id="docs-h"></h2><span class="en">附錄 · 文件庫</span></div>
+  <div class="part-hd"><h2 id="ap-h"></h2></div>
+  <h3 class="ap" id="doc-h"></h3>
   <div class="filters" id="filters" role="group" aria-label="依階段篩選"></div>
   <div class="tw"><table id="doc-table"></table></div>
-  <p style="margin:14px 0 0;color:var(--ink-2);font-weight:600">跨階段共用元件</p>
+  <h3 class="ap">跨階段共用元件</h3>
   <div class="shared" id="shared"></div>
-  <details>
-    <summary id="gaps-h"></summary>
-    <ul class="list" id="gap-list"></ul>
-  </details>
+  <h3 class="ap" id="gap-h"></h3>
+  <ul class="list" id="gap-list"></ul>
 </section>
 
 </div>
@@ -188,113 +189,110 @@ document.getElementById('theme-toggle').onclick = () => {
 };
 const esc = s => String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
 const BASE = 'https://hackmd.io/@1111-jobdocs/';
-const MK = /(?<![A-Za-z])(US\*|US(?![A-Za-z])|NULL)/g;
-const marks = t => t.replace(MK, m => m === 'US*' ? '<span class="mk usx">US*</span>' : (m === 'US' ? '<span class="mk us">US</span>' : '<span class="mk null">NULL</span>'));
+const MK = /〔推論〕|(?<![A-Za-z])(?:US\*|US(?![A-Za-z])|NULL)/g;
+const marks = t => t.replace(MK, m => m === '〔推論〕' ? '<span class="mk inf">推論</span>' : m === 'US*' ? '<span class="mk usx">US*</span>' : m === 'US' ? '<span class="mk us">US</span>' : '<span class="mk null">NULL</span>');
 function md(raw) {
-  const s = esc(raw), out = []; let last = 0, m; const rx = /\[([^\]]+)\]\((https?:\/\/[^)\s]+)\)/g;
+  const s = esc(String(raw).replace(/\\\*/g, '*')), out = []; let last = 0, m; const rx = /\[([^\]]+)\]\((https?:\/\/[^)\s]+)\)/g;
   const seg = t => marks(t.replace(/`([^`]+)`/g, '<code>$1</code>').replace(/\*\*([^*]+)\*\*/g, '<b>$1</b>'));
   while ((m = rx.exec(s))) { out.push(seg(s.slice(last, m.index))); out.push('<a href="' + m[2] + '" target="_blank" rel="noopener">' + m[1] + '</a>'); last = rx.lastIndex; }
   out.push(seg(s.slice(last))); return out.join('');
 }
 const idLink = id => '<a href="' + BASE + id + '" target="_blank" rel="noopener">' + id + '</a>';
-const isNull = t => /^NULL/.test(t.trim());
+const isLinkLine = p => /^(US\s*)?\[/.test(p.trim());
 
 document.getElementById('ttl').textContent = DATA.title;
+document.getElementById('about').innerHTML = DATA.head_bullets.map(b => '<li>' + md(b) + '</li>').join('');
 
-// ---------- 1. Context ----------
-const P = Object.fromEntries(DATA.persona.map(r => [r[0], r[1]]));
-const rest = DATA.persona.filter(r => !['目標'].includes(r[0]));
-document.getElementById('ctx').innerHTML =
-  '<div class="ctx-card"><div class="k">Persona 目標用戶</div><div class="t">' + md(P['角色'] || '') + '</div><dl>' +
-    rest.filter(r => r[0] !== '角色').map(r => '<dt>' + esc(r[0]) + '</dt><dd>' + md(r[1]) + '</dd>').join('') + '</dl></div>' +
-  '<div class="ctx-card"><div class="k">Scenario &amp; Goal 場景與目標</div><div class="t">' + (P['目標'] ? md(P['目標']) : '<span class="blank">留白</span>') + '</div></div>' +
-  '<div class="ctx-card"><div class="k">Journey Type</div><div class="t"><span class="blank">留白：素材未標明 Current／Future State</span></div></div>';
+// ---------- Context ----------
+const C = DATA.context;
+document.getElementById('ctx-h').textContent = C.heading;
+const ci = Object.fromEntries(C.items.map(i => [i.label, i]));
+const facet = c => { const m = c.match(/^([^：]{1,14})：(.*)$/); return m ? '<div class="facet"><b>' + esc(m[1]) + '</b><div>' + md(m[2]) + '</div></div>' : '<div class="facet"><div>' + md(c) + '</div></div>'; };
+const card = (it, big) => '<div class="ctx-card"><div class="k">' + esc(it.label) + (it.sub ? '　' + esc(it.sub) : '') + '</div><div class="t">' + md(it.text) + '</div>' + it.children.map(facet).join('') + '</div>';
+const persona = C.items.find(i => i.label === 'Persona');
+document.getElementById('ctx').innerHTML = (persona ? card(persona) : '') +
+  '<div class="ctx-stack">' + C.items.filter(i => i !== persona).map(i => card(i)).join('') + '</div>';
+const jt = ci['Journey Type'];
+if (jt) document.getElementById('eyebrow').textContent = 'User Journey Map · ' + jt.text.split(/[（(]/)[0].trim();
 
-// ---------- 2. Journey board ----------
-const ST = DATA.stages, n = ST.length, jsec = DATA.journey.sections;
+// ---------- Journey Grid ----------
+const G = DATA.grid, ST = G.stages, n = ST.length;
+document.getElementById('grid-h').textContent = G.heading;
+document.getElementById('grid-intro').innerHTML = md(G.intro);
 const board = document.getElementById('board');
 board.style.setProperty('--n', n);
-const secOf = st => jsec.find(s => s.name.split(' ')[0] === st.code);
+const isSupport = st => /支援/.test(st.name);
 const cells = [];
-const cell = (html, cls, col) => '<div class="' + (cls || '') + '" data-col="' + col + '">' + html + '</div>';
-const label = (zh, en, cls) => '<div class="rl ' + (cls || '') + '">' + zh + '<small>' + en + '</small></div>';
+const label = (en, zh, cls) => '<div class="rl ' + (cls || '') + '">' + esc(en) + (zh ? '<small>' + esc(zh) + '</small>' : '') + '</div>';
 
-// 階段列（流程）
-cells.push(label('階段', 'Phases'));
+// 分表帶（素材表 A／B／C）
+cells.push('<div class="rl grp">素材分表</div>');
+G.groups.forEach(g => cells.push('<div class="grp" style="grid-column:span ' + g.count + '">' + esc(g.title) + '</div>'));
+// 階段
+cells.push(label('Phases', '階段'));
 ST.forEach((st, i) => {
-  const sup = !secOf(st);
-  const [, code, name] = st.name.match(/^(\S+?)\.?\s+(.*)$/) || [null, st.code, st.name];
-  cells.push(cell('<span class="code">' + esc(code) + '</span><span class="nm">' + esc(name) + '</span>' +
-    (i < n - 1 && secOf(ST[i + 1]) ? '<span class="arw" aria-hidden="true">›</span>' : ''), 'ph' + (sup ? ' support' : ''), i));
+  const m = st.name.match(/^(\S+)\s+(.*)$/) || [null, st.code, st.name];
+  const name = m[2], note = name.match(/（(.*)）$/);
+  const next = ST[i + 1];
+  cells.push('<div class="ph' + (isSupport(st) ? ' support' : '') + '" data-col="' + i + '"><span class="code">' + esc(m[1]) + '</span><span class="nm">' +
+    esc(note ? name.replace(/（.*）$/, '') : name) + (note ? '<small>' + esc(note[1]) + '</small>' : '') + '</span>' +
+    (next && !isSupport(next) ? '<span class="arw" aria-hidden="true">›</span>' : '') + '</div>');
 });
-// 目標
-cells.push(label('階段目標', 'Goal'));
-ST.forEach((st, i) => cells.push(cell(laneHtml(st.lanes['目標'], false), '', i)));
-// 相對分數曲線
-cells.push(label('相對分數', 'Relative score'));
-cells.push('<div class="curve-cell" id="curve"></div>');
-
-const ROWS = [
-  ['用戶行為', 'User Actions', '行動', 'steps'],
-  ['接觸點', 'Touchpoints', '接觸點'],
-  ['想法／情緒', 'Thoughts · Emotions<br>素材未分列', '想法／情緒'],
-  ['痛點', 'Pain Points', '痛點', null, 'r-pain'],
-  ['機會點', 'Opportunities', '機會點', null, 'r-opp'],
-];
-ROWS.forEach(([zh, en, key, mode, cls]) => {
-  cells.push(label(zh, en, cls));
-  ST.forEach((st, i) => cells.push(cell(laneHtml(st.lanes[key], mode === 'steps'), cls, i)));
+const CLS = { 'Pain Points': 'r-pain', 'Opportunities': 'r-opp' };
+G.lanes.forEach((ln, li) => {
+  const last = li === G.lanes.length - 1 ? ' last' : '';
+  cells.push(label(ln.en, ln.zh, (CLS[ln.en] || '') + last));
+  ST.forEach((st, i) => cells.push('<div class="' + (CLS[ln.en] || '') + last + '" data-col="' + i + '">' + cellHtml(st.cells[ln.en] || '', ln.en) + '</div>'));
 });
-cells.push(label('衡量指標', 'Metrics', 'row-last'));
-ST.forEach((st, i) => cells.push(cell('<span class="blank">留白</span>', 'row-last', i)));
 board.innerHTML = cells.join('');
 
-function laneHtml(l, steps) {
-  if (!l) return '<span class="none">—　素材無此列</span>';
+function cellHtml(raw, lane) {
+  const t = raw.trim();
+  if (/^NULL$/.test(t)) return '<span class="mk null">NULL</span>';
+  const parts = t.split(/<br\s*\/?>/i);
+  let main = parts.shift(), extra = [], cites = [];
+  parts.forEach(p => (isLinkLine(p) ? cites : extra).push(p));
+  // 「依據」拆到來源行（Thoughts／Emotions／Metrics 的推論依據）
+  const bm = main.match(/^(.*?)[；;]?\s*(依據[：:同].*)$/);
+  if (bm && bm[1].trim()) { main = bm[1]; cites.unshift(bm[2]); }
   let body;
-  if (isNull(l.content)) body = '<span class="mk null">NULL</span><span class="none">' + md(l.content.replace(/^NULL\s*/, '')) + '</span>';
-  else if (steps) body = '<ol class="steps">' + l.content.split(/\s*→\s*/).map(s => '<li>' + md(s) + '</li>').join('') + '</ol>';
-  else body = md(l.content);
-  const src = l.source && l.source !== '—' ? '<div class="cite">來源：' + md(l.source) + '</div>' : '';
-  return body + src;
+  if (lane === 'User Actions') body = '<ol class="steps">' + main.split(/\s*→\s*/).map(s => '<li>' + md(s) + '</li>').join('') + '</ol>';
+  else if (lane === 'Emotions') { const em = main.match(/^(\p{Extended_Pictographic}️?)\s*(.*)$/u);
+    body = em ? '<span class="emo" aria-hidden="true">' + em[1] + '</span><span class="emo-w">' + md(em[2]) + '</span>' : md(main); }
+  else if (lane === 'Thoughts') body = md(main).replace(/「([^」]+)」/g, '<span class="q">「$1」</span>');
+  else body = md(main);
+  body += extra.map(p => '<div style="margin-top:4px">' + md(p) + '</div>').join('');
+  return body + (cites.length ? '<div class="cite">' + cites.map(md).join('<br>') + '</div>' : '');
 }
-
-// 曲線：每階段欄內依步驟均分，無分數的欄留白
-(function curve() {
-  const box = document.getElementById('curve');
-  const pts = [], y = v => 16 + (5 - v) / 4 * 92;
-  let low = Infinity;
-  ST.forEach((st, i) => { const s = secOf(st); if (s) s.tasks.forEach((t, k) => { low = Math.min(low, t.score);
-    pts.push({ x: (i + (k + 0.5) / s.tasks.length) / n * 100, y: y(t.score), t }); }); });
-  let h = '<svg viewBox="0 0 100 132" preserveAspectRatio="none" aria-hidden="true"><polyline points="' + pts.map(p => p.x + ',' + p.y).join(' ') + '"/></svg>';
-  pts.forEach(p => h += '<span class="dot' + (p.t.score === low ? ' low' : '') + '" style="left:' + p.x + '%;top:' + p.y + 'px" title="' + esc(p.t.name + '：' + p.t.score) + '"><b>' + p.t.score + '</b><i>' + esc(p.t.name) + '</i></span>');
-  ST.forEach((st, i) => { if (!secOf(st)) h += '<span class="curve-gap" style="left:' + ((i + 0.5) / n * 100) + '%">素材總覽<br>未列分數</span>'; });
-  box.innerHTML = h;
-  box.setAttribute('role', 'img');
-  box.setAttribute('aria-label', '各步驟相對分數：' + pts.map(p => p.t.name + ' ' + p.t.score).join('、'));
-})();
-document.getElementById('curve-note').innerHTML = '相對分數：' + md(DATA.journey.note) + '（1–5，越高越順暢；紅點＝最低）。看板可左右捲動，列標固定。';
-
-// 欄位 hover
 board.addEventListener('mouseover', e => { const c = e.target.closest('[data-col]'); board.querySelectorAll('.col-hover').forEach(x => x.classList.remove('col-hover'));
   if (c) board.querySelectorAll('[data-col="' + c.dataset.col + '"]').forEach(x => x.classList.add('col-hover')); });
 board.addEventListener('mouseleave', () => board.querySelectorAll('.col-hover').forEach(x => x.classList.remove('col-hover')));
 
+// ---------- Key Takeaways ----------
+const T = DATA.takeaways;
+document.getElementById('tk-h').textContent = T.heading;
+const kind = l => /Aha/.test(l) ? 'aha' : /Drop-off/.test(l) ? 'risk' : /Next/.test(l) ? 'next' : '';
+document.getElementById('tk').innerHTML = T.items.map(it => '<div class="tk-card ' + kind(it.label) + '"><h3>' + esc(it.label) + '</h3>' +
+  (it.sub ? '<div class="sub">' + esc(it.sub) + '</div>' : '') + (it.text ? '<div>' + md(it.text) + '</div>' : '') +
+  (it.children.length ? '<ol>' + it.children.map(c => '<li>' + md(c) + '</li>').join('') + '</ol>' : '') + '</div>').join('');
+
 // ---------- 附錄：文件庫 ----------
-document.getElementById('docs-h').textContent = DATA.headings['文件關係'];
-const stageKeys = [...new Set(DATA.docmap.map(r => r.stage))];
+const A = DATA.appendix;
+document.getElementById('ap-h').textContent = A.heading;
+document.getElementById('doc-h').textContent = A.doc_heading;
+const stageKeys = [...new Set(A.docmap.map(r => r.stage))];
 let cur = '全部';
 function renderDocs() {
   document.getElementById('filters').innerHTML = ['全部', ...stageKeys].map(k => '<button type="button" class="' + (k === cur ? 'on' : '') + '" data-k="' + esc(k) + '" aria-pressed="' + (k === cur) + '">' + esc(k) + '</button>').join('');
   document.querySelectorAll('#filters button').forEach(b => b.onclick = () => { cur = b.dataset.k; renderDocs(); });
-  const rows = DATA.docmap.filter(r => cur === '全部' || r.stage === cur);
+  const rows = A.docmap.filter(r => cur === '全部' || r.stage === cur);
   document.getElementById('doc-table').innerHTML = '<thead><tr><th>階段</th><th>功能</th><th>文件（shortId → HackMD）</th></tr></thead><tbody>' +
     rows.map(r => '<tr><td class="k">' + esc(r.stage) + '</td><td class="k">' + esc(r.func) + '</td><td class="ids">' +
       r.docs.map(d => { const m = d.match(/^([A-Za-z0-9_-]+)(（.*）)?$/); return m ? idLink(m[1]) + (m[2] ? '<span class="none">' + esc(m[2]) + '</span> ' : '') : esc(d); }).join('') + '</td></tr>').join('') + '</tbody>';
 }
 renderDocs();
-document.getElementById('shared').innerHTML = DATA.shared.split(/[、，,]/).map(s => { const m = s.trim().match(/^(.*?)\s*([A-Za-z0-9_-]{9,10}(?:／[A-Za-z0-9_-]{9,10})*)$/);
+document.getElementById('shared').innerHTML = A.shared.split(/[、，,]/).map(s => { const m = s.trim().match(/^(.*?)\s*([A-Za-z0-9_-]{9,10}(?:／[A-Za-z0-9_-]{9,10})*)$/);
   return m ? '<div>' + esc(m[1]) + '：<span class="ids">' + m[2].split('／').map(idLink).join('') + '</span></div>' : '<div>' + esc(s.trim()) + '</div>'; }).join('');
-document.getElementById('gaps-h').textContent = DATA.headings['缺口'] + '（素材原文）';
-document.getElementById('gap-list').innerHTML = DATA.gaps.map(g => '<li>' + md(g) + '</li>').join('');
+document.getElementById('gap-h').textContent = A.gap_heading;
+document.getElementById('gap-list').innerHTML = A.gaps.map(g => '<li>' + md(g) + '</li>').join('');
 </script>

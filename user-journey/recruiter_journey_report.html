@@ -2,284 +2,307 @@
 <html lang="zh-Hant">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+</head>
+<body>
 <title>求才端 User Journey Map</title>
 <!--
-視覺規格（五層面，report-generator 設計描述五層面）
-字體：系統字體堆疊（PingFang TC / Microsoft JhengHei），數字 tabular-nums；標題 700、內文 400。
-級距：h1 1.6rem／h2 1.15rem／內文 0.92rem／表格 0.85rem／標籤 0.72rem；行高 1.6。
-留白：頁寬 max 980px、左右 20px；區塊間距 40px；卡片內距 14~18px；手機（<640px）泳道表改單欄。
-配色：底色 2 階（surface-1/2）＋邊線；藍(series-1)＝US、橘(series-2)＝US*、灰＝NULL、紅(series-3)＝痛點／最低分；深淺雙主題。
-動態：無進場動畫；僅 hover 高亮與表格篩選即時切換（無 transition）。
-借用層面：版型骨架借 html-templates 的 data-report／dashboard（KPI 卡＋分區＋表格），不搬原始碼、不連外部資源。
+版型：User Journey Map 看板（user-journey-map skill 三段式：Context／Journey Grid／Key Takeaways＋附錄文件庫）。
+視覺規格（report-generator 設計描述五層面）
+字體：系統字體堆疊（PingFang TC / Microsoft JhengHei），標題 700、內文 400，數字 tabular-nums。
+級距：h1 1.7rem／段標 1.2rem／看板內文 0.84rem／來源與標籤 0.72rem；行高 1.55；Emotions 表情 1.5rem。
+留白：外框 max 1180px、側邊 16px；看板欄寬 250px、列標欄 132px 固定；區塊間距 48px；卡片內距 14px。
+配色：墨藍文字＋冷灰底兩階；階段頭單一藍色系；痛點列淡紅、機會點列淡綠（語意色）；US 藍、US* 琥珀、推論 紫灰虛線、NULL 灰虛線。
+動態：無進場動畫；僅 hover 高亮同一階段欄與文件庫篩選。
+借用層面：看板＝傳統 journey map「階段在欄、泳道在列」，分表帶沿用素材的表 A／B／C 分組；不借外部版型原始碼、無外部資源。
 -->
 <style>
   :root {
-    --surface-1:#fcfcfb; --surface-2:#f4f3f0; --border:#e2e0da;
-    --text-primary:#0b0b0b; --text-secondary:#52514e; --text-muted:#7a7972;
-    --series-1:#2a78d6; --series-2:#eda100; --series-3:#e34948; --series-track:#e2e0da;
-    --on-fill:#fff; --on-amber:#1a1a19;
+    --bg:#f7f8fa; --paper:#ffffff; --band:#eef1f6; --line:#dde2ea;
+    --ink:#18202e; --ink-2:#4a5466; --ink-3:#7c8596;
+    --phase:#2d5bb8; --phase-soft:#e3ebfa; --phase-ink:#ffffff;
+    --pain:#fbeceb; --pain-ink:#b0342c; --opp:#e8f5ec; --opp-ink:#207144;
+    --us:#2d5bb8; --usx:#d99400; --usx-ink:#1d1a10; --inf:#6b5fa6; --quote:#f1f3f8;
+    color-scheme: light;
   }
   @media (prefers-color-scheme: dark) {
-    :root:not([data-theme="light"]) { color-scheme: dark; }
     :root:not([data-theme="light"]) {
-      --surface-1:#1a1a19; --surface-2:#232320; --border:#3a392f;
-      --text-primary:#ffffff; --text-secondary:#c3c2b7; --text-muted:#8f8e85;
-      --series-1:#3987e5; --series-2:#c98500; --series-3:#e66767; --series-track:#3a392f;
+      --bg:#12151b; --paper:#1a1f28; --band:#212733; --line:#2f3746;
+      --ink:#eef1f6; --ink-2:#b6bdcb; --ink-3:#848d9e;
+      --phase:#5f8ee8; --phase-soft:#243352; --phase-ink:#0d1220;
+      --pain:#3a2225; --pain-ink:#f19088; --opp:#1c3326; --opp-ink:#7fd3a0;
+      --us:#5f8ee8; --usx:#e0a526; --usx-ink:#1d1a10; --inf:#b3a8ee; --quote:#232a38;
+      color-scheme: dark;
     }
   }
-  :root[data-theme="light"] {
-    --surface-1:#fcfcfb; --surface-2:#f4f3f0; --border:#e2e0da;
-    --text-primary:#0b0b0b; --text-secondary:#52514e; --text-muted:#7a7972;
-    --series-1:#2a78d6; --series-2:#eda100; --series-3:#e34948; --series-track:#e2e0da;
-  }
   :root[data-theme="dark"] {
+    --bg:#12151b; --paper:#1a1f28; --band:#212733; --line:#2f3746;
+    --ink:#eef1f6; --ink-2:#b6bdcb; --ink-3:#848d9e;
+    --phase:#5f8ee8; --phase-soft:#243352; --phase-ink:#0d1220;
+    --pain:#3a2225; --pain-ink:#f19088; --opp:#1c3326; --opp-ink:#7fd3a0;
+    --us:#5f8ee8; --usx:#e0a526; --usx-ink:#1d1a10; --inf:#b3a8ee; --quote:#232a38;
     color-scheme: dark;
-    --surface-1:#1a1a19; --surface-2:#232320; --border:#3a392f;
-    --text-primary:#ffffff; --text-secondary:#c3c2b7; --text-muted:#8f8e85;
-    --series-1:#3987e5; --series-2:#c98500; --series-3:#e66767; --series-track:#3a392f;
   }
-  * { box-sizing: border-box; }
-  html, body { margin:0; padding:0; background:var(--surface-1); color:var(--text-primary);
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--bg); color:var(--ink);
     font-family: system-ui, -apple-system, "Segoe UI", "PingFang TC", "Microsoft JhengHei", sans-serif;
-    font-variant-numeric: tabular-nums; line-height:1.6; font-size:0.92rem; scroll-behavior:smooth; }
-  .page { max-width:980px; margin:0 auto; padding:32px 20px 90px; }
-  h1 { font-size:1.6rem; margin:0 0 6px; }
-  h2 { font-size:1.15rem; margin:44px 0 12px; border-bottom:1px solid var(--border); padding-bottom:8px; scroll-margin-top:60px; }
-  h3 { font-size:1rem; margin:0 0 10px; }
-  a { color:var(--series-1); text-decoration:none; } a:hover { text-decoration:underline; }
-  code { background:var(--surface-2); padding:1px 5px; border-radius:4px; font-size:0.85em; }
-  .meta { color:var(--text-muted); font-size:0.82rem; margin:0 0 16px; }
-  .scenario { background:var(--surface-2); border-left:3px solid var(--series-1); border-radius:0 8px 8px 0; padding:12px 16px; margin-bottom:16px; font-size:0.88rem; color:var(--text-secondary); }
-  .scenario ul { margin:6px 0 0; padding-left:1.1em; } .scenario li { margin-bottom:3px; }
-  .note { font-size:0.82rem; color:var(--text-muted); background:var(--surface-2); border-radius:8px; padding:8px 12px; margin:10px 0; }
-  .tldr { background:var(--surface-2); border:1px solid var(--border); border-radius:12px; padding:18px 22px; margin-bottom:12px; }
-  .tldr ul { margin:0; padding-left:1.1em; } .tldr li { margin-bottom:7px; } .tldr li:last-child { margin-bottom:0; }
-  .tldr b { color:var(--series-1); }
-  .tiles { display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:12px; margin:16px 0; }
-  .tile { background:var(--surface-2); border:1px solid var(--border); border-radius:10px; padding:12px 16px; }
-  .tile .label { font-size:0.76rem; color:var(--text-muted); margin-bottom:2px; }
-  .tile .value { font-size:1.6rem; font-weight:700; color:var(--series-1); }
-  .tile .value.warn { color:var(--series-2); } .tile .value.bad { color:var(--series-3); }
+    line-height:1.55; font-size:0.92rem; font-variant-numeric:tabular-nums; }
+  .wrap { max-width:1180px; margin:0 auto; padding-inline:16px; padding-block:28px 80px; }
+  a { color:var(--phase); text-decoration:none; } a:hover { text-decoration:underline; }
+  a:focus-visible, button:focus-visible, summary:focus-visible { outline:2px solid var(--phase); outline-offset:2px; }
+  code { background:var(--band); padding:1px 5px; border-radius:4px; font-size:0.85em; }
 
-  .stagenav { position:sticky; top:0; z-index:5; background:var(--surface-1); border-bottom:1px solid var(--border); margin:0 -20px; padding:8px 20px; display:flex; gap:6px; flex-wrap:wrap; }
-  .stagenav a { font-size:0.78rem; padding:3px 10px; border:1px solid var(--border); border-radius:20px; background:var(--surface-2); color:var(--text-secondary); }
-  .stagenav a:hover { text-decoration:none; border-color:var(--series-1); color:var(--series-1); }
+  header.top { display:flex; flex-direction:column; gap:6px; margin-bottom:8px; }
+  .eyebrow { font-size:0.72rem; letter-spacing:0.08em; color:var(--ink-3); text-transform:uppercase; }
+  h1 { font-size:1.7rem; margin:0; text-wrap:balance; }
+  .src { font-size:0.78rem; color:var(--ink-3); }
+  .legend { display:flex; flex-wrap:wrap; gap:6px 14px; font-size:0.78rem; color:var(--ink-2); margin-top:8px; }
+  .legend span { display:inline-flex; align-items:center; gap:5px; }
+  .about { font-size:0.8rem; color:var(--ink-2); margin-top:4px; }
+  .about summary { cursor:pointer; color:var(--ink-3); }
+  .about ul { margin:6px 0 0; padding-left:1.2em; }
 
-  .tw { overflow-x:auto; -webkit-overflow-scrolling:touch; }
-  table { border-collapse:collapse; width:100%; margin:10px 0; font-size:0.85rem; }
-  th,td { padding:7px 10px; border-bottom:1px solid var(--border); text-align:left; vertical-align:top; }
-  th { color:var(--text-secondary); font-size:0.78rem; font-weight:600; white-space:nowrap; }
-  tbody tr:hover { background:var(--surface-2); }
+  section.part { margin-top:44px; }
+  .part-hd { margin-bottom:14px; border-bottom:1px solid var(--line); padding-bottom:8px; }
+  .part-hd h2 { font-size:1.2rem; margin:0; text-wrap:balance; }
+  .hint { font-size:0.78rem; color:var(--ink-3); margin:0 2px 10px; }
+
+  /* ---------- Context ---------- */
+  .ctx { display:grid; grid-template-columns:1.4fr 1fr; gap:14px; align-items:start; }
+  @media (max-width:760px) { .ctx { grid-template-columns:1fr; } }
+  .ctx-stack { display:grid; gap:14px; }
+  .ctx-card { background:var(--paper); border:1px solid var(--line); border-radius:12px; padding:14px 16px; min-width:0; }
+  .ctx-card .k { font-size:0.72rem; letter-spacing:0.06em; color:var(--ink-3); text-transform:uppercase; }
+  .ctx-card .t { font-weight:700; margin:3px 0 8px; font-size:1rem; }
+  .ctx-stack .ctx-card .t { font-weight:500; }
+  .ctx-card .facet { display:grid; gap:2px; margin-top:10px; font-size:0.86rem; }
+  .ctx-card .facet b { color:var(--ink-2); font-size:0.78rem; }
+
+  /* ---------- Journey board ---------- */
+  .board-wrap { overflow-x:auto; border:1px solid var(--line); border-radius:14px; background:var(--paper); }
+  .board { display:grid; grid-template-columns:132px repeat(var(--n), minmax(250px, 1fr)); min-width:calc(132px + var(--n) * 250px); font-size:0.84rem; }
+  .board > div { padding:10px 12px; border-bottom:1px solid var(--line); border-left:1px solid var(--line); min-width:0; }
+  .board .rl { position:sticky; left:0; z-index:2; background:var(--band); border-left:none; font-weight:700; color:var(--ink-2); font-size:0.8rem; }
+  .board .rl small { display:block; font-weight:400; color:var(--ink-3); font-size:0.72rem; }
+  .board .last { border-bottom:none; }
+
+  .grp { background:var(--band); font-size:0.74rem; color:var(--ink-3); padding-block:5px !important; letter-spacing:0.02em; }
+  .ph { background:var(--phase-soft); position:relative; }
+  .ph .code { display:inline-block; min-width:26px; text-align:center; font-weight:800; background:var(--phase); color:var(--phase-ink); border-radius:6px; padding:1px 7px; margin-right:6px; }
+  .ph .nm { font-weight:700; }
+  .ph .nm small { display:block; font-weight:400; color:var(--ink-2); font-size:0.74rem; margin-top:4px; }
+  .ph.support { background:repeating-linear-gradient(135deg, var(--phase-soft) 0 8px, var(--band) 8px 16px); }
+  .ph .arw { position:absolute; right:-9px; top:50%; transform:translateY(-50%); z-index:1; width:16px; height:16px; background:var(--phase); color:var(--phase-ink); border-radius:50%; font-size:10px; line-height:16px; text-align:center; }
+
+  .steps { margin:0; padding-left:1.25em; } .steps li { margin-bottom:3px; }
+  .cite { margin-top:7px; font-size:0.72rem; color:var(--ink-3); line-height:1.5; }
+  .cite a { color:var(--ink-3); text-decoration:underline; text-decoration-color:var(--line); }
+  .cite a:hover { color:var(--phase); }
+  .q { display:block; background:var(--quote); border-radius:10px 10px 10px 2px; padding:6px 9px; font-weight:600; margin:4px 0 2px; }
+  .emo { font-size:1.5rem; line-height:1.2; display:block; }
+  .emo-w { font-weight:700; } .emo-w .mk { margin-left:5px; }
+  .r-pain { background:var(--pain); } .board .r-pain.rl { background:var(--band); color:var(--pain-ink); }
+  .r-opp { background:var(--opp); } .board .r-opp.rl { background:var(--band); color:var(--opp-ink); }
+  .col-hover { box-shadow:inset 0 0 0 2px var(--phase-soft); }
+
+  .mk { display:inline-block; font-size:0.66rem; font-weight:700; line-height:1; padding:3px 5px; border-radius:4px; margin-right:3px; vertical-align:1px; white-space:nowrap; }
+  .mk.us { background:var(--us); color:var(--paper); }
+  .mk.usx { background:var(--usx); color:var(--usx-ink); }
+  .mk.inf { color:var(--inf); border:1px dashed var(--inf); }
+  .mk.null { color:var(--ink-3); border:1px dashed var(--ink-3); }
+
+  /* ---------- Takeaways ---------- */
+  .tk { display:grid; grid-template-columns:repeat(2, minmax(0, 1fr)); gap:14px; align-items:stretch; }
+  @media (max-width:640px) { .tk { grid-template-columns:1fr; } }
+  .tk-card { background:var(--paper); border:1px solid var(--line); border-radius:12px; padding:14px 16px; min-width:0; }
+  .tk-card h3 { margin:0; font-size:1rem; }
+  .tk-card .sub { font-size:0.74rem; color:var(--ink-3); margin-bottom:8px; }
+  .tk-card.risk { border-top:3px solid var(--pain-ink); }
+  .tk-card.aha { border-top:3px solid var(--opp-ink); }
+  .tk-card.next { border-top:3px solid var(--phase); grid-column:1 / -1; }
+  .tk-card ol { margin:0; padding-left:1.3em; } .tk-card li { margin-bottom:7px; }
+
+  /* ---------- Appendix ---------- */
+  .filters { display:flex; flex-wrap:wrap; gap:6px; margin:4px 0 10px; }
+  .filters button { font:inherit; font-size:0.78rem; padding:3px 11px; border:1px solid var(--line); border-radius:20px; background:var(--paper); color:var(--ink-2); cursor:pointer; }
+  .filters button.on { background:var(--phase); border-color:var(--phase); color:var(--phase-ink); }
+  .tw { overflow-x:auto; }
+  table { border-collapse:collapse; width:100%; font-size:0.84rem; background:var(--paper); }
+  th, td { padding:7px 10px; border-bottom:1px solid var(--line); text-align:left; vertical-align:top; }
+  th { color:var(--ink-2); font-size:0.76rem; white-space:nowrap; background:var(--band); }
   td.k { font-weight:600; white-space:nowrap; }
+  .ids a { display:inline-block; margin:0 8px 2px 0; font-family:ui-monospace, Menlo, Consolas, monospace; font-size:0.78rem; }
+  .none { color:var(--ink-3); }
+  h3.ap { font-size:0.95rem; margin:18px 0 8px; }
+  .shared { display:grid; grid-template-columns:repeat(auto-fit, minmax(240px, 1fr)); gap:4px 16px; font-size:0.84rem; }
+  .list { padding-left:1.2em; margin:6px 0; font-size:0.86rem; } .list li { margin-bottom:6px; }
 
-  .mk { display:inline-block; font-size:0.7rem; font-weight:700; line-height:1; padding:3px 6px; border-radius:4px; margin-right:4px; vertical-align:1px; }
-  .mk.us { background:var(--series-1); color:var(--on-fill); }
-  .mk.usx { background:var(--series-2); color:var(--on-amber); }
-  .mk.null { background:transparent; color:var(--text-muted); border:1px dashed var(--text-muted); }
-  .mk.none { background:transparent; color:var(--text-muted); border:1px solid var(--border); font-weight:500; }
-
-  .chart { background:var(--surface-2); border:1px solid var(--border); border-radius:12px; padding:12px 8px 6px; }
-  .chart svg { width:100%; height:auto; display:block; }
-  .chart text { fill:var(--text-secondary); font-size:11px; }
-  .chart .axis { stroke:var(--border); } .chart .ln { stroke:var(--series-1); fill:none; stroke-width:2.2; }
-  .chart .band { fill:var(--surface-1); } .chart .pt { fill:var(--series-1); stroke:var(--surface-2); stroke-width:2; }
-  .chart .pt.low { fill:var(--series-3); } .chart .sc { fill:var(--text-primary); font-weight:700; font-size:12px; text-anchor:middle; }
-  .chart .sec { font-weight:700; fill:var(--text-primary); text-anchor:middle; }
-  .chart .tk { text-anchor:middle; }
-
-  .flow { display:flex; flex-wrap:wrap; gap:8px; align-items:stretch; margin:14px 0 4px; }
-  .flow .st { flex:1 1 105px; background:var(--surface-2); border:1px solid var(--border); border-radius:10px; padding:8px 10px; color:var(--text-primary); position:relative; }
-  .flow .st:hover { text-decoration:none; border-color:var(--series-1); }
-  .flow .st .n { font-size:0.7rem; color:var(--text-muted); } .flow .st .t { font-weight:700; }
-  .flow .st .s { font-size:0.72rem; color:var(--text-secondary); }
-  .flow .st.support { border-style:dashed; }
-  .flow .arrow { align-self:center; color:var(--text-muted); }
-
-  .matrix td, .matrix th { text-align:center; padding:6px 6px; }
-  .matrix td.k, .matrix th:first-child { text-align:left; }
-  .matrix .absent { color:var(--text-muted); }
-  .matrix .cell { display:flex; gap:3px; justify-content:center; flex-wrap:wrap; }
-
-  .stage { border:1px solid var(--border); border-radius:12px; margin:18px 0; overflow:hidden; scroll-margin-top:60px; }
-  .stage > .hd { background:var(--surface-2); padding:12px 16px; border-bottom:1px solid var(--border); display:flex; justify-content:space-between; gap:10px; flex-wrap:wrap; align-items:baseline; }
-  .stage > .hd .sc { font-size:0.78rem; color:var(--text-secondary); }
-  .lane { display:grid; grid-template-columns:96px 1fr 1fr; gap:0; border-bottom:1px solid var(--border); }
-  .lane:last-child { border-bottom:none; }
-  .lane > div { padding:9px 14px; }
-  .lane .ln-name { font-weight:700; color:var(--text-secondary); background:var(--surface-2); }
-  .lane .src { color:var(--text-secondary); font-size:0.82rem; border-left:1px dashed var(--border); }
-  .lane.pain .ln-name { color:var(--series-3); }
-  .lane.opp .ln-name { color:var(--series-1); }
-  .steps { display:flex; flex-wrap:wrap; gap:6px; align-items:center; }
-  .steps .step { background:var(--surface-2); border:1px solid var(--border); border-radius:20px; padding:2px 10px; font-size:0.82rem; }
-  .steps .ar { color:var(--text-muted); font-size:0.8rem; }
-  .nullc { color:var(--text-muted); }
-  @media (max-width:640px) { .lane { grid-template-columns:1fr; } .lane .src { border-left:none; border-top:1px dashed var(--border); } }
-
-  .filters { display:flex; flex-wrap:wrap; gap:6px; margin:8px 0; }
-  .filters button { font:inherit; font-size:0.78rem; padding:3px 11px; border:1px solid var(--border); border-radius:20px; background:var(--surface-2); color:var(--text-secondary); cursor:pointer; }
-  .filters button.on { background:var(--series-1); border-color:var(--series-1); color:var(--on-fill); }
-  .ids a { display:inline-block; margin:0 8px 2px 0; font-size:0.8rem; font-family:ui-monospace,Menlo,Consolas,monospace; }
-  .list { padding-left:1.2em; margin:6px 0; } .list li { margin-bottom:6px; }
-  .blank { border:2px dashed var(--border); border-radius:12px; min-height:180px; display:flex; align-items:center; justify-content:center; text-align:center; color:var(--text-muted); padding:24px; background:var(--surface-2); }
-  .theme-toggle { position:fixed; top:calc(10px + env(safe-area-inset-top, 0px)); right:14px; z-index:9; background:var(--surface-2); border:1px solid var(--border); border-radius:20px; padding:5px 11px; font-size:0.75rem; cursor:pointer; color:var(--text-secondary); }
+  .theme-toggle { position:fixed; top:calc(10px + env(safe-area-inset-top, 0px)); right:12px; z-index:9; background:var(--paper); border:1px solid var(--line); border-radius:20px; padding:5px 11px; font:inherit; font-size:0.75rem; cursor:pointer; color:var(--ink-2); }
 </style>
-</head>
-<body>
-<button class="theme-toggle" onclick="toggleTheme()">🌓 切換深淺色</button>
-<div class="page">
 
-<h1 id="ttl"></h1>
-<div class="meta">來源：<code>user-journey/recruiter_journey_map.md</code>　腳本：<code>html/step1_parse_journey.py</code> → <code>html/step2_build_report.py</code>（可重跑）</div>
-<div class="scenario" id="legend"></div>
+<button class="theme-toggle" id="theme-toggle" type="button">深淺色</button>
+<div class="wrap">
 
-<div class="tldr"><ul id="tldr"></ul></div>
-<div class="tiles" id="tiles"></div>
+<header class="top">
+  <div class="eyebrow" id="eyebrow">User Journey Map</div>
+  <h1 id="ttl"></h1>
+  <div class="src">素材：<code>user-journey/recruiter_journey_map.md</code>（文件助手維護）　建置：<code>html/step1_parse_journey.py</code> → <code>html/step2_build_report.py</code></div>
+  <div class="legend">
+    <span><span class="mk us">US</span>真實 User Story</span>
+    <span><span class="mk usx">US*</span>套版句（只證明功能存在）</span>
+    <span><span class="mk inf">推論</span>依同格文件事實推出</span>
+    <span><span class="mk null">NULL</span>文件未載也無可推論</span>
+    <span>無標記＝文件明載（附連結）</span>
+  </div>
+  <details class="about"><summary>素材說明</summary><ul id="about"></ul></details>
+</header>
 
-<h2 id="persona"></h2>
-<div class="tw"><table id="persona-table"></table></div>
+<section class="part" id="context">
+  <div class="part-hd"><h2 id="ctx-h"></h2></div>
+  <div class="ctx" id="ctx"></div>
+</section>
 
-<h2 id="route"></h2>
-<div class="tw"><table id="route-table"></table></div>
+<section class="part" id="grid">
+  <div class="part-hd"><h2 id="grid-h"></h2></div>
+  <p class="hint" id="grid-intro"></p>
+  <div class="board-wrap"><div class="board" id="board"></div></div>
+  <p class="hint" style="margin-top:8px">看板可左右捲動，列標固定；滑過任一格會標出同一階段欄。</p>
+</section>
 
-<h2 id="overview"></h2>
-<div class="flow" id="flow"></div>
-<div class="chart" id="chart"></div>
-<div class="note" id="score-note"></div>
+<section class="part" id="takeaways">
+  <div class="part-hd"><h2 id="tk-h"></h2></div>
+  <div class="tk" id="tk"></div>
+</section>
 
-<h2 id="stages"></h2>
-<div class="blank" id="lanes-blank"></div>
-
-<h2 id="docs"></h2>
-<div class="filters" id="filters"></div>
-<div class="tw"><table id="doc-table"></table></div>
-<p style="color:var(--text-secondary)"><b>跨階段共用元件</b>（不屬單一階段）：</p>
-<div class="ids" id="shared"></div>
-
-<h2 id="gaps"></h2>
-<ul class="list" id="gap-list"></ul>
-
-<h2>方法與限制</h2>
-<ul class="list">
-  <li>本頁只搬運 <code>recruiter_journey_map.md</code>：標題、階段編碼、<code>US</code>／<code>US*</code>／<code>NULL</code> 標記一律照素材原樣，不自編編號、不改寫、不推測補齊。</li>
-  <li>「相對分數」來自素材「總覽」的 mermaid journey，素材已註明是依文件記載的痛點多寡相對標示，<b>不是用戶研究數據</b>。</li>
-  <li>各階段泳道依指示改按「各頁面 sub user flow」繪製，內容待文件助手以 md 提供，本頁目前留白，不沿用舊的 module 層級泳道。</li>
-  <li>圖片／標註示意圖不在本專案 HTML 範圍（見 <code>user-journey/README.md</code>）；連結指向 <code>hackmd.io/@1111-jobdocs/&lt;shortId&gt;</code>，未驗證連結是否可開。</li>
-</ul>
+<section class="part" id="library">
+  <div class="part-hd"><h2 id="ap-h"></h2></div>
+  <h3 class="ap" id="doc-h"></h3>
+  <div class="filters" id="filters" role="group" aria-label="依階段篩選"></div>
+  <div class="tw"><table id="doc-table"></table></div>
+  <h3 class="ap">跨階段共用元件</h3>
+  <div class="shared" id="shared"></div>
+  <h3 class="ap" id="gap-h"></h3>
+  <ul class="list" id="gap-list"></ul>
+</section>
 
 </div>
 <script>
-const DATA = {"title": "求才端 User Journey Map（招募人員）", "head_bullets": ["來源：反向工程自 [求才系統 Sitemap](https://hackmd.io/@1111-jobdocs/rkGFjjlPWe) 的 module 順序＋團隊 HackMD 規格內的 User Story／Use Case／需求背景（2026-09-30 擷取，377 份中求才端約 120 份）。", "方法與格式規則：`.claude/skills/user-journey-map/SKILL.md`。", "標記：`US` = 文件內真實 User Story；`US*` = 套版句「以便提高求才效率」（只證明功能存在，不證明動機）；`NULL` = 文件未記載，不推測。", "連結前綴：`https://hackmd.io/@1111-jobdocs/<shortId>`，下表只寫 shortId 文字。"], "headings": {"Persona": "Persona 與情境", "路由": "路由（找資料先看這裡）", "總覽": "總覽", "各階段": "各階段", "文件關係": "文件關係（階段 → 功能 → 文件）", "缺口": "缺口（寫 journey 時發現）"}, "persona": [["角色", "企業 HR／招募人員（主帳號可開副帳號、分群組與權限）"], ["目標", "從開通帳號到把人招進來：建立公司門面 → 刊登職缺 → 找人／收履歷 → 聯繫邀約面試 → 錄取 → 回看成效"], ["主要變體", "VIP／免費VIP／關權／到期（刊登與權限不同，見 [B.4 刊登設定](https://hackmd.io/@1111-jobdocs/ryEY3vBZbl)、[REF 系統代碼表](https://hackmd.io/@1111-jobdocs/B1j3sN-bzx) `oStatus`）；Cake 特殊廠商（部分人才功能不可用，見 [A.1 Topbar](https://hackmd.io/@1111-jobdocs/Hym116n3-x) Cake 情境）"], ["支援泳道", "`服務`（說明頁、文件下載、滿意度）與 `購買`（續約、優先排序、簡訊加值）可在任何階段插入，不在主線"]], "route": {"head": ["編碼", "HackMD 資料夾", "文件數", "本檔章節", "Sitemap", "起手文件"], "rows": [["J", "`求才系統/J. 登入流程與登入前`", "9", "[J. 登入](#J-登入)", "第1節", "r11ad8Okfe（登入前頁）"], ["A", "`求才系統/A. 首頁`", "12", "[A. 首頁](#A-首頁)", "第2節", "Hym116n3-x（A.1 topbar）"], ["B", "`B. 公司`＋`B.2 帳號設定`＋`B.4 刊登設定`", "23", "[B. 公司](#B-公司（公司資料-→-設定）)", "第3節", "S1jhD6RRbe（B.1）"], ["C", "`C. 職缺`", "13", "[C. 職缺](#C-職缺)", "第4節", "S1SfBeXxfe（2.2 新增職缺）"], ["D", "`求才系統/D. 人才`", "21", "[D. 人才](#D-人才（履歷-→-搜尋）)", "第5節", "HyYq_GgXWl（履歷詳細頁）"], ["E", "`E. 聯繫`＋`信件即時通合併專案`", "9＋12", "[E. 聯繫](#E-聯繫)", "第6節", "BJ0R8ocgGl（E.1 聯絡人才）"], ["5", "`求才系統/5. 紀錄`", "4", "[5. 紀錄](#5-紀錄)", "第7節", "S13Zy8rKze（5.5 人才點數）"], ["6／7", "`求才系統/6. 服務`、`求才系統/7. 購買`", "2＋3", "[6. 服務／7. 購買](#6-服務／7-購買（支援泳道）)", "第8、9節", "ByKdpLaWZe（7.1 線上續約）"], ["共用", "`M. Modal&Lightbox`、`[REF]` 代碼表", "15＋", "〈文件關係〉末段", "—", "B1j3sN-bzx（REF 系統代碼表）"]]}, "journey": {"title": "求才端招募旅程（Sitemap module 由左至右）", "sections": [{"name": "J 登入", "tasks": [{"name": "登入與雙重驗證", "score": 3, "actor": "招募人員"}]}, {"name": "A 首頁", "tasks": [{"name": "看刊登狀態與今日面試", "score": 4, "actor": "招募人員"}]}, {"name": "B 公司", "tasks": [{"name": "建立公司資料", "score": 3, "actor": "招募人員"}, {"name": "開副帳號與權限", "score": 3, "actor": "招募人員"}]}, {"name": "C 職缺", "tasks": [{"name": "新增與管理職缺", "score": 3, "actor": "招募人員"}]}, {"name": "D 人才", "tasks": [{"name": "收主投履歷", "score": 4, "actor": "招募人員"}, {"name": "主動搜尋人才", "score": 3, "actor": "招募人員"}]}, {"name": "E 聯繫", "tasks": [{"name": "發邀約與對話", "score": 2, "actor": "招募人員"}, {"name": "面試行事曆", "score": 3, "actor": "招募人員"}]}, {"name": "5 紀錄", "tasks": [{"name": "回看使用與成效", "score": 3, "actor": "招募人員"}]}], "note": "分數是依文件記載的痛點多寡**相對標示**（聯繫階段痛點最多），不是用戶研究數據；沒有 UX 研究佐證。"}, "stage_names": ["J. 登入", "A. 首頁", "B. 公司（公司資料 → 設定）", "C. 職缺", "D. 人才（履歷 → 搜尋）", "E. 聯繫", "5. 紀錄", "6. 服務／7. 購買（支援泳道）"], "docmap": [{"stage": "J 登入", "func": "登入前頁／試搜", "docs": ["r11ad8Okfe", "Sk4CnTjgMg", "Hyt5LqcyMl"]}, {"stage": "J 登入", "func": "登入／驗證／找回", "docs": ["rych3fo0bl", "HJb5FnCGZg", "rk0aZy0aZg", "ryqrsG2lWg", "HJT3dH_vWg", "SJNKOS_D-g"]}, {"stage": "A 首頁", "func": "Topbar", "docs": ["Hym116n3-x", "HkTiVy7Z-e", "SJsQkWsWbg", "ryik5PAZWl", "SkJEsXNWMx"]}, {"stage": "A 首頁", "func": "首頁區塊", "docs": ["Bye3E5tl-g", "HJIK-sUGbe", "B1MejWhvGl", "BkIIbQYfWe"]}, {"stage": "B 公司", "func": "公司資料", "docs": ["S1jhD6RRbe", "ryUoKHCG-e", "SJhAVOy8Wg", "SkztPlKsbx", "Sy6vKV4FZx", "Hk7HExLUWx", "HJvhE8BFWe", "BJEWK648bx", "S1HPE5EU-e", "ByA4t_-cZg", "H1ZbConBbl", "HkSJkuy8bx"]}, {"stage": "B 公司", "func": "設定", "docs": ["SkfafU2WZg", "BytSsxD8be", "Bk1uH5fXbx", "BJGdoePUWl", "SyKtjeP8We", "rkciNnFHMg", "SkdiYvsnZe", "S1G_8GQbZe", "ryEY3vBZbl", "Bkw7pIVLbx", "By5Eo8NvZx", "SJ0mjWHvZx"]}, {"stage": "C 職缺", "func": "建立", "docs": ["S1SfBeXxfe", "HJW-MWp4Wg", "Bk854rrtGe", "BJATOLPwbx", "B1bkIvMhZx", "BJ7Yob8W-g（職缺內容欄位）"]}, {"stage": "C 職缺", "func": "管理", "docs": ["HJvxSmNMWe", "B1pOwHZQ-e", "rJvOFkwFbl", "HkHIwU8Y-x", "r1AirkvF-x", "B1Srfpi7bg", "rJ5KsWEG-e", "Sy7bgNuzZg"]}, {"stage": "D 人才", "func": "履歷", "docs": ["ry9S7kjuWe", "S1I24H-lzl", "Byy7rOTM-x", "B19dalQ-Zx", "rkMnZsqu-g", "SJ5oUbXv-g", "rk8RQxMXzg", "rkkn5BZQ-g", "B1jNIrMBZl", "HyYq_GgXWl", "H18Vo3zyMx"]}, {"stage": "D 人才", "func": "搜尋", "docs": ["r1TBqJjeGx", "Bk06kDtf-l", "BkMNTH_Pfe", "Syn7AN87Wl", "SJleDiy9bl", "SkyLndUmWe", "BkCVW1nXbg", "SyvesCVEbg", "rygtdmRNZl"]}, {"stage": "E 聯繫", "func": "發通知", "docs": ["r1qJb-uXbx", "S1XwSUPBZg", "H1OpoEs7fe", "SJ8KDMo8fl", "HyDIQwJUWg", "BJt1Rj59Ze", "BkXGV4BW-e"]}, {"stage": "E 聯繫", "func": "對話（整併專案）", "docs": ["BJ0R8ocgGl", "ry_GPNuZze", "Hk3SOQrFfg", "rJkyKgeGWl", "r1ghrPxP-x", "BJmM2cDGfl", "SJJY3isYZe", "r1eNVEfmMx", "Hk87bluGMg", "SkKwqvUFfg", "SJsYLtmr-g"]}, {"stage": "E 聯繫", "func": "面試", "docs": ["HydajKbPfl", "Sy70gCPKGe"]}, {"stage": "5 紀錄", "func": "紀錄", "docs": ["rJ5Bp4RE-g", "S1-Wt68M-e", "SJeZiGSMbx", "S13Zy8rKze", "Sk4AvcZ-We"]}, {"stage": "6／7 服務購買", "func": "服務／購買", "docs": ["Sk5kyX6ubx", "S1fR49Fg-l", "ByKdpLaWZe", "HJzsieKfWe", "HJD1Eu0c-e", "Hy95Qz7g-e", "SJtErv_lZl", "rynOybVWZx"]}], "shared": "無權限Alert ryACpaCAWe、帳號選擇 S13ZYP9jbg、群組選擇 ByhoS3trGg、職缺選單 r1jXRIzqGg、現版職缺選擇 BkxSWZuGWx、通訊錄 B1iOzIB9-e、新增封鎖 H1guSxywZe、代碼參考 B1j3sN-bzx／ryjSpM-tzg", "gaps": ["約 30 份文件的 User Story 是套版句「以便提高求才效率」，沒有寫出真正動機（如 A.2、A.4、5.x、3.2.x、7.x）——這些階段的「目標」只能標 US*。", "全部文件都**沒有情緒／想法**的記載（沒有訪談或可用性測試資料），情緒曲線只能從「抱怨」「客服反映」推。", "`紀錄` 階段沒有任何痛點或動機記載。", "Sitemap 上沒掛文件連結、這次也沒找到對應規格的頁面：公司相關訊息、上傳檔案、職缺同步、自動更新、職缺所屬群組、匯入名單、還原刪除履歷、問題履歷回報、即時通記錄、簡訊通知紀錄、帳號使用紀錄（除購買紀錄外）。"]};
+const DATA = {"title": "求才端 User Journey Map（招募人員）", "head_bullets": ["來源：反向工程自 [求才系統 Sitemap](https://hackmd.io/@1111-jobdocs/rkGFjjlPWe) 的 module 順序＋團隊 HackMD 規格內的 User Story／Use Case／需求背景（2026-09-30 擷取，377 份中求才端約 120 份）。", "方法與格式規則：`.claude/skills/user-journey-map/SKILL.md`。", "標記：`US` = 文件內真實 User Story；`US*` = 套版句「以便提高求才效率」（只證明功能存在，不證明動機）；`NULL` = 文件未記載，不推測。", "連結前綴：`https://hackmd.io/@1111-jobdocs/<shortId>`，下表只寫 shortId 文字。"], "context": {"heading": "1. Context (情境設定)", "items": [{"label": "Persona", "sub": "目標用戶", "text": "企業 HR／招募人員（主帳號可開副帳號、分群組與權限）。", "children": ["核心痛點（文件有載）：面試邀約與即時通兩套工具各自溝通、副帳號通知有兩組設定、限時回應被分開計算而抱怨 [來源](https://hackmd.io/@1111-jobdocs/SJJY3isYZe)；新廠商學習成本高、薪資行情與法規疑問需問客服 [來源](https://hackmd.io/@1111-jobdocs/Hy95Qz7g-e)。", "變體：VIP／免費VIP／關權／到期（刊登與權限不同，見 [B.4 刊登設定](https://hackmd.io/@1111-jobdocs/ryEY3vBZbl)、[REF 系統代碼表](https://hackmd.io/@1111-jobdocs/B1j3sN-bzx)）；Cake 特殊廠商部分人才功能不可用。"]}, {"label": "Scenario & Goal", "sub": "場景與目標", "text": "從開通帳號到把人招進來——建立公司門面 → 刊登職缺 → 收履歷／找人 → 聯繫邀約面試 → 錄取 → 回看成效。`服務`、`購買`不在主線，於任何階段都可能插入（見支援格組）。", "children": []}, {"label": "Journey Type", "sub": "", "text": "Current State 現狀（由既有規格反向工程；第三階段規劃項目只出現在 Opportunities）。", "children": []}], "marker_note": "標記：無標記＝文件明載（附連結）；`〔推論〕`＝依同格所寫文件事實推出；`NULL`＝文件未載也無可推論。`US`＝真實 User Story，`US*`＝套版句「以便提高求才效率」（只證明功能存在）。連結前綴 `https://hackmd.io/@1111-jobdocs/<shortId>`。"}, "grid": {"heading": "2. The Journey Grid (旅程矩陣)", "intro": "階段編碼沿用 HackMD 資料夾編碼；每表最多 4 個階段欄，共 3 張表（表 A：J、A、B；表 B：C、D、E；表 C：5、6／7 支援）。", "groups": [{"title": "表 A｜階段 J、A、B", "start": 0, "count": 3}, {"title": "表 B｜階段 C、D、E", "start": 3, "count": 3}, {"title": "表 C｜階段 5、6／7（支援）", "start": 6, "count": 2}], "lanes": [{"en": "User Actions", "zh": "用戶行為"}, {"en": "Touchpoints", "zh": "接觸點"}, {"en": "Thoughts", "zh": "內心 OS"}, {"en": "Emotions", "zh": "情緒感受"}, {"en": "Pain Points", "zh": "痛點/摩擦力"}, {"en": "Opportunities", "zh": "產品機會點"}, {"en": "Metrics", "zh": "衡量指標"}], "stages": [{"name": "J 登入", "code": "J", "cells": {"User Actions": "登入前試搜人才 → 登入 → 雙重驗證（Email 連結）→ 忘記帳號／密碼時重設<br>[試搜](https://hackmd.io/@1111-jobdocs/Sk4CnTjgMg)、[登入](https://hackmd.io/@1111-jobdocs/rych3fo0bl)、[雙重驗證](https://hackmd.io/@1111-jobdocs/ryqrsG2lWg)、[忘記密碼](https://hackmd.io/@1111-jobdocs/HJT3dH_vWg)", "Touchpoints": "login.aspx、AgentVerify.aspx、AgentVerifyCheck.aspx（Sitemap 第1節）", "Thoughts": "〔推論〕「我沒有信箱，怎麼驗證？」依據：客服反映部分廠商沒有信箱，無法通過現行驗證 [同步會議 2026.04.08](https://hackmd.io/@1111-jobdocs/Sk8KaX73Wl)", "Emotions": "🤔 困惑〔推論〕依據同上", "Pain Points": "部分廠商沒有信箱，新驗證機制造成登入困難（客服反映）[來源](https://hackmd.io/@1111-jobdocs/Sk8KaX73Wl)", "Opportunities": "登入異常統一 Alert；登入前智能客服（每日 3 次）<br>[特殊狀態與Alert](https://hackmd.io/@1111-jobdocs/HJb5FnCGZg)、[智能客服](https://hackmd.io/@1111-jobdocs/Hy95Qz7g-e)", "Metrics": "〔推論〕登入成功率（含雙重驗證完成率）；依據：雙重驗證為登入必經步驟"}}, {"name": "A 首頁", "code": "A", "cells": {"User Actions": "看快訊與刊登狀態 → 點近期修改職缺 → 看今日面試／匯出行事曆 → 人才秒搜<br>[A.2&A.3](https://hackmd.io/@1111-jobdocs/Bye3E5tl-g)、[A.4](https://hackmd.io/@1111-jobdocs/HJIK-sUGbe)、[A.5](https://hackmd.io/@1111-jobdocs/B1MejWhvGl)、[A.10](https://hackmd.io/@1111-jobdocs/BkIIbQYfWe)", "Touchpoints": "首頁；Topbar（公告、通知、帳號選單、異常狀態列）（Sitemap 第2節）<br>[A.1](https://hackmd.io/@1111-jobdocs/Hym116n3-x)、[A.1.7](https://hackmd.io/@1111-jobdocs/SkJEsXNWMx)", "Thoughts": "NULL", "Emotions": "NULL", "Pain Points": "會員／刊登異常不易察覺（異常狀態列存在的理由）US [A.1.7](https://hackmd.io/@1111-jobdocs/SkJEsXNWMx)", "Opportunities": "Topbar 通知收斂為只剩來訪人才（第三階段）[來源](https://hackmd.io/@1111-jobdocs/Hk3SOQrFfg)", "Metrics": "〔推論〕首頁區塊點擊率（職缺、面試行事曆）；依據：首頁以入口導流為主"}}, {"name": "B 公司", "code": "B", "cells": {"User Actions": "填基本資料 → 形象／工作環境／產品服務／福利／更多介紹 → 上傳面試須知 → 選版型 → 預覽送審；取公司頁 QR Code；開副帳號、設通知與權限、群組、聯絡人、刊登設定<br>[B.1](https://hackmd.io/@1111-jobdocs/S1jhD6RRbe)、[B.1.3](https://hackmd.io/@1111-jobdocs/SkztPlKsbx)、[B.2](https://hackmd.io/@1111-jobdocs/SkfafU2WZg)、[B.4](https://hackmd.io/@1111-jobdocs/ryEY3vBZbl)", "Touchpoints": "/company/\\*、/settings/\\*、VipSchedule.aspx、PublishEmpGroup.aspx（Sitemap 第3節）", "Thoughts": "NULL", "Emotions": "NULL", "Pain Points": "內部 IP 上傳的圖片有侵權風險，需對外下架 [B.1.4](https://hackmd.io/@1111-jobdocs/Sy6vKV4FZx)", "Opportunities": "三種新增帳號方式（含複製帳號）；刊登設定取代開關天數設定<br>[功能說明頁](https://hackmd.io/@1111-jobdocs/rynOybVWZx)、[新增帳號Modal](https://hackmd.io/@1111-jobdocs/rkciNnFHMg)", "Metrics": "〔推論〕公司資料完成度；依據：B.1 設有填寫進度條"}}, {"name": "C 職缺", "code": "C", "cells": {"User Actions": "快速新增／複製／全新／匯入職缺 → 設應徵過濾 → 總覽多筆操作（更新日期、開關、改工作時間）→ 排序、移轉、排廣告<br>[2.2](https://hackmd.io/@1111-jobdocs/S1SfBeXxfe)、[複製](https://hackmd.io/@1111-jobdocs/HJW-MWp4Wg)、[匯入](https://hackmd.io/@1111-jobdocs/Bk854rrtGe)、[應徵過濾](https://hackmd.io/@1111-jobdocs/r1AirkvF-x)、[2.1 總覽](https://hackmd.io/@1111-jobdocs/HJvxSmNMWe)、[多筆修改](https://hackmd.io/@1111-jobdocs/HkHIwU8Y-x)、[2.3](https://hackmd.io/@1111-jobdocs/B1Srfpi7bg)、[2.4](https://hackmd.io/@1111-jobdocs/rJ5KsWEG-e)、[2.7](https://hackmd.io/@1111-jobdocs/Sy7bgNuzZg)", "Touchpoints": "PublishList／PublishOpening／PublishEmpSort／PublishEmpTrans／BuyScheduleBooking.aspx（Sitemap 第4節）", "Thoughts": "〔推論〕「別家已經刊過了，為什麼要重打？」依據：匯入提案 User Story 要把其他人力銀行職缺直接匯入 [來源](https://hackmd.io/@1111-jobdocs/BJATOLPwbx)", "Emotions": "😤 挫折〔推論〕依據同上", "Pain Points": "在其他人力銀行已刊登的職缺要手動重建 US [來源](https://hackmd.io/@1111-jobdocs/BJATOLPwbx)", "Opportunities": "職缺匯入；AI 職缺審核<br>[匯入提案](https://hackmd.io/@1111-jobdocs/BJATOLPwbx)、[AI審核提案](https://hackmd.io/@1111-jobdocs/B1bkIvMhZx)", "Metrics": "〔推論〕職缺建立完成率、匯入使用率；依據：提案以「不需手動建職缺」為價值"}}, {"name": "D 人才", "code": "D", "cells": {"User Actions": "看主動應徵 → 開履歷詳細頁 → 追蹤／備註／封鎖／轉寄／列印 → 看來訪名單 → AI 推薦／配對／簡易／進階／大專搜尋<br>[3.1.1](https://hackmd.io/@1111-jobdocs/ry9S7kjuWe)、[履歷詳細頁](https://hackmd.io/@1111-jobdocs/HyYq_GgXWl)、[追蹤人才](https://hackmd.io/@1111-jobdocs/r1V8b3ZDWg)、[備註](https://hackmd.io/@1111-jobdocs/rkX_P2qqZl)、[轉寄](https://hackmd.io/@1111-jobdocs/ByoEYp2a-g)、[列印](https://hackmd.io/@1111-jobdocs/SJMq3nfkGe)、[3.2.6](https://hackmd.io/@1111-jobdocs/r1TBqJjeGx)、[3.2.1](https://hackmd.io/@1111-jobdocs/Bk06kDtf-l)、[3.2.3](https://hackmd.io/@1111-jobdocs/Syn7AN87Wl)", "Touchpoints": "ResumePool\\*.aspx、ResumeSearch\\*.aspx、ResumeDetailShow.aspx（Sitemap 第5節）", "Thoughts": "〔推論〕「誰關注了我？數字怎麼對不上？」依據：關注名單設計理念要避免廠商抱怨數字不一致 [來源](https://hackmd.io/@1111-jobdocs/B1jNIrMBZl)", "Emotions": "😤 挫折〔推論〕依據同上", "Pain Points": "來訪名單無法過濾（狀態、日期、性別、年齡）；追蹤名單不能直接刪除；看不到誰關注公司／職缺<br>US [來訪拉皮](https://hackmd.io/@1111-jobdocs/SJ5oUbXv-g)、[追蹤人才](https://hackmd.io/@1111-jobdocs/r1V8b3ZDWg)、[關注名單](https://hackmd.io/@1111-jobdocs/B1jNIrMBZl)", "Opportunities": "關注名單（數字與名單一致）；來訪名單過濾<br>[關注名單](https://hackmd.io/@1111-jobdocs/B1jNIrMBZl)、[來訪拉皮](https://hackmd.io/@1111-jobdocs/SJ5oUbXv-g)", "Metrics": "〔推論〕來訪名單→聯絡轉換率；依據：來訪名單 User Story 目的是「主動接觸有意願的人才」"}}, {"name": "E 聯繫", "code": "E", "cells": {"User Actions": "開通知 Lightbox → 選範本 → 發詢問意願／面試邀約 → 聊天室對話 → 建立／改期／取消面試 → 錄取通知；求職者失約時回報<br>[4.0](https://hackmd.io/@1111-jobdocs/r1qJb-uXbx)、[範本](https://hackmd.io/@1111-jobdocs/SJ8KDMo8fl)、[4.1](https://hackmd.io/@1111-jobdocs/rJkyKgeGWl)、[信件對話](https://hackmd.io/@1111-jobdocs/r1ghrPxP-x)、[第二階段](https://hackmd.io/@1111-jobdocs/ry_GPNuZze)、[4.3](https://hackmd.io/@1111-jobdocs/HydajKbPfl)、[失約回報](https://hackmd.io/@1111-jobdocs/Sy70gCPKGe)", "Touchpoints": "ResumePoolNoticeMail(Detail).aspx、Exemplar.aspx、oInterView.aspx、SMS.aspx、右下角即時通面板（Sitemap 第6節）[即時通面板](https://hackmd.io/@1111-jobdocs/SJsYLtmr-g)", "Thoughts": "〔推論〕「回了怎麼還算沒回應？」依據：即時通與信件分開判斷，廠商抱怨限時回應 [來源](https://hackmd.io/@1111-jobdocs/SJJY3isYZe)", "Emotions": "😤 挫折〔推論〕依據同上", "Pain Points": "兩套工具各自溝通、副帳號通知兩組設定；勾「希望 N 天內回覆」後訊息未顯示期限；範本不能排序置頂；求職者失約<br>[SJJY3isYZe](https://hackmd.io/@1111-jobdocs/SJJY3isYZe)、[信件對話](https://hackmd.io/@1111-jobdocs/r1ghrPxP-x)、US [E.2.1](https://hackmd.io/@1111-jobdocs/HyDIQwJUWg)、US [失約回報](https://hackmd.io/@1111-jobdocs/Sy70gCPKGe)", "Opportunities": "信件＋即時通整併、訊息收回、已讀、附檔；詢問意願與面試邀約拆開；同意面試後自動建立行事曆<br>[SJJY3isYZe](https://hackmd.io/@1111-jobdocs/SJJY3isYZe)、[各階段內容](https://hackmd.io/@1111-jobdocs/r1eNVEfmMx)、[第三階段](https://hackmd.io/@1111-jobdocs/Hk3SOQrFfg)", "Metrics": "面試邀約使用率（文件預期會增加）、限時回應達成率〔推論〕；依據：[SJJY3isYZe](https://hackmd.io/@1111-jobdocs/SJJY3isYZe) 載明預期面試邀約使用率增加、回覆主投者皆計入限時回應"}}, {"name": "5 紀錄", "code": "5", "cells": {"User Actions": "看帳號邀約紀錄 → 履歷瀏覽紀錄 → 帳號使用／購買紀錄 → 數據統計 → 人才點數<br>[5.1](https://hackmd.io/@1111-jobdocs/rJ5Bp4RE-g)、[5.3](https://hackmd.io/@1111-jobdocs/S1-Wt68M-e)、[5.6](https://hackmd.io/@1111-jobdocs/SJeZiGSMbx)、[5.5](https://hackmd.io/@1111-jobdocs/S13Zy8rKze)、[記錄管理](https://hackmd.io/@1111-jobdocs/Sk4AvcZ-We)", "Touchpoints": "Log\\*.aspx（Sitemap 第7節）", "Thoughts": "NULL", "Emotions": "NULL", "Pain Points": "NULL", "Opportunities": "錄取通知作為招募成效數據，與 E 聯繫連動 [來源](https://hackmd.io/@1111-jobdocs/SJJY3isYZe)", "Metrics": "〔推論〕數據統計查詢造訪率；依據：5.6 為成效回看入口（US*，未載動機）"}}, {"name": "6 服務／7 購買（支援，任何階段可插入）", "code": "6", "cells": {"User Actions": "續約 → 購買優先排序／簡訊加值 → 上傳合約；下載文件、填滿意度、問智能客服<br>[7.1](https://hackmd.io/@1111-jobdocs/ByKdpLaWZe)、[7.2](https://hackmd.io/@1111-jobdocs/HJzsieKfWe)、[H.3](https://hackmd.io/@1111-jobdocs/HJD1Eu0c-e)、[A.7.1](https://hackmd.io/@1111-jobdocs/Sk5kyX6ubx)、[6.8](https://hackmd.io/@1111-jobdocs/S1fR49Fg-l)", "Touchpoints": "vipContract.aspx、BuyExposure.aspx、SMSorder.aspx、/download、外部連結（Sitemap 第8、9節）", "Thoughts": "NULL", "Emotions": "NULL", "Pain Points": "合約要另外用 E-mail 寄給客服 US [H.3](https://hackmd.io/@1111-jobdocs/HJD1Eu0c-e)；薪資行情與法規疑問、新廠商學習成本 US [智能客服](https://hackmd.io/@1111-jobdocs/Hy95Qz7g-e)", "Opportunities": "線上合約上傳；智能客服", "Metrics": "〔推論〕線上續約完成率；依據：7.1 為續約入口"}}]}, "takeaways": {"heading": "3. Key Takeaways & PM Action Items", "items": [{"label": "🤩 Aha Moment", "sub": "頓悟時刻", "text": "E 聯繫：求職者同意面試後，系統自動建立面試行事曆，廠商不必再手動排程。選它的證據：整併專案文件明載此為預期價值 [SJJY3isYZe](https://hackmd.io/@1111-jobdocs/SJJY3isYZe)（屬「預期」，文件無實測資料）。", "children": []}, {"label": "⚠️ Biggest Drop-off Risk", "sub": "最大流失風險", "text": "E 聯繫：溝通被拆在兩套工具，限時回應被分開計算。選它的證據：文件載有廠商抱怨與副帳號雙組通知設定 [SJJY3isYZe](https://hackmd.io/@1111-jobdocs/SJJY3isYZe)；聯繫階段記載的痛點最多。", "children": []}, {"label": "🚀 Next Steps", "sub": "下一步行動", "text": "", "children": ["**E 聯繫**：第三階段「面試提醒系統訊息」的觸發時機、文案、收件對象目前皆 `待補` [來源](https://hackmd.io/@1111-jobdocs/Hk3SOQrFfg)，需先定義才能取代舊提醒（對應痛點：兩套工具、面試管理分散）。", "**D 人才**：來訪名單過濾與關注名單併入同一名單，避免人數與名單不一致（對應痛點：來訪名單無法過濾、看不到關注者）。", "**5 紀錄**：補上真實 User Story 與痛點（目前為套版句），否則無法設計成效回看（對應缺口）。", "**全站**：Sitemap 上約 11 個頁面（職缺同步、自動更新、即時通記錄等）沒有規格文件，列入補文件清單。"]}]}, "appendix": {"heading": "附錄｜文件關係與缺口", "doc_heading": "文件關係（階段 → 功能 → 文件）", "docmap": [{"stage": "J 登入", "func": "登入前頁／試搜", "docs": ["r11ad8Okfe", "Sk4CnTjgMg", "Hyt5LqcyMl"]}, {"stage": "J 登入", "func": "登入／驗證／找回", "docs": ["rych3fo0bl", "HJb5FnCGZg", "rk0aZy0aZg", "ryqrsG2lWg", "HJT3dH_vWg", "SJNKOS_D-g"]}, {"stage": "A 首頁", "func": "Topbar", "docs": ["Hym116n3-x", "HkTiVy7Z-e", "SJsQkWsWbg", "ryik5PAZWl", "SkJEsXNWMx"]}, {"stage": "A 首頁", "func": "首頁區塊", "docs": ["Bye3E5tl-g", "HJIK-sUGbe", "B1MejWhvGl", "BkIIbQYfWe"]}, {"stage": "B 公司", "func": "公司資料", "docs": ["S1jhD6RRbe", "ryUoKHCG-e", "SJhAVOy8Wg", "SkztPlKsbx", "Sy6vKV4FZx", "Hk7HExLUWx", "HJvhE8BFWe", "BJEWK648bx", "S1HPE5EU-e", "ByA4t_-cZg", "H1ZbConBbl", "HkSJkuy8bx"]}, {"stage": "B 公司", "func": "設定", "docs": ["SkfafU2WZg", "BytSsxD8be", "Bk1uH5fXbx", "BJGdoePUWl", "SyKtjeP8We", "rkciNnFHMg", "SkdiYvsnZe", "S1G_8GQbZe", "ryEY3vBZbl", "Bkw7pIVLbx", "By5Eo8NvZx", "SJ0mjWHvZx"]}, {"stage": "C 職缺", "func": "建立", "docs": ["S1SfBeXxfe", "HJW-MWp4Wg", "Bk854rrtGe", "BJATOLPwbx", "B1bkIvMhZx", "BJ7Yob8W-g（職缺內容欄位）"]}, {"stage": "C 職缺", "func": "管理", "docs": ["HJvxSmNMWe", "B1pOwHZQ-e", "rJvOFkwFbl", "HkHIwU8Y-x", "r1AirkvF-x", "B1Srfpi7bg", "rJ5KsWEG-e", "Sy7bgNuzZg"]}, {"stage": "D 人才", "func": "履歷", "docs": ["ry9S7kjuWe", "S1I24H-lzl", "Byy7rOTM-x", "B19dalQ-Zx", "rkMnZsqu-g", "SJ5oUbXv-g", "rk8RQxMXzg", "rkkn5BZQ-g", "B1jNIrMBZl", "HyYq_GgXWl", "H18Vo3zyMx"]}, {"stage": "D 人才", "func": "搜尋", "docs": ["r1TBqJjeGx", "Bk06kDtf-l", "BkMNTH_Pfe", "Syn7AN87Wl", "SJleDiy9bl", "SkyLndUmWe", "BkCVW1nXbg", "SyvesCVEbg", "rygtdmRNZl"]}, {"stage": "E 聯繫", "func": "發通知", "docs": ["r1qJb-uXbx", "S1XwSUPBZg", "H1OpoEs7fe", "SJ8KDMo8fl", "HyDIQwJUWg", "BJt1Rj59Ze", "BkXGV4BW-e"]}, {"stage": "E 聯繫", "func": "對話（整併專案）", "docs": ["BJ0R8ocgGl", "ry_GPNuZze", "Hk3SOQrFfg", "rJkyKgeGWl", "r1ghrPxP-x", "BJmM2cDGfl", "SJJY3isYZe", "r1eNVEfmMx", "Hk87bluGMg", "SkKwqvUFfg", "SJsYLtmr-g"]}, {"stage": "E 聯繫", "func": "面試", "docs": ["HydajKbPfl", "Sy70gCPKGe"]}, {"stage": "5 紀錄", "func": "紀錄", "docs": ["rJ5Bp4RE-g", "S1-Wt68M-e", "SJeZiGSMbx", "S13Zy8rKze", "Sk4AvcZ-We"]}, {"stage": "6／7 服務購買", "func": "服務／購買", "docs": ["Sk5kyX6ubx", "S1fR49Fg-l", "ByKdpLaWZe", "HJzsieKfWe", "HJD1Eu0c-e", "Hy95Qz7g-e", "SJtErv_lZl", "rynOybVWZx"]}], "shared": "無權限Alert ryACpaCAWe、帳號選擇 S13ZYP9jbg、群組選擇 ByhoS3trGg、職缺選單 r1jXRIzqGg、現版職缺選擇 BkxSWZuGWx、通訊錄 B1iOzIB9-e、新增封鎖 H1guSxywZe、代碼參考 B1j3sN-bzx／ryjSpM-tzg", "gap_heading": "缺口（寫 journey 時發現）", "gaps": ["約 30 份文件的 User Story 是套版句「以便提高求才效率」，沒有寫出真正動機（如 A.2、A.4、5.x、3.2.x、7.x）——這些階段的「目標」只能標 US*。", "全部文件都**沒有情緒／想法**的記載（沒有訪談或可用性測試資料），情緒曲線只能從「抱怨」「客服反映」推。", "`紀錄` 階段沒有任何痛點或動機記載。", "Sitemap 上沒掛文件連結、這次也沒找到對應規格的頁面：公司相關訊息、上傳檔案、職缺同步、自動更新、職缺所屬群組、匯入名單、還原刪除履歷、問題履歷回報、即時通記錄、簡訊通知紀錄、帳號使用紀錄（除購買紀錄外）。"]}};
 
-function toggleTheme() {
-  const root = document.documentElement, cur = root.getAttribute('data-theme');
-  if (!cur) root.setAttribute('data-theme', matchMedia('(prefers-color-scheme: dark)').matches ? 'light' : 'dark');
-  else root.setAttribute('data-theme', cur === 'dark' ? 'light' : 'dark');
-}
-const esc = s => s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+document.getElementById('theme-toggle').onclick = () => {
+  const r = document.documentElement, cur = r.getAttribute('data-theme');
+  const dark = cur ? cur === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
+  r.setAttribute('data-theme', dark ? 'light' : 'dark');
+};
+const esc = s => String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
 const BASE = 'https://hackmd.io/@1111-jobdocs/';
-const MK = /(?<![A-Za-z])(US\*|US(?![A-Za-z])|NULL)/g;
-function marks(seg) {
-  return seg.replace(MK, m => m === 'US*' ? '<span class="mk usx">US*</span>' : (m === 'US' ? '<span class="mk us">US</span>' : '<span class="mk null">NULL</span>'));
-}
+const MK = /〔推論〕|(?<![A-Za-z])(?:US\*|US(?![A-Za-z])|NULL)/g;
+const marks = t => t.replace(MK, m => m === '〔推論〕' ? '<span class="mk inf">推論</span>' : m === 'US*' ? '<span class="mk usx">US*</span>' : m === 'US' ? '<span class="mk us">US</span>' : '<span class="mk null">NULL</span>');
 function md(raw) {
-  const s = esc(raw), out = []; let last = 0; const rx = /\[([^\]]+)\]\((https?:\/\/[^)\s]+)\)/g; let m;
+  const s = esc(String(raw).replace(/\\\*/g, '*')), out = []; let last = 0, m; const rx = /\[([^\]]+)\]\((https?:\/\/[^)\s]+)\)/g;
   const seg = t => marks(t.replace(/`([^`]+)`/g, '<code>$1</code>').replace(/\*\*([^*]+)\*\*/g, '<b>$1</b>'));
   while ((m = rx.exec(s))) { out.push(seg(s.slice(last, m.index))); out.push('<a href="' + m[2] + '" target="_blank" rel="noopener">' + m[1] + '</a>'); last = rx.lastIndex; }
   out.push(seg(s.slice(last))); return out.join('');
 }
 const idLink = id => '<a href="' + BASE + id + '" target="_blank" rel="noopener">' + id + '</a>';
-const H = DATA.headings, J = DATA.journey, jsec = J.sections;
-const setH = (id, t) => { document.getElementById(id).textContent = t; };
+const isLinkLine = p => /^(US\s*)?\[/.test(p.trim());
 
 document.getElementById('ttl').textContent = DATA.title;
-document.getElementById('legend').innerHTML = '<b>素材說明與標記規則</b><ul>' + DATA.head_bullets.map(b => '<li>' + md(b) + '</li>').join('') + '</ul>';
+document.getElementById('about').innerHTML = DATA.head_bullets.map(b => '<li>' + md(b) + '</li>').join('');
 
-// ---- TL;DR / tiles（只用素材內可數的東西）----
-const docIds = new Set(); DATA.docmap.forEach(r => r.docs.forEach(d => docIds.add(d.split('（')[0])));
-const nTasks = jsec.reduce((a, s) => a + s.tasks.length, 0);
-const minScore = Math.min(...jsec.flatMap(s => s.tasks.map(t => t.score)));
-const lowSecs = jsec.filter(s => s.tasks.some(t => t.score === minScore)).map(s => s.name);
-const codes = new Set(jsec.map(s => s.name.split(' ')[0]));
-const support = DATA.stage_names.filter(n => !codes.has(n.split(/[.\s]/)[0]));
-document.getElementById('tldr').innerHTML =
-  '<li>旅程共 <b>' + jsec.length + ' 個主線階段</b>' + (support.length ? '＋<b>' + support.length + ' 條支援泳道</b>' : '') + '，<b>' + nTasks + ' 個步驟</b>；文件關係表涵蓋 <b>' + docIds.size + ' 份</b> HackMD 文件。</li>' +
-  '<li>相對分數以 <b>' + esc(lowSecs.join('、')) + '</b> 最低（' + minScore + ' 分＝文件記載痛點最多）；分數不是用戶研究數據。</li>' +
-  '<li>各階段泳道尚未繪製：改依各頁面 sub user flow，<b>留白待文件助手補 md</b>。</li>' +
-  '<li>素材自帶缺口 <b>' + DATA.gaps.length + ' 項</b>，原文見「' + esc(H['缺口']) + '」。</li>';
-document.getElementById('tiles').innerHTML =
-  '<div class="tile"><div class="label">主線階段</div><div class="value">' + jsec.length + '</div></div>' +
-  '<div class="tile"><div class="label">旅程步驟</div><div class="value">' + nTasks + '</div></div>' +
-  '<div class="tile"><div class="label">關聯文件</div><div class="value">' + docIds.size + '</div></div>' +
-  '<div class="tile"><div class="label">最低相對分數</div><div class="value bad">' + minScore + '</div></div>';
+// ---------- Context ----------
+const C = DATA.context;
+document.getElementById('ctx-h').textContent = C.heading;
+const ci = Object.fromEntries(C.items.map(i => [i.label, i]));
+const facet = c => { const m = c.match(/^([^：]{1,14})：(.*)$/); return m ? '<div class="facet"><b>' + esc(m[1]) + '</b><div>' + md(m[2]) + '</div></div>' : '<div class="facet"><div>' + md(c) + '</div></div>'; };
+const card = (it, big) => '<div class="ctx-card"><div class="k">' + esc(it.label) + (it.sub ? '　' + esc(it.sub) : '') + '</div><div class="t">' + md(it.text) + '</div>' + it.children.map(facet).join('') + '</div>';
+const persona = C.items.find(i => i.label === 'Persona');
+document.getElementById('ctx').innerHTML = (persona ? card(persona) : '') +
+  '<div class="ctx-stack">' + C.items.filter(i => i !== persona).map(i => card(i)).join('') + '</div>';
+const jt = ci['Journey Type'];
+if (jt) document.getElementById('eyebrow').textContent = 'User Journey Map · ' + jt.text.split(/[（(]/)[0].trim();
 
-// ---- Persona ----
-setH('persona', H['Persona']);
-document.getElementById('persona-table').innerHTML = '<thead><tr><th>項目</th><th>內容</th></tr></thead><tbody>' +
-  DATA.persona.map(r => '<tr><td class="k">' + esc(r[0]) + '</td><td>' + md(r[1]) + '</td></tr>').join('') + '</tbody>';
+// ---------- Journey Grid ----------
+const G = DATA.grid, ST = G.stages, n = ST.length;
+document.getElementById('grid-h').textContent = G.heading;
+document.getElementById('grid-intro').innerHTML = md(G.intro);
+const board = document.getElementById('board');
+board.style.setProperty('--n', n);
+const isSupport = st => /支援/.test(st.name);
+const cells = [];
+const label = (en, zh, cls) => '<div class="rl ' + (cls || '') + '">' + esc(en) + (zh ? '<small>' + esc(zh) + '</small>' : '') + '</div>';
 
-// ---- 路由（略去指向 md 內部錨點的「本檔章節」欄）----
-setH('route', H['路由']);
-(function () {
-  const hd = DATA.route.head, drop = hd.indexOf('本檔章節');
-  const keep = r => r.filter((_, i) => i !== drop);
-  const cell = (c, isStart) => { const m = isStart && c.match(/^([A-Za-z0-9_-]{9,10})(（.*）)?$/); return m ? idLink(m[1]) + (m[2] ? esc(m[2]) : '') : md(c); };
-  const last = hd.length - 1 - (drop >= 0 && drop < hd.length - 1 ? 1 : 0);
-  document.getElementById('route-table').innerHTML = '<thead><tr>' + keep(hd).map(h => '<th>' + esc(h) + '</th>').join('') + '</tr></thead><tbody>' +
-    DATA.route.rows.map(r => '<tr>' + keep(r).map((c, i) => '<td' + (i === 0 ? ' class="k"' : '') + '>' + cell(c, i === last) + '</td>').join('') + '</tr>').join('') + '</tbody>';
-})();
+// 分表帶（素材表 A／B／C）
+cells.push('<div class="rl grp">素材分表</div>');
+G.groups.forEach(g => cells.push('<div class="grp" style="grid-column:span ' + g.count + '">' + esc(g.title) + '</div>'));
+// 階段
+cells.push(label('Phases', '階段'));
+ST.forEach((st, i) => {
+  const m = st.name.match(/^(\S+)\s+(.*)$/) || [null, st.code, st.name];
+  const name = m[2], note = name.match(/（(.*)）$/);
+  const next = ST[i + 1];
+  cells.push('<div class="ph' + (isSupport(st) ? ' support' : '') + '" data-col="' + i + '"><span class="code">' + esc(m[1]) + '</span><span class="nm">' +
+    esc(note ? name.replace(/（.*）$/, '') : name) + (note ? '<small>' + esc(note[1]) + '</small>' : '') + '</span>' +
+    (next && !isSupport(next) ? '<span class="arw" aria-hidden="true">›</span>' : '') + '</div>');
+});
+const CLS = { 'Pain Points': 'r-pain', 'Opportunities': 'r-opp' };
+G.lanes.forEach((ln, li) => {
+  const last = li === G.lanes.length - 1 ? ' last' : '';
+  cells.push(label(ln.en, ln.zh, (CLS[ln.en] || '') + last));
+  ST.forEach((st, i) => cells.push('<div class="' + (CLS[ln.en] || '') + last + '" data-col="' + i + '">' + cellHtml(st.cells[ln.en] || '', ln.en) + '</div>'));
+});
+board.innerHTML = cells.join('');
 
-// ---- 總覽：流程 chips ＋ 分數折線 ----
-setH('overview', H['總覽']);
-const scoreLine = s => s.tasks.map(t => t.score).join('・') + ' 分';
-document.getElementById('flow').innerHTML = jsec.map((s, i) =>
-  (i ? '<span class="arrow">→</span>' : '') + '<div class="st"><div class="t">' + esc(s.name) + '</div><div class="s">' + scoreLine(s) + '</div></div>').join('') +
-  support.map(n => '<span class="arrow">＋</span><div class="st support"><div class="t">' + esc(n) + '</div><div class="s">總覽未列入分數</div></div>').join('');
+function cellHtml(raw, lane) {
+  const t = raw.trim();
+  if (/^NULL$/.test(t)) return '<span class="mk null">NULL</span>';
+  const parts = t.split(/<br\s*\/?>/i);
+  let main = parts.shift(), extra = [], cites = [];
+  parts.forEach(p => (isLinkLine(p) ? cites : extra).push(p));
+  // 「依據」拆到來源行（Thoughts／Emotions／Metrics 的推論依據）
+  const bm = main.match(/^(.*?)[；;]?\s*(依據[：:同].*)$/);
+  if (bm && bm[1].trim()) { main = bm[1]; cites.unshift(bm[2]); }
+  let body;
+  if (lane === 'User Actions') body = '<ol class="steps">' + main.split(/\s*→\s*/).map(s => '<li>' + md(s) + '</li>').join('') + '</ol>';
+  else if (lane === 'Emotions') { const em = main.match(/^(\p{Extended_Pictographic}️?)\s*(.*)$/u);
+    body = em ? '<span class="emo" aria-hidden="true">' + em[1] + '</span><span class="emo-w">' + md(em[2]) + '</span>' : md(main); }
+  else if (lane === 'Thoughts') body = md(main).replace(/「([^」]+)」/g, '<span class="q">「$1」</span>');
+  else body = md(main);
+  body += extra.map(p => '<div style="margin-top:4px">' + md(p) + '</div>').join('');
+  return body + (cites.length ? '<div class="cite">' + cites.map(md).join('<br>') + '</div>' : '');
+}
+board.addEventListener('mouseover', e => { const c = e.target.closest('[data-col]'); board.querySelectorAll('.col-hover').forEach(x => x.classList.remove('col-hover'));
+  if (c) board.querySelectorAll('[data-col="' + c.dataset.col + '"]').forEach(x => x.classList.add('col-hover')); });
+board.addEventListener('mouseleave', () => board.querySelectorAll('.col-hover').forEach(x => x.classList.remove('col-hover')));
 
-(function chart() {
-  const tasks = []; jsec.forEach(s => s.tasks.forEach(t => tasks.push({ ...t, sec: s.name })));
-  const W = 920, H2 = 270, L = 40, R = 20, T = 34, B = 70, n = tasks.length;
-  const x = i => L + (W - L - R) * (i + 0.5) / n, y = v => T + (H2 - T - B) * (5 - v) / 4;
-  let g = '', start = 0;
-  jsec.forEach((s, si) => { const w = (W - L - R) / n, x0 = L + w * start, len = s.tasks.length;
-    if (si % 2 === 0) g += '<rect class="band" x="' + x0 + '" y="' + T + '" width="' + w * len + '" height="' + (H2 - T - B) + '"/>';
-    g += '<text class="sec" x="' + (x0 + w * len / 2) + '" y="' + (T - 14) + '">' + esc(s.name) + '</text>'; start += len; });
-  for (let v = 1; v <= 5; v++) g += '<line class="axis" x1="' + L + '" x2="' + (W - R) + '" y1="' + y(v) + '" y2="' + y(v) + '"/><text x="' + (L - 8) + '" y="' + (y(v) + 4) + '" text-anchor="end">' + v + '</text>';
-  g += '<polyline class="ln" points="' + tasks.map((t, i) => x(i) + ',' + y(t.score)).join(' ') + '"/>';
-  tasks.forEach((t, i) => {
-    g += '<circle class="pt' + (t.score === minScore ? ' low' : '') + '" cx="' + x(i) + '" cy="' + y(t.score) + '" r="6"><title>' + esc(t.sec + '｜' + t.name + '：' + t.score + ' 分（' + t.actor + '）') + '</title></circle>';
-    g += '<text class="sc" x="' + x(i) + '" y="' + (y(t.score) - 12) + '">' + t.score + '</text>';
-    const nm = t.name;
-    [nm.slice(0, 7), nm.slice(7, 14), nm.slice(14)].filter(Boolean).forEach((line, k) => g += '<text class="tk" x="' + x(i) + '" y="' + (H2 - B + 18 + k * 13) + '">' + esc(line) + '</text>');
-  });
-  document.getElementById('chart').innerHTML = '<svg viewBox="0 0 ' + W + ' ' + H2 + '" role="img" aria-label="旅程各步驟相對分數折線圖">' + g + '</svg>';
-})();
-document.getElementById('score-note').innerHTML = '⚠️ ' + md(J.note) + '（分數越高越順暢；紅點＝最低分）';
+// ---------- Key Takeaways ----------
+const T = DATA.takeaways;
+document.getElementById('tk-h').textContent = T.heading;
+const kind = l => /Aha/.test(l) ? 'aha' : /Drop-off/.test(l) ? 'risk' : /Next/.test(l) ? 'next' : '';
+document.getElementById('tk').innerHTML = T.items.map(it => '<div class="tk-card ' + kind(it.label) + '"><h3>' + esc(it.label) + '</h3>' +
+  (it.sub ? '<div class="sub">' + esc(it.sub) + '</div>' : '') + (it.text ? '<div>' + md(it.text) + '</div>' : '') +
+  (it.children.length ? '<ol>' + it.children.map(c => '<li>' + md(c) + '</li>').join('') + '</ol>' : '') + '</div>').join('');
 
-// ---- 各階段：留白 ----
-setH('stages', H['各階段']);
-document.getElementById('lanes-blank').innerHTML = '<div>此區留白<br><span style="font-size:0.82rem">泳道將依各頁面 sub user flow 繪製，內容待文件助手提供 md 後補齊。</span></div>';
-
-// ---- 文件關係（可篩選）----
-setH('docs', H['文件關係']);
-const stageKeys = [...new Set(DATA.docmap.map(r => r.stage))];
-let curFilter = '全部';
+// ---------- 附錄：文件庫 ----------
+const A = DATA.appendix;
+document.getElementById('ap-h').textContent = A.heading;
+document.getElementById('doc-h').textContent = A.doc_heading;
+const stageKeys = [...new Set(A.docmap.map(r => r.stage))];
+let cur = '全部';
 function renderDocs() {
-  document.getElementById('filters').innerHTML = ['全部', ...stageKeys].map(k => '<button class="' + (k === curFilter ? 'on' : '') + '" data-k="' + esc(k) + '">' + esc(k) + '</button>').join('');
-  document.querySelectorAll('#filters button').forEach(b => b.onclick = () => { curFilter = b.dataset.k; renderDocs(); });
-  const rows = DATA.docmap.filter(r => curFilter === '全部' || r.stage === curFilter);
+  document.getElementById('filters').innerHTML = ['全部', ...stageKeys].map(k => '<button type="button" class="' + (k === cur ? 'on' : '') + '" data-k="' + esc(k) + '" aria-pressed="' + (k === cur) + '">' + esc(k) + '</button>').join('');
+  document.querySelectorAll('#filters button').forEach(b => b.onclick = () => { cur = b.dataset.k; renderDocs(); });
+  const rows = A.docmap.filter(r => cur === '全部' || r.stage === cur);
   document.getElementById('doc-table').innerHTML = '<thead><tr><th>階段</th><th>功能</th><th>文件（shortId → HackMD）</th></tr></thead><tbody>' +
     rows.map(r => '<tr><td class="k">' + esc(r.stage) + '</td><td class="k">' + esc(r.func) + '</td><td class="ids">' +
-      r.docs.map(d => { const m = d.match(/^([A-Za-z0-9_-]+)(（.*）)?$/); return m ? idLink(m[1]) + (m[2] ? '<span class="nullc">' + esc(m[2]) + '</span> ' : '') : esc(d); }).join('') + '</td></tr>').join('') + '</tbody>';
+      r.docs.map(d => { const m = d.match(/^([A-Za-z0-9_-]+)(（.*）)?$/); return m ? idLink(m[1]) + (m[2] ? '<span class="none">' + esc(m[2]) + '</span> ' : '') : esc(d); }).join('') + '</td></tr>').join('') + '</tbody>';
 }
 renderDocs();
-document.getElementById('shared').innerHTML = DATA.shared.split(/[、，,]/).map(s => { const m = s.trim().match(/^(.*?)\s*([A-Za-z0-9_-]{9,10}(?:／[A-Za-z0-9_-]{9,10})*)$/); if (!m) return '<span>' + esc(s.trim()) + '</span>';
-  return '<div style="margin:2px 0">' + esc(m[1]) + '：' + m[2].split('／').map(idLink).join('') + '</div>'; }).join('');
-
-// ---- 缺口（素材原文）----
-setH('gaps', H['缺口']);
-document.getElementById('gap-list').innerHTML = DATA.gaps.map(g => '<li>' + md(g) + '</li>').join('');
+document.getElementById('shared').innerHTML = A.shared.split(/[、，,]/).map(s => { const m = s.trim().match(/^(.*?)\s*([A-Za-z0-9_-]{9,10}(?:／[A-Za-z0-9_-]{9,10})*)$/);
+  return m ? '<div>' + esc(m[1]) + '：<span class="ids">' + m[2].split('／').map(idLink).join('') + '</span></div>' : '<div>' + esc(s.trim()) + '</div>'; }).join('');
+document.getElementById('gap-h').textContent = A.gap_heading;
+document.getElementById('gap-list').innerHTML = A.gaps.map(g => '<li>' + md(g) + '</li>').join('');
 </script>
+
 </body>
 </html>
