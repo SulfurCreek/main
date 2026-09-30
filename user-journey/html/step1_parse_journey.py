@@ -84,6 +84,20 @@ for m in re.finditer(r"^### (.+?)$(.*?)(?=^### |\Z)", grid_b, re.M | re.S):
     stages.extend(cols)
 
 app_h, app_b = h2("附錄")
+# 流程圖索引（在〈路由〉節內，AI 索引表）＋ step0 渲染好的 SVG
+flows = []
+fi = re.search(r"^### 流程圖索引\n(.*?)(?=^#{2,3} |\Z)", text, re.M | re.S)
+manifest = {(m["stage"], m["shortId"]): m for m in json.loads((HERE / "flows" / "manifest.json").read_text(encoding="utf-8"))} if (HERE / "flows" / "manifest.json").exists() else {}
+for r in table_rows(fi.group(1)) if fi else []:
+    if r[0] == "階段" or len(r) < 5:
+        continue
+    ids = re.findall(r"`([A-Za-z0-9_-]{9,22})`", r[3])
+    lm = re.search(r"\((https?://[^)\s]+)\)", r[4])
+    code = r[0].split()[0]
+    ent = manifest.get((code, ids[1])) if len(ids) > 1 else None
+    flows.append({"stage": code, "stage_name": r[0], "name": r[1], "type": r[2],
+                  "doc_title": re.sub(r"（.*", "", r[3]).strip(), "link": lm.group(1) if lm else "",
+                  "svgs": [(HERE / "flows" / f).read_text(encoding="utf-8") for f in (ent["svgs"] if ent else [])]})
 doc_h, doc_b = h3(app_b, "文件關係")
 library = json.loads((HERE / "sitemap_docs.json").read_text(encoding="utf-8"))   # 由 step0 依 HackMD Sitemap 產生
 gap_h, gap_b = h3(app_b, "缺口")
@@ -93,6 +107,7 @@ data = {"title": title, "head_bullets": head_bullets,
         "context": {"heading": ctx_h, "items": context, "marker_note": marker_note},
         "grid": {"heading": grid_h, "intro": grid_intro, "groups": groups,
                  "lanes": [{"en": k, "zh": lane_meta[k]} for k in lane_order], "stages": stages},
+        "flows": flows,
         "appendix": {"heading": app_h, "doc_heading": doc_h, "library": library,
                      "gap_heading": gap_h, "gaps": gaps}}
 OUT.write_text(json.dumps(data, ensure_ascii=False, indent=1), encoding="utf-8")
@@ -100,5 +115,6 @@ OUT.write_text(json.dumps(data, ensure_ascii=False, indent=1), encoding="utf-8")
 # 自檢：Grid 每格都有值（空字串代表解析漏抓）
 empty = [(s["name"], k) for s in stages for k in lane_order if not s["cells"].get(k)]
 print(f"context={len(context)} lanes={lane_order} stages={[s['name'] for s in stages]} groups={len(groups)}")
+print("flows:", [(f["stage"], f["name"][:12], len(f["svgs"])) for f in flows])
 print(f"gaps={len(gaps)} library_modules={len(library['modules'])}")
 print("空格（應為 0）:", empty)

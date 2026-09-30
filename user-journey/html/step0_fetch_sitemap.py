@@ -4,7 +4,7 @@
 不輸出頁面 URL／aspx 名稱（使用者要求：只要文件名稱）。
 需要環境變數 HACKMD_TOKEN；離線重跑 step1／step2 時不需要本步驟（直接用已 commit 的 JSON）。
 """
-import os, re, json, pathlib, urllib.request
+import os, re, json, pathlib, subprocess, tempfile, urllib.request
 
 HERE = pathlib.Path(__file__).parent
 OUT = HERE / "sitemap_docs.json"
@@ -61,6 +61,42 @@ for tok in re.findall(r"[A-Za-z0-9_-]{9,11}", sh):
     d = doc_of(tok)
     if d:
         shared.append(d)
+
+# ---------- 流程圖：依 journey map〈流程圖索引〉抓文件內 `## 流程圖` 的 mermaid，渲染成 SVG ----------
+FLOWS = HERE / "flows"
+FLOWS.mkdir(exist_ok=True)
+idx = re.search(r"^### 流程圖索引\n(.*?)(?=^#{2,3} |\Z)", md, re.M | re.S)
+flow_manifest = []
+if idx:
+    pp = pathlib.Path(tempfile.gettempdir()) / "mmdc-puppeteer.json"
+    pp.write_text(json.dumps({"executablePath": "/opt/pw-browsers/chromium", "args": ["--no-sandbox"]}))
+    for line in idx.group(1).splitlines():
+        cells = [c.strip() for c in line.strip().strip("|").split("|")]
+        if len(cells) < 5 or cells[0] in ("階段", ":---") or cells[0].startswith(":"):
+            continue
+        ids = re.findall(r"`([A-Za-z0-9_-]{9,22})`", cells[3])
+        if len(ids) < 2:
+            continue
+        note_id, short = ids[0], ids[1]
+        code = cells[0].split()[0]
+        req2 = urllib.request.Request(f"https://api.hackmd.io/v1/teams/1111-jobdocs/notes/{note_id}",
+                                      headers={"Authorization": "Bearer " + os.environ["HACKMD_TOKEN"]})
+        note = json.load(urllib.request.urlopen(req2, timeout=90))
+        body = note["content"]
+        i = body.find("## 流程圖")
+        sec = body[i:] if i >= 0 else ""
+        nxt = re.search(r"\n## ", sec[5:])
+        sec = sec[: nxt.start() + 5] if nxt else sec
+        svgs = []
+        for k, blk in enumerate(re.findall(r"```mermaid\n(.*?)```", sec, re.S), 1):
+            stem = f"{code}_{short}_{k}"
+            (FLOWS / f"{stem}.mmd").write_text(blk, encoding="utf-8")
+            subprocess.run(["npx", "-y", "@mermaid-js/mermaid-cli", "-p", str(pp), "-i", str(FLOWS / f"{stem}.mmd"),
+                            "-o", str(FLOWS / f"{stem}.svg"), "-I", f"flow-{stem}".replace("_", "-")], check=True, capture_output=True, timeout=280)
+            svgs.append(f"{stem}.svg")
+        flow_manifest.append({"stage": code, "noteId": note_id, "shortId": short, "title": " ".join(note["title"].split()), "svgs": svgs})
+(FLOWS / "manifest.json").write_text(json.dumps(flow_manifest, ensure_ascii=False, indent=1), encoding="utf-8")
+print("flows:", [(f["stage"], f["title"], len(f["svgs"])) for f in flow_manifest])
 
 OUT.write_text(json.dumps({"source": "HackMD [求才系統] Sitemap", "sitemap_shortId": SITEMAP_SHORT,
                            "modules": modules, "shared": shared, "unmatched_refs": unmatched},

@@ -1,0 +1,119 @@
+---
+config:
+  theme: base
+  rightAngles: true
+  themeVariables:
+    fontFamily: "Inter, Helvetica, Arial, sans-serif"
+    primaryColor: "#E3F2FD"
+    primaryBorderColor: "#90A4AE"
+    primaryTextColor: "#333333"
+    signalColor: "#90A4AE"
+    signalTextColor: "#333333"
+    noteBkgColor: "#FFF8E1"
+    noteBorderColor: "#FFD54F"
+  sequence:
+    actorFontSize: 17
+    actorFontWeight: bold
+    messageFontSize: 16
+    noteFontSize: 15
+    wrap: true
+    wrapPadding: 12
+    actorMargin: 70
+    boxMargin: 12
+    boxTextMargin: 8
+    messageMargin: 42
+    mirrorActors: false
+---
+sequenceDiagram
+    autonumber
+    box rgba(227,242,253,0.5) 求才系統 Recruit
+        actor Emp as 求才廠商
+        participant RB as 求才後台 (PublishOpening／PublishEdit)
+    end
+    box rgba(243,229,245,0.5) 資科 AI
+        participant AI as 資科 API
+    end
+    box rgba(255,243,224,0.5) 客服系統 CS
+        actor CS as 客服人員
+    end
+    box rgba(232,245,233,0.5) 求職主網 Jobseeker
+        participant JS as 求職主網
+    end
+
+    Emp->>RB: 進入「新增職缺」頁（PublishOpening.aspx）
+    RB-->>Emp: 顯示三張新增方式卡片
+    Emp->>RB: 選擇新增方式並點【建立】
+
+    alt 快速新增職缺
+        RB-->>Emp: 開「快速新增職缺」Modal
+        Emp->>RB: 輸入職缺名稱（2～100 字）並按【確定】
+        RB->>AI: 以職缺名稱比對推薦職務類別
+        AI-->>RB: 回傳推薦職類
+        RB-->>Emp: 導向職缺內頁，帶入職缺名稱＋推薦職務類別
+    else 複製職缺
+        RB-->>Emp: 開「職缺列表」Modal（狀態／工作地／關鍵字／屬性頁籤）
+        Emp->>RB: 單選既有職缺並按【建立】
+        Note over Emp,RB: 未選取 → Alert「請選擇欲複製的職缺！」，停留在 Modal
+        RB-->>Emp: 導向職缺內頁，完整帶入被複製職缺資料（含應徵問答）
+    else 全新職缺
+        RB-->>Emp: 不開 Modal，直接導向空白職缺內頁
+    end
+
+    Emp->>RB: 設定屬性（全職／兼職／工讀／中高階／立即上工）與特殊性質
+    RB-->>Emp: 依屬性×特殊性質切換欄位（工作時間容器、班別、承攬制說明、中高階審核提示等）
+    Note over RB,Emp: 立即上工 → 特殊性質鎖定一般職務、改用指定日期／期間；承攬制 → 工作時間固定「與公司議定」
+
+    opt 廠商使用 AI 功能
+        Emp->>RB: 輸入職缺名稱
+        RB->>AI: 職類推薦 API（每秒最多 1 次，只取最後一次結果）
+        AI-->>RB: 推薦職務類別
+        Emp->>RB: 要求 AI 生成／優化工作說明
+        RB->>AI: JD 生成
+        AI-->>RB: 工作說明內容
+        RB->>AI: 技能專長證照推薦（帶入職類與 tCodeTrade）
+        AI-->>RB: 推薦技能／證照項目
+        RB-->>Emp: 顯示推薦結果供廠商點選
+    end
+
+    loop 廠商編輯文字欄位時即時檢查
+        Note over Emp,RB: 比對風險字庫（正則）
+        alt 命中高風險字眼
+            RB-->>Emp: 顯示違規 tooltip，不可送出
+        else 低／中風險或未命中
+            RB-->>Emp: 允許繼續編輯
+        end
+    end
+
+    Emp->>RB: 點【確定送出】
+    Note over Emp,RB: 檢查必填欄位
+    alt 必填欄位未完成
+        RB-->>Emp: 標示 error，不送出
+    else 必填欄位完成
+        RB-->>Emp: 顯示送出確認彈窗（新增／開啟中：寄送 or 不寄送；關閉中：開啟職缺 or 保持關閉＋checkbox）
+        Emp->>RB: 選擇是否寄送職缺確認信
+        Note over Emp,RB: 儲存職缺，並依選擇寄送職缺確認信
+
+        Note over Emp,RB: 送審判斷（風險字等級＋廠商需審核旗標）
+        alt 命中中風險字眼，或廠商為需審核（confirmed&16384）
+            Note over Emp,RB: 職缺審核 mConfirmed = 0，職缺狀態轉為「審核中」
+            RB->>CS: 寄送職缺審核通知信
+            Note over CS: 客服系統 → 廠商頁 → 審核管理 → 職缺審核
+            alt 審核通過
+                CS->>RB: 更新為審核通過
+                RB-->>Emp: 寄送職缺審核信（通過；showfield&524288 廠商不收）
+            else 審核不通過
+                CS->>RB: 填寫不通過原因，mConfirmed = 128
+                RB-->>Emp: 寄送職缺審核信（未通過＋原因＋修改設定按鈕），流程結束
+            end
+        else 未命中或僅低風險、或立即上工職缺
+            Note over Emp,RB: 直接審核通過（低風險仍寄送通知信）
+        end
+
+        Note over Emp,RB: 判斷是否對求職者曝光
+        Note over RB,JS: 廠商 oStatus：1 VIP／4 免費VIP／5 免費曝光 → 可刊登；0 普通會員／2 過期／3 關權 → 不曝光；6 準VIP → 待確認<br/>職缺條件：職缺開啟中、審核通過、在有效日期內
+        alt 符合曝光條件
+            RB->>JS: 職缺於求職主網上架曝光
+        else 不符合
+            RB-->>Emp: 職缺已儲存，但不對求職者曝光
+        end
+    end
