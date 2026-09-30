@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>求才端 User Journey × 流程 × 文件</title>
+<!--
+視覺規格（五層面，report-generator 設計描述五層面）
+字體：系統字體堆疊（PingFang TC / Microsoft JhengHei），數字 tabular-nums；標題 700、內文 400。
+級距：h1 1.6rem／h2 1.15rem／內文 0.92rem／表格 0.85rem／標籤 0.72rem；行高 1.6。
+留白：頁寬 max 980px、左右 20px；區塊間距 40px；卡片內距 14~18px；手機（<640px）泳道表改單欄。
+配色：底色 2 階（surface-1/2）＋邊線；藍(series-1)＝US、橘(series-2)＝US*、灰＝NULL、紅(series-3)＝痛點／最低分；深淺雙主題。
+動態：無進場動畫；僅 hover 高亮與表格篩選即時切換（無 transition）。
+借用層面：版型骨架借 html-templates 的 data-report／dashboard（KPI 卡＋分區＋表格），不搬原始碼、不連外部資源。
+-->
+<style>
+  :root {
+    --surface-1:#fcfcfb; --surface-2:#f4f3f0; --border:#e2e0da;
+    --text-primary:#0b0b0b; --text-secondary:#52514e; --text-muted:#7a7972;
+    --series-1:#2a78d6; --series-2:#eda100; --series-3:#e34948; --series-track:#e2e0da;
+    --on-fill:#fff; --on-amber:#1a1a19;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --surface-1:#1a1a19; --surface-2:#232320; --border:#3a392f;
+      --text-primary:#ffffff; --text-secondary:#c3c2b7; --text-muted:#8f8e85;
+      --series-1:#3987e5; --series-2:#c98500; --series-3:#e66767; --series-track:#3a392f;
+    }
+  }
+  :root[data-theme="light"] {
+    --surface-1:#fcfcfb; --surface-2:#f4f3f0; --border:#e2e0da;
+    --text-primary:#0b0b0b; --text-secondary:#52514e; --text-muted:#7a7972;
+    --series-1:#2a78d6; --series-2:#eda100; --series-3:#e34948; --series-track:#e2e0da;
+  }
+  :root[data-theme="dark"] {
+    --surface-1:#1a1a19; --surface-2:#232320; --border:#3a392f;
+    --text-primary:#ffffff; --text-secondary:#c3c2b7; --text-muted:#8f8e85;
+    --series-1:#3987e5; --series-2:#c98500; --series-3:#e66767; --series-track:#3a392f;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin:0; padding:0; background:var(--surface-1); color:var(--text-primary);
+    font-family: system-ui, -apple-system, "Segoe UI", "PingFang TC", "Microsoft JhengHei", sans-serif;
+    font-variant-numeric: tabular-nums; line-height:1.6; font-size:0.92rem; scroll-behavior:smooth; }
+  .page { max-width:980px; margin:0 auto; padding:32px 20px 90px; }
+  h1 { font-size:1.6rem; margin:0 0 6px; }
+  h2 { font-size:1.15rem; margin:44px 0 12px; border-bottom:1px solid var(--border); padding-bottom:8px; scroll-margin-top:60px; }
+  h3 { font-size:1rem; margin:0 0 10px; }
+  a { color:var(--series-1); text-decoration:none; } a:hover { text-decoration:underline; }
+  code { background:var(--surface-2); padding:1px 5px; border-radius:4px; font-size:0.85em; }
+  .meta { color:var(--text-muted); font-size:0.82rem; margin:0 0 16px; }
+  .scenario { background:var(--surface-2); border-left:3px solid var(--series-1); border-radius:0 8px 8px 0; padding:12px 16px; margin-bottom:16px; font-size:0.88rem; color:var(--text-secondary); }
+  .scenario ul { margin:6px 0 0; padding-left:1.1em; } .scenario li { margin-bottom:3px; }
+  .note { font-size:0.82rem; color:var(--text-muted); background:var(--surface-2); border-radius:8px; padding:8px 12px; margin:10px 0; }
+  .tldr { background:var(--surface-2); border:1px solid var(--border); border-radius:12px; padding:18px 22px; margin-bottom:12px; }
+  .tldr ul { margin:0; padding-left:1.1em; } .tldr li { margin-bottom:7px; } .tldr li:last-child { margin-bottom:0; }
+  .tldr b { color:var(--series-1); }
+  .tiles { display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:12px; margin:16px 0; }
+  .tile { background:var(--surface-2); border:1px solid var(--border); border-radius:10px; padding:12px 16px; }
+  .tile .label { font-size:0.76rem; color:var(--text-muted); margin-bottom:2px; }
+  .tile .value { font-size:1.6rem; font-weight:700; color:var(--series-1); }
+  .tile .value.warn { color:var(--series-2); } .tile .value.bad { color:var(--series-3); }
+
+  .stagenav { position:sticky; top:0; z-index:5; background:var(--surface-1); border-bottom:1px solid var(--border); margin:0 -20px; padding:8px 20px; display:flex; gap:6px; flex-wrap:wrap; }
+  .stagenav a { font-size:0.78rem; padding:3px 10px; border:1px solid var(--border); border-radius:20px; background:var(--surface-2); color:var(--text-secondary); }
+  .stagenav a:hover { text-decoration:none; border-color:var(--series-1); color:var(--series-1); }
+
+  .tw { overflow-x:auto; -webkit-overflow-scrolling:touch; }
+  table { border-collapse:collapse; width:100%; margin:10px 0; font-size:0.85rem; }
+  th,td { padding:7px 10px; border-bottom:1px solid var(--border); text-align:left; vertical-align:top; }
+  th { color:var(--text-secondary); font-size:0.78rem; font-weight:600; white-space:nowrap; }
+  tbody tr:hover { background:var(--surface-2); }
+  td.k { font-weight:600; white-space:nowrap; }
+
+  .mk { display:inline-block; font-size:0.7rem; font-weight:700; line-height:1; padding:3px 6px; border-radius:4px; margin-right:4px; vertical-align:1px; }
+  .mk.us { background:var(--series-1); color:var(--on-fill); }
+  .mk.usx { background:var(--series-2); color:var(--on-amber); }
+  .mk.null { background:transparent; color:var(--text-muted); border:1px dashed var(--text-muted); }
+  .mk.none { background:transparent; color:var(--text-muted); border:1px solid var(--border); font-weight:500; }
+
+  .chart { background:var(--surface-2); border:1px solid var(--border); border-radius:12px; padding:12px 8px 6px; }
+  .chart svg { width:100%; height:auto; display:block; }
+  .chart text { fill:var(--text-secondary); font-size:11px; }
+  .chart .axis { stroke:var(--border); } .chart .ln { stroke:var(--series-1); fill:none; stroke-width:2.2; }
+  .chart .band { fill:var(--surface-1); } .chart .pt { fill:var(--series-1); stroke:var(--surface-2); stroke-width:2; }
+  .chart .pt.low { fill:var(--series-3); } .chart .sc { fill:var(--text-primary); font-weight:700; font-size:12px; text-anchor:middle; }
+  .chart .sec { font-weight:700; fill:var(--text-primary); text-anchor:middle; }
+  .chart .tk { text-anchor:middle; }
+
+  .flow { display:flex; flex-wrap:wrap; gap:8px; align-items:stretch; margin:14px 0 4px; }
+  .flow .st { flex:1 1 105px; background:var(--surface-2); border:1px solid var(--border); border-radius:10px; padding:8px 10px; color:var(--text-primary); position:relative; }
+  .flow .st:hover { text-decoration:none; border-color:var(--series-1); }
+  .flow .st .n { font-size:0.7rem; color:var(--text-muted); } .flow .st .t { font-weight:700; }
+  .flow .st .s { font-size:0.72rem; color:var(--text-secondary); }
+  .flow .st.support { border-style:dashed; }
+  .flow .arrow { align-self:center; color:var(--text-muted); }
+
+  .matrix td, .matrix th { text-align:center; padding:6px 6px; }
+  .matrix td.k, .matrix th:first-child { text-align:left; }
+  .matrix .absent { color:var(--text-muted); }
+  .matrix .cell { display:flex; gap:3px; justify-content:center; flex-wrap:wrap; }
+
+  .stage { border:1px solid var(--border); border-radius:12px; margin:18px 0; overflow:hidden; scroll-margin-top:60px; }
+  .stage > .hd { background:var(--surface-2); padding:12px 16px; border-bottom:1px solid var(--border); display:flex; justify-content:space-between; gap:10px; flex-wrap:wrap; align-items:baseline; }
+  .stage > .hd .sc { font-size:0.78rem; color:var(--text-secondary); }
+  .lane { display:grid; grid-template-columns:96px 1fr 1fr; gap:0; border-bottom:1px solid var(--border); }
+  .lane:last-child { border-bottom:none; }
+  .lane > div { padding:9px 14px; }
+  .lane .ln-name { font-weight:700; color:var(--text-secondary); background:var(--surface-2); }
+  .lane .src { color:var(--text-secondary); font-size:0.82rem; border-left:1px dashed var(--border); }
+  .lane.pain .ln-name { color:var(--series-3); }
+  .lane.opp .ln-name { color:var(--series-1); }
+  .steps { display:flex; flex-wrap:wrap; gap:6px; align-items:center; }
+  .steps .step { background:var(--surface-2); border:1px solid var(--border); border-radius:20px; padding:2px 10px; font-size:0.82rem; }
+  .steps .ar { color:var(--text-muted); font-size:0.8rem; }
+  .nullc { color:var(--text-muted); }
+  @media (max-width:640px) { .lane { grid-template-columns:1fr; } .lane .src { border-left:none; border-top:1px dashed var(--border); } }
+
+  .filters { display:flex; flex-wrap:wrap; gap:6px; margin:8px 0; }
+  .filters button { font:inherit; font-size:0.78rem; padding:3px 11px; border:1px solid var(--border); border-radius:20px; background:var(--surface-2); color:var(--text-secondary); cursor:pointer; }
+  .filters button.on { background:var(--series-1); border-color:var(--series-1); color:var(--on-fill); }
+  .ids a { display:inline-block; margin:0 8px 2px 0; font-size:0.8rem; font-family:ui-monospace,Menlo,Consolas,monospace; }
+  .list { padding-left:1.2em; margin:6px 0; } .list li { margin-bottom:6px; }
+  .theme-toggle { position:fixed; top:10px; right:14px; z-index:9; background:var(--surface-2); border:1px solid var(--border); border-radius:20px; padding:5px 11px; font-size:0.75rem; cursor:pointer; color:var(--text-secondary); }
+</style>
+</head>
+<body>
+<button class="theme-toggle" onclick="toggleTheme()">🌓 切換深淺色</button>
+<div class="page">
+
+<h1>求才端 User Journey × 流程 × 文件</h1>
+<div class="meta">來源：<code>user-journey/recruiter_journey_map.md</code>（2026-09-30 由 HackMD 文件 session 產出）　腳本：<code>html/step1_parse_journey.py</code> → <code>html/step2_build_report.py</code>（可重跑）</div>
+<div class="scenario" id="legend"></div>
+
+<div class="tldr"><ul id="tldr"></ul></div>
+<div class="tiles" id="tiles"></div>
+
+<nav class="stagenav" id="stagenav"></nav>
+
+<h2 id="persona">一、Persona 與情境</h2>
+<div class="tw"><table id="persona-table"></table></div>
+
+<h2 id="overview">二、旅程總覽：階段流程與相對分數</h2>
+<div class="flow" id="flow"></div>
+<div class="chart" id="chart"></div>
+<div class="note" id="score-note"></div>
+
+<h2 id="coverage">三、素材完整度：哪些泳道有記載、哪些是 NULL</h2>
+<p style="color:var(--text-secondary);margin:0 0 8px">每格照素材原標記呈現：<span class="mk us">US</span>真實 User Story　<span class="mk usx">US*</span>套版句　<span class="mk null">NULL</span>文件未載　<span class="mk none">無標記</span>有內容但素材未標註類型；<b>—</b> 表示該階段素材沒有這一列。</p>
+<div class="tw"><table class="matrix" id="matrix"></table></div>
+<ul class="list" id="coverage-notes"></ul>
+
+<h2 id="stages">四、各階段泳道</h2>
+<div id="stage-list"></div>
+
+<h2 id="docs">五、文件關係（階段 → 功能 → 文件）</h2>
+<div class="filters" id="filters"></div>
+<div class="tw"><table id="doc-table"></table></div>
+<p style="color:var(--text-secondary)"><b>跨階段共用元件</b>（不屬單一階段）：</p>
+<div class="ids" id="shared"></div>
+
+<h2 id="gaps">六、缺口與待文件 session 處理</h2>
+<p style="color:var(--text-secondary);margin:0 0 6px"><b>素材自帶缺口</b>（原文照錄，來源：<code>recruiter_journey_map.md</code> §5）：</p>
+<ul class="list" id="gap-list"></ul>
+<p style="color:var(--text-secondary);margin:14px 0 6px"><b>建置時自檢發現</b>（不屬素材內容，本 HTML 未修改素材，僅回報）：</p>
+<ul class="list" id="check-list"></ul>
+
+<h2 id="method">七、方法與限制</h2>
+<ul class="list">
+  <li>本頁只搬運 <code>recruiter_journey_map.md</code> 的內容：<code>US</code>／<code>US*</code>／<code>NULL</code> 標記照原樣呈現，不推測補齊、不改寫文案。</li>
+  <li>「相對分數」來自素材 §2 的 mermaid journey，素材已註明是依文件記載的痛點多寡相對標示，<b>不是用戶研究數據</b>（見第二節註記）。</li>
+  <li>「階段流程」為素材 Sitemap module 順序；每階段「行動」欄以 <code>→</code> 拆成步驟，未新增素材沒有的步驟或分支。</li>
+  <li>第三節完整度矩陣為程式依素材欄位機械判定（內容以 <code>NULL</code> 開頭＝NULL；來源欄含 <code>US*</code>／<code>US</code>＝對應標記），不含任何主觀評分。</li>
+  <li>圖片／標註示意圖不在本專案 HTML 範圍（見 <code>user-journey/README.md</code>）；素材內連結一律指向 <code>hackmd.io/@1111-jobdocs/&lt;shortId&gt;</code>，未驗證連結是否可開。</li>
+</ul>
+
+</div>
+<script>
+const DATA = __DATA__;
+
+function toggleTheme() {
+  const root = document.documentElement, cur = root.getAttribute('data-theme');
+  if (!cur) root.setAttribute('data-theme', matchMedia('(prefers-color-scheme: dark)').matches ? 'light' : 'dark');
+  else root.setAttribute('data-theme', cur === 'dark' ? 'light' : 'dark');
+}
+const esc = s => s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+const BASE = 'https://hackmd.io/@1111-jobdocs/';
+const MK = /(?<![A-Za-z])(US\*|US(?![A-Za-z])|NULL)/g;
+function marks(seg) {
+  return seg.replace(MK, m => m === 'US*' ? '<span class="mk usx">US*</span>' : (m === 'US' ? '<span class="mk us">US</span>' : '<span class="mk null">NULL</span>'));
+}
+// 迷你 inline markdown：`code`、[text](url)、US／US*／NULL 標記；先 escape 再處理
+function md(raw) {
+  const s = esc(raw), out = []; let last = 0; const rx = /\[([^\]]+)\]\((https?:\/\/[^)\s]+)\)/g; let m;
+  const seg = t => marks(t.replace(/`([^`]+)`/g, '<code>$1</code>'));
+  while ((m = rx.exec(s))) { out.push(seg(s.slice(last, m.index))); out.push('<a href="' + m[2] + '" target="_blank" rel="noopener">' + m[1] + '</a>'); last = rx.lastIndex; }
+  out.push(seg(s.slice(last))); return out.join('');
+}
+const idLink = id => '<a href="' + BASE + id + '" target="_blank" rel="noopener">' + id + '</a>';
+const nf = n => n.toLocaleString();
+
+const LANES = ['目標','行動','接觸點','想法／情緒','痛點','機會點'];
+const sid = st => 'stage-' + st.num.replace('.','-');
+function laneState(l) {
+  const nul = /^NULL/.test(l.content.trim());
+  const usx = /US\*/.test(l.source) || /US\*/.test(l.content);
+  const us = /(?<![A-Za-z])US(?![A-Za-z*])/.test(l.source);
+  return { nul, usx, us };
+}
+const jsec = DATA.journey.sections;
+// 素材 journey section 名稱 "1 登入" → 對應 stage 3.1
+const scoreOf = st => { const k = st.num.split('.')[1]; const s = jsec.find(x => x.name.startsWith(k + ' ')); return s ? s.tasks : null; };
+
+// ---- 圖例 ----
+document.getElementById('legend').innerHTML = '<b>素材說明與標記規則</b><ul>' + DATA.head_bullets.map(b => '<li>' + md(b) + '</li>').join('') + '</ul>';
+
+// ---- 統計 ----
+let cells = 0, nullCells = 0, usC = 0, usxC = 0;
+DATA.stages.forEach(st => st.lanes.forEach(l => { cells++; const s = laneState(l); if (s.nul) nullCells++; if (s.us) usC++; if (s.usx) usxC++; }));
+const docIds = new Set(); DATA.docmap.forEach(r => r.docs.forEach(d => docIds.add(d.split('（')[0])));
+const nTasks = jsec.reduce((a, s) => a + s.tasks.length, 0);
+const minScore = Math.min(...jsec.flatMap(s => s.tasks.map(t => t.score)));
+const lowSecs = jsec.filter(s => s.tasks.some(t => t.score === minScore)).map(s => s.name.replace(/^\d+ /, ''));
+const emoStages = DATA.stages.filter(st => { const l = st.lanes.find(x => x.lane === '想法／情緒'); return l && !/^NULL/.test(l.content.trim()); }).map(st => st.name);
+
+document.getElementById('tldr').innerHTML =
+  '<li>旅程共 <b>' + jsec.length + ' 個主線階段＋1 條支援泳道</b>（登入→首頁→公司→職缺→人才→聯繫→紀錄；服務／購買可在任何階段插入），涵蓋 <b>' + docIds.size + ' 份</b>文件關係表內的 HackMD 文件。</li>' +
+  '<li>素材的相對分數以 <b>' + esc(lowSecs.join('、')) + '</b> 階段最低（' + minScore + ' 分＝文件記載痛點最多）；分數不是用戶研究數據。</li>' +
+  '<li>階段×泳道共 <b>' + cells + ' 格</b>，其中 <b>' + nullCells + ' 格為 NULL</b>（文件未載）；「想法／情緒」僅 <b>' + (emoStages.length ? emoStages.join('、') : '無') + '</b> 有記載，其餘階段皆 NULL。</li>' +
+  '<li>目標欄的證據強度：<b>' + usC + ' 格含真實 US</b>、<b>' + usxC + ' 格含套版句 US*</b>（只證明功能存在，不證明動機）。</li>' +
+  '<li>下一步（交文件 session）：素材缺口 ' + DATA.gaps.length + ' 項與自檢發現見第六節；本頁不自行補齊。</li>';
+document.getElementById('tiles').innerHTML =
+  '<div class="tile"><div class="label">階段（含支援泳道）</div><div class="value">' + DATA.stages.length + '</div></div>' +
+  '<div class="tile"><div class="label">旅程步驟</div><div class="value">' + nTasks + '</div></div>' +
+  '<div class="tile"><div class="label">關聯文件</div><div class="value">' + docIds.size + '</div></div>' +
+  '<div class="tile"><div class="label">NULL 泳道格</div><div class="value warn">' + nullCells + ' / ' + cells + '</div></div>' +
+  '<div class="tile"><div class="label">最低相對分數</div><div class="value bad">' + minScore + '</div></div>';
+
+document.getElementById('stagenav').innerHTML = DATA.stages.map(st => '<a href="#' + sid(st) + '">' + st.num + ' ' + esc(st.name.replace(/（.*/, '')) + '</a>').join('');
+
+// ---- 一、Persona ----
+document.getElementById('persona-table').innerHTML = '<thead><tr><th>項目</th><th>內容</th></tr></thead><tbody>' +
+  DATA.persona.map(r => '<tr><td class="k">' + esc(r[0]) + '</td><td>' + md(r[1]) + '</td></tr>').join('') + '</tbody>';
+
+// ---- 二、流程 chips ＋ SVG ----
+const flowHtml = [];
+DATA.stages.forEach((st, i) => {
+  const sup = !/^\d/.test(st.name) && /支援/.test(st.name);
+  const sc = scoreOf(st);
+  if (sup && i > 0) flowHtml.push('<span class="arrow">＋</span>');
+  else if (i > 0) flowHtml.push('<span class="arrow">→</span>');
+  flowHtml.push('<a class="st' + (sup ? ' support' : '') + '" href="#' + sid(st) + '"><div class="n">' + st.num + '</div><div class="t">' + esc(st.name.replace(/（.*/, '').replace(/^支援泳道：/, '')) + '</div><div class="s">' +
+    (sc ? sc.map(t => t.score).join('・') + ' 分' : '無分數（素材未列入總覽）') + '</div></a>');
+});
+document.getElementById('flow').innerHTML = flowHtml.join('');
+
+(function chart() {
+  const tasks = []; jsec.forEach((s, si) => s.tasks.forEach(t => tasks.push({ ...t, sec: s.name, si })));
+  const W = 920, H = 270, L = 40, R = 20, T = 34, B = 70, n = tasks.length;
+  const x = i => L + (W - L - R) * (i + 0.5) / n, y = v => T + (H - T - B) * (5 - v) / 4;
+  let g = '';
+  let start = 0;
+  jsec.forEach((s, si) => { const w = (W - L - R) / n, x0 = L + w * start, len = s.tasks.length;
+    if (si % 2 === 0) g += '<rect class="band" x="' + x0 + '" y="' + T + '" width="' + w * len + '" height="' + (H - T - B) + '"/>';
+    g += '<text class="sec" x="' + (x0 + w * len / 2) + '" y="' + (T - 14) + '">' + esc(s.name) + '</text>'; start += len; });
+  for (let v = 1; v <= 5; v++) g += '<line class="axis" x1="' + L + '" x2="' + (W - R) + '" y1="' + y(v) + '" y2="' + y(v) + '"/><text x="' + (L - 8) + '" y="' + (y(v) + 4) + '" text-anchor="end">' + v + '</text>';
+  g += '<polyline class="ln" points="' + tasks.map((t, i) => x(i) + ',' + y(t.score)).join(' ') + '"/>';
+  tasks.forEach((t, i) => {
+    g += '<circle class="pt' + (t.score === minScore ? ' low' : '') + '" cx="' + x(i) + '" cy="' + y(t.score) + '" r="6"><title>' + esc(t.sec + '｜' + t.name + '：' + t.score + ' 分（' + t.actor + '）') + '</title></circle>';
+    g += '<text class="sc" x="' + x(i) + '" y="' + (y(t.score) - 12) + '">' + t.score + '</text>';
+    const nm = t.name, a = nm.slice(0, 7), b = nm.slice(7, 14), c = nm.slice(14);
+    [a, b, c].filter(Boolean).forEach((line, k) => g += '<text class="tk" x="' + x(i) + '" y="' + (H - B + 18 + k * 13) + '">' + esc(line) + '</text>');
+  });
+  document.getElementById('chart').innerHTML = '<svg viewBox="0 0 ' + W + ' ' + H + '" role="img" aria-label="旅程各步驟相對分數折線圖">' + g + '</svg>';
+})();
+document.getElementById('score-note').innerHTML = '⚠️ ' + md(DATA.journey.note) + '（分數越高越順暢；紅點＝最低分）';
+
+// ---- 三、完整度矩陣 ----
+function chips(l) {
+  if (!l) return '<span class="absent">—</span>';
+  const s = laneState(l), out = [];
+  if (s.nul) out.push('<span class="mk null">NULL</span>');
+  if (s.us) out.push('<span class="mk us">US</span>');
+  if (s.usx) out.push('<span class="mk usx">US*</span>');
+  if (!out.length) out.push('<span class="mk none">無標記</span>');
+  return '<div class="cell">' + out.join('') + '</div>';
+}
+document.getElementById('matrix').innerHTML = '<thead><tr><th>階段</th>' + LANES.map(l => '<th>' + l + '</th>').join('') + '</tr></thead><tbody>' +
+  DATA.stages.map(st => '<tr><td class="k"><a href="#' + sid(st) + '">' + st.num + ' ' + esc(st.name.replace(/（.*/, '')) + '</a></td>' +
+    LANES.map(ln => '<td>' + chips(st.lanes.find(x => x.lane === ln)) + '</td>').join('') + '</tr>').join('') + '</tbody>';
+const perLane = LANES.map(ln => { const ls = DATA.stages.map(st => st.lanes.find(x => x.lane === ln)).filter(Boolean); return { ln, n: ls.length, nul: ls.filter(l => /^NULL/.test(l.content.trim())).length }; });
+document.getElementById('coverage-notes').innerHTML = perLane.map(p => '<li><b>' + p.ln + '</b>：' + p.n + ' 個階段有此列，其中 ' + p.nul + ' 格 NULL</li>').join('');
+
+// ---- 四、各階段 ----
+const LCLS = { '痛點': 'pain', '機會點': 'opp' };
+document.getElementById('stage-list').innerHTML = DATA.stages.map(st => {
+  const sc = scoreOf(st);
+  const rows = st.lanes.map(l => {
+    let c;
+    if (l.lane === '行動') c = '<div class="steps">' + l.content.split(/\s*→\s*/).map((s, i) => (i ? '<span class="ar">→</span>' : '') + '<span class="step">' + md(s) + '</span>').join('') + '</div>';
+    else if (/^NULL/.test(l.content.trim())) c = '<span class="nullc">' + md(l.content) + '</span>';
+    else c = md(l.content);
+    return '<div class="lane ' + (LCLS[l.lane] || '') + '"><div class="ln-name">' + esc(l.lane) + '</div><div>' + c + '</div><div class="src">' + (l.source && l.source !== '—' ? md(l.source) : '<span class="nullc">—</span>') + '</div></div>';
+  }).join('');
+  return '<section class="stage" id="' + sid(st) + '"><div class="hd"><h3>' + st.num + ' ' + esc(st.name) + '</h3><div class="sc">' +
+    (sc ? '總覽分數：' + sc.map(t => esc(t.name) + ' ' + t.score).join('／') : '總覽未列入分數') + '</div></div>' + rows + '</section>';
+}).join('');
+
+// ---- 五、文件關係（可篩選） ----
+const stageKeys = [...new Set(DATA.docmap.map(r => r.stage))];
+let curFilter = '全部';
+function renderDocs() {
+  document.getElementById('filters').innerHTML = ['全部', ...stageKeys].map(k => '<button class="' + (k === curFilter ? 'on' : '') + '" data-k="' + esc(k) + '">' + esc(k) + '</button>').join('');
+  document.querySelectorAll('#filters button').forEach(b => b.onclick = () => { curFilter = b.dataset.k; renderDocs(); });
+  const rows = DATA.docmap.filter(r => curFilter === '全部' || r.stage === curFilter);
+  document.getElementById('doc-table').innerHTML = '<thead><tr><th>階段</th><th>功能</th><th>文件（shortId → HackMD）</th></tr></thead><tbody>' +
+    rows.map(r => '<tr><td class="k">' + esc(r.stage) + '</td><td class="k">' + esc(r.func) + '</td><td class="ids">' +
+      r.docs.map(d => { const m = d.match(/^([A-Za-z0-9_-]+)(（.*）)?$/); return m ? idLink(m[1]) + (m[2] ? '<span class="nullc">' + esc(m[2]) + '</span> ' : '') : esc(d); }).join('') + '</td></tr>').join('') + '</tbody>';
+}
+renderDocs();
+document.getElementById('shared').innerHTML = DATA.shared.split(/[、，,]/).map(s => { const m = s.trim().match(/^(.*?)\s*([A-Za-z0-9_-]{9,10}(?:／[A-Za-z0-9_-]{9,10})*)$/); if (!m) return '<span>' + esc(s.trim()) + '</span>';
+  return '<div style="margin:2px 0">' + esc(m[1]) + '：' + m[2].split('／').map(idLink).join('') + '</div>'; }).join('');
+
+// ---- 六、缺口 ＋ 自檢 ----
+document.getElementById('gap-list').innerHTML = DATA.gaps.map(g => '<li>' + md(g) + '</li>').join('');
+document.getElementById('check-list').innerHTML = (DATA.checks || []).map(c => '<li>' + md(c) + '</li>').join('') || '<li>無</li>';
+</script>
+</body>
+</html>
