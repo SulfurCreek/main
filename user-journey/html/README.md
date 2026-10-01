@@ -20,3 +20,7 @@
 - `step0_fetch_sitemap.py` 另解析 Sitemap 各節樹狀頁面名稱（`modules[].tree`，只留名稱與層級、不留 URL）。
 - 預設全部模組顯示；選階段後對應模組亮起、其餘變淡。Touchpoints 列改為 Sitemap 頁面名稱，選階段後每個名稱為錨點，點擊捲到 Sitemap 節點。
 - PC（≥1024px）左 Sitemap、右文件關係；流程圖進頁為空狀態，選階段後才載入。
+
+## 2026-10-01 改版（路線圖版型）
+- Hero 改成「招募路線圖」：站點＝階段篩選；捲動後頂部出現迷你路線列。改動與理由見 `MERIT.md`。
+- 字體用 Google Fonts（Noto Sans TC／Archivo／IBM Plex Mono），都有系統字體 fallback，離線可讀。
