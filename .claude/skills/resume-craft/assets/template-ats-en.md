@@ -53,4 +53,6 @@ e.g. product strategy, delivery management, stakeholder alignment]. <!-- 2–3 l
 - [Degree], [Institution] — [Year]
 - [Certification, if any] — [Year]
 
+<!-- 學位取得超過 5 年，英文版不寫畢業年份（避免年齡偏見）；但背景調查要的正確年份仍記在 career/wiki/education-certifications.md，面試被問到要答得出來。 -->
+
 <!-- Optional sections for senior/exec: Speaking · Publications · Board/Advisory. Omit if not applicable. -->

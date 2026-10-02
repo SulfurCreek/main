@@ -97,6 +97,11 @@ description: >
 - ✗ `Worked with engineering on a launch` → ✅ `Orchestrated a cross-functional launch (12 eng, 4 design, data) and shipped in 6 weeks vs. 12-week plan`
 - ✗ `負責跨部門溝通` → ✅ `作為求才需求單一窗口，對接 16 個需求單位（總裁/董事/策略長到第一線客服），以數據（投票）化解衝突優先級`
 
+**繁中在地版可改用結果前置（Result-First）**：104／Cake 的 HR 是用掃描的，第一眼要看到成果。
+公式：`[成效] ｜ [主導的專案] ＋ [規模／方法]`。
+例：`半年 111 項上線、94% 準時 ｜ 主導 227 項求才產品 roadmap，以 P0–P3 分級與時間盒交付`。
+英文 ATS 版維持「動詞開頭」，因為 LLM 抽取 impact 靠句內因果，見 references/ats-and-ai-screening.md。
+
 > 把日常產出（規格書／週報／流程圖）逆推成 bullet，見 [`references/reverse-xyz.md`](references/reverse-xyz.md)。
 
 ---
@@ -148,7 +153,7 @@ description: >
 1. 取 `wiki/resume-extract.md`（action+scope+impact 條目）作為 bullet 草稿基底。
 2. 取 `wiki/F01…F15-*.md` → 映射到上方叢集表，挑 5–7 個最相關的。
 3. 取入口的 Profile Snapshot／Positioning → 寫 Summary/Headline；學歷證照取 `wiki/education-certifications.md`。
-4. 遇到 `〔待補數據〕`：**先問使用者拿真實數字**；拿不到就保留標記，不要編。
+4. 遇到 `〔待補數據〕`：先問使用者，**一次只問一題**，優先順序是商業影響 → 規模 → 方法／工具；拿不到就保留標記，不要編。
 5. 依目標 JD 與市場版本選範本、客製 top-third。
 6. 跑下方檢查清單。
 
