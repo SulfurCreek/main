@@ -1,0 +1,199 @@
+<meta charset="utf-8">
+<title>one-pager</title>
+<style>
+  :root {
+    --bg-0: #0a0e1a; --bg-1: #111a2e; --surface: #17223b; --surface-2: #1e2b47;
+    --border: #2a3a5c; --ink: #f2f5fb; --ink-2: #aeb9d0; --ink-3: #74839f;
+    --accent: #3aa0ff; --good: #37d67a; --bad: #ff5c6c; --amber: #f5b342;
+    --good-dim: rgba(55,214,122,.14); --bad-dim: rgba(255,92,108,.13); --amber-dim: rgba(245,179,66,.14);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: var(--bg-0); }
+  .canvas {
+    width: 2000px; height: 1125px; position: relative; overflow: hidden;
+    background: radial-gradient(1400px 800px at 15% -10%, #17233f 0%, var(--bg-0) 55%), var(--bg-0);
+    color: var(--ink);
+    font-family: "WenQuanYi Zen Hei", "Noto Sans TC", system-ui, sans-serif;
+    padding: 42px 56px 34px; display: flex; flex-direction: column; gap: 16px;
+    -webkit-font-smoothing: antialiased;
+  }
+  /* kicker */
+  .kicker { display: flex; align-items: center; gap: 14px; color: var(--ink-2); font-size: 23px; letter-spacing: .5px; }
+  .kicker::before { content: ""; width: 6px; height: 28px; background: var(--accent); border-radius: 3px; }
+  /* headline */
+  .headline { font-size: 56px; font-weight: 700; line-height: 1.1; letter-spacing: .5px; }
+  .headline em { color: var(--accent); font-style: normal; }
+  /* context: 給零背景的人一句白話「這是什麼/給誰/要幹嘛」 */
+  .context { font-size: 25px; color: var(--ink-2); line-height: 1.4; }
+  .context b { color: var(--ink); font-weight: 700; }
+  /* body flex-grow */
+  .body { flex: 1; min-height: 0; }
+  /* keys: 符號鍵，逐項解釋顏色/符號的意義 */
+  .keys { display: flex; flex-wrap: wrap; gap: 10px 26px; font-size: 21px; color: var(--ink-2); }
+  .keys .k { display: flex; align-items: center; gap: 8px; }
+  .keys .dot { width: 15px; height: 15px; border-radius: 4px; display: inline-block; }
+  /* source strip: 回答「數字從哪來」 */
+  .source { display: flex; flex-wrap: wrap; gap: 8px 20px; align-items: center; font-size: 20px; color: var(--ink-3); border-top: 1px dashed var(--border); padding-top: 12px; }
+  .source .lab { color: var(--accent); font-weight: 700; }
+  .source .sep { color: var(--border); }
+
+  /* ---- decision_matrix ---- */
+  .matrix { display: flex; flex-direction: column; height: 100%; }
+  .mx-row { display: grid; grid-template-columns: 1.15fr 1.75fr .62fr 1.7fr .82fr; gap: 18px; align-items: center; padding: 0 8px; }
+  .mx-head { color: var(--ink-3); font-size: 21px; padding-bottom: 10px; border-bottom: 1px solid var(--border); }
+  .mx-body { flex: 1; display: flex; flex-direction: column; }
+  .mx-data { flex: 1; border-bottom: 1px solid rgba(42,58,92,.5); font-size: 24px; }
+  .mx-opt { display: flex; align-items: center; gap: 12px; font-weight: 700; }
+  .mx-opt .emoji { font-size: 30px; }
+  .mx-action { color: var(--ink-2); font-size: 22px; line-height: 1.32; }
+  .mx-action b { color: var(--ink); font-weight: 700; }
+  .mx-ttl { color: var(--amber); font-weight: 700; font-size: 24px; }
+  .mx-learn { font-size: 21px; line-height: 1.3; }
+  .mx-learn .tag { font-weight: 700; }
+  .mx-learn.good .tag { color: var(--good); }
+  .mx-learn.bad .tag { color: var(--bad); }
+  .mx-verdict { display: flex; gap: 8px; }
+  .chip { border: 1px solid var(--border); border-radius: 9px; background: var(--surface); padding: 8px 10px; font-size: 21px; color: var(--ink-2); }
+  .chip.y { color: var(--good); } .chip.n { color: var(--bad); }
+
+  /* ---- comparison ---- */
+  .cmp { display: grid; height: 100%; gap: 14px; }
+  .cmp-row { display: grid; gap: 16px; align-items: stretch; }
+  .cmp-cell { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 14px 20px; font-size: 24px; }
+  .cmp-dim { color: var(--ink-2); font-size: 22px; display: flex; align-items: center; }
+  .cmp-dim small { display: block; color: var(--ink-3); font-size: 18px; }
+  .cmp-cell.good { background: var(--good-dim); border-color: rgba(55,214,122,.4); }
+  .cmp-cell.bad { background: var(--bad-dim); border-color: rgba(255,92,108,.4); }
+  .cmp-head { font-weight: 700; font-size: 27px; text-align: center; }
+
+  /* ---- kpi（每個數字自我說明：定義 + 對照）---- */
+  .kpi { display: grid; grid-auto-flow: column; grid-auto-columns: 1fr; gap: 20px; height: 100%; align-content: stretch; }
+  .kpi-tile { background: var(--surface); border: 1px solid var(--border); border-radius: 18px; padding: 26px 30px; display: flex; flex-direction: column; gap: 8px; justify-content: center; }
+  .kpi-label { color: var(--ink-2); font-size: 25px; font-weight: 700; }
+  .kpi-value { font-size: 72px; font-weight: 700; line-height: 1; }
+  .kpi-value.good { color: var(--good); } .kpi-value.bad { color: var(--bad); } .kpi-value.accent { color: var(--accent); }
+  .kpi-compare { font-size: 24px; color: var(--ink); }
+  .kpi-compare .up { color: var(--good); } .kpi-compare .down { color: var(--bad); }
+  .kpi-define { font-size: 20px; color: var(--ink-3); line-height: 1.35; margin-top: 4px; border-top: 1px solid var(--border); padding-top: 10px; }
+
+  /* ---- checklist ---- */
+  .ckl { display: grid; grid-auto-flow: column; grid-auto-columns: 1fr; gap: 30px; height: 100%; }
+  .ckl-group { display: flex; flex-direction: column; gap: 12px; }
+  .ckl-gtitle { color: var(--accent); font-weight: 700; font-size: 26px; border-bottom: 1px solid var(--border); padding-bottom: 8px; }
+  .ckl-item { display: flex; gap: 12px; align-items: baseline; font-size: 23px; color: var(--ink-2); }
+  .ckl-item small { color: var(--ink-3); font-size: 18px; }
+  .ckl-item.done .dot { color: var(--good); } .ckl-item.todo .dot { color: var(--ink-3); } .ckl-item.warn .dot { color: var(--amber); }
+
+  /* cards */
+  .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+  .card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 16px 22px; }
+  .card h4 { color: var(--accent); font-size: 24px; margin-bottom: 6px; }
+  .card p { color: var(--ink-2); font-size: 20px; line-height: 1.4; }
+  /* footer */
+  .footer { display: flex; align-items: center; gap: 24px; border-top: 1px solid var(--border); padding-top: 14px; }
+  .footer .btn { background: var(--accent); color: #04122a; font-weight: 700; font-size: 24px; padding: 11px 20px; border-radius: 12px; }
+  .footer .progress { color: var(--ink-2); font-size: 23px; }
+  .footer .legend { margin-left: auto; color: var(--ink-2); font-size: 22px; }
+  .footer .page { color: var(--ink-3); font-size: 21px; }
+</style>
+
+<div class="canvas" id="canvas">
+  <div class="kicker" id="kicker"></div>
+  <div class="headline" id="headline"></div>
+  <div class="context" id="context"></div>
+  <div class="body" id="body"></div>
+  <div class="keys" id="keys"></div>
+  <div class="cards" id="cards"></div>
+  <div class="source" id="source"></div>
+  <div class="footer" id="footer"></div>
+</div>
+
+<script>
+const DATA = __DATA__;
+const $ = (id) => document.getElementById(id);
+const hide = (id) => { $(id).style.display = "none"; };
+
+$("kicker").textContent = DATA.kicker || "";
+$("headline").innerHTML = DATA.headline || "";
+if (DATA.context) $("context").innerHTML = DATA.context; else hide("context");
+
+// ---- body renderers ----
+function renderDecisionMatrix(m) {
+  const head = `<div class="mx-row mx-head">${m.columns.map(c => `<div>${c}</div>`).join("")}</div>`;
+  const rows = m.rows.map(r => `
+    <div class="mx-row mx-data">
+      <div class="mx-opt"><span class="emoji">${r.emoji || ""}</span><span>${r.option}</span></div>
+      <div class="mx-action">${r.action}</div>
+      <div class="mx-ttl">${r.ttl}</div>
+      <div class="mx-learn ${r.learn_status || ""}"><span class="tag">${r.learn_status === "good" ? "✅ " : r.learn_status === "bad" ? "❌ " : ""}</span>${r.learn}</div>
+      <div class="mx-verdict"><span class="chip y">✅ 適合</span><span class="chip n">❌</span><span class="chip">💬</span></div>
+    </div>`).join("");
+  return `<div class="matrix">${head}<div class="mx-body">${rows}</div></div>`;
+}
+function renderComparison(c) {
+  const cols = c.options.length;
+  const grid = `grid-template-columns: 0.85fr repeat(${cols}, 1fr);`;
+  let html = `<div class="cmp" style="grid-template-rows: repeat(${c.rows.length + 1}, 1fr);">`;
+  html += `<div class="cmp-row" style="${grid}"><div class="cmp-dim"></div>${c.options.map(o => `<div class="cmp-head">${o}</div>`).join("")}</div>`;
+  html += c.rows.map(row => `<div class="cmp-row" style="${grid}"><div class="cmp-dim">${row.dim}${row.note ? `<small>${row.note}</small>` : ""}</div>${row.cells.map(cell => `<div class="cmp-cell ${cell.status || ""}">${cell.text}</div>`).join("")}</div>`).join("");
+  html += `</div>`;
+  return html;
+}
+function renderKpi(k) {
+  return `<div class="kpi">${k.tiles.map(t => `
+    <div class="kpi-tile">
+      <div class="kpi-label">${t.label}</div>
+      <div class="kpi-value ${t.tone || ""}">${t.value}</div>
+      ${t.compare ? `<div class="kpi-compare">${t.compare}</div>` : ""}
+      ${t.define ? `<div class="kpi-define">${t.define}</div>` : ""}
+    </div>`).join("")}</div>`;
+}
+function renderChecklist(c) {
+  return `<div class="ckl">${c.groups.map(g => `
+    <div class="ckl-group">
+      <div class="ckl-gtitle">${g.title}</div>
+      ${g.items.map(it => `<div class="ckl-item ${it.state || "todo"}"><span class="dot">${it.state === "done" ? "✅" : it.state === "warn" ? "⚠️" : "◻️"}</span><span>${it.text}${it.note ? ` <small>${it.note}</small>` : ""}</span></div>`).join("")}
+    </div>`).join("")}</div>`;
+}
+const renderers = {
+  decision_matrix: () => renderDecisionMatrix(DATA.matrix),
+  comparison: () => renderComparison(DATA.comparison),
+  kpi: () => renderKpi(DATA.kpi),
+  checklist: () => renderChecklist(DATA.checklist),
+};
+$("body").innerHTML = (renderers[DATA.layout] || (() => "<div>unknown layout</div>"))();
+
+// ---- keys（符號鍵）----
+if (DATA.keys && DATA.keys.length) {
+  $("keys").innerHTML = DATA.keys.map(k =>
+    `<span class="k">${k.color ? `<span class="dot" style="background:${k.color}"></span>` : (k.sym ? `<span>${k.sym}</span>` : "")}<span>${k.text}</span></span>`
+  ).join("");
+} else hide("keys");
+
+// ---- cards ----
+if (DATA.cards && DATA.cards.length) {
+  $("cards").innerHTML = DATA.cards.map(c => `<div class="card"><h4>${c.title}</h4><p>${c.body}</p></div>`).join("");
+  $("cards").style.gridTemplateColumns = `repeat(${DATA.cards.length}, 1fr)`;
+} else hide("cards");
+
+// ---- source strip（數字從哪來）----
+const s = DATA.source;
+if (s) {
+  const parts = [];
+  if (s.source) parts.push(`<span class="lab">資料來源</span> ${s.source}`);
+  if (s.baseline) parts.push(`<span class="lab">比較基準</span> ${s.baseline}`);
+  if (s.sample) parts.push(`<span class="lab">樣本</span> ${s.sample}`);
+  if (s.time) parts.push(`<span class="lab">時間</span> ${s.time}`);
+  if (s.note) parts.push(s.note);
+  $("source").innerHTML = parts.join(' <span class="sep">·</span> ');
+} else hide("source");
+
+// ---- footer ----
+const f = DATA.footer || {};
+$("footer").innerHTML = `
+  ${f.action ? `<span class="btn">${f.action}</span>` : ""}
+  ${f.progress ? `<span class="progress">${f.progress}</span>` : ""}
+  ${f.legend ? `<span class="legend">${f.legend}</span>` : ""}
+  ${f.page ? `<span class="page">${f.page}</span>` : ""}
+`;
+</script>
