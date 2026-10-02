@@ -137,6 +137,22 @@ description: >
 | `padding` | `3px 9px`（單純數字編號）／`4px 10px`（較長文字） | 依內容長度微調 |
 | 定位 | `top`/`left` 用 **百分比**，不用絕對 px | 圖片在不同裝置寬度縮放時 badge 仍對齊；px 只在你已固定 `<img>` 顯示寬度時才用 |
 
+#### ⚠️ 硬性規定：白底外框要「貼合圖片寬度」，窄圖（選單、彈窗、單一元件）不可讓白底撐滿整欄（真實事故）
+
+白底卡片 `div` 預設是 block，會撐滿 HackMD 整個閱讀欄寬。圖本身很窄時（下拉選單 160～340px、小彈窗、單一按鈕），結果是圖右邊一大塊白色留白，使用者會直接打槍「選單很窄，我不要旁邊的白色留白」。內層容器寫 `width:100%; max-width:Npx` 無效，因為百分比寬度反過來依賴被撐滿的外框。
+
+**修法**：外層白底卡片加 `width:fit-content; max-width:100%; box-sizing:border-box;`，內層圖片容器用固定 `width:{圖寬}px; max-width:100%`（不要 `width:100%`），白底就會貼著圖。
+
+```html
+<div style="background:#fff; padding:20px; border-radius:8px; width:fit-content; max-width:100%; box-sizing:border-box;">
+<div style="position:relative; width:340px; max-width:100%; aspect-ratio:340/340;">
+<img src="..." style="display:block; width:100%; height:100%; object-fit:fill;">
+</div>
+</div>
+```
+
+驗證：窄圖區塊本機渲染時，量測外層白底卡片 `getBoundingClientRect().width` 應約等於「圖寬＋左右 padding」，而不是欄寬。寬圖（接近欄寬）不受影響。
+
 ### 座標怎麼抓
 
 0. **⚠️ 素材來源是 Figma 時，優先用 Figma 自己回報的座標，不要截圖後再用像素掃描猜**：規則二第 1 點的顏色遮罩掃描（含「相鄰元件併框」的補救措施）是**沒有更好資料來源時的退場方案**，不是首選。如果目標元件是從 Figma MCP 抓來的（而不是使用者貼的聊天截圖／外部系統截圖），呼叫 `get_metadata` 或 `get_design_context` 直接拿該 node 的 bounding box（相對於所截取畫面的 offset），這組座標是設計檔本身的精確數值，不是憑像素顏色推斷出來的，天生不會有「相鄰元件顏色相同、掃描併框」這類問題，也不需要裁切放大反覆核對來補償不確定性。只有在**素材不是 Figma 來源**（使用者上傳的截圖、系統畫面截圖）、沒有 node 座標可查時，才退回第 1 點的像素遮罩掃描流程。
