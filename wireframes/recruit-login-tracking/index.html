@@ -1,0 +1,373 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>每日登入廠商追蹤</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=LXGW+WenKai+TC:wght@400;700&display=swap" rel="stylesheet" />
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+  html, body { background:#f3f3f1; color:#000; margin:0; }
+  * { font-family:'Caveat','LXGW WenKai TC',cursive; }
+  .badge {
+    position:absolute; width:26px; height:26px; border-radius:9999px;
+    background:#000; color:#fff; font-weight:700; font-size:15px; line-height:1;
+    display:flex; align-items:center; justify-content:center; z-index:30;
+    border:2px solid #000; box-shadow:2px 2px 0 #9ca3af;
+  }
+  .card { position:relative; background:#fff; border:2px solid #000; }
+  .tile { border:2px solid #000; background:#fff; padding:10px 12px; }
+  .num { font-size:30px; font-weight:700; line-height:1; font-variant-numeric:tabular-nums; }
+  .ph { color:#6b7280; }
+  table { border-collapse:collapse; width:100%; }
+  th, td { border-bottom:1px dashed #000; padding:6px 8px; text-align:left; white-space:nowrap; font-size:17px; }
+  th { border-bottom:2px solid #000; background:#e5e7eb; font-weight:700; }
+  td.n, th.n { text-align:right; font-variant-numeric:tabular-nums; }
+  .chip { border:2px solid #000; padding:0 8px; font-size:15px; display:inline-block; }
+  .btn { border:2px solid #000; padding:4px 14px; background:#fff; cursor:pointer; }
+  .btn-dark { background:#000; color:#fff; }
+  .sel { border:2px solid #000; padding:4px 10px; background:#fff; min-width:120px; display:flex; justify-content:space-between; gap:8px; }
+  .note { background:#fef9c3; border:1px solid #facc15; padding:12px; margin-bottom:16px; font-size:14px; line-height:1.55; font-family:'LXGW WenKai TC',sans-serif; }
+  .note b { font-family:'LXGW WenKai TC',sans-serif; }
+  .note code { font-family:ui-monospace,monospace; font-size:12px; background:#fff; border:1px solid #facc15; padding:0 3px; }
+  .todo { border-top:1px dashed #a16207; margin-top:6px; padding-top:6px; }
+  .detail-row { display:none; }
+  .detail-row.open { display:table-row; }
+  button:focus-visible, .btn:focus-visible { outline:3px dashed #000; outline-offset:2px; }
+</style>
+</head>
+<body>
+<div class="flex min-h-screen">
+
+<!-- ========================= LEFT: WIREFRAME ========================= -->
+<main class="flex-1 min-w-0">
+
+  <!-- App header -->
+  <header class="relative border-b-2 border-black bg-gray-200 px-6 py-3 flex items-center justify-between">
+    <div>
+      <div class="text-sm ph">RECRUIT-WEB ANALYTICS</div>
+      <div class="text-3xl font-bold">1111 求才 數據報告</div>
+      <div class="text-base ph">[ 資料來源：recruit:login:success 事件（clientId = recruit-web，正式環境） ]</div>
+    </div>
+    <div class="btn">切換視圖模式</div>
+  </header>
+
+  <div class="flex">
+    <!-- App left nav: only one item -->
+    <nav class="w-56 shrink-0 border-r-2 border-black bg-white p-3 min-h-[1400px]">
+      <div class="text-sm ph mb-2">分析模組</div>
+      <div class="border-2 border-black bg-gray-200 p-2 flex gap-2 items-center">
+        <div class="bg-gray-200 border-2 border-black flex items-center justify-center text-gray-500 font-bold text-base w-7 h-7">X</div>
+        <div>
+          <div class="text-xl font-bold leading-none">廠商登入輪廓</div>
+          <div class="text-sm ph">Vendor Login Profile</div>
+        </div>
+      </div>
+    </nav>
+
+    <div class="flex-1 min-w-0 p-5 space-y-5">
+
+      <!-- 1. Filters -->
+      <section class="card p-4">
+        <span class="badge" style="top:-12px;left:-12px">1</span>
+        <div class="text-2xl font-bold">查詢條件</div>
+        <div class="text-base ph mb-3">[ 所有分析模組共用同一組日期與篩選條件 ]</div>
+        <div class="flex flex-wrap gap-4 items-end">
+          <div>
+            <div class="text-base mb-1">日期模式</div>
+            <div class="flex"><span class="btn btn-dark">單日</span><span class="btn border-l-0">區間</span></div>
+          </div>
+          <div>
+            <div class="text-base mb-1">起始日期</div>
+            <div class="sel"><span>2026/10/01</span><span>▦</span></div>
+          </div>
+          <div>
+            <div class="text-base mb-1">結束日期 <span class="ph text-sm">（區間模式才可填）</span></div>
+            <div class="sel bg-gray-100 text-gray-400"><span>yyyy/mm/dd</span><span>▦</span></div>
+          </div>
+          <div>
+            <div class="text-base mb-1">oStatus</div>
+            <div class="sel"><span>全部（0–6）</span><span>▾</span></div>
+          </div>
+          <div>
+            <div class="text-base mb-1">產業 tCodeTrade</div>
+            <div class="sel"><span>全部</span><span>▾</span></div>
+          </div>
+          <div>
+            <div class="text-base mb-1">裝置</div>
+            <div class="sel"><span>全部</span><span>▾</span></div>
+          </div>
+          <div>
+            <div class="text-base mb-1">內外網</div>
+            <div class="sel"><span>全部</span><span>▾</span></div>
+          </div>
+          <div class="btn btn-dark text-xl px-8 ml-auto">執行查詢</div>
+        </div>
+        <div class="text-base ph mt-2">[ 已選：2026/10/01 單日・全部 oStatus・全部產業・全部裝置・全部網段 ]</div>
+      </section>
+
+      <!-- Current view header -->
+      <div class="flex items-end justify-between border-b-2 border-black pb-1">
+        <div>
+          <div class="text-sm ph">CURRENT VIEW</div>
+          <div class="text-2xl font-bold">廠商登入輪廓</div>
+        </div>
+        <div class="text-base ph">Vendor Login Profile</div>
+      </div>
+
+      <!-- 2. Daily overview KPI -->
+      <section class="relative">
+        <span class="badge" style="top:-12px;left:-12px">2</span>
+        <div class="grid grid-cols-5 gap-3">
+          <div class="tile">
+            <div class="text-base">登入廠商數</div>
+            <div class="num">1,284</div>
+            <div class="text-sm ph">OrganNo 去重</div>
+          </div>
+          <div class="tile">
+            <div class="text-base">登入帳號數</div>
+            <div class="num">2,917</div>
+            <div class="text-sm ph">UserID 去重</div>
+          </div>
+          <div class="tile">
+            <div class="text-base">登入次數</div>
+            <div class="num">4,630</div>
+            <div class="text-sm ph">事件筆數</div>
+          </div>
+          <div class="tile">
+            <div class="text-base">內網／外網</div>
+            <div class="flex h-5 border-2 border-black mt-2">
+              <div class="bg-black" style="width:6%"></div><div class="bg-white flex-1"></div>
+            </div>
+            <div class="text-sm mt-1 flex justify-between"><span>內 6%</span><span>外 94%</span></div>
+          </div>
+          <div class="tile">
+            <div class="text-base">desktop／mobile</div>
+            <div class="flex h-5 border-2 border-black mt-2">
+              <div class="bg-gray-400" style="width:81%"></div><div class="bg-white flex-1"></div>
+            </div>
+            <div class="text-sm mt-1 flex justify-between"><span>desktop 81%</span><span>mobile 19%</span></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3. Trend + 6. Distributions -->
+      <div class="grid grid-cols-3 gap-4">
+        <!-- 3. Trend -->
+        <section class="card p-4">
+          <span class="badge" style="top:-12px;left:-12px">3</span>
+          <div class="flex justify-between items-start">
+            <div>
+              <div class="text-xl font-bold">每日趨勢</div>
+              <div class="text-base ph">近 N 天每日登入廠商數／帳號數</div>
+            </div>
+            <div class="flex text-sm"><span class="chip bg-black text-white">7</span><span class="chip border-l-0">14</span><span class="chip border-l-0">30</span></div>
+          </div>
+          <svg viewBox="0 0 260 150" class="w-full mt-2" aria-label="趨勢線框示意">
+            <g stroke="#d1d5db" stroke-width="1">
+              <line x1="30" y1="20" x2="250" y2="20"/><line x1="30" y1="55" x2="250" y2="55"/>
+              <line x1="30" y1="90" x2="250" y2="90"/>
+            </g>
+            <line x1="30" y1="10" x2="30" y2="125" stroke="#000" stroke-width="2"/>
+            <line x1="30" y1="125" x2="250" y2="125" stroke="#000" stroke-width="2"/>
+            <polyline points="30,45 67,40 104,50 141,35 178,42 215,95 250,38" fill="none" stroke="#000" stroke-width="2.5"/>
+            <polyline points="30,85 67,80 104,88 141,76 178,82 215,115 250,79" fill="none" stroke="#000" stroke-width="2.5" stroke-dasharray="6 4"/>
+            <circle cx="250" cy="38" r="4" fill="#000"/><circle cx="250" cy="79" r="4" fill="#fff" stroke="#000" stroke-width="2"/>
+            <text x="30" y="142" font-size="11">09/25</text><text x="215" y="142" font-size="11">10/01</text>
+          </svg>
+          <div class="text-sm flex gap-4 mt-1"><span>━ 帳號數</span><span>╍ 廠商數</span></div>
+          <div class="text-sm ph">[ 週末低點為自然週期，非異常 ]</div>
+        </section>
+
+        <!-- 6a. By oStatus -->
+        <section class="card p-4">
+          <span class="badge" style="top:-12px;left:-12px">6</span>
+          <div class="text-xl font-bold">依 oStatus</div>
+          <div class="text-base ph mb-2">登入廠商數（OrganNo 去重）</div>
+          <div class="space-y-1 text-base">
+            <div class="flex items-center gap-2"><span class="w-24">1 VIP</span><div class="h-4 bg-black" style="width:62%"></div><span class="n">540</span></div>
+            <div class="flex items-center gap-2"><span class="w-24">0 普通會員</span><div class="h-4 bg-black" style="width:41%"></div><span>358</span></div>
+            <div class="flex items-center gap-2"><span class="w-24">4 免費VIP</span><div class="h-4 bg-black" style="width:20%"></div><span>174</span></div>
+            <div class="flex items-center gap-2"><span class="w-24">6 準VIP</span><div class="h-4 bg-black" style="width:12%"></div><span>101</span></div>
+            <div class="flex items-center gap-2"><span class="w-24">5 免費曝光</span><div class="h-4 bg-black" style="width:7%"></div><span>60</span></div>
+            <div class="flex items-center gap-2"><span class="w-24">2 過期</span><div class="h-4 bg-gray-400" style="width:5%"></div><span>43</span></div>
+            <div class="flex items-center gap-2"><span class="w-24">3 關權</span><div class="h-4 bg-gray-400" style="width:1%"></div><span>8</span></div>
+          </div>
+        </section>
+
+        <!-- 6b. By industry -->
+        <section class="card p-4">
+          <span class="badge" style="top:-12px;left:-12px">6</span>
+          <div class="text-xl font-bold">依產業</div>
+          <div class="text-base ph mb-2">登入廠商數 Top 8（tCodeTrade）</div>
+          <div class="space-y-1 text-base">
+            <div class="flex items-center gap-2"><span class="w-24">[ 產業 A ]</span><div class="h-4 bg-black" style="width:55%"></div><span>212</span></div>
+            <div class="flex items-center gap-2"><span class="w-24">[ 產業 B ]</span><div class="h-4 bg-black" style="width:44%"></div><span>170</span></div>
+            <div class="flex items-center gap-2"><span class="w-24">[ 產業 C ]</span><div class="h-4 bg-black" style="width:36%"></div><span>139</span></div>
+            <div class="flex items-center gap-2"><span class="w-24">[ 產業 D ]</span><div class="h-4 bg-black" style="width:28%"></div><span>108</span></div>
+            <div class="flex items-center gap-2"><span class="w-24">[ 產業 E ]</span><div class="h-4 bg-black" style="width:20%"></div><span>77</span></div>
+            <div class="flex items-center gap-2"><span class="w-24">…</span><div class="h-4 bg-gray-300" style="width:10%"></div><span>…</span></div>
+            <div class="flex items-center gap-2"><span class="w-24">其他</span><div class="h-4 bg-gray-400" style="width:30%"></div><span>578</span></div>
+          </div>
+        </section>
+      </div>
+
+      <!-- 4. Vendor list + 5. Account detail -->
+      <section class="card p-4">
+        <span class="badge" style="top:-12px;left:-12px">4</span>
+        <div class="flex justify-between items-end mb-2">
+          <div>
+            <div class="text-2xl font-bold">登入廠商列表</div>
+            <div class="text-base ph">[ 依登入次數由高到低；點列展開該廠商的帳號明細 ]</div>
+          </div>
+          <div class="sel min-w-[220px]"><span class="ph">搜尋廠商名稱／OrganNo</span><span>⌕</span></div>
+        </div>
+        <div class="overflow-x-auto">
+          <table>
+            <thead>
+              <tr>
+                <th></th><th>廠商名稱</th><th>OrganNo</th><th>oStatus</th><th>產業</th>
+                <th class="n">登入帳號數 ⇅</th><th class="n">登入次數 ⇅</th><th>最後登入時間 ⇅</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="cursor-pointer" onclick="toggle('d1',this)">
+                <td><button class="btn px-2 py-0" aria-expanded="true" aria-controls="d1">▾</button></td>
+                <td>[ 廠商名稱 A ]</td><td>[OrganNo]</td><td><span class="chip">1 VIP</span></td><td>[ 產業 A ]</td>
+                <td class="n">3</td><td class="n">11</td><td>2026/10/01 17:42:08</td>
+              </tr>
+              <!-- 5. Account detail (expanded) -->
+              <tr id="d1" class="detail-row open">
+                <td colspan="8" class="bg-gray-100 p-3" style="white-space:normal">
+                  <div class="relative border-2 border-black bg-white p-3">
+                    <span class="badge" style="top:-12px;left:-12px">5</span>
+                    <div class="text-lg font-bold mb-1">帳號明細 — [ 廠商名稱 A ]<span class="ph text-base font-normal">（每列 = 一次登入成功事件）</span></div>
+                    <div class="overflow-x-auto">
+                      <table>
+                        <thead><tr><th>帳號</th><th>UserID</th><th>登入時間</th><th>內外網</th><th>裝置</th><th>抵達頁面</th></tr></thead>
+                        <tbody>
+                          <tr><td>[ 廠商帳號 1 ]</td><td>[oUser]</td><td>2026/10/01 17:42:08</td><td><span class="chip">外網</span></td><td>desktop</td><td>/（首頁）</td></tr>
+                          <tr><td>[ 廠商帳號 1 ]</td><td>[oUser]</td><td>2026/10/01 09:03:51</td><td><span class="chip">外網</span></td><td>desktop</td><td>[ /指定頁面路徑 ]</td></tr>
+                          <tr><td>[ 廠商帳號 2 ]</td><td>[oUser]</td><td>2026/10/01 13:20:15</td><td><span class="chip">外網</span></td><td>mobile</td><td>/（首頁）</td></tr>
+                          <tr><td>[ 廠商帳號 3 ]</td><td>[oUser]</td><td>2026/10/01 10:11:47</td><td><span class="chip bg-black text-white">內網</span></td><td>desktop</td><td>[ /指定頁面路徑 ]</td></tr>
+                        </tbody>
+                      </table>
+                    </div>
+                    <div class="text-sm ph mt-1">[ 預設依登入時間新到舊；同一帳號多次登入各列一筆 ]</div>
+                  </div>
+                </td>
+              </tr>
+              <tr class="cursor-pointer" onclick="toggle('d2',this)">
+                <td><button class="btn px-2 py-0" aria-expanded="false" aria-controls="d2">▸</button></td>
+                <td>[ 廠商名稱 B ]</td><td>[OrganNo]</td><td><span class="chip">0 普通會員</span></td><td>[ 產業 C ]</td>
+                <td class="n">2</td><td class="n">7</td><td>2026/10/01 16:05:33</td>
+              </tr>
+              <tr id="d2" class="detail-row"><td colspan="8" class="bg-gray-100 p-3 ph">[ 帳號明細，結構同上 ]</td></tr>
+              <tr class="cursor-pointer" onclick="toggle('d3',this)">
+                <td><button class="btn px-2 py-0" aria-expanded="false" aria-controls="d3">▸</button></td>
+                <td>[ 廠商名稱 C ]</td><td>[OrganNo]</td><td><span class="chip">6 準VIP</span></td><td>[ 產業 B ]</td>
+                <td class="n">1</td><td class="n">5</td><td>2026/10/01 15:58:02</td>
+              </tr>
+              <tr id="d3" class="detail-row"><td colspan="8" class="bg-gray-100 p-3 ph">[ 帳號明細，結構同上 ]</td></tr>
+              <tr class="cursor-pointer" onclick="toggle('d4',this)">
+                <td><button class="btn px-2 py-0" aria-expanded="false" aria-controls="d4">▸</button></td>
+                <td>[ 廠商名稱 D ]</td><td>[OrganNo]</td><td><span class="chip">2 過期</span></td><td>[ 產業 D ]</td>
+                <td class="n">1</td><td class="n">1</td><td>2026/10/01 08:47:19</td>
+              </tr>
+              <tr id="d4" class="detail-row"><td colspan="8" class="bg-gray-100 p-3 ph">[ 帳號明細，結構同上 ]</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="flex justify-between items-center mt-3 text-base">
+          <span class="ph">顯示 1–20／共 1,284 家</span>
+          <span class="btn">▾ 展開更多</span>
+          <span class="btn">匯出 CSV</span>
+        </div>
+      </section>
+
+    </div>
+  </div>
+</main>
+
+<!-- ========================= RIGHT: NOTES ========================= -->
+<aside class="w-[300px] shrink-0 border-l-2 border-black bg-white p-4 overflow-y-auto" style="position:sticky;top:0;max-height:100vh">
+  <h2 class="text-2xl font-bold border-b-2 border-black pb-1 mb-4">Technical Specs &amp; Flow Logic</h2>
+
+  <div class="note">
+    <b>資料來源（全畫面共用）</b><br/>
+    事件 <code>recruit:login:success</code>，<code>clientId/system = recruit-web</code>，只收正式環境。前端在 ReturnState:1 送出；ReturnState:7（裝置驗證）、6（重複登入）最後都回到 1，<b>一次登入只記一筆</b>，所以「登入次數」= 事件筆數，不需再去重。<br/>
+    可用欄位：時間戳記、IP（判斷內外網）、抵達頁面、oStatus、OrganNo（metadata）、廠商名稱、tCodeTrade、廠商帳號、oUser（= UserID）、裝置。<b>畫面不使用其他欄位。</b>
+    <div class="todo">⚠ 本草稿依交接文件的欄位清單繪製；HackMD 原文（<code>3iGPEf82SO2bAwrQ55hngg</code>）因環境網路政策擋下 api.hackmd.io 未能直接讀取，需對原文覆核一次。</div>
+  </div>
+
+  <div class="note">
+    <b>① 篩選列</b><br/>
+    日期：單日（只填起始日）／區間（起迄皆填，含首尾兩日）。依時間戳記 <code>yyyy/mm/dd</code> 部分比對。<br/>
+    oStatus：多選 0–6（0 普通會員／1 VIP／2 過期／3 關權／4 免費VIP／5 免費曝光／6 準VIP）。<br/>
+    產業：tCodeTrade；裝置：desktop／mobile；內外網：由 IP 判斷。<br/>
+    所有篩選條件同時套用到 ②–⑥。
+    <div class="todo">🚧 待確認：內外網判斷的欄位名稱（需求只寫「需有欄位可判斷」），以及前端送出時如何取得真實 IP。</div>
+  </div>
+
+  <div class="note">
+    <b>② 當日總覽</b><br/>
+    登入廠商數 = <code>COUNT(DISTINCT OrganNo)</code><br/>
+    登入帳號數 = <code>COUNT(DISTINCT UserID)</code><br/>
+    登入次數 = <code>COUNT(*)</code><br/>
+    內網／外網比例、desktop／mobile 比例 = 各類事件筆數 ÷ 登入次數。<br/>
+    區間模式：去重範圍是整個區間（同一廠商連續 7 天登入只算 1 家），不是每日數字加總。
+    <div class="todo">🚧 待確認：內網「客服人員直接登入」是否也會送出事件；若會，要不要從所有統計中排除（目前畫面未排除）。</div>
+  </div>
+
+  <div class="note">
+    <b>③ 每日趨勢</b><br/>
+    近 N 天（7／14／30 可切換），X 軸 = 日期，兩條線：每日 <code>DISTINCT OrganNo</code>、每日 <code>DISTINCT UserID</code>。每天各自去重。<br/>
+    N 天的終點 = 篩選列的結束日（單日模式即該日）。
+  </div>
+
+  <div class="note">
+    <b>④ 廠商列表</b><br/>
+    以 OrganNo 分組，每列一家廠商：<br/>
+    廠商名稱、OrganNo、oStatus、產業 = 該廠商在期間內<b>最後一筆</b>事件的值；<br/>
+    登入帳號數 = 該廠商的 <code>DISTINCT UserID</code>；登入次數 = 事件筆數；最後登入時間 = <code>MAX(時間戳記)</code>。<br/>
+    預設依登入次數排序，可點欄位改排序；搜尋框比對廠商名稱或 OrganNo。點列 → 展開 ⑤。<br/>
+    區間模式下欄位名稱的「當日」改為「期間內」。
+    <div class="todo">🚧 待確認：同一天內 oStatus 或廠商名稱若有變動（例如 VIP 到期），列表取最後一筆值是否符合需求。</div>
+  </div>
+
+  <div class="note">
+    <b>⑤ 帳號明細（展開列）</b><br/>
+    每列 = 一筆登入成功事件，不去重：帳號（廠商帳號）、UserID（oUser）、登入時間、內外網、裝置、抵達頁面。<br/>
+    抵達頁面 = 登入後的 URL 路徑；沒有指定時記為首頁，畫面顯示「/（首頁）」。
+    <div class="todo">🚧 待確認：明細是否需要顯示原始 IP（目前只顯示判斷後的內外網）。</div>
+  </div>
+
+  <div class="note">
+    <b>⑥ 分布</b><br/>
+    依 oStatus：各代碼的 <code>DISTINCT OrganNo</code>，7 個代碼全列（含 0 筆）。過期／關權用灰色以示區隔。<br/>
+    依產業：各 tCodeTrade 的 <code>DISTINCT OrganNo</code>，顯示 Top 8，其餘併入「其他」。
+    <div class="todo">🚧 待確認：tCodeTrade 是單值還是多值。若多值，一家廠商會被算進多個產業，各產業加總會大於登入廠商數，需在圖上註明。</div>
+  </div>
+
+  <div class="note">
+    <b>系統面（尚未決定）</b>
+    <div class="todo">🚧 待確認：呼叫查詢 API 是否需要驗證 token。</div>
+    <div class="todo">🚧 待確認：畫面要做在哪裡——Grafana 儀表板、客服後台，或獨立報表。此線框只定義資訊結構，與載體無關；若用 Grafana，⑤ 的展開列需改成點擊後跳到明細 panel。</div>
+  </div>
+</aside>
+
+</div>
+
+<script>
+  function toggle(id, row){
+    var d = document.getElementById(id);
+    var open = d.classList.toggle('open');
+    var b = row.querySelector('button');
+    b.textContent = open ? '▾' : '▸';
+    b.setAttribute('aria-expanded', open);
+  }
+</script>
+</body>
+</html>
