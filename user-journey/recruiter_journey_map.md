@@ -65,6 +65,8 @@
 
 **版本判定**：頁面／文件編號英文字母開頭＝新版求才；純數字＝現版求才（兩者架構不同）。資料夾字母不代表版本，例如 `C. 職缺` 內的 `2.x` 文件都是現版。IA 異動時本檔與 [Sitemap](https://hackmd.io/@1111-jobdocs/rkGFjjlPWe) 要一起更新。
 
+**前端架構**：新版求才＝Nuxt 3（Vue 3）為主、仍載入 jQuery 舊外掛；現版求才＝ASP.NET WebForms＋jQuery＋Bootstrap（`.aspx`，伺服器 postback）；兩者共用 `components.1111.com.tw` 的獨立元件（IIFE 打包）。埋點、共用元件等前端工作，新版可用 Nuxt composable，現版需另寫 jQuery 版。
+
 | 編碼 | HackMD 資料夾 | 版本 | 文件數 | 本檔章節 | Sitemap | 起手文件 |
 | :--- | :--- | :--- | :---: | :--- | :--- | :--- |
 | J | `求才系統/J. 登入流程與登入前` | 新版 | 9 | 表 A | 第1節 | r11ad8Okfe（登入前頁） |
