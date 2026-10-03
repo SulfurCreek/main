@@ -20,7 +20,7 @@
 
 | 類別 / Type | 證照 / Credential | 等級・分數 / Level・Score | 履歷價值 / Résumé value |
 | :--- | :--- | :--- | :--- |
-| 雲端技術 / Cloud | **AWS Certified Cloud Practitioner** | 基礎級 / foundational | 雲端素養佐證，強化**技術型 PM／硬技術公司**（NVIDIA-tier）定位與 F2 技術素養 |
+| 雲端技術 / Cloud | **AWS Certified Cloud Practitioner** | 基礎級 / foundational；**2023/12/29 取得**（Credly 徽章信件）；AWS 證照有效期 3 年，〔待確認：到期日約 2026/12，需續證或標示效期〕 | 雲端素養佐證，強化**技術型 PM／硬技術公司**（NVIDIA-tier）定位與 F2 技術素養 |
 | 英語 / English | **TOEIC** | **金色證書 Gold・980／990** | 近滿分英語力——國際／英文 ATS 版的**頭牌**訊號 |
 | 英語 / English | **TOEFL iBT** | **93／120** | 學術英語能力（赴美 CSUS 交換期間應考）|
 | 英語 / English | **全民英檢 GEPT** | 中高級 / High-Intermediate | 台灣在地英語能力佐證 |

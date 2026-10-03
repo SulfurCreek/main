@@ -65,7 +65,7 @@ Senior Product Manager with ~10 years across B2C mobile and B2B recruitment plat
 ## Certifications
 
 - TOEIC 980/990 (Gold)
-- AWS Certified Cloud Practitioner
+- AWS Certified Cloud Practitioner (Dec 2023)
 - TOEFL iBT 93/120
 - GEPT High-Intermediate
 
