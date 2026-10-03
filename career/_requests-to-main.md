@@ -71,3 +71,9 @@ merge main 不會刪掉它們。請主幹決定：直接在本分支刪除（car
 
 **為什麼**：現行自傳範本沒有限制段落長度，也沒有排除無效資訊，在手機上可讀性差；台灣 HR 看自傳最在意轉換動機和即戰力，
 現行範本沒有明確欄位。履歷 bullet 的結果前置能讓 104 掃描時更快看到成果。
+
+## 2026-10-03：`resume-craft` 作品集加入雙軌範本（吸收外部 skill `pm-portfolio-creator`）
+
+完整指令見使用者轉交給 Repo Steward 的 prompt（內容同下）。重點：不新增 skill，併進 `resume-craft`。
+新增 `assets/portfolio-case-study-tw.md`（台灣執行導向版）；原範本補上 TL;DR、假設、優先級框架，以及 NDA 去識別化規則。
+Mermaid 一律依照 `wiki/mermaid_styling_rules.md`；作品集輸出位置寫死在 `career/portfolio/`，禁止寫 HackMD（career 硬規則二）。
