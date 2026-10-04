@@ -55,12 +55,12 @@ Senior Product Manager with ~10 years across B2C mobile and B2B recruitment plat
 
 ### Newegg Taiwan -- Taiwan
 
-**Proofreading Intern**
+**Proofreading Intern (Product Content Editing / Translation)**
 2013-08 - 2014-02
 
 - Translated and proofread product information and specifications (English to Chinese), improving readability and Taiwan localization of listings
 
-*Mandatory military service followed (2014); full-time career began at Sweet Tech in 2016.*
+*Mandatory military service Feb 2015 - Feb 2016; full-time product career began at Sweet Tech in June 2016.*
 
 ## Education
 
