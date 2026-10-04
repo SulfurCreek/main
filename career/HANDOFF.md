@@ -75,6 +75,12 @@
 | [`wiki/pm-vocabulary-map.md`](wiki/pm-vocabulary-map.md) | 50 個 PM／AI 語彙 → 證據對照（✅25 🟡15 ⚠️10）、LTV 推導 |
 | [`wiki/growth-edges.md`](wiki/growth-edges.md) | 下一步補強建議與證據缺口 |
 
+### 104 求職 `104/`
+
+| 檔案 | 內容 |
+| :--- | :--- |
+| [`104/README.md`](104/README.md) | 104 工作區入口：職缺分析、職缺分級、履歷逐欄內容、Claude in Chrome 操作手冊 |
+
 ### 求職信 `letters/`
 
 | 檔案 | 內容 |
