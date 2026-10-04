@@ -14,7 +14,7 @@
 | 期間 | 公司 | 職稱 | 產品 |
 | :--- | :--- | :--- | :--- |
 | 2022/08 – 至今 | **1111 人力銀行** | 產品企劃（求才系統主責）| 求才 B 端平台、公司頁、求才側 AI（見 F1–F11）|
-| 2018/01 – 2022/03 | **尚凡國際創新科技 / Sunfun Info** | Project Manager | **JustDating**（App ＋ Web 版）、**KOOL 網紅人力銀行** |
+| 2018/01 – 2022/03 | **尚凡國際創新科技 / Sunfun Info** | Project Manager | **JustDating**（App ＋ Web 版）、**KOOL 網紅人力銀行**；主導 **Peach**（0→1）、**JD2**、**JC** 上線與馬來西亞定價實驗（見[內部營運數據](evidence-prior-products.md)） |
 | 2016/06 – 2018/01 | **思維特網路資訊 / Sweet Tech** | Associate Product Manager | **SweetRing** 交友 App |
 | 2013/08 – 2014/02 | **台灣新蛋 / Newegg Taiwan** | Product Description Editor／Translator | Newegg.com 商品內容（英→中）|
 
