@@ -55,14 +55,16 @@ Senior Product Manager with ~10 years across B2C mobile and B2B recruitment plat
 
 ### Newegg Taiwan -- Taiwan
 
-**Product Description Editor / Translator**
+**Proofreading Intern**
 2013-08 - 2014-02
 
-- Translated product information and specifications (English to Chinese) and improved readability and Taiwan localization of listings
+- Translated and proofread product information and specifications (English to Chinese), improving readability and Taiwan localization of listings
+
+*Mandatory military service followed (2014); full-time career began at Sweet Tech in 2016.*
 
 ## Education
 
-- B.B.A. International Business, Tamkang University (TODO: confirm year, 2013 or 2014)
+- B.B.A. International Business, Tamkang University (2010-2014)
 - Exchange Student, Business, California State University, Sacramento (one academic year)
 
 ## Certifications
