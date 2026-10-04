@@ -6,7 +6,7 @@
 # F14. 國際化與跨文化在地化 / Internationalization & Cross-Cultural Localization
 
 > **履歷叢集 / Résumé cluster**：Stakeholder Mgmt & Influence（跨文化協作）
-> **證據期間**：2013/08–2014/02（Newegg）、2016/06–2018/01（思維特）
+> **證據期間**：2014（Newegg）、2016/06–2018/01（思維特）
 
 **定義 / Definition**：把產品帶進多個海外市場——與**母語使用者與多國背景團隊**協作，交付真正在地化
 （而非機器翻譯式）的產品體驗。

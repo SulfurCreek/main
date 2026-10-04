@@ -56,7 +56,7 @@ Senior Product Manager with ~10 years across B2C mobile and B2B recruitment plat
 ### Newegg Taiwan -- Taiwan
 
 **Proofreading Intern (Product Content Editing / Translation)**
-2013-08 - 2014-02
+2014-〔month〕 - 2015-〔month〕
 
 - Translated and proofread product information and specifications (English to Chinese), improving readability and Taiwan localization of listings
 
