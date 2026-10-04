@@ -75,6 +75,15 @@
 | [`wiki/pm-vocabulary-map.md`](wiki/pm-vocabulary-map.md) | 50 個 PM／AI 語彙 → 證據對照（✅25 🟡15 ⚠️10）、LTV 推導 |
 | [`wiki/growth-edges.md`](wiki/growth-edges.md) | 下一步補強建議與證據缺口 |
 
+### 求職信 `letters/`
+
+| 檔案 | 內容 |
+| :--- | :--- |
+| [`letters/README.md`](letters/README.md) | 求職信資料庫入口與規則 |
+| [`letters/story-bank.md`](letters/story-bank.md) | 定位句／成果證據／動機鉤子／收尾素材（中英，附來源） |
+| [`letters/log.md`](letters/log.md) | 投遞紀錄 |
+| `letters/archive/` | 寫好的信（含 2022 Positive Grid 舊信＋檢討） |
+
 ### career-ops（求職工具）
 
 | 檔案 | 內容 |
