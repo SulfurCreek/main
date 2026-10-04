@@ -118,7 +118,7 @@
 | :--- | :--- | :--- |
 | **`CAREER_OPS_ROOT` 環境變數**：已改為直接讀寫 repo（不再 cp）；需使用者在環境設定加入 | 等使用者設定 | `career-ops/README.md` |
 | career-ops TODO：LinkedIn／作品集網址、電話、薪資區間、目標職稱、輸出語言、預告期 | 等使用者提供 | `career-ops/config/profile.yml` |
-| **畢業年份**：2013 或 2014 | 等使用者確認（背調會查） | `wiki/prior-roles.md`、`education-certifications.md` |
+| ~~畢業年份~~：已確認 2014；**兵役起訖月份**與退伍到 2016/06 間做什麼，待補 | `wiki/prior-roles.md`、`education-certifications.md` |
 | 2014/02–2016/06 空檔說明 | 等使用者提供 | `wiki/prior-roles.md` |
 | 各 F 頁 `〔待補數據〕`：規格份數、AI 功能採用率、規則數、缺陷率、IAP 營收成長 %、流失下降 % | 等使用者提供 | `resume-extract.md` 等 |
 | growth-edges 缺口：AI 功能採用、續約因果歸因、A/B 實驗主導 | 長期 | `wiki/growth-edges.md` |
