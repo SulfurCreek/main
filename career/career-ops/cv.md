@@ -74,7 +74,8 @@ Senior Product Manager with ~10 years across B2C mobile and B2B recruitment plat
 
 ## Skills
 
-- **Product:** Product definition, roadmap prioritization, functional specs, MECE state modeling, stakeholder management, AARRR growth model
+- **Product:** Product definition, roadmap prioritization, functional specs, MECE state modeling, stakeholder management, AARRR growth model, user interviews and surveys, Agile/Scrum sprints
+- **Tools:** Figma, Axure RP, Notion, Trello, Google Analytics (GA4)
 - **Business:** IAP monetization and pricing, payment integration, cohort and retention analysis, localization
 - **Technical:** API contract design (HMAC signing, rate limiting), SignalR real-time messaging, sequence/activity/BPMN diagramming, AWS
 - **AI:** LLM feature definition, multi-agent workflow governance (Claude Code)

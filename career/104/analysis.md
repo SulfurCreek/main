@@ -34,20 +34,22 @@
 | 測試／UAT／驗收（28） | F5 測試案例設計＋QA 協作 | 🟡 **高頻缺口**：Test Plan、親自執行測試、UAT 主持〔待補〕 |
 | API／系統串接（21） | E.1 跨系統、異業 API 合約、第三方金流 | ✅ 強項 |
 | AI／LLM（約 20） | 5 項 AI 功能、多代理系統、Claude Code | ✅ 差異化強項 |
-| Figma／Axure／Wireframe（16） | wireframe、prototype（尚凡） | 🟡 **工具名未寫**〔待補：用過哪些〕 |
+| Figma／Axure／Wireframe（16） | wireframe、prototype（尚凡） | ✅ 已確認：Figma、Axure（2026-10-04） |
 | 電商／零售（14） | 無直接經驗 | ⚠️ 用「雙邊平台、B 端商家」轉譯 |
 | Roadmap（13） | 227 項 roadmap、94% 準時 | ✅ 有 |
-| 使用者訪談／研究（13） | 未記錄 | ⚠️ 〔待補：有沒有做過訪談、問卷、可用性測試〕 |
+| 使用者訪談／研究（13） | 做過使用者訪談與問卷 | ✅ 已確認（可用性測試未確認） |
 | B2B／SaaS／企業客戶（12） | 1111 求才 B 端平台 | ✅ 有 |
-| Jira／Confluence（10） | 未記錄 | 🟡 〔待補〕 |
-| Agile／Scrum（10） | 工單 → Kanban → 上線 | 🟡 〔待補：有沒有 Sprint 經驗〕 |
+| Jira／Confluence（10） | 未用過或未確認 | 🟡 〔待補〕；可用 Trello、Notion 說明看板管理 |
+| Agile／Scrum（10） | 有跑 Agile 與 Sprint | ✅ 已確認 |
 | 英文精通（9，多為外商） | TOEIC 980、TOEFL 93、CSUS 交換 | ✅ 有 |
 | SQL（8 明列） | 未記錄 | 🟡 〔待補：會不會自己下 SQL〕 |
 | 0→1（7，USPACE 列為必備） | Peach、JD2、JC、SweetRing | ✅ 已補（2026-10-04） |
 | A/B 測試（5） | 馬來西亞 iOS 定價實驗（Android 對照） | ✅ 已補 |
-| GA4／Firebase（4） | App Annie、iOS／Android 後台 | 🟡 〔待補〕 |
+| GA4／Firebase（4） | GA4 已確認；另有 App Annie、iOS／Android 後台 | ✅ 有（Firebase 未確認） |
 
 ## 4. 建 104 履歷前要你回答的事
+
+> 2026-10-04 已回答：工具（Figma、Axure、Notion、GA4、Trello）、Agile／Sprint、問卷與使用者訪談、網頁付款轉移可當成果。
 
 依影響排序，前 4 項不回答就無法完成履歷：
 
