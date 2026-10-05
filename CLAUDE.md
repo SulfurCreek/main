@@ -20,6 +20,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 | 1111 切版改版（mock↔正式偏離稽核、CSS 對照表）或前端修改工程單 | 用 `Skill` 載入 `frontend-slicing-1111`（改版稽核）／`frontend-change-ticket-1111`（工程單內文強制格式，兩者衝突時後者優先） |
 | 分析 API 文件產測試矩陣、或依矩陣產生並執行 pytest | 用 `Skill` 載入 `api`（文件→矩陣）／`auto-test`（矩陣→腳本→報告，需先跑過 `api`） |
 | 撰寫/修改個人履歷、CV、作品集 | 用 `Skill` 載入 `resume-craft`（依賴的 `career/` 職能框架 wiki 已於 2026-08-31 併入本 repo，開箱即用） |
+| 產生／填寫／驗證 104 履歷、撰寫中文履歷或自傳語氣（Cake Resume 另案，不得套用 104 規格） | 用 `Skill` 載入 `resume-craft`；104 先讀 `career/104/README.md`（在個人線分支 `claude/happy-lamport-ljis8c`，欄位規格 `fields-spec.md`），中文語氣依 `resume-craft/references/tw-voice.md` |
 | 把作品集（`career/portfolio/*.md`）渲染成靜態網站、部署 GitHub／Cloudflare Pages（作品集網站、靜態網站、portfolio site） | 用 `Skill` 載入 `portfolio-site`（只管渲染；內容由 `resume-craft` 管，輸出在使用者自己的作品集 repo，不進本 repo） |
 | 撰寫 QA 測試案例（只寫 happy path）、把規格書轉成可勾選的驗收案例表 | 用 `Skill` 載入 `qa-happy-path-cases` |
 | 從 Sitemap／規格文件反向工程 User Journey Map（旅程地圖，三段式範本；`user-journey/` 專案） | 用 `Skill` 載入 `user-journey-map`（HackMD 文件 session 編輯素材 md，HTML 化歸「產生HTML報告」session，見 `user-journey/README.md`） |
