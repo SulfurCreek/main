@@ -1,30 +1,18 @@
-# 給 Career Move 的問題（作品集網站助手 → career session）
+# 給 Career Move 的問題（作品集網站助手 → Career Move）
 
-作品集網站助手（render session）已獲使用者核准把網站原始碼放在 `career/site/`。我只渲染、不改內容；
-`career/site/` 請 Career Move 不要動。下列問題請回覆在本檔下方或直接更新 `career/portfolio/*.md`，我再渲染。
+規則：`wiki/personal_line_collab.md`。回覆請寫在 `career/portfolio/public/STATUS.md`（Q 編號），不改本檔。
+我只渲染 `career/portfolio/public/*.md` 中 `publish: ready` 的頁；不讀內部版。
 
-## Q1　E.1 目前不能渲染成公開頁（阻擋項）
-
-`career/portfolio/e1-cross-system-messaging.md` 檔頭自己註明「對外引用務必抽象化」，但正文尚未去識別化。
-請產出**對外版**（建議新檔 `e1-cross-system-messaging.public.md`，保留現檔當內部版）：
-
-| # | 問題 | 位置 | 規則 |
+| Q | 位置 | 問題 | 適用規則 |
 | :--- | :--- | :--- | :--- |
-| 1 | 內部 API 名：`get-echat-mail-logs`／`get-detail/{infoNo}`／`get-by-condition`／`update-chatlog` | §3、循序圖 | 不得出現 |
-| 2 | 欄位／代碼名：`mailType`／`interViewKind`／`revokeFlag`／`sendKind`／`readflag`／`oViewDate`／`tViewDate`／`sendType`／`Type:8`；前端函式 `chatMessageMapper`／`toMailType`／`toInterviewStatus` | §2、§3 | 不得出現 |
-| 3 | 推播通道／事件名：`echathub`／`ReceiveMessage`／`UpdateMessageStatus` | 循序圖 | 不得出現 |
-| 4 | 〔待補數據〕 | §4 量化成果 | 網站不得有佔位字；請補真實數據或刪掉該條 |
-| 5 | 「1111 人力銀行」、HackMD、GitHub、內部 wiki 路由表／RAG 索引 | §1、§4 | 請確認是否可公開；未確認前我一律不放 |
-| 6 | 循序圖含「廠商編號／履歷編號／職缺編號」等欄位級描述、點數／權限檢查細節 | 循序圖 | 請改畫抽象版（角色名＋階段），我預先渲染成 SVG |
-| 7 | §1 寫「五種邀約卡片」卻列六項 | §1 | 數字請你確認 |
-| 8 | 「2022/08 到職」「仍在職」類時間線 | §1 | 請確認是否對外 |
-
-## Q2　其他案例
-
-目前 `career/portfolio/` 只有 E.1 一篇。首頁需要「一句定位＋3 個成果數字卡」，數字請由你在 md 提供，我不編。
-Peach 案例尚未寫。
+| Q1 | `public/`（尚無檔案） | 請產出 E.1 對外版 `public/e1-cross-system-messaging.md`，front matter 依協作規則 §2.1，使用者核可文字後設 `publish: ready` | 去識別化：無內部 API／欄位／代碼／事件名、無客戶廠商名、無佔位字 |
+| Q2 | E.1 對外版的循序圖 | 請提供抽象版圖（角色名＋階段，不含端點／欄位／通道名）。可給 `.mmd`，我預先渲染成 SVG | `portfolio-site` §3 |
+| Q3 | E.1 對外版的成果段 | 每個數字都要有來源，不得有〔待補〕；沒數據的成果請刪或改成不含數字的敘述 | `portfolio-site` §5 |
+| Q4 | E.1 對外版 | 「五種邀約卡片」與實際列舉項數是否一致，請以對外版為準確認 | 數字一致 |
+| Q5 | `highlights` | 首頁需要最多 3 個成果數字卡；請在對外版 front matter 的 `highlights` 提供，沒有就留空，我不編 | 協作規則 §2.1 |
+| Q6 | 首頁 | 需要一句定位語、聯絡方式（Email／LinkedIn 連結）是否對外，請在 STATUS.md 的「使用者決定」表記錄 | 協作規則 §2.4 |
 
 ## 狀態
 
-網站骨架（`assets/style.css`、`404.html`、`robots.txt`）已建。`index.html`、`cases/*.html` 等 E.1 對外版 md 到手再做。
+骨架已建：`assets/style.css`、`404.html`、`robots.txt`。`index.html`、`cases/*.html` 等 STATUS.md 出現 `ready` 的對外版再做。
 預設 `noindex, nofollow`。
