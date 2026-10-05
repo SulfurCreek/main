@@ -48,7 +48,7 @@
 - 單一事實來源（Single Source of Truth）：針對異業 API 串接，制定含 HMAC-SHA256 簽章、5 分鐘重放窗口、限流機制與狀態碼分類的合約規格；將權限、審核、配對與續約規則收斂為 MECE 決策模型，成為工程團隊開發的唯一依據。帳號遭冒用事件後，設計新裝置驗證、錯誤鎖定與可疑 E-mail 阻擋的完整規則。
 - 封測與投票制度：每項新功能先邀全國客服封測，固定附 FAQ 預先回答提問（借鑑 Amazon Working Backwards 的 PR/FAQ 概念），並以 Axure RP 互動原型在 Kick-off 說明流程；規則分歧時發起投票，讓第一線參與決定，包含 Q3／Q4 開發優先序。
 - 維運效率與付費留存：每週發布需求處理週報，2026 年截至 9 月處理 1,857 張維運工單（維運問題、企劃建議、工程 bug）、處理率約 93%；導入處理週期追蹤，平均處理時間由 100.4 天降至 30.9 天。以 14.9 萬家企業名冊做世代分析（Cohort Analysis），實證維運所服務的付費客戶，留存率高於全站基準 7 個百分點（p=0.011）。
-- Roadmap 治理：統籌 227 項產品 Roadmap，導入 P0–P3 優先級與時間盒（Timebox），帶領 2 名企劃半年內上線 111 項、準時率 94%；對接 16 個利害關係單位，以數據而非位階決策。
+- Roadmap 治理與專案管理：統籌 227 項產品 Roadmap，以 Kanban 看板推進瀑布式（Waterfall）開發，依「緊急／重要」矩陣與 P0–P3 優先級排定順序，搭配時間盒（Timebox）交付；主持 Daily Stand-up 與 Sprint Retrospective，帶領 2 名企劃半年內上線 111 項、準時率 94%；對接 16 個利害關係單位，以數據而非位階決策。
 - AI 內部工作流：獨立建置以 Claude Code 為核心的 AI 協作系統（12 個代理、23 個 Skill），提升規格撰寫、資料分析與文件治理效率。
 
 公司：尚凡國際創新科技（上櫃 5278）
@@ -84,7 +84,8 @@
 產品規格撰寫：擅長撰寫產品需求文件（PRD）、使用者故事、流程圖、線框圖與 Axure RP 互動原型。
 跨系統整合與 API 契約設計：設計跨系統 API 合約、狀態機與錯誤碼分類，確保系統間一致。
 法遵與業務規則轉譯：將法規、審核與權限規則轉成可實作的系統規則，並與法務、稽核對齊。
-0 到 1 產品上線與 Roadmap 管理：主導新產品從零到上線，並以 P0–P3 優先級管理大型 Roadmap。
+0 到 1 產品上線與 Roadmap 管理：主導新產品從零到上線，以 Kanban 推進瀑布式開發，並以 P0–P3 優先級與緊急／重要矩陣管理大型 Roadmap。
+敏捷儀式：主持 Daily Stand-up 與 Sprint Retrospective，追蹤進度並持續改善團隊流程。
 使用者驗收測試（UAT）與上線管理：規劃封測、公測與分階段上線，以 FAQ 與投票收斂內部意見。
 IAP 定價與第三方金流串接：熟悉內購定價策略、付款管道轉移與第三方支付串接。
 數據分析與實驗設計：以 GA4、世代分析與對照組實驗驗證產品成效。
@@ -137,6 +138,6 @@ Senior Product Manager | System Architecture & Stakeholder Alignment
 
 I am a Senior Product Manager with ten years of experience growing subscription social apps from zero to one and leading large-scale rebuilds on a B2B recruitment platform. My core strength is translating complex business rules and regulatory constraints into engineering-ready specifications: API contracts, state machines and MECE decision models.
 
-I am the Product Owner of the Employer Recruitment System at 1111 Job Bank. I took over a stalled rebuild of the employer system, re-planned it into three phases, and launched phase one in October 2025 with a 90-minute off-peak cutover. From late 2023 to early 2026 I shipped about 50 releases, including full redesigns of the application list, job posting flow, resume page and company profile. I am now leading the design of a new employer-candidate messaging system (in development) that merges email notifications and chat into one conversation flow. Before each launch I run internal user acceptance tests with the nationwide customer service team, publish FAQs in advance, a habit borrowed from Amazon's Working Backwards PR/FAQ, and let frontline staff vote when rules are disputed. In 2026 through September my team resolved about 93% of 1,857 operations tickets, and a cohort analysis across 149.5K employer accounts showed that the paying customers served by this pipeline retained 7 percentage points above the platform baseline (p=0.011).
+I am the Product Owner of the Employer Recruitment System at 1111 Job Bank. I took over a stalled rebuild of the employer system, re-planned it into three phases, and launched phase one in October 2025 with a 90-minute off-peak cutover. From late 2023 to early 2026 I shipped about 50 releases, including full redesigns of the application list, job posting flow, resume page and company profile. I am now leading the design of a new employer-candidate messaging system (in development) that merges email notifications and chat into one conversation flow. Before each launch I run the roadmap on a Kanban board with P0-P3 priorities, host daily stand-ups and sprint retrospectives, and run internal user acceptance tests with the nationwide customer service team, publish FAQs in advance, a habit borrowed from Amazon's Working Backwards PR/FAQ, and let frontline staff vote when rules are disputed. In 2026 through September my team resolved about 93% of 1,857 operations tickets, and a cohort analysis across 149.5K employer accounts showed that the paying customers served by this pipeline retained 7 percentage points above the platform baseline (p=0.011).
 
 Previously at Sunfun Info, I led three zero-to-one subscription social apps; Peach grew daily actives about 14x within its first year. I shifted Peach's payments from in-app purchase to web, raising web's share of revenue from 24% to over 80%, and ran a three-phase pricing experiment in Malaysia with Android as the control group, which led to a market-wide price cut. TOEIC 980.
