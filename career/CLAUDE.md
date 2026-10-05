@@ -55,7 +55,7 @@ Enforced by `scripts/guard_career_scope.sh` (PreToolUse hook, this branch only; 
 | 產生 **Cake Resume** | 尚未建立 `cake/`；要做時先開 `cake/` 目錄、先取得 Cake 編輯頁欄位規格再寫 | **不得套用 104 的欄位規格與字數上限**；內容事實與數字仍共用 `wiki/` |
 | 英文 ATS 履歷、自傳、求職信 | `resume-craft` skill、`letters/` | 與平台表單無關 |
 
-事實與數字的唯一來源是 `wiki/`；各平台檔案只是格式不同的呈現。
+事實與數字的唯一來源是 `wiki/`；各平台檔案只是格式不同的呈現。**中文語氣一律依 `style/resume-voice-zh.md`**（104、Cake 共用，第 3 節護欄優先於語氣）。
 
 ## 🚫 硬規則二：不外流 / Hard rule: never publish
 

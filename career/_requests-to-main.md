@@ -17,3 +17,8 @@
 Cake Resume 另案，不得套用 104 的欄位規格與字數上限」。
 
 **為什麼**：使用者之後還要產生 Cake Resume，兩個平台的欄位、必填項與字數限制不同，混用會填錯。career 內部路由已寫在 `career/CLAUDE.md`〈履歷平台路由〉。
+
+## 2026-10-05：resume-craft 加入「繁中履歷語氣規範」
+
+**想改什麼**：把 `career/style/resume-voice-zh.md` 的第 1–3 節收進 `resume-craft/references/`（建議檔名 `tw-voice.md`），並在 SKILL.md 任務路由加一列「撰寫中文履歷／自傳 → 語氣依 tw-voice.md」。
+**為什麼**：使用者親自潤飾過一版，偏好「粗體小標＋中英術語並列＋結果導向」的語氣；同時萃取出 8 條防誇大護欄（例如註冊數不可寫成轉換率、不可寫零停機）。現行 resume-craft 只有「去 AI 腔」，沒有正向語氣範本。
