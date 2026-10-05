@@ -43,7 +43,7 @@
 | Agile／Scrum（10） | 有跑 Agile 與 Sprint | ✅ 已確認 |
 | 英文精通（9，多為外商） | TOEIC 980、TOEFL 93、CSUS 交換 | ✅ 有 |
 | SQL（8 明列） | 未記錄 | 🟡 〔待補：會不會自己下 SQL〕 |
-| 0→1（7，USPACE 列為必備） | Peach、JD2、JC、SweetRing | ✅ 已補（2026-10-04） |
+| 0→1（7，USPACE 列為必備） | Peach、JD2、Juicy、SweetRing | ✅ 已補（2026-10-04） |
 | A/B 測試（5） | 馬來西亞 iOS 定價實驗（Android 對照） | ✅ 已補 |
 | GA4／Firebase（4） | GA4 已確認；另有 App Annie、iOS／Android 後台 | ✅ 有（Firebase 未確認） |
 

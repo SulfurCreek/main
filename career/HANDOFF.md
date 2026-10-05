@@ -152,3 +152,6 @@ git fetch origin main && git merge origin/main
 ```
 
 - 履歷產出：`Skill` 載入 `resume-craft`（它還停在 F1–F11，記得自己把 F12–F15 帶進來）。
+
+## 待辦（2026-10-05）
+- 使用者將提供每週（至少一次）給公司業務單位的簡報，讀完後補進職能（F09 利害關係人影響、F08 Roadmap 等），再重產 104 txt／PDF。重產前先套用 style/resume-voice-zh.md 補充護欄（Juicy、1111人力銀行招募系統 Product Owner、大型改版）。

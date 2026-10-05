@@ -54,7 +54,7 @@ AI 賦能與敏捷交付（AI-Driven & Agile Delivery）：以數據驅動開發
 職務類別：軟體專案管理師
 在職期間：2018/01 - 2022/03
 工作內容：
-- 0 到 1 產品上線（0-to-1 Product Launches）：主導 Peach（個人頻道訂閱制）、JustDating 重新上架版（JD2）與 JC 三款訂閱制社交 App 從提案、使用者故事、線框圖、原型到上線的完整生命週期。Peach 上線不到一年 DAU 成長約 14 倍；JustDating 遭商城下架期間推出復刻版 JC 維持營收，上線 6 週 DAU 成長約 4 倍，JustDating 重新上架後 JC 功成下架；JD2 上線 12 週 DAU 成長約 8 倍。
+- 0 到 1 產品上線（0-to-1 Product Launches）：主導 Peach（個人頻道訂閱制）、JustDating 重新上架版（JD2）與 Juicy 三款訂閱制社交 App 從提案、使用者故事、線框圖、原型到上線的完整生命週期。Peach 上線不到一年 DAU 成長約 14 倍；JustDating 遭商城下架期間推出復刻版 Juicy 維持營收，上線 6 週 DAU 成長約 4 倍，JustDating 重新上架後 Juicy 功成下架；JD2 上線 12 週 DAU 成長約 8 倍。
 - 付款管道轉移與變現：為 Peach 制定付款管道轉移策略，引導用戶由高抽成的 App 內購（IAP）轉向網頁付款，網頁付款營收占比由 24% 提升至 80% 以上，並推行創作者分潤機制。
 - 定價實驗（Pricing Strategy）：設計馬來西亞市場 iOS 三階段定價實驗（原價→降價→還原），以 Android 為對照組；降價期 iOS DAU 成長 48%、註冊數成長 67%，依實驗結果全面調降售價。
 - 變現與金流：調整 IAP 內購模型與價格點並搭配階段性促銷；將第三方金流導入成熟產品，擔任串接與營運期單一窗口。

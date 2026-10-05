@@ -35,9 +35,9 @@ Senior Product Manager with ~10 years across B2C mobile and B2B recruitment plat
 2018-01 - 2022-03
 
 - Collaborated on JustDating (app and web) and KOOL, an influencer job marketplace
-- Led three zero-to-one launches (Peach, JD2, JC) from proposal, user story, wireframe and prototype through release
+- Led three zero-to-one launches (Peach, JD2, Juicy) from proposal, user story, wireframe and prototype through release
 - Grew Peach, a subscription social-content app, about 14x in daily actives within its first year while shifting payments from in-app purchase to web (24% to 80%+ of revenue)
-- Grew JD2 daily actives about 8x in 12 weeks after launch, and JC about 4x in 6 weeks
+- Grew JD2 daily actives about 8x in 12 weeks after launch, and Juicy about 4x in 6 weeks
 - Designed a three-phase iOS pricing experiment in Malaysia with Android as the control group; the price cut lifted male DAU 48% and sign-ups 67%, leading to a market-wide price reduction
 - Tuned the in-app-purchase model and price points with staged promotions to grow revenue and margin
 - Integrated third-party payment rails into a mature product as single point of contact through launch and operations
