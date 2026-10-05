@@ -18,15 +18,17 @@ description: >
 兩支分支重複做、或該 session 用著自己那套（可能較舊的）規則去做另一個網域的事。這個 skill
 就是「先查清楚再動手」的判斷流程。
 
-## ⚠️ 硬性限制：沒有跨 session 傳訊息的能力
+## 跨 session 傳訊息：雲端 session 之間實際送不到（2026-09-29 實測）
 
-這個環境**沒有**可以把訊息直接送到另一個 Claude Code Remote session 的工具
-（`send_message` 類工具不存在；`ListAgents`／`SendMessage` 只能碰到同一台機器上「這個
-session 自己啟動的」子 agent，碰不到其他分支的獨立 session）。
+環境裡有 `SendMessage`／`ListAgents`，但**雲端 session 之間實際送不到**。2026-09-29 從 Repo Housekeeping
+對「規格文件html示意圖助手」（RUNNING＋connected）與「文件助手」（connected）分別用側欄名稱、
+session ID 定址，全部回 `No agent named '…' is reachable`；`ListAgents` 也列不出任何 session。
+`list_sessions` 查得到、狀態是 RUNNING，都**不代表**送得到。
 
-**所以「自動 cue」的意思是「盡到最大能力把歸屬講清楚」，不是「幫你轉過去」**：
-- ❌ 不要說「我幫你轉過去了」「我已經 cue 那個 session 了」——做不到的事不要講得像做到了。
-- ✅ 要說清楚：這是哪個 session（側欄名稱＋分支）的工作、目前什麼狀態，使用者自己切換過去。
+**所以「cue」＝盡力把歸屬講清楚，不是代為轉發**：
+- 仍先跑一次 `ListAgents`（工具之後可能開放）。真的列出目標才用 `SendMessage`，並提醒對方無法回覆。
+- 列不出來（目前一律如此）→ 回報歸屬（側欄名稱＋分支＋現況）＋一段使用者可直接貼過去的指令。
+- ❌ 不要說「我已經 cue 過去了」。不能請別的 session 代做自己被擋的動作。
 
 ## 使用流程
 

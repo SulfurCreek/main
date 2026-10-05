@@ -6,6 +6,9 @@
 # 也會讓「證據來源」與「證據解讀」混在同一個人手上（實際已發生：該分支刪掉主幹
 # 刻意保留的 hackmd-api 空殼、並反覆改 resume-craft 與 CLAUDE.md）。
 #
+# 注意：同一分支有兩個 session（Career Move 寫 career/ 內容、作品集網站助手只寫 career/site/）。
+# 本 hook 分不出是哪個 session，兩者都只放行 career/；目錄分工見 wiki/personal_line_collab.md。
+#
 # 行為：
 #   * 只在 GUARDED_BRANCHES 列出的分支上生效，其他分支一律放行。
 #   * 放行 career/ 底下的寫入，以及 repo 以外的路徑（scratchpad／暫存檔）。

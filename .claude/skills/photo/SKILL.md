@@ -12,6 +12,9 @@ description: >
 
 # 截圖存檔與標註（photo）
 
+> **誰來做（2026-09-29 起）**：**規則二「標註」與組合流程圖等繪製工作，只歸「規格文件html示意圖助手」session**（見 `wiki/session_directory.md`）。
+> 其他 session（含文件助手）只能用**規則一「存檔」**——把成品圖搬到 R2＋限寬嵌入；收到繪製需求時不動手，用 `session-router` 回報歸屬。
+
 任何截圖任務分兩件獨立的事，本 skill 各自訂規則：
 
 1. **存檔**：截圖從哪裡來（Figma fetch／使用者上傳）都要進 repo，才能在 HackMD 用穩定網址引用。

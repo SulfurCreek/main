@@ -14,16 +14,17 @@
 
 | 網域關鍵字 | 側欄名稱（快照） | 分支 | session_id（快照） | 現況（快照） |
 | :--- | :--- | :--- | :--- | :--- |
-| HackMD 規格書內容撰寫、1111 求才/求職系統文件、E.1 聯絡人才整併、履歷文件編修 | 文件助手 | `main`（outcome 歷史上寫 `claude/claude-md-docs-BmaVo`，⚠️見下方特別注意） | `session_01Cd8ro9qHrxAgVDh98ePdZf` | **RUNNING** |
+| HackMD 規格書內容撰寫、1111 求才/求職系統文件、E.1 聯絡人才整併、履歷文件編修；**圖片只做「搬到 R2＋限寬嵌入」**（繪製類一律轉給下方「規格文件html示意圖助手」） | 文件助手 | `main`（outcome 歷史上寫 `claude/claude-md-docs-BmaVo`，⚠️見下方特別注意） | `session_01Cd8ro9qHrxAgVDh98ePdZf` | **RUNNING** |
 | Repo 治理：分支收斂、skill 納管、wiki／路由表維護、健檢 | Repo Housekeeping | `main` | `session_01KDak6qp7Eim1Zt3inztq7v` | RUNNING（本 session） |
 | 職務分類／不合理清單／AI 職類推薦模型／TCode 代碼表比對／廠商身分 Google Sheet | tCode幫手 | `claude/google-sheet-url-allowlist-GKFEU` | `session_01UHEjnAEkd1cRB7C9gHkUcj` | IDLE，completed |
-| 數據分析報告寫作／HTML 報告產出 | 產生HTML報告 | `claude/extract-job-duty-markdown-4avmd6` | `session_01QXs4QyHUx32r5AxVpJtYoj` | IDLE，review_ready |
+| 數據分析報告寫作／HTML 報告產出（側欄名稱已改為「專案HTML前端靜態網站助手」）；**`user-journey/` 專案（User Journey × 流程圖 × 文件）的 HTML 化**（2026-09-30 起；開工前先 merge 最新 main） | 產生HTML報告 | `claude/extract-job-duty-markdown-4avmd6` | `session_01QXs4QyHUx32r5AxVpJtYoj` | IDLE，review_ready |
 | Lo-fi wireframe 線框圖草稿 | Lo-fi wireframer skill | `claude/lofi-wireframer-skill-0u25rk` | `session_019WwXEooe1HuTjpLbhHueEQ` | IDLE，review_ready |
 | API 測試（Talent Sourcing Gateway API 等）、pytest 測試矩陣 | 虛擬機器 API 測試環境 | `claude/vm-api-testing-setup-wpf6y8` | `session_01THk1wnhhqk5NheyvzBqncj` | IDLE，blocked（等待回覆是否記錄回歸結果） |
 | 信件訊息頁前端修改工程單／未讀履歷提醒統計／切版 | 未讀提醒 **或** 網頁分析工具（⚠️見下方特別注意） | `claude/email-layout-handoff-gjq5zu` | 未讀提醒＝`session_01ERFbn8cEWMfmDPEdMxJs4T`；網頁分析工具＝`session_0155Dp5oiYKgfH9BRhStd5T6` | 未讀提醒＝review_ready；網頁分析工具＝blocked（push 403，卡在確認 PR base 該不該改 main） |
 | 兼職職缺（工讀生停用說明）modal 設計 | （已封存，不在側欄） | `claude/part-time-modal-design-tmtt7n` | `session_01UCest88UyhV6wBo2myhk1A` | ARCHIVED——有新需求要另開 session |
-| **個人成長／職能萃取／履歷**：讀既有產出 → 提煉成 F 系列職能、portfolio、履歷素材 | Career move function definition (v2) | `claude/happy-lamport-ljis8c` | `session_01PKC4scvp58BuQxq5JKMHPw` | **活躍**（2026-09-29 換手：舊 session `session_018VJFZiuZYfnPhMppvaGFcR` 已停用，勿導向）。career-ops 本體由該環境 setup script 裝在 repo 外 `/home/user/career-ops`，repo 內只放資料層 `career/career-ops/`。🔒 **唯讀角色**：全 repo 可讀，但**只能寫 `career/`**——要改 `career/` 以外的東西一律寫進 `career/_requests-to-main.md` 請主幹施作。規則見 `career/CLAUDE.md`〈硬規則一〉，護欄見 `scripts/guard_career_scope.sh` |
-| Figma 截圖標註／規格書示意圖 | 規格文件html示意圖助手 | `claude/gifted-meitner-6eSoK` | `session_01HouvBCKKpMkZARx7CKhh6X` | IDLE，completed——`photo` skill 已全數併入 main，**新需求直接找「文件助手」（main）即可** |
+| **個人作品集靜態網站渲染**（個人線，跟 1111 專案無關）：把 `career/portfolio/public/*.md`（對外版）做成網站、noindex、部署 GitHub／Cloudflare Pages | 作品集網站助手 | `claude/happy-lamport-ljis8c`（與 Career Move 共用，**只寫 `career/site/`**；規則見 `wiki/personal_line_collab.md`） | `session_01X5B4jtorqQNpioe46ePnFs` | **新開**（2026-10-05，標籤 `personal`）。內容唯讀取自 `career/portfolio/public/`（對外版，`publish: ready` 才渲染），缺內容寫 `career/site/QUESTIONS.md` 由使用者轉 Career Move；HTML 能力用 main 上的 `portfolio-site`＋`report-generator` |
+| **個人成長／職能萃取／履歷**：讀既有產出 → 提煉成 F 系列職能、portfolio、履歷素材 | Career move function definition (v3) | `claude/happy-lamport-ljis8c` | `session_017u5Po6SGpjD3iLBZ2VL2HH` | **活躍**（2026-09-29 同日換手兩次：v1 `session_018VJFZiuZYfnPhMppvaGFcR`、v2 `session_01PKC4scvp58BuQxq5JKMHPw` 皆已 ARCHIVED，勿導向）。career-ops 本體由該環境 setup script 裝在 repo 外 `/home/user/career-ops`，repo 內只放資料層 `career/career-ops/`。🔒 **唯讀角色**：全 repo 可讀，但**只能寫 `career/`**——要改 `career/` 以外的東西一律寫進 `career/_requests-to-main.md` 請主幹施作。規則見 `career/CLAUDE.md`〈硬規則一〉，護欄見 `scripts/guard_career_scope.sh` |
+| **HTML 示意圖繪製**：Figma 截圖標註、紅框／badge／編號（HTML 絕對定位覆蓋）、組合流程圖／點擊流程圖、規格書示意圖版面 | 規格文件html示意圖助手 | `claude/gifted-meitner-6eSoK`（**開工前必須先 `git fetch origin main && git merge origin/main`**，在最新 main 之上作業；2026-09-29 查證：該分支 4 個獨有 commit 全是 photo skill，已與 main 逐位元組相同，合併無衝突） | `session_01HouvBCKKpMkZARx7CKhh6X` | IDLE（2026-09-29 即時查詢）。**示意圖一律歸這裡**，不交給文件助手——文件助手只負責把成品圖搬到 R2＋限寬嵌入 HackMD。skill 一律用 main 上的 `photo`／`png`，不用分支自己的舊版 |
 | CSV／Excel／Google Sheet 資料分析（新需求、尚無指定分支） | CSV/Excel data analysis | `csv-excel-gsheet-analysis-9kQmZ2`（⚠️不在 CLAUDE.md 既有分支索引，2026-09-10 才新建） | `session_01Fug6iscZrsqXo3Msi4yAbW` | IDLE，等待提供資料或任務——**目前是空的，適合接手任何新的 CSV/Excel/GSheet 分析需求** |
 
 ## 已停用／不要去的分支
