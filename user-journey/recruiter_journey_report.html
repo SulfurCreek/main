@@ -133,6 +133,24 @@
   .theme-toggle { margin-left:auto; flex:none; font:inherit; font-size:0.72rem; padding:5px 12px; border-radius:999px; border:1px solid var(--rule); background:var(--surface); color:var(--ink-2); cursor:pointer; }
   .hero .theme-toggle { margin-left:0; }
 
+  .sr-only { position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; }
+  /* ---------- 分頁 ---------- */
+  .tabs { display:flex; gap:10px; margin-top:36px; border-bottom:1px solid var(--rule); }
+  .tabs button { font:inherit; color:var(--ink-3); background:none; border:0; border-bottom:3px solid transparent; margin-bottom:-1px; padding:10px 18px 12px 2px; cursor:pointer; display:grid; grid-template-columns:auto auto; column-gap:10px; align-items:baseline; text-align:left; }
+  .tabs button { font-family:var(--f-disp); font-stretch:112%; font-weight:800; font-size:clamp(1.05rem, 2vw, 1.35rem); letter-spacing:-0.005em; }
+  .tabs .tn { font-family:var(--f-mono); font-size:0.7rem; font-weight:500; color:var(--ink-3); grid-row:span 2; align-self:center; }
+  .tabs small { grid-column:2; font-family:var(--f-cjk); font-weight:400; font-size:0.74rem; color:var(--ink-3); letter-spacing:0; }
+  .tabs button:hover { color:var(--ink-2); }
+  .tabs button[aria-selected="true"] { color:var(--ink); border-bottom-color:var(--line); }
+  .tabs button[aria-selected="true"] .tn { color:var(--line); }
+  .pane > section.part:first-child, .pane > .route:first-child { margin-top:32px !important; }
+  .shared-div { margin-top:80px; display:flex; align-items:center; gap:14px; color:var(--ink-3); font-size:0.76rem; }
+  .shared-div::before, .shared-div::after { content:""; flex:1; border-top:1px dashed var(--rule); }
+  .shared-div + section.part { margin-top:28px; }
+  .minirail .tabsw { display:inline-flex; border:1px solid var(--rule); border-radius:999px; padding:2px; margin-right:10px; flex:none; background:var(--surface); }
+  .minirail .tabsw button { border:0; padding:3px 10px; font-weight:700; }
+  .minirail .tabsw button[aria-selected="true"] { background:var(--ink); color:var(--bg); }
+
   /* ---------- Sections ---------- */
   section.part { margin-top:72px; }
   .sec-hd { display:grid; gap:4px; margin-bottom:18px; }
@@ -373,18 +391,17 @@
     <div class="hero-side"><p class="lead" id="lead"></p><div class="meta" id="meta"></div></div>
   </div>
 
-  <div class="route" id="route" role="group" aria-label="選擇旅程階段">
-    <div class="route-hd">
-      <p id="route-note">點選站點篩選階段：看板只留該階段，下方 Sitemap、文件、流程圖跟著切換。再點一次取消。</p>
-      <button class="all-btn" id="all-btn" type="button" aria-pressed="true">全部階段</button>
-    </div>
-    <div class="main-line" id="main-line"></div>
-    <div class="spur" id="spur"></div>
-  </div>
 </header>
 
+<div class="tabs" id="tabs" role="tablist" aria-label="切換檢視">
+  <button type="button" role="tab" id="tb-persona" data-tab="persona" aria-controls="pane-persona" aria-selected="true"><span class="tn">01</span>Persona<small>7 個角色與受限類型</small></button>
+  <button type="button" role="tab" id="tb-journey" data-tab="journey" aria-controls="pane-journey" aria-selected="false"><span class="tn">02</span>Journey Map<small>路線圖與旅程看板</small></button>
+</div>
+
+<div class="pane" id="pane-persona" role="tabpanel" aria-labelledby="tb-persona">
+
 <section class="part" id="context">
-  <div class="sec-hd"><span class="eyebrow">Persona</span><h2 id="ctx-h"></h2></div>
+  <h2 id="ctx-h" class="sr-only"></h2>
   <div class="p-top">
     <div><p class="p-intro" id="p-intro"></p><p class="p-scope" id="p-scope"></p></div>
     <aside class="guide" id="guide" aria-label="閱讀指南"></aside>
@@ -402,12 +419,28 @@
   <details class="gloss" id="gloss"><summary>名詞<small id="g-n"></small></summary><dl class="terms" id="terms"></dl><p class="gnote" id="g-note"></p></details>
 </section>
 
+</div>
+
+<div class="pane" id="pane-journey" role="tabpanel" aria-labelledby="tb-journey" hidden>
+  <div class="route" id="route" style="margin-top:0" role="group" aria-label="選擇旅程階段">
+    <div class="route-hd">
+      <p id="route-note">點選站點篩選階段：看板只留該階段，下方 Sitemap、文件、流程圖跟著切換。再點一次取消。</p>
+      <button class="all-btn" id="all-btn" type="button" aria-pressed="true">全部階段</button>
+    </div>
+    <div class="main-line" id="main-line"></div>
+    <div class="spur" id="spur"></div>
+  </div>
+
 <section class="part" id="grid">
   <div class="sec-hd"><span class="eyebrow" id="grid-en"></span><h2 id="grid-h"></h2><p id="grid-intro"></p></div>
   <div class="ppick" id="ppick" role="group" aria-label="以哪個 persona 看旅程"></div>
   <div class="board-wrap"><div class="board" id="board"></div></div>
   <p class="board-note">看板可左右捲動，列標固定。灰色欄＝選定的 persona 走不到，或文件未載（NULL）。選了階段後，Touchpoints 的頁面名稱可以點，會跳到下方 Sitemap 對應位置。</p>
 </section>
+
+</div>
+
+<div class="shared-div" aria-hidden="true"><span>以下兩個分頁共用：頁面、文件與流程圖</span></div>
 
 <section class="part" id="sitemap">
   <div class="sec-hd"><span class="eyebrow">Sitemap &amp; Docs</span><h2>頁面與對應文件</h2><span class="sel-tag" id="sm-sel" hidden></span></div>
@@ -502,10 +535,10 @@ $('spur').innerHTML = '<span class="spur-tag">支線 · 任何階段可轉乘</s
 $('route').addEventListener('click', e => { const b = e.target.closest('.stn'); if (b) setSel(+b.dataset.i); });
 $('all-btn').onclick = () => setSel(null);
 const mini = $('minirail');
-mini.innerHTML = '<span class="lb">STAGE</span><button type="button" class="all" data-i="">全部</button>' +
+mini.innerHTML = '<span class="tabsw" role="tablist" aria-label="切換檢視"><button type="button" role="tab" data-tab="persona">Persona</button><button type="button" role="tab" data-tab="journey">Journey Map</button></span><span class="lb">STAGE</span><button type="button" class="all" data-i="">全部</button>' +
   ST.map((st, i) => '<button type="button" data-i="' + i + '" class="' + (isSupport(st) ? 'sp' : '') + '"><i>' + esc(st.code) + '</i>' + esc(introRow(st) ? introRow(st)[1].replace(/（.*）/, '') : stageLabel(st).name) + '</button>').join('');
-mini.addEventListener('click', e => { const b = e.target.closest('button'); if (b) setSel(b.dataset.i === '' ? null : +b.dataset.i); });
-if ('IntersectionObserver' in window) new IntersectionObserver(([en]) => mini.classList.toggle('show', !en.isIntersecting && en.boundingClientRect.top < 0)).observe($('route'));
+mini.addEventListener('click', e => { const b = e.target.closest('button[data-i]'); if (b) setSel(b.dataset.i === '' ? null : +b.dataset.i); });
+if ('IntersectionObserver' in window) new IntersectionObserver(([en]) => mini.classList.toggle('show', !en.isIntersecting && en.boundingClientRect.top < 0)).observe($('tabs'));
 
 // ---------- Persona ----------
 const splitH = h => { const m = h.replace(/^\d+\.\s*/, '').match(/^(.*?)\s*\((.*)\)$/); return m ? [m[1].replace(/^The\s+/, ''), m[2]] : ['', h]; };
@@ -555,7 +588,7 @@ function renderPersona() {
     '<div class="pgrid"><div class="pcol">' + (det ? '<div class="box profile"><h4>Details</h4>' + list(det) + '</div>' : '') + '</div>' +
     '<div class="pcol">' + (goal ? '<div class="box goals"><h4>' + ICON_OK + 'Goals</h4>' + list(goal) + '</div>' : '') +
     (pain ? '<div class="box pains"><h4>' + ICON_WARN + 'Pain Points</h4>' + list(pain) + '</div>' : '') + '</div></div>' +
-    '<div class="journey"><h4>可走的旅程</h4><p class="jtxt">' + md(p.journey_text) + '</p><div class="jrow">' +
+    '<div class="journey"><div style="display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;align-items:center"><h4>可走的旅程</h4><button type="button" class="all-btn" data-tab="journey">在 Journey Map 看 ' + p.id + ' →</button></div><p class="jtxt">' + md(p.journey_text) + '</p><div class="jrow">' +
     P.stages9.map(s => { const st = p.stages[s.code] || { state: 'unknown', note: '' }, lim = ml.filter(m => m.stages[s.code]), off = interrupted(s.code);
       return '<div class="sc ' + (off ? 'blocked' : st.state) + (lim.length ? ' mod' : '') + '" title="' + esc(lim.map(m => m.name).join('、')) + '"><b>' + s.code + '</b><span>' + s.name + '</span><em>' + (off ? '不可登入中斷' : SLAB[st.state]) + (st.note && st.state !== 'ok' ? '｜' + esc(st.note) : '') + (lim.length ? '｜受限 ' + lim.length : '') + '</em></div>'; }).join('') + '</div>' +
     (ml.length ? '<div class="ovl">疊加中：' + ml.map(m => esc(m.name)).join('、') + '　（黃底線＝該階段受影響）</div>' : '') + '</div>';
@@ -721,6 +754,19 @@ $('gap-list').innerHTML = A.gaps.map(g => '<li>' + md(g) + '</li>').join('');
 $('todo-h').textContent = DATA.todo.heading;
 $('todo-list').innerHTML = DATA.todo.items.map(i => '<li>' + md(i.text) + (i.children.length ? '<ul class="list">' + i.children.map(c => '<li>' + md(c) + '</li>').join('') + '</ul>' : '') + '</li>').join('');
 $('foot').innerHTML = '<span>素材由文件助手維護：<code>user-journey/recruiter_journey_map.md</code></span><span>建置：<code>html/step0 → step1 → step2</code></span>';
+
+// ---------- 分頁：Persona／Journey Map；下方 Sitemap、文件、流程圖共用 ----------
+function setTab(t, scroll) {
+  ['persona', 'journey'].forEach(k => { $('pane-' + k).hidden = k !== t; });
+  document.querySelectorAll('[data-tab]').forEach(b => b.setAttribute('aria-selected', String(b.dataset.tab === t)));
+  try { localStorage.setItem('uj-tab', t); } catch (e) {}
+  if (scroll && $('tabs').getBoundingClientRect().top < 0) $('tabs').scrollIntoView({ block: 'start' });
+}
+document.addEventListener('click', e => { const b = e.target.closest('button[data-tab]'); if (b) setTab(b.dataset.tab, true); });
+$('tabs').addEventListener('keydown', e => { if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return; const t = $('tb-persona').getAttribute('aria-selected') === 'true' ? 'journey' : 'persona'; setTab(t); $('tb-' + t).focus(); });
+let tab0 = location.hash === '#journey' ? 'journey' : location.hash === '#persona' ? 'persona' : null;
+if (!tab0) { try { tab0 = localStorage.getItem('uj-tab'); } catch (e) {} }
+setTab(tab0 === 'journey' ? 'journey' : 'persona');
 
 renderPersona(); renderMods(); applyPersona();
 setSel(null);
