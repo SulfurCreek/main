@@ -47,13 +47,95 @@
 
 **Opportunities 狀態標籤**：`【提案】`＝提案文件、`【草稿】`＝文件狀態草稿、`【規劃】`＝已排入第三階段但尚未完成；未標＝文件未載開發狀態。
 
-## 1. Context (情境設定)
+<!--
+[SYSTEM: UI/UX RENDERING INSTRUCTIONS FOR HTML AI AGENT]
+Context: Section "1. Persona" is a Roman Pichler Agile Persona Canvas (replaces the former Context block).
+Action: When rendering this section into HTML, apply these rules:
+1. Global Layout: modern SaaS dashboard style, CSS Grid/Flexbox; multi-column on desktop, stacked on mobile.
+2. Typography: clean sans-serif (e.g., Inter, Roboto, PingFang TC, Microsoft JhengHei).
+3. Hero/Quote Block (> blockquote right under the persona heading): prominent hero, large italic text, thick brand-color left border, muted text color. Keep the 〔推論〕 tag visible.
+4. "Picture & Name" and "Details": side-by-side profile cards (<aside> + <section>), subtle box-shadow, rounded corners, white background.
+5. "Goals & Pain Points": Pain Points = Danger/Warning token (light rose background, dark red text, warning icon); Goals = Success/Primary token (mint background, dark green text, check icon).
+6. "廠商狀態變體" and "受限廠商類型" tables: render as filterable status cards or chips (one card per status / flag), showing code, name, what is restricted, and affected journey stages. Restricted items use a neutral-warning token; keep code values (oStatus, confirmed&N) in monospace.
+7. Evidence markers (US / US* / 〔推論〕 / NULL) and source links must stay visible; do not drop NULL cells.
+-->
 
-* **Persona (目標用戶):** 企業 HR／招募人員（主帳號可開副帳號、分群組與權限）。
-  * 核心痛點（文件有載）：面試邀約與即時通兩套工具各自溝通、副帳號通知有兩組設定、限時回應被分開計算而抱怨 [來源](https://hackmd.io/@1111-jobdocs/SJJY3isYZe)；新廠商學習成本高、薪資行情與法規疑問需問客服 [來源](https://hackmd.io/@1111-jobdocs/Hy95Qz7g-e)。
-  * 變體：VIP／免費VIP／關權／到期（刊登與權限不同，見 [B.4 刊登設定](https://hackmd.io/@1111-jobdocs/ryEY3vBZbl)、[REF 系統代碼表](https://hackmd.io/@1111-jobdocs/B1j3sN-bzx)）；Cake 特殊廠商部分人才功能不可用。
-* **Scenario & Goal (場景與目標):** 從開通帳號到把人招進來——建立公司門面 → 刊登職缺 → 收履歷／找人 → 聯繫邀約面試 → 錄取 → 回看成效。`服務`、`購買`不在主線，於任何階段都可能插入（見支援格組）。
-* **Journey Type:** Current State 現狀（由既有規格反向工程；第三階段規劃項目只出現在 Opportunities）。
+## 1. Persona：怡君 — 企業招募人員
+
+> 「我只想在同一個地方回覆求職者，回了就該算數，不要讓我在兩套工具之間來回切換。」〔推論〕依據：廠商因即時通與信件分開計算限時回應而抱怨，兩套工具各自溝通 [即時通、信件通知合併](https://hackmd.io/@1111-jobdocs/SJJY3isYZe)
+
+### Picture & Name（基本輪廓）
+
+* **Name：** 怡君（虛構名稱，代表一般招募人員，不對應真實人物）
+* **Role/Segment：** 企業 HR／招募人員。主帳號可開副帳號、分群組與設定權限（[B.2 帳號設定](https://hackmd.io/@1111-jobdocs/SkfafU2WZg)）；副帳號依權限代碼使用功能
+* **Demographics：** NULL（文件未載）
+
+### Details（特徵與行為細節）
+
+* **Domain Knowledge：** 熟悉招募流程與職缺刊登規範；新廠商不熟悉招募系統、對薪資行情與法規有疑問（US [求才智能客服](https://hackmd.io/@1111-jobdocs/Hy95Qz7g-e)）
+* **Current Workflow/Behaviors：** 建公司頁 → 刊登職缺 → 看主投履歷／搜尋人才 → 發詢問意願或面試邀約 → 面試 → 錄取（各階段見下方 Journey Grid）；聯繫時目前要在信件與即時通兩套工具間切換（[即時通、信件通知合併](https://hackmd.io/@1111-jobdocs/SJJY3isYZe)）
+* **Environment：** 求才系統 recruit.1111.com.tw，桌機為主；寬度 1200px 以下 Topbar 改為橫向滑動，760px 以下隱藏 Topbar、功能選單、Footer（[A.1 Topbar](https://hackmd.io/@1111-jobdocs/Hym116n3-x)）。新版頁面（Nuxt 3）與現版 `.aspx` 頁面混用
+
+### Goals & Pain Points（目標與痛點）
+
+#### Primary Goal（主要目標）
+
+* 從開通帳號到把人招進來：建立公司門面 → 刊登職缺 → 收履歷／找人 → 聯繫邀約面試 → 錄取 → 回看成效
+
+#### Secondary Goals（次要目標）
+
+* 依不同招聘情境快速完成職缺刊登（US [2.2 新增職缺](https://hackmd.io/@1111-jobdocs/S1SfBeXxfe)）
+* 依職缺管理應徵名單、主動接觸有意願的人才（US [3.1.1 主動應徵職缺選單](https://hackmd.io/@1111-jobdocs/S1I24H-lzl)、US [3.1.4 來訪名單](https://hackmd.io/@1111-jobdocs/rkMnZsqu-g)）
+* 在單一介面集中管理與每位求職者的對話並直接發邀約（US [E.1 聯絡人才](https://hackmd.io/@1111-jobdocs/BJ0R8ocgGl)）
+* 即時掌握會員／刊登異常並前往處理（US [A.1.7 異常狀態列](https://hackmd.io/@1111-jobdocs/SkJEsXNWMx)）
+
+#### Pain Points（痛點）
+
+* 面試邀約與即時通兩套工具各自溝通，副帳號通知有兩組設定；限時回應被分開計算（[即時通、信件通知合併](https://hackmd.io/@1111-jobdocs/SJJY3isYZe)）
+* 在其他人力銀行已刊登的職缺要手動重建（US [職缺匯入提案](https://hackmd.io/@1111-jobdocs/BJATOLPwbx)）
+* 來訪名單無法過濾、看不到誰關注公司或職缺（US [現版人才來訪拉皮更新](https://hackmd.io/@1111-jobdocs/SJ5oUbXv-g)、US [關注名單](https://hackmd.io/@1111-jobdocs/B1jNIrMBZl)）
+* 新廠商學習成本高，薪資行情與法規疑問需要問客服（US [求才智能客服](https://hackmd.io/@1111-jobdocs/Hy95Qz7g-e)）
+* 部分廠商沒有信箱，新驗證機制造成登入困難（[同步會議 2026.04.08](https://hackmd.io/@1111-jobdocs/Sk8KaX73Wl)）
+
+### 廠商狀態變體（VIP 狀態 `oStatus`）
+
+同一位招募人員，能做什麼取決於公司的會員狀態（[[REF] 系統代碼表 §1](https://hackmd.io/@1111-jobdocs/B1j3sN-bzx)；各狀態進入職缺總覽的提示見 [2.1 職缺總覽](https://hackmd.io/@1111-jobdocs/HJvxSmNMWe)）。
+
+| `oStatus` | 狀態 | 說明 |
+| :---: | :--- | :--- |
+| `0` | 普通會員 | 無合約，不可刊登 |
+| `1` | VIP | 合約生效中，可正常刊登 |
+| `2` | 過期 | 合約已到期 |
+| `3` | 關權 | 刊登暫停中 |
+| `4` | 免費 VIP | 功能同 VIP |
+| `5` | 免費曝光 | 非 VIP 或已到期的免費曝光狀態 |
+| `6` | 準 VIP | 已購買下期合約但尚未生效 |
+
+### 受限廠商類型（廠商屬性旗標 `organs.confirmed`）
+
+另一層差異來自廠商屬性旗標，會讓整段旅程少掉某些階段（[[REF] 系統代碼表 §2](https://hackmd.io/@1111-jobdocs/B1j3sN-bzx)）。
+
+| 類型 | 旗標 | 限制 | 影響的旅程階段 |
+| :--- | :--- | :--- | :--- |
+| Cake 特殊廠商 | `confirmed&64` | 僅可使用主投與刊登職缺；不可用追蹤名單、追蹤資料夾、備註名單、匯入名單、全部搜尋、人才點數查詢、線上續約、購買優先排序（[A.1 Topbar Cake 功能清單](https://hackmd.io/@1111-jobdocs/Hym116n3-x)） | D 人才、5 紀錄、7 購買 |
+| 保險業 | `confirmed&512` | 2011/3/15 起僅能主投，無配對名單與查詢名單功能 | D 人才 |
+| 不公布廠商 | `confirmed&128` | 沒有主投、沒有配對，且不能查詢名單 | D 人才 |
+| 八大行業 | `confirmed&4096` | 特種行業（八大）；列入黑名單組合 | D 人才 |
+| 酒店／特種行業 | `confirmed&524288` | 酒店類廠商；列入黑名單組合 | D 人才 |
+| 殯葬禮儀 | `confirmed&8` | 不可刊登業務職缺，並同時鎖定「需審核」 | C 職缺 |
+| 直銷 | `confirmed&256` | 2014/12/2 起不再提供刊登 | C 職缺 |
+| 需審核 | `confirmed&16384` | 職缺異動須經客服審核通過才對外顯示 | C 職缺 |
+| 投審會已核準 | `confirmed&8388608` | 才能刊登工作地為中國（不含港澳）的職缺，送出後需審核 | C 職缺 |
+| 高風險國家已核準 | `confirmed&1073741824` | 9 個海外高風險國家職缺原則不可刊登，核准者例外 | C 職缺 |
+| 派遣單購點數 | `confirmed&1024` | 需購買點數才能查看名單與刊登職缺 | C 職缺、D 人才 |
+| 不可修改（外網限制） | `confirmed&131072` | 外網時無法編輯公司資料、帳號權限、開關天數、職缺等 | B 公司、C 職缺 |
+| 不可登入 | `confirmed&262144` | 廠商無法登入求才，內部同仁只能透過客服系統登入 | J 登入（整段旅程中斷） |
+| 可聯絡求職者 | `confirmed&8192` | 普通／過期廠商仍看得到主投者聯絡方式，但不能使用招募功能 | D 人才、E 聯繫 |
+
+* **黑名單組合**：`confirmed&128`、`&512`、`&4096`、`&524288`、`&64` 一併用於隱藏配對、AI 推薦等功能。
+* 人派／勞務外包、經紀、保全清潔、房仲等旗標主要影響計價或業績歸屬，不改變旅程功能，未列入上表（見 REF §2）。
+
+**旅程範圍：** Current State 現狀（由既有規格反向工程；第三階段規劃項目只出現在 Opportunities）。
 
 > 標記：無標記＝文件明載（附連結）；`〔推論〕`＝依同格所寫文件事實推出；`NULL`＝文件未載也無可推論。`US`＝真實 User Story，`US*`＝套版句「以便提高求才效率」（只證明功能存在）。連結前綴 `https://hackmd.io/@1111-jobdocs/<shortId>`。
 
