@@ -40,7 +40,7 @@
 管理責任：管理 2 人
 在職期間：2022/08 - 仍在職
 工作內容：
-- 求才新版全新系統：自 2022 年到職即投入規劃；前任主管方案未能落地後由我接手重新規劃，拆成三階段上線。第一階段（登入、首頁、帳號、聯絡人、功能選單與通知）於 2025/10 上線，排定夜間切換、內網先由企劃、工程、QA 同步驗證後才對外開放；新增 E-mail 登入，並以「首次登入引導確認、不強迫修改」的方式逐步清理上千組重複 E-mail。
+- 求才新版全新系統：自 2022 年到職即投入規劃；前任主管方案未能落地後由我接手重新規劃，拆成三階段上線。第一階段（登入、首頁、帳號、聯絡人、功能選單與通知）於 2025/10 上線，選在離峰時段切換、停機約 1.5 小時，期間由企劃、工程、QA 在內網同步驗證後才對外開放；新增 E-mail 登入，並以「首次登入引導確認、不強迫修改」的方式逐步清理上千組重複 E-mail。
 - 大型功能改版：2023/12 至 2026/03 主導約 50 項功能上線，包含主投履歷列表、職缺新增與列表、履歷詳細頁、公司資料、功能列與通知的全面改版，以及品牌公司頁與三套公司頁版型（以提升續約意願為目標）。
 - 全新訊息溝通機制（開發中）：主導設計企業與求職者之間的全新訊息溝通機制，將原本分散的「信件通知」與「即時通」整合為單一對話流；梳理跨系統路由與面試邀約狀態機，並規劃向下相容的歷史訊息遷移，目前已完成兩階段內部測試。
 - 法遵型需求落地：承攬制職缺需求來自業務單位，我先研究勞基法對承攬與僱傭的區分，再與法務、稽核逐一對齊，確認後才進入系統分析與 UI/UX 設計；最後設計出「契約文件齊全由客服審核、缺件交稽核」的審核分流，並限制待遇類型、隱藏福利。
@@ -119,7 +119,7 @@ AWS Certified Cloud Practitioner（認證的雲端從業人員－基礎級），
 我有 10 年產品經理經歷，職涯橫跨 B2C 訂閱制社交產品的「從 0 到 1 成長」，以及 B2B 招募平台的「大型系統改版」。我最擅長把複雜的業務邏輯與法規限制，轉譯成工程端能直接實作的規格與決策模型，並堅持每一次迭代都要有可量化的成果。
 
 【系統思維｜把複雜規則變成工程能落地的規格】
-我目前是 1111人力銀行招募系統 Product Owner。2022 年到職後就投入求才新版的規劃；前任主管的方案未能落地，我接手重新規劃，拆成三階段上線，第一階段在 2025 年 10 月完成切換。2023 年底到 2026 年初，我主導約 50 項功能上線，包括主投履歷、職缺、履歷頁、公司資料與功能列的全面改版。目前我正主導一套全新的訊息溝通機制，把原本分散的信件與即時通整合成單一對話流，並親自設計面試邀約的狀態機與歷史訊息的遷移方式。
+我目前是 1111人力銀行招募系統 Product Owner。2022 年到職後就投入求才新版的規劃；前任主管的方案未能落地，我接手重新規劃，拆成三階段上線，第一階段在 2025 年 10 月選在離峰時段完成切換，停機約 1.5 小時。2023 年底到 2026 年初，我主導約 50 項功能上線，包括主投履歷、職缺、履歷頁、公司資料與功能列的全面改版。目前我正主導一套全新的訊息溝通機制，把原本分散的信件與即時通整合成單一對話流，並親自設計面試邀約的狀態機與歷史訊息的遷移方式。
 遇到牽涉法規的需求，我會先把規則弄清楚再動手。以承攬制職缺為例，需求來自業務單位，我先研究勞基法對承攬與僱傭的區分，再與法務、稽核逐一對齊，全部確認後才進入系統分析與 UI/UX 設計。
 
 【溝通方式｜讓第一線一起做決定】
@@ -137,6 +137,6 @@ Senior Product Manager | System Architecture & Stakeholder Alignment
 
 I am a Senior Product Manager with ten years of experience growing subscription social apps from zero to one and leading large-scale rebuilds on a B2B recruitment platform. My core strength is translating complex business rules and regulatory constraints into engineering-ready specifications: API contracts, state machines and MECE decision models.
 
-I am the Product Owner of the Employer Recruitment System at 1111 Job Bank. I took over a stalled rebuild of the employer system, re-planned it into three phases, and launched phase one in October 2025. From late 2023 to early 2026 I shipped about 50 releases, including full redesigns of the application list, job posting flow, resume page and company profile. I am now leading the design of a new employer-candidate messaging system (in development) that merges email notifications and chat into one conversation flow. Before each launch I run internal user acceptance tests with the nationwide customer service team, publish FAQs in advance, a habit borrowed from Amazon's Working Backwards PR/FAQ, and let frontline staff vote when rules are disputed. In 2026 through September my team resolved about 93% of 1,857 operations tickets, and a cohort analysis across 149.5K employer accounts showed that the paying customers served by this pipeline retained 7 percentage points above the platform baseline (p=0.011).
+I am the Product Owner of the Employer Recruitment System at 1111 Job Bank. I took over a stalled rebuild of the employer system, re-planned it into three phases, and launched phase one in October 2025 with a 90-minute off-peak cutover. From late 2023 to early 2026 I shipped about 50 releases, including full redesigns of the application list, job posting flow, resume page and company profile. I am now leading the design of a new employer-candidate messaging system (in development) that merges email notifications and chat into one conversation flow. Before each launch I run internal user acceptance tests with the nationwide customer service team, publish FAQs in advance, a habit borrowed from Amazon's Working Backwards PR/FAQ, and let frontline staff vote when rules are disputed. In 2026 through September my team resolved about 93% of 1,857 operations tickets, and a cohort analysis across 149.5K employer accounts showed that the paying customers served by this pipeline retained 7 percentage points above the platform baseline (p=0.011).
 
 Previously at Sunfun Info, I led three zero-to-one subscription social apps; Peach grew daily actives about 14x within its first year. I shifted Peach's payments from in-app purchase to web, raising web's share of revenue from 24% to over 80%, and ran a three-phase pricing experiment in Malaysia with Android as the control group, which led to a market-wide price cut. TOEIC 980.
