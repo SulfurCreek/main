@@ -80,6 +80,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
      是**唯讀**角色——全 repo 可讀（產出就是它的職能證據來源），但**只能寫 `career/`**。
      它要改 `career/` 以外的任何東西，一律寫進 `career/_requests-to-main.md` 請主幹施作，不自己動手。
      完整規則見 `career/CLAUDE.md`〈硬規則一〉；護欄見 `scripts/guard_career_scope.sh`（只在該分支生效的 PreToolUse hook）。
+     **同一分支另有「作品集網站助手」session**，只寫 `career/site/`；兩者的目錄所有權、交接流程、git 規則見 `wiki/personal_line_collab.md`。
 2. **共用資產唯一變更入口＝主幹管理 session**：`CLAUDE.md`／`.claude/skills/`／`.claude/agents/`／`wiki/`／`scripts/`／`.claude_index.md`／`.claude/settings.json` 只由主幹管理 session 修改。其他 session 需要改共用檔時，在自己的 PR 描述註明「請主幹對照吸收」，**不要直接改**——直接改必然跟主幹撞衝突，且會被主幹版本覆蓋。
 3. **各專案工作產出放各自目錄**（`job-classification-kb/`、`wiki/apis/`、`handoff/`、`notes/`…），不碰共用檔，PR 就不會互撞。專案 deliverable **不進主幹**，留在各自分支（位置記錄於分支索引）；主幹只收文件主線＋skill。
 4. **新增 skill 前先查分支索引＋`.claude_index.md`**——重複造輪已發生兩例（`report-generator`×2、`frontend-slicing-1111`×2）。真的要新增，通知主幹 session 統一納管。

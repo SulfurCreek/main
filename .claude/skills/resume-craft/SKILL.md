@@ -28,7 +28,7 @@ description: >
 | 改寫 bullet／把日常產出變 bullet | 本檔 Bullet 公式 ＋ [`references/reverse-xyz.md`](references/reverse-xyz.md) | 對應 `wiki/F0x-*.md` |
 | 投遞硬技術公司（NVIDIA-tier）| [`references/reverse-xyz.md`](references/reverse-xyz.md) | `wiki/flagship-e1.md`、`wiki/F02`、`wiki/F10` |
 | 依 JD 客製／ATS／HR 用 AI 掃履歷 | [`references/ats-and-ai-screening.md`](references/ats-and-ai-screening.md) | `wiki/resume-extract.md` |
-| 作品集 case study | [`references/portfolio.md`](references/portfolio.md)（含市場路由、NDA 去識別化）＋ 範本：外商／英文 [`assets/portfolio-case-study.md`](assets/portfolio-case-study.md)；台灣本土／新創 [`assets/portfolio-case-study-tw.md`](assets/portfolio-case-study-tw.md) | `portfolio/e1-cross-system-messaging.md`（範例）。**輸出位置固定在 `career/portfolio/`；career 內容禁止寫入 HackMD**（`career/CLAUDE.md` 硬規則二）。 |
+| 作品集 case study | [`references/portfolio.md`](references/portfolio.md)（含市場路由、NDA 去識別化）＋ 範本：外商／英文 [`assets/portfolio-case-study.md`](assets/portfolio-case-study.md)；台灣本土／新創 [`assets/portfolio-case-study-tw.md`](assets/portfolio-case-study-tw.md) | `portfolio/e1-cross-system-messaging.md`（範例）。**內部版輸出位置固定在 `career/portfolio/`；要上網站的篇章另產對外版 `career/portfolio/public/`（規則見 `references/portfolio.md`〈對外版〉）；career 內容禁止寫入 HackMD**（`career/CLAUDE.md` 硬規則二）。 |
 | 求職信：中文自我推薦信（英文 cover letter 走 career-ops `cover` 模式）| [`references/cover-letters.md`](references/cover-letters.md) ＋ 範本 [`assets/cover-letter-tw-zh.md`](assets/cover-letter-tw-zh.md) | `letters/story-bank.md`（數字唯一來源）；成品存 `letters/archive/` ＋ `letters/log.md` 加一列 |
 | 目標公司價值觀對映（Amazon LP 等）| [`references/portfolio.md`](references/portfolio.md) | — |
 | 高顏值可列印版（HTML／LaTeX）| [`references/visual-output.md`](references/visual-output.md) | 已定稿的內容版履歷 |

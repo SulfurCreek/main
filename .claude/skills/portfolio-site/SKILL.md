@@ -16,12 +16,14 @@ description: >
 
 | 層 | 誰負責 | 位置 |
 | :--- | :--- | :--- |
-| 內容（已去識別化的 case study md） | career session，依 `resume-craft` 寫 | `career/portfolio/*.md`（唯一內容來源） |
-| 渲染（本 skill） | HTML 助手 session | **使用者自己的作品集 repo**（公開），不是本 repo |
+| 內容（已去識別化的對外版 md） | Career Move session，依 `resume-craft` 寫 | `career/portfolio/public/*.md`（**唯一內容來源**，只渲染 front matter `publish: ready` 的頁） |
+| 渲染（本 skill） | 作品集網站助手 session | 暫存在 `career/site/`（本 repo 私有、不從這裡部署）；上線時複製到**使用者自己的作品集 repo** |
 | 部署 | 使用者 | GitHub Pages 或 Cloudflare Pages |
 
-- **不寫新內容、不改數字**。內容缺什麼，回報給使用者轉給 career session，不要自己補。
-- **不要把網站原始碼放進本 repo**：本 repo 是私有的，且 `career/` 只有 career session 能寫。
+- **不寫新內容、不改數字**。內容缺什麼，寫進 `career/site/QUESTIONS.md`，由使用者轉給 Career Move；不要自己補。
+- **不讀 `career/portfolio/*.md` 內部版當網站內容**（含內部 API 名與欄位名）。
+- 與 Career Move 的目錄所有權、交接流程、git 規則：`wiki/personal_line_collab.md`（先讀）。
+- 兩個 session 共用分支 `claude/happy-lamport-ljis8c`：只寫 `career/site/`，推送前 `git pull --rebase`，commit 前綴 `site:`。
 - 不需要問卷式 intake：專案背景、角色、數字都已在 case study md 裡。
 - **與 `report-generator` 不重疊**：數據分析報告的單檔自包含 HTML 用 `report-generator`；多頁網站、無障礙、noindex、部署用本 skill。
 
@@ -58,6 +60,7 @@ description: >
 - **XYZ 公式**：「達成 [X]，以 [Y] 衡量，透過 [Z]」。用在**有數據的成果句**，不用硬套每一行。
 - **HEART 只用在使用者端產品**（Happiness／Engagement／Adoption／Retention／Task success）。
   B2B 交付、維運類成果用它們自己的指標（準時率、處理週期、付費客群留存），不要硬塞進 HEART。
+- 首頁成果數字卡取自對外版 md 的 `highlights`（最多 3 條），沒有就留空並寫進 QUESTIONS.md。
 - 每篇結構沿用 `resume-craft` 範本：台灣版 `portfolio-case-study-tw.md` 或國際版 `portfolio-case-study.md`。
 - 首頁：一句定位、3 個成果數字卡、case study 卡片列表、聯絡連結（LinkedIn／Email）。
 
