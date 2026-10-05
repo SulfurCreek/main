@@ -155,3 +155,4 @@ git fetch origin main && git merge origin/main
 
 ## 待辦（2026-10-05）
 - 使用者將提供每週（至少一次）給公司業務單位的簡報，讀完後補進職能（F09 利害關係人影響、F08 Roadmap 等），再重產 104 txt／PDF。重產前先套用 style/resume-voice-zh.md 補充護欄（Juicy、1111人力銀行招募系統 Product Owner、大型改版）。
+- 2026-10-05：已讀 30 份週報（wiki/evidence-weekly-reports.md）與 25 份封測／上線簡報（wiki/evidence-briefings.md）。重產 104 時：維運工單改用「截至 2026/09 累計 1,857 單、處理率約 93%」；零停機仍待使用者確認。
