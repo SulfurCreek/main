@@ -15,13 +15,14 @@ description: >-
 
 ## 三段式結構
 
-1. **Persona**（2026-10-05 起取代原 Context，使用者指定 Roman Pichler Agile Persona Canvas）：
-   開頭放給下游 HTML agent 的 `<!-- [SYSTEM: UI/UX RENDERING INSTRUCTIONS ...] -->` 註解區塊，接著依序：
-   代表性引言（blockquote，依文件事實推出者標 `〔推論〕`）→ Picture & Name（虛構名稱、角色、Demographics 無資料寫 `NULL`）
-   → Details（Domain Knowledge／Current Workflow／Environment）→ Goals & Pain Points（Primary Goal、Secondary Goals、Pain Points，皆附來源）
-   → **廠商狀態變體**（`oStatus` 0～6）→ **受限廠商類型**（`organs.confirmed` 會改變旅程功能的旗標，含 Cake `&64`、保險 `&512` 等，
-   每列寫限制與影響的旅程階段；只影響計價或業績的旗標不列）→ 旅程範圍（Current／Future State）。
-   代碼定義一律引自 HackMD [REF] 系統代碼表（`B1j3sN-bzx`），不自行解讀。
+1. **Persona**（2026-10-05 起取代原 Context，Roman Pichler Agile Persona Canvas）：
+   **多 persona、不取人名**，以「公司會員狀態 `oStatus` × 帳號角色（主帳號／副帳號＋權限）」定義，persona 清單由使用者決定
+   （目前 7 個：普通廠商／過期廠商／VIP 主帳號（人資窗口）／VIP 副帳號（人資）／VIP 副帳號（用人主管、分店店長）／VIP 人事助理／關權廠商）。
+   順序：給下游 HTML agent 的 `<!-- [SYSTEM: UI/UX RENDERING INSTRUCTIONS ...] -->` 註解 → 說明與旅程範圍（Journey Type）
+   → Persona 總覽表（廠商狀態、帳號類型、可走的旅程、主要限制）→ 各 persona 卡（引言、Details、Goals、Pain Points、可走的旅程）
+   → 受限廠商類型（`organs.confirmed` 會改變旅程功能的旗標，作為疊加在任一 persona 上的修飾條件）→ 名詞。
+   Journey Grid 以 VIP 主帳號為主線，其他 persona 的差異只寫在各自卡片。代碼定義一律引自 HackMD [REF] 系統代碼表（`B1j3sN-bzx`）；
+   文件沒有的角色描述（如人事助理）寫 `NULL`，不自行編造。
 2. **Journey Grid**：**階段在欄、泳道在列**，列固定七列、順序不可增減：
    User Actions／Touchpoints／Thoughts／Emotions／Pain Points／Opportunities／Metrics。
    - 階段沿用 Sitemap module 順序 `登入 → 首頁 → 公司 → 職缺 → 人才 → 聯繫 → 紀錄`；
