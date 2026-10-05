@@ -23,6 +23,8 @@ frontline/customer needs, aligning everyone through regular communication and da
 
 - **預先回答式簡報（2026-10-05 使用者補充）**：每份對內簡報固定附 FAQ，方法借鑑 Amazon Working Backwards 的 PR/FAQ 概念（先站在使用者／客服角度預先回答提問）；證據見 `evidence-briefings.md`。
 
+- **承攬制職缺（法遵型需求）**：需求來自業務單位；先研究法規，再與法務、稽核對齊需求，全數確認後才進系統分析與 UI/UX；最後設計出「文件齊全由客服審、缺件交稽核」的審核分流。證據見 `evidence-briefings.md`。
+
 ---
 
 **相關分頁 / Related**：[F8 專案管理／路線圖交付](F08-roadmap-delivery.md) ・ [F6 跨職能協作與交接](F06-collaboration-handoff.md) ・ [F11 問題解決與維運交付](F11-problem-solving-ops.md)

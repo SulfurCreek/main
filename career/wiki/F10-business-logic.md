@@ -19,6 +19,8 @@ truth that precedes specs and engineering. This is upstream of F2: clarify the b
 - **工作證據 / Evidence**：求才產品 Roadmap 與規格中的權限判斷、配對條件、審核規則、續約與資料清理條件；F2 的「權限代碼建模」即為本能力的輸出產物。
 - **資深度訊號 / Seniority signal**：在規格之前先把「業務真相」釐清——降低反工與上線風險的**根因能力**，是把模糊變確定的源頭，而非下游的文件化。
 
+- **承攬制職缺規則**：把勞基法對承攬（無從屬關係、不受勞基法保障）的區分轉成系統規則——必附兩份契約文件、待遇限無底薪／論件計酬、隱藏福利、頁面標示非僱傭，並依文件完整度分流審核。
+
 ---
 
 **相關分頁 / Related**：[F2 功能規格與系統思維（下游）](F02-spec-systems-thinking.md) ・ [F4 AI 產品企劃（規則→AI 演進）](F04-ai-product.md) ・ [旗艦專案 E.1（代碼衝突仲裁）](flagship-e1.md)
