@@ -73,7 +73,7 @@
 
 | # | 概念 | 狀態 | 你的證據 ／ 缺口說明 |
 | :-- | :--- | :--: | :--- |
-| 21 | Agile / Scrum | 🟡 | 實際是 **Kanban-based**（[F11](F11-problem-solving-ops.md) 工單看板）＋狀態工作流＋時間盒，**不是正式 Scrum**（無 sprint／standup／retro 紀錄）。**別自稱跑 Scrum**，說「Kanban 與時間盒交付」更站得住。 |
+| 21 | Agile / Scrum | 🟡 | 實際是 **Kanban-based**（[F11](F11-problem-solving-ops.md) 工單看板）＋狀態工作流＋時間盒，**不是正式 Scrum**。使用者確認（2026-10-05）：主要以 Kanban 推進瀑布式開發，有主持過 Sprint Retrospective（時間地點待補）。**別自稱全面跑 Scrum**，說「以 Kanban 推進瀑布式開發，並導入 Retrospective 回顧」更站得住。 |
 | 22 | Sprint Velocity | ⚠️ | 無 sprint 故無 velocity。**但有等價物**：每週穩定新增 50–70 張／完成 40–52 張工單的 throughput——可用「穩定產出節奏」來答。 |
 | 23 | Backlog Grooming | ✅ | [F8](F08-roadmap-delivery.md)：**227 項 roadmap**，`P0–P3` 優先級 ＋ `難易 0–3` 工作量評分 ＋ 時間盒分級 ＋ 暫停／取消一律附決策理由。 |
 | 24 | PRD | ✅✅ | **核心能力**：`spec-doc-1111` skill 即你的 PRD 方法論（骨架／初始化／權限表／MECE／版控）；HackMD 307 份文件中的求才範圍由你撰寫。 |
