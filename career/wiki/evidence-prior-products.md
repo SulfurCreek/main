@@ -234,3 +234,4 @@ SweetRing（婚戀）、weTouch（年輕客群），另有大研生醫保健品�
 ## 商業模式更正（2026-10-05 使用者確認）
 - JD2＝JustDating 2；JD2、JC、KOOL 皆為自動續訂訂閱制 App。
 - Peach 為類似個人頻道訂閱制（訂閱創作者頻道）。
+- JC＝JustDating 遭商城下架期間為維持營收推出的復刻版；JustDating 重新上架（JD2）後 JC 下架。

@@ -42,9 +42,9 @@ AI 賦能與敏捷交付（AI-Driven & Agile Delivery）：以數據驅動開發
 工作內容：
 - 求才新版全新系統（Zero-Downtime 上線）：自 2022 年到職即投入規劃；前任主管方案未能落地後由我接手重新規劃，2025/10 第一階段以零停機方式直接切換上線。
 - 高頻產品交付：2023/12 至 2026/03 主導約 50 項功能上線，涵蓋品牌公司頁與多套版型、職缺批次編輯、主投列表與履歷頁改版、付款方式合併與訂單拆單、個資保存與簡訊規則等合規調整。
-- 跨系統整合與漸進遷移：主導求才端旗艦級即時訊息整合專案，梳理跨系統路由與面試邀約狀態機，將兩套異質對話系統整併為單一對話流，並以向下相容的方式漸進遷移舊資料。
+- 全新訊息溝通機制（開發中）：主導設計求才端與求職端之間全新的訊息溝通機制，取代原本分散的信件與即時通，梳理跨系統路由與面試邀約狀態機，並規劃向下相容的漸進遷移。
 - 建立單一事實來源（Single Source of Truth）：針對異業 API 串接，制定含 HMAC-SHA256 簽章、5 分鐘重放窗口、限流機制與狀態碼分類的合約規格；將權限、審核、配對與續約規則收斂為 MECE 決策模型，成為工程團隊開發的唯一依據。
-- AI 產品化與付費留存：企劃並上線企業端 AI 功能（公司簡介生成、JD 生成 v1→v2 與語氣迭代、職缺匯入、職缺健檢、技能證照推薦、AI 推薦人才、求才智能客服）。以 14.9 萬家企業名冊做世代分析（Cohort Analysis），實證我主責維運所服務的付費客戶，留存率高於全站基準 7 個百分點（p=0.011）。
+- AI 產品化與付費留存：企劃並上線企業端 AI 功能（公司簡介生成、職缺工作說明生成（v1→v2 與語氣迭代）、職缺匯入、職缺健檢、技能證照推薦、AI 推薦人才、求才智能客服）。以 14.9 萬家企業名冊做世代分析（Cohort Analysis），實證我主責維運所服務的付費客戶，留存率高於全站基準 7 個百分點（p=0.011）。
 - 敏捷交付與維運效率：統籌 227 項產品 Roadmap，導入 P0–P3 優先級與時間盒（Timebox）交付，帶領 2 名企劃半年內上線 111 項、準時率 94%。導入工單週期追蹤，年度處理 1,279 張維運工單、結案率約 88%，平均處理時間縮短約 69%（100.4 天降至 30.9 天）。
 - 需求單一窗口：對接 16 個利害關係單位（高層到第一線客服），以數據而非位階決策，每週向近 200 人業務團隊簡報進度。
 - AI 內部工作流：獨立建置以 Claude Code 為核心的 AI 協作系統（12 個代理、23 個 Skill），提升規格撰寫、資料分析與文件治理效率。
@@ -54,7 +54,7 @@ AI 賦能與敏捷交付（AI-Driven & Agile Delivery）：以數據驅動開發
 職務類別：軟體專案管理師
 在職期間：2018/01 - 2022/03
 工作內容：
-- 0 到 1 產品上線（0-to-1 Product Launches）：主導 Peach（個人頻道訂閱制）、JustDating 2（JD2）、JC（自動續訂訂閱制）三款訂閱制社交 App 從提案、使用者故事、線框圖、原型到上線的完整生命週期。Peach 上線不到一年 DAU 成長約 14 倍；JD2 上線 12 週 DAU 成長約 8 倍、JC 上線 6 週成長約 4 倍。
+- 0 到 1 產品上線（0-to-1 Product Launches）：主導 Peach（個人頻道訂閱制）、JustDating 重新上架版（JD2）與 JC 三款訂閱制社交 App 從提案、使用者故事、線框圖、原型到上線的完整生命週期。Peach 上線不到一年 DAU 成長約 14 倍；JustDating 遭商城下架期間推出復刻版 JC 維持營收，上線 6 週 DAU 成長約 4 倍，JustDating 重新上架後 JC 功成下架；JD2 上線 12 週 DAU 成長約 8 倍。
 - 付款管道轉移與變現：為 Peach 制定付款管道轉移策略，引導用戶由高抽成的 App 內購（IAP）轉向網頁付款，網頁付款營收占比由 24% 提升至 80% 以上，並推行創作者分潤機制。
 - 定價實驗（Pricing Strategy）：設計馬來西亞市場 iOS 三階段定價實驗（原價→降價→還原），以 Android 為對照組；降價期 iOS DAU 成長 48%、註冊數成長 67%，依實驗結果全面調降售價。
 - 變現與金流：調整 IAP 內購模型與價格點並搭配階段性促銷；將第三方金流導入成熟產品，擔任串接與營運期單一窗口。
@@ -113,10 +113,10 @@ AWS Certified Cloud Practitioner（認證的雲端從業人員－基礎級），
 我有 10 年產品經理經歷，職涯橫跨 B2C 社交產品的「從 0 到 1 成長」，以及 B2B 企業端平台的「跨系統整合」。我最擅長把複雜的業務邏輯，轉譯成工程端能直接實作的 API 契約與決策模型，並堅持每一次產品迭代都要有可量化的商業價值。
 
 【技術力與架構思維｜收斂技術債，建立單一事實來源】
-在 1111 人力銀行擔任求才系統主責期間，我負責推動核心系統的現代化。面對累積多年的系統包袱，我從 2022 年到職就投入求才新版的規劃；前任主管的方案未能落地後，我接手重新規劃，2025 年 10 月讓這套全新系統以零停機方式直接切換上線。2023 年底到 2026 年初，我主導約 50 項功能上線。我也主導跨系統即時訊息的旗艦整合專案：不只畫線框圖，而是親自設計跨系統路由與面試邀約的狀態機，讓兩套異質系統整併為單一對話流並向下相容。此外，我把分散的權限、配對與審核規則收斂成一套 MECE 決策模型，並透過含 HMAC-SHA256 簽章與限流的 API 規格，讓它成為工程團隊開發的單一事實來源。
+在 1111 人力銀行擔任求才系統主責期間，我負責推動核心系統的現代化。面對累積多年的系統包袱，我從 2022 年到職就投入求才新版的規劃；前任主管的方案未能落地後，我接手重新規劃，2025 年 10 月讓這套全新系統以零停機方式直接切換上線。2023 年底到 2026 年初，我主導約 50 項功能上線。目前我正主導一套全新的訊息溝通機制：不只畫線框圖，而是親自設計跨系統路由與面試邀約的狀態機，讓企業與求職者在同一個對話流裡完成溝通，並規劃向下相容的遷移。此外，我把分散的權限、配對與審核規則收斂成一套 MECE 決策模型，並透過含 HMAC-SHA256 簽章與限流的 API 規格，讓它成為工程團隊開發的單一事實來源。
 
 【商業變現與敏捷賦能｜用數據說話，用 AI 加速】
-產品的最終目標是變現與留存。在 B2B 端，我推動 JD 生成、AI 推薦人才、求才智能客服等企業端 AI 功能上線，並以 14.9 萬家企業名冊做世代分析，證實我維運所服務的付費客戶，留存率比全站基準高 7 個百分點。在 B2C 端（尚凡國際），我帶領 Peach 上線不到一年 DAU 成長約 14 倍，並透過以 Android 為對照組的馬來西亞定價實驗與付款管道轉移，把網頁付款營收占比從 24% 拉升到 80% 以上。
+產品的最終目標是變現與留存。在 B2B 端，我推動職缺工作說明生成、AI 推薦人才、求才智能客服等企業端 AI 功能上線，並以 14.9 萬家企業名冊做世代分析，證實我維運所服務的付費客戶，留存率比全站基準高 7 個百分點。在 B2C 端（尚凡國際），我帶領 Peach 上線不到一年 DAU 成長約 14 倍，並透過以 Android 為對照組的馬來西亞定價實驗與付款管道轉移，把網頁付款營收占比從 24% 拉升到 80% 以上。
 
 2014 年畢業後，我先在台灣新蛋擔任翻譯工讀生，2015 年 2 月入伍服義務役一年，退伍後於 2016 年 6 月進入思維特，開啟產品職涯。
 
@@ -127,6 +127,6 @@ Senior Product Manager | System Architecture & Monetization
 
 I am a Senior Product Manager with ten years of experience growing B2C mobile apps from zero to one and integrating complex systems on a B2B recruitment platform. My core strength is translating complex business rules into engineering-ready specifications: API contracts, state machines and MECE decision models.
 
-At 1111 Job Bank I own the employer-side platform. I took over the stalled rebuild of the employer system, re-planned it, and launched the new system in October 2025 with zero downtime; from late 2023 to early 2026 I shipped about 50 releases. I also led the integration of two legacy messaging channels into a single conversation stream with backward-compatible, incremental migration. I run a 227-item roadmap with P0-P3 prioritization, shipping 111 items in six months at a 94% on-time rate, and launched employer-facing AI features including JD generation, AI talent recommendation and a customer-service assistant. A cohort analysis across 149.5K employer accounts showed that the paying customers served by my operations pipeline retained 7 percentage points above the platform baseline (p=0.011).
+At 1111 Job Bank I own the employer-side platform. I took over the stalled rebuild of the employer system, re-planned it, and launched the new system in October 2025 with zero downtime; from late 2023 to early 2026 I shipped about 50 releases. I am now leading the design of a new employer-candidate messaging system (in development), replacing scattered email and chat channels with one conversation flow and a backward-compatible migration plan. I run a 227-item roadmap with P0-P3 prioritization, shipping 111 items in six months at a 94% on-time rate, and launched employer-facing AI features including job-description generation, AI talent recommendation and a customer-service assistant. A cohort analysis across 149.5K employer accounts showed that the paying customers served by my operations pipeline retained 7 percentage points above the platform baseline (p=0.011).
 
 Previously at Sunfun Info, I led three zero-to-one subscription social apps; Peach grew daily actives about 14x within its first year. I shifted Peach's payments from in-app purchase to web, raising web's share of revenue from 24% to over 80%, and ran a three-phase pricing experiment in Malaysia with Android as the control group, which led to a market-wide price cut. I build multi-agent Claude Code workflows to speed up specification writing and data analysis. TOEIC 980.
