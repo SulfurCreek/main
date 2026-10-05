@@ -1,0 +1,27 @@
+<!--AI-NOTE @part:persona
+Persona 分頁的 pane（含整段 section#context）。pane-persona 在這個檔案開頭與結尾成對。
+維護：先讀 ../ROUTES.md；改完跑 ../build.sh --test
+-->
+<div class="pane" id="pane-persona" role="tabpanel" aria-labelledby="tb-persona">
+
+<section class="part" id="context">
+  <h2 id="ctx-h" class="sr-only"></h2>
+  <div class="p-top">
+    <div><p class="p-intro" id="p-intro"></p><p class="p-scope" id="p-scope"></p></div>
+    <aside class="guide" id="guide" aria-label="閱讀指南"></aside>
+  </div>
+  <div class="sub-hd"><h3>Persona 總覽</h3><p>點 persona 名稱，跳到下方卡片並套用到旅程看板。</p></div>
+  <div class="panel pm"><div class="tw"><table id="p-matrix"></table></div></div>
+  <ul class="mnotes" id="p-notes"></ul>
+  <div class="sub-hd" id="pcard-top"><h3>Persona 卡</h3><p>切換 persona；旅程看板上走不到的階段會反灰。</p></div>
+  <div class="ptabs" id="ptabs" role="tablist" aria-label="選擇 persona"></div>
+  <div class="pcard" id="pcard" role="tabpanel"></div>
+  <div class="sub-hd"><h3>受限廠商類型</h3><p id="m-intro"></p></div>
+  <div class="mfilter" id="mfilter" role="group" aria-label="依受影響階段篩選"></div>
+  <div class="mods" id="mods"></div>
+  <ul class="mnotes" id="m-notes"></ul>
+  <details class="gloss" id="gloss"><summary>名詞<small id="g-n"></small></summary><dl class="terms" id="terms"></dl><p class="gnote" id="g-note"></p></details>
+</section>
+
+</div>
+

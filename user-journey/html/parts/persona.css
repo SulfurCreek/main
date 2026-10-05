@@ -1,0 +1,108 @@
+/*AI-NOTE @part:persona
+Persona 分頁全部樣式：矩陣、卡、受限卡、名詞、persona 選擇器、看板上的 .pstat／.pdim。
+*/
+  /* ---------- Persona ---------- */
+  .p-top { display:grid; grid-template-columns:minmax(0,1fr); gap:16px 40px; align-items:start; }
+  @media (min-width:1024px) { .p-top { grid-template-columns:minmax(0,1.4fr) minmax(0,1fr); } }
+  .p-intro { margin:0 0 8px; color:var(--ink-2); font-size:0.95rem; max-width:80ch; }
+  .p-scope { font-size:0.82rem; color:var(--ink-3); }
+  .p-scope b { color:var(--ink-2); }
+  .guide { background:var(--surface-2); border-radius:14px; padding:16px 18px; display:grid; gap:10px; min-width:0; }
+  .guide p { margin:0; font-size:0.78rem; color:var(--ink-2); }
+  .legend { display:grid; gap:6px; font-size:0.8rem; color:var(--ink-2); }
+  .legend div { display:grid; grid-template-columns:62px 1fr; align-items:center; gap:8px; }
+  .sub-hd { display:flex; flex-wrap:wrap; align-items:baseline; gap:4px 14px; margin:28px 0 10px; }
+  .sub-hd h3 { margin:0; font-size:1.05rem; font-weight:900; }
+  .sub-hd p { margin:0; font-size:0.76rem; color:var(--ink-3); }
+  /* 總覽矩陣 */
+  .pm table { min-width:760px; }
+  .pm tbody tr { transition:background .15s; } .pm tbody tr.on { background:var(--line-soft); }
+  .pm td { font-size:0.82rem; }
+  .pm .pn { font:inherit; font-weight:700; text-align:left; background:none; border:0; color:var(--line); cursor:pointer; padding:0; display:flex; gap:8px; align-items:center; }
+  .pm .pn:hover { text-decoration:underline; text-underline-offset:3px; }
+  .pid { flex:none; font-family:var(--f-disp); font-weight:800; font-size:0.7rem; padding:3px 7px; border-radius:6px; background:var(--surface-2); color:var(--ink-2); }
+  .chip { display:inline-block; font-size:0.74rem; font-weight:700; padding:2px 9px; border-radius:999px; border:1px solid var(--rule); background:var(--surface); color:var(--ink-2); white-space:nowrap; }
+  .chip code { background:none; padding:0; font-size:1em; }
+  .chip.vip { background:var(--line); border-color:var(--line); color:var(--line-ink); }
+  .chip.neutral { background:var(--surface-2); }
+  .chip.warn { background:var(--warn-soft); border-color:var(--usx); color:var(--warn); }
+  /* 切換列 */
+  .ptabs { display:flex; gap:6px; overflow-x:auto; padding-bottom:6px; scrollbar-width:thin; }
+  .ptabs button, .ppick button { flex:none; font:inherit; font-size:0.8rem; padding:6px 14px; border-radius:999px; border:1px solid var(--rule); background:var(--surface); color:var(--ink-2); cursor:pointer; display:inline-flex; gap:8px; align-items:center; }
+  .ptabs button b, .ppick button b { font-family:var(--f-disp); font-size:0.7rem; font-weight:800; }
+  .ptabs button[aria-selected="true"], .ppick button[aria-pressed="true"] { background:var(--ink); border-color:var(--ink); color:var(--bg); }
+  .ptabs button .st, .ppick button .st { width:8px; height:8px; border-radius:50%; background:var(--ink-3); }
+  .st.vip { background:var(--line) !important; } .st.warn { background:var(--usx) !important; }
+  /* persona 卡 */
+  .pcard { margin-top:12px; display:grid; gap:14px; }
+  .pq { margin:0; background:var(--surface); border:1px solid var(--rule); border-left:8px solid var(--line); border-radius:6px 18px 18px 6px; padding:22px clamp(16px,3vw,32px); }
+  .pq .qt { font-size:clamp(1.15rem, 2.2vw, 1.6rem); font-weight:500; font-style:italic; line-height:1.5; color:var(--ink-2); text-wrap:balance; }
+  .pq .qt .mk { font-style:normal; }
+  .pq .why { margin-top:10px; font-size:0.78rem; color:var(--ink-3); font-style:normal; }
+  .pq .head { display:flex; flex-wrap:wrap; gap:8px 10px; align-items:center; margin-bottom:12px; }
+  .pq .head h3 { margin:0; font-size:1rem; font-weight:900; font-style:normal; }
+  .pgrid { display:grid; grid-template-columns:minmax(0,1fr); gap:14px; align-items:start; }
+  @media (min-width:1024px) { .pgrid { grid-template-columns:minmax(0,1fr) minmax(0,1fr); } }
+  .pcol { display:grid; gap:14px; min-width:0; }
+  .box { border-radius:16px; padding:16px 20px 18px; min-width:0; font-size:0.86rem; }
+  .box h4 { margin:0 0 8px; font-size:0.78rem; font-family:var(--f-disp); font-stretch:112%; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; display:flex; gap:8px; align-items:center; }
+  .box ul { margin:0; padding-left:1.15em; display:grid; gap:6px; } .box li > ul { margin-top:6px; }
+  .box p { margin:0; }
+  .box.profile { background:var(--surface); border:1px solid var(--rule); color:var(--ink-2); } .box.profile h4 { color:var(--ink-3); }
+  .box.goals { background:var(--ok-soft); color:var(--ink); } .box.goals h4 { color:var(--ok); }
+  .box.pains { background:var(--bad-soft); color:var(--ink); } .box.pains h4 { color:var(--bad); }
+  .box.goals a, .box.pains a { color:inherit; text-decoration:underline; text-decoration-color:color-mix(in srgb, currentColor 40%, transparent); }
+  .box svg { width:16px; height:16px; flex:none; }
+  .journey { background:var(--surface); border:1px solid var(--rule); border-radius:16px; padding:16px 20px 18px; display:grid; gap:10px; }
+  .journey h4 { margin:0; font-size:0.78rem; font-family:var(--f-disp); font-stretch:112%; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:var(--ink-3); }
+  .jtxt { margin:0; font-size:0.84rem; color:var(--ink-2); }
+  .jrow { display:grid; grid-template-columns:repeat(auto-fit, minmax(96px, 1fr)); gap:8px; }
+  .sc { border-radius:12px; padding:8px 10px; border:1.5px solid var(--line); display:grid; gap:1px; min-width:0; }
+  .sc b { font-family:var(--f-disp); font-weight:800; font-size:0.95rem; } .sc span { font-size:0.74rem; } .sc em { font-style:normal; font-size:0.66rem; color:var(--ink-3); overflow-wrap:anywhere; }
+  .sc.ok { background:var(--line-soft); color:var(--ink); }
+  .sc.partial { background:var(--line-soft); border-style:dashed; }
+  .sc.conditional { border-style:dashed; color:var(--ink-2); }
+  .sc.blocked, .sc.unknown { border-color:var(--rule); background:var(--surface-2); color:var(--ink-3); filter:grayscale(1); }
+  .sc.blocked b { text-decoration:line-through; }
+  .sc.mod { box-shadow:inset 0 -3px 0 var(--usx); }
+  .ovl { font-size:0.8rem; color:var(--warn); background:var(--warn-soft); border-radius:10px; padding:8px 12px; }
+  /* 受限廠商類型 */
+  .mfilter { display:flex; flex-wrap:wrap; gap:6px; align-items:center; margin-bottom:12px; }
+  .mfilter .lb { font-size:0.74rem; color:var(--ink-3); margin-right:4px; }
+  .mfilter button { font:inherit; font-size:0.78rem; padding:4px 12px; border-radius:999px; border:1px solid var(--rule); background:var(--surface); color:var(--ink-2); cursor:pointer; }
+  .mfilter button[aria-pressed="true"] { background:var(--ink); color:var(--bg); border-color:var(--ink); }
+  .mods { display:grid; grid-template-columns:repeat(auto-fill, minmax(min(100%, 300px), 1fr)); gap:12px; }
+  .mod { text-align:left; font:inherit; color:inherit; background:var(--surface); border:1.5px solid var(--rule); border-radius:16px; padding:14px 16px 16px; display:grid; gap:8px; align-content:start; cursor:pointer; min-width:0; }
+  .mod:hover { border-color:var(--ink-3); }
+  .mod[aria-pressed="true"] { border-color:var(--usx); background:var(--warn-soft); }
+  .mod .top { display:flex; justify-content:space-between; gap:8px; align-items:flex-start; }
+  .mod h4 { margin:0; font-size:0.95rem; font-weight:900; }
+  .mod .code { font-family:var(--f-mono); font-size:0.72rem; background:var(--surface-2); border-radius:6px; padding:2px 7px; white-space:nowrap; color:var(--ink-2); }
+  .mod p { margin:0; font-size:0.8rem; color:var(--ink-2); }
+  .mod .imp { display:flex; flex-wrap:wrap; gap:4px; }
+  .mod .imp span { font-size:0.7rem; font-weight:700; padding:1px 8px; border-radius:999px; background:var(--warn-soft); color:var(--warn); border:1px solid var(--usx); }
+  .mod .tick { font-size:0.7rem; font-weight:700; color:var(--ink-3); white-space:nowrap; } .mod[aria-pressed="true"] .tick { color:var(--warn); }
+  .mnotes { margin:14px 0 0; padding-left:1.2em; font-size:0.8rem; color:var(--ink-3); display:grid; gap:4px; }
+  /* 名詞 */
+  .gloss { margin-top:28px; border:1px solid var(--rule); border-radius:16px; background:var(--surface); }
+  .gloss summary { cursor:pointer; padding:14px 20px; font-weight:900; display:flex; gap:10px; align-items:baseline; list-style:none; }
+  .gloss summary::-webkit-details-marker { display:none; }
+  .gloss summary::before { content:"＋"; font-family:var(--f-mono); color:var(--ink-3); } .gloss[open] summary::before { content:"－"; }
+  .gloss summary small { font-weight:400; color:var(--ink-3); }
+  .terms { margin:0; padding:0 20px 8px; display:grid; grid-template-columns:repeat(auto-fill, minmax(min(100%, 380px), 1fr)); column-gap:36px; font-size:0.8rem; border-top:1px solid var(--rule); }
+  .terms div { display:grid; grid-template-columns:minmax(84px, 8.5em) minmax(0,1fr); gap:10px; padding:9px 0; border-bottom:1px solid var(--rule); }
+  .terms dt { font-weight:700; } .terms dd { margin:0; color:var(--ink-2); }
+  .terms dd .src { color:var(--ink-3); font-size:0.72rem; margin-left:4px; }
+  .gloss .gnote { margin:0; padding:10px 20px 14px; font-size:0.74rem; color:var(--ink-3); }
+  /* persona 選擇器（旅程看板上方） */
+  .ppick { display:flex; flex-wrap:wrap; gap:6px; align-items:center; margin:0 0 12px; }
+  .ppick .lb { font-size:0.76rem; color:var(--ink-3); margin-right:4px; }
+  .pstat { display:flex; flex-wrap:wrap; gap:3px; margin-top:4px; }
+  .pst { font-size:0.62rem; font-weight:700; padding:1px 6px; border-radius:999px; border:1px solid var(--rule); color:var(--ink-3); background:var(--surface); }
+  .pst.ok { color:var(--ok); border-color:var(--ok); } .pst.conditional, .pst.partial { color:var(--line); border-color:var(--line); border-style:dashed; }
+  .pst.blocked { color:var(--bad); border-color:var(--bad); } .pst.warn { color:var(--warn); border-color:var(--usx); background:var(--warn-soft); }
+  .board [data-col].pdim { opacity:0.34; filter:grayscale(1); }
+  .ph { flex-wrap:wrap; } .ph .nm { flex:1 1 70px; min-width:0; overflow-wrap:normal; word-break:keep-all; } .pstat { flex-basis:100%; margin-top:2px; }
+  .stn.unreach, .minirail button.unreach { opacity:0.5; border-style:dashed; }
+  .stn.unreach .dot { border-style:dashed; border-color:var(--ink-3); }
+

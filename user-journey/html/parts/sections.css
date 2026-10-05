@@ -1,0 +1,11 @@
+/*AI-NOTE @part:sections
+section 通用：.sec-hd 標題、.hint。
+*/
+  /* ---------- Sections ---------- */
+  section.part { margin-top:72px; }
+  .sec-hd { display:grid; gap:4px; margin-bottom:18px; }
+  .sec-hd h2 { margin:0; font-size:1.5rem; font-weight:900; letter-spacing:-0.005em; }
+  .sec-hd p { margin:0; color:var(--ink-3); font-size:0.8rem; max-width:90ch; }
+  .sec-hd .sel-tag { display:inline-flex; gap:6px; align-items:center; font-size:0.74rem; font-weight:700; color:var(--line); }
+  .sec-hd .sel-tag[hidden] { display:none; }
+

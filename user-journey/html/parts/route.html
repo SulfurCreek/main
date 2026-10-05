@@ -1,0 +1,14 @@
+<!--AI-NOTE @part:route
+⚠️ pane-journey 在這個檔案「開啟」，在 grid.html 結尾「關閉」，兩檔要一起改。內容：路線圖。
+維護：先讀 ../ROUTES.md；改完跑 ../build.sh --test
+-->
+<div class="pane" id="pane-journey" role="tabpanel" aria-labelledby="tb-journey" hidden>
+  <div class="route" id="route" style="margin-top:0" role="group" aria-label="選擇旅程階段">
+    <div class="route-hd">
+      <p id="route-note">點選站點篩選階段：看板只留該階段，下方 Sitemap、文件、流程圖跟著切換。再點一次取消。</p>
+      <button class="all-btn" id="all-btn" type="button" aria-pressed="true">全部階段</button>
+    </div>
+    <div class="main-line" id="main-line"></div>
+    <div class="spur" id="spur"></div>
+  </div>
+

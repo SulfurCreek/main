@@ -1,0 +1,17 @@
+/*AI-NOTE @part:responsive
+窄螢幕（≤860px）覆寫：路線圖改直向等。放在最後以便覆蓋前面規則，改順序前先看 step2 的 CSS 清單。
+*/
+  /* ---------- Narrow screens：路線改直向 ---------- */
+  @media (max-width:860px) {
+    .hero { padding-top:32px; }
+    .main-line { grid-template-columns:minmax(0,1fr); gap:4px; }
+    .main-line::before { left:23px; right:auto; top:24px; bottom:24px; width:6px; height:auto; transform-origin:top center; animation-name:drawv; }
+    .stn { flex-direction:row; align-items:flex-start; text-align:left; gap:14px; padding:6px 8px 10px 0; }
+    .stn .txt { display:grid; gap:3px; justify-items:start; }
+    .stn .does { max-width:none; }
+    .stn .nums { justify-content:flex-start; }
+    .sm-mods { columns:1; }
+  }
+  @keyframes drawv { from { transform:scaleY(0); } to { transform:scaleY(1); } }
+  @media (min-width:861px) { .main-line .stn .txt { display:contents; } }
+  @media (prefers-reduced-motion:reduce) { *, *::before { animation:none !important; transition:none !important; } html { scroll-behavior:auto; } }

@@ -1,0 +1,14 @@
+/*AI-NOTE @part:flows
+流程圖區塊與空狀態。
+*/
+  /* ---------- Flows ---------- */
+  .blank { min-height:220px; border:1.5px dashed var(--rule); border-radius:18px; display:grid; place-items:center; text-align:center; color:var(--ink-3); padding:28px; background:
+    radial-gradient(circle at 1px 1px, var(--rule) 1px, transparent 1.5px) 0 0 / 18px 18px; }
+  .blank b { display:block; color:var(--ink-2); font-size:1rem; margin-bottom:4px; }
+  .flow-stage { font-family:var(--f-disp); font-stretch:112%; font-weight:700; font-size:0.72rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--ink-3); margin:24px 0 10px; }
+  .flow-item { background:var(--surface); border:1px solid var(--rule); border-radius:18px; padding:18px 20px 20px; margin-bottom:18px; }
+  .flow-item h3 { margin:0 0 4px; font-size:1.1rem; font-weight:900; }
+  .flow-item .meta { margin-bottom:12px; }
+  .flow-canvas { background:var(--canvas); border-radius:12px; padding:16px; overflow-x:auto; }
+  .flow-canvas svg { display:block; width:100%; height:auto; min-width:760px; max-width:1180px !important; margin:0 auto; }
+

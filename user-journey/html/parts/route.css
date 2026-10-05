@@ -1,0 +1,52 @@
+/*AI-NOTE @part:route
+路線圖與迷你路線列（含 .stn 站點樣式）。對應 route.html／route.js。
+*/
+  /* ---------- Route map (stage filter) ---------- */
+  .route { position:relative; margin-top:20px; background:var(--surface); border:1px solid var(--rule); border-radius:18px; padding:22px clamp(14px, 2vw, 28px) 18px; }
+  .route-hd { display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:8px 16px; margin-bottom:14px; }
+  .route-hd p { margin:0; font-size:0.78rem; color:var(--ink-3); }
+  .all-btn { font:inherit; font-size:0.78rem; font-weight:700; padding:6px 14px; border-radius:999px; border:1.5px solid var(--line); background:transparent; color:var(--line); cursor:pointer; }
+  .all-btn[aria-pressed="true"] { background:var(--line); color:var(--line-ink); }
+  .main-line { position:relative; display:grid; grid-template-columns:repeat(var(--m), minmax(0,1fr)); gap:10px; }
+  .main-line::before { content:""; position:absolute; left:calc(50% / var(--m)); right:calc(50% / var(--m)); top:21px; height:6px; border-radius:3px; background:var(--line);
+    transform-origin:left center; animation:draw 0.9s cubic-bezier(.6,.1,.2,1) both; }
+  @keyframes draw { from { transform:scaleX(0); } to { transform:scaleX(1); } }
+  .stn { position:relative; display:flex; flex-direction:column; align-items:center; text-align:center; gap:6px; font:inherit; color:inherit; background:none; border:0; padding:0 4px 10px; cursor:pointer; border-radius:12px; min-width:0; }
+  .stn .dot { width:48px; height:48px; border-radius:50%; background:var(--surface); border:6px solid var(--line); display:grid; place-items:center;
+    font-family:var(--f-disp); font-stretch:100%; font-weight:800; font-size:1rem; color:var(--ink); transition:transform .18s, background .18s, color .18s; position:relative; z-index:1; }
+  .stn .nm { font-weight:700; font-size:0.98rem; line-height:1.25; }
+  .stn .ver { font-size:0.68rem; font-weight:500; color:var(--ink-3); border:1px solid var(--rule); border-radius:999px; padding:0 8px; }
+  .stn .does { font-size:0.74rem; color:var(--ink-2); line-height:1.5; max-width:100%; text-wrap:pretty; }
+  .stn .nums { font-family:var(--f-mono); font-size:0.66rem; color:var(--ink-3); display:flex; gap:8px; flex-wrap:wrap; justify-content:center; }
+  .stn .nums b { color:var(--ink); font-weight:500; }
+  .stn:hover .dot { transform:scale(1.08); }
+  .stn[aria-pressed="true"] .dot { background:var(--line); color:var(--line-ink); animation:pulse 1.4s ease-out 1; }
+  .stn[aria-pressed="true"] { background:var(--line-soft); }
+  .route.has-sel .stn[aria-pressed="false"] { opacity:0.45; }
+  .route.has-sel .stn[aria-pressed="false"]:hover { opacity:0.8; }
+  @keyframes pulse { 0% { box-shadow:0 0 0 0 color-mix(in srgb, var(--line) 55%, transparent); } 100% { box-shadow:0 0 0 18px transparent; } }
+  .spur { position:relative; margin-top:14px; padding-top:16px; border-top:2px dashed var(--spur); display:flex; align-items:center; gap:14px; flex-wrap:wrap; }
+  .spur .stn { flex-direction:row; text-align:left; align-items:center; gap:12px; padding:6px 12px 6px 6px; }
+  .spur .stn .dot { border-color:var(--spur); width:48px; height:48px; font-size:0.7rem; letter-spacing:-0.04em; }
+  .spur .stn[aria-pressed="true"] .dot { background:var(--spur); color:var(--line-ink); }
+  .spur .stn[aria-pressed="true"] { background:var(--spur-soft); }
+  .spur .stn .txt { display:grid; gap:2px; justify-items:start; }
+  .spur .stn .does { max-width:none; }
+  .spur-tag { font-family:var(--f-disp); font-stretch:112%; font-size:0.66rem; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:var(--spur); }
+
+  /* 捲動後的迷你路線列 */
+  .minirail { position:fixed; top:0; left:0; right:0; z-index:20; padding:calc(8px + env(safe-area-inset-top, 0px)) 16px 8px;
+    background:color-mix(in srgb, var(--bg) 86%, transparent); backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px); border-bottom:1px solid var(--rule);
+    display:flex; gap:6px; align-items:center; overflow-x:auto; scrollbar-width:none; transform:translateY(-110%); transition:transform .22s; }
+  .minirail.show { transform:none; }
+  .minirail .lb { font-family:var(--f-disp); font-stretch:112%; font-size:0.66rem; font-weight:700; letter-spacing:0.12em; color:var(--ink-3); margin-right:6px; white-space:nowrap; }
+  .minirail button { flex:none; font:inherit; font-size:0.76rem; padding:4px 11px 4px 4px; border-radius:999px; border:1px solid var(--rule); background:var(--surface); color:var(--ink-2); cursor:pointer; display:inline-flex; gap:6px; align-items:center; }
+  .minirail button i { font-style:normal; font-family:var(--f-disp); font-weight:800; font-size:0.7rem; width:22px; height:22px; border-radius:50%; display:grid; place-items:center; border:3px solid var(--line); color:var(--ink); }
+  .minirail button.sp i { border-color:var(--spur); }
+  .minirail button[aria-pressed="true"] { background:var(--line); border-color:var(--line); color:var(--line-ink); }
+  .minirail button[aria-pressed="true"] i { background:var(--line-ink); color:var(--line); border-color:var(--line-ink); }
+  .minirail button.all { padding:4px 12px; }
+  .theme-toggle { margin-left:auto; flex:none; font:inherit; font-size:0.72rem; padding:5px 12px; border-radius:999px; border:1px solid var(--rule); background:var(--surface); color:var(--ink-2); cursor:pointer; }
+  .hero .theme-toggle { margin-left:0; }
+
+  .sr-only { position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; }

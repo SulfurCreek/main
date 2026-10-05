@@ -1,0 +1,22 @@
+<!--AI-NOTE @part:sitemap
+兩分頁共用區塊的開頭（shared-div 分隔線）＋ section#sitemap（左 Sitemap、右文件表＋文件關係表）。
+維護：先讀 ../ROUTES.md；改完跑 ../build.sh --test
+-->
+<div class="shared-div" aria-hidden="true"><span>以下兩個分頁共用：頁面、文件與流程圖</span></div>
+
+<section class="part" id="sitemap">
+  <div class="sec-hd"><span class="eyebrow">Sitemap &amp; Docs</span><h2>頁面與對應文件</h2><span class="sel-tag" id="sm-sel" hidden></span></div>
+  <div class="sm-row">
+    <div class="panel">
+      <div class="panel-hd"><h3>Sitemap</h3><p id="sm-note"></p></div>
+      <div class="sm-scroll" id="sm-scroll"><div class="sm-mods" id="sm-tree"></div></div>
+    </div>
+    <div class="panel">
+      <div class="panel-hd"><h3 id="ap-h"></h3><p id="lib-note"></p></div>
+      <div class="tw"><table id="doc-table"></table></div>
+      <div class="panel-hd" style="border-top:1px solid var(--rule)"><h3>文件關係表<span id="rel-n" style="font-weight:400;color:var(--ink-3)"></span></h3><p>附錄〈文件關係〉：階段 → 功能 → 文件（含 Sitemap 沒掛的文件）。</p></div>
+      <div class="tw"><table id="rel-table"></table></div>
+    </div>
+  </div>
+</section>
+

@@ -1,0 +1,35 @@
+/*AI-NOTE @part:sitemap
+Sitemap 樹與文件表的樣式。
+*/
+  /* ---------- Sitemap | docs ---------- */
+  .sm-row { display:grid; grid-template-columns:minmax(0,1fr); gap:20px; align-items:start; }
+  @media (min-width:1024px) { .sm-row { grid-template-columns:minmax(0,1fr) minmax(0,1fr); } }
+  .panel { background:var(--surface); border:1px solid var(--rule); border-radius:18px; min-width:0; overflow:hidden; }
+  .panel-hd { padding:16px 20px 12px; border-bottom:1px solid var(--rule); display:grid; gap:2px; }
+  .panel-hd h3 { margin:0; font-size:1.05rem; font-weight:900; }
+  .panel-hd p { margin:0; font-size:0.74rem; color:var(--ink-3); }
+  .sm-scroll { max-height:min(72vh, 760px); overflow:auto; padding:6px 20px 18px; }
+  .sm-mods { columns:2 260px; column-gap:28px; }
+  .sm-mod { break-inside:avoid; padding:14px 0 6px; transition:opacity .2s; }
+  .sm-mod.dim { opacity:0.3; }
+  .sm-mod h4 { margin:0 0 6px; font-size:0.84rem; font-weight:900; display:flex; gap:8px; align-items:center; }
+  .sm-mod h4 .n { flex:none; width:22px; height:22px; border-radius:50%; border:3px solid var(--ink-3); display:grid; place-items:center; font-family:var(--f-disp); font-size:0.66rem; font-weight:800; }
+  .sm-mod.lit h4 .n { border-color:var(--line); background:var(--line); color:var(--line-ink); }
+  .sm-mod.lit h4 { color:var(--line); }
+  .sm-list { border-left:2px solid var(--rule); margin-left:10px; padding-left:0; }
+  .sm-mod.lit .sm-list { border-left-color:var(--line); }
+  .sm-node { position:relative; font-size:0.82rem; line-height:1.55; padding:2px 8px 2px 14px; border-radius:6px; transition:background .3s; }
+  .sm-node::before { content:""; position:absolute; left:0; top:0.85em; width:9px; border-top:2px solid var(--rule); }
+  .sm-mod.lit .sm-node::before { border-top-color:var(--line); }
+  .sm-node.grp { font-weight:700; color:var(--ink-2); font-size:0.76rem; margin-top:4px; }
+  .sm-node.flash { background:var(--usx); color:var(--usx-ink); }
+  .sm-node .mk { margin-left:6px; }
+  .tw { overflow-x:auto; }
+  table { border-collapse:collapse; width:100%; font-size:0.84rem; }
+  th, td { padding:9px 14px; border-bottom:1px solid var(--rule); text-align:left; vertical-align:top; }
+  th { font-family:var(--f-disp); font-stretch:112%; font-weight:700; font-size:0.66rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--ink-3); background:var(--surface-2); white-space:nowrap; }
+  tr:last-child td { border-bottom:none; }
+  td.k { font-weight:700; white-space:nowrap; }
+  .libdocs { margin:0; padding:0; list-style:none; display:grid; gap:3px; }
+  .none { color:var(--ink-3); font-size:0.8rem; }
+

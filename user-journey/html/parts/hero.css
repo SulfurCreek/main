@@ -1,0 +1,18 @@
+/*AI-NOTE @part:hero
+hero 區：標題、lead、meta。
+*/
+  /* ---------- Hero ---------- */
+  .hero { padding-block:56px 8px; display:grid; gap:18px; }
+  .hero-top { display:flex; flex-wrap:wrap; justify-content:space-between; gap:12px 24px; align-items:flex-end; }
+  h1 { margin:0; font-weight:900; font-size:clamp(2.2rem, 4.6vw, 4rem); line-height:1.04; letter-spacing:-0.01em; }
+  h1 .en { display:block; font-family:var(--f-disp); font-stretch:125%; font-weight:800; color:var(--line); letter-spacing:-0.02em; }
+  h1 .who { font-size:0.42em; font-weight:500; color:var(--ink-2); margin-left:0.3em; letter-spacing:0; vertical-align:0.35em; }
+  .hero-body { display:grid; grid-template-columns:minmax(0,1fr); gap:18px 48px; align-items:end; }
+  @media (min-width:1100px) { .hero-body { grid-template-columns:minmax(0,1.15fr) minmax(0,1fr); } }
+  .hero-side { display:grid; gap:14px; min-width:0; }
+  .lead { max-width:68ch; color:var(--ink-2); font-size:0.98rem; margin:0; }
+  .meta { display:flex; flex-wrap:wrap; gap:6px 18px; font-size:0.74rem; color:var(--ink-3); }
+  .meta b { font-weight:500; color:var(--ink-2); }
+  .meta details summary { cursor:pointer; }
+  .meta details[open] ul { margin:8px 0 0; padding-left:1.2em; max-width:90ch; }
+

@@ -6,7 +6,7 @@
 | :--- | :--- |
 | `step0_fetch_sitemap.py` | 讀 HackMD [求才系統] Sitemap（需 `HACKMD_TOKEN`），輸出 `sitemap_docs.json`：各 Sitemap 模組掛的文件名稱＋shortId（不含頁面 URL、不存原文）；並依 journey map〈流程圖索引〉抓文件內 `## 流程圖` 的 mermaid，存 `flows/*.mmd` 並用 mermaid-cli 渲染成 `flows/*.svg`。離線重跑時可略過 |
 | `step1_parse_journey.py` | 解析素材（user-journey-map skill 三段式＋附錄）→ `report_data.json`；只搬運，不改寫、不補齊；〈路由〉是 AI 索引，不進 HTML |
-| `report_template.html` | Journey map 看板版型（`__DATA__` 佔位符；不含 html/head/body 外框，可直接發布成 artifact；無外部資源） |
+| `parts/`＋`ROUTES.md` | 分區塊的版面檔（取代舊 `report_template.html`）與路由表；先讀 ROUTES.md |
 | `step2_build_report.py` | 注入資料 → `../recruiter_journey_report.html`（加外框與 UTF-8 charset）；`--fragment <路徑>` 另出無外框版給 artifact |
 | `../recruiter_journey_report.html` | 成品（離線可開，深淺雙主題，手機可讀） |
 
@@ -29,3 +29,8 @@
 - md 的「1. Persona」整併了 Context 與術語表：step1 解析總覽矩陣、P1~P7、受限廠商類型、名詞；step0 另把附錄〈文件關係〉表讀進 `sitemap_docs.json`（`relations`）。
 - 版面規則以 md 開頭的 `[SYSTEM: UI/UX RENDERING INSTRUCTIONS…]` 註解為準。persona 選定後，旅程看板依「可走的旅程」反灰；受限廠商卡可疊加。
 - 「可走的旅程」文字由 `stage_states()` 轉成狀態（可走／部分／依權限／不可／NULL），只依文字照搬。
+
+## 2026-10-05 結構改寫（先讀 ROUTES.md）
+- `report_template.html` 單檔拆成 `parts/`（每區塊 css／html／js），`step2_build_report.py` 依清單串接；輸出與舊版逐位元組相同。
+- `step1_parse_journey.py` 拆成 `parse_intro／parse_persona／parse_grid／parse_appendix`，`report_data.json` 與舊版相同。
+- 新增 `ROUTES.md`（路由表與 SOP）、`build.sh`、`tests/`（煙霧測試、截圖）。改動請看 ROUTES.md，不要再找 `report_template.html`（已移除）。

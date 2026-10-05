@@ -1,0 +1,20 @@
+/*AI-NOTE @part:tabs
+分頁按鈕列。對應 tabs.html／tabs.js。
+*/
+  /* ---------- 分頁 ---------- */
+  .tabs { display:flex; gap:10px; margin-top:36px; border-bottom:1px solid var(--rule); }
+  .tabs button { font:inherit; color:var(--ink-3); background:none; border:0; border-bottom:3px solid transparent; margin-bottom:-1px; padding:10px 18px 12px 2px; cursor:pointer; display:grid; grid-template-columns:auto auto; column-gap:10px; align-items:baseline; text-align:left; }
+  .tabs button { font-family:var(--f-disp); font-stretch:112%; font-weight:800; font-size:clamp(1.05rem, 2vw, 1.35rem); letter-spacing:-0.005em; }
+  .tabs .tn { font-family:var(--f-mono); font-size:0.7rem; font-weight:500; color:var(--ink-3); grid-row:span 2; align-self:center; }
+  .tabs small { grid-column:2; font-family:var(--f-cjk); font-weight:400; font-size:0.74rem; color:var(--ink-3); letter-spacing:0; }
+  .tabs button:hover { color:var(--ink-2); }
+  .tabs button[aria-selected="true"] { color:var(--ink); border-bottom-color:var(--line); }
+  .tabs button[aria-selected="true"] .tn { color:var(--line); }
+  .pane > section.part:first-child, .pane > .route:first-child { margin-top:32px !important; }
+  .shared-div { margin-top:80px; display:flex; align-items:center; gap:14px; color:var(--ink-3); font-size:0.76rem; }
+  .shared-div::before, .shared-div::after { content:""; flex:1; border-top:1px dashed var(--rule); }
+  .shared-div + section.part { margin-top:28px; }
+  .minirail .tabsw { display:inline-flex; border:1px solid var(--rule); border-radius:999px; padding:2px; margin-right:10px; flex:none; background:var(--surface); }
+  .minirail .tabsw button { border:0; padding:3px 10px; font-weight:700; }
+  .minirail .tabsw button[aria-selected="true"] { background:var(--ink); color:var(--bg); }
+
