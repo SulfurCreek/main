@@ -21,6 +21,8 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 | 分析 API 文件產測試矩陣、或依矩陣產生並執行 pytest | 用 `Skill` 載入 `api`（文件→矩陣）／`auto-test`（矩陣→腳本→報告，需先跑過 `api`） |
 | 撰寫/修改個人履歷、CV、作品集 | 用 `Skill` 載入 `resume-craft`（依賴的 `career/` 職能框架 wiki 已於 2026-08-31 併入本 repo，開箱即用） |
 | 把作品集（`career/portfolio/*.md`）渲染成靜態網站、部署 GitHub／Cloudflare Pages（作品集網站、靜態網站、portfolio site） | 用 `Skill` 載入 `portfolio-site`（只管渲染；內容由 `resume-craft` 管，輸出在使用者自己的作品集 repo，不進本 repo） |
+| 撰寫 QA 測試案例（只寫 happy path）、把規格書轉成可勾選的驗收案例表 | 用 `Skill` 載入 `qa-happy-path-cases` |
+| 從 Sitemap／規格文件反向工程 User Journey Map（旅程地圖，三段式範本；`user-journey/` 專案） | 用 `Skill` 載入 `user-journey-map`（HackMD 文件 session 編輯素材 md，HTML 化歸「產生HTML報告」session，見 `user-journey/README.md`） |
 | 數據分析報告寫作（MD 或靜態 HTML）、或濃縮成單張 PNG 摘要圖 | 用 `Skill` 載入 `report-generator`（報告本體）／`one-pager`（單張決策圖，出圖前需先給文字大綱確認） |
 | 1111 職務分類／不合理清單專案（`plan()` 規則、`sync_md.py`、廠商身分 Google Sheet、AI 職類推薦模型分析） | 用 `Skill` 載入 `job-classification-kb`（知識庫入口）／`gsheet-vendor-identity`／`md-datalayer`／`safe-excel-editor`／`tabular-token-min`／`rawdata`——**與本 repo 主線（1111 聊天室文件）是不同專案**，僅供其他 session 共用 skill 庫 |
 | 需要用專案縮寫/術語溝通、看不懂某個欄位名稱在講什麼 | `wiki/glossary.md` |
