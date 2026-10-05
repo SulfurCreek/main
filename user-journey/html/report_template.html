@@ -21,6 +21,7 @@
     --opp:#e6f4eb; --opp-ink:#1b6a3d;
     --us:#2343d6; --usx:#d99a16; --usx-ink:#1f1806; --inf:#6a5bb0;
     --canvas:#ffffff;
+    --bad:#a3262b; --bad-soft:#fbe8e9; --ok:#1b6a3d; --ok-soft:#e3f3e9; --warn:#8a5a00; --warn-soft:#fdf0d2;
     --f-cjk:"Noto Sans TC","PingFang TC","Microsoft JhengHei",system-ui,sans-serif;
     --f-disp:"Archivo","Noto Sans TC","PingFang TC","Microsoft JhengHei",system-ui,sans-serif;
     --f-mono:"IBM Plex Mono",ui-monospace,"SFMono-Regular",Menlo,Consolas,monospace;
@@ -36,6 +37,7 @@
       --opp:#122b1d; --opp-ink:#83d9a4;
       --us:#7390ff; --usx:#e8ad35; --usx-ink:#1f1806; --inf:#b4a9f2;
       --canvas:#f6f7f9;
+      --bad:#ff9a9d; --bad-soft:#3a1a1d; --ok:#83d9a4; --ok-soft:#122b1d; --warn:#f2c26a; --warn-soft:#33260c;
       color-scheme: dark;
     }
   }
@@ -47,6 +49,7 @@
     --opp:#122b1d; --opp-ink:#83d9a4;
     --us:#7390ff; --usx:#e8ad35; --usx-ink:#1f1806; --inf:#b4a9f2;
     --canvas:#f6f7f9;
+    --bad:#ff9a9d; --bad-soft:#3a1a1d; --ok:#83d9a4; --ok-soft:#122b1d; --warn:#f2c26a; --warn-soft:#33260c;
     color-scheme: dark;
   }
   * { box-sizing:border-box; }
@@ -131,28 +134,110 @@
   .sec-hd .sel-tag { display:inline-flex; gap:6px; align-items:center; font-size:0.74rem; font-weight:700; color:var(--line); }
   .sec-hd .sel-tag[hidden] { display:none; }
 
-  /* ---------- Context + guide ---------- */
-  .ctx { display:grid; grid-template-columns:minmax(0,1fr); gap:16px; }
-  @media (min-width:1024px) { .ctx { grid-template-columns:minmax(0,7fr) minmax(0,5fr); } }
-  .persona { background:var(--surface); border:1px solid var(--rule); border-radius:18px; padding:24px 26px; display:grid; gap:18px; }
-  .persona .who { font-size:1.35rem; font-weight:900; line-height:1.35; margin:6px 0 0; }
-  .persona .row { display:grid; grid-template-columns:minmax(0,1fr); gap:18px; padding-top:18px; border-top:1px solid var(--rule); }
-  @media (min-width:720px) { .persona .row { grid-template-columns:minmax(0,1fr) minmax(0,1fr); } }
-  .persona .k { margin-bottom:4px; }
-  .persona .v { font-size:0.88rem; color:var(--ink-2); }
-  .persona .v p { margin:0 0 6px; }
-  .guide { background:var(--surface-2); border-radius:18px; padding:22px 24px; display:grid; gap:14px; align-content:start; min-width:0; }
-  .guide p { margin:0; font-size:0.84rem; color:var(--ink-2); }
-  .legend { display:grid; gap:7px; font-size:0.82rem; color:var(--ink-2); }
+  /* ---------- Persona ---------- */
+  .p-top { display:grid; grid-template-columns:minmax(0,1fr); gap:16px 40px; align-items:start; }
+  @media (min-width:1024px) { .p-top { grid-template-columns:minmax(0,1.4fr) minmax(0,1fr); } }
+  .p-intro { margin:0 0 8px; color:var(--ink-2); font-size:0.95rem; max-width:80ch; }
+  .p-scope { font-size:0.82rem; color:var(--ink-3); }
+  .p-scope b { color:var(--ink-2); }
+  .guide { background:var(--surface-2); border-radius:14px; padding:16px 18px; display:grid; gap:10px; min-width:0; }
+  .guide p { margin:0; font-size:0.78rem; color:var(--ink-2); }
+  .legend { display:grid; gap:6px; font-size:0.8rem; color:var(--ink-2); }
   .legend div { display:grid; grid-template-columns:62px 1fr; align-items:center; gap:8px; }
-  .ctx { align-items:start; }
-  .gloss { margin-top:16px; display:grid; grid-template-columns:minmax(0,1fr); gap:10px 32px; }
-  @media (min-width:1024px) { .gloss { grid-template-columns:150px minmax(0,1fr); } }
-  .gloss-hd h3 { margin:2px 0 0; font-size:1.05rem; font-weight:900; }
-  .terms { margin:0; display:grid; grid-template-columns:repeat(auto-fill, minmax(min(100%, 380px), 1fr)); column-gap:32px; font-size:0.8rem; border-top:1px solid var(--rule); }
+  .sub-hd { display:flex; flex-wrap:wrap; align-items:baseline; gap:4px 14px; margin:28px 0 10px; }
+  .sub-hd h3 { margin:0; font-size:1.05rem; font-weight:900; }
+  .sub-hd p { margin:0; font-size:0.76rem; color:var(--ink-3); }
+  /* 總覽矩陣 */
+  .pm table { min-width:760px; }
+  .pm tbody tr { transition:background .15s; } .pm tbody tr.on { background:var(--line-soft); }
+  .pm td { font-size:0.82rem; }
+  .pm .pn { font:inherit; font-weight:700; text-align:left; background:none; border:0; color:var(--line); cursor:pointer; padding:0; display:flex; gap:8px; align-items:center; }
+  .pm .pn:hover { text-decoration:underline; text-underline-offset:3px; }
+  .pid { flex:none; font-family:var(--f-disp); font-weight:800; font-size:0.7rem; padding:3px 7px; border-radius:6px; background:var(--surface-2); color:var(--ink-2); }
+  .chip { display:inline-block; font-size:0.74rem; font-weight:700; padding:2px 9px; border-radius:999px; border:1px solid var(--rule); background:var(--surface); color:var(--ink-2); white-space:nowrap; }
+  .chip code { background:none; padding:0; font-size:1em; }
+  .chip.vip { background:var(--line); border-color:var(--line); color:var(--line-ink); }
+  .chip.neutral { background:var(--surface-2); }
+  .chip.warn { background:var(--warn-soft); border-color:var(--usx); color:var(--warn); }
+  /* 切換列 */
+  .ptabs { display:flex; gap:6px; overflow-x:auto; padding-bottom:6px; scrollbar-width:thin; }
+  .ptabs button, .ppick button { flex:none; font:inherit; font-size:0.8rem; padding:6px 14px; border-radius:999px; border:1px solid var(--rule); background:var(--surface); color:var(--ink-2); cursor:pointer; display:inline-flex; gap:8px; align-items:center; }
+  .ptabs button b, .ppick button b { font-family:var(--f-disp); font-size:0.7rem; font-weight:800; }
+  .ptabs button[aria-selected="true"], .ppick button[aria-pressed="true"] { background:var(--ink); border-color:var(--ink); color:var(--bg); }
+  .ptabs button .st, .ppick button .st { width:8px; height:8px; border-radius:50%; background:var(--ink-3); }
+  .st.vip { background:var(--line) !important; } .st.warn { background:var(--usx) !important; }
+  /* persona 卡 */
+  .pcard { margin-top:12px; display:grid; gap:14px; }
+  .pq { margin:0; background:var(--surface); border:1px solid var(--rule); border-left:8px solid var(--line); border-radius:6px 18px 18px 6px; padding:22px clamp(16px,3vw,32px); }
+  .pq .qt { font-size:clamp(1.15rem, 2.2vw, 1.6rem); font-weight:500; font-style:italic; line-height:1.5; color:var(--ink-2); text-wrap:balance; }
+  .pq .qt .mk { font-style:normal; }
+  .pq .why { margin-top:10px; font-size:0.78rem; color:var(--ink-3); font-style:normal; }
+  .pq .head { display:flex; flex-wrap:wrap; gap:8px 10px; align-items:center; margin-bottom:12px; }
+  .pq .head h3 { margin:0; font-size:1rem; font-weight:900; font-style:normal; }
+  .pgrid { display:grid; grid-template-columns:minmax(0,1fr); gap:14px; align-items:start; }
+  @media (min-width:1024px) { .pgrid { grid-template-columns:minmax(0,1fr) minmax(0,1fr); } }
+  .pcol { display:grid; gap:14px; min-width:0; }
+  .box { border-radius:16px; padding:16px 20px 18px; min-width:0; font-size:0.86rem; }
+  .box h4 { margin:0 0 8px; font-size:0.78rem; font-family:var(--f-disp); font-stretch:112%; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; display:flex; gap:8px; align-items:center; }
+  .box ul { margin:0; padding-left:1.15em; display:grid; gap:6px; } .box li > ul { margin-top:6px; }
+  .box p { margin:0; }
+  .box.profile { background:var(--surface); border:1px solid var(--rule); color:var(--ink-2); } .box.profile h4 { color:var(--ink-3); }
+  .box.goals { background:var(--ok-soft); color:var(--ink); } .box.goals h4 { color:var(--ok); }
+  .box.pains { background:var(--bad-soft); color:var(--ink); } .box.pains h4 { color:var(--bad); }
+  .box.goals a, .box.pains a { color:inherit; text-decoration:underline; text-decoration-color:color-mix(in srgb, currentColor 40%, transparent); }
+  .box svg { width:16px; height:16px; flex:none; }
+  .journey { background:var(--surface); border:1px solid var(--rule); border-radius:16px; padding:16px 20px 18px; display:grid; gap:10px; }
+  .journey h4 { margin:0; font-size:0.78rem; font-family:var(--f-disp); font-stretch:112%; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:var(--ink-3); }
+  .jtxt { margin:0; font-size:0.84rem; color:var(--ink-2); }
+  .jrow { display:grid; grid-template-columns:repeat(auto-fit, minmax(96px, 1fr)); gap:8px; }
+  .sc { border-radius:12px; padding:8px 10px; border:1.5px solid var(--line); display:grid; gap:1px; min-width:0; }
+  .sc b { font-family:var(--f-disp); font-weight:800; font-size:0.95rem; } .sc span { font-size:0.74rem; } .sc em { font-style:normal; font-size:0.66rem; color:var(--ink-3); overflow-wrap:anywhere; }
+  .sc.ok { background:var(--line-soft); color:var(--ink); }
+  .sc.partial { background:var(--line-soft); border-style:dashed; }
+  .sc.conditional { border-style:dashed; color:var(--ink-2); }
+  .sc.blocked, .sc.unknown { border-color:var(--rule); background:var(--surface-2); color:var(--ink-3); filter:grayscale(1); }
+  .sc.blocked b { text-decoration:line-through; }
+  .sc.mod { box-shadow:inset 0 -3px 0 var(--usx); }
+  .ovl { font-size:0.8rem; color:var(--warn); background:var(--warn-soft); border-radius:10px; padding:8px 12px; }
+  /* 受限廠商類型 */
+  .mfilter { display:flex; flex-wrap:wrap; gap:6px; align-items:center; margin-bottom:12px; }
+  .mfilter .lb { font-size:0.74rem; color:var(--ink-3); margin-right:4px; }
+  .mfilter button { font:inherit; font-size:0.78rem; padding:4px 12px; border-radius:999px; border:1px solid var(--rule); background:var(--surface); color:var(--ink-2); cursor:pointer; }
+  .mfilter button[aria-pressed="true"] { background:var(--ink); color:var(--bg); border-color:var(--ink); }
+  .mods { display:grid; grid-template-columns:repeat(auto-fill, minmax(min(100%, 300px), 1fr)); gap:12px; }
+  .mod { text-align:left; font:inherit; color:inherit; background:var(--surface); border:1.5px solid var(--rule); border-radius:16px; padding:14px 16px 16px; display:grid; gap:8px; align-content:start; cursor:pointer; min-width:0; }
+  .mod:hover { border-color:var(--ink-3); }
+  .mod[aria-pressed="true"] { border-color:var(--usx); background:var(--warn-soft); }
+  .mod .top { display:flex; justify-content:space-between; gap:8px; align-items:flex-start; }
+  .mod h4 { margin:0; font-size:0.95rem; font-weight:900; }
+  .mod .code { font-family:var(--f-mono); font-size:0.72rem; background:var(--surface-2); border-radius:6px; padding:2px 7px; white-space:nowrap; color:var(--ink-2); }
+  .mod p { margin:0; font-size:0.8rem; color:var(--ink-2); }
+  .mod .imp { display:flex; flex-wrap:wrap; gap:4px; }
+  .mod .imp span { font-size:0.7rem; font-weight:700; padding:1px 8px; border-radius:999px; background:var(--warn-soft); color:var(--warn); border:1px solid var(--usx); }
+  .mod .tick { font-size:0.7rem; font-weight:700; color:var(--ink-3); white-space:nowrap; } .mod[aria-pressed="true"] .tick { color:var(--warn); }
+  .mnotes { margin:14px 0 0; padding-left:1.2em; font-size:0.8rem; color:var(--ink-3); display:grid; gap:4px; }
+  /* 名詞 */
+  .gloss { margin-top:28px; border:1px solid var(--rule); border-radius:16px; background:var(--surface); }
+  .gloss summary { cursor:pointer; padding:14px 20px; font-weight:900; display:flex; gap:10px; align-items:baseline; list-style:none; }
+  .gloss summary::-webkit-details-marker { display:none; }
+  .gloss summary::before { content:"＋"; font-family:var(--f-mono); color:var(--ink-3); } .gloss[open] summary::before { content:"－"; }
+  .gloss summary small { font-weight:400; color:var(--ink-3); }
+  .terms { margin:0; padding:0 20px 8px; display:grid; grid-template-columns:repeat(auto-fill, minmax(min(100%, 380px), 1fr)); column-gap:36px; font-size:0.8rem; border-top:1px solid var(--rule); }
   .terms div { display:grid; grid-template-columns:minmax(84px, 8.5em) minmax(0,1fr); gap:10px; padding:9px 0; border-bottom:1px solid var(--rule); }
   .terms dt { font-weight:700; } .terms dd { margin:0; color:var(--ink-2); }
   .terms dd .src { color:var(--ink-3); font-size:0.72rem; margin-left:4px; }
+  .gloss .gnote { margin:0; padding:10px 20px 14px; font-size:0.74rem; color:var(--ink-3); }
+  /* persona 選擇器（旅程看板上方） */
+  .ppick { display:flex; flex-wrap:wrap; gap:6px; align-items:center; margin:0 0 12px; }
+  .ppick .lb { font-size:0.76rem; color:var(--ink-3); margin-right:4px; }
+  .pstat { display:flex; flex-wrap:wrap; gap:3px; margin-top:4px; }
+  .pst { font-size:0.62rem; font-weight:700; padding:1px 6px; border-radius:999px; border:1px solid var(--rule); color:var(--ink-3); background:var(--surface); }
+  .pst.ok { color:var(--ok); border-color:var(--ok); } .pst.conditional, .pst.partial { color:var(--line); border-color:var(--line); border-style:dashed; }
+  .pst.blocked { color:var(--bad); border-color:var(--bad); } .pst.warn { color:var(--warn); border-color:var(--usx); background:var(--warn-soft); }
+  .board [data-col].pdim { opacity:0.34; filter:grayscale(1); }
+  .ph { flex-wrap:wrap; } .ph .nm { flex:1 1 70px; min-width:0; overflow-wrap:normal; word-break:keep-all; } .pstat { flex-basis:100%; margin-top:2px; }
+  .stn.unreach, .minirail button.unreach { opacity:0.5; border-style:dashed; }
+  .stn.unreach .dot { border-style:dashed; border-color:var(--ink-3); }
 
   /* ---------- Journey board ---------- */
   .board-wrap { overflow-x:auto; border:1px solid var(--rule); border-radius:18px; background:var(--surface); }
@@ -292,18 +377,29 @@
 </header>
 
 <section class="part" id="context">
-  <div class="sec-hd"><span class="eyebrow" id="ctx-en"></span><h2 id="ctx-h"></h2></div>
-  <div class="ctx">
-    <div class="persona" id="persona"></div>
+  <div class="sec-hd"><span class="eyebrow">Persona</span><h2 id="ctx-h"></h2></div>
+  <div class="p-top">
+    <div><p class="p-intro" id="p-intro"></p><p class="p-scope" id="p-scope"></p></div>
     <aside class="guide" id="guide" aria-label="閱讀指南"></aside>
   </div>
-  <div class="gloss"><div class="gloss-hd"><span class="eyebrow">Glossary</span><h3>術語</h3></div><dl class="terms" id="terms"></dl></div>
+  <div class="sub-hd"><h3>Persona 總覽</h3><p>點 persona 名稱，跳到下方卡片並套用到旅程看板。</p></div>
+  <div class="panel pm"><div class="tw"><table id="p-matrix"></table></div></div>
+  <ul class="mnotes" id="p-notes"></ul>
+  <div class="sub-hd" id="pcard-top"><h3>Persona 卡</h3><p>切換 persona；旅程看板上走不到的階段會反灰。</p></div>
+  <div class="ptabs" id="ptabs" role="tablist" aria-label="選擇 persona"></div>
+  <div class="pcard" id="pcard" role="tabpanel"></div>
+  <div class="sub-hd"><h3>受限廠商類型</h3><p id="m-intro"></p></div>
+  <div class="mfilter" id="mfilter" role="group" aria-label="依受影響階段篩選"></div>
+  <div class="mods" id="mods"></div>
+  <ul class="mnotes" id="m-notes"></ul>
+  <details class="gloss" id="gloss"><summary>名詞<small id="g-n"></small></summary><dl class="terms" id="terms"></dl><p class="gnote" id="g-note"></p></details>
 </section>
 
 <section class="part" id="grid">
   <div class="sec-hd"><span class="eyebrow" id="grid-en"></span><h2 id="grid-h"></h2><p id="grid-intro"></p></div>
+  <div class="ppick" id="ppick" role="group" aria-label="以哪個 persona 看旅程"></div>
   <div class="board-wrap"><div class="board" id="board"></div></div>
-  <p class="board-note">看板可左右捲動，列標固定。選了階段後，Touchpoints 的頁面名稱可以點，會跳到下方 Sitemap 對應位置。</p>
+  <p class="board-note">看板可左右捲動，列標固定。灰色欄＝選定的 persona 走不到，或文件未載（NULL）。選了階段後，Touchpoints 的頁面名稱可以點，會跳到下方 Sitemap 對應位置。</p>
 </section>
 
 <section class="part" id="sitemap">
@@ -316,6 +412,8 @@
     <div class="panel">
       <div class="panel-hd"><h3 id="ap-h"></h3><p id="lib-note"></p></div>
       <div class="tw"><table id="doc-table"></table></div>
+      <div class="panel-hd" style="border-top:1px solid var(--rule)"><h3>文件關係表<span id="rel-n" style="font-weight:400;color:var(--ink-3)"></span></h3><p>附錄〈文件關係〉：階段 → 功能 → 文件（含 Sitemap 沒掛的文件）。</p></div>
+      <div class="tw"><table id="rel-table"></table></div>
     </div>
   </div>
 </section>
@@ -350,7 +448,7 @@ const BASE = 'https://hackmd.io/@1111-jobdocs/';
 const MK = /〔推論〕|(?<![A-Za-z])(?:US\*|US(?![A-Za-z])|NULL)/g;
 const marks = t => t.replace(MK, m => m === '〔推論〕' ? '<span class="mk inf">推論</span>' : m === 'US*' ? '<span class="mk usx">US*</span>' : m === 'US' ? '<span class="mk us">US</span>' : '<span class="mk null">NULL</span>');
 function md(raw) {
-  const s = esc(String(raw).replace(/\\\*/g, '*')), out = []; let last = 0, m; const rx = /\[([^\]]+)\]\((https?:\/\/[^)\s]+)\)/g;
+  const s = esc(String(raw).replace(/\\\*/g, '*')), out = []; let last = 0, m; const rx = /\[((?:[^\[\]]|\[[^\]]*\])+)\]\((https?:\/\/[^)\s]+)\)/g;
   const seg = t => marks(t.replace(/`(【[^】`]+】)`/g, '<span class="mk tag">$1</span>').replace(/`([^`]+)`/g, '<code>$1</code>').replace(/\*\*([^*]+)\*\*/g, '<b>$1</b>'));
   while ((m = rx.exec(s))) { out.push(seg(s.slice(last, m.index))); out.push('<a href="' + m[2] + '" target="_blank" rel="noopener">' + m[1] + '</a>'); last = rx.lastIndex; }
   out.push(seg(s.slice(last))); return out.join('');
@@ -363,8 +461,8 @@ $('ttl').innerHTML = tm ? esc(tm[1]) + '<span class="who">' + esc(tm[3] || '') +
 const IN = DATA.intro, noteOf = k => IN.notes.find(t => t.startsWith('**' + k));
 const what = noteOf('這是什麼');
 $('lead').innerHTML = what ? md(what.replace(/^\*\*[^*]+\*\*[：:]\s*/, '')) : '';
-const C = DATA.context, ci = Object.fromEntries(C.items.map(i => [i.label, i]));
-if (ci['Journey Type']) $('eyebrow').textContent = '1111 求才系統 · ' + ci['Journey Type'].text.split(/[（(]/)[0].trim();
+const P = DATA.persona;
+$('eyebrow').textContent = '1111 求才系統 · ' + (P.scope.split(/[（(]/)[0].trim() || 'User Journey');
 const srcDate = (DATA.head_bullets[0] || '').match(/(\d{4}-\d{2}-\d{2})\s*擷取/);
 $('meta').innerHTML = (srcDate ? '<span>素材擷取 <b>' + srcDate[1] + '</b></span>' : '') +
   '<span>素材 <code>user-journey/recruiter_journey_map.md</code></span>' +
@@ -376,8 +474,11 @@ const isSupport = st => /支援/.test(st.name);
 const stageLabel = st => { const m = st.name.match(/^(\S+)\s+(.*)$/) || [null, st.code, st.name]; return { code: m[1], name: m[2].replace(/（.*）$/, '') }; };
 const modsOf = code => LIB.modules.filter(m => m.stage === code || (code === '6' && m.stage === '6／7'));
 const introRow = st => IN.stage_rows.find(r => r[0] === st.code || r[0].split('／')[0] === st.code) || null;
+const relCode = r => { const c = r.stage.split(/\s/)[0]; return c === '各階段' ? null : c === '6／7' ? '6' : c; };
+const relsOf = code => (LIB.relations || []).filter(r => relCode(r) === code);
 const stat = st => { const ms = modsOf(st.code);
-  return { pages: ms.reduce((a, m) => a + m.tree.filter(x => !x.group).length, 0), docs: ms.reduce((a, m) => a + m.docs.length, 0),
+  const ids = new Set([...ms.flatMap(m => m.docs.map(d => d.shortId)), ...relsOf(st.code).flatMap(r => r.docs.map(d => d.shortId))]);
+  return { pages: ms.reduce((a, m) => a + m.tree.filter(x => !x.group).length, 0), docs: ids.size,
            flows: (DATA.flows || []).filter(f => f.stage === st.code).length }; };
 const dispCode = st => { const r = introRow(st); return r ? r[0] : st.code; };
 
@@ -399,24 +500,81 @@ mini.innerHTML = '<span class="lb">STAGE</span><button type="button" class="all"
 mini.addEventListener('click', e => { const b = e.target.closest('button'); if (b) setSel(b.dataset.i === '' ? null : +b.dataset.i); });
 if ('IntersectionObserver' in window) new IntersectionObserver(([en]) => mini.classList.toggle('show', !en.isIntersecting && en.boundingClientRect.top < 0)).observe($('route'));
 
-// ---------- Context＋閱讀指南 ----------
+// ---------- Persona ----------
 const splitH = h => { const m = h.replace(/^\d+\.\s*/, '').match(/^(.*?)\s*\((.*)\)$/); return m ? [m[1].replace(/^The\s+/, ''), m[2]] : ['', h]; };
-[$('ctx-en').textContent, $('ctx-h').textContent] = splitH(C.heading);
-const persona = ci['Persona'], scen = ci['Scenario & Goal'];
-const facet = c => { const m = c.match(/^([^：]{1,14})：(.*)$/); return m ? '<div><div class="eyebrow k">' + esc(m[1]) + '</div><div class="v"><p>' + md(m[2]) + '</p></div></div>' : '<div><div class="v"><p>' + md(c) + '</p></div></div>'; };
-$('persona').innerHTML = (persona ? '<div><span class="eyebrow">Persona · ' + esc(persona.sub) + '</span><p class="who">' + md(persona.text) + '</p></div>' : '') +
-  '<div class="row">' + (persona ? persona.children.map(facet).join('') : '') +
-  (scen ? '<div><div class="eyebrow k">Scenario &amp; Goal · ' + esc(scen.sub) + '</div><div class="v"><p>' + md(scen.text) + '</p></div></div>' : '') + '</div>' +
-  (ci['Journey Type'] ? '<div class="row" style="grid-template-columns:1fr"><div><div class="eyebrow k">Journey Type</div><div class="v"><p>' + md(ci['Journey Type'].text) + '</p></div></div></div>' : '');
+$('ctx-h').textContent = P.heading.replace(/^\d+\.\s*/, '');
+$('p-intro').innerHTML = md(P.intro);
+$('p-scope').innerHTML = '<b>旅程範圍</b>　' + md(P.scope.replace(/^\*\*[^*]+\*\*\s*/, ''));
 const ver = noteOf('新版'), opp = noteOf('Opportunities');
-const th = IN.term_hdr;
-$('guide').innerHTML = '<span class="eyebrow">閱讀指南</span>' +
-  '<div class="legend"><div><span><span class="mk us">US</span></span>真實 User Story</div><div><span><span class="mk usx">US*</span></span>套版句，只證明功能存在</div>' +
-  '<div><span><span class="mk inf">推論</span></span>依同格文件事實推出</div><div><span><span class="mk null">NULL</span></span>文件未載，也無可推論</div><div><span style="font-size:0.72rem;color:var(--ink-3)">無標記</span>文件明載（附連結）</div></div>' +
-  (ver ? '<p>' + md(ver) + '</p>' : '') + (opp ? '<p>' + md(opp) + '</p>' : '') +
-  '';
-$('terms').innerHTML = IN.term_rows.map(r => '<div><dt>' + md(r[0]) + '</dt><dd>' + md(r[1]) +
-    (r[2] && r[2] !== '—' ? '<span class="src">' + md(r[2]) + '</span>' : '') + '</dd></div>').join('');
+$('guide').innerHTML = '<span class="eyebrow">證據標記</span>' +
+  '<div class="legend"><div><span class="mk us">US</span><span>真實 User Story</span></div><div><span class="mk usx">US*</span><span>套版句，只證明功能存在</span></div>' +
+  '<div><span class="mk inf">推論</span><span>依同格文件事實推出</span></div><div><span class="mk null">NULL</span><span>文件未載，也無可推論</span></div><div><span style="font-size:0.72rem;color:var(--ink-3)">無標記</span><span>文件明載（附連結）</span></div></div>' +
+  (ver ? '<p>' + md(ver) + '</p>' : '') + (opp ? '<p>' + md(opp) + '</p>' : '');
+
+const SLAB = { ok: '可走', partial: '部分', conditional: '依權限', blocked: '不可', unknown: 'NULL' };
+const grpOf = p => { const m = (p.overview[1] || '').match(/oStatus:(\d)/); const n = m ? +m[1] : -1; return n === 1 || n === 4 ? 'vip' : n === 3 ? 'warn' : 'neutral'; };
+let pid = 'P3';   // 預設 P3＝全部階段（旅程看板主線）
+const modSel = new Set(); let mFilter = null;
+const pObj = () => P.personas.find(x => x.id === pid);
+const modsOn = () => P.modifiers.items.filter((m, k) => modSel.has(k));
+const interrupted = code => code !== 'J' && modsOn().some(m => m.stages.J === '中斷');
+const reach = code => { const s = pObj().stages[code]; return !!s && ['ok', 'partial', 'conditional'].includes(s.state) && !interrupted(code); };
+
+$('p-matrix').innerHTML = '<thead><tr>' + P.overview.hdr.map(h => '<th>' + esc(h) + '</th>').join('') + '</tr></thead><tbody>' +
+  P.personas.map(p => { const r = p.overview, g = grpOf(p);
+    return '<tr data-p="' + p.id + '"><td><button type="button" class="pn" data-p="' + p.id + '"><span class="pid">' + p.id + '</span>' + esc(p.name.replace(/^P\d+\s*/, '')) + '</button></td>' +
+      '<td><span class="chip ' + g + '">' + md(r[1] || 'NULL') + '</span></td><td>' + (/^NULL/.test(r[2] || 'NULL') ? md(r[2] || 'NULL') : '<span class="chip neutral">' + md(r[2]) + '</span>') + '</td>' +
+      '<td>' + md(r[3] || 'NULL') + '</td><td>' + md(r[4] || 'NULL') + '</td></tr>'; }).join('') + '</tbody>';
+$('p-notes').innerHTML = P.overview.notes.map(n => '<li>' + md(n) + '</li>').join('');
+$('p-matrix').addEventListener('click', e => { const b = e.target.closest('button[data-p]'); if (!b) return; setPersona(b.dataset.p); $('pcard-top').scrollIntoView({ block: 'start' }); });
+
+const ICON_OK = '<svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="7" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M4.6 8.3l2.2 2.2 4.6-4.9" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+const ICON_WARN = '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1.8l6.6 11.6H1.4z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M8 6.2v3.4M8 11.4v.2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>';
+const list = it => {
+  const hasKids = it.children.length;
+  if (!it.text && hasKids) return '<ul>' + it.children.map(c => '<li>' + md(c) + '</li>').join('') + '</ul>';
+  return '<ul><li>' + md(it.text) + (hasKids ? '<ul>' + it.children.map(c => '<li>' + md(c) + '</li>').join('') + '</ul>' : '') + '</li></ul>';
+};
+const splitQuote = q => { const m = q.replace(/^>\s*/, '').match(/^(.*?)(〔推論〕.*)$/); return m ? [m[1], m[2]] : [q, '']; };
+function renderPersona() {
+  const p = pObj(), by = k => p.items.find(i => i.key.startsWith(k)), g = grpOf(p), r = p.overview;
+  $('ptabs').innerHTML = P.personas.map(x => '<button type="button" role="tab" id="tab-' + x.id + '" data-p="' + x.id + '" aria-selected="' + (x.id === pid) + '"><span class="st ' + grpOf(x) + '"></span><b>' + x.id + '</b>' + esc(x.name.replace(/^P\d+\s*/, '')) + '</button>').join('');
+  $('pcard').setAttribute('aria-labelledby', 'tab-' + pid);
+  const [qt, qwhy] = splitQuote(p.quote);
+  const det = by('Details'), goal = by('Goals'), pain = by('Pain'), ml = modsOn();
+  $('pcard').innerHTML =
+    '<blockquote class="pq"><div class="head"><span class="pid">' + p.id + '</span><h3>' + esc(p.name.replace(/^P\d+\s*/, '')) + '</h3><span class="chip ' + g + '">' + md(r[1] || 'NULL') + '</span>' +
+    (r[2] ? '<span class="chip neutral">' + md(r[2]) + '</span>' : '') + '</div><div class="qt">' + md(qt) + '</div>' + (qwhy ? '<div class="why">' + md(qwhy) + '</div>' : '') + '</blockquote>' +
+    '<div class="pgrid"><div class="pcol">' + (det ? '<div class="box profile"><h4>Details</h4>' + list(det) + '</div>' : '') + '</div>' +
+    '<div class="pcol">' + (goal ? '<div class="box goals"><h4>' + ICON_OK + 'Goals</h4>' + list(goal) + '</div>' : '') +
+    (pain ? '<div class="box pains"><h4>' + ICON_WARN + 'Pain Points</h4>' + list(pain) + '</div>' : '') + '</div></div>' +
+    '<div class="journey"><h4>可走的旅程</h4><p class="jtxt">' + md(p.journey_text) + '</p><div class="jrow">' +
+    P.stages9.map(s => { const st = p.stages[s.code] || { state: 'unknown', note: '' }, lim = ml.filter(m => m.stages[s.code]), off = interrupted(s.code);
+      return '<div class="sc ' + (off ? 'blocked' : st.state) + (lim.length ? ' mod' : '') + '" title="' + esc(lim.map(m => m.name).join('、')) + '"><b>' + s.code + '</b><span>' + s.name + '</span><em>' + (off ? '不可登入中斷' : SLAB[st.state]) + (st.note && st.state !== 'ok' ? '｜' + esc(st.note) : '') + (lim.length ? '｜受限 ' + lim.length : '') + '</em></div>'; }).join('') + '</div>' +
+    (ml.length ? '<div class="ovl">疊加中：' + ml.map(m => esc(m.name)).join('、') + '　（黃底線＝該階段受影響）</div>' : '') + '</div>';
+}
+$('ptabs').addEventListener('click', e => { const b = e.target.closest('button[data-p]'); if (b) setPersona(b.dataset.p); });
+$('ptabs').addEventListener('keydown', e => { if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return; const i = P.personas.findIndex(x => x.id === pid), n2 = (i + (e.key === 'ArrowRight' ? 1 : -1) + P.personas.length) % P.personas.length;
+  setPersona(P.personas[n2].id); $('tab-' + P.personas[n2].id).focus(); });
+
+// 受限廠商類型
+const mPill = (c) => c === 'ALL' ? '全部' : c;
+$('m-intro').innerHTML = md(P.modifiers.intro);
+$('mfilter').innerHTML = '<span class="lb">受影響階段</span>' + ['ALL', ...P.stages9.map(s => s.code)].map(c => '<button type="button" data-f="' + c + '" aria-pressed="' + (c === 'ALL') + '">' + (c === 'ALL' ? '全部' : c + ' ' + P.stages9.find(s => s.code === c).name) + '</button>').join('');
+function renderMods() {
+  $('mods').innerHTML = P.modifiers.items.map((m, k) => (mFilter && !m.stages[mFilter]) ? '' :
+    '<button type="button" class="mod" data-k="' + k + '" aria-pressed="' + modSel.has(k) + '"><span class="top"><h4>' + esc(m.name) + '</h4><span class="tick">' + (modSel.has(k) ? '已疊加' : '疊加') + '</span></span>' +
+    '<span class="code">' + esc(m.flag.replace(/`/g, '')) + '</span><p>' + md(m.limit) + '</p><span class="imp">' + Object.entries(m.stages).map(([c, v]) => '<span>' + c + (v === '中斷' ? ' 中斷' : '') + '</span>').join('') + '</span></button>').join('');
+  $('mfilter').querySelectorAll('button').forEach(b => b.setAttribute('aria-pressed', String((b.dataset.f === 'ALL' ? null : b.dataset.f) === mFilter)));
+}
+$('mfilter').addEventListener('click', e => { const b = e.target.closest('button[data-f]'); if (!b) return; mFilter = b.dataset.f === 'ALL' ? null : b.dataset.f; renderMods(); });
+$('mods').addEventListener('click', e => { const b = e.target.closest('button[data-k]'); if (!b) return; const k = +b.dataset.k; modSel.has(k) ? modSel.delete(k) : modSel.add(k); renderMods(); renderPersona(); applyPersona(); });
+$('m-notes').innerHTML = P.modifiers.notes.map(n => '<li>' + md(n) + '</li>').join('');
+
+// 名詞
+$('g-n').textContent = '（' + P.terms.rows.length + ' 條）';
+$('terms').innerHTML = P.terms.rows.map(r => '<div><dt>' + md(r[0]) + '</dt><dd>' + md(r[1]) + (r[2] && r[2] !== '—' ? '<span class="src">' + md(r[2]) + '</span>' : '') + '</dd></div>').join('');
+$('g-note').innerHTML = md(P.terms.note.replace(/^標記：/, '標記：'));
 
 // ---------- Journey Grid ----------
 [$('grid-en').textContent, $('grid-h').textContent] = splitH(G.heading);
@@ -454,7 +612,7 @@ G.groups.forEach(g => cells.push('<div class="grp" style="grid-column:span ' + g
 cells.push(label('Phases', '階段'));
 ST.forEach((st, i) => { const L = stageLabel(st), note = st.name.match(/（(.*)）$/), r = introRow(st); if (r) L.name = r[1].replace(/（.*）/, '');
   cells.push('<div class="ph' + (isSupport(st) ? ' support' : '') + '" data-col="' + i + '" tabindex="0" role="button" aria-pressed="false"><span class="code">' + esc(dispCode(st)) + '</span><span class="nm">' +
-    esc(L.name) + (note ? '<small>' + esc(note[1]) + '</small>' : '') + '</span></div>'); });
+    esc(L.name) + (note ? '<small>' + esc(note[1]) + '</small>' : '') + '</span><span class="pstat" aria-live="polite"></span></div>'); });
 const CLS = { 'Opportunities': 'r-opp' };
 G.lanes.forEach((ln, li) => {
   const last = li === G.lanes.length - 1 ? ' last' : '';
@@ -474,6 +632,25 @@ board.addEventListener('click', e => {
     t.classList.add('flash'); setTimeout(() => t.classList.remove('flash'), 1800); return; }
   const p = e.target.closest('.ph'); if (p && !p.classList.contains('dim')) setSel(+p.dataset.col); });
 board.addEventListener('keydown', e => { const p = e.target.closest('.ph'); if (p && (e.key === 'Enter' || e.key === ' ') && !p.classList.contains('dim')) { e.preventDefault(); setSel(+p.dataset.col); } });
+
+// ---------- persona 套用到旅程看板 ----------
+const colCodes = i => ST[i].code === '6' ? ['6', '7'] : [ST[i].code];
+const colReach = i => colCodes(i).some(reach);
+function applyPersona() {
+  const p = pObj(), ml = modsOn();
+  board.querySelectorAll('[data-col]').forEach(el => el.classList.toggle('pdim', !colReach(+el.dataset.col)));
+  board.querySelectorAll('.ph').forEach(el => { const i = +el.dataset.col, codes = colCodes(i), sts = codes.map(c => interrupted(c) ? 'blocked' : (p.stages[c] || { state: 'unknown' }).state);
+    const uniq = [...new Set(sts)], lim = ml.filter(m => codes.some(c => m.stages[c]));
+    el.querySelector('.pstat').innerHTML = (pid === 'P3' && !ml.length ? '' : uniq.map(u => '<span class="pst ' + u + '">' + (codes.length > 1 && uniq.length > 1 ? codes[sts.indexOf(u)] + ' ' : '') + SLAB[u] + '</span>').join('')) +
+      (lim.length ? '<span class="pst warn" title="' + esc(lim.map(m => m.name).join('、')) + '">受限 ' + lim.length + '</span>' : ''); });
+  document.querySelectorAll('.stn').forEach(b => b.classList.toggle('unreach', !colReach(+b.dataset.i)));
+  mini.querySelectorAll('button[data-i]:not([data-i=""])').forEach(b => b.classList.toggle('unreach', !colReach(+b.dataset.i)));
+  $('p-matrix').querySelectorAll('tbody tr').forEach(tr => tr.classList.toggle('on', tr.dataset.p === pid));
+  $('ppick').querySelectorAll('button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.p === pid)));
+}
+function setPersona(id) { pid = id; renderPersona(); applyPersona(); }
+$('ppick').innerHTML = '<span class="lb">以哪個 persona 看</span>' + P.personas.map(x => '<button type="button" data-p="' + x.id + '" aria-pressed="false"><span class="st ' + grpOf(x) + '"></span><b>' + x.id + '</b>' + esc(x.name.replace(/^P\d+\s*/, '')) + '</button>').join('');
+$('ppick').addEventListener('click', e => { const b = e.target.closest('button[data-p]'); if (b) setPersona(b.dataset.p); });
 
 function setSel(i) {
   sel = (i !== null && sel === i) ? null : i;
@@ -524,6 +701,10 @@ function renderDocs() {
     mods.map(m => '<tr><td class="k">' + esc(stageName(m.stage)) + '</td><td class="k">' + esc(m.no + ' ' + m.name.replace(/（.*）/, '')) + '</td><td>' +
       (m.docs.length ? '<ul class="libdocs">' + m.docs.map(d => '<li><a href="' + BASE + d.shortId + '" target="_blank" rel="noopener">' + esc(d.title) + '</a></li>').join('') + '</ul>' : '<span class="none">Sitemap 未掛文件</span>') +
       '</td></tr>').join('') + '</tbody>';
+  const rels = (LIB.relations || []).filter(r => sel === null || relCode(r) === null || relCode(r) === ST[sel].code);
+  $('rel-table').innerHTML = '<thead><tr><th>階段</th><th>功能</th><th>文件</th></tr></thead><tbody>' + rels.map(r => '<tr><td class="k">' + esc(r.stage) + '</td><td class="k">' + esc(r.func) + '</td><td>' +
+    '<ul class="libdocs">' + r.docs.map(d => '<li><a href="' + BASE + d.shortId + '" target="_blank" rel="noopener">' + esc(d.title) + '</a>' + (d.note ? '<span class="none">　' + esc(d.note) + '</span>' : '') + '</li>').join('') + '</ul></td></tr>').join('') + '</tbody>';
+  $('rel-n').textContent = rels.length ? '（' + rels.length + ' 列）' : '';
 }
 
 // ---------- 附錄 ----------
@@ -532,7 +713,8 @@ $('gap-h').textContent = A.gap_heading;
 $('gap-list').innerHTML = A.gaps.map(g => '<li>' + md(g) + '</li>').join('');
 $('todo-h').textContent = DATA.todo.heading;
 $('todo-list').innerHTML = DATA.todo.items.map(i => '<li>' + md(i.text) + (i.children.length ? '<ul class="list">' + i.children.map(c => '<li>' + md(c) + '</li>').join('') + '</ul>' : '') + '</li>').join('');
-$('foot').innerHTML = '<span>素材由文件助手維護：<code>user-journey/recruiter_journey_map.md</code></span><span>建置：<code>html/step0 → step1 → step2</code></span><span>' + md(C.marker_note.replace(/^標記：/, '標記規則：')).slice(0, 0) + '</span>';
+$('foot').innerHTML = '<span>素材由文件助手維護：<code>user-journey/recruiter_journey_map.md</code></span><span>建置：<code>html/step0 → step1 → step2</code></span>';
 
+renderPersona(); renderMods(); applyPersona();
 setSel(null);
 </script>

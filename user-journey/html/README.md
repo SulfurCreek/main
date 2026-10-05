@@ -24,3 +24,8 @@
 ## 2026-10-01 改版（路線圖版型）
 - Hero 改成「招募路線圖」：站點＝階段篩選；捲動後頂部出現迷你路線列。改動與理由見 `MERIT.md`。
 - 字體用 Google Fonts（Noto Sans TC／Archivo／IBM Plex Mono），都有系統字體 fallback，離線可讀。
+
+## 2026-10-05 Persona 區塊重建
+- md 的「1. Persona」整併了 Context 與術語表：step1 解析總覽矩陣、P1~P7、受限廠商類型、名詞；step0 另把附錄〈文件關係〉表讀進 `sitemap_docs.json`（`relations`）。
+- 版面規則以 md 開頭的 `[SYSTEM: UI/UX RENDERING INSTRUCTIONS…]` 註解為準。persona 選定後，旅程看板依「可走的旅程」反灰；受限廠商卡可疊加。
+- 「可走的旅程」文字由 `stage_states()` 轉成狀態（可走／部分／依權限／不可／NULL），只依文字照搬。

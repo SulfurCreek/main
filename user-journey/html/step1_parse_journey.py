@@ -58,18 +58,92 @@ title = re.search(r"^# (.+)$", head, re.M).group(1)
 head_bullets = [l[2:] for l in head.splitlines() if l.startswith("- ")]
 
 intro_h, intro_b = h2("給沒有專案背景的讀者")
-paras = [l.strip() for l in intro_b.splitlines() if l.startswith("**") or l.startswith("> ")]
+paras = [l.strip() for l in intro_b.splitlines() if l.startswith("**")]
 tbls = [t for t in re.split(r"\n\s*\n", intro_b) if t.strip().startswith("|")]
-intro = {"heading": intro_h,
-         "notes": [l for l in paras if not l.startswith("**術語**") and not l.startswith("**階段讀法**")],
-         "stage_hdr": table_rows(tbls[0])[0], "stage_rows": table_rows(tbls[0])[1:],
-         "term_hdr": table_rows(tbls[1])[0], "term_rows": table_rows(tbls[1])[1:]}
+intro = {"heading": intro_h, "notes": [l for l in paras if not l.startswith("**階段讀法**")],
+         "stage_hdr": table_rows(tbls[0])[0], "stage_rows": table_rows(tbls[0])[1:]}
 
-ctx_h, ctx_b = h2("1. Context")
-context = bullets(ctx_b)
-for it in context:
-    it["children"] = [c for c in it["children"] if not c.startswith(HIDE_CONTEXT_PREFIX)]
-marker_note = next((l[2:].strip() for l in ctx_b.splitlines() if l.startswith("> ")), "")
+# ---------- 1. Persona（總覽／P1~P7／受限廠商類型／名詞）----------
+ps_h, ps_b = h2("1. Persona")
+STAGES9 = ["J", "A", "B", "C", "D", "E", "5", "6", "7"]
+STAGE_NM = {"J": "登入", "A": "首頁", "B": "公司", "C": "職缺", "D": "人才", "E": "聯繫", "5": "紀錄", "6": "服務", "7": "購買"}
+
+
+def bullets2(block):
+    """`* **Key：** text` ＋縮排子項 → [{key, text, children}]（Key 可含全形冒號）"""
+    out = []
+    for ln in block.splitlines():
+        m = re.match(r"^\* \*\*(.+?)[：:]\*\*\s*(.*)$", ln)
+        if m:
+            out.append({"key": m.group(1).strip(), "text": m.group(2).strip(), "children": []}); continue
+        m = re.match(r"^\s+[*-]\s+(.*)$", ln)
+        if m and out:
+            out[-1]["children"].append(m.group(1).strip())
+    return out
+
+
+def stage_states(txt):
+    """「可走的旅程」文字 → {stage: ok|partial|conditional|blocked|unknown} ＋備註。只依文字照搬，不補推論。
+    列了階段＋「依權限代碼」→ 被列的階段變 conditional；沒列階段只寫「依權限代碼」→ 全部 conditional。"""
+    if re.search(r"全部階段", txt):
+        return {k: {"state": "ok", "note": ""} for k in STAGES9}
+    st = {k: {"state": "unknown", "note": ""} for k in STAGES9}
+    listed = False
+    for tok in re.split(r"[；;、]", txt):
+        m = re.match(r"^(?:〔推論〕)?\s*(?:以\s*)?(J|A|B|C|D|E|5|6／7|6|7)(\.\d+)?\s*(.*)$", tok.strip())
+        if not m:
+            continue
+        listed = True
+        code, sub, rest = m.group(1), m.group(2), m.group(3)
+        blocked = bool(re.search(r"不可|暫停", rest))
+        note = (code + (sub or "") + " " + rest).strip() if (blocked or sub or "（" in rest) else ""
+        for k in (["6", "7"] if code == "6／7" else [code]):
+            st[k] = {"state": "blocked" if blocked else "partial" if sub else "ok", "note": note}
+    if "依權限代碼" in txt:
+        for k in STAGES9:
+            if not listed or st[k]["state"] in ("ok", "partial"):
+                st[k]["state"] = "conditional"
+    return st
+
+
+overview = []
+ov = re.search(r"^### Persona 總覽\n(.*?)(?=^### )", ps_b, re.M | re.S)
+ov_rows = table_rows(ov.group(1))
+ov_hdr, ov_data = ov_rows[0], ov_rows[1:]
+ov_notes = [l[2:].strip() for l in ov.group(1).splitlines() if l.startswith("* ")]
+personas = []
+for m in re.finditer(r"^### (P\d+) (.+?)\n(.*?)(?=^### |\Z)", ps_b, re.M | re.S):
+    pid, pname, body = m.groups()
+    q = next((l[2:].strip() for l in body.splitlines() if l.startswith("> ")), "")
+    items = bullets2(body)
+    journey = next((i for i in items if i["key"].startswith("可走的旅程")), None)
+    row = next((r for r in ov_data if r[0].startswith(pid + " ")), [])
+    personas.append({"id": pid, "name": pname.strip(), "quote": q, "items": [i for i in items if i is not journey],
+                     "journey_text": journey["text"] if journey else "", "stages": stage_states(journey["text"]) if journey else {},
+                     "overview": row})
+mod = re.search(r"^### 受限廠商類型[^\n]*\n(.*?)(?=^### )", ps_b, re.M | re.S)
+mod_rows = table_rows(mod.group(1))
+mod_intro = next((l.strip() for l in mod.group(1).splitlines() if l.strip() and not l.startswith(("|", "*"))), "")
+mod_notes = [l[2:].strip() for l in mod.group(1).splitlines() if l.startswith("* ")]
+modifiers = []
+for r in mod_rows[1:]:
+    toks = [t.strip() for t in r[3].split("、")]
+    stg = {}
+    for t in toks:
+        mm = re.match(r"^(J|A|B|C|D|E|5|6／7|6|7)\s", t)
+        if mm:
+            for k in (["6", "7"] if mm.group(1) == "6／7" else [mm.group(1)]):
+                stg[k] = "中斷" if "中斷" in t else "limit"
+    modifiers.append({"name": r[0], "flag": r[1], "limit": r[2], "impact": r[3], "stages": stg})
+nm = re.search(r"^### 名詞\n(.*?)(?=^## |\Z)", ps_b, re.M | re.S)
+nm_rows = table_rows(nm.group(1))
+persona_scope = (re.search(r"\*\*旅程範圍：\*\*\s*(.+)", ps_b) or [None, ""])[1].strip()
+persona_intro = next((l.strip() for l in ps_b.splitlines() if l.strip() and not l.startswith(("#", "|", "*", ">", "<", "**")) ), "")
+persona = {"heading": ps_h, "intro": persona_intro, "scope": persona_scope,
+           "overview": {"hdr": ov_hdr, "notes": ov_notes}, "personas": personas,
+           "modifiers": {"intro": mod_intro, "notes": mod_notes, "items": modifiers},
+           "terms": {"hdr": nm_rows[0], "rows": nm_rows[1:], "note": next((l[2:].strip() for l in nm.group(1).splitlines() if l.startswith("> ")), "")},
+           "stages9": [{"code": k, "name": STAGE_NM[k]} for k in STAGES9]}
 
 grid_h, grid_b = h2("2. The Journey Grid")
 grid_intro = next((l.strip() for l in grid_b.splitlines() if l.strip() and not l.startswith(("#", "|"))), "")
@@ -120,8 +194,7 @@ for ln in (todo.group(1).splitlines() if todo else []):
     m = re.match(r"^\s+[*-] (.*)$", ln)
     if m and todo_items: todo_items[-1]["children"].append(m.group(1))
 
-data = {"title": title, "intro": intro, "todo": {"heading": todo_h.group(1) if todo_h else "", "items": todo_items}, "head_bullets": head_bullets,
-        "context": {"heading": ctx_h, "items": context, "marker_note": marker_note},
+data = {"title": title, "intro": intro, "persona": persona, "todo": {"heading": todo_h.group(1) if todo_h else "", "items": todo_items}, "head_bullets": head_bullets,
         "grid": {"heading": grid_h, "intro": grid_intro, "groups": groups,
                  "lanes": [{"en": k, "zh": lane_meta[k]} for k in lane_order], "stages": stages},
         "flows": flows,
@@ -131,7 +204,7 @@ OUT.write_text(json.dumps(data, ensure_ascii=False, indent=1), encoding="utf-8")
 
 # 自檢：Grid 每格都有值（空字串代表解析漏抓）
 empty = [(s["name"], k) for s in stages for k in lane_order if not s["cells"].get(k)]
-print(f"context={len(context)} lanes={lane_order} stages={[s['name'] for s in stages]} groups={len(groups)}")
+print(f"personas={len(personas)} modifiers={len(modifiers)} terms={len(nm_rows)-1} lanes={lane_order} stages={[s['name'] for s in stages]} groups={len(groups)}")
 print("flows:", [(f["stage"], f["name"][:12], len(f["svgs"])) for f in flows])
 print(f"gaps={len(gaps)} library_modules={len(library['modules'])}")
 print("空格（應為 0）:", empty)

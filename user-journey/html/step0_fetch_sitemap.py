@@ -81,6 +81,22 @@ for tok in re.findall(r"[A-Za-z0-9_-]{9,11}", sh):
     if d:
         shared.append(d)
 
+# ---------- 附錄〈文件關係〉表：shortId → 文件名稱，併入文件庫 ----------
+relations, rel_unmatched = [], []
+rel = re.search(r"^### 文件關係[^\n]*\n(.*?)(?=^### |^---|\Z)", md, re.M | re.S)
+for line in (rel.group(1).splitlines() if rel else []):
+    cells = [c.strip() for c in line.strip().strip("|").split("|")]
+    if len(cells) < 3 or cells[0] in ("階段", "") or cells[0].startswith(":"):
+        continue
+    docs = []
+    for tok, note in re.findall(r"([A-Za-z0-9_-]{9,22})(?:（([^）]*)）)?", cells[2]):
+        d = doc_of(tok)
+        if d:
+            docs.append({**d, "note": note})
+        else:
+            rel_unmatched.append({"row": cells[1], "ref": tok})
+    relations.append({"stage": cells[0], "func": cells[1], "docs": docs})
+
 # ---------- 流程圖：依 journey map〈流程圖索引〉抓文件內 `## 流程圖` 的 mermaid，渲染成 SVG ----------
 FLOWS = HERE / "flows"
 FLOWS.mkdir(exist_ok=True)
@@ -118,6 +134,7 @@ if idx:
 print("flows:", [(f["stage"], f["title"], len(f["svgs"])) for f in flow_manifest])
 
 OUT.write_text(json.dumps({"source": "HackMD [求才系統] Sitemap", "sitemap_shortId": SITEMAP_SHORT,
-                           "modules": modules, "shared": shared, "unmatched_refs": unmatched},
+                           "modules": modules, "shared": shared, "unmatched_refs": unmatched,
+                           "relations": relations, "relations_unmatched": rel_unmatched},
                           ensure_ascii=False, indent=1), encoding="utf-8")
-print({m["no"] + " " + m["name"]: len(m["docs"]) for m in modules}, "shared:", len(shared), "unmatched:", unmatched)
+print({m["no"] + " " + m["name"]: len(m["docs"]) for m in modules}, "shared:", len(shared), "unmatched:", unmatched, "relations:", len(relations), sum(len(r["docs"]) for r in relations), "rel_unmatched:", rel_unmatched)

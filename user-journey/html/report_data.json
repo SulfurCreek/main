@@ -62,83 +62,769 @@
     "現版為主",
     "續約、購買曝光、簡訊加值、下載文件；任何階段都可能插入"
    ]
-  ],
-  "term_hdr": [
-   "詞",
-   "意思",
-   "出處"
-  ],
-  "term_rows": [
-   [
-    "主投",
-    "求職者主動應徵某職缺",
-    "[主動應徵](https://hackmd.io/@1111-jobdocs/ry9S7kjuWe)"
+  ]
+ },
+ "persona": {
+  "heading": "1. Persona",
+  "intro": "求才系統的使用者差異來自兩個維度：**公司的會員狀態**（`oStatus`）與**登入帳號的角色**（主帳號或副帳號＋權限）。以下 7 個 persona 由使用者定義（2026-10-05），內容依規格文件整理；文件沒寫的標 `NULL`，依文件事實推出的標 `〔推論〕`。下方 Journey Grid 以 **P3 VIP 主帳號** 的完整旅程為主線，其他 persona 的差異寫在各自的「可走的旅程」。",
+  "scope": "Current State 現狀（由既有規格反向工程；第三階段規劃項目只出現在 Opportunities）。",
+  "overview": {
+   "hdr": [
+    "Persona",
+    "廠商狀態",
+    "帳號類型",
+    "可走的旅程",
+    "主要限制"
    ],
-   [
-    "副帳號",
-    "主帳號底下再開的其他招募人員帳號，有各自權限與群組",
-    "[B.2 帳號設定](https://hackmd.io/@1111-jobdocs/SkfafU2WZg)"
-   ],
-   [
-    "`oStatus`",
-    "廠商會員狀態：0 普通、1 VIP、2 過期、3 關權、4 免費VIP、5 免費曝光、6 準VIP",
-    "[REF 系統代碼表](https://hackmd.io/@1111-jobdocs/B1j3sN-bzx)"
-   ],
-   [
-    "關權",
-    "`oStatus:3`，刊登暫停中",
-    "同上"
-   ],
-   [
-    "需審核",
-    "廠商旗標 `confirmed&16384`，職缺異動要客服審核後才對外顯示",
-    "同上"
-   ],
-   [
-    "職缺審核",
-    "命中風險字或廠商需審核時，職缺進「審核中」，由客服通過／不通過",
-    "[職缺審核信](https://hackmd.io/@1111-jobdocs/Hyj6_7X8fl)"
-   ],
-   [
-    "限時回應",
-    "職缺設定 1～7 天內回應求職者，達成可得「快速回覆標章」",
-    "[職缺設定](https://hackmd.io/@1111-jobdocs/SJEiSjRzbl)"
-   ],
-   [
-    "立即上工",
-    "職缺屬性之一（`role` 32），工作時間用指定日期／期間",
-    "[職缺內容](https://hackmd.io/@1111-jobdocs/BJ7Yob8W-g)"
-   ],
-   [
-    "承攬制",
-    "職缺特殊性質之一，工作時間固定「與公司議定」",
-    "同上"
-   ],
-   [
-    "詢問意願／面試邀約",
-    "聯繫階段兩種通知；整併專案要把兩者拆開（詢問意願改 `mailType:2`）",
-    "[第三階段](https://hackmd.io/@1111-jobdocs/Hk3SOQrFfg)"
-   ],
-   [
-    "錄取通知",
-    "到職確認通知（`mailType:6`），未來用來追蹤招募成效",
-    "[整併專案](https://hackmd.io/@1111-jobdocs/SJJY3isYZe)"
-   ],
-   [
-    "Modal／Lightbox",
-    "頁面上彈出的視窗，文件另有「M. Modal&Lightbox」資料夾",
-    "—"
-   ],
-   [
-    "`.aspx`",
-    "現版頁面的檔名，Touchpoints 用它標示頁面",
-    "Sitemap"
-   ],
-   [
-    "`US`／`US*`／`〔推論〕`／`NULL`",
-    "證據標記，見下方標記說明",
-    "—"
+   "notes": [
+    "其他會員狀態：`oStatus:4` 免費 VIP 同 VIP；`oStatus:5` 免費曝光會提示曝光期限；`oStatus:6` 準 VIP 提示會員未啟用與啟用日期（[2.1 職缺總覽](https://hackmd.io/@1111-jobdocs/HJvxSmNMWe)）。代碼定義見 [[REF] 系統代碼表 §1](https://hackmd.io/@1111-jobdocs/B1j3sN-bzx)。",
+    "權限模型：每間公司有一個主帳號與若干副帳號；主帳號權限最大、不可被限制，副帳號的權限於 [B.2.3 權限設定](https://hackmd.io/@1111-jobdocs/SyKtjeP8We) 逐項勾選（[[REF] 系統代碼表 §5.0](https://hackmd.io/@1111-jobdocs/B1j3sN-bzx)）。權限產生順序：稽核賦予廠商權限 → 客服設定廠商權限 → 主帳號設定帳號權限（[2.1 職缺總覽](https://hackmd.io/@1111-jobdocs/HJvxSmNMWe)）。"
    ]
+  },
+  "personas": [
+   {
+    "id": "P1",
+    "name": "普通廠商",
+    "quote": "「我想刊職缺，但系統一直叫我去找客服。」〔推論〕依據：普通會員進職缺總覽會跳出「貴公司目前非VIP會員，若要刊登徵才職缺請洽客服」（[2.1 職缺總覽](https://hackmd.io/@1111-jobdocs/HJvxSmNMWe)）",
+    "items": [
+     {
+      "key": "Details",
+      "text": "無合約，不可刊登（[[REF] 系統代碼表 §1](https://hackmd.io/@1111-jobdocs/B1j3sN-bzx)）；有 `confirmed&8192`（可聯絡求職者）時，收到主投信仍看得到聯絡方式，但不能使用招募功能",
+      "children": []
+     },
+     {
+      "key": "Goals",
+      "text": "〔推論〕成為 VIP 以刊登職缺；依據：同上 alert 引導洽客服",
+      "children": []
+     },
+     {
+      "key": "Pain Points",
+      "text": "進職缺總覽每天都會跳提示，可選「今日不再顯示」（[2.1 職缺總覽](https://hackmd.io/@1111-jobdocs/HJvxSmNMWe)）",
+      "children": []
+     }
+    ],
+    "journey_text": "J 登入、A 首頁；C 職缺不可刊登；其他階段 NULL（文件未載）",
+    "stages": {
+     "J": {
+      "state": "ok",
+      "note": ""
+     },
+     "A": {
+      "state": "ok",
+      "note": ""
+     },
+     "B": {
+      "state": "unknown",
+      "note": ""
+     },
+     "C": {
+      "state": "blocked",
+      "note": "C 職缺不可刊登"
+     },
+     "D": {
+      "state": "unknown",
+      "note": ""
+     },
+     "E": {
+      "state": "unknown",
+      "note": ""
+     },
+     "5": {
+      "state": "unknown",
+      "note": ""
+     },
+     "6": {
+      "state": "unknown",
+      "note": ""
+     },
+     "7": {
+      "state": "unknown",
+      "note": ""
+     }
+    },
+    "overview": [
+     "P1 普通廠商",
+     "`oStatus:0`",
+     "NULL",
+     "J、A；C 不可刊登",
+     "無合約不可刊登，進職缺總覽提示洽客服"
+    ]
+   },
+   {
+    "id": "P2",
+    "name": "過期廠商",
+    "quote": "「合約到期了，我得先續約才能繼續刊登。」〔推論〕依據：到期會員進職缺總覽提示「非VIP會員，若要刊登請洽客服」（[2.1 職缺總覽](https://hackmd.io/@1111-jobdocs/HJvxSmNMWe)）",
+    "items": [
+     {
+      "key": "Details",
+      "text": "合約已到期（`oStatus:2`）；有 `confirmed&8192` 時同 P1 可看主投者聯絡方式",
+      "children": []
+     },
+     {
+      "key": "Goals",
+      "text": "續約恢復刊登（[7.1 線上續約](https://hackmd.io/@1111-jobdocs/ByKdpLaWZe)；續約入口顯示規則見 [(現版)1.2.3 開關天數設定](https://hackmd.io/@1111-jobdocs/Bkw7pIVLbx)）",
+      "children": []
+     },
+     {
+      "key": "Pain Points",
+      "text": "同 P1 的每日提示",
+      "children": []
+     }
+    ],
+    "journey_text": "J、A、6／7 購買（續約）；C 不可刊登；其他 NULL",
+    "stages": {
+     "J": {
+      "state": "ok",
+      "note": ""
+     },
+     "A": {
+      "state": "ok",
+      "note": ""
+     },
+     "B": {
+      "state": "unknown",
+      "note": ""
+     },
+     "C": {
+      "state": "blocked",
+      "note": "C 不可刊登"
+     },
+     "D": {
+      "state": "unknown",
+      "note": ""
+     },
+     "E": {
+      "state": "unknown",
+      "note": ""
+     },
+     "5": {
+      "state": "unknown",
+      "note": ""
+     },
+     "6": {
+      "state": "ok",
+      "note": "6／7 購買（續約）"
+     },
+     "7": {
+      "state": "ok",
+      "note": "6／7 購買（續約）"
+     }
+    },
+    "overview": [
+     "P2 過期廠商",
+     "`oStatus:2`",
+     "NULL",
+     "J、A、6／7 續約；C 不可刊登",
+     "合約到期，提示洽客服"
+    ]
+   },
+   {
+    "id": "P3",
+    "name": "VIP 主帳號（人資窗口）",
+    "quote": "「我只想在同一個地方回覆求職者，回了就該算數。」〔推論〕依據：廠商因即時通與信件分開計算限時回應而抱怨（[即時通、信件通知合併](https://hackmd.io/@1111-jobdocs/SJJY3isYZe)）",
+    "items": [
+     {
+      "key": "Details",
+      "text": "公司唯一主帳號，權限最大、不可被限制（[[REF] 系統代碼表 §5.0](https://hackmd.io/@1111-jobdocs/B1j3sN-bzx)）；負責開副帳號、設權限、群組與通知（[B.2 帳號設定](https://hackmd.io/@1111-jobdocs/SkfafU2WZg)、[新增帳號Modal](https://hackmd.io/@1111-jobdocs/rkciNnFHMg)）；固定收新增帳號信、帳號登入通知、續約感謝信（[新增／修改帳號信](https://hackmd.io/@1111-jobdocs/Bkw6AsHwMg)、[登入系統通知信](https://hackmd.io/@1111-jobdocs/HkZrBvaubg)、[VIP 續約感謝信](https://hackmd.io/@1111-jobdocs/Syo5pb-sbl)）",
+      "children": []
+     },
+     {
+      "key": "Goals",
+      "text": "從開通帳號到把人招進來：建立公司門面 → 刊登職缺 → 收履歷／找人 → 聯繫邀約面試 → 錄取 → 回看成效；並管理團隊帳號",
+      "children": []
+     },
+     {
+      "key": "Pain Points",
+      "text": "",
+      "children": [
+       "面試邀約與即時通兩套工具，副帳號通知兩組設定，限時回應被分開計算（[即時通、信件通知合併](https://hackmd.io/@1111-jobdocs/SJJY3isYZe)）",
+       "在其他人力銀行已刊登的職缺要手動重建（US [職缺匯入提案](https://hackmd.io/@1111-jobdocs/BJATOLPwbx)）",
+       "來訪名單無法過濾、看不到誰關注公司或職缺（US [現版人才來訪拉皮更新](https://hackmd.io/@1111-jobdocs/SJ5oUbXv-g)、US [關注名單](https://hackmd.io/@1111-jobdocs/B1jNIrMBZl)）",
+       "部分廠商沒有信箱，新驗證機制造成登入困難（[同步會議 2026.04.08](https://hackmd.io/@1111-jobdocs/Sk8KaX73Wl)）"
+      ]
+     }
+    ],
+    "journey_text": "全部階段（下方 Journey Grid 主線）",
+    "stages": {
+     "J": {
+      "state": "ok",
+      "note": ""
+     },
+     "A": {
+      "state": "ok",
+      "note": ""
+     },
+     "B": {
+      "state": "ok",
+      "note": ""
+     },
+     "C": {
+      "state": "ok",
+      "note": ""
+     },
+     "D": {
+      "state": "ok",
+      "note": ""
+     },
+     "E": {
+      "state": "ok",
+      "note": ""
+     },
+     "5": {
+      "state": "ok",
+      "note": ""
+     },
+     "6": {
+      "state": "ok",
+      "note": ""
+     },
+     "7": {
+      "state": "ok",
+      "note": ""
+     }
+    },
+    "overview": [
+     "P3 VIP 主帳號（人資窗口）",
+     "`oStatus:1`",
+     "主帳號",
+     "全部階段",
+     "無（權限最大、不可被限制）"
+    ]
+   },
+   {
+    "id": "P4",
+    "name": "VIP 副帳號（人資）",
+    "quote": "「我是人資，但有些功能要等主帳號幫我開權限才看得到。」〔推論〕依據：副帳號的功能入口依權限代碼顯示（[B.2.3 權限設定](https://hackmd.io/@1111-jobdocs/SyKtjeP8We)）",
+    "items": [
+     {
+      "key": "Details",
+      "text": "權限由主帳號逐項勾選；例：通知設定需 `代碼66`（[B.2.2 通知設定](https://hackmd.io/@1111-jobdocs/BJGdoePUWl)），管理全部帳號需 `7+23`（[B.2 帳號設定](https://hackmd.io/@1111-jobdocs/SkfafU2WZg)），新增／修改職缺需 `代碼53`（[職缺匯入提案](https://hackmd.io/@1111-jobdocs/BJATOLPwbx)），帳號邀約紀錄需 `代碼55`（[5.1 帳號邀約紀錄](https://hackmd.io/@1111-jobdocs/rJ5Bp4RE-g)）",
+      "children": []
+     },
+     {
+      "key": "Goals",
+      "text": "同 P3 的招募主線，範圍以被授權的功能為限",
+      "children": []
+     },
+     {
+      "key": "Pain Points",
+      "text": "NULL（文件未載）",
+      "children": []
+     }
+    ],
+    "journey_text": "依權限代碼；未授權的功能不顯示入口",
+    "stages": {
+     "J": {
+      "state": "conditional",
+      "note": ""
+     },
+     "A": {
+      "state": "conditional",
+      "note": ""
+     },
+     "B": {
+      "state": "conditional",
+      "note": ""
+     },
+     "C": {
+      "state": "conditional",
+      "note": ""
+     },
+     "D": {
+      "state": "conditional",
+      "note": ""
+     },
+     "E": {
+      "state": "conditional",
+      "note": ""
+     },
+     "5": {
+      "state": "conditional",
+      "note": ""
+     },
+     "6": {
+      "state": "conditional",
+      "note": ""
+     },
+     "7": {
+      "state": "conditional",
+      "note": ""
+     }
+    },
+    "overview": [
+     "P4 VIP 副帳號（人資）",
+     "`oStatus:1`",
+     "副帳號",
+     "依權限代碼",
+     "每項功能由主帳號勾選權限"
+    ]
+   },
+   {
+    "id": "P5",
+    "name": "VIP 副帳號（用人主管／分店店長）",
+    "quote": "「我只管我這間店的職缺和應徵者。」〔推論〕依據：副帳號設了所屬群組後，管理職缺權限會改為「個人或群組職缺」（[B.2.3 權限設定 §6.2](https://hackmd.io/@1111-jobdocs/SyKtjeP8We)）",
+    "items": [
+     {
+      "key": "Details",
+      "text": "由主帳號或有群組管理權限（`代碼65`）的帳號指定所屬群組；自己無法修改群組（[B.2.3 權限設定](https://hackmd.io/@1111-jobdocs/SyKtjeP8We)）；群組設定見 [1.2.4 群組設定](https://hackmd.io/@1111-jobdocs/S1G_8GQbZe)、[群組選擇Modal](https://hackmd.io/@1111-jobdocs/ByhoS3trGg)",
+      "children": []
+     },
+     {
+      "key": "Goals",
+      "text": "〔推論〕處理自己或群組職缺的應徵者與面試；依據：管理職缺權限限個人或群組",
+      "children": []
+     },
+     {
+      "key": "Pain Points",
+      "text": "NULL（文件未載）",
+      "children": []
+     }
+    ],
+    "journey_text": "〔推論〕以 C 職缺（限個人／群組）、D 人才、E 聯繫為主；依權限代碼而定",
+    "stages": {
+     "J": {
+      "state": "unknown",
+      "note": ""
+     },
+     "A": {
+      "state": "unknown",
+      "note": ""
+     },
+     "B": {
+      "state": "unknown",
+      "note": ""
+     },
+     "C": {
+      "state": "conditional",
+      "note": "C 職缺（限個人／群組）"
+     },
+     "D": {
+      "state": "conditional",
+      "note": ""
+     },
+     "E": {
+      "state": "conditional",
+      "note": ""
+     },
+     "5": {
+      "state": "unknown",
+      "note": ""
+     },
+     "6": {
+      "state": "unknown",
+      "note": ""
+     },
+     "7": {
+      "state": "unknown",
+      "note": ""
+     }
+    },
+    "overview": [
+     "P5 VIP 副帳號（用人主管／分店店長）",
+     "`oStatus:1`",
+     "副帳號",
+     "依權限代碼，職缺限個人或所屬群組",
+     "只管自己或群組的職缺"
+    ]
+   },
+   {
+    "id": "P6",
+    "name": "VIP 人事助理",
+    "quote": "NULL（文件未載此角色的需求或抱怨）",
+    "items": [
+     {
+      "key": "Details",
+      "text": "角色由使用者定義，規格文件沒有「人事助理」的描述；帳號類型與權限組合待確認。B.2.3 權限設定的「快速帶入」有依身分帶入的權限預設組合，各預設內容見 Figma，文件未列出（[B.2.3 權限設定 §6.1](https://hackmd.io/@1111-jobdocs/SyKtjeP8We)）",
+      "children": []
+     },
+     {
+      "key": "Goals",
+      "text": "NULL",
+      "children": []
+     },
+     {
+      "key": "Pain Points",
+      "text": "NULL",
+      "children": []
+     }
+    ],
+    "journey_text": "依權限代碼；NULL（待確認）",
+    "stages": {
+     "J": {
+      "state": "conditional",
+      "note": ""
+     },
+     "A": {
+      "state": "conditional",
+      "note": ""
+     },
+     "B": {
+      "state": "conditional",
+      "note": ""
+     },
+     "C": {
+      "state": "conditional",
+      "note": ""
+     },
+     "D": {
+      "state": "conditional",
+      "note": ""
+     },
+     "E": {
+      "state": "conditional",
+      "note": ""
+     },
+     "5": {
+      "state": "conditional",
+      "note": ""
+     },
+     "6": {
+      "state": "conditional",
+      "note": ""
+     },
+     "7": {
+      "state": "conditional",
+      "note": ""
+     }
+    },
+    "overview": [
+     "P6 VIP 人事助理",
+     "`oStatus:1`",
+     "NULL（待確認是否為副帳號）",
+     "依權限代碼",
+     "NULL"
+    ]
+   },
+   {
+    "id": "P7",
+    "name": "關權廠商",
+    "quote": "「會員暫停中，我得先開啟刊登，或請客服幫忙。」〔推論〕依據：關權會員進職缺總覽的提示（[2.1 職缺總覽](https://hackmd.io/@1111-jobdocs/HJvxSmNMWe)）",
+    "items": [
+     {
+      "key": "Details",
+      "text": "`oStatus:3`，刊登暫停中。提示依條件分流（[2.1 職缺總覽](https://hackmd.io/@1111-jobdocs/HJvxSmNMWe)）：",
+      "children": [
+       "有刊登限制（`showfield` 非 4096）：提示洽客服",
+       "無刊登限制且廠商可自行開啟、帳號有購買權限：提示「請開啟刊登」，按鈕導向開啟刊登畫面，需使用者手動開啟",
+       "帳號無購買權限：提示洽客服"
+      ]
+     },
+     {
+      "key": "Goals",
+      "text": "恢復刊登（[B.4 刊登設定](https://hackmd.io/@1111-jobdocs/ryEY3vBZbl)、[2.2.1 排程開關權Modal](https://hackmd.io/@1111-jobdocs/By5Eo8NvZx)）",
+      "children": []
+     },
+     {
+      "key": "Pain Points",
+      "text": "NULL（文件未載）；關權時系統會調查關權原因（[2.2.2 暫停刊登Modal](https://hackmd.io/@1111-jobdocs/SJ0mjWHvZx)）",
+      "children": []
+     }
+    ],
+    "journey_text": "J、A、B.4 刊登設定；C 職缺刊登暫停",
+    "stages": {
+     "J": {
+      "state": "ok",
+      "note": ""
+     },
+     "A": {
+      "state": "ok",
+      "note": ""
+     },
+     "B": {
+      "state": "partial",
+      "note": "B.4 刊登設定"
+     },
+     "C": {
+      "state": "blocked",
+      "note": "C 職缺刊登暫停"
+     },
+     "D": {
+      "state": "unknown",
+      "note": ""
+     },
+     "E": {
+      "state": "unknown",
+      "note": ""
+     },
+     "5": {
+      "state": "unknown",
+      "note": ""
+     },
+     "6": {
+      "state": "unknown",
+      "note": ""
+     },
+     "7": {
+      "state": "unknown",
+      "note": ""
+     }
+    },
+    "overview": [
+     "P7 關權廠商",
+     "`oStatus:3`",
+     "NULL",
+     "J、A、B.4 刊登設定；C 刊登暫停",
+     "會員暫停中，依條件可自行開啟刊登或需洽客服"
+    ]
+   }
+  ],
+  "modifiers": {
+   "intro": "另一層差異來自廠商屬性旗標，會讓整段旅程少掉某些階段（[[REF] 系統代碼表 §2](https://hackmd.io/@1111-jobdocs/B1j3sN-bzx)）。",
+   "notes": [
+    "**黑名單組合**：`confirmed&128`、`&512`、`&4096`、`&524288`、`&64` 一併用於隱藏配對、AI 推薦等功能。",
+    "人派／勞務外包、經紀、保全清潔、房仲等旗標主要影響計價或業績歸屬，不改變旅程功能，未列入上表（見 REF §2）。"
+   ],
+   "items": [
+    {
+     "name": "Cake 特殊廠商",
+     "flag": "`confirmed&64`",
+     "limit": "僅可使用主投與刊登職缺；不可用追蹤名單、追蹤資料夾、備註名單、匯入名單、全部搜尋、人才點數查詢、線上續約、購買優先排序（[A.1 Topbar Cake 功能清單](https://hackmd.io/@1111-jobdocs/Hym116n3-x)）",
+     "impact": "D 人才、5 紀錄、7 購買",
+     "stages": {
+      "D": "limit",
+      "5": "limit",
+      "7": "limit"
+     }
+    },
+    {
+     "name": "保險業",
+     "flag": "`confirmed&512`",
+     "limit": "2011/3/15 起僅能主投，無配對名單與查詢名單功能",
+     "impact": "D 人才",
+     "stages": {
+      "D": "limit"
+     }
+    },
+    {
+     "name": "不公布廠商",
+     "flag": "`confirmed&128`",
+     "limit": "沒有主投、沒有配對，且不能查詢名單",
+     "impact": "D 人才",
+     "stages": {
+      "D": "limit"
+     }
+    },
+    {
+     "name": "八大行業",
+     "flag": "`confirmed&4096`",
+     "limit": "特種行業（八大）；列入黑名單組合",
+     "impact": "D 人才",
+     "stages": {
+      "D": "limit"
+     }
+    },
+    {
+     "name": "酒店／特種行業",
+     "flag": "`confirmed&524288`",
+     "limit": "酒店類廠商；列入黑名單組合",
+     "impact": "D 人才",
+     "stages": {
+      "D": "limit"
+     }
+    },
+    {
+     "name": "殯葬禮儀",
+     "flag": "`confirmed&8`",
+     "limit": "不可刊登業務職缺，並同時鎖定「需審核」",
+     "impact": "C 職缺",
+     "stages": {
+      "C": "limit"
+     }
+    },
+    {
+     "name": "直銷",
+     "flag": "`confirmed&256`",
+     "limit": "2014/12/2 起不再提供刊登",
+     "impact": "C 職缺",
+     "stages": {
+      "C": "limit"
+     }
+    },
+    {
+     "name": "需審核",
+     "flag": "`confirmed&16384`",
+     "limit": "職缺異動須經客服審核通過才對外顯示",
+     "impact": "C 職缺",
+     "stages": {
+      "C": "limit"
+     }
+    },
+    {
+     "name": "投審會已核準",
+     "flag": "`confirmed&8388608`",
+     "limit": "才能刊登工作地為中國（不含港澳）的職缺，送出後需審核",
+     "impact": "C 職缺",
+     "stages": {
+      "C": "limit"
+     }
+    },
+    {
+     "name": "高風險國家已核準",
+     "flag": "`confirmed&1073741824`",
+     "limit": "9 個海外高風險國家職缺原則不可刊登，核准者例外",
+     "impact": "C 職缺",
+     "stages": {
+      "C": "limit"
+     }
+    },
+    {
+     "name": "派遣單購點數",
+     "flag": "`confirmed&1024`",
+     "limit": "需購買點數才能查看名單與刊登職缺",
+     "impact": "C 職缺、D 人才",
+     "stages": {
+      "C": "limit",
+      "D": "limit"
+     }
+    },
+    {
+     "name": "不可修改（外網限制）",
+     "flag": "`confirmed&131072`",
+     "limit": "外網時無法編輯公司資料、帳號權限、開關天數、職缺等",
+     "impact": "B 公司、C 職缺",
+     "stages": {
+      "B": "limit",
+      "C": "limit"
+     }
+    },
+    {
+     "name": "不可登入",
+     "flag": "`confirmed&262144`",
+     "limit": "廠商無法登入求才，內部同仁只能透過客服系統登入",
+     "impact": "J 登入（整段旅程中斷）",
+     "stages": {
+      "J": "中斷"
+     }
+    },
+    {
+     "name": "可聯絡求職者",
+     "flag": "`confirmed&8192`",
+     "limit": "普通／過期廠商仍看得到主投者聯絡方式，但不能使用招募功能",
+     "impact": "D 人才、E 聯繫",
+     "stages": {
+      "D": "limit",
+      "E": "limit"
+     }
+    }
+   ]
+  },
+  "terms": {
+   "hdr": [
+    "詞",
+    "意思",
+    "出處"
+   ],
+   "rows": [
+    [
+     "主投",
+     "求職者主動應徵某職缺",
+     "[主動應徵](https://hackmd.io/@1111-jobdocs/ry9S7kjuWe)"
+    ],
+    [
+     "副帳號",
+     "主帳號底下再開的其他招募人員帳號，有各自權限與群組",
+     "[B.2 帳號設定](https://hackmd.io/@1111-jobdocs/SkfafU2WZg)"
+    ],
+    [
+     "`oStatus`",
+     "廠商會員狀態：0 普通、1 VIP、2 過期、3 關權、4 免費VIP、5 免費曝光、6 準VIP",
+     "[REF 系統代碼表](https://hackmd.io/@1111-jobdocs/B1j3sN-bzx)"
+    ],
+    [
+     "關權",
+     "`oStatus:3`，刊登暫停中",
+     "同上"
+    ],
+    [
+     "需審核",
+     "廠商旗標 `confirmed&16384`，職缺異動要客服審核後才對外顯示",
+     "同上"
+    ],
+    [
+     "職缺審核",
+     "命中風險字或廠商需審核時，職缺進「審核中」，由客服通過／不通過",
+     "[職缺審核信](https://hackmd.io/@1111-jobdocs/Hyj6_7X8fl)"
+    ],
+    [
+     "限時回應",
+     "職缺設定 1～7 天內回應求職者，達成可得「快速回覆標章」",
+     "[職缺設定](https://hackmd.io/@1111-jobdocs/SJEiSjRzbl)"
+    ],
+    [
+     "立即上工",
+     "職缺屬性之一（`role` 32），工作時間用指定日期／期間",
+     "[職缺內容](https://hackmd.io/@1111-jobdocs/BJ7Yob8W-g)"
+    ],
+    [
+     "承攬制",
+     "職缺特殊性質之一，工作時間固定「與公司議定」",
+     "同上"
+    ],
+    [
+     "詢問意願／面試邀約",
+     "聯繫階段兩種通知；整併專案要把兩者拆開（詢問意願改 `mailType:2`）",
+     "[第三階段](https://hackmd.io/@1111-jobdocs/Hk3SOQrFfg)"
+    ],
+    [
+     "錄取通知",
+     "到職確認通知（`mailType:6`），未來用來追蹤招募成效",
+     "[整併專案](https://hackmd.io/@1111-jobdocs/SJJY3isYZe)"
+    ],
+    [
+     "Modal／Lightbox",
+     "頁面上彈出的視窗，文件另有「M. Modal&Lightbox」資料夾",
+     "—"
+    ],
+    [
+     "`.aspx`",
+     "現版頁面的檔名，Touchpoints 用它標示頁面",
+     "Sitemap"
+    ],
+    [
+     "`US`／`US*`／`〔推論〕`／`NULL`",
+     "證據標記，見下方標記說明",
+     "—"
+    ]
+   ],
+   "note": "標記：無標記＝文件明載（附連結）；`〔推論〕`＝依同格所寫文件事實推出；`NULL`＝文件未載也無可推論。`US`＝真實 User Story，`US*`＝套版句「以便提高求才效率」（只證明功能存在）。連結前綴 `https://hackmd.io/@1111-jobdocs/<shortId>`。"
+  },
+  "stages9": [
+   {
+    "code": "J",
+    "name": "登入"
+   },
+   {
+    "code": "A",
+    "name": "首頁"
+   },
+   {
+    "code": "B",
+    "name": "公司"
+   },
+   {
+    "code": "C",
+    "name": "職缺"
+   },
+   {
+    "code": "D",
+    "name": "人才"
+   },
+   {
+    "code": "E",
+    "name": "聯繫"
+   },
+   {
+    "code": "5",
+    "name": "紀錄"
+   },
+   {
+    "code": "6",
+    "name": "服務"
+   },
+   {
+    "code": "7",
+    "name": "購買"
+   }
   ]
  },
  "todo": {
@@ -196,32 +882,6 @@
   "標記：`US` = 文件內真實 User Story；`US*` = 套版句「以便提高求才效率」（只證明功能存在，不證明動機）；`NULL` = 文件未記載，不推測。",
   "連結前綴：`https://hackmd.io/@1111-jobdocs/<shortId>`，下表只寫 shortId 文字。"
  ],
- "context": {
-  "heading": "1. Context (情境設定)",
-  "items": [
-   {
-    "label": "Persona",
-    "sub": "目標用戶",
-    "text": "企業 HR／招募人員（主帳號可開副帳號、分群組與權限）。",
-    "children": [
-     "變體：VIP／免費VIP／關權／到期（刊登與權限不同，見 [B.4 刊登設定](https://hackmd.io/@1111-jobdocs/ryEY3vBZbl)、[REF 系統代碼表](https://hackmd.io/@1111-jobdocs/B1j3sN-bzx)）；Cake 特殊廠商部分人才功能不可用。"
-    ]
-   },
-   {
-    "label": "Scenario & Goal",
-    "sub": "場景與目標",
-    "text": "從開通帳號到把人招進來——建立公司門面 → 刊登職缺 → 收履歷／找人 → 聯繫邀約面試 → 錄取 → 回看成效。`服務`、`購買`不在主線，於任何階段都可能插入（見支援格組）。",
-    "children": []
-   },
-   {
-    "label": "Journey Type",
-    "sub": "",
-    "text": "Current State 現狀（由既有規格反向工程；第三階段規劃項目只出現在 Opportunities）。",
-    "children": []
-   }
-  ],
-  "marker_note": "標記：無標記＝文件明載（附連結）；`〔推論〕`＝依同格所寫文件事實推出；`NULL`＝文件未載也無可推論。`US`＝真實 User Story，`US*`＝套版句「以便提高求才效率」（只證明功能存在）。連結前綴 `https://hackmd.io/@1111-jobdocs/<shortId>`。"
- },
  "grid": {
   "heading": "2. The Journey Grid (旅程矩陣)",
   "intro": "階段編碼沿用 HackMD 資料夾編碼；每表最多 4 個階段欄，共 3 張表（表 A：J、A、B；表 B：C、D、E；表 C：5、6／7 支援）。",
@@ -376,7 +1036,7 @@
    "doc_title": "2.2 新增職缺",
    "link": "https://hackmd.io/nztEtyKMQYioP0uQ_BajBA?both=&stext=3055%3A3%3A0%3A1790736378%3A-TdkQO",
    "svgs": [
-    "<svg id=\"flow-C-S1SfBeXxfe-1\" width=\"100%\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" style=\"max-width: 1525px; background-color: white;\" viewBox=\"-50 -10 1525 3717\" role=\"graphics-document document\" aria-roledescription=\"sequence\"><g><rect x=\"1235\" y=\"-6\" fill=\"rgba(232,245,233,0.5)\" stroke=\"rgb(0,0,0, 0.5)\" width=\"214\" height=\"3673\" class=\"rect\"/><text x=\"1342\" y=\"17\" dominant-baseline=\"central\" alignment-baseline=\"central\" class=\"text\" style=\"text-anchor: middle; font-size: 16px; font-weight: bold;\"><tspan x=\"1342\" dy=\"0\">求職主網 Jobseeker</tspan></text></g><g><rect x=\"719\" y=\"-6\" fill=\"rgba(255,243,224,0.5)\" stroke=\"rgb(0,0,0, 0.5)\" width=\"214\" height=\"3673\" class=\"rect\"/><text x=\"826\" y=\"17\" dominant-baseline=\"central\" alignment-baseline=\"central\" class=\"text\" style=\"text-anchor: middle; font-size: 16px; font-weight: bold;\"><tspan x=\"826\" dy=\"0\">客服系統 CS</tspan></text></g><g><rect x=\"471\" y=\"-6\" fill=\"rgba(243,229,245,0.5)\" stroke=\"rgb(0,0,0, 0.5)\" width=\"214\" height=\"3673\" class=\"rect\"/><text x=\"578\" y=\"17\" dominant-baseline=\"central\" alignment-baseline=\"central\" class=\"text\" style=\"text-anchor: middle; font-size: 16px; font-weight: bold;\"><tspan x=\"578\" dy=\"0\">資科 AI</tspan></text></g><g><rect x=\"-24\" y=\"-6\" fill=\"rgba(227,242,253,0.5)\" stroke=\"rgb(0,0,0, 0.5)\" width=\"453\" height=\"3673\" class=\"rect\"/><text x=\"202.5\" y=\"17\" dominant-baseline=\"central\" alignment-baseline=\"central\" class=\"text\" style=\"text-anchor: middle; font-size: 16px; font-weight: bold;\"><tspan x=\"202.5\" dy=\"0\">求才系統 Recruit</tspan></text></g><g><line id=\"actor4\" x1=\"1342\" y1=\"139\" x2=\"1342\" y2=\"2000\" class=\"actor-line 200\" stroke-width=\"0.5px\" stroke=\"#999\" name=\"JS\" data-et=\"life-line\" data-id=\"JS\"/><g id=\"root-4\" data-look=\"neo\" data-et=\"participant\" data-type=\"participant\" data-id=\"JS\"><rect x=\"1267\" y=\"30\" fill=\"#eaeaea\" stroke=\"#666\" width=\"150\" height=\"109\" name=\"JS\" rx=\"6\" ry=\"6\" class=\"actor actor-top\" data-look=\"neo\" filter=\"url(#flow-C-S1SfBeXxfe-1-drop-shadow)\"/><text x=\"1342\" y=\"84.5\" dominant-baseline=\"central\" alignment-baseline=\"central\" class=\"actor actor-box\" style=\"text-anchor: middle; font-size: 16px; font-weight: bold;\"><tspan x=\"1342\" dy=\"0\">求職主網</tspan></text></g></g><g><line id=\"actor3\" x1=\"826\" y1=\"139\" x2=\"826\" y2=\"2000\" class=\"actor-line 200\" stroke-width=\"0.5px\" stroke=\"#999\" name=\"CS\" data-et=\"life-line\" data-id=\"CS\"/></g><g><line id=\"actor2\" x1=\"578\" y1=\"139\" x2=\"578\" y2=\"2000\" class=\"actor-line 200\" stroke-width=\"0.5px\" stroke=\"#999\" name=\"AI\" data-et=\"life-line\" data-id=\"AI\"/><g id=\"root-2\" data-look=\"neo\" data-et=\"participant\" data-type=\"participant\" data-id=\"AI\"><rect x=\"503\" y=\"30\" fill=\"#eaeaea\" stroke=\"#666\" width=\"150\" height=\"109\" name=\"AI\" rx=\"6\" ry=\"6\" class=\"actor actor-top\" data-look=\"neo\" filter=\"url(#flow-C-S1SfBeXxfe-1-drop-shadow)\"/><text x=\"578\" y=\"84.5\" dominant-baseline=\"central\" alignment-baseline=\"central\" class=\"actor actor-box\" style=\"text-anchor: middle; font-size: 16px; font-weight: bold;\"><tspan x=\"578\" dy=\"0\">資科 API</tspan></text></g></g><g><line id=\"actor1\" x1=\"322\" y1=\"139\" x2=\"322\" y2=\"2000\" class=\"actor-line 200\" stroke-width=\"0.5px\" stroke=\"#999\" name=\"RB\" data-et=\"life-line\" data-id=\"RB\"/><g id=\"root-1\" data-look=\"neo\" data-et=\"participant\" data-type=\"participant\" data-id=\"RB\"><rect x=\"247\" y=\"30\" fill=\"#eaeaea\" stroke=\"#666\" width=\"150\" height=\"109\" name=\"RB\" rx=\"6\" ry=\"6\" class=\"actor actor-top\" data-look=\"neo\" filter=\"url(#flow-C-S1SfBeXxfe-1-drop-shadow)\"/><text x=\"322\" y=\"84.5\" dominant-baseline=\"central\" alignment-baseline=\"central\" class=\"actor actor-box\" style=\"text-anchor: middle; font-size: 16px; font-weight: bold;\"><tspan x=\"322\" dy=\"-16\">求才後台</tspan></text><text x=\"322\" y=\"84.5\" dominant-baseline=\"central\" alignment-baseline=\"central\" class=\"actor actor-box\" style=\"text-anchor: middle; font-size: 16px; font-weight: bold;\"><tspan x=\"322\" dy=\"0\">(PublishOpening／-</tspan></text><text x=\"322\" y=\"84.5\" dominant-baseline=\"central\" alignment-baseline=\"central\" class=\"actor actor-box\" style=\"text-anchor: middle; font-size: 16px; font-weight: bold;\"><tspan x=\"322\" dy=\"16\">PublishEdit)</tspan></text></g></g><g><line id=\"actor0\" x1=\"83\" y1=\"139\" x2=\"83\" y2=\"2000\" class=\"actor-line 200\" stroke-width=\"0.5px\" stroke=\"#999\" name=\"Emp\" data-et=\"life-line\" data-id=\"Emp\"/></g><style>#flow-C-S1SfBeXxfe-1{font-size:16px;fill:#333333;}@keyframes edge-animation-frame{from{stroke-dashoffset:0;}}@keyframes dash{to{stroke-dashoffset:0;}}#flow-C-S1SfBeXxfe-1 .edge-animation-slow{stroke-dasharray:9,5!important;stroke-dashoffset:900;animation:dash 50s linear infinite;stroke-linecap:round;}#flow-C-S1SfBeXxfe-1 .edge-animation-fast{stroke-dasharray:9,5!important;stroke-dashoffset:900;animation:dash 20s linear infinite;stroke-linecap:round;}#flow-C-S1SfBeXxfe-1 .error-icon{fill:hsl(25.3846153846, 86.6666666667%, 99.1176470588%);}#flow-C-S1SfBeXxfe-1 .error-text{fill:rgb(0.3, 2.5500000001, 4.2000000001);stroke:rgb(0.3, 2.5500000001, 4.2000000001);}#flow-C-S1SfBeXxfe-1 .edge-thickness-normal{stroke-width:1px;}#flow-C-S1SfBeXxfe-1 .edge-thickness-thick{stroke-width:3.5px;}#flow-C-S1SfBeXxfe-1 .edge-pattern-solid{stroke-dasharray:0;}#flow-C-S1SfBeXxfe-1 .edge-thickness-invisible{stroke-width:0;fill:none;}#flow-C-S1SfBeXxfe-1 .edge-pattern-dashed{stroke-dasharray:3;}#flow-C-S1SfBeXxfe-1 .edge-pattern-dotted{stroke-dasharray:2;}#flow-C-S1SfBeXxfe-1 .marker{fill:#0b0b0b;stroke:#0b0b0b;}#flow-C-S1SfBeXxfe-1 .marker.cross{stroke:#0b0b0b;}#flow-C-S1SfBeXxfe-1 svg{font-size:16px;}#flow-C-S1SfBeXxfe-1 p{margin:0;}#flow-C-S1SfBeXxfe-1 .actor{stroke:#90A4AE;fill:#E3F2FD;stroke-width:1;}#flow-C-S1SfBeXxfe-1 rect.actor.outer-path[data-look=\"neo\"]{filter:drop-shadow( 1px 2px 2px rgba(185,185,185,1));}#flow-C-S1SfBeXxfe-1 rect.note[data-look=\"neo\"]{stroke:#FFD54F;fill:#FFF8E1;filter:drop-shadow( 1px 2px 2px rgba(185,185,185,1));}#flow-C-S1SfBeXxfe-1 text.actor&gt;tspan{fill:#333333;stroke:none;}#flow-C-S1SfBeXxfe-1 .actor-line{stroke:#90A4AE;}#flow-C-S1SfBeXxfe-1 .innerArc{stroke-width:1.5;stroke-dasharray:none;}#flow-C-S1SfBeXxfe-1 .messageLine0{stroke-width:1.5;stroke-dasharray:none;stroke:#90A4AE;}#flow-C-S1SfBeXxfe-1 .messageLine1{stroke-width:1.5;stroke-dasharray:2,2;stroke:#90A4AE;}#flow-C-S1SfBeXxfe-1 [id$=\"-arrowhead\"] path{fill:#90A4AE;stroke:#90A4AE;}#flow-C-S1SfBeXxfe-1 .sequenceNumber{fill:#f4f4f4;}#flow-C-S1SfBeXxfe-1 [id$=\"-sequencenumber\"]{fill:#90A4AE;}#flow-C-S1SfBeXxfe-1 [id$=\"-crosshead\"] path{fill:#90A4AE;stroke:#90A4AE;}#flow-C-S1SfBeXxfe-1 .messageText{fill:#333333;stroke:none;}#flow-C-S1SfBeXxfe-1 .labelBox{stroke:#90A4AE;fill:#E3F2FD;filter:drop-shadow( 1px 2px 2px rgba(185,185,185,1));}#flow-C-S1SfBeXxfe-1 .labelText,#flow-C-S1SfBeXxfe-1 .labelText&gt;tspan{fill:#333333;stroke:none;}#flow-C-S1SfBeXxfe-1 .loopText,#flow-C-S1SfBeXxfe-1 .loopText&gt;tspan{fill:#333333;stroke:none;}#flow-C-S1SfBeXxfe-1 .sectionTitle,#flow-C-S1SfBeXxfe-1 .sectionTitle&gt;tspan{fill:#333333;stroke:none;}#flow-C-S1SfBeXxfe-1 .loopLine{stroke-width:2px;stroke-dasharray:2,2;stroke:#90A4AE;fill:#90A4AE;}#flow-C-S1SfBeXxfe-1 .note{stroke:#FFD54F;fill:#FFF8E1;}#flow-C-S1SfBeXxfe-1 .noteText,#flow-C-S1SfBeXxfe-1 .noteText&gt;tspan{fill:#333;stroke:none;}#flow-C-S1SfBeXxfe-1 .activation0{fill:hsl(85.3846153846, 86.6666666667%, 94.1176470588%);stroke:hsl(85.3846153846, 86.6666666667%, 84.1176470588%);}#flow-C-S1SfBeXxfe-1 .activation1{fill:hsl(85.3846153846, 86.6666666667%, 94.1176470588%);stroke:hsl(85.3846153846, 86.6666666667%, 84.1176470588%);}#flow-C-S1SfBeXxfe-1 .activation2{fill:hsl(85.3846153846, 86.6666666667%, 94.1176470588%);stroke:hsl(85.3846153846, 86.6666666667%, 84.1176470588%);}#flow-C-S1SfBeXxfe-1 .actorPopupMenu{position:absolute;}#flow-C-S1SfBeXxfe-1 .actorPopupMenuPanel{position:absolute;fill:#E3F2FD;box-shadow:0px 8px 16px 0px rgba(0,0,0,0.2);filter:drop-shadow(3px 5px 2px rgb(0 0 0 / 0.4));}#flow-C-S1SfBeXxfe-1 .actor-man circle,#flow-C-S1SfBeXxfe-1 line{fill:#E3F2FD;stroke-width:2px;}#flow-C-S1SfBeXxfe-1 g rect.rect{filter:drop-shadow( 1px 2px 2px rgba(185,185,185,1));stroke:#90A4AE;}#flow-C-S1SfBeXxfe-1 .node .neo-node{stroke:#90A4AE;}#flow-C-S1SfBeXxfe-1 [data-look=\"neo\"].node rect,#flow-C-S1SfBeXxfe-1 [data-look=\"neo\"].cluster rect,#flow-C-S1SfBeXxfe-1 [data-look=\"neo\"].node polygon{stroke:url(#flow-C-S1SfBeXxfe-1-gradient);filter:drop-shadow( 1px 2px 2px rgba(185,185,185,1));}#flow-C-S1SfBeXxfe-1 [data-look=\"neo\"].swimlane.cluster rect{filter:none;}#flow-C-S1SfBeXxfe-1 [data-look=\"neo\"].node path{stroke:url(#flow-C-S1SfBeXxfe-1-gradient);stroke-width:1px;}#flow-C-S1SfBeXxfe-1 [data-look=\"neo\"].node .outer-path{filter:drop-shadow( 1px 2px 2px rgba(185,185,185,1));}#flow-C-S1SfBeXxfe-1 [data-look=\"neo\"].node .neo-line path{stroke:#90A4AE;filter:none;}#flow-C-S1SfBeXxfe-1 [data-look=\"neo\"].node circle{stroke:url(#flow-C-S1SfBeXxfe-1-gradient);filter:drop-shadow( 1px 2px 2px rgba(185,185,185,1));}#flow-C-S1SfBeXxfe-1 [data-look=\"neo\"].node circle .state-start{fill:#000000;}#flow-C-S1SfBeXxfe-1 [data-look=\"neo\"].icon-shape .icon{fill:url(#flow-C-S1SfBeXxfe-1-gradient);filter:drop-shadow( 1px 2px 2px rgba(185,185,185,1));}#flow-C-S1SfBeXxfe-1 [data-look=\"neo\"].icon-shape .icon-neo path{stroke:url(#flow-C-S1SfBeXxfe-1-gradient);filter:drop-shadow( 1px 2px 2px rgba(185,185,185,1));}#flow-C-S1SfBeXxfe-1 :root{--mermaid-font-family:\"trebuchet ms\",verdana,arial,sans-serif;}</style><g/><defs><symbol id=\"flow-C-S1SfBeXxfe-1-computer\" width=\"24\" height=\"24\"><path transform=\"scale(.5)\" d=\"M2 2v13h20v-13h-20zm18 11h-16v-9h16v9zm-10.228 6l.466-1h3.524l.467 1h-4.457zm14.228 3h-24l2-6h2.104l-1.33 4h18.45l-1.297-4h2.073l2 6zm-5-10h-14v-7h14v7z\"/></symbol></defs><defs><symbol id=\"flow-C-S1SfBeXxfe-1-database\" fill-rule=\"evenodd\" clip-rule=\"evenodd\"><path transform=\"scale(.5)\" d=\"M12.258.001l.256.004.255.005.253.008.251.01.249.012.247.015.246.016.242.019.241.02.239.023.236.024.233.027.231.028.229.031.225.032.223.034.22.036.217.038.214.04.211.041.208.043.205.045.201.046.198.048.194.05.191.051.187.053.183.054.18.056.175.057.172.059.168.06.163.061.16.063.155.064.15.066.074.033.073.033.071.034.07.034.069.035.068.035.067.035.066.035.064.036.064.036.062.036.06.036.06.037.058.037.058.037.055.038.055.038.053.038.052.038.051.039.05.039.048.039.047.039.045.04.044.04.043.04.041.04.04.041.039.041.037.041.036.041.034.041.033.042.032.042.03.042.029.042.027.042.026.043.024.043.023.043.021.043.02.043.018.044.017.043.015.044.013.044.012.044.011.045.009.044.007.045.006.045.004.045.002.045.001.045v17l-.001.045-.002.045-.004.045-.006.045-.007.045-.009.044-.011.045-.012.044-.013.044-.015.044-.017.043-.018.044-.02.043-.021.043-.023.043-.024.043-.026.043-.027.042-.029.042-.03.042-.032.042-.033.042-.034.041-.036.041-.037.041-.039.041-.04.041-.041.04-.043.04-.044.04-.045.04-.047.039-.048.039-.05.039-.051.039-.052.038-.053.038-.055.038-.055.038-.058.037-.058.037-.06.037-.06.036-.062.036-.064.036-.064.036-.066.035-.067.035-.068.035-.069.035-.07.034-.071.034-.073.033-.074.033-.15.066-.155.064-.16.063-.163.061-.168.06-.172.059-.175.057-.18.056-.183.054-.187.053-.191.051-.194.05-.198.048-.201.046-.205.045-.208.043-.211.041-.214.04-.217.038-.22.036-.223.034-.225.032-.229.031-.231.028-.233.027-.236.024-.239.023-.241.02-.242.019-.246.016-.247.015-.249.012-.251.01-.253.008-.255.005-.256.004-.258.001-.258-.001-.256-.004-.255-.005-.253-.008-.251-.01-.249-.012-.247-.015-.245-.016-.243-.019-.241-.02-.238-.023-.236-.024-.234-.027-.231-.028-.228-.031-.226-.032-.223-.034-.22-.036-.217-.038-.214-.04-.211-.041-.208-.043-.204-.045-.201-.046-.198-.048-.195-.05-.19-.051-.187-.053-.184-.054-.179-.056-.176-.057-.172-.059-.167-.06-.164-.061-.159-.063-.155-.064-.151-.066-.074-.033-.072-.033-.072-.034-.07-.034-.069-.035-.068-.035-.067-.035-.066-.035-.064-.036-.063-.036-.062-.036-.061-.036-.06-.037-.058-.037-.057-.037-.056-.038-.055-.038-.053-.038-.052-.038-.051-.039-.049-.039-.049-.039-.046-.039-.046-.04-.044-.04-.043-.04-.041-.04-.04-.041-.039-.041-.037-.041-.036-.041-.034-.041-.033-.042-.032-.042-.03-.042-.029-.042-.027-.042-.026-.043-.024-.043-.023-.043-.021-.043-.02-.043-.018-.044-.017-.043-.015-.044-.013-.044-.012-.044-.011-.045-.009-.044-.007-.045-.006-.045-.004-.045-.002-.045-.001-.045v-17l.001-.045.002-.045.004-.045.006-.045.007-.045.009-.044.011-.045.012-.044.013-.044.015-.044.017-.043.018-.044.02-.043.021-.043.023-.043.024-.043.026-.043.027-.042.029-.042.03-.042.032-.042.033-.042.034-.041.036-.041.037-.041.039-.041.04-.041.041-.04.043-.04.044-.04.046-.04.046-.039.049-.039.049-.039.051-.039.052-.038.053-.038.055-.038.056-.038.057-.037.058-.037.06-.037.061-.036.062-.036.063-.036.064-.036.066-.035.067-.035.068-.035.069-.035.07-.034.072-.034.072-.033.074-.033.151-.066.155-.064.159-.063.164-.061.167-.06.172-.059.176-.057.179-.056.184-.054.187-.053.19-.051.195-.05.198-.048.201-.046.204-.045.208-.043.211-.041.214-.04.217-.038.22-.036.223-.034.226-.032.228-.031.231-.028.234-.027.236-.024.238-.023.241-.02.243-.019.245-.016.247-.015.249-.012.251-.01.253-.008.255-.005.256-.004.258-.001.258.001zm-9.258 20.499v.01l.001.021.003.021.004.022.005.021.006.022.007.022.009.023.01.022.011.023.012.023.013.023.015.023.016.024.017.023.018.024.019.024.021.024.022.025.023.024.024.025.052.049.056.05.061.051.066.051.07.051.075.051.079.052.084.052.088.052.092.052.097.052.102.051.105.052.11.052.114.051.119.051.123.051.127.05.131.05.135.05.139.048.144.049.147.047.152.047.155.047.16.045.163.045.167.043.171.043.176.041.178.041.183.039.187.039.19.037.194.035.197.035.202.033.204.031.209.03.212.029.216.027.219.025.222.024.226.021.23.02.233.018.236.016.24.015.243.012.246.01.249.008.253.005.256.004.259.001.26-.001.257-.004.254-.005.25-.008.247-.011.244-.012.241-.014.237-.016.233-.018.231-.021.226-.021.224-.024.22-.026.216-.027.212-.028.21-.031.205-.031.202-.034.198-.034.194-.036.191-.037.187-.039.183-.04.179-.04.175-.042.172-.043.168-.044.163-.045.16-.046.155-.046.152-.047.148-.048.143-.049.139-.049.136-.05.131-.05.126-.05.123-.051.118-.052.114-.051.11-.052.106-.052.101-.052.096-.052.092-.052.088-.053.083-.051.079-.052.074-.052.07-.051.065-.051.06-.051.056-.05.051-.05.023-.024.023-.025.021-.024.02-.024.019-.024.018-.024.017-.024.015-.023.014-.024.013-.023.012-.023.01-.023.01-.022.008-.022.006-.022.006-.022.004-.022.004-.021.001-.021.001-.021v-4.127l-.077.055-.08.053-.083.054-.085.053-.087.052-.09.052-.093.051-.095.05-.097.05-.1.049-.102.049-.105.048-.106.047-.109.047-.111.046-.114.045-.115.045-.118.044-.12.043-.122.042-.124.042-.126.041-.128.04-.13.04-.132.038-.134.038-.135.037-.138.037-.139.035-.142.035-.143.034-.144.033-.147.032-.148.031-.15.03-.151.03-.153.029-.154.027-.156.027-.158.026-.159.025-.161.024-.162.023-.163.022-.165.021-.166.02-.167.019-.169.018-.169.017-.171.016-.173.015-.173.014-.175.013-.175.012-.177.011-.178.01-.179.008-.179.008-.181.006-.182.005-.182.004-.184.003-.184.002h-.37l-.184-.002-.184-.003-.182-.004-.182-.005-.181-.006-.179-.008-.179-.008-.178-.01-.176-.011-.176-.012-.175-.013-.173-.014-.172-.015-.171-.016-.17-.017-.169-.018-.167-.019-.166-.02-.165-.021-.163-.022-.162-.023-.161-.024-.159-.025-.157-.026-.156-.027-.155-.027-.153-.029-.151-.03-.15-.03-.148-.031-.146-.032-.145-.033-.143-.034-.141-.035-.14-.035-.137-.037-.136-.037-.134-.038-.132-.038-.13-.04-.128-.04-.126-.041-.124-.042-.122-.042-.12-.044-.117-.043-.116-.045-.113-.045-.112-.046-.109-.047-.106-.047-.105-.048-.102-.049-.1-.049-.097-.05-.095-.05-.093-.052-.09-.051-.087-.052-.085-.053-.083-.054-.08-.054-.077-.054v4.127zm0-5.654v.011l.001.021.003.021.004.021.005.022.006.022.007.022.009.022.01.022.011.023.012.023.013.023.015.024.016.023.017.024.018.024.019.024.021.024.022.024.023.025.024.024.052.05.056.05.061.05.066.051.07.051.075.052.079.051.084.052.088.052.092.052.097.052.102.052.105.052.11.051.114.051.119.052.123.05.127.051.131.05.135.049.139.049.144.048.147.048.152.047.155.046.16.045.163.045.167.044.171.042.176.042.178.04.183.04.187.038.19.037.194.036.197.034.202.033.204.032.209.03.212.028.216.027.219.025.222.024.226.022.23.02.233.018.236.016.24.014.243.012.246.01.249.008.253.006.256.003.259.001.26-.001.257-.003.254-.006.25-.008.247-.01.244-.012.241-.015.237-.016.233-.018.231-.02.226-.022.224-.024.22-.025.216-.027.212-.029.21-.03.205-.032.202-.033.198-.035.194-.036.191-.037.187-.039.183-.039.179-.041.175-.042.172-.043.168-.044.163-.045.16-.045.155-.047.152-.047.148-.048.143-.048.139-.05.136-.049.131-.05.126-.051.123-.051.118-.051.114-.052.11-.052.106-.052.101-.052.096-.052.092-.052.088-.052.083-.052.079-.052.074-.051.07-.052.065-.051.06-.05.056-.051.051-.049.023-.025.023-.024.021-.025.02-.024.019-.024.018-.024.017-.024.015-.023.014-.023.013-.024.012-.022.01-.023.01-.023.008-.022.006-.022.006-.022.004-.021.004-.022.001-.021.001-.021v-4.139l-.077.054-.08.054-.083.054-.085.052-.087.053-.09.051-.093.051-.095.051-.097.05-.1.049-.102.049-.105.048-.106.047-.109.047-.111.046-.114.045-.115.044-.118.044-.12.044-.122.042-.124.042-.126.041-.128.04-.13.039-.132.039-.134.038-.135.037-.138.036-.139.036-.142.035-.143.033-.144.033-.147.033-.148.031-.15.03-.151.03-.153.028-.154.028-.156.027-.158.026-.159.025-.161.024-.162.023-.163.022-.165.021-.166.02-.167.019-.169.018-.169.017-.171.016-.173.015-.173.014-.175.013-.175.012-.177.011-.178.009-.179.009-.179.007-.181.007-.182.005-.182.004-.184.003-.184.002h-.37l-.184-.002-.184-.003-.182-.004-.182-.005-.181-.007-.179-.007-.179-.009-.178-.009-.176-.011-.176-.012-.175-.013-.173-.014-.172-.015-.171-.016-.17-.017-.169-.018-.167-.019-.166-.02-.165-.021-.163-.022-.162-.023-.161-.024-.159-.025-.157-.026-.156-.027-.155-.028-.153-.028-.151-.03-.15-.03-.148-.031-.146-.033-.145-.033-.143-.033-.141-.035-.14-.036-.137-.036-.136-.037-.134-.038-.132-.039-.13-.039-.128-.04-.126-.041-.124-.042-.122-.043-.12-.043-.117-.044-.116-.044-.113-.046-.112-.046-.109-.046-.106-.047-.105-.048-.102-.049-.1-.049-.097-.05-.095-.051-.093-.051-.09-.051-.087-.053-.085-.052-.083-.054-.08-.054-.077-.054v4.139zm0-5.666v.011l.001.02.003.022.004.021.005.022.006.021.007.022.009.023.01.022.011.023.012.023.013.023.015.023.016.024.017.024.018.023.019.024.021.025.022.024.023.024.024.025.052.05.056.05.061.05.066.051.07.051.075.052.079.051.084.052.088.052.092.052.097.052.102.052.105.051.11.052.114.051.119.051.123.051.127.05.131.05.135.05.139.049.144.048.147.048.152.047.155.046.16.045.163.045.167.043.171.043.176.042.178.04.183.04.187.038.19.037.194.036.197.034.202.033.204.032.209.03.212.028.216.027.219.025.222.024.226.021.23.02.233.018.236.017.24.014.243.012.246.01.249.008.253.006.256.003.259.001.26-.001.257-.003.254-.006.25-.008.247-.01.244-.013.241-.014.237-.016.233-.018.231-.02.226-.022.224-.024.22-.025.216-.027.212-.029.21-.03.205-.032.202-.033.198-.035.194-.036.191-.037.187-.039.183-.039.179-.041.175-.042.172-.043.168-.044.163-.045.16-.045.155-.047.152-.047.148-.048.143-.049.139-.049.136-.049.131-.051.126-.05.123-.051.118-.052.114-.051.11-.052.106-.052.101-.052.096-.052.092-.052.088-.052.083-.052.079-.052.074-.052.07-.051.065-.051.06-.051.056-.05.051-.049.023-.025.023-.025.021-.024.02-.024.019-.024.018-.024.017-.024.015-.023.014-.024.013-.023.012-.023.01-.022.01-.023.008-.022.006-.022.006-.022.004-.022.004-.021.001-.021.001-.021v-4.153l-.077.054-.08.054-.083.053-.085.053-.087.053-.09.051-.093.051-.095.051-.097.05-.1.049-.102.048-.105.048-.106.048-.109.046-.111.046-.114.046-.115.044-.118.044-.12.043-.122.043-.124.042-.126.041-.128.04-.13.039-.132.039-.134.038-.135.037-.138.036-.139.036-.142.034-.143.034-.144.033-.147.032-.148.032-.15.03-.151.03-.153.028-.154.028-.156.027-.158.026-.159.024-.161.024-.162.023-.163.023-.165.021-.166.02-.167.019-.169.018-.169.017-.171.016-.173.015-.173.014-.175.013-.175.012-.177.01-.178.01-.179.009-.179.007-.181.006-.182.006-.182.004-.184.003-.184.001-.185.001-.185-.001-.184-.001-.184-.003-.182-.004-.182-.006-.181-.006-.179-.007-.179-.009-.178-.01-.176-.01-.176-.012-.175-.013-.173-.014-.172-.015-.171-.016-.17-.017-.169-.018-.167-.019-.166-.02-.165-.021-.163-.023-.162-.023-.161-.024-.159-.024-.157-.026-.156-.027-.155-.028-.153-.028-.151-.03-.15-.03-.148-.032-.146-.032-.145-.033-.143-.034-.141-.034-.14-.036-.137-.036-.136-.037-.134-.038-.132-.039-.13-.039-.128-.041-.126-.041-.124-.041-.122-.043-.12-.043-.117-.044-.116-.044-.113-.046-.112-.046-.109-.046-.106-.048-.105-.048-.102-.048-.1-.05-.097-.049-.095-.051-.093-.051-.09-.052-.087-.052-.085-.053-.083-.053-.08-.054-.077-.054v4.153zm8.74-8.179l-.257.004-.254.005-.25.008-.247.011-.244.012-.241.014-.237.016-.233.018-.231.021-.226.022-.224.023-.22.026-.216.027-.212.028-.21.031-.205.032-.202.033-.198.034-.194.036-.191.038-.187.038-.183.04-.179.041-.175.042-.172.043-.168.043-.163.045-.16.046-.155.046-.152.048-.148.048-.143.048-.139.049-.136.05-.131.05-.126.051-.123.051-.118.051-.114.052-.11.052-.106.052-.101.052-.096.052-.092.052-.088.052-.083.052-.079.052-.074.051-.07.052-.065.051-.06.05-.056.05-.051.05-.023.025-.023.024-.021.024-.02.025-.019.024-.018.024-.017.023-.015.024-.014.023-.013.023-.012.023-.01.023-.01.022-.008.022-.006.023-.006.021-.004.022-.004.021-.001.021-.001.021.001.021.001.021.004.021.004.022.006.021.006.023.008.022.01.022.01.023.012.023.013.023.014.023.015.024.017.023.018.024.019.024.02.025.021.024.023.024.023.025.051.05.056.05.06.05.065.051.07.052.074.051.079.052.083.052.088.052.092.052.096.052.101.052.106.052.11.052.114.052.118.051.123.051.126.051.131.05.136.05.139.049.143.048.148.048.152.048.155.046.16.046.163.045.168.043.172.043.175.042.179.041.183.04.187.038.191.038.194.036.198.034.202.033.205.032.21.031.212.028.216.027.22.026.224.023.226.022.231.021.233.018.237.016.241.014.244.012.247.011.25.008.254.005.257.004.26.001.26-.001.257-.004.254-.005.25-.008.247-.011.244-.012.241-.014.237-.016.233-.018.231-.021.226-.022.224-.023.22-.026.216-.027.212-.028.21-.031.205-.032.202-.033.198-.034.194-.036.191-.038.187-.038.183-.04.179-.041.175-.042.172-.043.168-.043.163-.045.16-.046.155-.046.152-.048.148-.048.143-.048.139-.049.136-.05.131-.05.126-.051.123-.051.118-.051.114-.052.11-.052.106-.052.101-.052.096-.052.092-.052.088-.052.083-.052.079-.052.074-.051.07-.052.065-.051.06-.05.056-.05.051-.05.023-.025.023-.024.021-.024.02-.025.019-.024.018-.024.017-.023.015-.024.014-.023.013-.023.012-.023.01-.023.01-.022.008-.022.006-.023.006-.021.004-.022.004-.021.001-.021.001-.021-.001-.021-.001-.021-.004-.021-.004-.022-.006-.021-.006-.023-.008-.022-.01-.022-.01-.023-.012-.023-.013-.023-.014-.023-.015-.024-.017-.023-.018-.024-.019-.024-.02-.025-.021-.024-.023-.024-.023-.025-.051-.05-.056-.05-.06-.05-.065-.051-.07-.052-.074-.051-.079-.052-.083-.052-.088-.052-.092-.052-.096-.052-.101-.052-.106-.052-.11-.052-.114-.052-.118-.051-.123-.051-.126-.051-.131-.05-.136-.05-.139-.049-.143-.048-.148-.048-.152-.048-.155-.046-.16-.046-.163-.045-.168-.043-.172-.043-.175-.042-.179-.041-.183-.04-.187-.038-.191-.038-.194-.036-.198-.034-.202-.033-.205-.032-.21-.031-.212-.028-.216-.027-.22-.026-.224-.023-.226-.022-.231-.021-.233-.018-.237-.016-.241-.014-.244-.012-.247-.011-.25-.008-.254-.005-.257-.004-.26-.001-.26.001z\"/></symbol></defs><defs><symbol id=\"flow-C-S1SfBeXxfe-1-clock\" width=\"24\" height=\"24\"><path transform=\"scale(.5)\" d=\"M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm5.848 12.459c.202.038.202.333.001.372-1.907.361-6.045 1.111-6.547 1.111-.719 0-1.301-.582-1.301-1.301 0-.512.77-5.447 1.125-7.445.034-.192.312-.181.343.014l.985 6.238 5.394 1.011z\"/></symbol></defs><defs><marker id=\"flow-C-S1SfBeXxfe-1-arrowhead\" refX=\"7.9\" refY=\"5\" markerUnits=\"userSpaceOnUse\" markerWidth=\"12\" markerHeight=\"12\" orient=\"auto-start-reverse\"><path d=\"M -1 0 L 10 5 L 0 10 z\"/></marker></defs><defs><marker id=\"flow-C-S1SfBeXxfe-1-crosshead\" markerWidth=\"15\" markerHeight=\"8\" orient=\"auto\" refX=\"4\" refY=\"4.5\"><path fill=\"none\" stroke=\"#000000\" stroke-width=\"1pt\" d=\"M 1,2 L 6,7 M 6,2 L 1,7\" style=\"stroke-dasharray: 0, 0;\"/></marker></defs><defs><marker id=\"flow-C-S1SfBeXxfe-1-filled-head\" refX=\"15.5\" refY=\"7\" markerWidth=\"20\" markerHeight=\"28\" orient=\"auto\"><path d=\"M 18,7 L9,13 L14,7 L9,1 Z\"/></marker></defs><defs><marker id=\"flow-C-S1SfBeXxfe-1-sequencenumber\" refX=\"15\" refY=\"15\" markerWidth=\"60\" markerHeight=\"40\" orient=\"auto\"><circle cx=\"15\" cy=\"15\" r=\"6\"/></marker></defs><defs><marker id=\"flow-C-S1SfBeXxfe-1-solidTopArrowHead\" refX=\"7.9\" refY=\"7.25\" markerUnits=\"userSpaceOnUse\" markerWidth=\"12\" markerHeight=\"12\" orient=\"auto-start-reverse\"><path d=\"M 0 0 L 10 8 L 0 8 z\"/></marker></defs><defs><marker id=\"flow-C-S1SfBeXxfe-1-solidBottomArrowHead\" refX=\"7.9\" refY=\"0.75\" markerUnits=\"userSpaceOnUse\" markerWidth=\"12\" markerHeight=\"12\" orient=\"auto-start-reverse\"><path d=\"M 0 0 L 10 0 L 0 8 z\"/></marker></defs><defs><marker id=\"flow-C-S1SfBeXxfe-1-stickTopArrowHead\" refX=\"7.5\" refY=\"7\" markerUnits=\"userSpaceOnUse\" markerWidth=\"12\" markerHeight=\"12\" orient=\"auto-start-reverse\"><path d=\"M 0 0 L 7 7\" stroke=\"black\" stroke-width=\"1.5\" fill=\"none\"/></marker></defs><defs><marker id=\"flow-C-S1SfBeXxfe-1-stickBottomArrowHead\" refX=\"7.5\" refY=\"0\" markerUnits=\"userSpaceOnUse\" markerWidth=\"12\" markerHeight=\"12\" orient=\"auto-start-reverse\"><path d=\"M 0 7 L 7 0\" stroke=\"black\" stroke-width=\"1.5\" fill=\"none\"/></marker></defs><defs><filter id=\"flow-C-S1SfBeXxfe-1-drop-shadow\" height=\"130%\" width=\"130%\"><feDropShadow dx=\"4\" dy=\"4\" stdDeviation=\"0\" flood-opacity=\"0.06\" flood-color=\"#FFFFFF\"/></filter></defs><g data-et=\"note\" data-id=\"i13\"><rect x=\"48\" y=\"786\" fill=\"#EDF2AE\" stroke=\"#666\" width=\"309\" height=\"71\" class=\"note\" data-look=\"neo\"/><text x=\"203\" y=\"791\" text-anchor=\"middle\" dominant-baseline=\"middle\" alignment-baseline=\"middle\" class=\"noteText\" dy=\"1em\" style=\"font-size: 16px; font-weight: 400;\"><tspan x=\"203\">未選取 →</tspan></text><text x=\"203\" y=\"808\" text-anchor=\"middle\" dominant-baseline=\"middle\" alignment-baseline=\"middle\" class=\"noteText\" dy=\"1em\" style=\"font-size: 16px; font-weight: 400;\"><tspan x=\"203\">Alert「請選擇欲複製的職缺！」，停留在</tspan></text><text x=\"203\" y=\"825\" text-anchor=\"middle\" dominant-baseline=\"middle\" alignment-baseline=\"middle\" class=\"noteText\" dy=\"1em\" style=\"font-size: 16px; font-weight: 400;\"><tspan x=\"203\">Modal</tspan></text></g><g data-et=\"control-structure\" data-id=\"i17\"><line x1=\"36\" y1=\"309\" x2=\"591\" y2=\"309\" class=\"loopLine\"/><line x1=\"591\" y1=\"309\" x2=\"591\" y2=\"1030\" class=\"loopLine\"/><line x1=\"36\" y1=\"1030\" x2=\"591\" y2=\"1030\" class=\"loopLine\"/><line x1=\"36\" y1=\"309\" x2=\"36\" y2=\"1030\" class=\"loopLine\"/><line x1=\"36\" y1=\"633\" x2=\"591\" y2=\"633\" class=\"loopLine\" style=\"stroke-dasharray: 3, 3;\"/><line x1=\"36\" y1=\"940\" x2=\"591\" y2=\"940\" class=\"loopLine\" style=\"stroke-dasharray: 3, 3;\"/><polygon points=\"36,309 86,309 86,337 77.6,344 36,344\" class=\"labelBox\"/><text x=\"61\" y=\"331\" text-anchor=\"middle\" dominant-baseline=\"middle\" alignment-baseline=\"middle\" class=\"labelText\" style=\"font-size: 16px; font-weight: 400;\">alt</text><text x=\"338.5\" y=\"333\" text-anchor=\"middle\" class=\"loopText\" style=\"font-size: 16px; font-weight: 400;\"><tspan x=\"338.5\">[快速新增職缺]</tspan></text><text x=\"313.5\" y=\"657\" text-anchor=\"middle\" class=\"sectionTitle\" style=\"font-size: 16px; font-weight: 400;\">[複製職缺]</text><text x=\"313.5\" y=\"964\" text-anchor=\"middle\" class=\"sectionTitle\" style=\"font-size: 16px; font-weight: 400;\">[全新職缺]</text></g><g data-et=\"note\" data-id=\"i20\"><rect x=\"48\" y=\"1185\" fill=\"#EDF2AE\" stroke=\"#666\" width=\"309\" height=\"88\" class=\"note\" data-look=\"neo\"/><text x=\"203\" y=\"1190\" text-anchor=\"middle\" dominant-baseline=\"middle\" alignment-baseline=\"middle\" class=\"noteText\" dy=\"1em\" style=\"font-size: 16px; font-weight: 400;\"><tspan x=\"203\">立即上工 →</tspan></text><text x=\"203\" y=\"1207\" text-anchor=\"middle\" dominant-baseline=\"middle\" alignment-baseline=\"middle\" class=\"noteText\" dy=\"1em\" style=\"font-size: 16px; font-weight: 400;\"><tspan x=\"203\">特殊性質鎖定一般職務、改用指定日期／-</tspan></text><text x=\"203\" y=\"1224\" text-anchor=\"middle\" dominant-baseline=\"middle\" alignment-baseline=\"middle\" class=\"noteText\" dy=\"1em\" style=\"font-size: 16px; font-weight: 400;\"><tspan x=\"203\">期間；承攬制 →</tspan></text><text x=\"203\" y=\"1241\" text-anchor=\"middle\" dominant-baseline=\"middle\" alignment-baseline=\"middle\" class=\"noteText\" dy=\"1em\" style=\"font-size: 16px; font-weight: 400;\"><tspan x=\"203\">工作時間固定「與公司議定」</tspan></text></g><g data-et=\"control-structure\" data-id=\"i31\"><line x1=\"70\" y1=\"1285\" x2=\"591\" y2=\"1285\" class=\"loopLine\"/><line x1=\"591\" y1=\"1285\" x2=\"591\" y2=\"1785\" class=\"loopLine\"/><line x1=\"70\" y1=\"1785\" x2=\"591\" y2=\"1785\" class=\"loopLine\"/><line x1=\"70\" y1=\"1285\" x2=\"70\" y2=\"1785\" class=\"loopLine\"/><polygon points=\"70,1285 120,1285 120,1313 111.6,1320 70,1320\" class=\"labelBox\"/><text x=\"95\" y=\"1307\" text-anchor=\"middle\" dominant-baseline=\"middle\" alignment-baseline=\"middle\" class=\"labelText\" style=\"font-size: 16px; font-weight: 400;\">opt</text><text x=\"355.5\" y=\"1309\" text-anchor=\"middle\" class=\"loopText\" style=\"font-size: 16px; font-weight: 400;\"><tspan x=\"355.5\">[廠商使用 AI 功能]</tspan></text></g><g data-et=\"note\" data-id=\"i33\"><rect x=\"48\" y=\"1863\" fill=\"#EDF2AE\" stroke=\"#666\" width=\"309\" height=\"37\" class=\"note\" data-look=\"neo\"/><text x=\"203\" y=\"1868\" text-anchor=\"middle\" dominant-baseline=\"middle\" alignment-baseline=\"middle\" class=\"noteText\" dy=\"1em\" style=\"font-size: 16px; font-weight: 400;\"><tspan x=\"203\">比對風險字庫（正則）</tspan></text></g><g data-et=\"control-structure\" data-id=\"i38\"><line x1=\"70\" y1=\"1912\" x2=\"335\" y2=\"1912\" class=\"loopLine\"/><line x1=\"335\" y1=\"1912\" x2=\"335\" y2=\"2110\" class=\"loopLine\"/><line x1=\"70\" y1=\"2110\" x2=\"335\" y2=\"2110\" class=\"loopLine\"/><line x1=\"70\" y1=\"1912\" x2=\"70\" y2=\"2110\" class=\"loopLine\"/><line x1=\"70\" y1=\"2020\" x2=\"335\" y2=\"2020\" class=\"loopLine\" style=\"stroke-dasharray: 3, 3;\"/><polygon points=\"70,1912 120,1912 120,1940 111.6,1947 70,1947\" class=\"labelBox\"/><text x=\"95\" y=\"1934\" text-anchor=\"middle\" dominant-baseline=\"middle\" alignment-baseline=\"middle\" class=\"labelText\" style=\"font-size: 16px; font-weight: 400;\">alt</text><text x=\"227.5\" y=\"1936\" text-anchor=\"middle\" class=\"loopText\" style=\"font-size: 16px; font-weight: 400;\"><tspan x=\"227.5\">[命中高風險字眼]</tspan></text><text x=\"202.5\" y=\"2044\" text-anchor=\"middle\" class=\"sectionTitle\" style=\"font-size: 16px; font-weight: 400;\">[低／中風險或未命中]</text></g><g data-et=\"control-structure\" data-id=\"i39\"><line x1=\"36\" y1=\"1797\" x2=\"369\" y2=\"1797\" class=\"loopLine\"/><line x1=\"369\" y1=\"1797\" x2=\"369\" y2=\"2122\" class=\"loopLine\"/><line x1=\"36\" y1=\"2122\" x2=\"369\" y2=\"2122\" class=\"loopLine\"/><line x1=\"36\" y1=\"1797\" x2=\"36\" y2=\"2122\" class=\"loopLine\"/><polygon points=\"36,1797 86,1797 86,1825 77.6,1832 36,1832\" class=\"labelBox\"/><text x=\"61\" y=\"1819\" text-anchor=\"middle\" dominant-baseline=\"middle\" alignment-baseline=\"middle\" class=\"labelText\" style=\"font-size: 16px; font-weight: 400;\">loop</text><text x=\"227.5\" y=\"1821\" text-anchor=\"middle\" class=\"loopText\" style=\"font-size: 16px; font-weight: 400;\"><tspan x=\"227.5\">[廠商編輯文字欄位時即時-</tspan></text><text x=\"227.5\" y=\"1838\" text-anchor=\"middle\" class=\"loopText\" style=\"font-size: 16px; font-weight: 400;\"><tspan x=\"227.5\">檢查]</tspan></text></g><g data-et=\"note\" data-id=\"i41\"><rect x=\"48\" y=\"2180\" fill=\"#EDF2AE\" stroke=\"#666\" width=\"309\" height=\"37\" class=\"note\" data-look=\"neo\"/><text x=\"203\" y=\"2185\" text-anchor=\"middle\" dominant-baseline=\"middle\" alignment-baseline=\"middle\" class=\"noteText\" dy=\"1em\" style=\"font-size: 16px; font-weight: 400;\"><tspan x=\"203\">檢查必填欄位</tspan></text></g><g data-et=\"note\" data-id=\"i47\"><rect x=\"48\" y=\"2505\" fill=\"#EDF2AE\" stroke=\"#666\" width=\"309\" height=\"37\" class=\"note\" data-look=\"neo\"/><text x=\"203\" y=\"2510\" text-anchor=\"middle\" dominant-baseline=\"middle\" alignment-baseline=\"middle\" class=\"noteText\" dy=\"1em\" style=\"font-size: 16px; font-weight: 400;\"><tspan x=\"203\">儲存職缺，並依選擇寄送職缺確認信</tspan></text></g><g data-et=\"note\" data-id=\"i48\"><rect x=\"48\" y=\"2554\" fill=\"#EDF2AE\" stroke=\"#666\" width=\"309\" height=\"54\" class=\"note\" data-look=\"neo\"/><text x=\"203\" y=\"2559\" text-anchor=\"middle\" dominant-baseline=\"middle\" alignment-baseline=\"middle\" class=\"noteText\" dy=\"1em\" style=\"font-size: 16px; font-weight: 400;\"><tspan x=\"203\">送審判斷（風險字等級＋廠商需審核旗標-</tspan></text><text x=\"203\" y=\"2576\" text-anchor=\"middle\" dominant-baseline=\"middle\" alignment-baseline=\"middle\" class=\"noteText\" dy=\"1em\" style=\"font-size: 16px; font-weight: 400;\"><tspan x=\"203\">）</tspan></text></g><g data-et=\"note\" data-id=\"i50\"><rect x=\"48\" y=\"2672\" fill=\"#EDF2AE\" stroke=\"#666\" width=\"309\" height=\"54\" class=\"note\" data-look=\"neo\"/><text x=\"203\" y=\"2677\" text-anchor=\"middle\" dominant-baseline=\"middle\" alignment-baseline=\"middle\" class=\"noteText\" dy=\"1em\" style=\"font-size: 16px; font-weight: 400;\"><tspan x=\"203\">職缺審核 mConfirmed =</tspan></text><text x=\"203\" y=\"2694\" text-anchor=\"middle\" dominant-baseline=\"middle\" alignment-baseline=\"middle\" class=\"noteText\" dy=\"1em\" style=\"font-size: 16px; font-weight: 400;\"><tspan x=\"203\">0，職缺狀態轉為「審核中」</tspan></text></g><g data-et=\"note\" data-id=\"i52\"><rect x=\"751\" y=\"2784\" fill=\"#EDF2AE\" stroke=\"#666\" width=\"150\" height=\"89\" class=\"note\" data-look=\"neo\"/><text x=\"826\" y=\"2789\" text-anchor=\"middle\" dominant-baseline=\"middle\" alignment-baseline=\"middle\" class=\"noteText\" dy=\"1em\" style=\"font-size: 16px; font-weight: 400;\"><tspan x=\"826\">客服系統 →</tspan></text><text x=\"826\" y=\"2807\" text-anchor=\"middle\" dominant-baseline=\"middle\" alignment-baseline=\"middle\" class=\"noteText\" dy=\"1em\" style=\"font-size: 16px; font-weight: 400;\"><tspan x=\"826\">廠商頁 →</tspan></text><text x=\"826\" y=\"2824\" text-anchor=\"middle\" dominant-baseline=\"middle\" alignment-baseline=\"middle\" class=\"noteText\" dy=\"1em\" style=\"font-size: 16px; font-weight: 400;\"><tspan x=\"826\">審核管理 →</tspan></text><text x=\"826\" y=\"2841\" text-anchor=\"middle\" dominant-baseline=\"middle\" alignment-baseline=\"middle\" class=\"noteText\" dy=\"1em\" style=\"font-size: 16px; font-weight: 400;\"><tspan x=\"826\">職缺審核</tspan></text></g><g data-et=\"control-structure\" data-id=\"i59\"><line x1=\"70\" y1=\"2885\" x2=\"839\" y2=\"2885\" class=\"loopLine\"/><line x1=\"839\" y1=\"2885\" x2=\"839\" y2=\"3207\" class=\"loopLine\"/><line x1=\"70\" y1=\"3207\" x2=\"839\" y2=\"3207\" class=\"loopLine\"/><line x1=\"70\" y1=\"2885\" x2=\"70\" y2=\"3207\" class=\"loopLine\"/><line x1=\"70\" y1=\"3054\" x2=\"839\" y2=\"3054\" class=\"loopLine\" style=\"stroke-dasharray: 3, 3;\"/><polygon points=\"70,2885 120,2885 120,2913 111.6,2920 70,2920\" class=\"labelBox\"/><text x=\"95\" y=\"2907\" text-anchor=\"middle\" dominant-baseline=\"middle\" alignment-baseline=\"middle\" class=\"labelText\" style=\"font-size: 16px; font-weight: 400;\">alt</text><text x=\"479.5\" y=\"2909\" text-anchor=\"middle\" class=\"loopText\" style=\"font-size: 16px; font-weight: 400;\"><tspan x=\"479.5\">[審核通過]</tspan></text><text x=\"454.5\" y=\"3078\" text-anchor=\"middle\" class=\"sectionTitle\" style=\"font-size: 16px; font-weight: 400;\">[審核不通過]</text></g><g data-et=\"note\" data-id=\"i61\"><rect x=\"48\" y=\"3271\" fill=\"#EDF2AE\" stroke=\"#666\" width=\"309\" height=\"37\" class=\"note\" data-look=\"neo\"/><text x=\"203\" y=\"3276\" text-anchor=\"middle\" dominant-baseline=\"middle\" alignment-baseline=\"middle\" class=\"noteText\" dy=\"1em\" style=\"font-size: 16px; font-weight: 400;\"><tspan x=\"203\">直接審核通過（低風險仍寄送通知信）</tspan></text></g><g data-et=\"control-structure\" data-id=\"i62\"><line x1=\"36\" y1=\"2620\" x2=\"913\" y2=\"2620\" class=\"loopLine\"/><line x1=\"913\" y1=\"2620\" x2=\"913\" y2=\"3320\" class=\"loopLine\"/><line x1=\"36\" y1=\"3320\" x2=\"913\" y2=\"3320\" class=\"loopLine\"/><line x1=\"36\" y1=\"2620\" x2=\"36\" y2=\"3320\" class=\"loopLine\"/><line x1=\"36\" y1=\"3227\" x2=\"913\" y2=\"3227\" class=\"loopLine\" style=\"stroke-dasharray: 3, 3;\"/><polygon points=\"36,2620 86,2620 86,2648 77.6,2655 36,2655\" class=\"labelBox\"/><text x=\"61\" y=\"2642\" text-anchor=\"middle\" dominant-baseline=\"middle\" alignment-baseline=\"middle\" class=\"labelText\" style=\"font-size: 16px; font-weight: 400;\">alt</text><text x=\"499.5\" y=\"2644\" text-anchor=\"middle\" class=\"loopText\" style=\"font-size: 16px; font-weight: 400;\"><tspan x=\"499.5\">[命中中風險字眼，或廠商為需審核（confirmed&amp;16384）]</tspan></text><text x=\"474.5\" y=\"3251\" text-anchor=\"middle\" class=\"sectionTitle\" style=\"font-size: 16px; font-weight: 400;\">[未命中或僅低風險、或立即上工職缺]</text></g><g data-et=\"note\" data-id=\"i63\"><rect x=\"48\" y=\"3332\" fill=\"#EDF2AE\" stroke=\"#666\" width=\"309\" height=\"37\" class=\"note\" data-look=\"neo\"/><text x=\"203\" y=\"3337\" text-anchor=\"middle\" dominant-baseline=\"middle\" alignment-baseline=\"middle\" class=\"noteText\" dy=\"1em\" style=\"font-size: 16px; font-weight: 400;\"><tspan x=\"203\">判斷是否對求職者曝光</tspan></text></g><g data-et=\"note\" data-id=\"i64\"><rect x=\"287\" y=\"3381\" fill=\"#EDF2AE\" stroke=\"#666\" width=\"1090\" height=\"54\" class=\"note\" data-look=\"neo\"/><text x=\"832\" y=\"3386\" text-anchor=\"middle\" dominant-baseline=\"middle\" alignment-baseline=\"middle\" class=\"noteText\" dy=\"1em\" style=\"font-size: 16px; font-weight: 400;\"><tspan x=\"832\">廠商 oStatus：1 VIP／4 免費VIP／5 免費曝光 → 可刊登；0 普通會員／2 過期／3 關權 → 不曝光；6 準VIP → 待確認</tspan></text><text x=\"832\" y=\"3403\" text-anchor=\"middle\" dominant-baseline=\"middle\" alignment-baseline=\"middle\" class=\"noteText\" dy=\"1em\" style=\"font-size: 16px; font-weight: 400;\"><tspan x=\"832\">職缺條件：職缺開啟中、審核通過、在有效日期內</tspan></text></g><g data-et=\"control-structure\" data-id=\"i69\"><line x1=\"70\" y1=\"3447\" x2=\"1355\" y2=\"3447\" class=\"loopLine\"/><line x1=\"1355\" y1=\"3447\" x2=\"1355\" y2=\"3643\" class=\"loopLine\"/><line x1=\"70\" y1=\"3643\" x2=\"1355\" y2=\"3643\" class=\"loopLine\"/><line x1=\"70\" y1=\"3447\" x2=\"70\" y2=\"3643\" class=\"loopLine\"/><line x1=\"70\" y1=\"3553\" x2=\"1355\" y2=\"3553\" class=\"loopLine\" style=\"stroke-dasharray: 3, 3;\"/><polygon points=\"70,3447 120,3447 120,3475 111.6,3482 70,3482\" class=\"labelBox\"/><text x=\"95\" y=\"3469\" text-anchor=\"middle\" dominant-baseline=\"middle\" alignment-baseline=\"middle\" class=\"labelText\" style=\"font-size: 16px; font-weight: 400;\">alt</text><text x=\"737.5\" y=\"3471\" text-anchor=\"middle\" class=\"loopText\" style=\"font-size: 16px; font-weight: 400;\"><tspan x=\"737.5\">[符合曝光條件]</tspan></text><text x=\"712.5\" y=\"3577\" text-anchor=\"middle\" class=\"sectionTitle\" style=\"font-size: 16px; font-weight: 400;\">[不符合]</text></g><g data-et=\"control-structure\" data-id=\"i70\"><line x1=\"24\" y1=\"2229\" x2=\"1389\" y2=\"2229\" class=\"loopLine\"/><line x1=\"1389\" y1=\"2229\" x2=\"1389\" y2=\"3655\" class=\"loopLine\"/><line x1=\"24\" y1=\"3655\" x2=\"1389\" y2=\"3655\" class=\"loopLine\"/><line x1=\"24\" y1=\"2229\" x2=\"24\" y2=\"3655\" class=\"loopLine\"/><line x1=\"24\" y1=\"2335\" x2=\"1389\" y2=\"2335\" class=\"loopLine\" style=\"stroke-dasharray: 3, 3;\"/><polygon points=\"24,2229 74,2229 74,2257 65.6,2264 24,2264\" class=\"labelBox\"/><text x=\"49\" y=\"2251\" text-anchor=\"middle\" dominant-baseline=\"middle\" alignment-baseline=\"middle\" class=\"labelText\" style=\"font-size: 16px; font-weight: 400;\">alt</text><text x=\"731.5\" y=\"2253\" text-anchor=\"middle\" class=\"loopText\" style=\"font-size: 16px; font-weight: 400;\"><tspan x=\"731.5\">[必填欄位未完成]</tspan></text><text x=\"706.5\" y=\"2359\" text-anchor=\"middle\" class=\"sectionTitle\" style=\"font-size: 16px; font-weight: 400;\">[必填欄位完成]</text></g><g class=\"actor-man actor-top\" name=\"Emp\" data-et=\"participant\" data-type=\"actor\" data-id=\"Emp\" style=\"stroke: rgb(144, 164, 174);\"><line id=\"actor-man-torso0\" x1=\"83\" y1=\"85.3076923076923\" x2=\"83\" y2=\"98.84615384615384\"/><line id=\"actor-man-arms0\" x1=\"70.81538461538462\" y1=\"90.72307692307692\" x2=\"95.18461538461538\" y2=\"90.72307692307692\"/><line x1=\"70.81538461538462\" y1=\"109\" x2=\"83\" y2=\"98.84615384615384\"/><line x1=\"83\" y1=\"98.84615384615384\" x2=\"93.83076923076923\" y2=\"109\"/><circle cx=\"83\" cy=\"75.15384615384616\" r=\"10.153846153846155\" width=\"150\" height=\"109\"/><text x=\"83\" y=\"124\" dominant-baseline=\"central\" alignment-baseline=\"central\" class=\"actor actor-man\" style=\"text-anchor: middle; font-size: 16px; font-weight: bold;\"><tspan x=\"83\" dy=\"0\">求才廠商</tspan></text></g><g class=\"actor-man actor-top\" name=\"CS\" data-et=\"participant\" data-type=\"actor\" data-id=\"CS\" style=\"stroke: rgb(144, 164, 174);\"><line id=\"actor-man-torso3\" x1=\"826\" y1=\"85.3076923076923\" x2=\"826\" y2=\"98.84615384615384\"/><line id=\"actor-man-arms3\" x1=\"813.8153846153846\" y1=\"90.72307692307692\" x2=\"838.1846153846154\" y2=\"90.72307692307692\"/><line x1=\"813.8153846153846\" y1=\"109\" x2=\"826\" y2=\"98.84615384615384\"/><line x1=\"826\" y1=\"98.84615384615384\" x2=\"836.8307692307692\" y2=\"109\"/><circle cx=\"826\" cy=\"75.15384615384616\" r=\"10.153846153846155\" width=\"150\" height=\"109\"/><text x=\"826\" y=\"124\" dominant-baseline=\"central\" alignment-baseline=\"central\" class=\"actor actor-man\" style=\"text-anchor: middle; font-size: 16px; font-weight: bold;\"><tspan x=\"826\" dy=\"0\">客服人員</tspan></text></g><text x=\"200\" y=\"155\" text-anchor=\"middle\" dominant-baseline=\"middle\" alignment-baseline=\"middle\" class=\"messageText\" dy=\"1em\" style=\"font-size: 16px; font-weight: 400;\">進入「新增職缺」頁（PublishOpenin-</text><text x=\"200\" y=\"172\" text-anchor=\"middle\" dominant-baseline=\"middle\" alignment-baseline=\"middle\" class=\"messageText\" dy=\"1em\" style=\"font-size: 16px; font-weight: 400;\">g.aspx）</text><line x1=\"90\" y1=\"205\" x2=\"315\" y2=\"205\" class=\"messageLine0\" data-et=\"message\" data-id=\"i1\" data-from=\"Emp\" data-to=\"RB\" stroke-width=\"2\" stroke=\"none\" marker-end=\"url(#flow-C-S1SfBeXxfe-1-arrowhead)\" style=\"fill: none;\"/><line x1=\"83\" y1=\"205\" x2=\"83\" y2=\"205\" stroke-width=\"0\" marker-start=\"url(#flow-C-S1SfBeXxfe-1-sequencenumber)\"/><text x=\"83\" y=\"209\" font-family=\"sans-serif\" font-size=\"12px\" text-anchor=\"middle\" class=\"sequenceNumber\">1</text><text x=\"206\" y=\"221\" text-anchor=\"middle\" dominant-baseline=\"middle\" alignment-baseline=\"middle\" class=\"messageText\" dy=\"1em\" style=\"font-size: 16px; font-weight: 400;\">顯示三張新增方式卡片</text><line x1=\"327\" y1=\"251\" x2=\"90\" y2=\"251\" class=\"messageLine1\" data-et=\"message\" data-id=\"i2\" data-from=\"RB\" data-to=\"Emp\" stroke-width=\"2\" stroke=\"none\" marker-end=\"url(#flow-C-S1SfBeXxfe-1-arrowhead)\" style=\"stroke-dasharray: 3, 3; fill: none;\"/><line x1=\"322\" y1=\"251\" x2=\"322\" y2=\"251\" stroke-width=\"0\" marker-start=\"url(#flow-C-S1SfBeXxfe-1-sequencenumber)\"/><text x=\"322\" y=\"255\" font-family=\"sans-serif\" font-size=\"12px\" text-anchor=\"middle\" class=\"sequenceNumber\">2</text><text x=\"200\" y=\"267\" text-anchor=\"middle\" dominant-baseline=\"middle\" alignment-baseline=\"middle\" class=\"messageText\" dy=\"1em\" style=\"font-size: 16px; font-weight: 400;\">選擇新增方式並點【建立】</text><line x1=\"90\" y1=\"297\" x2=\"315\" y2=\"297\" class=\"messageLine0\" data-et=\"message\" data-id=\"i3\" data-from=\"Emp\" data-to=\"RB\" stroke-width=\"2\" stroke=\"none\" marker-end=\"url(#flow-C-S1SfBeXxfe-1-arrowhead)\" style=\"fill: none;\"/><line x1=\"83\" y1=\"297\" x2=\"83\" y2=\"297\" stroke-width=\"0\" marker-start=\"url(#flow-C-S1SfBeXxfe-1-sequencenumber)\"/><text x=\"83\" y=\"301\" font-family=\"sans-serif\" font-size=\"12px\" text-anchor=\"middle\" class=\"sequenceNumber\">3</text><text x=\"206\" y=\"365\" text-anchor=\"middle\" dominant-baseline=\"middle\" alignment-baseline=\"middle\" class=\"messageText\" dy=\"1em\" style=\"font-size: 16px; font-weight: 400;\">開「快速新增職缺」Modal</text><line x1=\"327\" y1=\"395\" x2=\"90\" y2=\"395\" class=\"messageLine1\" data-et=\"message\" data-id=\"i5\" data-from=\"RB\" data-to=\"Emp\" stroke-width=\"2\" stroke=\"none\" marker-end=\"url(#flow-C-S1SfBeXxfe-1-arrowhead)\" style=\"stroke-dasharray: 3, 3; fill: none;\"/><line x1=\"322\" y1=\"395\" x2=\"322\" y2=\"395\" stroke-width=\"0\" marker-start=\"url(#flow-C-S1SfBeXxfe-1-sequencenumber)\"/><text x=\"322\" y=\"399\" font-family=\"sans-serif\" font-size=\"12px\" text-anchor=\"middle\" class=\"sequenceNumber\">4</text><text x=\"200\" y=\"411\" text-anchor=\"middle\" dominant-baseline=\"middle\" alignment-baseline=\"middle\" class=\"messageText\" dy=\"1em\" style=\"font-size: 16px; font-weight: 400;\">輸入職缺名稱（2～100</text><text x=\"200\" y=\"428\" text-anchor=\"middle\" dominant-baseline=\"middle\" alignment-baseline=\"middle\" class=\"messageText\" dy=\"1em\" style=\"font-size: 16px; font-weight: 400;\">字）並按【確定】</text><line x1=\"90\" y1=\"458\" x2=\"315\" y2=\"458\" class=\"messageLine0\" data-et=\"message\" data-id=\"i6\" data-from=\"Emp\" data-to=\"RB\" stroke-width=\"2\" stroke=\"none\" marker-end=\"url(#flow-C-S1SfBeXxfe-1-arrowhead)\" style=\"fill: none;\"/><line x1=\"83\" y1=\"458\" x2=\"83\" y2=\"458\" stroke-width=\"0\" marker-start=\"url(#flow-C-S1SfBeXxfe-1-sequencenumber)\"/><text x=\"83\" y=\"462\" font-family=\"sans-serif\" font-size=\"12px\" text-anchor=\"middle\" class=\"sequenceNumber\">5</text><text x=\"447\" y=\"474\" text-anchor=\"middle\" dominant-baseline=\"middle\" alignment-baseline=\"middle\" class=\"messageText\" dy=\"1em\" style=\"font-size: 16px; font-weight: 400;\">以職缺名稱比對推薦職務類別</text><line x1=\"329\" y1=\"504\" x2=\"571\" y2=\"504\" class=\"messageLine0\" data-et=\"message\" data-id=\"i7\" data-from=\"RB\" data-to=\"AI\" stroke-width=\"2\" stroke=\"none\" marker-end=\"url(#flow-C-S1SfBeXxfe-1-arrowhead)\" style=\"fill: none;\"/><line x1=\"322\" y1=\"504\" x2=\"322\" y2=\"504\" stroke-width=\"0\" marker-start=\"url(#flow-C-S1SfBeXxfe-1-sequencenumber)\"/><text x=\"322\" y=\"508\" font-family=\"sans-serif\" font-size=\"12px\" text-anchor=\"middle\" class=\"sequenceNumber\">6</text><text x=\"453\" y=\"520\" text-anchor=\"middle\" dominant-baseline=\"middle\" alignment-baseline=\"middle\" class=\"messageText\" dy=\"1em\" style=\"font-size: 16px; font-weight: 400;\">回傳推薦職類</text><line x1=\"583\" y1=\"550\" x2=\"329\" y2=\"550\" class=\"messageLine1\" data-et=\"message\" data-id=\"i8\" data-from=\"AI\" data-to=\"RB\" stroke-width=\"2\" stroke=\"none\" marker-end=\"url(#flow-C-S1SfBeXxfe-1-arrowhead)\" style=\"stroke-dasharray: 3, 3; fill: none;\"/><line x1=\"578\" y1=\"550\" x2=\"578\" y2=\"550\" stroke-width=\"0\" marker-start=\"url(#flow-C-S1SfBeXxfe-1-sequencenumber)\"/><text x=\"578\" y=\"554\" font-family=\"sans-serif\" font-size=\"12px\" text-anchor=\"middle\" class=\"sequenceNumber\">7</text><text x=\"206\" y=\"566\" text-anchor=\"middle\" dominant-baseline=\"middle\" alignment-baseline=\"middle\" class=\"messageText\" dy=\"1em\" style=\"font-size: 16px; font-weight: 400;\">導向職缺內頁，帶入職缺名稱＋推薦-</text><text x=\"206\" y=\"583\" text-anchor=\"middle\" dominant-baseline=\"middle\" alignment-baseline=\"middle\" class=\"messageText\" dy=\"1em\" style=\"font-size: 16px; font-weight: 400;\">職務類別</text><line x1=\"327\" y1=\"613\" x2=\"90\" y2=\"613\" class=\"messageLine1\" data-et=\"message\" data-id=\"i9\" data-from=\"RB\" data-to=\"Emp\" stroke-width=\"2\" stroke=\"none\" marker-end=\"url(#flow-C-S1SfBeXxfe-1-arrowhead)\" style=\"stroke-dasharray: 3, 3; fill: none;\"/><line x1=\"322\" y1=\"613\" x2=\"322\" y2=\"613\" stroke-width=\"0\" marker-start=\"url(#flow-C-S1SfBeXxfe-1-sequencenumber)\"/><text x=\"322\" y=\"617\" font-family=\"sans-serif\" font-size=\"12px\" text-anchor=\"middle\" class=\"sequenceNumber\">8</text><text x=\"206\" y=\"681\" text-anchor=\"middle\" dominant-baseline=\"middle\" alignment-baseline=\"middle\" class=\"messageText\" dy=\"1em\" style=\"font-size: 16px; font-weight: 400;\">開「職缺列表」Modal（狀態／工作地-</text><text x=\"206\" y=\"698\" text-anchor=\"middle\" dominant-baseline=\"middle\" alignment-baseline=\"middle\" class=\"messageText\" dy=\"1em\" style=\"font-size: 16px; font-weight: 400;\">／關鍵字／屬性頁籤）</text><line x1=\"327\" y1=\"728\" x2=\"90\" y2=\"728\" class=\"messageLine1\" data-et=\"message\" data-id=\"i11\" data-from=\"RB\" data-to=\"Emp\" stroke-width=\"2\" stroke=\"none\" marker-end=\"url(#flow-C-S1SfBeXxfe-1-arrowhead)\" style=\"stroke-dasharray: 3, 3; fill: none;\"/><line x1=\"322\" y1=\"728\" x2=\"322\" y2=\"728\" stroke-width=\"0\" marker-start=\"url(#flow-C-S1SfBeXxfe-1-sequencenumber)\"/><text x=\"322\" y=\"732\" font-family=\"sans-serif\" font-size=\"12px\" text-anchor=\"middle\" class=\"sequenceNumber\">9</text><text x=\"200\" y=\"744\" text-anchor=\"middle\" dominant-baseline=\"middle\" alignment-baseline=\"middle\" class=\"messageText\" dy=\"1em\" style=\"font-size: 16px; font-weight: 400;\">單選既有職缺並按【建立】</text><line x1=\"90\" y1=\"774\" x2=\"315\" y2=\"774\" class=\"messageLine0\" data-et=\"message\" data-id=\"i12\" data-from=\"Emp\" data-to=\"RB\" stroke-width=\"2\" stroke=\"none\" marker-end=\"url(#flow-C-S1SfBeXxfe-1-arrowhead)\" style=\"fill: none;\"/><line x1=\"83\" y1=\"774\" x2=\"83\" y2=\"774\" stroke-width=\"0\" marker-start=\"url(#flow-C-S1SfBeXxfe-1-sequencenumber)\"/><text x=\"83\" y=\"778\" font-family=\"sans-serif\" font-size=\"12px\" text-anchor=\"middle\" class=\"sequenceNumber\">10</text><text x=\"206\" y=\"873\" text-anchor=\"middle\" dominant-baseline=\"middle\" alignment-baseline=\"middle\" class=\"messageText\" dy=\"1em\" style=\"font-size: 16px; font-weight: 400;\">導向職缺內頁，完整帶入被複製職缺-</text><text x=\"206\" y=\"890\" text-anchor=\"middle\" dominant-baseline=\"middle\" alignment-baseline=\"middle\" class=\"messageText\" dy=\"1em\" style=\"font-size: 16px; font-weight: 400;\">資料（含應徵問答）</text><line x1=\"327\" y1=\"920\" x2=\"90\" y2=\"920\" class=\"messageLine1\" data-et=\"message\" data-id=\"i14\" data-from=\"RB\" data-to=\"Emp\" stroke-width=\"2\" stroke=\"none\" marker-end=\"url(#flow-C-S1SfBeXxfe-1-arrowhead)\" style=\"stroke-dasharray: 3, 3; fill: none;\"/><line x1=\"322\" y1=\"920\" x2=\"322\" y2=\"920\" stroke-width=\"0\" marker-start=\"url(#flow-C-S1SfBeXxfe-1-sequencenumber)\"/><text x=\"322\" y=\"924\" font-family=\"sans-serif\" font-size=\"12px\" text-anchor=\"middle\" class=\"sequenceNumber\">11</text><text x=\"206\" y=\"988\" text-anchor=\"middle\" dominant-baseline=\"middle\" alignment-baseline=\"middle\" class=\"messageText\" dy=\"1em\" style=\"font-size: 16px; font-weight: 400;\">不開 Modal，直接導向空白職缺內頁</text><line x1=\"327\" y1=\"1018\" x2=\"90\" y2=\"1018\" class=\"messageLine1\" data-et=\"message\" data-id=\"i16\" data-from=\"RB\" data-to=\"Emp\" stroke-width=\"2\" stroke=\"none\" marker-end=\"url(#flow-C-S1SfBeXxfe-1-arrowhead)\" style=\"stroke-dasharray: 3, 3; fill: none;\"/><line x1=\"322\" y1=\"1018\" x2=\"322\" y2=\"1018\" stroke-width=\"0\" marker-start=\"url(#flow-C-S1SfBeXxfe-1-sequencenumber)\"/><text x=\"322\" y=\"1022\" font-family=\"sans-serif\" font-size=\"12px\" text-anchor=\"middle\" class=\"sequenceNumber\">12</text><text x=\"200\" y=\"1046\" text-anchor=\"middle\" dominant-baseline=\"middle\" alignment-baseline=\"middle\" class=\"messageText\" dy=\"1em\" style=\"font-size: 16px; font-weight: 400;\">設定屬性（全職／兼職／工讀／中高-</text><text x=\"200\" y=\"1063\" text-anchor=\"middle\" dominant-baseline=\"middle\" alignment-baseline=\"middle\" class=\"messageText\" dy=\"1em\" style=\"font-size: 16px; font-weight: 400;\">階／立即上工）與特殊性質</text><line x1=\"90\" y1=\"1093\" x2=\"315\" y2=\"1093\" class=\"messageLine0\" data-et=\"message\" data-id=\"i18\" data-from=\"Emp\" data-to=\"RB\" stroke-width=\"2\" stroke=\"none\" marker-end=\"url(#flow-C-S1SfBeXxfe-1-arrowhead)\" style=\"fill: none;\"/><line x1=\"83\" y1=\"1093\" x2=\"83\" y2=\"1093\" stroke-width=\"0\" marker-start=\"url(#flow-C-S1SfBeXxfe-1-sequencenumber)\"/><text x=\"83\" y=\"1097\" font-family=\"sans-serif\" font-size=\"12px\" text-anchor=\"middle\" class=\"sequenceNumber\">13</text><text x=\"206\" y=\"1109\" text-anchor=\"middle\" dominant-baseline=\"middle\" alignment-baseline=\"middle\" class=\"messageText\" dy=\"1em\" style=\"font-size: 16px; font-weight: 400;\">依屬性×特殊性質切換欄位（工作時間-</text><text x=\"206\" y=\"1126\" text-anchor=\"middle\" dominant-baseline=\"middle\" alignment-baseline=\"middle\" class=\"messageText\" dy=\"1em\" style=\"font-size: 16px; font-weight: 400;\">容器、班別、承攬制說明、中高階審-</text><text x=\"206\" y=\"1143\" text-anchor=\"middle\" dominant-baseline=\"middle\" alignment-baseline=\"middle\" class=\"messageText\" dy=\"1em\" style=\"font-size: 16px; font-weight: 400;\">核提示等）</text><line x1=\"327\" y1=\"1173\" x2=\"90\" y2=\"1173\" class=\"messageLine1\" data-et=\"message\" data-id=\"i19\" data-from=\"RB\" data-to=\"Emp\" stroke-width=\"2\" stroke=\"none\" marker-end=\"url(#flow-C-S1SfBeXxfe-1-arrowhead)\" style=\"stroke-dasharray: 3, 3; fill: none;\"/><line x1=\"322\" y1=\"1173\" x2=\"322\" y2=\"1173\" stroke-width=\"0\" marker-start=\"url(#flow-C-S1SfBeXxfe-1-sequencenumber)\"/><text x=\"322\" y=\"1177\" font-family=\"sans-serif\" font-size=\"12px\" text-anchor=\"middle\" class=\"sequenceNumber\">14</text><text x=\"200\" y=\"1341\" text-anchor=\"middle\" dominant-baseline=\"middle\" alignment-baseline=\"middle\" class=\"messageText\" dy=\"1em\" style=\"font-size: 16px; font-weight: 400;\">輸入職缺名稱</text><line x1=\"90\" y1=\"1371\" x2=\"315\" y2=\"1371\" class=\"messageLine0\" data-et=\"message\" data-id=\"i22\" data-from=\"Emp\" data-to=\"RB\" stroke-width=\"2\" stroke=\"none\" marker-end=\"url(#flow-C-S1SfBeXxfe-1-arrowhead)\" style=\"fill: none;\"/><line x1=\"83\" y1=\"1371\" x2=\"83\" y2=\"1371\" stroke-width=\"0\" marker-start=\"url(#flow-C-S1SfBeXxfe-1-sequencenumber)\"/><text x=\"83\" y=\"1375\" font-family=\"sans-serif\" font-size=\"12px\" text-anchor=\"middle\" class=\"sequenceNumber\">15</text><text x=\"447\" y=\"1387\" text-anchor=\"middle\" dominant-baseline=\"middle\" alignment-baseline=\"middle\" class=\"messageText\" dy=\"1em\" style=\"font-size: 16px; font-weight: 400;\">職類推薦 API（每秒最多 1</text><text x=\"447\" y=\"1404\" text-anchor=\"middle\" dominant-baseline=\"middle\" alignment-baseline=\"middle\" class=\"messageText\" dy=\"1em\" style=\"font-size: 16px; font-weight: 400;\">次，只取最後一次結果）</text><line x1=\"329\" y1=\"1434\" x2=\"571\" y2=\"1434\" class=\"messageLine0\" data-et=\"message\" data-id=\"i23\" data-from=\"RB\" data-to=\"AI\" stroke-width=\"2\" stroke=\"none\" marker-end=\"url(#flow-C-S1SfBeXxfe-1-arrowhead)\" style=\"fill: none;\"/><line x1=\"322\" y1=\"1434\" x2=\"322\" y2=\"1434\" stroke-width=\"0\" marker-start=\"url(#flow-C-S1SfBeXxfe-1-sequencenumber)\"/><text x=\"322\" y=\"1438\" font-family=\"sans-serif\" font-size=\"12px\" text-anchor=\"middle\" class=\"sequenceNumber\">16</text><text x=\"453\" y=\"1450\" text-anchor=\"middle\" dominant-baseline=\"middle\" alignment-baseline=\"middle\" class=\"messageText\" dy=\"1em\" style=\"font-size: 16px; font-weight: 400;\">推薦職務類別</text><line x1=\"583\" y1=\"1480\" x2=\"329\" y2=\"1480\" class=\"messageLine1\" data-et=\"message\" data-id=\"i24\" data-from=\"AI\" data-to=\"RB\" stroke-width=\"2\" stroke=\"none\" marker-end=\"url(#flow-C-S1SfBeXxfe-1-arrowhead)\" style=\"stroke-dasharray: 3, 3; fill: none;\"/><line x1=\"578\" y1=\"1480\" x2=\"578\" y2=\"1480\" stroke-width=\"0\" marker-start=\"url(#flow-C-S1SfBeXxfe-1-sequencenumber)\"/><text x=\"578\" y=\"1484\" font-family=\"sans-serif\" font-size=\"12px\" text-anchor=\"middle\" class=\"sequenceNumber\">17</text><text x=\"200\" y=\"1496\" text-anchor=\"middle\" dominant-baseline=\"middle\" alignment-baseline=\"middle\" class=\"messageText\" dy=\"1em\" style=\"font-size: 16px; font-weight: 400;\">要求 AI 生成／優化工作說明</text><line x1=\"90\" y1=\"1526\" x2=\"315\" y2=\"1526\" class=\"messageLine0\" data-et=\"message\" data-id=\"i25\" data-from=\"Emp\" data-to=\"RB\" stroke-width=\"2\" stroke=\"none\" marker-end=\"url(#flow-C-S1SfBeXxfe-1-arrowhead)\" style=\"fill: none;\"/><line x1=\"83\" y1=\"1526\" x2=\"83\" y2=\"1526\" stroke-width=\"0\" marker-start=\"url(#flow-C-S1SfBeXxfe-1-sequencenumber)\"/><text x=\"83\" y=\"1530\" font-family=\"sans-serif\" font-size=\"12px\" text-anchor=\"middle\" class=\"sequenceNumber\">18</text><text x=\"447\" y=\"1542\" text-anchor=\"middle\" dominant-baseline=\"middle\" alignment-baseline=\"middle\" class=\"messageText\" dy=\"1em\" style=\"font-size: 16px; font-weight: 400;\">JD 生成</text><line x1=\"329\" y1=\"1572\" x2=\"571\" y2=\"1572\" class=\"messageLine0\" data-et=\"message\" data-id=\"i26\" data-from=\"RB\" data-to=\"AI\" stroke-width=\"2\" stroke=\"none\" marker-end=\"url(#flow-C-S1SfBeXxfe-1-arrowhead)\" style=\"fill: none;\"/><line x1=\"322\" y1=\"1572\" x2=\"322\" y2=\"1572\" stroke-width=\"0\" marker-start=\"url(#flow-C-S1SfBeXxfe-1-sequencenumber)\"/><text x=\"322\" y=\"1576\" font-family=\"sans-serif\" font-size=\"12px\" text-anchor=\"middle\" class=\"sequenceNumber\">19</text><text x=\"453\" y=\"1588\" text-anchor=\"middle\" dominant-baseline=\"middle\" alignment-baseline=\"middle\" class=\"messageText\" dy=\"1em\" style=\"font-size: 16px; font-weight: 400;\">工作說明內容</text><line x1=\"583\" y1=\"1618\" x2=\"329\" y2=\"1618\" class=\"messageLine1\" data-et=\"message\" data-id=\"i27\" data-from=\"AI\" data-to=\"RB\" stroke-width=\"2\" stroke=\"none\" marker-end=\"url(#flow-C-S1SfBeXxfe-1-arrowhead)\" style=\"stroke-dasharray: 3, 3; fill: none;\"/><line x1=\"578\" y1=\"1618\" x2=\"578\" y2=\"1618\" stroke-width=\"0\" marker-start=\"url(#flow-C-S1SfBeXxfe-1-sequencenumber)\"/><text x=\"578\" y=\"1622\" font-family=\"sans-serif\" font-size=\"12px\" text-anchor=\"middle\" class=\"sequenceNumber\">20</text><text x=\"447\" y=\"1634\" text-anchor=\"middle\" dominant-baseline=\"middle\" alignment-baseline=\"middle\" class=\"messageText\" dy=\"1em\" style=\"font-size: 16px; font-weight: 400;\">技能專長證照推薦（帶入職類與</text><text x=\"447\" y=\"1651\" text-anchor=\"middle\" dominant-baseline=\"middle\" alignment-baseline=\"middle\" class=\"messageText\" dy=\"1em\" style=\"font-size: 16px; font-weight: 400;\">tCodeTrade）</text><line x1=\"329\" y1=\"1681\" x2=\"571\" y2=\"1681\" class=\"messageLine0\" data-et=\"message\" data-id=\"i28\" data-from=\"RB\" data-to=\"AI\" stroke-width=\"2\" stroke=\"none\" marker-end=\"url(#flow-C-S1SfBeXxfe-1-arrowhead)\" style=\"fill: none;\"/><line x1=\"322\" y1=\"1681\" x2=\"322\" y2=\"1681\" stroke-width=\"0\" marker-start=\"url(#flow-C-S1SfBeXxfe-1-sequencenumber)\"/><text x=\"322\" y=\"1685\" font-family=\"sans-serif\" font-size=\"12px\" text-anchor=\"middle\" class=\"sequenceNumber\">21</text><text x=\"453\" y=\"1697\" text-anchor=\"middle\" dominant-baseline=\"middle\" alignment-baseline=\"middle\" class=\"messageText\" dy=\"1em\" style=\"font-size: 16px; font-weight: 400;\">推薦技能／證照項目</text><line x1=\"583\" y1=\"1727\" x2=\"329\" y2=\"1727\" class=\"messageLine1\" data-et=\"message\" data-id=\"i29\" data-from=\"AI\" data-to=\"RB\" stroke-width=\"2\" stroke=\"none\" marker-end=\"url(#flow-C-S1SfBeXxfe-1-arrowhead)\" style=\"stroke-dasharray: 3, 3; fill: none;\"/><line x1=\"578\" y1=\"1727\" x2=\"578\" y2=\"1727\" stroke-width=\"0\" marker-start=\"url(#flow-C-S1SfBeXxfe-1-sequencenumber)\"/><text x=\"578\" y=\"1731\" font-family=\"sans-serif\" font-size=\"12px\" text-anchor=\"middle\" class=\"sequenceNumber\">22</text><text x=\"206\" y=\"1743\" text-anchor=\"middle\" dominant-baseline=\"middle\" alignment-baseline=\"middle\" class=\"messageText\" dy=\"1em\" style=\"font-size: 16px; font-weight: 400;\">顯示推薦結果供廠商點選</text><line x1=\"327\" y1=\"1773\" x2=\"90\" y2=\"1773\" class=\"messageLine1\" data-et=\"message\" data-id=\"i30\" data-from=\"RB\" data-to=\"Emp\" stroke-width=\"2\" stroke=\"none\" marker-end=\"url(#flow-C-S1SfBeXxfe-1-arrowhead)\" style=\"stroke-dasharray: 3, 3; fill: none;\"/><line x1=\"322\" y1=\"1773\" x2=\"322\" y2=\"1773\" stroke-width=\"0\" marker-start=\"url(#flow-C-S1SfBeXxfe-1-sequencenumber)\"/><text x=\"322\" y=\"1777\" font-family=\"sans-serif\" font-size=\"12px\" text-anchor=\"middle\" class=\"sequenceNumber\">23</text><text x=\"206\" y=\"1968\" text-anchor=\"middle\" dominant-baseline=\"middle\" alignment-baseline=\"middle\" class=\"messageText\" dy=\"1em\" style=\"font-size: 16px; font-weight: 400;\">顯示違規 tooltip，不可送出</text><line x1=\"327\" y1=\"2000\" x2=\"90\" y2=\"2000\" class=\"messageLine1\" data-et=\"message\" data-id=\"i35\" data-from=\"RB\" data-to=\"Emp\" stroke-width=\"2\" stroke=\"none\" marker-end=\"url(#flow-C-S1SfBeXxfe-1-arrowhead)\" style=\"stroke-dasharray: 3, 3; fill: none;\"/><line x1=\"322\" y1=\"2000\" x2=\"322\" y2=\"2000\" stroke-width=\"0\" marker-start=\"url(#flow-C-S1SfBeXxfe-1-sequencenumber)\"/><text x=\"322\" y=\"2004\" font-family=\"sans-serif\" font-size=\"12px\" text-anchor=\"middle\" class=\"sequenceNumber\">24</text><text x=\"206\" y=\"2068\" text-anchor=\"middle\" dominant-baseline=\"middle\" alignment-baseline=\"middle\" class=\"messageText\" dy=\"1em\" style=\"font-size: 16px; font-weight: 400;\">允許繼續編輯</text><line x1=\"327\" y1=\"2098\" x2=\"90\" y2=\"2098\" class=\"messageLine1\" data-et=\"message\" data-id=\"i37\" data-from=\"RB\" data-to=\"Emp\" stroke-width=\"2\" stroke=\"none\" marker-end=\"url(#flow-C-S1SfBeXxfe-1-arrowhead)\" style=\"stroke-dasharray: 3, 3; fill: none;\"/><line x1=\"322\" y1=\"2098\" x2=\"322\" y2=\"2098\" stroke-width=\"0\" marker-start=\"url(#flow-C-S1SfBeXxfe-1-sequencenumber)\"/><text x=\"322\" y=\"2102\" font-family=\"sans-serif\" font-size=\"12px\" text-anchor=\"middle\" class=\"sequenceNumber\">25</text><text x=\"200\" y=\"2138\" text-anchor=\"middle\" dominant-baseline=\"middle\" alignment-baseline=\"middle\" class=\"messageText\" dy=\"1em\" style=\"font-size: 16px; font-weight: 400;\">點【確定送出】</text><line x1=\"90\" y1=\"2168\" x2=\"315\" y2=\"2168\" class=\"messageLine0\" data-et=\"message\" data-id=\"i40\" data-from=\"Emp\" data-to=\"RB\" stroke-width=\"2\" stroke=\"none\" marker-end=\"url(#flow-C-S1SfBeXxfe-1-arrowhead)\" style=\"fill: none;\"/><line x1=\"83\" y1=\"2168\" x2=\"83\" y2=\"2168\" stroke-width=\"0\" marker-start=\"url(#flow-C-S1SfBeXxfe-1-sequencenumber)\"/><text x=\"83\" y=\"2172\" font-family=\"sans-serif\" font-size=\"12px\" text-anchor=\"middle\" class=\"sequenceNumber\">26</text><text x=\"206\" y=\"2285\" text-anchor=\"middle\" dominant-baseline=\"middle\" alignment-baseline=\"middle\" class=\"messageText\" dy=\"1em\" style=\"font-size: 16px; font-weight: 400;\">標示 error，不送出</text><line x1=\"327\" y1=\"2315\" x2=\"90\" y2=\"2315\" class=\"messageLine1\" data-et=\"message\" data-id=\"i43\" data-from=\"RB\" data-to=\"Emp\" stroke-width=\"2\" stroke=\"none\" marker-end=\"url(#flow-C-S1SfBeXxfe-1-arrowhead)\" style=\"stroke-dasharray: 3, 3; fill: none;\"/><line x1=\"322\" y1=\"2315\" x2=\"322\" y2=\"2315\" stroke-width=\"0\" marker-start=\"url(#flow-C-S1SfBeXxfe-1-sequencenumber)\"/><text x=\"322\" y=\"2319\" font-family=\"sans-serif\" font-size=\"12px\" text-anchor=\"middle\" class=\"sequenceNumber\">27</text><text x=\"206\" y=\"2383\" text-anchor=\"middle\" dominant-baseline=\"middle\" alignment-baseline=\"middle\" class=\"messageText\" dy=\"1em\" style=\"font-size: 16px; font-weight: 400;\">顯示送出確認彈窗（新增／開啟中：-</text><text x=\"206\" y=\"2400\" text-anchor=\"middle\" dominant-baseline=\"middle\" alignment-baseline=\"middle\" class=\"messageText\" dy=\"1em\" style=\"font-size: 16px; font-weight: 400;\">寄送 or 不寄送；關閉中：開啟職缺</text><text x=\"206\" y=\"2417\" text-anchor=\"middle\" dominant-baseline=\"middle\" alignment-baseline=\"middle\" class=\"messageText\" dy=\"1em\" style=\"font-size: 16px; font-weight: 400;\">or 保持關閉＋checkbox）</text><line x1=\"327\" y1=\"2447\" x2=\"90\" y2=\"2447\" class=\"messageLine1\" data-et=\"message\" data-id=\"i45\" data-from=\"RB\" data-to=\"Emp\" stroke-width=\"2\" stroke=\"none\" marker-end=\"url(#flow-C-S1SfBeXxfe-1-arrowhead)\" style=\"stroke-dasharray: 3, 3; fill: none;\"/><line x1=\"322\" y1=\"2447\" x2=\"322\" y2=\"2447\" stroke-width=\"0\" marker-start=\"url(#flow-C-S1SfBeXxfe-1-sequencenumber)\"/><text x=\"322\" y=\"2451\" font-family=\"sans-serif\" font-size=\"12px\" text-anchor=\"middle\" class=\"sequenceNumber\">28</text><text x=\"200\" y=\"2463\" text-anchor=\"middle\" dominant-baseline=\"middle\" alignment-baseline=\"middle\" class=\"messageText\" dy=\"1em\" style=\"font-size: 16px; font-weight: 400;\">選擇是否寄送職缺確認信</text><line x1=\"90\" y1=\"2493\" x2=\"315\" y2=\"2493\" class=\"messageLine0\" data-et=\"message\" data-id=\"i46\" data-from=\"Emp\" data-to=\"RB\" stroke-width=\"2\" stroke=\"none\" marker-end=\"url(#flow-C-S1SfBeXxfe-1-arrowhead)\" style=\"fill: none;\"/><line x1=\"83\" y1=\"2493\" x2=\"83\" y2=\"2493\" stroke-width=\"0\" marker-start=\"url(#flow-C-S1SfBeXxfe-1-sequencenumber)\"/><text x=\"83\" y=\"2497\" font-family=\"sans-serif\" font-size=\"12px\" text-anchor=\"middle\" class=\"sequenceNumber\">29</text><text x=\"571\" y=\"2742\" text-anchor=\"middle\" dominant-baseline=\"middle\" alignment-baseline=\"middle\" class=\"messageText\" dy=\"1em\" style=\"font-size: 16px; font-weight: 400;\">寄送職缺審核通知信</text><line x1=\"329\" y1=\"2772\" x2=\"819\" y2=\"2772\" class=\"messageLine0\" data-et=\"message\" data-id=\"i51\" data-from=\"RB\" data-to=\"CS\" stroke-width=\"2\" stroke=\"none\" marker-end=\"url(#flow-C-S1SfBeXxfe-1-arrowhead)\" style=\"fill: none;\"/><line x1=\"322\" y1=\"2772\" x2=\"322\" y2=\"2772\" stroke-width=\"0\" marker-start=\"url(#flow-C-S1SfBeXxfe-1-sequencenumber)\"/><text x=\"322\" y=\"2776\" font-family=\"sans-serif\" font-size=\"12px\" text-anchor=\"middle\" class=\"sequenceNumber\">30</text><text x=\"577\" y=\"2941\" text-anchor=\"middle\" dominant-baseline=\"middle\" alignment-baseline=\"middle\" class=\"messageText\" dy=\"1em\" style=\"font-size: 16px; font-weight: 400;\">更新為審核通過</text><line x1=\"831\" y1=\"2971\" x2=\"329\" y2=\"2971\" class=\"messageLine0\" data-et=\"message\" data-id=\"i54\" data-from=\"CS\" data-to=\"RB\" stroke-width=\"2\" stroke=\"none\" marker-end=\"url(#flow-C-S1SfBeXxfe-1-arrowhead)\" style=\"fill: none;\"/><line x1=\"826\" y1=\"2971\" x2=\"826\" y2=\"2971\" stroke-width=\"0\" marker-start=\"url(#flow-C-S1SfBeXxfe-1-sequencenumber)\"/><text x=\"826\" y=\"2975\" font-family=\"sans-serif\" font-size=\"12px\" text-anchor=\"middle\" class=\"sequenceNumber\">31</text><text x=\"206\" y=\"2987\" text-anchor=\"middle\" dominant-baseline=\"middle\" alignment-baseline=\"middle\" class=\"messageText\" dy=\"1em\" style=\"font-size: 16px; font-weight: 400;\">寄送職缺審核信（通過；showfield&amp;5-</text><text x=\"206\" y=\"3004\" text-anchor=\"middle\" dominant-baseline=\"middle\" alignment-baseline=\"middle\" class=\"messageText\" dy=\"1em\" style=\"font-size: 16px; font-weight: 400;\">24288 廠商不收）</text><line x1=\"327\" y1=\"3034\" x2=\"90\" y2=\"3034\" class=\"messageLine1\" data-et=\"message\" data-id=\"i55\" data-from=\"RB\" data-to=\"Emp\" stroke-width=\"2\" stroke=\"none\" marker-end=\"url(#flow-C-S1SfBeXxfe-1-arrowhead)\" style=\"stroke-dasharray: 3, 3; fill: none;\"/><line x1=\"322\" y1=\"3034\" x2=\"322\" y2=\"3034\" stroke-width=\"0\" marker-start=\"url(#flow-C-S1SfBeXxfe-1-sequencenumber)\"/><text x=\"322\" y=\"3038\" font-family=\"sans-serif\" font-size=\"12px\" text-anchor=\"middle\" class=\"sequenceNumber\">32</text><text x=\"577\" y=\"3102\" text-anchor=\"middle\" dominant-baseline=\"middle\" alignment-baseline=\"middle\" class=\"messageText\" dy=\"1em\" style=\"font-size: 16px; font-weight: 400;\">填寫不通過原因，mConfirmed = 128</text><line x1=\"831\" y1=\"3132\" x2=\"329\" y2=\"3132\" class=\"messageLine0\" data-et=\"message\" data-id=\"i57\" data-from=\"CS\" data-to=\"RB\" stroke-width=\"2\" stroke=\"none\" marker-end=\"url(#flow-C-S1SfBeXxfe-1-arrowhead)\" style=\"fill: none;\"/><line x1=\"826\" y1=\"3132\" x2=\"826\" y2=\"3132\" stroke-width=\"0\" marker-start=\"url(#flow-C-S1SfBeXxfe-1-sequencenumber)\"/><text x=\"826\" y=\"3136\" font-family=\"sans-serif\" font-size=\"12px\" text-anchor=\"middle\" class=\"sequenceNumber\">33</text><text x=\"206\" y=\"3148\" text-anchor=\"middle\" dominant-baseline=\"middle\" alignment-baseline=\"middle\" class=\"messageText\" dy=\"1em\" style=\"font-size: 16px; font-weight: 400;\">寄送職缺審核信（未通過＋原因＋修-</text><text x=\"206\" y=\"3165\" text-anchor=\"middle\" dominant-baseline=\"middle\" alignment-baseline=\"middle\" class=\"messageText\" dy=\"1em\" style=\"font-size: 16px; font-weight: 400;\">改設定按鈕），流程結束</text><line x1=\"327\" y1=\"3195\" x2=\"90\" y2=\"3195\" class=\"messageLine1\" data-et=\"message\" data-id=\"i58\" data-from=\"RB\" data-to=\"Emp\" stroke-width=\"2\" stroke=\"none\" marker-end=\"url(#flow-C-S1SfBeXxfe-1-arrowhead)\" style=\"stroke-dasharray: 3, 3; fill: none;\"/><line x1=\"322\" y1=\"3195\" x2=\"322\" y2=\"3195\" stroke-width=\"0\" marker-start=\"url(#flow-C-S1SfBeXxfe-1-sequencenumber)\"/><text x=\"322\" y=\"3199\" font-family=\"sans-serif\" font-size=\"12px\" text-anchor=\"middle\" class=\"sequenceNumber\">34</text><text x=\"829\" y=\"3503\" text-anchor=\"middle\" dominant-baseline=\"middle\" alignment-baseline=\"middle\" class=\"messageText\" dy=\"1em\" style=\"font-size: 16px; font-weight: 400;\">職缺於求職主網上架曝光</text><line x1=\"329\" y1=\"3533\" x2=\"1335\" y2=\"3533\" class=\"messageLine0\" data-et=\"message\" data-id=\"i66\" data-from=\"RB\" data-to=\"JS\" stroke-width=\"2\" stroke=\"none\" marker-end=\"url(#flow-C-S1SfBeXxfe-1-arrowhead)\" style=\"fill: none;\"/><line x1=\"322\" y1=\"3533\" x2=\"322\" y2=\"3533\" stroke-width=\"0\" marker-start=\"url(#flow-C-S1SfBeXxfe-1-sequencenumber)\"/><text x=\"322\" y=\"3537\" font-family=\"sans-serif\" font-size=\"12px\" text-anchor=\"middle\" class=\"sequenceNumber\">35</text><text x=\"206\" y=\"3601\" text-anchor=\"middle\" dominant-baseline=\"middle\" alignment-baseline=\"middle\" class=\"messageText\" dy=\"1em\" style=\"font-size: 16px; font-weight: 400;\">職缺已儲存，但不對求職者曝光</text><line x1=\"327\" y1=\"3631\" x2=\"90\" y2=\"3631\" class=\"messageLine1\" data-et=\"message\" data-id=\"i68\" data-from=\"RB\" data-to=\"Emp\" stroke-width=\"2\" stroke=\"none\" marker-end=\"url(#flow-C-S1SfBeXxfe-1-arrowhead)\" style=\"stroke-dasharray: 3, 3; fill: none;\"/><line x1=\"322\" y1=\"3631\" x2=\"322\" y2=\"3631\" stroke-width=\"0\" marker-start=\"url(#flow-C-S1SfBeXxfe-1-sequencenumber)\"/><text x=\"322\" y=\"3635\" font-family=\"sans-serif\" font-size=\"12px\" text-anchor=\"middle\" class=\"sequenceNumber\">36</text></svg>"
+    "<svg id=\"flow-C-S1SfBeXxfe-1\" width=\"100%\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" style=\"max-width: 1525px; background-color: white;\" viewBox=\"-50 -10 1525 4244\" role=\"graphics-document document\" aria-roledescription=\"sequence\"><g><rect x=\"1235\" y=\"-6\" fill=\"rgba(232,245,233,0.5)\" stroke=\"rgb(0,0,0, 0.5)\" width=\"214\" height=\"4200\" class=\"rect\"/><text x=\"1342\" y=\"17\" dominant-baseline=\"central\" alignment-baseline=\"central\" class=\"text\" style=\"text-anchor: middle; font-size: 16px; font-weight: bold;\"><tspan x=\"1342\" dy=\"0\">求職主網 Jobseeker</tspan></text></g><g><rect x=\"719\" y=\"-6\" fill=\"rgba(255,243,224,0.5)\" stroke=\"rgb(0,0,0, 0.5)\" width=\"214\" height=\"4200\" class=\"rect\"/><text x=\"826\" y=\"17\" dominant-baseline=\"central\" alignment-baseline=\"central\" class=\"text\" style=\"text-anchor: middle; font-size: 16px; font-weight: bold;\"><tspan x=\"826\" dy=\"0\">客服系統 CS</tspan></text></g><g><rect x=\"471\" y=\"-6\" fill=\"rgba(243,229,245,0.5)\" stroke=\"rgb(0,0,0, 0.5)\" width=\"214\" height=\"4200\" class=\"rect\"/><text x=\"578\" y=\"17\" dominant-baseline=\"central\" alignment-baseline=\"central\" class=\"text\" style=\"text-anchor: middle; font-size: 16px; font-weight: bold;\"><tspan x=\"578\" dy=\"0\">資科 AI</tspan></text></g><g><rect x=\"-24\" y=\"-6\" fill=\"rgba(227,242,253,0.5)\" stroke=\"rgb(0,0,0, 0.5)\" width=\"453\" height=\"4200\" class=\"rect\"/><text x=\"202.5\" y=\"17\" dominant-baseline=\"central\" alignment-baseline=\"central\" class=\"text\" style=\"text-anchor: middle; font-size: 16px; font-weight: bold;\"><tspan x=\"202.5\" dy=\"0\">求才系統 Recruit</tspan></text></g><g><line id=\"actor4\" x1=\"1342\" y1=\"139\" x2=\"1342\" y2=\"2000\" class=\"actor-line 200\" stroke-width=\"0.5px\" stroke=\"#999\" name=\"JS\" data-et=\"life-line\" data-id=\"JS\"/><g id=\"root-4\" data-look=\"neo\" data-et=\"participant\" data-type=\"participant\" data-id=\"JS\"><rect x=\"1267\" y=\"30\" fill=\"#eaeaea\" stroke=\"#666\" width=\"150\" height=\"109\" name=\"JS\" rx=\"6\" ry=\"6\" class=\"actor actor-top\" data-look=\"neo\" filter=\"url(#flow-C-S1SfBeXxfe-1-drop-shadow)\"/><text x=\"1342\" y=\"84.5\" dominant-baseline=\"central\" alignment-baseline=\"central\" class=\"actor actor-box\" style=\"text-anchor: middle; font-size: 16px; font-weight: bold;\"><tspan x=\"1342\" dy=\"0\">求職主網</tspan></text></g></g><g><line id=\"actor3\" x1=\"826\" y1=\"139\" x2=\"826\" y2=\"2000\" class=\"actor-line 200\" stroke-width=\"0.5px\" stroke=\"#999\" name=\"CS\" data-et=\"life-line\" data-id=\"CS\"/></g><g><line id=\"actor2\" x1=\"578\" y1=\"139\" x2=\"578\" y2=\"2000\" class=\"actor-line 200\" stroke-width=\"0.5px\" stroke=\"#999\" name=\"AI\" data-et=\"life-line\" data-id=\"AI\"/><g id=\"root-2\" data-look=\"neo\" data-et=\"participant\" data-type=\"participant\" data-id=\"AI\"><rect x=\"503\" y=\"30\" fill=\"#eaeaea\" stroke=\"#666\" width=\"150\" height=\"109\" name=\"AI\" rx=\"6\" ry=\"6\" class=\"actor actor-top\" data-look=\"neo\" filter=\"url(#flow-C-S1SfBeXxfe-1-drop-shadow)\"/><text x=\"578\" y=\"84.5\" dominant-baseline=\"central\" alignment-baseline=\"central\" class=\"actor actor-box\" style=\"text-anchor: middle; font-size: 16px; font-weight: bold;\"><tspan x=\"578\" dy=\"0\">資科 API</tspan></text></g></g><g><line id=\"actor1\" x1=\"322\" y1=\"139\" x2=\"322\" y2=\"2000\" class=\"actor-line 200\" stroke-width=\"0.5px\" stroke=\"#999\" name=\"RB\" data-et=\"life-line\" data-id=\"RB\"/><g id=\"root-1\" data-look=\"neo\" data-et=\"participant\" data-type=\"participant\" data-id=\"RB\"><rect x=\"247\" y=\"30\" fill=\"#eaeaea\" stroke=\"#666\" width=\"150\" height=\"109\" name=\"RB\" rx=\"6\" ry=\"6\" class=\"actor actor-top\" data-look=\"neo\" filter=\"url(#flow-C-S1SfBeXxfe-1-drop-shadow)\"/><text x=\"322\" y=\"84.5\" dominant-baseline=\"central\" alignment-baseline=\"central\" class=\"actor actor-box\" style=\"text-anchor: middle; font-size: 16px; font-weight: bold;\"><tspan x=\"322\" dy=\"-16\">求才後台</tspan></text><text x=\"322\" y=\"84.5\" dominant-baseline=\"central\" alignment-baseline=\"central\" class=\"actor actor-box\" style=\"text-anchor: middle; font-size: 16px; font-weight: bold;\"><tspan x=\"322\" dy=\"0\">(PublishOpening／-</tspan></text><text x=\"322\" y=\"84.5\" dominant-baseline=\"central\" alignment-baseline=\"central\" class=\"actor actor-box\" style=\"text-anchor: middle; font-size: 16px; font-weight: bold;\"><tspan x=\"322\" dy=\"16\">PublishEdit)</tspan></text></g></g><g><line id=\"actor0\" x1=\"83\" y1=\"139\" x2=\"83\" y2=\"2000\" class=\"actor-line 200\" stroke-width=\"0.5px\" stroke=\"#999\" name=\"Emp\" data-et=\"life-line\" data-id=\"Emp\"/></g><style>#flow-C-S1SfBeXxfe-1{font-size:16px;fill:#333333;}@keyframes edge-animation-frame{from{stroke-dashoffset:0;}}@keyframes dash{to{stroke-dashoffset:0;}}#flow-C-S1SfBeXxfe-1 .edge-animation-slow{stroke-dasharray:9,5!important;stroke-dashoffset:900;animation:dash 50s linear infinite;stroke-linecap:round;}#flow-C-S1SfBeXxfe-1 .edge-animation-fast{stroke-dasharray:9,5!important;stroke-dashoffset:900;animation:dash 20s linear infinite;stroke-linecap:round;}#flow-C-S1SfBeXxfe-1 .error-icon{fill:hsl(25.3846153846, 86.6666666667%, 99.1176470588%);}#flow-C-S1SfBeXxfe-1 .error-text{fill:rgb(0.3, 2.5500000001, 4.2000000001);stroke:rgb(0.3, 2.5500000001, 4.2000000001);}#flow-C-S1SfBeXxfe-1 .edge-thickness-normal{stroke-width:1px;}#flow-C-S1SfBeXxfe-1 .edge-thickness-thick{stroke-width:3.5px;}#flow-C-S1SfBeXxfe-1 .edge-pattern-solid{stroke-dasharray:0;}#flow-C-S1SfBeXxfe-1 .edge-thickness-invisible{stroke-width:0;fill:none;}#flow-C-S1SfBeXxfe-1 .edge-pattern-dashed{stroke-dasharray:3;}#flow-C-S1SfBeXxfe-1 .edge-pattern-dotted{stroke-dasharray:2;}#flow-C-S1SfBeXxfe-1 .marker{fill:#0b0b0b;stroke:#0b0b0b;}#flow-C-S1SfBeXxfe-1 .marker.cross{stroke:#0b0b0b;}#flow-C-S1SfBeXxfe-1 svg{font-size:16px;}#flow-C-S1SfBeXxfe-1 p{margin:0;}#flow-C-S1SfBeXxfe-1 .actor{stroke:#90A4AE;fill:#E3F2FD;stroke-width:1;}#flow-C-S1SfBeXxfe-1 rect.actor.outer-path[data-look=\"neo\"]{filter:drop-shadow( 1px 2px 2px rgba(185,185,185,1));}#flow-C-S1SfBeXxfe-1 rect.note[data-look=\"neo\"]{stroke:#FFD54F;fill:#FFF8E1;filter:drop-shadow( 1px 2px 2px rgba(185,185,185,1));}#flow-C-S1SfBeXxfe-1 text.actor&gt;tspan{fill:#333333;stroke:none;}#flow-C-S1SfBeXxfe-1 .actor-line{stroke:#90A4AE;}#flow-C-S1SfBeXxfe-1 .innerArc{stroke-width:1.5;stroke-dasharray:none;}#flow-C-S1SfBeXxfe-1 .messageLine0{stroke-width:1.5;stroke-dasharray:none;stroke:#90A4AE;}#flow-C-S1SfBeXxfe-1 .messageLine1{stroke-width:1.5;stroke-dasharray:2,2;stroke:#90A4AE;}#flow-C-S1SfBeXxfe-1 [id$=\"-arrowhead\"] path{fill:#90A4AE;stroke:#90A4AE;}#flow-C-S1SfBeXxfe-1 .sequenceNumber{fill:#f4f4f4;}#flow-C-S1SfBeXxfe-1 [id$=\"-sequencenumber\"]{fill:#90A4AE;}#flow-C-S1SfBeXxfe-1 [id$=\"-crosshead\"] path{fill:#90A4AE;stroke:#90A4AE;}#flow-C-S1SfBeXxfe-1 .messageText{fill:#333333;stroke:none;}#flow-C-S1SfBeXxfe-1 .labelBox{stroke:#90A4AE;fill:#E3F2FD;filter:drop-shadow( 1px 2px 2px rgba(185,185,185,1));}#flow-C-S1SfBeXxfe-1 .labelText,#flow-C-S1SfBeXxfe-1 .labelText&gt;tspan{fill:#333333;stroke:none;}#flow-C-S1SfBeXxfe-1 .loopText,#flow-C-S1SfBeXxfe-1 .loopText&gt;tspan{fill:#333333;stroke:none;}#flow-C-S1SfBeXxfe-1 .sectionTitle,#flow-C-S1SfBeXxfe-1 .sectionTitle&gt;tspan{fill:#333333;stroke:none;}#flow-C-S1SfBeXxfe-1 .loopLine{stroke-width:2px;stroke-dasharray:2,2;stroke:#90A4AE;fill:#90A4AE;}#flow-C-S1SfBeXxfe-1 .note{stroke:#FFD54F;fill:#FFF8E1;}#flow-C-S1SfBeXxfe-1 .noteText,#flow-C-S1SfBeXxfe-1 .noteText&gt;tspan{fill:#333;stroke:none;}#flow-C-S1SfBeXxfe-1 .activation0{fill:hsl(85.3846153846, 86.6666666667%, 94.1176470588%);stroke:hsl(85.3846153846, 86.6666666667%, 84.1176470588%);}#flow-C-S1SfBeXxfe-1 .activation1{fill:hsl(85.3846153846, 86.6666666667%, 94.1176470588%);stroke:hsl(85.3846153846, 86.6666666667%, 84.1176470588%);}#flow-C-S1SfBeXxfe-1 .activation2{fill:hsl(85.3846153846, 86.6666666667%, 94.1176470588%);stroke:hsl(85.3846153846, 86.6666666667%, 84.1176470588%);}#flow-C-S1SfBeXxfe-1 .actorPopupMenu{position:absolute;}#flow-C-S1SfBeXxfe-1 .actorPopupMenuPanel{position:absolute;fill:#E3F2FD;box-shadow:0px 8px 16px 0px rgba(0,0,0,0.2);filter:drop-shadow(3px 5px 2px rgb(0 0 0 / 0.4));}#flow-C-S1SfBeXxfe-1 .actor-man circle,#flow-C-S1SfBeXxfe-1 line{fill:#E3F2FD;stroke-width:2px;}#flow-C-S1SfBeXxfe-1 g rect.rect{filter:drop-shadow( 1px 2px 2px rgba(185,185,185,1));stroke:#90A4AE;}#flow-C-S1SfBeXxfe-1 .node .neo-node{stroke:#90A4AE;}#flow-C-S1SfBeXxfe-1 [data-look=\"neo\"].node rect,#flow-C-S1SfBeXxfe-1 [data-look=\"neo\"].cluster rect,#flow-C-S1SfBeXxfe-1 [data-look=\"neo\"].node polygon{stroke:url(#flow-C-S1SfBeXxfe-1-gradient);filter:drop-shadow( 1px 2px 2px rgba(185,185,185,1));}#flow-C-S1SfBeXxfe-1 [data-look=\"neo\"].swimlane.cluster rect{filter:none;}#flow-C-S1SfBeXxfe-1 [data-look=\"neo\"].node path{stroke:url(#flow-C-S1SfBeXxfe-1-gradient);stroke-width:1px;}#flow-C-S1SfBeXxfe-1 [data-look=\"neo\"].node .outer-path{filter:drop-shadow( 1px 2px 2px rgba(185,185,185,1));}#flow-C-S1SfBeXxfe-1 [data-look=\"neo\"].node .neo-line path{stroke:#90A4AE;filter:none;}#flow-C-S1SfBeXxfe-1 [data-look=\"neo\"].node circle{stroke:url(#flow-C-S1SfBeXxfe-1-gradient);filter:drop-shadow( 1px 2px 2px rgba(185,185,185,1));}#flow-C-S1SfBeXxfe-1 [data-look=\"neo\"].node circle .state-start{fill:#000000;}#flow-C-S1SfBeXxfe-1 [data-look=\"neo\"].icon-shape .icon{fill:url(#flow-C-S1SfBeXxfe-1-gradient);filter:drop-shadow( 1px 2px 2px rgba(185,185,185,1));}#flow-C-S1SfBeXxfe-1 [data-look=\"neo\"].icon-shape .icon-neo path{stroke:url(#flow-C-S1SfBeXxfe-1-gradient);filter:drop-shadow( 1px 2px 2px rgba(185,185,185,1));}#flow-C-S1SfBeXxfe-1 :root{--mermaid-font-family:\"trebuchet ms\",verdana,arial,sans-serif;}</style><g/><defs><symbol id=\"flow-C-S1SfBeXxfe-1-computer\" width=\"24\" height=\"24\"><path transform=\"scale(.5)\" d=\"M2 2v13h20v-13h-20zm18 11h-16v-9h16v9zm-10.228 6l.466-1h3.524l.467 1h-4.457zm14.228 3h-24l2-6h2.104l-1.33 4h18.45l-1.297-4h2.073l2 6zm-5-10h-14v-7h14v7z\"/></symbol></defs><defs><symbol id=\"flow-C-S1SfBeXxfe-1-database\" fill-rule=\"evenodd\" clip-rule=\"evenodd\"><path transform=\"scale(.5)\" d=\"M12.258.001l.256.004.255.005.253.008.251.01.249.012.247.015.246.016.242.019.241.02.239.023.236.024.233.027.231.028.229.031.225.032.223.034.22.036.217.038.214.04.211.041.208.043.205.045.201.046.198.048.194.05.191.051.187.053.183.054.18.056.175.057.172.059.168.06.163.061.16.063.155.064.15.066.074.033.073.033.071.034.07.034.069.035.068.035.067.035.066.035.064.036.064.036.062.036.06.036.06.037.058.037.058.037.055.038.055.038.053.038.052.038.051.039.05.039.048.039.047.039.045.04.044.04.043.04.041.04.04.041.039.041.037.041.036.041.034.041.033.042.032.042.03.042.029.042.027.042.026.043.024.043.023.043.021.043.02.043.018.044.017.043.015.044.013.044.012.044.011.045.009.044.007.045.006.045.004.045.002.045.001.045v17l-.001.045-.002.045-.004.045-.006.045-.007.045-.009.044-.011.045-.012.044-.013.044-.015.044-.017.043-.018.044-.02.043-.021.043-.023.043-.024.043-.026.043-.027.042-.029.042-.03.042-.032.042-.033.042-.034.041-.036.041-.037.041-.039.041-.04.041-.041.04-.043.04-.044.04-.045.04-.047.039-.048.039-.05.039-.051.039-.052.038-.053.038-.055.038-.055.038-.058.037-.058.037-.06.037-.06.036-.062.036-.064.036-.064.036-.066.035-.067.035-.068.035-.069.035-.07.034-.071.034-.073.033-.074.033-.15.066-.155.064-.16.063-.163.061-.168.06-.172.059-.175.057-.18.056-.183.054-.187.053-.191.051-.194.05-.198.048-.201.046-.205.045-.208.043-.211.041-.214.04-.217.038-.22.036-.223.034-.225.032-.229.031-.231.028-.233.027-.236.024-.239.023-.241.02-.242.019-.246.016-.247.015-.249.012-.251.01-.253.008-.255.005-.256.004-.258.001-.258-.001-.256-.004-.255-.005-.253-.008-.251-.01-.249-.012-.247-.015-.245-.016-.243-.019-.241-.02-.238-.023-.236-.024-.234-.027-.231-.028-.228-.031-.226-.032-.223-.034-.22-.036-.217-.038-.214-.04-.211-.041-.208-.043-.204-.045-.201-.046-.198-.048-.195-.05-.19-.051-.187-.053-.184-.054-.179-.056-.176-.057-.172-.059-.167-.06-.164-.061-.159-.063-.155-.064-.151-.066-.074-.033-.072-.033-.072-.034-.07-.034-.069-.035-.068-.035-.067-.035-.066-.035-.064-.036-.063-.036-.062-.036-.061-.036-.06-.037-.058-.037-.057-.037-.056-.038-.055-.038-.053-.038-.052-.038-.051-.039-.049-.039-.049-.039-.046-.039-.046-.04-.044-.04-.043-.04-.041-.04-.04-.041-.039-.041-.037-.041-.036-.041-.034-.041-.033-.042-.032-.042-.03-.042-.029-.042-.027-.042-.026-.043-.024-.043-.023-.043-.021-.043-.02-.043-.018-.044-.017-.043-.015-.044-.013-.044-.012-.044-.011-.045-.009-.044-.007-.045-.006-.045-.004-.045-.002-.045-.001-.045v-17l.001-.045.002-.045.004-.045.006-.045.007-.045.009-.044.011-.045.012-.044.013-.044.015-.044.017-.043.018-.044.02-.043.021-.043.023-.043.024-.043.026-.043.027-.042.029-.042.03-.042.032-.042.033-.042.034-.041.036-.041.037-.041.039-.041.04-.041.041-.04.043-.04.044-.04.046-.04.046-.039.049-.039.049-.039.051-.039.052-.038.053-.038.055-.038.056-.038.057-.037.058-.037.06-.037.061-.036.062-.036.063-.036.064-.036.066-.035.067-.035.068-.035.069-.035.07-.034.072-.034.072-.033.074-.033.151-.066.155-.064.159-.063.164-.061.167-.06.172-.059.176-.057.179-.056.184-.054.187-.053.19-.051.195-.05.198-.048.201-.046.204-.045.208-.043.211-.041.214-.04.217-.038.22-.036.223-.034.226-.032.228-.031.231-.028.234-.027.236-.024.238-.023.241-.02.243-.019.245-.016.247-.015.249-.012.251-.01.253-.008.255-.005.256-.004.258-.001.258.001zm-9.258 20.499v.01l.001.021.003.021.004.022.005.021.006.022.007.022.009.023.01.022.011.023.012.023.013.023.015.023.016.024.017.023.018.024.019.024.021.024.022.025.023.024.024.025.052.049.056.05.061.051.066.051.07.051.075.051.079.052.084.052.088.052.092.052.097.052.102.051.105.052.11.052.114.051.119.051.123.051.127.05.131.05.135.05.139.048.144.049.147.047.152.047.155.047.16.045.163.045.167.043.171.043.176.041.178.041.183.039.187.039.19.037.194.035.197.035.202.033.204.031.209.03.212.029.216.027.219.025.222.024.226.021.23.02.233.018.236.016.24.015.243.012.246.01.249.008.253.005.256.004.259.001.26-.001.257-.004.254-.005.25-.008.247-.011.244-.012.241-.014.237-.016.233-.018.231-.021.226-.021.224-.024.22-.026.216-.027.212-.028.21-.031.205-.031.202-.034.198-.034.194-.036.191-.037.187-.039.183-.04.179-.04.175-.042.172-.043.168-.044.163-.045.16-.046.155-.046.152-.047.148-.048.143-.049.139-.049.136-.05.131-.05.126-.05.123-.051.118-.052.114-.051.11-.052.106-.052.101-.052.096-.052.092-.052.088-.053.083-.051.079-.052.074-.052.07-.051.065-.051.06-.051.056-.05.051-.05.023-.024.023-.025.021-.024.02-.024.019-.024.018-.024.017-.024.015-.023.014-.024.013-.023.012-.023.01-.023.01-.022.008-.022.006-.022.006-.022.004-.022.004-.021.001-.021.001-.021v-4.127l-.077.055-.08.053-.083.054-.085.053-.087.052-.09.052-.093.051-.095.05-.097.05-.1.049-.102.049-.105.048-.106.047-.109.047-.111.046-.114.045-.115.045-.118.044-.12.043-.122.042-.124.042-.126.041-.128.04-.13.04-.132.038-.134.038-.135.037-.138.037-.139.035-.142.035-.143.034-.144.033-.147.032-.148.031-.15.03-.151.03-.153.029-.154.027-.156.027-.158.026-.159.025-.161.024-.162.023-.163.022-.165.021-.166.02-.167.019-.169.018-.169.017-.171.016-.173.015-.173.014-.175.013-.175.012-.177.011-.178.01-.179.008-.179.008-.181.006-.182.005-.182.004-.184.003-.184.002h-.37l-.184-.002-.184-.003-.182-.004-.182-.005-.181-.006-.179-.008-.179-.008-.178-.01-.176-.011-.176-.012-.175-.013-.173-.014-.172-.015-.171-.016-.17-.017-.169-.018-.167-.019-.166-.02-.165-.021-.163-.022-.162-.023-.161-.024-.159-.025-.157-.026-.156-.027-.155-.027-.153-.029-.151-.03-.15-.03-.148-.031-.146-.032-.145-.033-.143-.034-.141-.035-.14-.035-.137-.037-.136-.037-.134-.038-.132-.038-.13-.04-.128-.04-.126-.041-.124-.042-.122-.042-.12-.044-.117-.043-.116-.045-.113-.045-.112-.046-.109-.047-.106-.047-.105-.048-.102-.049-.1-.049-.097-.05-.095-.05-.093-.052-.09-.051-.087-.052-.085-.053-.083-.054-.08-.054-.077-.054v4.127zm0-5.654v.011l.001.021.003.021.004.021.005.022.006.022.007.022.009.022.01.022.011.023.012.023.013.023.015.024.016.023.017.024.018.024.019.024.021.024.022.024.023.025.024.024.052.05.056.05.061.05.066.051.07.051.075.052.079.051.084.052.088.052.092.052.097.052.102.052.105.052.11.051.114.051.119.052.123.05.127.051.131.05.135.049.139.049.144.048.147.048.152.047.155.046.16.045.163.045.167.044.171.042.176.042.178.04.183.04.187.038.19.037.194.036.197.034.202.033.204.032.209.03.212.028.216.027.219.025.222.024.226.022.23.02.233.018.236.016.24.014.243.012.246.01.249.008.253.006.256.003.259.001.26-.001.257-.003.254-.006.25-.008.247-.01.244-.012.241-.015.237-.016.233-.018.231-.02.226-.022.224-.024.22-.025.216-.027.212-.029.21-.03.205-.032.202-.033.198-.035.194-.036.191-.037.187-.039.183-.039.179-.041.175-.042.172-.043.168-.044.163-.045.16-.045.155-.047.152-.047.148-.048.143-.048.139-.05.136-.049.131-.05.126-.051.123-.051.118-.051.114-.052.11-.052.106-.052.101-.052.096-.052.092-.052.088-.052.083-.052.079-.052.074-.051.07-.052.065-.051.06-.05.056-.051.051-.049.023-.025.023-.024.021-.025.02-.024.019-.024.018-.024.017-.024.015-.023.014-.023.013-.024.012-.022.01-.023.01-.023.008-.022.006-.022.006-.022.004-.021.004-.022.001-.021.001-.021v-4.139l-.077.054-.08.054-.083.054-.085.052-.087.053-.09.051-.093.051-.095.051-.097.05-.1.049-.102.049-.105.048-.106.047-.109.047-.111.046-.114.045-.115.044-.118.044-.12.044-.122.042-.124.042-.126.041-.128.04-.13.039-.132.039-.134.038-.135.037-.138.036-.139.036-.142.035-.143.033-.144.033-.147.033-.148.031-.15.03-.151.03-.153.028-.154.028-.156.027-.158.026-.159.025-.161.024-.162.023-.163.022-.165.021-.166.02-.167.019-.169.018-.169.017-.171.016-.173.015-.173.014-.175.013-.175.012-.177.011-.178.009-.179.009-.179.007-.181.007-.182.005-.182.004-.184.003-.184.002h-.37l-.184-.002-.184-.003-.182-.004-.182-.005-.181-.007-.179-.007-.179-.009-.178-.009-.176-.011-.176-.012-.175-.013-.173-.014-.172-.015-.171-.016-.17-.017-.169-.018-.167-.019-.166-.02-.165-.021-.163-.022-.162-.023-.161-.024-.159-.025-.157-.026-.156-.027-.155-.028-.153-.028-.151-.03-.15-.03-.148-.031-.146-.033-.145-.033-.143-.033-.141-.035-.14-.036-.137-.036-.136-.037-.134-.038-.132-.039-.13-.039-.128-.04-.126-.041-.124-.042-.122-.043-.12-.043-.117-.044-.116-.044-.113-.046-.112-.046-.109-.046-.106-.047-.105-.048-.102-.049-.1-.049-.097-.05-.095-.051-.093-.051-.09-.051-.087-.053-.085-.052-.083-.054-.08-.054-.077-.054v4.139zm0-5.666v.011l.001.02.003.022.004.021.005.022.006.021.007.022.009.023.01.022.011.023.012.023.013.023.015.023.016.024.017.024.018.023.019.024.021.025.022.024.023.024.024.025.052.05.056.05.061.05.066.051.07.051.075.052.079.051.084.052.088.052.092.052.097.052.102.052.105.051.11.052.114.051.119.051.123.051.127.05.131.05.135.05.139.049.144.048.147.048.152.047.155.046.16.045.163.045.167.043.171.043.176.042.178.04.183.04.187.038.19.037.194.036.197.034.202.033.204.032.209.03.212.028.216.027.219.025.222.024.226.021.23.02.233.018.236.017.24.014.243.012.246.01.249.008.253.006.256.003.259.001.26-.001.257-.003.254-.006.25-.008.247-.01.244-.013.241-.014.237-.016.233-.018.231-.02.226-.022.224-.024.22-.025.216-.027.212-.029.21-.03.205-.032.202-.033.198-.035.194-.036.191-.037.187-.039.183-.039.179-.041.175-.042.172-.043.168-.044.163-.045.16-.045.155-.047.152-.047.148-.048.143-.049.139-.049.136-.049.131-.051.126-.05.123-.051.118-.052.114-.051.11-.052.106-.052.101-.052.096-.052.092-.052.088-.052.083-.052.079-.052.074-.052.07-.051.065-.051.06-.051.056-.05.051-.049.023-.025.023-.025.021-.024.02-.024.019-.024.018-.024.017-.024.015-.023.014-.024.013-.023.012-.023.01-.022.01-.023.008-.022.006-.022.006-.022.004-.022.004-.021.001-.021.001-.021v-4.153l-.077.054-.08.054-.083.053-.085.053-.087.053-.09.051-.093.051-.095.051-.097.05-.1.049-.102.048-.105.048-.106.048-.109.046-.111.046-.114.046-.115.044-.118.044-.12.043-.122.043-.124.042-.126.041-.128.04-.13.039-.132.039-.134.038-.135.037-.138.036-.139.036-.142.034-.143.034-.144.033-.147.032-.148.032-.15.03-.151.03-.153.028-.154.028-.156.027-.158.026-.159.024-.161.024-.162.023-.163.023-.165.021-.166.02-.167.019-.169.018-.169.017-.171.016-.173.015-.173.014-.175.013-.175.012-.177.01-.178.01-.179.009-.179.007-.181.006-.182.006-.182.004-.184.003-.184.001-.185.001-.185-.001-.184-.001-.184-.003-.182-.004-.182-.006-.181-.006-.179-.007-.179-.009-.178-.01-.176-.01-.176-.012-.175-.013-.173-.014-.172-.015-.171-.016-.17-.017-.169-.018-.167-.019-.166-.02-.165-.021-.163-.023-.162-.023-.161-.024-.159-.024-.157-.026-.156-.027-.155-.028-.153-.028-.151-.03-.15-.03-.148-.032-.146-.032-.145-.033-.143-.034-.141-.034-.14-.036-.137-.036-.136-.037-.134-.038-.132-.039-.13-.039-.128-.041-.126-.041-.124-.041-.122-.043-.12-.043-.117-.044-.116-.044-.113-.046-.112-.046-.109-.046-.106-.048-.105-.048-.102-.048-.1-.05-.097-.049-.095-.051-.093-.051-.09-.052-.087-.052-.085-.053-.083-.053-.08-.054-.077-.054v4.153zm8.74-8.179l-.257.004-.254.005-.25.008-.247.011-.244.012-.241.014-.237.016-.233.018-.231.021-.226.022-.224.023-.22.026-.216.027-.212.028-.21.031-.205.032-.202.033-.198.034-.194.036-.191.038-.187.038-.183.04-.179.041-.175.042-.172.043-.168.043-.163.045-.16.046-.155.046-.152.048-.148.048-.143.048-.139.049-.136.05-.131.05-.126.051-.123.051-.118.051-.114.052-.11.052-.106.052-.101.052-.096.052-.092.052-.088.052-.083.052-.079.052-.074.051-.07.052-.065.051-.06.05-.056.05-.051.05-.023.025-.023.024-.021.024-.02.025-.019.024-.018.024-.017.023-.015.024-.014.023-.013.023-.012.023-.01.023-.01.022-.008.022-.006.023-.006.021-.004.022-.004.021-.001.021-.001.021.001.021.001.021.004.021.004.022.006.021.006.023.008.022.01.022.01.023.012.023.013.023.014.023.015.024.017.023.018.024.019.024.02.025.021.024.023.024.023.025.051.05.056.05.06.05.065.051.07.052.074.051.079.052.083.052.088.052.092.052.096.052.101.052.106.052.11.052.114.052.118.051.123.051.126.051.131.05.136.05.139.049.143.048.148.048.152.048.155.046.16.046.163.045.168.043.172.043.175.042.179.041.183.04.187.038.191.038.194.036.198.034.202.033.205.032.21.031.212.028.216.027.22.026.224.023.226.022.231.021.233.018.237.016.241.014.244.012.247.011.25.008.254.005.257.004.26.001.26-.001.257-.004.254-.005.25-.008.247-.011.244-.012.241-.014.237-.016.233-.018.231-.021.226-.022.224-.023.22-.026.216-.027.212-.028.21-.031.205-.032.202-.033.198-.034.194-.036.191-.038.187-.038.183-.04.179-.041.175-.042.172-.043.168-.043.163-.045.16-.046.155-.046.152-.048.148-.048.143-.048.139-.049.136-.05.131-.05.126-.051.123-.051.118-.051.114-.052.11-.052.106-.052.101-.052.096-.052.092-.052.088-.052.083-.052.079-.052.074-.051.07-.052.065-.051.06-.05.056-.05.051-.05.023-.025.023-.024.021-.024.02-.025.019-.024.018-.024.017-.023.015-.024.014-.023.013-.023.012-.023.01-.023.01-.022.008-.022.006-.023.006-.021.004-.022.004-.021.001-.021.001-.021-.001-.021-.001-.021-.004-.021-.004-.022-.006-.021-.006-.023-.008-.022-.01-.022-.01-.023-.012-.023-.013-.023-.014-.023-.015-.024-.017-.023-.018-.024-.019-.024-.02-.025-.021-.024-.023-.024-.023-.025-.051-.05-.056-.05-.06-.05-.065-.051-.07-.052-.074-.051-.079-.052-.083-.052-.088-.052-.092-.052-.096-.052-.101-.052-.106-.052-.11-.052-.114-.052-.118-.051-.123-.051-.126-.051-.131-.05-.136-.05-.139-.049-.143-.048-.148-.048-.152-.048-.155-.046-.16-.046-.163-.045-.168-.043-.172-.043-.175-.042-.179-.041-.183-.04-.187-.038-.191-.038-.194-.036-.198-.034-.202-.033-.205-.032-.21-.031-.212-.028-.216-.027-.22-.026-.224-.023-.226-.022-.231-.021-.233-.018-.237-.016-.241-.014-.244-.012-.247-.011-.25-.008-.254-.005-.257-.004-.26-.001-.26.001z\"/></symbol></defs><defs><symbol id=\"flow-C-S1SfBeXxfe-1-clock\" width=\"24\" height=\"24\"><path transform=\"scale(.5)\" d=\"M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm5.848 12.459c.202.038.202.333.001.372-1.907.361-6.045 1.111-6.547 1.111-.719 0-1.301-.582-1.301-1.301 0-.512.77-5.447 1.125-7.445.034-.192.312-.181.343.014l.985 6.238 5.394 1.011z\"/></symbol></defs><defs><marker id=\"flow-C-S1SfBeXxfe-1-arrowhead\" refX=\"7.9\" refY=\"5\" markerUnits=\"userSpaceOnUse\" markerWidth=\"12\" markerHeight=\"12\" orient=\"auto-start-reverse\"><path d=\"M -1 0 L 10 5 L 0 10 z\"/></marker></defs><defs><marker id=\"flow-C-S1SfBeXxfe-1-crosshead\" markerWidth=\"15\" markerHeight=\"8\" orient=\"auto\" refX=\"4\" refY=\"4.5\"><path fill=\"none\" stroke=\"#000000\" stroke-width=\"1pt\" d=\"M 1,2 L 6,7 M 6,2 L 1,7\" style=\"stroke-dasharray: 0, 0;\"/></marker></defs><defs><marker id=\"flow-C-S1SfBeXxfe-1-filled-head\" refX=\"15.5\" refY=\"7\" markerWidth=\"20\" markerHeight=\"28\" orient=\"auto\"><path d=\"M 18,7 L9,13 L14,7 L9,1 Z\"/></marker></defs><defs><marker id=\"flow-C-S1SfBeXxfe-1-sequencenumber\" refX=\"15\" refY=\"15\" markerWidth=\"60\" markerHeight=\"40\" orient=\"auto\"><circle cx=\"15\" cy=\"15\" r=\"6\"/></marker></defs><defs><marker id=\"flow-C-S1SfBeXxfe-1-solidTopArrowHead\" refX=\"7.9\" refY=\"7.25\" markerUnits=\"userSpaceOnUse\" markerWidth=\"12\" markerHeight=\"12\" orient=\"auto-start-reverse\"><path d=\"M 0 0 L 10 8 L 0 8 z\"/></marker></defs><defs><marker id=\"flow-C-S1SfBeXxfe-1-solidBottomArrowHead\" refX=\"7.9\" refY=\"0.75\" markerUnits=\"userSpaceOnUse\" markerWidth=\"12\" markerHeight=\"12\" orient=\"auto-start-reverse\"><path d=\"M 0 0 L 10 0 L 0 8 z\"/></marker></defs><defs><marker id=\"flow-C-S1SfBeXxfe-1-stickTopArrowHead\" refX=\"7.5\" refY=\"7\" markerUnits=\"userSpaceOnUse\" markerWidth=\"12\" markerHeight=\"12\" orient=\"auto-start-reverse\"><path d=\"M 0 0 L 7 7\" stroke=\"black\" stroke-width=\"1.5\" fill=\"none\"/></marker></defs><defs><marker id=\"flow-C-S1SfBeXxfe-1-stickBottomArrowHead\" refX=\"7.5\" refY=\"0\" markerUnits=\"userSpaceOnUse\" markerWidth=\"12\" markerHeight=\"12\" orient=\"auto-start-reverse\"><path d=\"M 0 7 L 7 0\" stroke=\"black\" stroke-width=\"1.5\" fill=\"none\"/></marker></defs><defs><filter id=\"flow-C-S1SfBeXxfe-1-drop-shadow\" height=\"130%\" width=\"130%\"><feDropShadow dx=\"4\" dy=\"4\" stdDeviation=\"0\" flood-opacity=\"0.06\" flood-color=\"#FFFFFF\"/></filter></defs><g data-et=\"note\" data-id=\"i13\"><rect x=\"48\" y=\"786\" fill=\"#EDF2AE\" stroke=\"#666\" width=\"309\" height=\"71\" class=\"note\" data-look=\"neo\"/><text x=\"203\" y=\"791\" text-anchor=\"middle\" dominant-baseline=\"middle\" alignment-baseline=\"middle\" class=\"noteText\" dy=\"1em\" style=\"font-size: 16px; font-weight: 400;\"><tspan x=\"203\">未選取 →</tspan></text><text x=\"203\" y=\"808\" text-anchor=\"middle\" dominant-baseline=\"middle\" alignment-baseline=\"middle\" class=\"noteText\" dy=\"1em\" style=\"font-size: 16px; font-weight: 400;\"><tspan x=\"203\">Alert「請選擇欲複製的職缺！」，停留在</tspan></text><text x=\"203\" y=\"825\" text-anchor=\"middle\" dominant-baseline=\"middle\" alignment-baseline=\"middle\" class=\"noteText\" dy=\"1em\" style=\"font-size: 16px; font-weight: 400;\"><tspan x=\"203\">Modal</tspan></text></g><g data-et=\"control-structure\" data-id=\"i17\"><line x1=\"36\" y1=\"309\" x2=\"591\" y2=\"309\" class=\"loopLine\"/><line x1=\"591\" y1=\"309\" x2=\"591\" y2=\"1030\" class=\"loopLine\"/><line x1=\"36\" y1=\"1030\" x2=\"591\" y2=\"1030\" class=\"loopLine\"/><line x1=\"36\" y1=\"309\" x2=\"36\" y2=\"1030\" class=\"loopLine\"/><line x1=\"36\" y1=\"633\" x2=\"591\" y2=\"633\" class=\"loopLine\" style=\"stroke-dasharray: 3, 3;\"/><line x1=\"36\" y1=\"940\" x2=\"591\" y2=\"940\" class=\"loopLine\" style=\"stroke-dasharray: 3, 3;\"/><polygon points=\"36,309 86,309 86,337 77.6,344 36,344\" class=\"labelBox\"/><text x=\"61\" y=\"331\" text-anchor=\"middle\" dominant-baseline=\"middle\" alignment-baseline=\"middle\" class=\"labelText\" style=\"font-size: 16px; font-weight: 400;\">alt</text><text x=\"338.5\" y=\"333\" text-anchor=\"middle\" class=\"loopText\" style=\"font-size: 16px; font-weight: 400;\"><tspan x=\"338.5\">[快速新增職缺]</tspan></text><text x=\"313.5\" y=\"657\" text-anchor=\"middle\" class=\"sectionTitle\" style=\"font-size: 16px; font-weight: 400;\">[複製職缺]</text><text x=\"313.5\" y=\"964\" text-anchor=\"middle\" class=\"sectionTitle\" style=\"font-size: 16px; font-weight: 400;\">[全新職缺]</text></g><g data-et=\"note\" data-id=\"i20\"><rect x=\"48\" y=\"1185\" fill=\"#EDF2AE\" stroke=\"#666\" width=\"309\" height=\"88\" class=\"note\" data-look=\"neo\"/><text x=\"203\" y=\"1190\" text-anchor=\"middle\" dominant-baseline=\"middle\" alignment-baseline=\"middle\" class=\"noteText\" dy=\"1em\" style=\"font-size: 16px; font-weight: 400;\"><tspan x=\"203\">立即上工 →</tspan></text><text x=\"203\" y=\"1207\" text-anchor=\"middle\" dominant-baseline=\"middle\" alignment-baseline=\"middle\" class=\"noteText\" dy=\"1em\" style=\"font-size: 16px; font-weight: 400;\"><tspan x=\"203\">特殊性質鎖定一般職務、改用指定日期／-</tspan></text><text x=\"203\" y=\"1224\" text-anchor=\"middle\" dominant-baseline=\"middle\" alignment-baseline=\"middle\" class=\"noteText\" dy=\"1em\" style=\"font-size: 16px; font-weight: 400;\"><tspan x=\"203\">期間；承攬制 →</tspan></text><text x=\"203\" y=\"1241\" text-anchor=\"middle\" dominant-baseline=\"middle\" alignment-baseline=\"middle\" class=\"noteText\" dy=\"1em\" style=\"font-size: 16px; font-weight: 400;\"><tspan x=\"203\">工作時間固定「與公司議定」</tspan></text></g><g data-et=\"control-structure\" data-id=\"i31\"><line x1=\"70\" y1=\"1285\" x2=\"591\" y2=\"1285\" class=\"loopLine\"/><line x1=\"591\" y1=\"1285\" x2=\"591\" y2=\"1785\" class=\"loopLine\"/><line x1=\"70\" y1=\"1785\" x2=\"591\" y2=\"1785\" class=\"loopLine\"/><line x1=\"70\" y1=\"1285\" x2=\"70\" y2=\"1785\" class=\"loopLine\"/><polygon points=\"70,1285 120,1285 120,1313 111.6,1320 70,1320\" class=\"labelBox\"/><text x=\"95\" y=\"1307\" text-anchor=\"middle\" dominant-baseline=\"middle\" alignment-baseline=\"middle\" class=\"labelText\" style=\"font-size: 16px; font-weight: 400;\">opt</text><text x=\"355.5\" y=\"1309\" text-anchor=\"middle\" class=\"loopText\" style=\"font-size: 16px; font-weight: 400;\"><tspan x=\"355.5\">[廠商使用 AI 功能]</tspan></text></g><g data-et=\"note\" data-id=\"i33\"><rect x=\"48\" y=\"1863\" fill=\"#EDF2AE\" stroke=\"#666\" width=\"309\" height=\"37\" class=\"note\" data-look=\"neo\"/><text x=\"203\" y=\"1868\" text-anchor=\"middle\" dominant-baseline=\"middle\" alignment-baseline=\"middle\" class=\"noteText\" dy=\"1em\" style=\"font-size: 16px; font-weight: 400;\"><tspan x=\"203\">比對風險字庫（正則）</tspan></text></g><g data-et=\"control-structure\" data-id=\"i38\"><line x1=\"70\" y1=\"1912\" x2=\"335\" y2=\"1912\" class=\"loopLine\"/><line x1=\"335\" y1=\"1912\" x2=\"335\" y2=\"2110\" class=\"loopLine\"/><line x1=\"70\" y1=\"2110\" x2=\"335\" y2=\"2110\" class=\"loopLine\"/><line x1=\"70\" y1=\"1912\" x2=\"70\" y2=\"2110\" class=\"loopLine\"/><line x1=\"70\" y1=\"2020\" x2=\"335\" y2=\"2020\" class=\"loopLine\" style=\"stroke-dasharray: 3, 3;\"/><polygon points=\"70,1912 120,1912 120,1940 111.6,1947 70,1947\" class=\"labelBox\"/><text x=\"95\" y=\"1934\" text-anchor=\"middle\" dominant-baseline=\"middle\" alignment-baseline=\"middle\" class=\"labelText\" style=\"font-size: 16px; font-weight: 400;\">alt</text><text x=\"227.5\" y=\"1936\" text-anchor=\"middle\" class=\"loopText\" style=\"font-size: 16px; font-weight: 400;\"><tspan x=\"227.5\">[命中高風險字眼]</tspan></text><text x=\"202.5\" y=\"2044\" text-anchor=\"middle\" class=\"sectionTitle\" style=\"font-size: 16px; font-weight: 400;\">[低／中風險或未命中]</text></g><g data-et=\"control-structure\" data-id=\"i39\"><line x1=\"36\" y1=\"1797\" x2=\"369\" y2=\"1797\" class=\"loopLine\"/><line x1=\"369\" y1=\"1797\" x2=\"369\" y2=\"2122\" class=\"loopLine\"/><line x1=\"36\" y1=\"2122\" x2=\"369\" y2=\"2122\" class=\"loopLine\"/><line x1=\"36\" y1=\"1797\" x2=\"36\" y2=\"2122\" class=\"loopLine\"/><polygon points=\"36,1797 86,1797 86,1825 77.6,1832 36,1832\" class=\"labelBox\"/><text x=\"61\" y=\"1819\" text-anchor=\"middle\" dominant-baseline=\"middle\" alignment-baseline=\"middle\" class=\"labelText\" style=\"font-size: 16px; font-weight: 400;\">loop</text><text x=\"227.5\" y=\"1821\" text-anchor=\"middle\" class=\"loopText\" style=\"font-size: 16px; font-weight: 400;\"><tspan x=\"227.5\">[廠商編輯文字欄位時即時-</tspan></text><text x=\"227.5\" y=\"1838\" text-anchor=\"middle\" class=\"loopText\" style=\"font-size: 16px; font-weight: 400;\"><tspan x=\"227.5\">檢查]</tspan></text></g><g data-et=\"note\" data-id=\"i41\"><rect x=\"48\" y=\"2180\" fill=\"#EDF2AE\" stroke=\"#666\" width=\"309\" height=\"37\" class=\"note\" data-look=\"neo\"/><text x=\"203\" y=\"2185\" text-anchor=\"middle\" dominant-baseline=\"middle\" alignment-baseline=\"middle\" class=\"noteText\" dy=\"1em\" style=\"font-size: 16px; font-weight: 400;\"><tspan x=\"203\">檢查必填欄位</tspan></text></g><g data-et=\"note\" data-id=\"i47\"><rect x=\"48\" y=\"2505\" fill=\"#EDF2AE\" stroke=\"#666\" width=\"309\" height=\"37\" class=\"note\" data-look=\"neo\"/><text x=\"203\" y=\"2510\" text-anchor=\"middle\" dominant-baseline=\"middle\" alignment-baseline=\"middle\" class=\"noteText\" dy=\"1em\" style=\"font-size: 16px; font-weight: 400;\"><tspan x=\"203\">儲存職缺，並依選擇寄送職缺確認信</tspan></text></g><g data-et=\"note\" data-id=\"i48\"><rect x=\"48\" y=\"2554\" fill=\"#EDF2AE\" stroke=\"#666\" width=\"309\" height=\"54\" class=\"note\" data-look=\"neo\"/><text x=\"203\" y=\"2559\" text-anchor=\"middle\" dominant-baseline=\"middle\" alignment-baseline=\"middle\" class=\"noteText\" dy=\"1em\" style=\"font-size: 16px; font-weight: 400;\"><tspan x=\"203\">送審判斷（立即上工直接通過；其餘依風-</tspan></text><text x=\"203\" y=\"2576\" text-anchor=\"middle\" dominant-baseline=\"middle\" alignment-baseline=\"middle\" class=\"noteText\" dy=\"1em\" style=\"font-size: 16px; font-weight: 400;\"><tspan x=\"203\">險字等級＋廠商需審核旗標）</tspan></text></g><g data-et=\"note\" data-id=\"i50\"><rect x=\"48\" y=\"2672\" fill=\"#EDF2AE\" stroke=\"#666\" width=\"309\" height=\"37\" class=\"note\" data-look=\"neo\"/><text x=\"203\" y=\"2677\" text-anchor=\"middle\" dominant-baseline=\"middle\" alignment-baseline=\"middle\" class=\"noteText\" dy=\"1em\" style=\"font-size: 16px; font-weight: 400;\"><tspan x=\"203\">mConfirmed 不寫入 0，直接審核通過</tspan></text></g><g data-et=\"note\" data-id=\"i52\"><rect x=\"48\" y=\"2773\" fill=\"#EDF2AE\" stroke=\"#666\" width=\"309\" height=\"71\" class=\"note\" data-look=\"neo\"/><text x=\"203\" y=\"2778\" text-anchor=\"middle\" dominant-baseline=\"middle\" alignment-baseline=\"middle\" class=\"noteText\" dy=\"1em\" style=\"font-size: 16px; font-weight: 400;\"><tspan x=\"203\">職缺審核 mConfirmed =</tspan></text><text x=\"203\" y=\"2795\" text-anchor=\"middle\" dominant-baseline=\"middle\" alignment-baseline=\"middle\" class=\"noteText\" dy=\"1em\" style=\"font-size: 16px; font-weight: 400;\"><tspan x=\"203\">0，狀態轉為「審核中」，確認信也顯示審-</tspan></text><text x=\"203\" y=\"2812\" text-anchor=\"middle\" dominant-baseline=\"middle\" alignment-baseline=\"middle\" class=\"noteText\" dy=\"1em\" style=\"font-size: 16px; font-weight: 400;\"><tspan x=\"203\">核中</tspan></text></g><g data-et=\"note\" data-id=\"i55\"><rect x=\"751\" y=\"2948\" fill=\"#EDF2AE\" stroke=\"#666\" width=\"150\" height=\"88\" class=\"note\" data-look=\"neo\"/><text x=\"826\" y=\"2953\" text-anchor=\"middle\" dominant-baseline=\"middle\" alignment-baseline=\"middle\" class=\"noteText\" dy=\"1em\" style=\"font-size: 16px; font-weight: 400;\"><tspan x=\"826\">客服後台 →</tspan></text><text x=\"826\" y=\"2970\" text-anchor=\"middle\" dominant-baseline=\"middle\" alignment-baseline=\"middle\" class=\"noteText\" dy=\"1em\" style=\"font-size: 16px; font-weight: 400;\"><tspan x=\"826\">廠商頁 →</tspan></text><text x=\"826\" y=\"2987\" text-anchor=\"middle\" dominant-baseline=\"middle\" alignment-baseline=\"middle\" class=\"noteText\" dy=\"1em\" style=\"font-size: 16px; font-weight: 400;\"><tspan x=\"826\">審核管理 →</tspan></text><text x=\"826\" y=\"3004\" text-anchor=\"middle\" dominant-baseline=\"middle\" alignment-baseline=\"middle\" class=\"noteText\" dy=\"1em\" style=\"font-size: 16px; font-weight: 400;\"><tspan x=\"826\">職缺審核</tspan></text></g><g data-et=\"note\" data-id=\"i64\"><rect x=\"751\" y=\"3502\" fill=\"#EDF2AE\" stroke=\"#666\" width=\"150\" height=\"73\" class=\"note\" data-look=\"neo\"/><text x=\"826\" y=\"3507\" text-anchor=\"middle\" dominant-baseline=\"middle\" alignment-baseline=\"middle\" class=\"noteText\" dy=\"1em\" style=\"font-size: 16px; font-weight: 400;\"><tspan x=\"826\">🚧</tspan></text><text x=\"826\" y=\"3526\" text-anchor=\"middle\" dominant-baseline=\"middle\" alignment-baseline=\"middle\" class=\"noteText\" dy=\"1em\" style=\"font-size: 16px; font-weight: 400;\"><tspan x=\"826\">原型畫面有此按鈕-</tspan></text><text x=\"826\" y=\"3543\" text-anchor=\"middle\" dominant-baseline=\"middle\" alignment-baseline=\"middle\" class=\"noteText\" dy=\"1em\" style=\"font-size: 16px; font-weight: 400;\"><tspan x=\"826\">，後續流程未載</tspan></text></g><g data-et=\"control-structure\" data-id=\"i65\"><line x1=\"70\" y1=\"3048\" x2=\"913\" y2=\"3048\" class=\"loopLine\"/><line x1=\"913\" y1=\"3048\" x2=\"913\" y2=\"3587\" class=\"loopLine\"/><line x1=\"70\" y1=\"3587\" x2=\"913\" y2=\"3587\" class=\"loopLine\"/><line x1=\"70\" y1=\"3048\" x2=\"70\" y2=\"3587\" class=\"loopLine\"/><line x1=\"70\" y1=\"3217\" x2=\"913\" y2=\"3217\" class=\"loopLine\" style=\"stroke-dasharray: 3, 3;\"/><line x1=\"70\" y1=\"3458\" x2=\"913\" y2=\"3458\" class=\"loopLine\" style=\"stroke-dasharray: 3, 3;\"/><polygon points=\"70,3048 120,3048 120,3076 111.6,3083 70,3083\" class=\"labelBox\"/><text x=\"95\" y=\"3070\" text-anchor=\"middle\" dominant-baseline=\"middle\" alignment-baseline=\"middle\" class=\"labelText\" style=\"font-size: 16px; font-weight: 400;\">alt</text><text x=\"516.5\" y=\"3072\" text-anchor=\"middle\" class=\"loopText\" style=\"font-size: 16px; font-weight: 400;\"><tspan x=\"516.5\">[審核通過]</tspan></text><text x=\"491.5\" y=\"3241\" text-anchor=\"middle\" class=\"sectionTitle\" style=\"font-size: 16px; font-weight: 400;\">[審核不通過]</text><text x=\"491.5\" y=\"3482\" text-anchor=\"middle\" class=\"sectionTitle\" style=\"font-size: 16px; font-weight: 400;\">[需主管審核]</text></g><g data-et=\"note\" data-id=\"i67\"><rect x=\"48\" y=\"3651\" fill=\"#EDF2AE\" stroke=\"#666\" width=\"309\" height=\"37\" class=\"note\" data-look=\"neo\"/><text x=\"203\" y=\"3656\" text-anchor=\"middle\" dominant-baseline=\"middle\" alignment-baseline=\"middle\" class=\"noteText\" dy=\"1em\" style=\"font-size: 16px; font-weight: 400;\"><tspan x=\"203\">不進審核，正常送出</tspan></text></g><g data-et=\"note\" data-id=\"i70\"><rect x=\"48\" y=\"3798\" fill=\"#EDF2AE\" stroke=\"#666\" width=\"309\" height=\"37\" class=\"note\" data-look=\"neo\"/><text x=\"203\" y=\"3803\" text-anchor=\"middle\" dominant-baseline=\"middle\" alignment-baseline=\"middle\" class=\"noteText\" dy=\"1em\" style=\"font-size: 16px; font-weight: 400;\"><tspan x=\"203\">審核欄位為通過，正常送出</tspan></text></g><g data-et=\"control-structure\" data-id=\"i71\"><line x1=\"36\" y1=\"2620\" x2=\"925\" y2=\"2620\" class=\"loopLine\"/><line x1=\"925\" y1=\"2620\" x2=\"925\" y2=\"3847\" class=\"loopLine\"/><line x1=\"36\" y1=\"3847\" x2=\"925\" y2=\"3847\" class=\"loopLine\"/><line x1=\"36\" y1=\"2620\" x2=\"36\" y2=\"3847\" class=\"loopLine\"/><line x1=\"36\" y1=\"2729\" x2=\"925\" y2=\"2729\" class=\"loopLine\" style=\"stroke-dasharray: 3, 3;\"/><line x1=\"36\" y1=\"3607\" x2=\"925\" y2=\"3607\" class=\"loopLine\" style=\"stroke-dasharray: 3, 3;\"/><line x1=\"36\" y1=\"3754\" x2=\"925\" y2=\"3754\" class=\"loopLine\" style=\"stroke-dasharray: 3, 3;\"/><polygon points=\"36,2620 86,2620 86,2648 77.6,2655 36,2655\" class=\"labelBox\"/><text x=\"61\" y=\"2642\" text-anchor=\"middle\" dominant-baseline=\"middle\" alignment-baseline=\"middle\" class=\"labelText\" style=\"font-size: 16px; font-weight: 400;\">alt</text><text x=\"505.5\" y=\"2644\" text-anchor=\"middle\" class=\"loopText\" style=\"font-size: 16px; font-weight: 400;\"><tspan x=\"505.5\">[立即上工職缺]</tspan></text><text x=\"480.5\" y=\"2753\" text-anchor=\"middle\" class=\"sectionTitle\" style=\"font-size: 16px; font-weight: 400;\">[命中中風險字眼，或廠商為需審核（confirmed&amp;16384）]</text><text x=\"480.5\" y=\"3631\" text-anchor=\"middle\" class=\"sectionTitle\" style=\"font-size: 16px; font-weight: 400;\">[僅命中低風險字眼]</text><text x=\"480.5\" y=\"3778\" text-anchor=\"middle\" class=\"sectionTitle\" style=\"font-size: 16px; font-weight: 400;\">[無風險字眼]</text></g><g data-et=\"note\" data-id=\"i72\"><rect x=\"48\" y=\"3859\" fill=\"#EDF2AE\" stroke=\"#666\" width=\"309\" height=\"37\" class=\"note\" data-look=\"neo\"/><text x=\"203\" y=\"3864\" text-anchor=\"middle\" dominant-baseline=\"middle\" alignment-baseline=\"middle\" class=\"noteText\" dy=\"1em\" style=\"font-size: 16px; font-weight: 400;\"><tspan x=\"203\">判斷是否對求職者曝光</tspan></text></g><g data-et=\"note\" data-id=\"i73\"><rect x=\"287\" y=\"3908\" fill=\"#EDF2AE\" stroke=\"#666\" width=\"1090\" height=\"54\" class=\"note\" data-look=\"neo\"/><text x=\"832\" y=\"3913\" text-anchor=\"middle\" dominant-baseline=\"middle\" alignment-baseline=\"middle\" class=\"noteText\" dy=\"1em\" style=\"font-size: 16px; font-weight: 400;\"><tspan x=\"832\">廠商 oStatus：1 VIP／4 免費VIP／5 免費曝光 → 可刊登；0 普通會員／2 過期／3 關權 → 不曝光；6 準VIP → 待確認</tspan></text><text x=\"832\" y=\"3930\" text-anchor=\"middle\" dominant-baseline=\"middle\" alignment-baseline=\"middle\" class=\"noteText\" dy=\"1em\" style=\"font-size: 16px; font-weight: 400;\"><tspan x=\"832\">職缺條件：職缺開啟中、審核通過（審核中、不通過不曝光）、在有效日期內</tspan></text></g><g data-et=\"control-structure\" data-id=\"i78\"><line x1=\"70\" y1=\"3974\" x2=\"1355\" y2=\"3974\" class=\"loopLine\"/><line x1=\"1355\" y1=\"3974\" x2=\"1355\" y2=\"4170\" class=\"loopLine\"/><line x1=\"70\" y1=\"4170\" x2=\"1355\" y2=\"4170\" class=\"loopLine\"/><line x1=\"70\" y1=\"3974\" x2=\"70\" y2=\"4170\" class=\"loopLine\"/><line x1=\"70\" y1=\"4080\" x2=\"1355\" y2=\"4080\" class=\"loopLine\" style=\"stroke-dasharray: 3, 3;\"/><polygon points=\"70,3974 120,3974 120,4002 111.6,4009 70,4009\" class=\"labelBox\"/><text x=\"95\" y=\"3996\" text-anchor=\"middle\" dominant-baseline=\"middle\" alignment-baseline=\"middle\" class=\"labelText\" style=\"font-size: 16px; font-weight: 400;\">alt</text><text x=\"737.5\" y=\"3998\" text-anchor=\"middle\" class=\"loopText\" style=\"font-size: 16px; font-weight: 400;\"><tspan x=\"737.5\">[符合曝光條件]</tspan></text><text x=\"712.5\" y=\"4104\" text-anchor=\"middle\" class=\"sectionTitle\" style=\"font-size: 16px; font-weight: 400;\">[不符合]</text></g><g data-et=\"control-structure\" data-id=\"i79\"><line x1=\"24\" y1=\"2229\" x2=\"1389\" y2=\"2229\" class=\"loopLine\"/><line x1=\"1389\" y1=\"2229\" x2=\"1389\" y2=\"4182\" class=\"loopLine\"/><line x1=\"24\" y1=\"4182\" x2=\"1389\" y2=\"4182\" class=\"loopLine\"/><line x1=\"24\" y1=\"2229\" x2=\"24\" y2=\"4182\" class=\"loopLine\"/><line x1=\"24\" y1=\"2335\" x2=\"1389\" y2=\"2335\" class=\"loopLine\" style=\"stroke-dasharray: 3, 3;\"/><polygon points=\"24,2229 74,2229 74,2257 65.6,2264 24,2264\" class=\"labelBox\"/><text x=\"49\" y=\"2251\" text-anchor=\"middle\" dominant-baseline=\"middle\" alignment-baseline=\"middle\" class=\"labelText\" style=\"font-size: 16px; font-weight: 400;\">alt</text><text x=\"731.5\" y=\"2253\" text-anchor=\"middle\" class=\"loopText\" style=\"font-size: 16px; font-weight: 400;\"><tspan x=\"731.5\">[必填欄位未完成]</tspan></text><text x=\"706.5\" y=\"2359\" text-anchor=\"middle\" class=\"sectionTitle\" style=\"font-size: 16px; font-weight: 400;\">[必填欄位完成]</text></g><g class=\"actor-man actor-top\" name=\"Emp\" data-et=\"participant\" data-type=\"actor\" data-id=\"Emp\" style=\"stroke: rgb(144, 164, 174);\"><line id=\"actor-man-torso0\" x1=\"83\" y1=\"85.3076923076923\" x2=\"83\" y2=\"98.84615384615384\"/><line id=\"actor-man-arms0\" x1=\"70.81538461538462\" y1=\"90.72307692307692\" x2=\"95.18461538461538\" y2=\"90.72307692307692\"/><line x1=\"70.81538461538462\" y1=\"109\" x2=\"83\" y2=\"98.84615384615384\"/><line x1=\"83\" y1=\"98.84615384615384\" x2=\"93.83076923076923\" y2=\"109\"/><circle cx=\"83\" cy=\"75.15384615384616\" r=\"10.153846153846155\" width=\"150\" height=\"109\"/><text x=\"83\" y=\"124\" dominant-baseline=\"central\" alignment-baseline=\"central\" class=\"actor actor-man\" style=\"text-anchor: middle; font-size: 16px; font-weight: bold;\"><tspan x=\"83\" dy=\"0\">求才廠商</tspan></text></g><g class=\"actor-man actor-top\" name=\"CS\" data-et=\"participant\" data-type=\"actor\" data-id=\"CS\" style=\"stroke: rgb(144, 164, 174);\"><line id=\"actor-man-torso3\" x1=\"826\" y1=\"85.3076923076923\" x2=\"826\" y2=\"98.84615384615384\"/><line id=\"actor-man-arms3\" x1=\"813.8153846153846\" y1=\"90.72307692307692\" x2=\"838.1846153846154\" y2=\"90.72307692307692\"/><line x1=\"813.8153846153846\" y1=\"109\" x2=\"826\" y2=\"98.84615384615384\"/><line x1=\"826\" y1=\"98.84615384615384\" x2=\"836.8307692307692\" y2=\"109\"/><circle cx=\"826\" cy=\"75.15384615384616\" r=\"10.153846153846155\" width=\"150\" height=\"109\"/><text x=\"826\" y=\"124\" dominant-baseline=\"central\" alignment-baseline=\"central\" class=\"actor actor-man\" style=\"text-anchor: middle; font-size: 16px; font-weight: bold;\"><tspan x=\"826\" dy=\"0\">客服人員</tspan></text></g><text x=\"200\" y=\"155\" text-anchor=\"middle\" dominant-baseline=\"middle\" alignment-baseline=\"middle\" class=\"messageText\" dy=\"1em\" style=\"font-size: 16px; font-weight: 400;\">進入「新增職缺」頁（PublishOpenin-</text><text x=\"200\" y=\"172\" text-anchor=\"middle\" dominant-baseline=\"middle\" alignment-baseline=\"middle\" class=\"messageText\" dy=\"1em\" style=\"font-size: 16px; font-weight: 400;\">g.aspx）</text><line x1=\"90\" y1=\"205\" x2=\"315\" y2=\"205\" class=\"messageLine0\" data-et=\"message\" data-id=\"i1\" data-from=\"Emp\" data-to=\"RB\" stroke-width=\"2\" stroke=\"none\" marker-end=\"url(#flow-C-S1SfBeXxfe-1-arrowhead)\" style=\"fill: none;\"/><line x1=\"83\" y1=\"205\" x2=\"83\" y2=\"205\" stroke-width=\"0\" marker-start=\"url(#flow-C-S1SfBeXxfe-1-sequencenumber)\"/><text x=\"83\" y=\"209\" font-family=\"sans-serif\" font-size=\"12px\" text-anchor=\"middle\" class=\"sequenceNumber\">1</text><text x=\"206\" y=\"221\" text-anchor=\"middle\" dominant-baseline=\"middle\" alignment-baseline=\"middle\" class=\"messageText\" dy=\"1em\" style=\"font-size: 16px; font-weight: 400;\">顯示三張新增方式卡片</text><line x1=\"327\" y1=\"251\" x2=\"90\" y2=\"251\" class=\"messageLine1\" data-et=\"message\" data-id=\"i2\" data-from=\"RB\" data-to=\"Emp\" stroke-width=\"2\" stroke=\"none\" marker-end=\"url(#flow-C-S1SfBeXxfe-1-arrowhead)\" style=\"stroke-dasharray: 3, 3; fill: none;\"/><line x1=\"322\" y1=\"251\" x2=\"322\" y2=\"251\" stroke-width=\"0\" marker-start=\"url(#flow-C-S1SfBeXxfe-1-sequencenumber)\"/><text x=\"322\" y=\"255\" font-family=\"sans-serif\" font-size=\"12px\" text-anchor=\"middle\" class=\"sequenceNumber\">2</text><text x=\"200\" y=\"267\" text-anchor=\"middle\" dominant-baseline=\"middle\" alignment-baseline=\"middle\" class=\"messageText\" dy=\"1em\" style=\"font-size: 16px; font-weight: 400;\">選擇新增方式並點【建立】</text><line x1=\"90\" y1=\"297\" x2=\"315\" y2=\"297\" class=\"messageLine0\" data-et=\"message\" data-id=\"i3\" data-from=\"Emp\" data-to=\"RB\" stroke-width=\"2\" stroke=\"none\" marker-end=\"url(#flow-C-S1SfBeXxfe-1-arrowhead)\" style=\"fill: none;\"/><line x1=\"83\" y1=\"297\" x2=\"83\" y2=\"297\" stroke-width=\"0\" marker-start=\"url(#flow-C-S1SfBeXxfe-1-sequencenumber)\"/><text x=\"83\" y=\"301\" font-family=\"sans-serif\" font-size=\"12px\" text-anchor=\"middle\" class=\"sequenceNumber\">3</text><text x=\"206\" y=\"365\" text-anchor=\"middle\" dominant-baseline=\"middle\" alignment-baseline=\"middle\" class=\"messageText\" dy=\"1em\" style=\"font-size: 16px; font-weight: 400;\">開「快速新增職缺」Modal</text><line x1=\"327\" y1=\"395\" x2=\"90\" y2=\"395\" class=\"messageLine1\" data-et=\"message\" data-id=\"i5\" data-from=\"RB\" data-to=\"Emp\" stroke-width=\"2\" stroke=\"none\" marker-end=\"url(#flow-C-S1SfBeXxfe-1-arrowhead)\" style=\"stroke-dasharray: 3, 3; fill: none;\"/><line x1=\"322\" y1=\"395\" x2=\"322\" y2=\"395\" stroke-width=\"0\" marker-start=\"url(#flow-C-S1SfBeXxfe-1-sequencenumber)\"/><text x=\"322\" y=\"399\" font-family=\"sans-serif\" font-size=\"12px\" text-anchor=\"middle\" class=\"sequenceNumber\">4</text><text x=\"200\" y=\"411\" text-anchor=\"middle\" dominant-baseline=\"middle\" alignment-baseline=\"middle\" class=\"messageText\" dy=\"1em\" style=\"font-size: 16px; font-weight: 400;\">輸入職缺名稱（2～100</text><text x=\"200\" y=\"428\" text-anchor=\"middle\" dominant-baseline=\"middle\" alignment-baseline=\"middle\" class=\"messageText\" dy=\"1em\" style=\"font-size: 16px; font-weight: 400;\">字）並按【確定】</text><line x1=\"90\" y1=\"458\" x2=\"315\" y2=\"458\" class=\"messageLine0\" data-et=\"message\" data-id=\"i6\" data-from=\"Emp\" data-to=\"RB\" stroke-width=\"2\" stroke=\"none\" marker-end=\"url(#flow-C-S1SfBeXxfe-1-arrowhead)\" style=\"fill: none;\"/><line x1=\"83\" y1=\"458\" x2=\"83\" y2=\"458\" stroke-width=\"0\" marker-start=\"url(#flow-C-S1SfBeXxfe-1-sequencenumber)\"/><text x=\"83\" y=\"462\" font-family=\"sans-serif\" font-size=\"12px\" text-anchor=\"middle\" class=\"sequenceNumber\">5</text><text x=\"447\" y=\"474\" text-anchor=\"middle\" dominant-baseline=\"middle\" alignment-baseline=\"middle\" class=\"messageText\" dy=\"1em\" style=\"font-size: 16px; font-weight: 400;\">以職缺名稱比對推薦職務類別</text><line x1=\"329\" y1=\"504\" x2=\"571\" y2=\"504\" class=\"messageLine0\" data-et=\"message\" data-id=\"i7\" data-from=\"RB\" data-to=\"AI\" stroke-width=\"2\" stroke=\"none\" marker-end=\"url(#flow-C-S1SfBeXxfe-1-arrowhead)\" style=\"fill: none;\"/><line x1=\"322\" y1=\"504\" x2=\"322\" y2=\"504\" stroke-width=\"0\" marker-start=\"url(#flow-C-S1SfBeXxfe-1-sequencenumber)\"/><text x=\"322\" y=\"508\" font-family=\"sans-serif\" font-size=\"12px\" text-anchor=\"middle\" class=\"sequenceNumber\">6</text><text x=\"453\" y=\"520\" text-anchor=\"middle\" dominant-baseline=\"middle\" alignment-baseline=\"middle\" class=\"messageText\" dy=\"1em\" style=\"font-size: 16px; font-weight: 400;\">回傳推薦職類</text><line x1=\"583\" y1=\"550\" x2=\"329\" y2=\"550\" class=\"messageLine1\" data-et=\"message\" data-id=\"i8\" data-from=\"AI\" data-to=\"RB\" stroke-width=\"2\" stroke=\"none\" marker-end=\"url(#flow-C-S1SfBeXxfe-1-arrowhead)\" style=\"stroke-dasharray: 3, 3; fill: none;\"/><line x1=\"578\" y1=\"550\" x2=\"578\" y2=\"550\" stroke-width=\"0\" marker-start=\"url(#flow-C-S1SfBeXxfe-1-sequencenumber)\"/><text x=\"578\" y=\"554\" font-family=\"sans-serif\" font-size=\"12px\" text-anchor=\"middle\" class=\"sequenceNumber\">7</text><text x=\"206\" y=\"566\" text-anchor=\"middle\" dominant-baseline=\"middle\" alignment-baseline=\"middle\" class=\"messageText\" dy=\"1em\" style=\"font-size: 16px; font-weight: 400;\">導向職缺內頁，帶入職缺名稱＋推薦-</text><text x=\"206\" y=\"583\" text-anchor=\"middle\" dominant-baseline=\"middle\" alignment-baseline=\"middle\" class=\"messageText\" dy=\"1em\" style=\"font-size: 16px; font-weight: 400;\">職務類別</text><line x1=\"327\" y1=\"613\" x2=\"90\" y2=\"613\" class=\"messageLine1\" data-et=\"message\" data-id=\"i9\" data-from=\"RB\" data-to=\"Emp\" stroke-width=\"2\" stroke=\"none\" marker-end=\"url(#flow-C-S1SfBeXxfe-1-arrowhead)\" style=\"stroke-dasharray: 3, 3; fill: none;\"/><line x1=\"322\" y1=\"613\" x2=\"322\" y2=\"613\" stroke-width=\"0\" marker-start=\"url(#flow-C-S1SfBeXxfe-1-sequencenumber)\"/><text x=\"322\" y=\"617\" font-family=\"sans-serif\" font-size=\"12px\" text-anchor=\"middle\" class=\"sequenceNumber\">8</text><text x=\"206\" y=\"681\" text-anchor=\"middle\" dominant-baseline=\"middle\" alignment-baseline=\"middle\" class=\"messageText\" dy=\"1em\" style=\"font-size: 16px; font-weight: 400;\">開「職缺列表」Modal（狀態／工作地-</text><text x=\"206\" y=\"698\" text-anchor=\"middle\" dominant-baseline=\"middle\" alignment-baseline=\"middle\" class=\"messageText\" dy=\"1em\" style=\"font-size: 16px; font-weight: 400;\">／關鍵字／屬性頁籤）</text><line x1=\"327\" y1=\"728\" x2=\"90\" y2=\"728\" class=\"messageLine1\" data-et=\"message\" data-id=\"i11\" data-from=\"RB\" data-to=\"Emp\" stroke-width=\"2\" stroke=\"none\" marker-end=\"url(#flow-C-S1SfBeXxfe-1-arrowhead)\" style=\"stroke-dasharray: 3, 3; fill: none;\"/><line x1=\"322\" y1=\"728\" x2=\"322\" y2=\"728\" stroke-width=\"0\" marker-start=\"url(#flow-C-S1SfBeXxfe-1-sequencenumber)\"/><text x=\"322\" y=\"732\" font-family=\"sans-serif\" font-size=\"12px\" text-anchor=\"middle\" class=\"sequenceNumber\">9</text><text x=\"200\" y=\"744\" text-anchor=\"middle\" dominant-baseline=\"middle\" alignment-baseline=\"middle\" class=\"messageText\" dy=\"1em\" style=\"font-size: 16px; font-weight: 400;\">單選既有職缺並按【建立】</text><line x1=\"90\" y1=\"774\" x2=\"315\" y2=\"774\" class=\"messageLine0\" data-et=\"message\" data-id=\"i12\" data-from=\"Emp\" data-to=\"RB\" stroke-width=\"2\" stroke=\"none\" marker-end=\"url(#flow-C-S1SfBeXxfe-1-arrowhead)\" style=\"fill: none;\"/><line x1=\"83\" y1=\"774\" x2=\"83\" y2=\"774\" stroke-width=\"0\" marker-start=\"url(#flow-C-S1SfBeXxfe-1-sequencenumber)\"/><text x=\"83\" y=\"778\" font-family=\"sans-serif\" font-size=\"12px\" text-anchor=\"middle\" class=\"sequenceNumber\">10</text><text x=\"206\" y=\"873\" text-anchor=\"middle\" dominant-baseline=\"middle\" alignment-baseline=\"middle\" class=\"messageText\" dy=\"1em\" style=\"font-size: 16px; font-weight: 400;\">導向職缺內頁，完整帶入被複製職缺-</text><text x=\"206\" y=\"890\" text-anchor=\"middle\" dominant-baseline=\"middle\" alignment-baseline=\"middle\" class=\"messageText\" dy=\"1em\" style=\"font-size: 16px; font-weight: 400;\">資料（含應徵問答）</text><line x1=\"327\" y1=\"920\" x2=\"90\" y2=\"920\" class=\"messageLine1\" data-et=\"message\" data-id=\"i14\" data-from=\"RB\" data-to=\"Emp\" stroke-width=\"2\" stroke=\"none\" marker-end=\"url(#flow-C-S1SfBeXxfe-1-arrowhead)\" style=\"stroke-dasharray: 3, 3; fill: none;\"/><line x1=\"322\" y1=\"920\" x2=\"322\" y2=\"920\" stroke-width=\"0\" marker-start=\"url(#flow-C-S1SfBeXxfe-1-sequencenumber)\"/><text x=\"322\" y=\"924\" font-family=\"sans-serif\" font-size=\"12px\" text-anchor=\"middle\" class=\"sequenceNumber\">11</text><text x=\"206\" y=\"988\" text-anchor=\"middle\" dominant-baseline=\"middle\" alignment-baseline=\"middle\" class=\"messageText\" dy=\"1em\" style=\"font-size: 16px; font-weight: 400;\">不開 Modal，直接導向空白職缺內頁</text><line x1=\"327\" y1=\"1018\" x2=\"90\" y2=\"1018\" class=\"messageLine1\" data-et=\"message\" data-id=\"i16\" data-from=\"RB\" data-to=\"Emp\" stroke-width=\"2\" stroke=\"none\" marker-end=\"url(#flow-C-S1SfBeXxfe-1-arrowhead)\" style=\"stroke-dasharray: 3, 3; fill: none;\"/><line x1=\"322\" y1=\"1018\" x2=\"322\" y2=\"1018\" stroke-width=\"0\" marker-start=\"url(#flow-C-S1SfBeXxfe-1-sequencenumber)\"/><text x=\"322\" y=\"1022\" font-family=\"sans-serif\" font-size=\"12px\" text-anchor=\"middle\" class=\"sequenceNumber\">12</text><text x=\"200\" y=\"1046\" text-anchor=\"middle\" dominant-baseline=\"middle\" alignment-baseline=\"middle\" class=\"messageText\" dy=\"1em\" style=\"font-size: 16px; font-weight: 400;\">設定屬性（全職／兼職／工讀／中高-</text><text x=\"200\" y=\"1063\" text-anchor=\"middle\" dominant-baseline=\"middle\" alignment-baseline=\"middle\" class=\"messageText\" dy=\"1em\" style=\"font-size: 16px; font-weight: 400;\">階／立即上工）與特殊性質</text><line x1=\"90\" y1=\"1093\" x2=\"315\" y2=\"1093\" class=\"messageLine0\" data-et=\"message\" data-id=\"i18\" data-from=\"Emp\" data-to=\"RB\" stroke-width=\"2\" stroke=\"none\" marker-end=\"url(#flow-C-S1SfBeXxfe-1-arrowhead)\" style=\"fill: none;\"/><line x1=\"83\" y1=\"1093\" x2=\"83\" y2=\"1093\" stroke-width=\"0\" marker-start=\"url(#flow-C-S1SfBeXxfe-1-sequencenumber)\"/><text x=\"83\" y=\"1097\" font-family=\"sans-serif\" font-size=\"12px\" text-anchor=\"middle\" class=\"sequenceNumber\">13</text><text x=\"206\" y=\"1109\" text-anchor=\"middle\" dominant-baseline=\"middle\" alignment-baseline=\"middle\" class=\"messageText\" dy=\"1em\" style=\"font-size: 16px; font-weight: 400;\">依屬性×特殊性質切換欄位（工作時間-</text><text x=\"206\" y=\"1126\" text-anchor=\"middle\" dominant-baseline=\"middle\" alignment-baseline=\"middle\" class=\"messageText\" dy=\"1em\" style=\"font-size: 16px; font-weight: 400;\">容器、班別、承攬制說明、中高階審-</text><text x=\"206\" y=\"1143\" text-anchor=\"middle\" dominant-baseline=\"middle\" alignment-baseline=\"middle\" class=\"messageText\" dy=\"1em\" style=\"font-size: 16px; font-weight: 400;\">核提示等）</text><line x1=\"327\" y1=\"1173\" x2=\"90\" y2=\"1173\" class=\"messageLine1\" data-et=\"message\" data-id=\"i19\" data-from=\"RB\" data-to=\"Emp\" stroke-width=\"2\" stroke=\"none\" marker-end=\"url(#flow-C-S1SfBeXxfe-1-arrowhead)\" style=\"stroke-dasharray: 3, 3; fill: none;\"/><line x1=\"322\" y1=\"1173\" x2=\"322\" y2=\"1173\" stroke-width=\"0\" marker-start=\"url(#flow-C-S1SfBeXxfe-1-sequencenumber)\"/><text x=\"322\" y=\"1177\" font-family=\"sans-serif\" font-size=\"12px\" text-anchor=\"middle\" class=\"sequenceNumber\">14</text><text x=\"200\" y=\"1341\" text-anchor=\"middle\" dominant-baseline=\"middle\" alignment-baseline=\"middle\" class=\"messageText\" dy=\"1em\" style=\"font-size: 16px; font-weight: 400;\">輸入職缺名稱</text><line x1=\"90\" y1=\"1371\" x2=\"315\" y2=\"1371\" class=\"messageLine0\" data-et=\"message\" data-id=\"i22\" data-from=\"Emp\" data-to=\"RB\" stroke-width=\"2\" stroke=\"none\" marker-end=\"url(#flow-C-S1SfBeXxfe-1-arrowhead)\" style=\"fill: none;\"/><line x1=\"83\" y1=\"1371\" x2=\"83\" y2=\"1371\" stroke-width=\"0\" marker-start=\"url(#flow-C-S1SfBeXxfe-1-sequencenumber)\"/><text x=\"83\" y=\"1375\" font-family=\"sans-serif\" font-size=\"12px\" text-anchor=\"middle\" class=\"sequenceNumber\">15</text><text x=\"447\" y=\"1387\" text-anchor=\"middle\" dominant-baseline=\"middle\" alignment-baseline=\"middle\" class=\"messageText\" dy=\"1em\" style=\"font-size: 16px; font-weight: 400;\">職類推薦 API（每秒最多 1</text><text x=\"447\" y=\"1404\" text-anchor=\"middle\" dominant-baseline=\"middle\" alignment-baseline=\"middle\" class=\"messageText\" dy=\"1em\" style=\"font-size: 16px; font-weight: 400;\">次，只取最後一次結果）</text><line x1=\"329\" y1=\"1434\" x2=\"571\" y2=\"1434\" class=\"messageLine0\" data-et=\"message\" data-id=\"i23\" data-from=\"RB\" data-to=\"AI\" stroke-width=\"2\" stroke=\"none\" marker-end=\"url(#flow-C-S1SfBeXxfe-1-arrowhead)\" style=\"fill: none;\"/><line x1=\"322\" y1=\"1434\" x2=\"322\" y2=\"1434\" stroke-width=\"0\" marker-start=\"url(#flow-C-S1SfBeXxfe-1-sequencenumber)\"/><text x=\"322\" y=\"1438\" font-family=\"sans-serif\" font-size=\"12px\" text-anchor=\"middle\" class=\"sequenceNumber\">16</text><text x=\"453\" y=\"1450\" text-anchor=\"middle\" dominant-baseline=\"middle\" alignment-baseline=\"middle\" class=\"messageText\" dy=\"1em\" style=\"font-size: 16px; font-weight: 400;\">推薦職務類別</text><line x1=\"583\" y1=\"1480\" x2=\"329\" y2=\"1480\" class=\"messageLine1\" data-et=\"message\" data-id=\"i24\" data-from=\"AI\" data-to=\"RB\" stroke-width=\"2\" stroke=\"none\" marker-end=\"url(#flow-C-S1SfBeXxfe-1-arrowhead)\" style=\"stroke-dasharray: 3, 3; fill: none;\"/><line x1=\"578\" y1=\"1480\" x2=\"578\" y2=\"1480\" stroke-width=\"0\" marker-start=\"url(#flow-C-S1SfBeXxfe-1-sequencenumber)\"/><text x=\"578\" y=\"1484\" font-family=\"sans-serif\" font-size=\"12px\" text-anchor=\"middle\" class=\"sequenceNumber\">17</text><text x=\"200\" y=\"1496\" text-anchor=\"middle\" dominant-baseline=\"middle\" alignment-baseline=\"middle\" class=\"messageText\" dy=\"1em\" style=\"font-size: 16px; font-weight: 400;\">要求 AI 生成／優化工作說明</text><line x1=\"90\" y1=\"1526\" x2=\"315\" y2=\"1526\" class=\"messageLine0\" data-et=\"message\" data-id=\"i25\" data-from=\"Emp\" data-to=\"RB\" stroke-width=\"2\" stroke=\"none\" marker-end=\"url(#flow-C-S1SfBeXxfe-1-arrowhead)\" style=\"fill: none;\"/><line x1=\"83\" y1=\"1526\" x2=\"83\" y2=\"1526\" stroke-width=\"0\" marker-start=\"url(#flow-C-S1SfBeXxfe-1-sequencenumber)\"/><text x=\"83\" y=\"1530\" font-family=\"sans-serif\" font-size=\"12px\" text-anchor=\"middle\" class=\"sequenceNumber\">18</text><text x=\"447\" y=\"1542\" text-anchor=\"middle\" dominant-baseline=\"middle\" alignment-baseline=\"middle\" class=\"messageText\" dy=\"1em\" style=\"font-size: 16px; font-weight: 400;\">JD 生成</text><line x1=\"329\" y1=\"1572\" x2=\"571\" y2=\"1572\" class=\"messageLine0\" data-et=\"message\" data-id=\"i26\" data-from=\"RB\" data-to=\"AI\" stroke-width=\"2\" stroke=\"none\" marker-end=\"url(#flow-C-S1SfBeXxfe-1-arrowhead)\" style=\"fill: none;\"/><line x1=\"322\" y1=\"1572\" x2=\"322\" y2=\"1572\" stroke-width=\"0\" marker-start=\"url(#flow-C-S1SfBeXxfe-1-sequencenumber)\"/><text x=\"322\" y=\"1576\" font-family=\"sans-serif\" font-size=\"12px\" text-anchor=\"middle\" class=\"sequenceNumber\">19</text><text x=\"453\" y=\"1588\" text-anchor=\"middle\" dominant-baseline=\"middle\" alignment-baseline=\"middle\" class=\"messageText\" dy=\"1em\" style=\"font-size: 16px; font-weight: 400;\">工作說明內容</text><line x1=\"583\" y1=\"1618\" x2=\"329\" y2=\"1618\" class=\"messageLine1\" data-et=\"message\" data-id=\"i27\" data-from=\"AI\" data-to=\"RB\" stroke-width=\"2\" stroke=\"none\" marker-end=\"url(#flow-C-S1SfBeXxfe-1-arrowhead)\" style=\"stroke-dasharray: 3, 3; fill: none;\"/><line x1=\"578\" y1=\"1618\" x2=\"578\" y2=\"1618\" stroke-width=\"0\" marker-start=\"url(#flow-C-S1SfBeXxfe-1-sequencenumber)\"/><text x=\"578\" y=\"1622\" font-family=\"sans-serif\" font-size=\"12px\" text-anchor=\"middle\" class=\"sequenceNumber\">20</text><text x=\"447\" y=\"1634\" text-anchor=\"middle\" dominant-baseline=\"middle\" alignment-baseline=\"middle\" class=\"messageText\" dy=\"1em\" style=\"font-size: 16px; font-weight: 400;\">技能專長證照推薦（帶入職類與</text><text x=\"447\" y=\"1651\" text-anchor=\"middle\" dominant-baseline=\"middle\" alignment-baseline=\"middle\" class=\"messageText\" dy=\"1em\" style=\"font-size: 16px; font-weight: 400;\">tCodeTrade）</text><line x1=\"329\" y1=\"1681\" x2=\"571\" y2=\"1681\" class=\"messageLine0\" data-et=\"message\" data-id=\"i28\" data-from=\"RB\" data-to=\"AI\" stroke-width=\"2\" stroke=\"none\" marker-end=\"url(#flow-C-S1SfBeXxfe-1-arrowhead)\" style=\"fill: none;\"/><line x1=\"322\" y1=\"1681\" x2=\"322\" y2=\"1681\" stroke-width=\"0\" marker-start=\"url(#flow-C-S1SfBeXxfe-1-sequencenumber)\"/><text x=\"322\" y=\"1685\" font-family=\"sans-serif\" font-size=\"12px\" text-anchor=\"middle\" class=\"sequenceNumber\">21</text><text x=\"453\" y=\"1697\" text-anchor=\"middle\" dominant-baseline=\"middle\" alignment-baseline=\"middle\" class=\"messageText\" dy=\"1em\" style=\"font-size: 16px; font-weight: 400;\">推薦技能／證照項目</text><line x1=\"583\" y1=\"1727\" x2=\"329\" y2=\"1727\" class=\"messageLine1\" data-et=\"message\" data-id=\"i29\" data-from=\"AI\" data-to=\"RB\" stroke-width=\"2\" stroke=\"none\" marker-end=\"url(#flow-C-S1SfBeXxfe-1-arrowhead)\" style=\"stroke-dasharray: 3, 3; fill: none;\"/><line x1=\"578\" y1=\"1727\" x2=\"578\" y2=\"1727\" stroke-width=\"0\" marker-start=\"url(#flow-C-S1SfBeXxfe-1-sequencenumber)\"/><text x=\"578\" y=\"1731\" font-family=\"sans-serif\" font-size=\"12px\" text-anchor=\"middle\" class=\"sequenceNumber\">22</text><text x=\"206\" y=\"1743\" text-anchor=\"middle\" dominant-baseline=\"middle\" alignment-baseline=\"middle\" class=\"messageText\" dy=\"1em\" style=\"font-size: 16px; font-weight: 400;\">顯示推薦結果供廠商點選</text><line x1=\"327\" y1=\"1773\" x2=\"90\" y2=\"1773\" class=\"messageLine1\" data-et=\"message\" data-id=\"i30\" data-from=\"RB\" data-to=\"Emp\" stroke-width=\"2\" stroke=\"none\" marker-end=\"url(#flow-C-S1SfBeXxfe-1-arrowhead)\" style=\"stroke-dasharray: 3, 3; fill: none;\"/><line x1=\"322\" y1=\"1773\" x2=\"322\" y2=\"1773\" stroke-width=\"0\" marker-start=\"url(#flow-C-S1SfBeXxfe-1-sequencenumber)\"/><text x=\"322\" y=\"1777\" font-family=\"sans-serif\" font-size=\"12px\" text-anchor=\"middle\" class=\"sequenceNumber\">23</text><text x=\"206\" y=\"1968\" text-anchor=\"middle\" dominant-baseline=\"middle\" alignment-baseline=\"middle\" class=\"messageText\" dy=\"1em\" style=\"font-size: 16px; font-weight: 400;\">顯示違規 tooltip，不可送出</text><line x1=\"327\" y1=\"2000\" x2=\"90\" y2=\"2000\" class=\"messageLine1\" data-et=\"message\" data-id=\"i35\" data-from=\"RB\" data-to=\"Emp\" stroke-width=\"2\" stroke=\"none\" marker-end=\"url(#flow-C-S1SfBeXxfe-1-arrowhead)\" style=\"stroke-dasharray: 3, 3; fill: none;\"/><line x1=\"322\" y1=\"2000\" x2=\"322\" y2=\"2000\" stroke-width=\"0\" marker-start=\"url(#flow-C-S1SfBeXxfe-1-sequencenumber)\"/><text x=\"322\" y=\"2004\" font-family=\"sans-serif\" font-size=\"12px\" text-anchor=\"middle\" class=\"sequenceNumber\">24</text><text x=\"206\" y=\"2068\" text-anchor=\"middle\" dominant-baseline=\"middle\" alignment-baseline=\"middle\" class=\"messageText\" dy=\"1em\" style=\"font-size: 16px; font-weight: 400;\">允許繼續編輯</text><line x1=\"327\" y1=\"2098\" x2=\"90\" y2=\"2098\" class=\"messageLine1\" data-et=\"message\" data-id=\"i37\" data-from=\"RB\" data-to=\"Emp\" stroke-width=\"2\" stroke=\"none\" marker-end=\"url(#flow-C-S1SfBeXxfe-1-arrowhead)\" style=\"stroke-dasharray: 3, 3; fill: none;\"/><line x1=\"322\" y1=\"2098\" x2=\"322\" y2=\"2098\" stroke-width=\"0\" marker-start=\"url(#flow-C-S1SfBeXxfe-1-sequencenumber)\"/><text x=\"322\" y=\"2102\" font-family=\"sans-serif\" font-size=\"12px\" text-anchor=\"middle\" class=\"sequenceNumber\">25</text><text x=\"200\" y=\"2138\" text-anchor=\"middle\" dominant-baseline=\"middle\" alignment-baseline=\"middle\" class=\"messageText\" dy=\"1em\" style=\"font-size: 16px; font-weight: 400;\">點【確定送出】</text><line x1=\"90\" y1=\"2168\" x2=\"315\" y2=\"2168\" class=\"messageLine0\" data-et=\"message\" data-id=\"i40\" data-from=\"Emp\" data-to=\"RB\" stroke-width=\"2\" stroke=\"none\" marker-end=\"url(#flow-C-S1SfBeXxfe-1-arrowhead)\" style=\"fill: none;\"/><line x1=\"83\" y1=\"2168\" x2=\"83\" y2=\"2168\" stroke-width=\"0\" marker-start=\"url(#flow-C-S1SfBeXxfe-1-sequencenumber)\"/><text x=\"83\" y=\"2172\" font-family=\"sans-serif\" font-size=\"12px\" text-anchor=\"middle\" class=\"sequenceNumber\">26</text><text x=\"206\" y=\"2285\" text-anchor=\"middle\" dominant-baseline=\"middle\" alignment-baseline=\"middle\" class=\"messageText\" dy=\"1em\" style=\"font-size: 16px; font-weight: 400;\">標示 error，不送出</text><line x1=\"327\" y1=\"2315\" x2=\"90\" y2=\"2315\" class=\"messageLine1\" data-et=\"message\" data-id=\"i43\" data-from=\"RB\" data-to=\"Emp\" stroke-width=\"2\" stroke=\"none\" marker-end=\"url(#flow-C-S1SfBeXxfe-1-arrowhead)\" style=\"stroke-dasharray: 3, 3; fill: none;\"/><line x1=\"322\" y1=\"2315\" x2=\"322\" y2=\"2315\" stroke-width=\"0\" marker-start=\"url(#flow-C-S1SfBeXxfe-1-sequencenumber)\"/><text x=\"322\" y=\"2319\" font-family=\"sans-serif\" font-size=\"12px\" text-anchor=\"middle\" class=\"sequenceNumber\">27</text><text x=\"206\" y=\"2383\" text-anchor=\"middle\" dominant-baseline=\"middle\" alignment-baseline=\"middle\" class=\"messageText\" dy=\"1em\" style=\"font-size: 16px; font-weight: 400;\">顯示送出確認彈窗（新增／開啟中：-</text><text x=\"206\" y=\"2400\" text-anchor=\"middle\" dominant-baseline=\"middle\" alignment-baseline=\"middle\" class=\"messageText\" dy=\"1em\" style=\"font-size: 16px; font-weight: 400;\">寄送 or 不寄送；關閉中：開啟職缺</text><text x=\"206\" y=\"2417\" text-anchor=\"middle\" dominant-baseline=\"middle\" alignment-baseline=\"middle\" class=\"messageText\" dy=\"1em\" style=\"font-size: 16px; font-weight: 400;\">or 保持關閉＋checkbox）</text><line x1=\"327\" y1=\"2447\" x2=\"90\" y2=\"2447\" class=\"messageLine1\" data-et=\"message\" data-id=\"i45\" data-from=\"RB\" data-to=\"Emp\" stroke-width=\"2\" stroke=\"none\" marker-end=\"url(#flow-C-S1SfBeXxfe-1-arrowhead)\" style=\"stroke-dasharray: 3, 3; fill: none;\"/><line x1=\"322\" y1=\"2447\" x2=\"322\" y2=\"2447\" stroke-width=\"0\" marker-start=\"url(#flow-C-S1SfBeXxfe-1-sequencenumber)\"/><text x=\"322\" y=\"2451\" font-family=\"sans-serif\" font-size=\"12px\" text-anchor=\"middle\" class=\"sequenceNumber\">28</text><text x=\"200\" y=\"2463\" text-anchor=\"middle\" dominant-baseline=\"middle\" alignment-baseline=\"middle\" class=\"messageText\" dy=\"1em\" style=\"font-size: 16px; font-weight: 400;\">選擇是否寄送職缺確認信</text><line x1=\"90\" y1=\"2493\" x2=\"315\" y2=\"2493\" class=\"messageLine0\" data-et=\"message\" data-id=\"i46\" data-from=\"Emp\" data-to=\"RB\" stroke-width=\"2\" stroke=\"none\" marker-end=\"url(#flow-C-S1SfBeXxfe-1-arrowhead)\" style=\"fill: none;\"/><line x1=\"83\" y1=\"2493\" x2=\"83\" y2=\"2493\" stroke-width=\"0\" marker-start=\"url(#flow-C-S1SfBeXxfe-1-sequencenumber)\"/><text x=\"83\" y=\"2497\" font-family=\"sans-serif\" font-size=\"12px\" text-anchor=\"middle\" class=\"sequenceNumber\">29</text><text x=\"206\" y=\"2860\" text-anchor=\"middle\" dominant-baseline=\"middle\" alignment-baseline=\"middle\" class=\"messageText\" dy=\"1em\" style=\"font-size: 16px; font-weight: 400;\">提示職缺已進審核，需等候客服審核</text><line x1=\"327\" y1=\"2890\" x2=\"90\" y2=\"2890\" class=\"messageLine1\" data-et=\"message\" data-id=\"i53\" data-from=\"RB\" data-to=\"Emp\" stroke-width=\"2\" stroke=\"none\" marker-end=\"url(#flow-C-S1SfBeXxfe-1-arrowhead)\" style=\"stroke-dasharray: 3, 3; fill: none;\"/><line x1=\"322\" y1=\"2890\" x2=\"322\" y2=\"2890\" stroke-width=\"0\" marker-start=\"url(#flow-C-S1SfBeXxfe-1-sequencenumber)\"/><text x=\"322\" y=\"2894\" font-family=\"sans-serif\" font-size=\"12px\" text-anchor=\"middle\" class=\"sequenceNumber\">30</text><text x=\"571\" y=\"2906\" text-anchor=\"middle\" dominant-baseline=\"middle\" alignment-baseline=\"middle\" class=\"messageText\" dy=\"1em\" style=\"font-size: 16px; font-weight: 400;\">寄送職缺審核通知（E-mail）</text><line x1=\"329\" y1=\"2936\" x2=\"819\" y2=\"2936\" class=\"messageLine0\" data-et=\"message\" data-id=\"i54\" data-from=\"RB\" data-to=\"CS\" stroke-width=\"2\" stroke=\"none\" marker-end=\"url(#flow-C-S1SfBeXxfe-1-arrowhead)\" style=\"fill: none;\"/><line x1=\"322\" y1=\"2936\" x2=\"322\" y2=\"2936\" stroke-width=\"0\" marker-start=\"url(#flow-C-S1SfBeXxfe-1-sequencenumber)\"/><text x=\"322\" y=\"2940\" font-family=\"sans-serif\" font-size=\"12px\" text-anchor=\"middle\" class=\"sequenceNumber\">31</text><text x=\"577\" y=\"3104\" text-anchor=\"middle\" dominant-baseline=\"middle\" alignment-baseline=\"middle\" class=\"messageText\" dy=\"1em\" style=\"font-size: 16px; font-weight: 400;\">審核欄位改寫為通過</text><line x1=\"831\" y1=\"3134\" x2=\"329\" y2=\"3134\" class=\"messageLine0\" data-et=\"message\" data-id=\"i57\" data-from=\"CS\" data-to=\"RB\" stroke-width=\"2\" stroke=\"none\" marker-end=\"url(#flow-C-S1SfBeXxfe-1-arrowhead)\" style=\"fill: none;\"/><line x1=\"826\" y1=\"3134\" x2=\"826\" y2=\"3134\" stroke-width=\"0\" marker-start=\"url(#flow-C-S1SfBeXxfe-1-sequencenumber)\"/><text x=\"826\" y=\"3138\" font-family=\"sans-serif\" font-size=\"12px\" text-anchor=\"middle\" class=\"sequenceNumber\">32</text><text x=\"206\" y=\"3150\" text-anchor=\"middle\" dominant-baseline=\"middle\" alignment-baseline=\"middle\" class=\"messageText\" dy=\"1em\" style=\"font-size: 16px; font-weight: 400;\">寄送職缺審核信（通過；showfield&amp;5-</text><text x=\"206\" y=\"3167\" text-anchor=\"middle\" dominant-baseline=\"middle\" alignment-baseline=\"middle\" class=\"messageText\" dy=\"1em\" style=\"font-size: 16px; font-weight: 400;\">24288 廠商不收）</text><line x1=\"327\" y1=\"3197\" x2=\"90\" y2=\"3197\" class=\"messageLine1\" data-et=\"message\" data-id=\"i58\" data-from=\"RB\" data-to=\"Emp\" stroke-width=\"2\" stroke=\"none\" marker-end=\"url(#flow-C-S1SfBeXxfe-1-arrowhead)\" style=\"stroke-dasharray: 3, 3; fill: none;\"/><line x1=\"322\" y1=\"3197\" x2=\"322\" y2=\"3197\" stroke-width=\"0\" marker-start=\"url(#flow-C-S1SfBeXxfe-1-sequencenumber)\"/><text x=\"322\" y=\"3201\" font-family=\"sans-serif\" font-size=\"12px\" text-anchor=\"middle\" class=\"sequenceNumber\">33</text><text x=\"577\" y=\"3265\" text-anchor=\"middle\" dominant-baseline=\"middle\" alignment-baseline=\"middle\" class=\"messageText\" dy=\"1em\" style=\"font-size: 16px; font-weight: 400;\">填寫不通過原因，mConfirmed = 128</text><line x1=\"831\" y1=\"3295\" x2=\"329\" y2=\"3295\" class=\"messageLine0\" data-et=\"message\" data-id=\"i60\" data-from=\"CS\" data-to=\"RB\" stroke-width=\"2\" stroke=\"none\" marker-end=\"url(#flow-C-S1SfBeXxfe-1-arrowhead)\" style=\"fill: none;\"/><line x1=\"826\" y1=\"3295\" x2=\"826\" y2=\"3295\" stroke-width=\"0\" marker-start=\"url(#flow-C-S1SfBeXxfe-1-sequencenumber)\"/><text x=\"826\" y=\"3299\" font-family=\"sans-serif\" font-size=\"12px\" text-anchor=\"middle\" class=\"sequenceNumber\">34</text><text x=\"206\" y=\"3311\" text-anchor=\"middle\" dominant-baseline=\"middle\" alignment-baseline=\"middle\" class=\"messageText\" dy=\"1em\" style=\"font-size: 16px; font-weight: 400;\">寄送職缺審核信（未通過＋原因＋修-</text><text x=\"206\" y=\"3328\" text-anchor=\"middle\" dominant-baseline=\"middle\" alignment-baseline=\"middle\" class=\"messageText\" dy=\"1em\" style=\"font-size: 16px; font-weight: 400;\">改設定按鈕），職缺列表「審核不通-</text><text x=\"206\" y=\"3345\" text-anchor=\"middle\" dominant-baseline=\"middle\" alignment-baseline=\"middle\" class=\"messageText\" dy=\"1em\" style=\"font-size: 16px; font-weight: 400;\">過」頁籤可看原因</text><line x1=\"327\" y1=\"3375\" x2=\"90\" y2=\"3375\" class=\"messageLine1\" data-et=\"message\" data-id=\"i61\" data-from=\"RB\" data-to=\"Emp\" stroke-width=\"2\" stroke=\"none\" marker-end=\"url(#flow-C-S1SfBeXxfe-1-arrowhead)\" style=\"stroke-dasharray: 3, 3; fill: none;\"/><line x1=\"322\" y1=\"3375\" x2=\"322\" y2=\"3375\" stroke-width=\"0\" marker-start=\"url(#flow-C-S1SfBeXxfe-1-sequencenumber)\"/><text x=\"322\" y=\"3379\" font-family=\"sans-serif\" font-size=\"12px\" text-anchor=\"middle\" class=\"sequenceNumber\">35</text><text x=\"200\" y=\"3391\" text-anchor=\"middle\" dominant-baseline=\"middle\" alignment-baseline=\"middle\" class=\"messageText\" dy=\"1em\" style=\"font-size: 16px; font-weight: 400;\">點「修改設定」回職缺內頁修改，重-</text><text x=\"200\" y=\"3408\" text-anchor=\"middle\" dominant-baseline=\"middle\" alignment-baseline=\"middle\" class=\"messageText\" dy=\"1em\" style=\"font-size: 16px; font-weight: 400;\">新送出（回到「點確定送出」）</text><line x1=\"90\" y1=\"3438\" x2=\"315\" y2=\"3438\" class=\"messageLine0\" data-et=\"message\" data-id=\"i62\" data-from=\"Emp\" data-to=\"RB\" stroke-width=\"2\" stroke=\"none\" marker-end=\"url(#flow-C-S1SfBeXxfe-1-arrowhead)\" style=\"fill: none;\"/><line x1=\"83\" y1=\"3438\" x2=\"83\" y2=\"3438\" stroke-width=\"0\" marker-start=\"url(#flow-C-S1SfBeXxfe-1-sequencenumber)\"/><text x=\"83\" y=\"3442\" font-family=\"sans-serif\" font-size=\"12px\" text-anchor=\"middle\" class=\"sequenceNumber\">36</text><text x=\"571\" y=\"3704\" text-anchor=\"middle\" dominant-baseline=\"middle\" alignment-baseline=\"middle\" class=\"messageText\" dy=\"1em\" style=\"font-size: 16px; font-weight: 400;\">寄信通知職缺需檢查（提醒用，職缺已曝光）</text><line x1=\"329\" y1=\"3734\" x2=\"819\" y2=\"3734\" class=\"messageLine0\" data-et=\"message\" data-id=\"i68\" data-from=\"RB\" data-to=\"CS\" stroke-width=\"2\" stroke=\"none\" marker-end=\"url(#flow-C-S1SfBeXxfe-1-arrowhead)\" style=\"fill: none;\"/><line x1=\"322\" y1=\"3734\" x2=\"322\" y2=\"3734\" stroke-width=\"0\" marker-start=\"url(#flow-C-S1SfBeXxfe-1-sequencenumber)\"/><text x=\"322\" y=\"3738\" font-family=\"sans-serif\" font-size=\"12px\" text-anchor=\"middle\" class=\"sequenceNumber\">37</text><text x=\"829\" y=\"4030\" text-anchor=\"middle\" dominant-baseline=\"middle\" alignment-baseline=\"middle\" class=\"messageText\" dy=\"1em\" style=\"font-size: 16px; font-weight: 400;\">職缺於求職主網上架曝光</text><line x1=\"329\" y1=\"4060\" x2=\"1335\" y2=\"4060\" class=\"messageLine0\" data-et=\"message\" data-id=\"i75\" data-from=\"RB\" data-to=\"JS\" stroke-width=\"2\" stroke=\"none\" marker-end=\"url(#flow-C-S1SfBeXxfe-1-arrowhead)\" style=\"fill: none;\"/><line x1=\"322\" y1=\"4060\" x2=\"322\" y2=\"4060\" stroke-width=\"0\" marker-start=\"url(#flow-C-S1SfBeXxfe-1-sequencenumber)\"/><text x=\"322\" y=\"4064\" font-family=\"sans-serif\" font-size=\"12px\" text-anchor=\"middle\" class=\"sequenceNumber\">38</text><text x=\"206\" y=\"4128\" text-anchor=\"middle\" dominant-baseline=\"middle\" alignment-baseline=\"middle\" class=\"messageText\" dy=\"1em\" style=\"font-size: 16px; font-weight: 400;\">職缺已儲存，但不對求職者曝光</text><line x1=\"327\" y1=\"4158\" x2=\"90\" y2=\"4158\" class=\"messageLine1\" data-et=\"message\" data-id=\"i77\" data-from=\"RB\" data-to=\"Emp\" stroke-width=\"2\" stroke=\"none\" marker-end=\"url(#flow-C-S1SfBeXxfe-1-arrowhead)\" style=\"stroke-dasharray: 3, 3; fill: none;\"/><line x1=\"322\" y1=\"4158\" x2=\"322\" y2=\"4158\" stroke-width=\"0\" marker-start=\"url(#flow-C-S1SfBeXxfe-1-sequencenumber)\"/><text x=\"322\" y=\"4162\" font-family=\"sans-serif\" font-size=\"12px\" text-anchor=\"middle\" class=\"sequenceNumber\">39</text></svg>"
    ]
   }
  ],
@@ -420,11 +1080,27 @@
      "docs": [
       {
        "shortId": "Hym116n3-x",
-       "title": "A.1 topbar"
+       "title": "A.1 topbar各分區(含埋點說明)&A1.1"
+      },
+      {
+       "shortId": "HypMe1a9fx",
+       "title": "A.1.2 功能選單"
       },
       {
        "shortId": "HkTiVy7Z-e",
        "title": "A.1.3 公告"
+      },
+      {
+       "shortId": "SJsQkWsWbg",
+       "title": "A.1.4 公告&A.1.5 通知"
+      },
+      {
+       "shortId": "ryik5PAZWl",
+       "title": "A.1.6 帳號資訊選單"
+      },
+      {
+       "shortId": "SkJEsXNWMx",
+       "title": "A.1.7 異常狀態列"
       },
       {
        "shortId": "Bye3E5tl-g",
@@ -439,6 +1115,10 @@
        "title": "A.5 面試行事曆"
       },
       {
+       "shortId": "Sk5kyX6ubx",
+       "title": "A.7.1 文件下載"
+      },
+      {
        "shortId": "BkIIbQYfWe",
        "title": "A.10 人才秒搜"
       }
@@ -451,7 +1131,43 @@
        "tag": ""
       },
       {
+       "name": "回到首頁",
+       "depth": 2,
+       "group": false,
+       "tag": ""
+      },
+      {
+       "name": "功能選單",
+       "depth": 2,
+       "group": false,
+       "tag": ""
+      },
+      {
        "name": "公告",
+       "depth": 2,
+       "group": false,
+       "tag": ""
+      },
+      {
+       "name": "主投",
+       "depth": 2,
+       "group": false,
+       "tag": ""
+      },
+      {
+       "name": "通知",
+       "depth": 2,
+       "group": false,
+       "tag": ""
+      },
+      {
+       "name": "帳號資訊選單",
+       "depth": 2,
+       "group": false,
+       "tag": ""
+      },
+      {
+       "name": "異常狀態列",
        "depth": 2,
        "group": false,
        "tag": ""
@@ -470,6 +1186,30 @@
       },
       {
        "name": "面試行事曆",
+       "depth": 1,
+       "group": false,
+       "tag": ""
+      },
+      {
+       "name": "公告",
+       "depth": 1,
+       "group": false,
+       "tag": ""
+      },
+      {
+       "name": "資源下載",
+       "depth": 1,
+       "group": false,
+       "tag": ""
+      },
+      {
+       "name": "首頁廣告",
+       "depth": 1,
+       "group": false,
+       "tag": ""
+      },
+      {
+       "name": "Footer",
        "depth": 1,
        "group": false,
        "tag": ""
@@ -1160,7 +1900,799 @@
      "title": "[REF] 職缺資料欄位表與代碼表"
     }
    ],
-   "unmatched_refs": []
+   "unmatched_refs": [],
+   "relations": [
+    {
+     "stage": "J 登入",
+     "func": "登入前頁／試搜",
+     "docs": [
+      {
+       "shortId": "r11ad8Okfe",
+       "title": "招募系統登入前頁",
+       "note": ""
+      },
+      {
+       "shortId": "Sk4CnTjgMg",
+       "title": "人才試搜列表",
+       "note": ""
+      },
+      {
+       "shortId": "Hyt5LqcyMl",
+       "title": "人才試搜履歷資料",
+       "note": ""
+      }
+     ]
+    },
+    {
+     "stage": "J 登入",
+     "func": "登入／驗證／找回",
+     "docs": [
+      {
+       "shortId": "rych3fo0bl",
+       "title": "登入功能",
+       "note": ""
+      },
+      {
+       "shortId": "HJb5FnCGZg",
+       "title": "登入特殊狀態與Alert",
+       "note": ""
+      },
+      {
+       "shortId": "rk0aZy0aZg",
+       "title": "toast",
+       "note": ""
+      },
+      {
+       "shortId": "ryqrsG2lWg",
+       "title": "J.1.7 雙重驗證 規格文件",
+       "note": ""
+      },
+      {
+       "shortId": "HJT3dH_vWg",
+       "title": "J.1.9 忘記密碼規格文件",
+       "note": ""
+      },
+      {
+       "shortId": "SJNKOS_D-g",
+       "title": "J.1.9 忘記帳號規格文件",
+       "note": ""
+      }
+     ]
+    },
+    {
+     "stage": "A 首頁",
+     "func": "Topbar",
+     "docs": [
+      {
+       "shortId": "Hym116n3-x",
+       "title": "A.1 topbar各分區(含埋點說明)&A1.1",
+       "note": ""
+      },
+      {
+       "shortId": "HkTiVy7Z-e",
+       "title": "A.1.3 公告",
+       "note": ""
+      },
+      {
+       "shortId": "SJsQkWsWbg",
+       "title": "A.1.4 公告&A.1.5 通知",
+       "note": ""
+      },
+      {
+       "shortId": "ryik5PAZWl",
+       "title": "A.1.6 帳號資訊選單",
+       "note": ""
+      },
+      {
+       "shortId": "SkJEsXNWMx",
+       "title": "A.1.7 異常狀態列",
+       "note": ""
+      }
+     ]
+    },
+    {
+     "stage": "A 首頁",
+     "func": "首頁區塊",
+     "docs": [
+      {
+       "shortId": "Bye3E5tl-g",
+       "title": "A.2 首頁快訊 & A.3刊登狀態",
+       "note": ""
+      },
+      {
+       "shortId": "HJIK-sUGbe",
+       "title": "A.4 近期修改職缺",
+       "note": ""
+      },
+      {
+       "shortId": "B1MejWhvGl",
+       "title": "A.5 面試行事曆",
+       "note": ""
+      },
+      {
+       "shortId": "BkIIbQYfWe",
+       "title": "A.10 人才秒搜",
+       "note": ""
+      }
+     ]
+    },
+    {
+     "stage": "B 公司",
+     "func": "公司資料",
+     "docs": [
+      {
+       "shortId": "S1jhD6RRbe",
+       "title": "B.1 公司資料修改與進度條",
+       "note": ""
+      },
+      {
+       "shortId": "ryUoKHCG-e",
+       "title": "B.1.1 基本資料",
+       "note": ""
+      },
+      {
+       "shortId": "SJhAVOy8Wg",
+       "title": "B.1.2 公司形象",
+       "note": ""
+      },
+      {
+       "shortId": "SkztPlKsbx",
+       "title": "B.1.3 官方連結",
+       "note": ""
+      },
+      {
+       "shortId": "Sy6vKV4FZx",
+       "title": "B.1.4 工作環境",
+       "note": ""
+      },
+      {
+       "shortId": "Hk7HExLUWx",
+       "title": "B.1.5 產品服務",
+       "note": ""
+      },
+      {
+       "shortId": "HJvhE8BFWe",
+       "title": "B.1.6 福利制度",
+       "note": ""
+      },
+      {
+       "shortId": "BJEWK648bx",
+       "title": "B.1.7 更多介紹",
+       "note": ""
+      },
+      {
+       "shortId": "S1HPE5EU-e",
+       "title": "B.1.8 面試須知上傳",
+       "note": ""
+      },
+      {
+       "shortId": "ByA4t_-cZg",
+       "title": "B.1.9 變更版型",
+       "note": ""
+      },
+      {
+       "shortId": "H1ZbConBbl",
+       "title": "公司資料預覽",
+       "note": ""
+      },
+      {
+       "shortId": "HkSJkuy8bx",
+       "title": "公司資料＞確定送出按鈕",
+       "note": ""
+      }
+     ]
+    },
+    {
+     "stage": "B 公司",
+     "func": "設定",
+     "docs": [
+      {
+       "shortId": "SkfafU2WZg",
+       "title": "B.2 帳號設定",
+       "note": ""
+      },
+      {
+       "shortId": "BytSsxD8be",
+       "title": "B.2.1 基本資料",
+       "note": ""
+      },
+      {
+       "shortId": "Bk1uH5fXbx",
+       "title": "B.2.1&B.2.2&B.2.3 新增帳號/修改個人帳號/修改他人帳號",
+       "note": ""
+      },
+      {
+       "shortId": "BJGdoePUWl",
+       "title": "B.2.2 通知設定",
+       "note": ""
+      },
+      {
+       "shortId": "SyKtjeP8We",
+       "title": "B.2.3 權限設定",
+       "note": ""
+      },
+      {
+       "shortId": "rkciNnFHMg",
+       "title": "新增帳號Modal",
+       "note": ""
+      },
+      {
+       "shortId": "SkdiYvsnZe",
+       "title": "B.3 聯絡人設定",
+       "note": ""
+      },
+      {
+       "shortId": "S1G_8GQbZe",
+       "title": "1.2.4 群組設定",
+       "note": ""
+      },
+      {
+       "shortId": "ryEY3vBZbl",
+       "title": "B.4 刊登設定",
+       "note": ""
+      },
+      {
+       "shortId": "Bkw7pIVLbx",
+       "title": "(現版)1.2.3 開關天數設定",
+       "note": ""
+      },
+      {
+       "shortId": "By5Eo8NvZx",
+       "title": "2.2.1 排程開關權Modal",
+       "note": ""
+      },
+      {
+       "shortId": "SJ0mjWHvZx",
+       "title": "2.2.2 暫停刊登Modal",
+       "note": ""
+      }
+     ]
+    },
+    {
+     "stage": "C 職缺",
+     "func": "建立",
+     "docs": [
+      {
+       "shortId": "S1SfBeXxfe",
+       "title": "2.2 新增職缺",
+       "note": ""
+      },
+      {
+       "shortId": "HJW-MWp4Wg",
+       "title": "複製職缺",
+       "note": ""
+      },
+      {
+       "shortId": "Bk854rrtGe",
+       "title": "匯入職缺",
+       "note": ""
+      },
+      {
+       "shortId": "BJATOLPwbx",
+       "title": "職缺匯入提案",
+       "note": ""
+      },
+      {
+       "shortId": "B1bkIvMhZx",
+       "title": "職缺審核導入AI提案",
+       "note": ""
+      },
+      {
+       "shortId": "BJ7Yob8W-g",
+       "title": "2.0 職缺內頁 > 職缺內容",
+       "note": "職缺內容欄位"
+      }
+     ]
+    },
+    {
+     "stage": "C 職缺",
+     "func": "管理",
+     "docs": [
+      {
+       "shortId": "HJvxSmNMWe",
+       "title": "2.1 職缺總覽",
+       "note": ""
+      },
+      {
+       "shortId": "B1pOwHZQ-e",
+       "title": "職缺列印",
+       "note": ""
+      },
+      {
+       "shortId": "rJvOFkwFbl",
+       "title": "職缺列表多筆操作",
+       "note": ""
+      },
+      {
+       "shortId": "HkHIwU8Y-x",
+       "title": "多筆修改：工作時間",
+       "note": ""
+      },
+      {
+       "shortId": "r1AirkvF-x",
+       "title": "應徵過濾",
+       "note": ""
+      },
+      {
+       "shortId": "B1Srfpi7bg",
+       "title": "2.3 現版職缺排序",
+       "note": ""
+      },
+      {
+       "shortId": "rJ5KsWEG-e",
+       "title": "2.4 職缺移轉",
+       "note": ""
+      },
+      {
+       "shortId": "Sy7bgNuzZg",
+       "title": "2.7 職缺廣告排程",
+       "note": ""
+      }
+     ]
+    },
+    {
+     "stage": "D 人才",
+     "func": "履歷",
+     "docs": [
+      {
+       "shortId": "ry9S7kjuWe",
+       "title": "3.1.1 主動應徵履歷列表",
+       "note": ""
+      },
+      {
+       "shortId": "S1I24H-lzl",
+       "title": "3.1.1 主動應徵職缺選單",
+       "note": ""
+      },
+      {
+       "shortId": "Byy7rOTM-x",
+       "title": "3.1.1 主動應徵履歷卡片",
+       "note": ""
+      },
+      {
+       "shortId": "B19dalQ-Zx",
+       "title": "追蹤名單權限",
+       "note": ""
+      },
+      {
+       "shortId": "rkMnZsqu-g",
+       "title": "3.1.4 來訪名單",
+       "note": ""
+      },
+      {
+       "shortId": "SJ5oUbXv-g",
+       "title": "現版人才來訪拉皮更新",
+       "note": ""
+      },
+      {
+       "shortId": "rk8RQxMXzg",
+       "title": "3.1.5 備註名單",
+       "note": ""
+      },
+      {
+       "shortId": "rkkn5BZQ-g",
+       "title": "3.1.8 封鎖名單",
+       "note": ""
+      },
+      {
+       "shortId": "B1jNIrMBZl",
+       "title": "關注名單",
+       "note": ""
+      },
+      {
+       "shortId": "HyYq_GgXWl",
+       "title": "3.0 履歷詳細頁",
+       "note": ""
+      },
+      {
+       "shortId": "H18Vo3zyMx",
+       "title": "3.0 履歷列印頁",
+       "note": ""
+      }
+     ]
+    },
+    {
+     "stage": "D 人才",
+     "func": "搜尋",
+     "docs": [
+      {
+       "shortId": "r1TBqJjeGx",
+       "title": "3.2.6 AI推薦人才名單",
+       "note": ""
+      },
+      {
+       "shortId": "Bk06kDtf-l",
+       "title": "3.2.1 配對條件設定",
+       "note": ""
+      },
+      {
+       "shortId": "BkMNTH_Pfe",
+       "title": "3.2.2 簡易搜尋",
+       "note": ""
+      },
+      {
+       "shortId": "Syn7AN87Wl",
+       "title": "3.2.3 進階搜尋",
+       "note": ""
+      },
+      {
+       "shortId": "SJleDiy9bl",
+       "title": "3.2.4 大專人才搜尋",
+       "note": ""
+      },
+      {
+       "shortId": "SkyLndUmWe",
+       "title": "3.2 搜尋結果頁（現版）",
+       "note": ""
+      },
+      {
+       "shortId": "BkCVW1nXbg",
+       "title": "3.2.0 搜尋結果頁（改版畫面）",
+       "note": ""
+      },
+      {
+       "shortId": "SyvesCVEbg",
+       "title": "搜尋人才卡片（改版畫面）",
+       "note": ""
+      },
+      {
+       "shortId": "rygtdmRNZl",
+       "title": "關注名單",
+       "note": ""
+      }
+     ]
+    },
+    {
+     "stage": "E 聯繫",
+     "func": "發通知",
+     "docs": [
+      {
+       "shortId": "r1qJb-uXbx",
+       "title": "4.0 通知 Lightbox",
+       "note": ""
+      },
+      {
+       "shortId": "S1XwSUPBZg",
+       "title": "4.0 信件通知 Lightbox 檢查規則",
+       "note": ""
+      },
+      {
+       "shortId": "H1OpoEs7fe",
+       "title": "4.0.1 信件預覽Lightbox",
+       "note": ""
+      },
+      {
+       "shortId": "SJ8KDMo8fl",
+       "title": "範本Lightbox",
+       "note": ""
+      },
+      {
+       "shortId": "HyDIQwJUWg",
+       "title": "E.2.1 信件範本",
+       "note": ""
+      },
+      {
+       "shortId": "BJt1Rj59Ze",
+       "title": "簡訊範本",
+       "note": ""
+      },
+      {
+       "shortId": "BkXGV4BW-e",
+       "title": "簡訊通知 Lightbox",
+       "note": ""
+      }
+     ]
+    },
+    {
+     "stage": "E 聯繫",
+     "func": "對話（整併專案）",
+     "docs": [
+      {
+       "shortId": "BJ0R8ocgGl",
+       "title": "E.1 聯絡人才",
+       "note": ""
+      },
+      {
+       "shortId": "ry_GPNuZze",
+       "title": "聯絡人才：第二階段內容",
+       "note": ""
+      },
+      {
+       "shortId": "Hk3SOQrFfg",
+       "title": "聯絡人才：第三階段內容",
+       "note": ""
+      },
+      {
+       "shortId": "rJkyKgeGWl",
+       "title": "4.1 信件列表 規格文件",
+       "note": ""
+      },
+      {
+       "shortId": "r1ghrPxP-x",
+       "title": "信件對話 規格文件",
+       "note": ""
+      },
+      {
+       "shortId": "BJmM2cDGfl",
+       "title": "訊息樣式",
+       "note": ""
+      },
+      {
+       "shortId": "SJJY3isYZe",
+       "title": "即時通、信件通知（企業通知）合併",
+       "note": ""
+      },
+      {
+       "shortId": "r1eNVEfmMx",
+       "title": "求才求職各階段開發內容",
+       "note": ""
+      },
+      {
+       "shortId": "Hk87bluGMg",
+       "title": "[REF] 信件即時通整併－API 與代碼對照庫",
+       "note": ""
+      },
+      {
+       "shortId": "SkKwqvUFfg",
+       "title": "1111 vs 104｜廠商權限、職缺開關、履歷開關可否發訊判斷",
+       "note": ""
+      },
+      {
+       "shortId": "SJsYLtmr-g",
+       "title": "即時通面板",
+       "note": ""
+      }
+     ]
+    },
+    {
+     "stage": "E 聯繫",
+     "func": "面試",
+     "docs": [
+      {
+       "shortId": "HydajKbPfl",
+       "title": "4.3 面試行事曆",
+       "note": ""
+      },
+      {
+       "shortId": "Sy70gCPKGe",
+       "title": "失約回報 Lightbox",
+       "note": ""
+      }
+     ]
+    },
+    {
+     "stage": "5 紀錄",
+     "func": "紀錄",
+     "docs": [
+      {
+       "shortId": "rJ5Bp4RE-g",
+       "title": "5.1 帳號邀約紀錄",
+       "note": ""
+      },
+      {
+       "shortId": "S1-Wt68M-e",
+       "title": "5.3 帳號使用紀錄＞購買紀錄",
+       "note": ""
+      },
+      {
+       "shortId": "SJeZiGSMbx",
+       "title": "5.6 數據統計查詢",
+       "note": ""
+      },
+      {
+       "shortId": "S13Zy8rKze",
+       "title": "5.5 人才點數查詢",
+       "note": ""
+      },
+      {
+       "shortId": "Sk4AvcZ-We",
+       "title": "記錄管理 Lightbox",
+       "note": ""
+      }
+     ]
+    },
+    {
+     "stage": "C 職缺",
+     "func": "職缺內頁（2.0）",
+     "docs": [
+      {
+       "shortId": "B1p54YozMe",
+       "title": "2.0 職缺內頁",
+       "note": ""
+      },
+      {
+       "shortId": "BJ7Yob8W-g",
+       "title": "2.0 職缺內頁 > 職缺內容",
+       "note": ""
+      },
+      {
+       "shortId": "SJEiSjRzbl",
+       "title": "2.0 職缺內頁＞職缺設定",
+       "note": ""
+      },
+      {
+       "shortId": "Sy_fXBBfWx",
+       "title": "2.0 職缺內頁＞應徵方式",
+       "note": ""
+      },
+      {
+       "shortId": "rJhe4yBNWe",
+       "title": "2.0 送出職缺後彈窗與職缺審核",
+       "note": ""
+      },
+      {
+       "shortId": "S1OfrDqiWl",
+       "title": "職缺預覽頁",
+       "note": ""
+      },
+      {
+       "shortId": "Hk_KPwz3Zl",
+       "title": "職缺健檢提案",
+       "note": ""
+      },
+      {
+       "shortId": "S1xTdMKV-l",
+       "title": "提案：職缺資料＞工作時間與班別優化",
+       "note": ""
+      }
+     ]
+    },
+    {
+     "stage": "J 登入",
+     "func": "登入前補充",
+     "docs": [
+      {
+       "shortId": "r11ad8Okfe",
+       "title": "招募系統登入前頁",
+       "note": ""
+      },
+      {
+       "shortId": "HJqwacQNGl",
+       "title": "聯絡我們",
+       "note": ""
+      },
+      {
+       "shortId": "SkpgK_GYWl",
+       "title": "傳真刊登",
+       "note": ""
+      }
+     ]
+    },
+    {
+     "stage": "各階段",
+     "func": "系統 Mail（廠商收到的信）",
+     "docs": [
+      {
+       "shortId": "B1fzI8G2We",
+       "title": "裝置驗證信",
+       "note": ""
+      },
+      {
+       "shortId": "HkZrBvaubg",
+       "title": "登入系統通知信",
+       "note": ""
+      },
+      {
+       "shortId": "Bkw6AsHwMg",
+       "title": "新增／修改帳號信",
+       "note": ""
+      },
+      {
+       "shortId": "BktAq_Szbl",
+       "title": "職缺確認信",
+       "note": ""
+      },
+      {
+       "shortId": "Hyj6_7X8fl",
+       "title": "職缺審核信",
+       "note": ""
+      },
+      {
+       "shortId": "Hka1IFeUfx",
+       "title": "人才配對信",
+       "note": ""
+      },
+      {
+       "shortId": "ryisuzlZzg",
+       "title": "凌晨配對信",
+       "note": ""
+      },
+      {
+       "shortId": "HkKTVkw_fl",
+       "title": "企業通知信件",
+       "note": ""
+      },
+      {
+       "shortId": "Syo5pb-sbl",
+       "title": "VIP 續約感謝信",
+       "note": ""
+      },
+      {
+       "shortId": "BJ2GChM1Mx",
+       "title": "信用卡繳款通知信",
+       "note": ""
+      },
+      {
+       "shortId": "SystNGUZWx",
+       "title": "廠商回流 E-mail 短解",
+       "note": "廠商回流 E-mail 短解，用途待確認"
+      }
+     ]
+    },
+    {
+     "stage": "E 聯繫",
+     "func": "整併專案參考",
+     "docs": [
+      {
+       "shortId": "HyEvtWMLGe",
+       "title": "企業通知與即時通合併 Phrase 1 測試文件",
+       "note": "Phase 1 測試文件"
+      },
+      {
+       "shortId": "SknUQhPfGx",
+       "title": "求職：信件通知與即時通合併交付內容",
+       "note": "求職端交付內容"
+      },
+      {
+       "shortId": "rk-QWt0Yfg",
+       "title": "mailNotice-platform-comefrom-sql 1.md",
+       "note": "mailNotice SQL 筆記"
+      }
+     ]
+    },
+    {
+     "stage": "6／7 服務購買",
+     "func": "服務／購買",
+     "docs": [
+      {
+       "shortId": "Sk5kyX6ubx",
+       "title": "A.7.1 文件下載",
+       "note": ""
+      },
+      {
+       "shortId": "S1fR49Fg-l",
+       "title": "6.8 滿意度調查",
+       "note": ""
+      },
+      {
+       "shortId": "ByKdpLaWZe",
+       "title": "7.1 線上續約",
+       "note": ""
+      },
+      {
+       "shortId": "HJzsieKfWe",
+       "title": "7.2 購買優先排序",
+       "note": ""
+      },
+      {
+       "shortId": "HJD1Eu0c-e",
+       "title": "H.3 合約上傳",
+       "note": ""
+      },
+      {
+       "shortId": "Hy95Qz7g-e",
+       "title": "求才智能客服",
+       "note": ""
+      },
+      {
+       "shortId": "SJtErv_lZl",
+       "title": "智能客服 功能說明頁",
+       "note": ""
+      },
+      {
+       "shortId": "rynOybVWZx",
+       "title": "帳號設定改版 功能說明頁",
+       "note": ""
+      }
+     ]
+    }
+   ],
+   "relations_unmatched": [
+    {
+     "row": "整併專案參考",
+     "ref": "S1cYFSFfzx"
+    }
+   ]
   },
   "gap_heading": "缺口（寫 journey 時發現）",
   "gaps": [

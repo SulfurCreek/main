@@ -93,24 +93,33 @@ sequenceDiagram
         Emp->>RB: 選擇是否寄送職缺確認信
         Note over Emp,RB: 儲存職缺，並依選擇寄送職缺確認信
 
-        Note over Emp,RB: 送審判斷（風險字等級＋廠商需審核旗標）
-        alt 命中中風險字眼，或廠商為需審核（confirmed&16384）
-            Note over Emp,RB: 職缺審核 mConfirmed = 0，職缺狀態轉為「審核中」
-            RB->>CS: 寄送職缺審核通知信
-            Note over CS: 客服系統 → 廠商頁 → 審核管理 → 職缺審核
+        Note over Emp,RB: 送審判斷（立即上工直接通過；其餘依風險字等級＋廠商需審核旗標）
+        alt 立即上工職缺
+            Note over Emp,RB: mConfirmed 不寫入 0，直接審核通過
+        else 命中中風險字眼，或廠商為需審核（confirmed&16384）
+            Note over Emp,RB: 職缺審核 mConfirmed = 0，狀態轉為「審核中」，確認信也顯示審核中
+            RB-->>Emp: 提示職缺已進審核，需等候客服審核
+            RB->>CS: 寄送職缺審核通知（E-mail）
+            Note over CS: 客服後台 → 廠商頁 → 審核管理 → 職缺審核
             alt 審核通過
-                CS->>RB: 更新為審核通過
+                CS->>RB: 審核欄位改寫為通過
                 RB-->>Emp: 寄送職缺審核信（通過；showfield&524288 廠商不收）
             else 審核不通過
                 CS->>RB: 填寫不通過原因，mConfirmed = 128
-                RB-->>Emp: 寄送職缺審核信（未通過＋原因＋修改設定按鈕），流程結束
+                RB-->>Emp: 寄送職缺審核信（未通過＋原因＋修改設定按鈕），職缺列表「審核不通過」頁籤可看原因
+                Emp->>RB: 點「修改設定」回職缺內頁修改，重新送出（回到「點確定送出」）
+            else 需主管審核
+                Note over CS: 🚧 原型畫面有此按鈕，後續流程未載
             end
-        else 未命中或僅低風險、或立即上工職缺
-            Note over Emp,RB: 直接審核通過（低風險仍寄送通知信）
+        else 僅命中低風險字眼
+            Note over Emp,RB: 不進審核，正常送出
+            RB->>CS: 寄信通知職缺需檢查（提醒用，職缺已曝光）
+        else 無風險字眼
+            Note over Emp,RB: 審核欄位為通過，正常送出
         end
 
         Note over Emp,RB: 判斷是否對求職者曝光
-        Note over RB,JS: 廠商 oStatus：1 VIP／4 免費VIP／5 免費曝光 → 可刊登；0 普通會員／2 過期／3 關權 → 不曝光；6 準VIP → 待確認<br/>職缺條件：職缺開啟中、審核通過、在有效日期內
+        Note over RB,JS: 廠商 oStatus：1 VIP／4 免費VIP／5 免費曝光 → 可刊登；0 普通會員／2 過期／3 關權 → 不曝光；6 準VIP → 待確認<br/>職缺條件：職缺開啟中、審核通過（審核中、不通過不曝光）、在有效日期內
         alt 符合曝光條件
             RB->>JS: 職缺於求職主網上架曝光
         else 不符合

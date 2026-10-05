@@ -35,11 +35,27 @@
    "docs": [
     {
      "shortId": "Hym116n3-x",
-     "title": "A.1 topbar"
+     "title": "A.1 topbar各分區(含埋點說明)&A1.1"
+    },
+    {
+     "shortId": "HypMe1a9fx",
+     "title": "A.1.2 功能選單"
     },
     {
      "shortId": "HkTiVy7Z-e",
      "title": "A.1.3 公告"
+    },
+    {
+     "shortId": "SJsQkWsWbg",
+     "title": "A.1.4 公告&A.1.5 通知"
+    },
+    {
+     "shortId": "ryik5PAZWl",
+     "title": "A.1.6 帳號資訊選單"
+    },
+    {
+     "shortId": "SkJEsXNWMx",
+     "title": "A.1.7 異常狀態列"
     },
     {
      "shortId": "Bye3E5tl-g",
@@ -54,6 +70,10 @@
      "title": "A.5 面試行事曆"
     },
     {
+     "shortId": "Sk5kyX6ubx",
+     "title": "A.7.1 文件下載"
+    },
+    {
      "shortId": "BkIIbQYfWe",
      "title": "A.10 人才秒搜"
     }
@@ -66,7 +86,43 @@
      "tag": ""
     },
     {
+     "name": "回到首頁",
+     "depth": 2,
+     "group": false,
+     "tag": ""
+    },
+    {
+     "name": "功能選單",
+     "depth": 2,
+     "group": false,
+     "tag": ""
+    },
+    {
      "name": "公告",
+     "depth": 2,
+     "group": false,
+     "tag": ""
+    },
+    {
+     "name": "主投",
+     "depth": 2,
+     "group": false,
+     "tag": ""
+    },
+    {
+     "name": "通知",
+     "depth": 2,
+     "group": false,
+     "tag": ""
+    },
+    {
+     "name": "帳號資訊選單",
+     "depth": 2,
+     "group": false,
+     "tag": ""
+    },
+    {
+     "name": "異常狀態列",
      "depth": 2,
      "group": false,
      "tag": ""
@@ -85,6 +141,30 @@
     },
     {
      "name": "面試行事曆",
+     "depth": 1,
+     "group": false,
+     "tag": ""
+    },
+    {
+     "name": "公告",
+     "depth": 1,
+     "group": false,
+     "tag": ""
+    },
+    {
+     "name": "資源下載",
+     "depth": 1,
+     "group": false,
+     "tag": ""
+    },
+    {
+     "name": "首頁廣告",
+     "depth": 1,
+     "group": false,
+     "tag": ""
+    },
+    {
+     "name": "Footer",
      "depth": 1,
      "group": false,
      "tag": ""
@@ -775,5 +855,797 @@
    "title": "[REF] 職缺資料欄位表與代碼表"
   }
  ],
- "unmatched_refs": []
+ "unmatched_refs": [],
+ "relations": [
+  {
+   "stage": "J 登入",
+   "func": "登入前頁／試搜",
+   "docs": [
+    {
+     "shortId": "r11ad8Okfe",
+     "title": "招募系統登入前頁",
+     "note": ""
+    },
+    {
+     "shortId": "Sk4CnTjgMg",
+     "title": "人才試搜列表",
+     "note": ""
+    },
+    {
+     "shortId": "Hyt5LqcyMl",
+     "title": "人才試搜履歷資料",
+     "note": ""
+    }
+   ]
+  },
+  {
+   "stage": "J 登入",
+   "func": "登入／驗證／找回",
+   "docs": [
+    {
+     "shortId": "rych3fo0bl",
+     "title": "登入功能",
+     "note": ""
+    },
+    {
+     "shortId": "HJb5FnCGZg",
+     "title": "登入特殊狀態與Alert",
+     "note": ""
+    },
+    {
+     "shortId": "rk0aZy0aZg",
+     "title": "toast",
+     "note": ""
+    },
+    {
+     "shortId": "ryqrsG2lWg",
+     "title": "J.1.7 雙重驗證 規格文件",
+     "note": ""
+    },
+    {
+     "shortId": "HJT3dH_vWg",
+     "title": "J.1.9 忘記密碼規格文件",
+     "note": ""
+    },
+    {
+     "shortId": "SJNKOS_D-g",
+     "title": "J.1.9 忘記帳號規格文件",
+     "note": ""
+    }
+   ]
+  },
+  {
+   "stage": "A 首頁",
+   "func": "Topbar",
+   "docs": [
+    {
+     "shortId": "Hym116n3-x",
+     "title": "A.1 topbar各分區(含埋點說明)&A1.1",
+     "note": ""
+    },
+    {
+     "shortId": "HkTiVy7Z-e",
+     "title": "A.1.3 公告",
+     "note": ""
+    },
+    {
+     "shortId": "SJsQkWsWbg",
+     "title": "A.1.4 公告&A.1.5 通知",
+     "note": ""
+    },
+    {
+     "shortId": "ryik5PAZWl",
+     "title": "A.1.6 帳號資訊選單",
+     "note": ""
+    },
+    {
+     "shortId": "SkJEsXNWMx",
+     "title": "A.1.7 異常狀態列",
+     "note": ""
+    }
+   ]
+  },
+  {
+   "stage": "A 首頁",
+   "func": "首頁區塊",
+   "docs": [
+    {
+     "shortId": "Bye3E5tl-g",
+     "title": "A.2 首頁快訊 & A.3刊登狀態",
+     "note": ""
+    },
+    {
+     "shortId": "HJIK-sUGbe",
+     "title": "A.4 近期修改職缺",
+     "note": ""
+    },
+    {
+     "shortId": "B1MejWhvGl",
+     "title": "A.5 面試行事曆",
+     "note": ""
+    },
+    {
+     "shortId": "BkIIbQYfWe",
+     "title": "A.10 人才秒搜",
+     "note": ""
+    }
+   ]
+  },
+  {
+   "stage": "B 公司",
+   "func": "公司資料",
+   "docs": [
+    {
+     "shortId": "S1jhD6RRbe",
+     "title": "B.1 公司資料修改與進度條",
+     "note": ""
+    },
+    {
+     "shortId": "ryUoKHCG-e",
+     "title": "B.1.1 基本資料",
+     "note": ""
+    },
+    {
+     "shortId": "SJhAVOy8Wg",
+     "title": "B.1.2 公司形象",
+     "note": ""
+    },
+    {
+     "shortId": "SkztPlKsbx",
+     "title": "B.1.3 官方連結",
+     "note": ""
+    },
+    {
+     "shortId": "Sy6vKV4FZx",
+     "title": "B.1.4 工作環境",
+     "note": ""
+    },
+    {
+     "shortId": "Hk7HExLUWx",
+     "title": "B.1.5 產品服務",
+     "note": ""
+    },
+    {
+     "shortId": "HJvhE8BFWe",
+     "title": "B.1.6 福利制度",
+     "note": ""
+    },
+    {
+     "shortId": "BJEWK648bx",
+     "title": "B.1.7 更多介紹",
+     "note": ""
+    },
+    {
+     "shortId": "S1HPE5EU-e",
+     "title": "B.1.8 面試須知上傳",
+     "note": ""
+    },
+    {
+     "shortId": "ByA4t_-cZg",
+     "title": "B.1.9 變更版型",
+     "note": ""
+    },
+    {
+     "shortId": "H1ZbConBbl",
+     "title": "公司資料預覽",
+     "note": ""
+    },
+    {
+     "shortId": "HkSJkuy8bx",
+     "title": "公司資料＞確定送出按鈕",
+     "note": ""
+    }
+   ]
+  },
+  {
+   "stage": "B 公司",
+   "func": "設定",
+   "docs": [
+    {
+     "shortId": "SkfafU2WZg",
+     "title": "B.2 帳號設定",
+     "note": ""
+    },
+    {
+     "shortId": "BytSsxD8be",
+     "title": "B.2.1 基本資料",
+     "note": ""
+    },
+    {
+     "shortId": "Bk1uH5fXbx",
+     "title": "B.2.1&B.2.2&B.2.3 新增帳號/修改個人帳號/修改他人帳號",
+     "note": ""
+    },
+    {
+     "shortId": "BJGdoePUWl",
+     "title": "B.2.2 通知設定",
+     "note": ""
+    },
+    {
+     "shortId": "SyKtjeP8We",
+     "title": "B.2.3 權限設定",
+     "note": ""
+    },
+    {
+     "shortId": "rkciNnFHMg",
+     "title": "新增帳號Modal",
+     "note": ""
+    },
+    {
+     "shortId": "SkdiYvsnZe",
+     "title": "B.3 聯絡人設定",
+     "note": ""
+    },
+    {
+     "shortId": "S1G_8GQbZe",
+     "title": "1.2.4 群組設定",
+     "note": ""
+    },
+    {
+     "shortId": "ryEY3vBZbl",
+     "title": "B.4 刊登設定",
+     "note": ""
+    },
+    {
+     "shortId": "Bkw7pIVLbx",
+     "title": "(現版)1.2.3 開關天數設定",
+     "note": ""
+    },
+    {
+     "shortId": "By5Eo8NvZx",
+     "title": "2.2.1 排程開關權Modal",
+     "note": ""
+    },
+    {
+     "shortId": "SJ0mjWHvZx",
+     "title": "2.2.2 暫停刊登Modal",
+     "note": ""
+    }
+   ]
+  },
+  {
+   "stage": "C 職缺",
+   "func": "建立",
+   "docs": [
+    {
+     "shortId": "S1SfBeXxfe",
+     "title": "2.2 新增職缺",
+     "note": ""
+    },
+    {
+     "shortId": "HJW-MWp4Wg",
+     "title": "複製職缺",
+     "note": ""
+    },
+    {
+     "shortId": "Bk854rrtGe",
+     "title": "匯入職缺",
+     "note": ""
+    },
+    {
+     "shortId": "BJATOLPwbx",
+     "title": "職缺匯入提案",
+     "note": ""
+    },
+    {
+     "shortId": "B1bkIvMhZx",
+     "title": "職缺審核導入AI提案",
+     "note": ""
+    },
+    {
+     "shortId": "BJ7Yob8W-g",
+     "title": "2.0 職缺內頁 > 職缺內容",
+     "note": "職缺內容欄位"
+    }
+   ]
+  },
+  {
+   "stage": "C 職缺",
+   "func": "管理",
+   "docs": [
+    {
+     "shortId": "HJvxSmNMWe",
+     "title": "2.1 職缺總覽",
+     "note": ""
+    },
+    {
+     "shortId": "B1pOwHZQ-e",
+     "title": "職缺列印",
+     "note": ""
+    },
+    {
+     "shortId": "rJvOFkwFbl",
+     "title": "職缺列表多筆操作",
+     "note": ""
+    },
+    {
+     "shortId": "HkHIwU8Y-x",
+     "title": "多筆修改：工作時間",
+     "note": ""
+    },
+    {
+     "shortId": "r1AirkvF-x",
+     "title": "應徵過濾",
+     "note": ""
+    },
+    {
+     "shortId": "B1Srfpi7bg",
+     "title": "2.3 現版職缺排序",
+     "note": ""
+    },
+    {
+     "shortId": "rJ5KsWEG-e",
+     "title": "2.4 職缺移轉",
+     "note": ""
+    },
+    {
+     "shortId": "Sy7bgNuzZg",
+     "title": "2.7 職缺廣告排程",
+     "note": ""
+    }
+   ]
+  },
+  {
+   "stage": "D 人才",
+   "func": "履歷",
+   "docs": [
+    {
+     "shortId": "ry9S7kjuWe",
+     "title": "3.1.1 主動應徵履歷列表",
+     "note": ""
+    },
+    {
+     "shortId": "S1I24H-lzl",
+     "title": "3.1.1 主動應徵職缺選單",
+     "note": ""
+    },
+    {
+     "shortId": "Byy7rOTM-x",
+     "title": "3.1.1 主動應徵履歷卡片",
+     "note": ""
+    },
+    {
+     "shortId": "B19dalQ-Zx",
+     "title": "追蹤名單權限",
+     "note": ""
+    },
+    {
+     "shortId": "rkMnZsqu-g",
+     "title": "3.1.4 來訪名單",
+     "note": ""
+    },
+    {
+     "shortId": "SJ5oUbXv-g",
+     "title": "現版人才來訪拉皮更新",
+     "note": ""
+    },
+    {
+     "shortId": "rk8RQxMXzg",
+     "title": "3.1.5 備註名單",
+     "note": ""
+    },
+    {
+     "shortId": "rkkn5BZQ-g",
+     "title": "3.1.8 封鎖名單",
+     "note": ""
+    },
+    {
+     "shortId": "B1jNIrMBZl",
+     "title": "關注名單",
+     "note": ""
+    },
+    {
+     "shortId": "HyYq_GgXWl",
+     "title": "3.0 履歷詳細頁",
+     "note": ""
+    },
+    {
+     "shortId": "H18Vo3zyMx",
+     "title": "3.0 履歷列印頁",
+     "note": ""
+    }
+   ]
+  },
+  {
+   "stage": "D 人才",
+   "func": "搜尋",
+   "docs": [
+    {
+     "shortId": "r1TBqJjeGx",
+     "title": "3.2.6 AI推薦人才名單",
+     "note": ""
+    },
+    {
+     "shortId": "Bk06kDtf-l",
+     "title": "3.2.1 配對條件設定",
+     "note": ""
+    },
+    {
+     "shortId": "BkMNTH_Pfe",
+     "title": "3.2.2 簡易搜尋",
+     "note": ""
+    },
+    {
+     "shortId": "Syn7AN87Wl",
+     "title": "3.2.3 進階搜尋",
+     "note": ""
+    },
+    {
+     "shortId": "SJleDiy9bl",
+     "title": "3.2.4 大專人才搜尋",
+     "note": ""
+    },
+    {
+     "shortId": "SkyLndUmWe",
+     "title": "3.2 搜尋結果頁（現版）",
+     "note": ""
+    },
+    {
+     "shortId": "BkCVW1nXbg",
+     "title": "3.2.0 搜尋結果頁（改版畫面）",
+     "note": ""
+    },
+    {
+     "shortId": "SyvesCVEbg",
+     "title": "搜尋人才卡片（改版畫面）",
+     "note": ""
+    },
+    {
+     "shortId": "rygtdmRNZl",
+     "title": "關注名單",
+     "note": ""
+    }
+   ]
+  },
+  {
+   "stage": "E 聯繫",
+   "func": "發通知",
+   "docs": [
+    {
+     "shortId": "r1qJb-uXbx",
+     "title": "4.0 通知 Lightbox",
+     "note": ""
+    },
+    {
+     "shortId": "S1XwSUPBZg",
+     "title": "4.0 信件通知 Lightbox 檢查規則",
+     "note": ""
+    },
+    {
+     "shortId": "H1OpoEs7fe",
+     "title": "4.0.1 信件預覽Lightbox",
+     "note": ""
+    },
+    {
+     "shortId": "SJ8KDMo8fl",
+     "title": "範本Lightbox",
+     "note": ""
+    },
+    {
+     "shortId": "HyDIQwJUWg",
+     "title": "E.2.1 信件範本",
+     "note": ""
+    },
+    {
+     "shortId": "BJt1Rj59Ze",
+     "title": "簡訊範本",
+     "note": ""
+    },
+    {
+     "shortId": "BkXGV4BW-e",
+     "title": "簡訊通知 Lightbox",
+     "note": ""
+    }
+   ]
+  },
+  {
+   "stage": "E 聯繫",
+   "func": "對話（整併專案）",
+   "docs": [
+    {
+     "shortId": "BJ0R8ocgGl",
+     "title": "E.1 聯絡人才",
+     "note": ""
+    },
+    {
+     "shortId": "ry_GPNuZze",
+     "title": "聯絡人才：第二階段內容",
+     "note": ""
+    },
+    {
+     "shortId": "Hk3SOQrFfg",
+     "title": "聯絡人才：第三階段內容",
+     "note": ""
+    },
+    {
+     "shortId": "rJkyKgeGWl",
+     "title": "4.1 信件列表 規格文件",
+     "note": ""
+    },
+    {
+     "shortId": "r1ghrPxP-x",
+     "title": "信件對話 規格文件",
+     "note": ""
+    },
+    {
+     "shortId": "BJmM2cDGfl",
+     "title": "訊息樣式",
+     "note": ""
+    },
+    {
+     "shortId": "SJJY3isYZe",
+     "title": "即時通、信件通知（企業通知）合併",
+     "note": ""
+    },
+    {
+     "shortId": "r1eNVEfmMx",
+     "title": "求才求職各階段開發內容",
+     "note": ""
+    },
+    {
+     "shortId": "Hk87bluGMg",
+     "title": "[REF] 信件即時通整併－API 與代碼對照庫",
+     "note": ""
+    },
+    {
+     "shortId": "SkKwqvUFfg",
+     "title": "1111 vs 104｜廠商權限、職缺開關、履歷開關可否發訊判斷",
+     "note": ""
+    },
+    {
+     "shortId": "SJsYLtmr-g",
+     "title": "即時通面板",
+     "note": ""
+    }
+   ]
+  },
+  {
+   "stage": "E 聯繫",
+   "func": "面試",
+   "docs": [
+    {
+     "shortId": "HydajKbPfl",
+     "title": "4.3 面試行事曆",
+     "note": ""
+    },
+    {
+     "shortId": "Sy70gCPKGe",
+     "title": "失約回報 Lightbox",
+     "note": ""
+    }
+   ]
+  },
+  {
+   "stage": "5 紀錄",
+   "func": "紀錄",
+   "docs": [
+    {
+     "shortId": "rJ5Bp4RE-g",
+     "title": "5.1 帳號邀約紀錄",
+     "note": ""
+    },
+    {
+     "shortId": "S1-Wt68M-e",
+     "title": "5.3 帳號使用紀錄＞購買紀錄",
+     "note": ""
+    },
+    {
+     "shortId": "SJeZiGSMbx",
+     "title": "5.6 數據統計查詢",
+     "note": ""
+    },
+    {
+     "shortId": "S13Zy8rKze",
+     "title": "5.5 人才點數查詢",
+     "note": ""
+    },
+    {
+     "shortId": "Sk4AvcZ-We",
+     "title": "記錄管理 Lightbox",
+     "note": ""
+    }
+   ]
+  },
+  {
+   "stage": "C 職缺",
+   "func": "職缺內頁（2.0）",
+   "docs": [
+    {
+     "shortId": "B1p54YozMe",
+     "title": "2.0 職缺內頁",
+     "note": ""
+    },
+    {
+     "shortId": "BJ7Yob8W-g",
+     "title": "2.0 職缺內頁 > 職缺內容",
+     "note": ""
+    },
+    {
+     "shortId": "SJEiSjRzbl",
+     "title": "2.0 職缺內頁＞職缺設定",
+     "note": ""
+    },
+    {
+     "shortId": "Sy_fXBBfWx",
+     "title": "2.0 職缺內頁＞應徵方式",
+     "note": ""
+    },
+    {
+     "shortId": "rJhe4yBNWe",
+     "title": "2.0 送出職缺後彈窗與職缺審核",
+     "note": ""
+    },
+    {
+     "shortId": "S1OfrDqiWl",
+     "title": "職缺預覽頁",
+     "note": ""
+    },
+    {
+     "shortId": "Hk_KPwz3Zl",
+     "title": "職缺健檢提案",
+     "note": ""
+    },
+    {
+     "shortId": "S1xTdMKV-l",
+     "title": "提案：職缺資料＞工作時間與班別優化",
+     "note": ""
+    }
+   ]
+  },
+  {
+   "stage": "J 登入",
+   "func": "登入前補充",
+   "docs": [
+    {
+     "shortId": "r11ad8Okfe",
+     "title": "招募系統登入前頁",
+     "note": ""
+    },
+    {
+     "shortId": "HJqwacQNGl",
+     "title": "聯絡我們",
+     "note": ""
+    },
+    {
+     "shortId": "SkpgK_GYWl",
+     "title": "傳真刊登",
+     "note": ""
+    }
+   ]
+  },
+  {
+   "stage": "各階段",
+   "func": "系統 Mail（廠商收到的信）",
+   "docs": [
+    {
+     "shortId": "B1fzI8G2We",
+     "title": "裝置驗證信",
+     "note": ""
+    },
+    {
+     "shortId": "HkZrBvaubg",
+     "title": "登入系統通知信",
+     "note": ""
+    },
+    {
+     "shortId": "Bkw6AsHwMg",
+     "title": "新增／修改帳號信",
+     "note": ""
+    },
+    {
+     "shortId": "BktAq_Szbl",
+     "title": "職缺確認信",
+     "note": ""
+    },
+    {
+     "shortId": "Hyj6_7X8fl",
+     "title": "職缺審核信",
+     "note": ""
+    },
+    {
+     "shortId": "Hka1IFeUfx",
+     "title": "人才配對信",
+     "note": ""
+    },
+    {
+     "shortId": "ryisuzlZzg",
+     "title": "凌晨配對信",
+     "note": ""
+    },
+    {
+     "shortId": "HkKTVkw_fl",
+     "title": "企業通知信件",
+     "note": ""
+    },
+    {
+     "shortId": "Syo5pb-sbl",
+     "title": "VIP 續約感謝信",
+     "note": ""
+    },
+    {
+     "shortId": "BJ2GChM1Mx",
+     "title": "信用卡繳款通知信",
+     "note": ""
+    },
+    {
+     "shortId": "SystNGUZWx",
+     "title": "廠商回流 E-mail 短解",
+     "note": "廠商回流 E-mail 短解，用途待確認"
+    }
+   ]
+  },
+  {
+   "stage": "E 聯繫",
+   "func": "整併專案參考",
+   "docs": [
+    {
+     "shortId": "HyEvtWMLGe",
+     "title": "企業通知與即時通合併 Phrase 1 測試文件",
+     "note": "Phase 1 測試文件"
+    },
+    {
+     "shortId": "SknUQhPfGx",
+     "title": "求職：信件通知與即時通合併交付內容",
+     "note": "求職端交付內容"
+    },
+    {
+     "shortId": "rk-QWt0Yfg",
+     "title": "mailNotice-platform-comefrom-sql 1.md",
+     "note": "mailNotice SQL 筆記"
+    }
+   ]
+  },
+  {
+   "stage": "6／7 服務購買",
+   "func": "服務／購買",
+   "docs": [
+    {
+     "shortId": "Sk5kyX6ubx",
+     "title": "A.7.1 文件下載",
+     "note": ""
+    },
+    {
+     "shortId": "S1fR49Fg-l",
+     "title": "6.8 滿意度調查",
+     "note": ""
+    },
+    {
+     "shortId": "ByKdpLaWZe",
+     "title": "7.1 線上續約",
+     "note": ""
+    },
+    {
+     "shortId": "HJzsieKfWe",
+     "title": "7.2 購買優先排序",
+     "note": ""
+    },
+    {
+     "shortId": "HJD1Eu0c-e",
+     "title": "H.3 合約上傳",
+     "note": ""
+    },
+    {
+     "shortId": "Hy95Qz7g-e",
+     "title": "求才智能客服",
+     "note": ""
+    },
+    {
+     "shortId": "SJtErv_lZl",
+     "title": "智能客服 功能說明頁",
+     "note": ""
+    },
+    {
+     "shortId": "rynOybVWZx",
+     "title": "帳號設定改版 功能說明頁",
+     "note": ""
+    }
+   ]
+  }
+ ],
+ "relations_unmatched": [
+  {
+   "row": "整併專案參考",
+   "ref": "S1cYFSFfzx"
+  }
+ ]
 }
