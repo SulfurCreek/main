@@ -3,6 +3,7 @@ name: resume-craft
 description: >
   撰寫、修改、批改使用者個人履歷／CV／LinkedIn／作品集，或把職能、經歷、專案成果轉成履歷 bullet、依 JD 客製化時使用。
   觸發詞：履歷、resume、CV、自傳、作品集、portfolio、case study、LinkedIn、投遞、應徵、求職、JD 客製、
+  求職信、自我推薦信、推薦函、cover letter、應徵信、
   把 F1–F15 職能或專案變成履歷條目——使用者沒明講「履歷」兩字也算。
   以 Senior PM / Product 視角、大型企業招募標準（含 ATS 與 AI／LLM 履歷掃描）優化，雙語（英文 ATS 版 + 繁中在地版）。
   證據來源是 `career/` 的職能框架 wiki。
@@ -27,7 +28,10 @@ description: >
 | 改寫 bullet／把日常產出變 bullet | 本檔 Bullet 公式 ＋ [`references/reverse-xyz.md`](references/reverse-xyz.md) | 對應 `wiki/F0x-*.md` |
 | 投遞硬技術公司（NVIDIA-tier）| [`references/reverse-xyz.md`](references/reverse-xyz.md) | `wiki/flagship-e1.md`、`wiki/F02`、`wiki/F10` |
 | 依 JD 客製／ATS／HR 用 AI 掃履歷 | [`references/ats-and-ai-screening.md`](references/ats-and-ai-screening.md) | `wiki/resume-extract.md` |
-| 作品集 case study | [`references/portfolio.md`](references/portfolio.md) ＋ [`assets/portfolio-case-study.md`](assets/portfolio-case-study.md) | `portfolio/e1-cross-system-messaging.md`（範例）|
+| 作品集 case study | [`references/portfolio.md`](references/portfolio.md)（含市場路由、NDA 去識別化）＋ 範本：外商／英文 [`assets/portfolio-case-study.md`](assets/portfolio-case-study.md)；台灣本土／新創 [`assets/portfolio-case-study-tw.md`](assets/portfolio-case-study-tw.md) | `portfolio/e1-cross-system-messaging.md`（範例）。**內部版輸出位置固定在 `career/portfolio/`；要上網站的篇章另產對外版 `career/portfolio/public/`（規則見 `references/portfolio.md`〈對外版〉）；career 內容禁止寫入 HackMD**（`career/CLAUDE.md` 硬規則二）。 |
+| 撰寫中文履歷／自傳／專案說明（語氣與誇大護欄）| [`references/tw-voice.md`](references/tw-voice.md) | 數字與事實只取自 `wiki/` |
+| 產生／填寫／驗證 **104 履歷** | 先讀 `career/104/README.md`（`fields-spec.md` 欄位規格、`resume-104.md` 內容、`resume-104-import.txt` 匯入用純文字）；**Cake Resume 另案，不得套用 104 的欄位規格與字數上限**；語氣依 [`references/tw-voice.md`](references/tw-voice.md) | 這些檔案在個人線分支 `claude/happy-lamport-ljis8c` 的 `career/104/` |
+| 求職信：中文自我推薦信（英文 cover letter 走 career-ops `cover` 模式）| [`references/cover-letters.md`](references/cover-letters.md) ＋ 範本 [`assets/cover-letter-tw-zh.md`](assets/cover-letter-tw-zh.md) | `letters/story-bank.md`（數字唯一來源）；成品存 `letters/archive/` ＋ `letters/log.md` 加一列 |
 | 目標公司價值觀對映（Amazon LP 等）| [`references/portfolio.md`](references/portfolio.md) | — |
 | 高顏值可列印版（HTML／LaTeX）| [`references/visual-output.md`](references/visual-output.md) | 已定稿的內容版履歷 |
 | 填學歷／證照 | 本檔結構與順序 | `wiki/education-certifications.md` |
@@ -97,6 +101,11 @@ description: >
 - ✗ `Worked with engineering on a launch` → ✅ `Orchestrated a cross-functional launch (12 eng, 4 design, data) and shipped in 6 weeks vs. 12-week plan`
 - ✗ `負責跨部門溝通` → ✅ `作為求才需求單一窗口，對接 16 個需求單位（總裁/董事/策略長到第一線客服），以數據（投票）化解衝突優先級`
 
+**繁中在地版可改用結果前置（Result-First）**：104／Cake 的 HR 是用掃描的，第一眼要看到成果。
+公式：`[成效] ｜ [主導的專案] ＋ [規模／方法]`。
+例：`半年 111 項上線、94% 準時 ｜ 主導 227 項求才產品 roadmap，以 P0–P3 分級與時間盒交付`。
+英文 ATS 版維持「動詞開頭」，因為 LLM 抽取 impact 靠句內因果，見 references/ats-and-ai-screening.md。
+
 > 把日常產出（規格書／週報／流程圖）逆推成 bullet，見 [`references/reverse-xyz.md`](references/reverse-xyz.md)。
 
 ---
@@ -148,7 +157,7 @@ description: >
 1. 取 `wiki/resume-extract.md`（action+scope+impact 條目）作為 bullet 草稿基底。
 2. 取 `wiki/F01…F15-*.md` → 映射到上方叢集表，挑 5–7 個最相關的。
 3. 取入口的 Profile Snapshot／Positioning → 寫 Summary/Headline；學歷證照取 `wiki/education-certifications.md`。
-4. 遇到 `〔待補數據〕`：**先問使用者拿真實數字**；拿不到就保留標記，不要編。
+4. 遇到 `〔待補數據〕`：先問使用者，**一次只問一題**，優先順序是商業影響 → 規模 → 方法／工具；拿不到就保留標記，不要編。
 5. 依目標 JD 與市場版本選範本、客製 top-third。
 6. 跑下方檢查清單。
 

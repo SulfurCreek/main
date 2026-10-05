@@ -1,7 +1,7 @@
 # HTML 報告 award-grade 自我審查清單
 
 使用者要求「以 Awwwards／Webby／FWA 得獎水準為目標」時用這份清單，平常想把 HTML 報告做得更好也適用。
-來源：`user-journey/html/MERIT.md` 的 v0→v4 改版，每條都是踩過、修過的實例。
+來源：user-journey 專案 HTML 的 v0→v4 改版紀錄（`MERIT.md`，留在 `claude/extract-job-duty-markdown-4avmd6` 分支），每條都是踩過、修過的實例。
 
 ## 1. 審查迴圈（怎麼「自我檢查到滿意」）
 
