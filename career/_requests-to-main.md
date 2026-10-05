@@ -30,3 +30,19 @@
 3. `SKILL.md` 的 description 觸發詞加入「求職信、自我推薦信、推薦函、cover letter、應徵信」；任務路由表加一列指向 `references/cover-letters.md`。
 
 **為什麼**：使用者要求針對中文推薦信與英文 cover letter 建立專責能力。英文已由 career-ops 涵蓋，缺的只有中文；併進 resume-craft，就能沿用同一套證據與誠實規則。
+
+## 2026-10-05：新增 skill `portfolio-site`（作品集靜態網站渲染）
+
+**想改什麼**：把 `career/_skill-drafts/portfolio-site/SKILL.md` 搬到 `.claude/skills/portfolio-site/SKILL.md`，
+並更新 `.claude_index.md`〈skills〉與 CLAUDE.md 路由表（觸發：作品集網站、靜態網站、GitHub／Cloudflare Pages）。
+搬完後刪除 `career/_skill-drafts/`。
+
+**為什麼**：使用者要請另一個 HTML 助手 session 把作品集做成靜態網站，自行部署到 GitHub 或 Cloudflare。
+現有 `resume-craft` 只管作品集**內容**（`career/portfolio/*.md`），沒有渲染層；`report-generator` 的自包含 HTML
+針對數據報告，不涵蓋多頁網站、無障礙、noindex 與部署。新 skill 只管渲染，跟兩者不重疊。
+
+**來源與取捨**：改寫自使用者提供的外部 skill `pm-static-portfolio-generator`。
+保留：語意化 HTML、不用框架、`<details>` 漸進揭露、WCAG、NDA 去識別化、用圖表取代截圖。
+修改：Mermaid 改成**建置時預先渲染 SVG**（原版在瀏覽器端跑，需要 JS、會閃爍）；XYZ 只用在有數據的成果句；
+HEART 只用在使用者端產品。拿掉：intake 問卷（內容已在 career/portfolio/）、「只輸出程式碼區塊」（改成寫檔案）。
+新增：noindex 隱私開關（使用者仍在職）、佔位字建置前檢查、數字與 104 履歷一致性檢查、部署步驟。
