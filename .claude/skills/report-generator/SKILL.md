@@ -125,6 +125,10 @@ Top/Bottom N 表 + ≤3 條白話結論；全表放附錄連結
 （Awwwards／SiteInspire／Mobbin 等）與各自適合查什麼。
 **但一定要照下面第5點把外部 CDN 全部拔掉重寫，不能直接複製它的 `example.html`**。
 
+**要做到得獎水準時**（使用者要求 Awwwards／Webby／FWA 等級，或要「反覆自我檢查直到滿意」），照
+`references/award-grade-checklist.md` 跑審查迴圈：v0 截圖先寫出不到標準的具體理由，每輪截 1440 亮／暗、
+390、互動後的狀態，逐條消掉之後才發布；改動記進專案的 `MERIT.md`，能重用的原則回寫該清單。
+
 ### 標準流程
 
 1. **原始資料留在磁碟，不進 context**：依 `wiki/master_prompt.md` 的「Excel/CSV 漸進式分析」
@@ -151,7 +155,8 @@ Top/Bottom N 表 + ≤3 條白話結論；全表放附錄連結
    - `page.on('pageerror'/'console')` 監聽有沒有 JS 錯誤
 5. **自包含（self-contained）鐵律**：CSP 情境下無法載外部 CDN/字型/圖片。CSS 用
    `<style>` 內嵌、圖表用純 SVG＋vanilla JS（不依賴 D3/Chart.js 等外部庫）、`prefers-color-scheme`
-   做預設＋`:root[data-theme]` 做手動切換覆蓋（雙向都要贏）。
+   做預設＋`:root[data-theme]` 做手動切換覆蓋（雙向都要贏）。唯一例外是 Google Fonts，
+   只能當漸進增強：每個字體都要有系統字體 fallback，離線開檔仍完整可讀（見 `award-grade-checklist.md` §4）。
 6. **Pipeline 要能重跑，不是一次性產物**：拆成 `stepN_xxx.py`（分析）與
    `stepM_build_report.py`（注入模板出圖），加一份 `README.md` 寫清楚輸入資料目錄結構、
    執行指令、已知資料落差／清洗規則。驗證方式：重跑一次比對輸出是否 byte-identical。
