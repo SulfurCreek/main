@@ -17,7 +17,7 @@ from this repo's 1111 spec-documentation work. Treat as plain Markdown.*
 | 動作 | 可以嗎 |
 | :--- | :--- |
 | Read／Grep／Glob 任何檔案（規格書、`notes/`、`.claude/skills/`、`wiki/`、分析產出、其他分支） | ✅ 不受限制——這些是職能證據的來源 |
-| 寫 `career/` 底下的檔案（職能 wiki、portfolio、履歷素材） | ✅ 這是它唯一的主場 |
+| 寫 `career/` 底下的檔案（職能 wiki、portfolio、履歷素材） | ✅ 這是它唯一的主場。**例外：`career/site/` 歸「作品集網站助手」session 寫，Career Move 不動** |
 | 改 `CLAUDE.md`／`.claude/skills/`（含 `resume-craft`）／`wiki/`／`scripts/`／`.claude_index.md` | ❌ 一律禁止 |
 | 改 `notes/`、`handoff/`、`job-classification-kb/` 等任何專案產出 | ❌ 一律禁止 |
 | push 到 `claude/happy-lamport-ljis8c` 以外的分支 | ❌ 一律禁止 |
@@ -37,6 +37,16 @@ Everything outside `career/` is **read-only** for it. To change anything outside
 into `career/_requests-to-main.md` instead of editing — the trunk-managing session decides and applies it.
 Enforced by `scripts/guard_career_scope.sh` (PreToolUse hook, this branch only; reads are never blocked).*
 
+## 🤝 協作：作品集網站助手（2026-10-05 起）
+
+同一分支另有 **作品集網站助手** session（`session_01X5B4jtorqQNpioe46ePnFs`），只負責把作品集渲染成靜態網站。完整規則：**`wiki/personal_line_collab.md`**（先讀，需先 merge 最新 main）。重點：
+
+- **你寫內容，它寫 `career/site/`**：目錄不重疊，彼此唯讀。
+- **網站只用對外版**：你從內部版 `portfolio/*.md` 產出 `career/portfolio/public/<slug>.md`（front matter `publish: draft|ready`、`highlights`），依 `resume-craft/references/portfolio.md` 去識別化；使用者在你的對話明確核可該頁文字後才設 `ready`。
+- **它的問題在 `career/site/QUESTIONS.md`**；你的回覆寫 `career/portfolio/public/STATUS.md`（Q 編號、答覆、日期；另有「使用者決定」表），不要改 QUESTIONS.md。
+- 推送前 `git pull --rebase origin claude/happy-lamport-ljis8c`，禁止 force push，commit 前綴 `career:`。
+- 雲端 session 之間傳不了訊息：交接完成後在回報最後一行寫「請到作品集網站助手說：請看 `career/portfolio/public/STATUS.md`」，由使用者轉達。
+
 ## 🚫 硬規則二：不外流 / Hard rule: never publish
 
 **絕不**把 `career/` 的任何內容推送、同步或建立到 HackMD `1111-jobdocs` 團隊工作區（或任何 HackMD note）。
@@ -55,7 +65,8 @@ it is a shared company space and the leak would be irreversible.*
 | `HANDOFF.md` | **新 session 開工先讀**：角色邊界、慣例、完整檔案清單、未完成事項 |
 | `competency-framework.md` | **wiki 入口**：定位、Profile Snapshot、路由表、F1–F15 總覽 |
 | `wiki/` | 職能分頁（`F01`–`F15`）、旗艦專案、履歷摘要、學歷證照、證據頁、PM 語彙對照、缺口盤點 |
-| `portfolio/` | 作品集 case study（完整敘事＋圖表）|
+| `portfolio/` | 作品集 case study（內部完整版）；`portfolio/public/` 為對外版與 `STATUS.md` |
+| `site/` | **作品集網站助手的暫存區**（網站原始碼、`QUESTIONS.md`），Career Move 唯讀 |
 | `career-ops/` | [career-ops](https://github.com/career-ops-hq/career-ops) 求職工具的個人資料層（`cv.md`、`config/profile.yml`）與產出（`reports/`、`output/`、`data/`），經 `CAREER_OPS_ROOT` 直接讀寫；`cv.md` 由 `wiki/` 單向同步 |
 
 **依任務只載入需要的分頁**（入口的路由表會指路），不要整包讀進來。更新職能內容時改對應的 `wiki/` 分頁，
