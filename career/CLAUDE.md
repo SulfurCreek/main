@@ -47,6 +47,16 @@ Enforced by `scripts/guard_career_scope.sh` (PreToolUse hook, this branch only; 
 - 推送前 `git pull --rebase origin claude/happy-lamport-ljis8c`，禁止 force push，commit 前綴 `career:`。
 - 雲端 session 之間傳不了訊息：交接完成後在回報最後一行寫「請到作品集網站助手說：請看 `career/portfolio/public/STATUS.md`」，由使用者轉達。
 
+## 🧭 履歷平台路由：104 與 Cake 不要混用
+
+| 任務 | 讀這裡 | 備註 |
+| :--- | :--- | :--- |
+| 產生、填寫、驗證 **104 履歷** | `104/README.md` →（`104/fields-spec.md` 欄位規格、`104/ui-notes.md` 介面紀錄、`104/resume-104.md` 逐欄內容、`104/chrome-playbook.md` Chrome 操作手冊、`104/resume-104-import.txt` 匯入用純文字版） | 必填欄位、字數上限、個資與機密規則一律以 `fields-spec.md` 為準 |
+| 產生 **Cake Resume** | 尚未建立 `cake/`；要做時先開 `cake/` 目錄、先取得 Cake 編輯頁欄位規格再寫 | **不得套用 104 的欄位規格與字數上限**；內容事實與數字仍共用 `wiki/` |
+| 英文 ATS 履歷、自傳、求職信 | `resume-craft` skill、`letters/` | 與平台表單無關 |
+
+事實與數字的唯一來源是 `wiki/`；各平台檔案只是格式不同的呈現。
+
 ## 🚫 硬規則二：不外流 / Hard rule: never publish
 
 **絕不**把 `career/` 的任何內容推送、同步或建立到 HackMD `1111-jobdocs` 團隊工作區（或任何 HackMD note）。
