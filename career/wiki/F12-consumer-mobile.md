@@ -33,3 +33,5 @@ from scratch (0→1) and operating mature ones.*
 ---
 
 **相關分頁 / Related**：[證據頁：前段產品公開數據](evidence-prior-products.md) ・ [完整職涯時間軸](prior-roles.md) ・ [F13 變現、定價與金流](F13-monetization-pricing.md) ・ [F3 廠商端平台](F03-employer-platform.md) ・ [履歷可用摘要](resume-extract.md)
+
+- **2026-10-06 使用者裁定**：0→1 代表作以 **JustDating 與 KOOL** 為主，Peach 降為次要；不得使用「JD2」名稱。

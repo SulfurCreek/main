@@ -30,3 +30,5 @@ authentic localization rather than translated UI.*
 ---
 
 **相關分頁 / Related**：[證據頁：前段產品公開數據](evidence-prior-products.md) ・ [完整職涯時間軸](prior-roles.md) ・ [學歷・證照與語言](education-certifications.md) ・ [F12 C 端行動產品](F12-consumer-mobile.md)
+
+- **2026-10-06 使用者補充**：SweetRing 在地化是與**外國實習生**（美、墨、巴、印尼、馬、日、韓）協作完成，履歷應聚焦「跨文化協作＋在地化」；另 JustDating 與東南亞金流商 **CodaPay** 溝通串接，屬東南亞市場在地化付款。
