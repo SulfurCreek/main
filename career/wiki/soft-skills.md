@@ -15,6 +15,7 @@
 | **跨文化協作** | SweetRing：分派翻譯與粉專經營任務給最多約 10 位外國實習生（非主管，靠協調而非職權），完成 7 市場在地化 | F14 |
 | **對外夥伴溝通** | JustDating：與 CodaPay 位於新加坡的技術團隊合作，涵蓋馬來西亞、印尼、泰國、越南等東協國家，把 IAP 導向網頁購買 | F13 |
 | **平台政策與審核熟悉度** | 主責 JustDating 重新上架，熟悉 App Store／Google Play 功能與審核政策 | evidence-prior-products.md |
+| **用證據說服（競品實測）** | 不憑感覺改規則：實測主要競品、反推其配對信邏輯，再提出 1111 的新規則與 Q&A | evidence-briefings.md 代表案例 |
 | **持續回報的紀律** | 每週發布需求處理週報（30 份以上） | evidence-weekly-reports.md |
 
 ## 履歷寫法原則
