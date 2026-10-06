@@ -4,7 +4,7 @@ description: >-
   從既有規格文件反向工程出使用者旅程地圖（User Journey Map），並記錄每個階段對應的
   HackMD 文件。當使用者要「user journey」「旅程地圖」「使用者旅程」「招募流程全貌」
   「從 sitemap 推回使用流程」，或要把一堆功能規格串成一條端到端流程時使用。
-  輸出格式固定為三段式（Context／Journey Grid／Key Takeaways & PM Action Items），
+  輸出格式固定為三段式（Persona／Journey Grid／Key Takeaways & PM Action Items），
   範本見 `references/template.md`。預設角色是求才端招募人員（recruiter），
   階段骨架取自 `[求才系統] Sitemap` 的 module 順序。
 ---
@@ -15,9 +15,14 @@ description: >-
 
 ## 三段式結構
 
-1. **Context**：Persona（具體特徵＋核心痛點）、Scenario & Goal、Journey Type。
-   只寫一個 persona；VIP／免費、主副帳號等差異寫在 Persona 條目的「變體」。
-   Journey Type 預設 `Current State`（反向工程出的是現狀）；使用者明說才寫 `Future State`。
+1. **Persona**（2026-10-05 起取代原 Context，Roman Pichler Agile Persona Canvas）：
+   **多 persona、不取人名**，以「公司會員狀態 `oStatus` × 帳號角色（主帳號／副帳號＋權限）」定義，persona 清單由使用者決定
+   （目前 7 個：普通廠商／過期廠商／VIP 主帳號（人資窗口）／VIP 副帳號（人資）／VIP 副帳號（用人主管、分店店長）／VIP 人事助理／關權廠商）。
+   順序：給下游 HTML agent 的 `<!-- [SYSTEM: UI/UX RENDERING INSTRUCTIONS ...] -->` 註解 → 說明與旅程範圍（Journey Type）
+   → Persona 總覽表（廠商狀態、帳號類型、可走的旅程、主要限制）→ 各 persona 卡（引言、Details、Goals、Pain Points、可走的旅程）
+   → 受限廠商類型（`organs.confirmed` 會改變旅程功能的旗標，作為疊加在任一 persona 上的修飾條件）→ 名詞。
+   Journey Grid 以 VIP 主帳號為主線，其他 persona 的差異只寫在各自卡片。代碼定義一律引自 HackMD [REF] 系統代碼表（`B1j3sN-bzx`）；
+   文件沒有的角色描述（如人事助理）寫 `NULL`，不自行編造。
 2. **Journey Grid**：**階段在欄、泳道在列**，列固定七列、順序不可增減：
    User Actions／Touchpoints／Thoughts／Emotions／Pain Points／Opportunities／Metrics。
    - 階段沿用 Sitemap module 順序 `登入 → 首頁 → 公司 → 職缺 → 人才 → 聯繫 → 紀錄`；
