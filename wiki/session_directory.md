@@ -18,7 +18,7 @@
 | Repo 治理：分支收斂、skill 納管、wiki／路由表維護、健檢 | Repo Housekeeping | `main` | `session_01KDak6qp7Eim1Zt3inztq7v` | RUNNING（本 session） |
 | 職務分類／不合理清單／AI 職類推薦模型／TCode 代碼表比對／廠商身分 Google Sheet | tCode幫手 | `claude/google-sheet-url-allowlist-GKFEU` | `session_01UHEjnAEkd1cRB7C9gHkUcj` | IDLE，completed |
 | 數據分析報告寫作／HTML 報告產出（側欄名稱已改為「專案HTML前端靜態網站助手」）；**`user-journey/` 專案（User Journey × 流程圖 × 文件）的 HTML 化**（2026-09-30 起；開工前先 merge 最新 main） | 產生HTML報告 | `claude/extract-job-duty-markdown-4avmd6` | `session_01QXs4QyHUx32r5AxVpJtYoj` | IDLE，review_ready |
-| Lo-fi wireframe 線框圖草稿 | Wireframe helper v2 | `claude/lofi-wireframer-skill-0u25rk`（2026-10-07 起分支與 main 零落後，只多 11 個 wireframe 交付 commit） | `session_01WDKHLDHNQtrz6oez35c7ma` | IDLE（2026-10-07 換手：舊 session `session_019WwXEooe1HuTjpLbhHueEQ` 已 ARCHIVED，勿導向）。素材放 `handoff/wireframes/` |
+| Lo-fi wireframe 線框圖草稿 | Wireframe helper v2 | `main`（2026-10-07 起線框圖上線直接推 main，**只寫 `wireframe-site/<slug>/`**；草稿分支 `claude/lofi-wireframer-skill-0u25rk` 保留舊交付） | `session_01WDKHLDHNQtrz6oez35c7ma` | IDLE（2026-10-07 換手：舊 session `session_019WwXEooe1HuTjpLbhHueEQ` 已 ARCHIVED，勿導向）。素材放 `handoff/wireframes/` |
 | API 測試（Talent Sourcing Gateway API 等）、pytest 測試矩陣 | 虛擬機器 API 測試環境 | `claude/vm-api-testing-setup-wpf6y8` | `session_01THk1wnhhqk5NheyvzBqncj` | IDLE，blocked（等待回覆是否記錄回歸結果） |
 | 信件訊息頁前端修改工程單／未讀履歷提醒統計／切版 | 未讀提醒 **或** 網頁分析工具（⚠️見下方特別注意） | `claude/email-layout-handoff-gjq5zu` | 未讀提醒＝`session_01ERFbn8cEWMfmDPEdMxJs4T`；網頁分析工具＝`session_0155Dp5oiYKgfH9BRhStd5T6` | 未讀提醒＝review_ready；網頁分析工具＝blocked（push 403，卡在確認 PR base 該不該改 main） |
 | 兼職職缺（工讀生停用說明）modal 設計 | （已封存，不在側欄） | `claude/part-time-modal-design-tmtt7n` | `session_01UCest88UyhV6wBo2myhk1A` | ARCHIVED——有新需求要另開 session |
