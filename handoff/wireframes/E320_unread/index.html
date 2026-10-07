@@ -6,217 +6,253 @@
 <title>3.2.0 未讀篩選線框圖</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=LXGW+WenKai+TC:wght@400;700&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet" />
 <script src="https://cdn.tailwindcss.com"></script>
 <style>
-  html, body { background:#f3f3f1; color:#000; margin:0; }
-  * { font-family:'Caveat','LXGW WenKai TC',cursive; box-sizing:border-box; }
-  .frame { width:100%; max-width:1436px; margin:0 0 36px; }
-  .frame-title { font-size:26px; font-weight:700; margin-bottom:6px; border-bottom:2px solid #000; display:inline-block; padding-bottom:2px; }
-  .frame-sub { font-size:17px; color:#6b7280; margin-bottom:8px; }
-  .stage { position:relative; background:#fff; border:2px solid #000; padding:28px 32px 28px; }
-  .bd { position:absolute; z-index:20; background:#000; color:#fff; border:2px solid #000; border-radius:9999px;
-        padding:1px 9px; font-size:16px; font-weight:700; line-height:1.3; white-space:nowrap; box-shadow:2px 2px 0 #9ca3af; }
+  html, body { background:#e5e5e3; color:#000; margin:0; }
+  * { font-family:'Noto Sans TC','Microsoft JhengHei','PingFang TC',sans-serif; box-sizing:border-box; }
   .rel { position:relative; }
-  /* 2.2 */
-  .r22 { display:flex; align-items:center; gap:14px; flex-wrap:wrap; padding:6px 0 18px; border-bottom:2px dashed #9ca3af; margin-bottom:18px; }
-  .lbl { font-size:22px; font-weight:700; }
-  .chip { border:2px solid #000; padding:3px 14px; font-size:20px; background:#fff; display:inline-flex; gap:6px; align-items:center; }
-  .chip.on { background:#000; color:#fff; }
-  /* toolbar */
-  .tb { display:flex; align-items:center; gap:28px; padding:6px 0 28px; flex-wrap:wrap; }
-  .sum { font-size:22px; }
-  .lnk { font-weight:700; cursor:pointer; }
-  .t32 { font-size:21px; display:inline-flex; gap:8px; align-items:center; }
-  .ops { display:flex; gap:22px; font-size:21px; }
-  .op.dis { color:#b0b4ba; }
-  .op.en { color:#000; font-weight:700; text-decoration:underline; }
-  .unk { outline:2px dashed #6b7280; outline-offset:5px; }
-  .unk-lbl { font-size:15px; color:#6b7280; }
-  .guide { position:absolute; bottom:4px; width:0; z-index:5; }
-  .guide span { position:absolute; bottom:0; left:-6px; font-size:15px; color:#6b7280; white-space:nowrap; }
-  /* list */
-  .list { position:relative; display:flex; flex-direction:column; gap:12px; padding-top:6px; }
-  .rc { display:flex; gap:14px; align-items:center; border:2px solid #000; padding:12px 16px; }
-  .cb { font-size:26px; line-height:1; }
-  .ph { background:#e5e7eb; border:2px solid #000; display:flex; align-items:center; justify-content:center; color:#6b7280; font-weight:700; font-size:26px; width:64px; height:64px; flex:none; }
-  .ph.sm { width:84px; height:84px; margin:0 auto 14px; }
-  .nm { font-size:22px; font-weight:700; }
-  .mini { font-size:15px; font-weight:400; border:1.5px solid #000; padding:0 7px; margin-left:8px; }
-  .ln { font-size:18px; color:#4b5563; }
-  .more { text-align:center; font-size:20px; color:#6b7280; }
-  /* empty */
-  .empty { position:relative; border:2px solid #000; text-align:center; padding:56px 20px 56px; }
-  .et { font-size:30px; font-weight:700; }
-  .ed { font-size:21px; color:#4b5563; margin-top:6px; }
-  .pri { display:inline-block; margin-top:20px; background:#000; color:#fff; border:2px solid #000; padding:6px 28px; font-size:22px; }
-  .nobtn { margin-top:18px; font-size:17px; color:#6b7280; border:2px dashed #9ca3af; display:inline-block; padding:2px 14px; }
-  .pager { position:relative; display:flex; justify-content:center; gap:8px; margin-top:22px; font-size:22px; }
-  .pg { border:2px solid #000; min-width:40px; text-align:center; padding:2px 8px; }
-  .pg.on { background:#000; color:#fff; }
-  .none { color:#6b7280; font-size:18px; text-align:center; margin-top:18px; border:2px dashed #9ca3af; padding:6px; }
-  /* S6 before strip */
-  .before { position:relative; border:2px dashed #6b7280; padding:10px 16px; margin-bottom:6px; color:#6b7280; font-size:21px; display:flex; align-items:center; gap:24px; flex-wrap:wrap; }
-  .before .tagrow { display:flex; gap:8px; align-items:center; }
-  .before .chip { font-size:17px; padding:1px 10px; border-color:#6b7280; }
-  .before .chip.on { background:#6b7280; border-color:#6b7280; }
-  .flow { font-size:22px; font-weight:700; margin:6px 0 14px; display:flex; gap:12px; align-items:center; }
-  .flow .arrow { font-size:34px; line-height:1; }
-  .callout { position:absolute; z-index:15; background:#fff; border:2px solid #000; padding:2px 10px; font-size:17px; font-weight:700; white-space:nowrap; }
-  /* S7 compare */
-  .cmp { display:grid; grid-template-columns:1fr 1fr; gap:28px; }
-  .cmp-h { font-size:22px; font-weight:700; margin-bottom:26px; }
-  .diff { margin-top:22px; border:2px solid #000; border-collapse:collapse; width:100%; }
-  .diff th, .diff td { border:2px solid #000; padding:6px 12px; font-size:19px; text-align:left; vertical-align:top; }
-  .diff th { background:#e5e7eb; }
-  /* sidebar */
-  .note { background:#fef9c3; border:1px solid #facc15; padding:12px; margin-bottom:14px; font-size:14px; line-height:1.55; font-family:'LXGW WenKai TC',sans-serif; }
-  .note * { font-family:'LXGW WenKai TC',sans-serif; }
+
+  /* ---------- 版面骨架：以真實畫面 1182px 寬（截圖 2364px = @2x）為基準 ---------- */
+  .frame { margin:0 0 36px; width:1182px; }
+  .frame-title { font-size:22px; font-weight:700; margin-bottom:2px; }
+  .frame-sub { font-size:14px; color:#555; margin-bottom:8px; }
+  .stage { position:relative; width:1182px; background:#F0F0F0; padding:14px 0 28px; outline:2px solid #000; filter:grayscale(1); }
+  .annot { position:absolute; inset:0; pointer-events:none; filter:none; }
+
+  /* 標註徽章（黑底白字，不屬於原畫面） */
+  .bd { position:absolute; z-index:30; background:#000; color:#fff; border-radius:9999px; padding:1px 9px; font-size:13px; font-weight:700; line-height:1.4; white-space:nowrap; box-shadow:1px 1px 0 #888; filter:none; }
+
+  /* ---------- 2 篩選條件區（真實截圖，灰階） ---------- */
+  .panel { width:1182px; height:310px; }
+  .pimg { position:absolute; inset:0; background:url(assets/panel_search.png) 0 0 / 1182px 310px no-repeat; }
+  .cover22 { position:absolute; left:118px; top:131px; width:640px; height:44px; background:#fff; display:flex; align-items:center; gap:12.5px; padding-left:4px; }
+  .chip { height:36px; padding:0 14px; border:1px solid #8F8F8F; border-radius:4px; background:#fff; color:#444; font-size:16px; display:inline-flex; align-items:center; gap:4px; white-space:nowrap; }
+  .chip.on { background:#E6EEF6; border-color:#4F6B90; color:#4F6B90; }
+  .ck { font-style:normal; font-size:14px; }
+
+  /* ---------- 3 多筆操作區（依 3.x 規格圖重繪：高 37、3.1a 為新增） ---------- */
+  .tb { display:flex; align-items:center; height:37px; margin:16px 6px 0; white-space:nowrap; }
+  .s31 { font-size:16px; font-weight:700; color:#000; }
+  .lnk { font-size:15px; color:#1283B5; margin-left:12px; }
+  .t32 { display:inline-flex; align-items:center; gap:11px; margin-left:35px; font-size:15px; color:#000; }
+  .cbx { width:24px; height:24px; border:1.5px solid #8C8C8C; border-radius:4px; background:#fff; display:inline-block; position:relative; }
+  .cbx.on { background:#4F6B90; border-color:#4F6B90; }
+  .cbx.on::after { content:'✓'; position:absolute; inset:0; color:#fff; font-size:16px; line-height:21px; text-align:center; }
+  .ops { display:inline-flex; margin-left:33px; font-size:15.4px; }
+  .op { margin-left:40px; }
+  .op:first-child { margin-left:0; }
+  .op.dis { color:#B3B3B3; }
+  .op.en { color:#1283B5; }
+  .unk { outline:2px dashed #666; outline-offset:5px; }
+  .unk-lbl { font-size:13px; color:#555; margin-left:16px; }
+  .guide { position:absolute; bottom:-4px; width:0; z-index:5; filter:none; }
+  .guide span { position:absolute; bottom:0; left:-6px; font-size:13px; color:#555; white-space:nowrap; }
+
+  /* ---------- 4 求職者卡片（真實截圖，灰階） ---------- */
+  .card { position:relative; width:1182px; background:url(assets/card.png) 0 0 / 1182px 397px no-repeat; }
+  .card.full { height:397px; margin-top:9px; }
+  .card.peek { height:140px; margin-top:12px; -webkit-mask-image:linear-gradient(#000 55%, transparent); mask-image:linear-gradient(#000 55%, transparent); }
+  .card .cbx { position:absolute; left:30px; top:29px; width:20px; height:20px; border-radius:3px; }
+  .card .cbx.on::after { line-height:17px; font-size:14px; }
+
+  /* ---------- 5 分頁套件（依 §5 示意圖重繪） ---------- */
+  .pager { position:relative; height:116px; margin-top:8px; }
+  .pgrow { position:absolute; left:50%; top:14px; transform:translateX(-50%); display:flex; align-items:center; gap:2px; font-size:14px; color:#444; white-space:nowrap; }
+  .pg { min-width:36px; height:36px; display:inline-flex; align-items:center; justify-content:center; border-radius:4px; }
+  .pg.on { border:1px solid #1283B5; color:#1283B5; }
+  .pg.arrow { color:#888; font-size:18px; }
+  .pgto { margin:0 6px 0 10px; }
+  .pgin { width:36px; height:36px; border:1px solid #aaa; border-radius:4px; background:#fff; margin:0 6px; }
+  .nextbtn { position:absolute; left:50%; top:62px; transform:translateX(-50%); width:120px; height:36px; background:#1283B5; color:#fff; border-radius:3px; display:flex; align-items:center; justify-content:center; font-size:15px; }
+  .pgsel { position:absolute; right:30px; top:14px; width:122px; height:36px; border:1px solid #bbb; border-radius:4px; background:#fff; color:#888; font-size:14px; display:flex; align-items:center; justify-content:space-between; padding:0 12px; }
+  .pager.narrow .pgrow { left:0; transform:none; }
+  .pager.narrow .nextbtn { left:130px; transform:none; }
+  .pager.narrow .pgsel { right:auto; left:270px; top:62px; }
+
+  /* ---------- 空畫面 ---------- */
+  .empty { text-align:center; position:relative; }
+  .et { font-size:24px; font-weight:700; color:#000; }
+  .ed { font-size:18px; color:#444; margin-top:10px; }
+  .pbtn { display:inline-flex; align-items:center; justify-content:center; margin-top:22px; height:36px; padding:0 30px; background:#1283B5; color:#fff; font-size:16px; border-radius:3px; }
+  .nobtn { margin-top:20px; font-size:13px; color:#555; border:2px dashed #666; display:inline-block; padding:2px 12px; }
+
+  /* ---------- S6 ---------- */
+  .before { position:relative; margin:0 6px 4px; padding:10px 16px; border:2px dashed #666; background:#fff; display:flex; gap:22px; align-items:center; font-size:15px; color:#555; white-space:nowrap; }
+  .before .chip { height:28px; font-size:14px; padding:0 10px; }
+  .flow { margin:6px 6px 0; font-size:17px; font-weight:700; display:flex; gap:10px; align-items:center; }
+
+  /* ---------- S7 並排對照 ---------- */
+  .cmp { display:grid; grid-template-columns:1fr 1fr; gap:0; padding:8px 0 0; }
+  .col { position:relative; padding:0 28px; }
+  .col + .col { border-left:2px dashed #888; }
+  .cmp-h { font-size:17px; font-weight:700; margin:0 0 30px; }
+  .diff { margin:28px 28px 0; width:calc(100% - 56px); border-collapse:collapse; background:#fff; font-size:14px; }
+  .diff th, .diff td { border:1px solid #888; padding:6px 10px; text-align:left; vertical-align:top; }
+  .diff th { background:#e5e5e5; }
+
+  /* ---------- 側欄 ---------- */
+  .note { background:#fef9c3; border:1px solid #facc15; padding:12px; margin-bottom:14px; font-size:13.5px; line-height:1.55; }
   .note.q { border:2px dashed #a16207; background:#fffbe0; }
-  .note h3 { font-size:15px; font-weight:700; margin:0 0 4px; }
+  .note h3 { font-size:14.5px; font-weight:700; margin:0 0 4px; }
   .note ul { margin:4px 0 0 16px; padding:0; list-style:disc; }
   .note code { font-family:ui-monospace,monospace; font-size:12px; background:#fff; border:1px solid #facc15; padding:0 3px; }
-  .tagno { display:inline-block; background:#000; color:#fff; border-radius:9999px; padding:0 8px; margin-right:4px; font-size:13px; }
-  /* single-state capture mode */
+  .tagno { display:inline-block; background:#000; color:#fff; border-radius:9999px; padding:0 8px; margin-right:4px; font-size:12.5px; }
+
+  /* ---------- 單一狀態截圖模式（index.html#s3） ---------- */
+  body.single { background:#F0F0F0; }
   body.single aside, body.single .page-head, body.single .frame-title, body.single .frame-sub { display:none !important; }
-  body.single .frame:not(.cur) { position:absolute; left:-20000px; top:0; width:1436px; visibility:hidden; }
-  body.single main { padding:0 !important; }
-  body.single .frame { margin:0; max-width:none; width:1436px; }
-  body.single { background:#fff; }
+  body.single main { padding:0 !important; overflow:visible !important; }
+  body.single .stage { outline:none; }
+  body.single .frame:not(.cur) { position:absolute; left:-20000px; top:0; visibility:hidden; }
+  body.single .frame { margin:0; }
 </style>
 </head>
 <body>
 <div class="flex min-h-screen">
-  <main class="flex-1 min-w-0 p-8">
+  <main class="flex-1 min-w-0 p-8 overflow-x-auto">
     <div class="page-head mb-6">
-      <h1 class="text-3xl font-bold border-b-2 border-black inline-block pb-1">3.2.0 搜尋結果頁：「未讀」篩選 → 3.1a ／ 空畫面 b</h1>
-      <p class="text-lg text-gray-600 mt-1">[ 範圍：2.2 履歷狀態 Tag 到列表區；人才卡片以佔位方塊代替；區塊編號沿用文件 ]</p>
+      <h1 class="text-2xl font-bold border-b-2 border-black inline-block pb-1">3.2.0 搜尋結果頁：「未讀」篩選 → 3.1a ／ 空畫面 b</h1>
+      <p class="text-base text-gray-600 mt-1">未改動的區塊（2 篩選條件區、4 求職者卡片）直接使用真實畫面截圖轉灰階；只重畫有異動的 2.2 tag、3 多筆操作區、空畫面、5 分頁套件。黑色圓角標籤為區塊編號（沿用文件）。</p>
     </div>
     <div id="frames"></div>
   </main>
 
   <aside class="w-[300px] shrink-0 border-l-2 border-black bg-white p-4 overflow-y-auto" style="position:sticky;top:0;max-height:100vh">
-    <h2 class="text-2xl font-bold border-b-2 border-black pb-1 mb-4">Technical Specs &amp; Flow Logic</h2>
+    <h2 class="text-xl font-bold border-b-2 border-black pb-1 mb-4">Technical Specs &amp; Flow Logic</h2>
 
     <div class="note q">
-      <h3>⚠ 草稿來源說明</h3>
-      依交接文字繪製。HackMD 原文（§2.2、§3、空畫面、§5）與三張參考圖因環境網路政策擋下，未能讀取，需對文件覆核一次。真實 UI 的「已啟用」操作項為藍色連結，線框規定只用黑白灰，改以黑色粗體底線表示。
+      <h3>⚠ 草稿來源</h3>
+      依 HackMD 文件 v0.0.7（§2.2、§3、空畫面 a／b、§5）與文件內截圖繪製：2 區塊與 4 卡片是 <code>E320_search_list.png</code> 轉灰階，3 區與 5 區依文件規格圖重繪。Figma 未授權，3.1a 與空畫面 b 沒有 Figma 稿，字級、間距為依相鄰元件推估。
     </div>
 
     <div class="note"><h3><span class="tagno">2.2</span>履歷狀態 Tag（單選）</h3>
-      六選一：不拘（預設）／未讀／已讀／追蹤中／有備註／已通知。單選，選一個會取消另一個。選「未讀」→ 3.1 變成 3.1a。</div>
+      六選一：不拘（預設）／未讀／已讀／追蹤中／有備註／已通知。單選，點選後即時更新下方列表（從碩網搜尋結果內篩選）。選「未讀」→ 3.1 變成 3.1a。</div>
 
     <div class="note"><h3><span class="tagno">3.1a</span>兩個數字</h3>
       「共 N 筆履歷，已排除 M 筆已讀　查看＞」<ul>
       <li>N = 搜尋結果名單總數，換頁不變。</li>
-      <li>M = 當前這一頁被隱藏的已讀筆數，換頁會變。</li>
-      <li>M = 0 照常顯示：「已排除 0 筆已讀」，「查看＞」照舊（S4）。</li>
-      <li>3.1a 比 3.1 長，3.2 全選與 3.3~3.7 整體往右移（S2 以虛線標出 S1 位置）。</li></ul></div>
+      <li>M = 該分頁隱藏的已讀筆數（搜尋機制只能每頁個別判斷），換頁會變。</li>
+      <li>M = 0 照常顯示「已排除 0 筆已讀」，連結行為不變（S4）。</li>
+      <li>3.2 右側元件往右顯示（S2 以 ▲ 標出 S1 時 3.2 的位置）。</li></ul></div>
 
     <div class="note"><h3><span class="tagno">3.1a</span>「查看＞」動作</h3>
       取消「未讀」，2.2 回到「不拘」，3.1a 還原成 3.1（S6）。</div>
 
     <div class="note"><h3><span class="tagno">空 a</span>vs<span class="tagno" style="margin-left:4px">空 b</span>差異（S7）</h3>
       <ul>
-      <li><b>觸發</b>：a = 搜尋名單沒有符合條件的求職者；b = 名單有資料，但本頁履歷全被「未讀」隱藏（含最末頁整頁皆已讀）。</li>
-      <li><b>按鈕</b>：a 有「重新設定條件」Primary（2.1c 相似履歷搜尋不顯示）；b 沒有任何按鈕，不設獨立「下一頁」。</li>
-      <li><b>5 分頁套件</b>：a 不顯示；b 照常顯示，翻頁靠它。</li>
-      <li><b>3.1a</b>：b 仍顯示。</li>
-      <li><b>4 求職者卡片</b>：兩者皆不顯示。</li>
-      <li>版面：b 比照 a（標題＋敘述置中）。</li></ul></div>
+      <li><b>觸發</b>：a = 2 區篩選／搜尋條件／職缺配對條件後沒有符合結果；b = 2.2 選「未讀」，當前分頁全被隱藏，但名單還有其他分頁（含最末頁整頁皆已讀）。</li>
+      <li><b>按鈕</b>：a 有「重新設定條件」Primary（2.1c 相似履歷搜尋不顯示）；b 沒有任何按鈕。</li>
+      <li><b>3 區</b>：a 的 2 區到標題距離 160、不顯示 3.1／3.2／3.3~3.7（真實畫面如此）；b 仍顯示 3.1a。</li>
+      <li><b>5 分頁套件</b>：a 不顯示；b 照常顯示，翻頁靠分頁套件，不另設按鈕。</li>
+      <li><b>4 求職者卡片</b>：兩者皆不顯示。</li></ul></div>
 
     <div class="note"><h3><span class="tagno">3.2</span>全選</h3>
-      只全選當前分頁的履歷。S3 的全選與單筆都已勾。</div>
+      勾選後全選此分頁下方所有履歷（不跨頁）。往上滑出畫面後切換成 1.3 浮動導覽列。S3 的全選與單筆都已勾。</div>
 
     <div class="note"><h3><span class="tagno">3.3~3.7</span>多筆操作</h3>
-      發信通知／加入追蹤／列印／下載／轉寄。<ul>
-      <li>初始 disabled（灰字）；勾選任一筆後 enabled（藍色連結）。</li>
-      <li>廠商 <code>showfield&amp;33554432</code> 或帳號權限 <code>51</code> 沒有時，整列隱藏。</li>
-      <li>編號一律 3.3~3.7，文件已移除 3.8。</li></ul></div>
+      發信通知／追蹤／列印／下載／轉寄（真實畫面文字為「追蹤」，文件標題寫「3.4 加入追蹤」）。<ul>
+      <li>初始 disabled（灰字）；勾選任一筆履歷後 enabled（藍色連結，圖為灰階）。</li>
+      <li>沒有廠商 <code>showfield 33554432</code> 或帳號權限 <code>51</code> 時，隱藏整列操作項目。</li>
+      <li>編號 3.3~3.7，文件已移除 3.8。</li></ul></div>
+
+    <div class="note"><h3><span class="tagno">5</span>分頁套件</h3>
+      含頁碼、「到 __ 頁」、「下一頁」按鈕（最末頁隱藏）、每頁筆數選單（預設 10 筆，與 topbar 的全站設定同步）。S5 的 M = 10 即整頁 10 筆全隱藏。</div>
 
     <div class="note q"><h3>⚠ 文件待確認（圖上未自行決定）</h3>
       <ul>
-      <li><b>每頁筆數、5 分頁套件規格</b>：圖中 M = 20、共 6 頁僅為示意。</li>
       <li><b>空畫面 b 時 3.2 與 3.3~3.7 是否顯示</b>：文件只說 3.1a 仍顯示。S5 以虛線框標出。</li>
-      <li><b>最末頁整頁皆已讀</b>：敘述「請點擊下一頁繼續查看」但已無下一頁，文案是否沿用？</li>
+      <li><b>空畫面 b 的垂直間距</b>（3.1a→標題、標題→5 分頁）與 b 敘述句末是否加「。」：a 有 160／365 的定義，b 沒有。</li>
+      <li><b>最末頁整頁皆已讀</b>：敘述寫「請點擊下一頁繼續查看」，但最末頁 5 的「下一頁」按鈕隱藏，文案是否沿用？</li>
+      <li><b>b 的「不設獨立下一頁按鈕」</b>是指空畫面內不放按鈕、5 內建的「下一頁」照常，還是連 5 的「下一頁」也不顯示？S5 先依前者畫。</li>
+      <li><b>3.1a 的字重與「查看＞」樣式</b>（Figma 稿未見）。</li>
       <li><b>選「未讀」以外的 tag</b>（已讀／追蹤中…）3.1 是否有對應變化？文件只寫未讀。</li>
       <li><b>「查看＞」還原後</b>停在第幾頁？其他篩選條件是否保留？</li>
       <li><b>換頁時</b>勾選狀態與全選是否保留？</li>
-      <li><b>權限隱藏</b>：「廠商 showfield 或帳號權限沒有」是任一缺少即隱藏，還是兩者皆缺才隱藏？是整列一起隱藏還是逐項？</li>
-      <li><b>空畫面 a</b>的 3.1 顯示什麼（「共 0 筆」？）：S7 只畫列表區，未決定。</li></ul></div>
+      <li><b>權限隱藏</b>：「沒有代碼時」是任一缺少即隱藏，還是兩者皆缺才隱藏？</li></ul></div>
   </aside>
 </div>
 
 <script>
   var TAGS = ['不拘','未讀','已讀','追蹤中','有備註','已通知'];
-  var OPS = [['3.3','發信通知'],['3.4','加入追蹤'],['3.5','列印'],['3.6','下載'],['3.7','轉寄']];
+  var OPS = ['發信通知','追蹤','列印','下載','轉寄'];
 
   function bd(txt, style){ return '<b class="bd" style="'+style+'">'+txt+'</b>'; }
-  function chips(sel, badge){
-    var c = TAGS.map(function(t,i){ return '<span class="chip'+(i===sel?' on':'')+'">'+(i===sel?'●':'○')+' '+t+'</span>'; }).join('');
-    return '<div class="r22 rel">'+bd('2.2','top:-14px;left:-18px')+'<span class="lbl">履歷狀態</span>'+c+'</div>';
+
+  function panel(sel){
+    var chips = TAGS.map(function(t,i){
+      return '<span class="chip'+(i===sel?' on':'')+'">'+(i===sel?'<i class="ck">✓</i>':'')+t+'</span>';
+    }).join('');
+    return '<div class="panel rel"><div class="pimg"></div><div class="cover22">'+chips+'</div>'
+      + bd('2.2','left:116px;top:116px')+'</div>';
   }
+
   function toolbar(o){
-    var sum = o.sum==='31a'
-      ? '<span class="sum rel">'+bd('3.1a','top:-20px;left:-6px')+'共 '+o.N+' 筆履歷，已排除 '+o.M+' 筆已讀　<u class="lnk">查看＞</u></span>'
-      : '<span class="sum rel">'+bd('3.1','top:-20px;left:-6px')+'共 '+o.N+' 筆履歷</span>';
+    var left = o.sum==='31a'
+      ? '<span class="rel">'+bd('3.1a','left:-2px;top:-14px')+'<span class="s31">共 '+o.N+' 筆履歷，已排除 '+o.M+' 筆已讀</span><span class="lnk">查看＞</span></span>'
+      : '<span class="rel">'+bd('3.1','left:-2px;top:-14px')+'<span class="s31">共 '+o.N+' 筆履歷</span></span>';
     var unk = o.unknown ? ' unk' : '';
-    var t32 = '<span class="t32 rel'+unk+'">'+bd('3.2','top:-24px;left:-6px')+'<span style="font-size:26px;line-height:1">'+(o.checked?'☑':'☐')+'</span>全選</span>';
-    var ops = '<span class="ops rel'+unk+'">'+bd('3.3~3.7','top:-24px;left:-6px')+OPS.map(function(p){
-      return '<span class="op '+(o.en?'en':'dis')+'">'+p[1]+'</span>'; }).join('')+'</span>';
+    var t32 = '<span class="t32 rel'+unk+'">'+bd('3.2','left:-6px;top:-24px')+'<i class="cbx'+(o.checked?' on':'')+'"></i>全選</span>';
+    var ops = '<span class="ops rel'+unk+'">'+bd('3.3~3.7','left:-6px;top:-24px')
+      + OPS.map(function(t){ return '<span class="op '+(o.en?'en':'dis')+'">'+t+'</span>'; }).join('')+'</span>';
     var note = o.unknown ? '<span class="unk-lbl">[ 待確認：是否顯示 ]</span>' : '';
     var guide = o.guide ? '<div class="guide" data-guide="1"><span>▲ S1 時 3.2 在這裡</span></div>' : '';
-    return '<div class="tb rel">'+guide+sum+t32+ops+note+'</div>';
+    return '<div class="tb rel">'+guide+left+t32+ops+note+'</div>';
   }
+
   function cards(checked){
-    var one = '<div class="rc"><span class="cb">'+(checked?'☑':'☐')+'</span><div class="ph">X</div><div><div class="nm">[ 求職者姓名 ]<span class="mini">[ 履歷狀態 Tag ]</span></div><div class="ln">[ 學歷／最近工作經歷摘要 ]</div><div class="ln">[ 期望職務／地區／薪資 ]</div></div></div>';
-    return '<div class="list rel">'+bd('4','top:-8px;left:-18px')+one+one+one+'<div class="more">⋮　[ 其餘本頁履歷卡片 ]</div></div>';
+    var box = checked ? '<i class="cbx on"></i>' : '';
+    return '<div class="card full rel">'+bd('4','left:8px;top:-10px')+box+'</div>'
+         + '<div class="card peek rel">'+box+'</div>';
   }
-  function empty(kind){
+
+  function empty(kind, top){
     var a = kind==='a';
-    return '<div class="empty rel">'+bd(a?'空畫面 a':'空畫面 b','top:-14px;left:-18px')
-      +'<div class="ph sm">X</div>'
-      +'<div class="et">'+(a?'沒有找到履歷':'本頁履歷皆已讀')+'</div>'
-      +'<div class="ed">'+(a?'您設定的條件下，尚無符合條件的求職者':'請點擊下一頁繼續查看')+'</div>'
-      +(a?'<div class="pri">重新設定條件</div>':'<div class="nobtn">（此處沒有任何按鈕）</div>')
-      +'</div>';
+    return '<div class="empty rel" style="margin-top:'+top+'px">'+bd(a?'空畫面 a':'空畫面 b','left:50%;top:-30px;transform:translateX(-50%)')
+      + '<div class="et">'+(a?'沒有找到履歷':'本頁履歷皆已讀')+'</div>'
+      + '<div class="ed">'+(a?'您設定的條件下，尚無符合條件的求職者。':'請點擊下一頁繼續查看')+'</div>'
+      + (a?'<div class="pbtn">重新設定條件</div>':'<div class="nobtn">（此處沒有任何按鈕）</div>')
+      + '</div>';
   }
-  function pager(cur){
-    return '<div class="pager rel">'+bd('5','top:-16px;left:calc(50% - 150px)')
-      +'<span class="pg">‹</span>'
-      +[1,2,3,4,5,6].map(function(n){ return '<span class="pg'+(n===cur?' on':'')+'">'+n+'</span>'; }).join('')
-      +'<span class="pg">›</span></div>';
+
+  function pager(cur, opts){
+    opts = opts || {};
+    var nums = [1,2,3,4,5].map(function(n){ return '<span class="pg'+(n===cur?' on':'')+'">'+n+'</span>'; }).join('');
+    return '<div class="pager rel'+(opts.narrow?' narrow':'')+'">'+bd('5','left:'+(opts.narrow?'0':'calc(50% - 200px)')+';top:0px')
+      + '<div class="pgrow"><span class="pg arrow">‹</span>'+nums+'<span class="pg">…</span><span class="pg">12</span><span class="pg arrow">›</span><span class="pgto">到</span><span class="pgin"></span>頁</div>'
+      + '<div class="nextbtn">下一頁</div><div class="pgsel"><span>每頁10筆</span><span>⌄</span></div></div>';
   }
 
   var FRAMES = [
     { id:'s1', title:'S1 預設', sub:'tag＝不拘；「共 120 筆履歷」；全選未勾；3.3~3.7 disabled',
-      html: function(){ return chips(0)+toolbar({sum:'31',N:120,checked:false,en:false})+cards(false)+pager(1); } },
+      html: function(){ return panel(0)+toolbar({sum:'31',N:120,checked:false,en:false})+cards(false)+pager(1); } },
     { id:'s2', title:'S2 選「未讀」', sub:'3.1a 取代 3.1；3.2 與操作項右移；操作項 disabled',
-      html: function(){ return chips(1)+toolbar({sum:'31a',N:120,M:8,checked:false,en:false,guide:true})+cards(false)+pager(1); } },
+      html: function(){ return panel(1)+toolbar({sum:'31a',N:120,M:8,checked:false,en:false,guide:true})+cards(false)+pager(1); } },
     { id:'s3', title:'S3 S2＋勾選履歷', sub:'全選／單筆已勾；3.3~3.7 enabled',
-      html: function(){ return chips(1)+toolbar({sum:'31a',N:120,M:8,checked:true,en:true})+cards(true)+pager(1); } },
+      html: function(){ return panel(1)+toolbar({sum:'31a',N:120,M:8,checked:true,en:true})+cards(true)+pager(1); } },
     { id:'s4', title:'S4 選「未讀」且已排除 0 筆', sub:'「已排除 0 筆已讀」照常顯示；版面同 S2',
-      html: function(){ return chips(1)+toolbar({sum:'31a',N:120,M:0,checked:false,en:false})+cards(false)+pager(1); } },
-    { id:'s5', title:'S5 空畫面 b', sub:'3.1a 顯示；列表區置中標題＋敘述、沒有按鈕；5 分頁套件照常顯示；不顯示 4',
-      html: function(){ return chips(1)+toolbar({sum:'31a',N:120,M:20,checked:false,en:false,unknown:true})+empty('b')+pager(3); } },
+      html: function(){ return panel(1)+toolbar({sum:'31a',N:120,M:0,checked:false,en:false})+cards(false)+pager(1); } },
+    { id:'s5', title:'S5 空畫面 b', sub:'3.1a 顯示；置中標題＋敘述、沒有按鈕；5 分頁套件照常顯示；不顯示 4',
+      html: function(){ return panel(1)+toolbar({sum:'31a',N:120,M:10,checked:false,en:false,unknown:true})+empty('b',110)+'<div style="height:96px"></div>'+pager(3); } },
     { id:'s6', title:'S6 點「查看＞」後', sub:'tag 跳回「不拘」；3.1a 還原成 3.1（版面同 S1）',
       html: function(){
-        var before = '<div class="before rel">'+bd('點擊前（S2）','top:-14px;left:-18px')
-          +'<span class="tagrow">履歷狀態　<span class="chip">○ 不拘</span><span class="chip on">● 未讀</span><span>○ 已讀 ○ 追蹤中 ○ 有備註 ○ 已通知</span></span>'
-          +'<span>共 120 筆履歷，已排除 8 筆已讀　<u><b>查看＞</b></u></span></div>';
-        var flow = '<div class="flow"><span class="arrow">↓</span>點「查看＞」：2.2 回到「不拘」；3.1a 還原成 3.1</div>';
-        return before+flow+chips(0)+toolbar({sum:'31',N:120,checked:false,en:false})+cards(false)+pager(1);
+        var before = '<div class="before rel">'+bd('點擊前（S2）','left:-6px;top:-12px')
+          +'<span>履歷狀態</span><span class="chip">不拘</span><span class="chip on"><i class="ck">✓</i>未讀</span><span style="color:#999">已讀　追蹤中　有備註　已通知</span>'
+          +'<span style="margin-left:auto;color:#000;font-weight:700">共 120 筆履歷，已排除 8 筆已讀 <span style="color:#1283B5;font-weight:400;margin-left:8px">查看＞</span></span></div>';
+        var flow = '<div class="flow"><span style="font-size:28px;line-height:1">↓</span>點「查看＞」：2.2 回到「不拘」；3.1a 還原成 3.1</div>';
+        return '<div style="height:8px"></div>'+before+flow+'<div style="height:6px"></div>'+panel(0)+toolbar({sum:'31',N:120,checked:false,en:false})+cards(false)+pager(1);
       } },
-    { id:'s7', title:'S7 空畫面 a vs b 對照', sub:'只畫列表區；2.2 不含；差異見下表與側欄',
+    { id:'s7', title:'S7 空畫面 a vs b 對照', sub:'只畫列表區；2 區與 2.2 不含；差異見下表與側欄',
       html: function(){
-        var bbar = '<div class="tb rel" style="padding-top:0">'+'<span class="sum rel">'+bd('3.1a','top:-20px;left:-6px')+'共 120 筆履歷，已排除 20 筆已讀　<u class="lnk">查看＞</u></span></div>';
-        return '<div class="cmp"><div><div class="cmp-h">空畫面 a：沒有搜尋結果</div>'+empty('a')+'<div class="none">[ 不顯示 4 求職者卡片 ]　[ 不顯示 5 分頁套件 ]</div></div>'
-          +'<div><div class="cmp-h">空畫面 b：本頁履歷皆已讀</div>'+bbar+empty('b')+pager(3)+'<div class="none">[ 不顯示 4 求職者卡片 ]</div></div></div>'
+        var bbar = '<div class="tb rel" style="margin:0 0 0">'+'<span class="rel">'+bd('3.1a','left:-2px;top:-14px')+'<span class="s31">共 120 筆履歷，已排除 10 筆已讀</span><span class="lnk">查看＞</span></span></div>';
+        return '<div class="cmp">'
+          +'<div class="col"><div class="cmp-h">空畫面 a：沒有搜尋結果</div>'+empty('a',40)+'<div style="height:30px"></div></div>'
+          +'<div class="col"><div class="cmp-h">空畫面 b：本頁履歷皆已讀</div>'+bbar+empty('b',40)+'<div style="height:34px"></div>'+pager(3,{narrow:true})+'</div></div>'
           +'<table class="diff"><tr><th></th><th>空畫面 a</th><th>空畫面 b</th></tr>'
-          +'<tr><td><b>觸發條件</b></td><td>搜尋名單沒有符合條件的求職者</td><td>名單有資料，但本頁履歷全被「未讀」隱藏（含最末頁整頁皆已讀）</td></tr>'
-          +'<tr><td><b>按鈕</b></td><td>「重新設定條件」Primary（2.1c 相似履歷搜尋不顯示）</td><td>沒有任何按鈕，不設獨立「下一頁」</td></tr>'
+          +'<tr><td><b>觸發條件</b></td><td>2 區篩選／搜尋條件／職缺配對條件後沒有符合結果</td><td>2.2 選「未讀」，當前分頁全被隱藏，但名單還有其他分頁（含最末頁整頁皆已讀）</td></tr>'
+          +'<tr><td><b>按鈕</b></td><td>「重新設定條件」Primary（2.1c 相似履歷搜尋不顯示）</td><td>沒有任何按鈕</td></tr>'
+          +'<tr><td><b>3 區（3.1／3.1a）</b></td><td>不顯示；2 區到標題距離 160</td><td>3.1a 仍顯示</td></tr>'
           +'<tr><td><b>5 分頁套件</b></td><td>不顯示</td><td>照常顯示，翻頁靠它</td></tr>'
-          +'<tr><td><b>3.1a</b></td><td>[ 文件待確認 ]</td><td>仍顯示</td></tr>'
           +'<tr><td><b>4 求職者卡片</b></td><td>不顯示</td><td>不顯示</td></tr></table>';
       } }
   ];
@@ -232,19 +268,19 @@
     var off = ref.getBoundingClientRect().left - refTb.getBoundingClientRect().left;
     document.querySelectorAll('[data-guide]').forEach(function(g){ g.style.left = off+'px'; });
   }
+  function setH(){
+    var c = document.querySelector('.frame.cur .stage');
+    if(c) document.documentElement.setAttribute('data-h', Math.ceil(c.getBoundingClientRect().height));
+  }
   placeGuides(); window.addEventListener('resize', placeGuides);
   if(document.fonts && document.fonts.ready){ document.fonts.ready.then(function(){ placeGuides(); setH(); }); }
 
-  // single-state capture mode: index.html#s3
+  // 單一狀態截圖模式：index.html#s3
   var h = location.hash.replace('#','');
   if(h){
     document.body.classList.add('single');
     var el = document.getElementById(h);
     if(el){ el.classList.add('cur'); placeGuides(); setH(); }
-  }
-  function setH(){
-    var c = document.querySelector('.frame.cur .stage');
-    if(c) document.documentElement.setAttribute('data-h', Math.ceil(c.getBoundingClientRect().height));
   }
 </script>
 </body>
