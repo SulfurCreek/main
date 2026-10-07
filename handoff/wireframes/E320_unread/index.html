@@ -197,13 +197,11 @@
         {a:'sum', side:'below', dx:120, dy:30, w:290, t:'這一頁沒有已讀時，照樣顯示「已排除 0 筆已讀」，「查看＞」一樣可以點。版面與「選未讀」的情境相同。'}
       ] },
     { id:'allread', title:'選「未讀」，這一頁全部都是已讀（後面還有其他頁）',
-      html: function(){ return panel(1)+toolbar({read:true,N:120,M:10,hl:['unk']})+empty('b',40)+'<div style="height:24px"></div>'+pager(3)+'<div style="height:130px"></div>'; },
+      html: function(){ return panel(1)+toolbar({read:true,N:120,M:10,hl:['ops']})+empty('b',40)+'<div style="height:24px"></div>'+pager(3)+'<div style="height:90px"></div>'; },
       notes: [
-        {a:'ops', side:'right', dx:24, dy:-6, w:270, q:1, t:'這個情境下，全選與多筆操作要不要顯示？文件只說多筆修改照常顯示。'},
+        {a:'ops', side:'right', dx:24, dy:-6, w:270, t:'全選與多筆操作持續顯示（沒有已讀的履歷時也一樣）。'},
         {a:'empty-b', side:'right', dx:0, dy:40, w:280, t:'這一頁 10 筆全是已讀，全部被隱藏，改顯示這段文字。<b>空畫面裡不放任何按鈕</b>，翻頁用下方照常顯示的分頁。'},
-        {a:'empty-b', side:'left', dx:-60, dy:-10, w:250, q:1, t:'文字上下的間距文件沒有定義，圖中是估值。'},
-        {a:'next', side:'below', dx:140, dy:6, w:300, t:'分頁的「下一頁」按鈕照常保留，直到最後一頁才不顯示。'},
-        {a:'next', side:'below', dx:-330, dy:6, w:300, q:1, t:'最後一頁也整頁已讀時，「下一頁」按鈕會隱藏，「請點擊下一頁繼續查看」這句還沿用嗎？'}
+        {a:'next', side:'below', dx:-20, dy:6, w:300, t:'分頁的「下一頁」按鈕照常保留；翻到最後一頁時沒有下一頁按鈕。'},
       ] },
     { id:'reset', title:'點「查看＞」，回到全部履歷',
       html: function(){
@@ -215,7 +213,7 @@
       },
       notes: [
         {a:'tag', side:'right', dx:430, dy:-40, w:270, t:'點「查看＞」＝取消「未讀」：履歷狀態回到「不拘」，多筆修改回到「共 120 筆履歷」，已讀履歷重新出現。'},
-        {a:'sum', side:'below', dx:120, dy:30, w:290, q:1, t:'還原後停在第幾頁？其他篩選條件要不要保留？'}
+        {a:'sum', side:'below', dx:120, dy:30, w:290, t:'還原後，其他篩選條件保留，頁數停留在原頁。'}
       ] },
     { id:'compare', title:'兩種空畫面的差別',
       html: function(){
