@@ -9,6 +9,11 @@
 | Build output directory | `wireframe-site` |
 | Root directory | （留空） |
 
+## 若用 Cloudflare Workers（不是 Pages）部署
+
+網址是 `*.workers.dev` 就是 Workers。repo 根目錄的 `wrangler.jsonc` 已設定 `assets.directory = ./wireframe-site`，名稱 `spec-site-hosting`。
+在 Workers 專案 Settings → Builds 連結此 repo、分支 `main`，Deploy command 用預設的 `npx wrangler deploy`，Build command 留空。
+
 ## 規則
 
 - 一個線框圖一個子資料夾：`wireframe-site/<slug>/index.html`，資源用相對路徑放同資料夾。
