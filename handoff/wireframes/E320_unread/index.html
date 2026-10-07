@@ -111,6 +111,22 @@
   .sticky .qh { display:block; color:#b45309; font-size:12.5px; margin-bottom:2px; }
   .sticky ul { margin:2px 0 0 16px; padding:0; list-style:disc; }
   .bl { position:absolute; left:-2px; top:-12px; background:#000; color:#fff; font-size:12.5px; font-weight:700; padding:0 8px; border-radius:9999px; }
+  /* ---------- 重複履歷標籤 ---------- */
+  .tg { display:inline-flex; align-items:center; height:28px; padding:0 10px; background:#E9E9E9; border-radius:3px; font-size:14px; color:#444; white-space:nowrap; position:relative; }
+  .tg.new { background:#d8d8d8; color:#111; cursor:pointer; font-weight:500; }
+  .tg.star i { font-style:normal; color:#777; font-size:13px; letter-spacing:1px; }
+  .tip { position:absolute; left:0; top:calc(100% + 6px); background:#222; color:#fff; font-size:12px; padding:4px 9px; border-radius:3px; white-space:nowrap; z-index:5; font-weight:400; cursor:default; }
+  .lcard { display:flex; gap:24px; margin:0 6px; padding:24px; background:#fff; border-radius:8px; min-height:230px; }
+  .ph { width:110px; height:140px; flex:none; background:#e5e7eb; border:2px solid #000; display:flex; align-items:center; justify-content:center; color:#6b7280; font-weight:700; font-size:24px; }
+  .lbody { flex:1; }
+  .trow { display:flex; flex-wrap:wrap; gap:8px; align-items:center; }
+  .phtxt { margin-top:22px; font-size:16px; color:#666; }
+  .card.dup { height:232px; margin-top:9px; border-bottom:1px solid #d4d4d4; }
+  .card.dup .no { position:absolute; left:24px; top:60px; width:36px; height:20px; background:#fff; font-size:14px; color:#555; text-align:center; line-height:20px; }
+  .card.dup .nm { position:absolute; left:68px; top:174px; width:104px; height:24px; background:#fff; font-size:17px; color:#444; text-align:center; line-height:24px; }
+  .card.dup .tg { position:absolute; left:592px; top:22px; }
+  .card.dup .trspan { position:absolute; left:192px; top:22px; width:392px; height:28px; }
+  .sticky.arrow::before { content:'◀'; position:absolute; left:-14px; top:9px; color:#444; font-size:12px; }
   .tagno { display:inline-block; background:#000; color:#fff; border-radius:9999px; padding:0 8px; margin-right:4px; font-size:12.5px; }
 
   /* ---------- 單一狀態截圖模式（index.html#s3） ---------- */
@@ -230,6 +246,49 @@
       } }
   ];
 
+  // ===== 重複履歷標籤（交接追加 v2）=====
+  var HOVER = '求職者同時開啟多份履歷，點擊查看前一份履歷資料';
+  function dupCard(no, name, chip, key){
+    return '<div class="card dup rel"><i class="cbx on"></i><span class="no">'+no+'</span><span class="nm">'+name+'</span>'
+      + '<span class="trspan" data-a="tr'+key+'"></span>'
+      + (chip?'<span class="tg new" data-a="dupchip" title="'+HOVER+'">多份履歷</span>':'')+'</div>';
+  }
+  function labelRow(){
+    return '<div class="trow rel" data-a="trow">'
+      + '<span class="tg">未讀</span><span class="tg">守約</span><span class="tg">語言能力</span><span class="tg">外國籍人才</span>'
+      + '<span class="tg">巨匠教育</span><span class="tg">資展 iSpan</span>'
+      + '<span class="tg star" title="9 大職能星"><i>★★★</i></span>'
+      + '<span class="tg new hl" data-a="dupchip2" title="'+HOVER+'">多份履歷<span class="tip">'+HOVER+'</span></span></div>';
+  }
+  FRAMES.push(
+    { id:'duplabel', shot:'E320_dup_resume_s8', title:'卡片標籤列：同一分頁有重複履歷時，最後多一個「多份履歷」',
+      html: function(){
+        return '<div style="height:150px"></div><div class="lcard"><div class="ph">X</div><div class="lbody">'+labelRow()
+          +'<div class="phtxt">[ 基本資料／學經歷放這裡 ]</div></div></div><div style="height:130px"></div>';
+      },
+      notes: [
+        {a:'trow', side:'above', dx:0, dy:0, w:560, t:'標籤順序（前→後）：已讀／未讀（二選一）→ 守約 → 語言能力 → 外國籍人才 → 特定標籤（巨匠／資展 iSpan／聯成人才／赫綵設計人才／天地人AI人才）→ 9 大職能星 icon → <b>多份履歷</b>。「多份履歷」永遠排在最後。'},
+        {a:'dupchip2', side:'below', dx:-330, dy:44, w:330, t:'滑鼠移上去顯示提示文字（圖中黑色框），游標變成手指。<br>點擊後另開新分頁，查看這位求職者的<b>前一份</b>履歷；超過 2 份也只開前一份。'},
+        {a:'dupchip2', side:'below', dx:20, dy:44, w:330, t:'只有「同一分頁」內有重複才出現；不同分頁的重複不顯示。卡片與資料只顯示修改日期最新的那份。'}
+      ] },
+    { id:'duplist', shot:'E320_dup_resume_s9', title:'同一分頁有一位求職者有 2 份履歷：只顯示最新那份',
+      html: function(){
+        return '<div style="height:130px"></div>'
+          + toolbar({N:4,checked:true,en:true,hl:['sum','ops']})
+          + dupCard('001','江承翰',true,'A') + dupCard('002','王小明',false,'B') + dupCard('003','林雅婷',false,'C')
+          + '<div style="height:60px"></div>';
+      },
+      notes: [
+        {a:'sum', side:'above', dx:0, dy:0, w:280, t:'共 4 筆：畫面上 3 張卡片，其中 1 位有 2 份履歷。<b>被隱藏的重複履歷仍計入總數</b>。'},
+        {a:'ops', side:'above', dx:190, dy:0, w:380, t:'全選勾選後，<b>只勾選畫面上的 3 張，不含被隱藏的那份</b>；多筆操作也只作用在這 3 張（多筆操作為可點狀態）。'},
+        {a:'dupchip', side:'right', dx:6, dy:-6, w:330, arrow:1, t:'點擊 → 另開新分頁，查看這位求職者的前一份履歷。'},
+        {a:'dupchip', side:'below', dx:-70, dy:70, w:330, t:'只顯示修改日期最新的那份。被隱藏的那份，已讀／未讀一律視為已讀，與履歷狀態篩選「未讀」的先後無關。'},
+        {a:'trB', side:'right', dx:130, dy:-2, w:290, t:'這位只有 1 份履歷，標籤列沒有「多份履歷」。對照用。'},
+        {a:'trC', side:'right', dx:130, dy:-2, w:290, q:1, t:'卡片左側的序號被隱藏一份後要不要連號？圖中先畫成連號 001、002、003。'},
+        {a:'trC', side:'right', dx:130, dy:100, w:290, q:1, t:'每頁筆數（10 筆）算的是卡片張數還是履歷份數？被隱藏的那份會不會讓這一頁少於 10 張？'}
+      ] }
+  );
+
   var host = document.getElementById('frames');
   host.innerHTML = FRAMES.map(function(f){
     return '<section class="frame" id="'+f.id+'"><div class="frame-title">'+f.title+'</div>'
@@ -244,7 +303,7 @@
         var anchors = st.querySelectorAll('.screen [data-a="'+n.a+'"]');
         var el = anchors[anchors.length-1]; if(!el) return;
         var d = document.createElement('div'), dx = n.dx||0, dy = n.dy||0, g = 14;
-        d.className = 'sticky'+(n.q?' q':''); d.style.width = n.w+'px';
+        d.className = 'sticky'+(n.q?' q':'')+(n.arrow?' arrow':''); d.style.width = n.w+'px';
         d.innerHTML = (n.q?'<b class="qh">待確認</b>':'')+n.t;
         if(n.side==='right'){ d.style.left='calc(100% + '+(g+dx)+'px)'; d.style.top=dy+'px'; }
         else if(n.side==='left'){ d.style.right='calc(100% + '+(g-dx)+'px)'; d.style.top=dy+'px'; }
