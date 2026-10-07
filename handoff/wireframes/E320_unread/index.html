@@ -126,6 +126,7 @@
   .card.dup .nm { position:absolute; left:68px; top:174px; width:104px; height:24px; background:#fff; font-size:17px; color:#444; text-align:center; line-height:24px; }
   .card.dup .tg { position:absolute; left:592px; top:22px; }
   .card.dup .trspan { position:absolute; left:192px; top:22px; width:392px; height:28px; }
+  .hand { position:absolute; left:calc(100% - 9px); top:46%; z-index:6; pointer-events:none; }
   .sticky.arrow::before { content:'◀'; position:absolute; left:-14px; top:9px; color:#444; font-size:12px; }
   .tagno { display:inline-block; background:#000; color:#fff; border-radius:9999px; padding:0 8px; margin-right:4px; font-size:12.5px; }
 
@@ -258,7 +259,7 @@
       + '<span class="tg">未讀</span><span class="tg">守約</span><span class="tg">語言能力</span><span class="tg">外國籍人才</span>'
       + '<span class="tg">巨匠教育</span><span class="tg">資展 iSpan</span>'
       + '<span class="tg star" title="9 大職能星"><i>★★★</i></span>'
-      + '<span class="tg new hl" data-a="dupchip2" title="'+HOVER+'">多份履歷<span class="tip">'+HOVER+'</span></span></div>';
+      + '<span class="tg new hl" data-a="dupchip2" title="'+HOVER+'">多份履歷'+'<svg class="hand" width="22" height="26" viewBox="0 0 22 26"><path d="M8 2.5a1.8 1.8 0 0 1 3.6 0V11h.9V9.2a1.7 1.7 0 0 1 3.4 0V11h.8v-.9a1.6 1.6 0 0 1 3.2 0V17c0 4-2.4 7-6.2 7h-1.6c-2.4 0-4-1.1-5.2-2.9L2.4 16.5c-.7-1.1.9-2.4 2-1.5L8 17.5z" fill="#fff" stroke="#000" stroke-width="1.4" stroke-linejoin="round"/></svg>'+'<span class="tip">'+HOVER+'</span></span></div>';
   }
   FRAMES.push(
     { id:'duplabel', shot:'E320_dup_resume_s8', title:'卡片標籤列：同一分頁有重複履歷時，最後多一個「多份履歷」',
@@ -270,22 +271,6 @@
         {a:'trow', side:'above', dx:0, dy:0, w:560, t:'標籤順序（前→後）：已讀／未讀（二選一）→ 守約 → 語言能力 → 外國籍人才 → 特定標籤（巨匠／資展 iSpan／聯成人才／赫綵設計人才／天地人AI人才）→ 9 大職能星 icon → <b>多份履歷</b>。「多份履歷」永遠排在最後。'},
         {a:'dupchip2', side:'below', dx:-330, dy:44, w:330, t:'滑鼠移上去顯示提示文字（圖中黑色框），游標變成手指。<br>點擊後另開新分頁，查看這位求職者的<b>前一份</b>履歷；超過 2 份也只開前一份。'},
         {a:'dupchip2', side:'below', dx:20, dy:44, w:330, t:'只有「同一分頁」內有重複才出現；不同分頁的重複不顯示。卡片與資料只顯示修改日期最新的那份。'}
-      ] },
-    { id:'duplist', shot:'E320_dup_resume_s9', title:'同一分頁有一位求職者有 2 份履歷：只顯示最新那份',
-      html: function(){
-        return '<div style="height:130px"></div>'
-          + toolbar({N:4,checked:true,en:true,hl:['sum','ops']})
-          + dupCard('001','江承翰',true,'A') + dupCard('002','王小明',false,'B') + dupCard('003','林雅婷',false,'C')
-          + '<div style="height:60px"></div>';
-      },
-      notes: [
-        {a:'sum', side:'above', dx:0, dy:0, w:280, t:'共 4 筆：畫面上 3 張卡片，其中 1 位有 2 份履歷。<b>被隱藏的重複履歷仍計入總數</b>。'},
-        {a:'ops', side:'above', dx:190, dy:0, w:380, t:'全選勾選後，<b>只勾選畫面上的 3 張，不含被隱藏的那份</b>；多筆操作也只作用在這 3 張（多筆操作為可點狀態）。'},
-        {a:'dupchip', side:'right', dx:6, dy:-6, w:330, arrow:1, t:'點擊 → 另開新分頁，查看這位求職者的前一份履歷。'},
-        {a:'dupchip', side:'below', dx:-70, dy:70, w:330, t:'只顯示修改日期最新的那份。被隱藏的那份，已讀／未讀一律視為已讀，與履歷狀態篩選「未讀」的先後無關。'},
-        {a:'trB', side:'right', dx:130, dy:-2, w:290, t:'這位只有 1 份履歷，標籤列沒有「多份履歷」。對照用。'},
-        {a:'trC', side:'right', dx:130, dy:-2, w:290, q:1, t:'卡片左側的序號被隱藏一份後要不要連號？圖中先畫成連號 001、002、003。'},
-        {a:'trC', side:'right', dx:130, dy:100, w:290, q:1, t:'每頁筆數（10 筆）算的是卡片張數還是履歷份數？被隱藏的那份會不會讓這一頁少於 10 張？'}
       ] }
   );
 
