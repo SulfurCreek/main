@@ -25,8 +25,8 @@
 
   /* ---------- 2 篩選條件區（真實截圖，灰階） ---------- */
   .panel { width:1182px; height:310px; }
-  .pimg { position:absolute; inset:0; background:url(assets/panel_search.png) 0 0 / 1182px 310px no-repeat; }
-  .cover22 { position:absolute; left:118px; top:131px; width:640px; height:44px; background:#fff; display:flex; align-items:center; gap:12.5px; padding-left:4px; }
+  .pimg { position:absolute; inset:0; background:url(assets/panel_match.png) 0 0 / 1182px 310px no-repeat; }
+  .cover22 { position:absolute; left:118px; top:128px; width:640px; height:44px; background:#fff; display:flex; align-items:center; gap:12.5px; padding-left:4px; }
   .chip { height:36px; padding:0 14px; border:1px solid #8F8F8F; border-radius:4px; background:#fff; color:#444; font-size:16px; display:inline-flex; align-items:center; gap:4px; white-space:nowrap; }
   .chip.on { background:#E6EEF6; border-color:#4F6B90; color:#4F6B90; }
   .ck { font-style:normal; font-size:14px; }
@@ -75,6 +75,10 @@
   .et { font-size:24px; font-weight:700; color:#000; }
   .ed { font-size:18px; color:#444; margin-top:10px; }
   .pbtn { display:inline-flex; align-items:center; justify-content:center; margin-top:22px; height:36px; padding:0 30px; background:#1283B5; color:#fff; font-size:16px; border-radius:3px; }
+  .ghost { position:relative; margin:22px 0 0; opacity:.38; outline:2px dashed #666; outline-offset:-2px; }
+  .ghost img { display:block; width:100%; }
+  .ghost-lbl { position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); background:#fff; border:2px dashed #666; padding:4px 14px; font-size:14px; color:#222; white-space:nowrap; opacity:1; }
+  .ghostw { position:relative; }
   .nobtn { margin-top:20px; font-size:13px; color:#555; border:2px dashed #666; display:inline-block; padding:2px 12px; }
 
   /* ---------- S6 ---------- */
@@ -212,7 +216,12 @@
       + '<div class="et">'+(a?'沒有找到履歷':'本頁履歷皆已讀')+'</div>'
       + '<div class="ed">'+(a?'您設定的條件下，尚無符合條件的求職者。':'請點擊下一頁繼續查看')+'</div>'
       + (a?'<div class="pbtn">重新設定條件</div>':'<div class="nobtn">（此處沒有任何按鈕）</div>')
-      + '</div>';
+      + '</div>' + (a?'':ghost());
+  }
+
+  function ghost(){
+    return '<div class="ghostw"><div class="ghost"><img src="assets/card.png" alt="" /></div>'
+      + '<span class="ghost-lbl" style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:2">示意：本頁被隱藏的已讀履歷（實際不顯示，4 不出現）</span></div>';
   }
 
   function pager(cur, opts){
@@ -233,7 +242,7 @@
     { id:'s4', title:'S4 選「未讀」且已排除 0 筆', sub:'「已排除 0 筆已讀」照常顯示；版面同 S2',
       html: function(){ return panel(1)+toolbar({sum:'31a',N:120,M:0,checked:false,en:false})+cards(false)+pager(1); } },
     { id:'s5', title:'S5 空畫面 b', sub:'3.1a 顯示；置中標題＋敘述、沒有按鈕；5 分頁套件照常顯示；不顯示 4',
-      html: function(){ return panel(1)+toolbar({sum:'31a',N:120,M:10,checked:false,en:false,unknown:true})+empty('b',110)+'<div style="height:96px"></div>'+pager(3); } },
+      html: function(){ return panel(1)+toolbar({sum:'31a',N:120,M:10,checked:false,en:false,unknown:true})+empty('b',40)+'<div style="height:24px"></div>'+pager(3); } },
     { id:'s6', title:'S6 點「查看＞」後', sub:'tag 跳回「不拘」；3.1a 還原成 3.1（版面同 S1）',
       html: function(){
         var before = '<div class="before rel">'+bd('點擊前（S2）','left:-6px;top:-12px')
@@ -247,7 +256,7 @@
         var bbar = '<div class="tb rel" style="margin:0 0 0">'+'<span class="rel">'+bd('3.1a','left:-2px;top:-14px')+'<span class="s31">共 120 筆履歷，已排除 10 筆已讀</span><span class="lnk">查看＞</span></span></div>';
         return '<div class="cmp">'
           +'<div class="col"><div class="cmp-h">空畫面 a：沒有搜尋結果</div>'+empty('a',40)+'<div style="height:30px"></div></div>'
-          +'<div class="col"><div class="cmp-h">空畫面 b：本頁履歷皆已讀</div>'+bbar+empty('b',40)+'<div style="height:34px"></div>'+pager(3,{narrow:true})+'</div></div>'
+          +'<div class="col"><div class="cmp-h">空畫面 b：本頁履歷皆已讀</div>'+bbar+empty('b',40)+'<div style="height:24px"></div>'+pager(3,{narrow:true})+'</div></div>'
           +'<table class="diff"><tr><th></th><th>空畫面 a</th><th>空畫面 b</th></tr>'
           +'<tr><td><b>觸發條件</b></td><td>2 區篩選／搜尋條件／職缺配對條件後沒有符合結果</td><td>2.2 選「未讀」，當前分頁全被隱藏，但名單還有其他分頁（含最末頁整頁皆已讀）</td></tr>'
           +'<tr><td><b>按鈕</b></td><td>「重新設定條件」Primary（2.1c 相似履歷搜尋不顯示）</td><td>沒有任何按鈕</td></tr>'
