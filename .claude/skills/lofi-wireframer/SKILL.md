@@ -90,5 +90,12 @@ description: >
 ### 4.5 輸出 PNG 與交接
 - 單一情境截圖模式：`index.html#<情境 id>`（例 `#unread`）只顯示該 frame（`body.single`，隱藏側欄與標題），Playwright `device_scale_factor=2`，`locator('.frame.cur .stage').screenshot()`；載圖後 `wait_for_function("document.fonts.status=='loaded'")` 再等 1.5s。
 - 檔名用情境 slug（例 `E320_unread_unread.png`、`E320_unread_allread.png`），不用 s1～sN；上傳 R2 時帶 `CacheControl: no-cache`，驗證用 `curl -s -o /dev/null -w '%{http_code}'`（**不要用 `curl -sI | head -1`**：proxy 環境第一行是 `200 Connection Established`，不是真實狀態）。
-- 重新產圖後**回報實際尺寸**，與交接文件預期尺寸不同時要明講（補示意卡片會讓高度變大）。
+- 重新產圖後**回報實際尺寸**，與交接文件預期尺寸不同時要明講。
 - 交付前把 `index.html` 複製到**空資料夾**單獨渲染驗證，確認沒有外部依賴；改完 commit＋push 指定分支。
+
+## 5. 上線到網站（Cloudflare）
+
+使用者要求把線框圖上線時，讀 [`references/publish-to-site.md`](references/publish-to-site.md)：
+- 寫入範圍只限 `wireframe-site/`；推到 `main` 自動部署；網址公開。
+- 上線前使用者要明確核可；**去識別化要改到像素層**（截圖轉 base64 內嵌會把原圖帶上去，疊遮罩不算），做法與檢查清單見該檔〈去識別化實作〉。
+- 未核可的頁面放暫存目錄，不要放在 repo 裡（stop hook 會要求 commit 未追蹤檔）；推送流程與實測踩坑見該檔〈Cloudflare 推送實測備忘〉。
