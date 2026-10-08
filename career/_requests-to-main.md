@@ -8,8 +8,4 @@
 
 ---
 
-（目前沒有待處理請求。已施作：resume-craft F1–F15、作品集雙軌、求職信、`portfolio-site`、個人線協作規則、104 履歷路由與 `tw-voice.md`、`resume-review-panel`、去 AI 感＋ATS 規範（主幹 `80bf591`）。）
-
-## 2026-10-08（二）anti-ai-ats V4 防禦型規則
-- 想改什麼：`resume-craft` 的去 AI 感步驟加入 V4 規則（職稱包裝、量級錨定、產業洗白、剔除弱訊號、移除紅旗、禁條列粗體開頭、RACR）。完整內容見 `career/style/anti-ai-ats.md` §6。
-- 為什麼：使用者再次提供 V4 版 skill，`career/` 已先整合；skill 端需主幹施作。注意「與事實衝突時以事實為準」那條要一併保留。
+（目前沒有待處理請求。已施作：resume-craft F1–F15、作品集雙軌、求職信、`portfolio-site`、個人線協作規則、104 履歷路由與 `tw-voice.md`、`resume-review-panel`、去 AI 感＋ATS 規範（主幹 `80bf591`）、V4 防禦型規則（主幹 `95e4223`）。）
