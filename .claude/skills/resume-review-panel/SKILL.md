@@ -30,6 +30,10 @@ description: >
 ### 1. 事實核對（先做，避免審到假內容）
 逐條把履歷的數字與主張對回 `career/wiki/`：標出 ✅ 有證據／⚠️ 措辭超過證據／❌ 找不到證據。
 也列出 **wiki 有、履歷沒寫** 的重要事項（尤其使用者指定的代表作與軟實力）。
+另做兩項（2026-10-08 新增）：
+- **作廢說法比對**：逐條對照 `career/library/superseded.md`，命中即列為 ❌。
+- **職能覆蓋核對**：對照 `career/library/decisions.md` §7 交付鏈（定義段：Journey、User Story、Use Case、SA、流程圖／循序圖、Wireframe、UI/UX 協作、Prototype、Stakeholder 匯報、Spec；交付段：與工程追時程、QA 協作、上線計畫、完整交付）與 F01–F15，列出「履歷看得到／看不到」。交付鏈任一段完全缺席，HM-H 直接判 ❌。
+> 背景：v4～v5.2 為了分數一路精簡，把產出文件全刪了，而舊清單不會扣分（見 `career/style/postmortem-2026-10-08-deliverables.md`）。分數再高，覆蓋核對不過就不算通過。
 
 ### 2. 機械掃描
 ```bash
@@ -45,7 +49,7 @@ python3 .claude/skills/resume-review-panel/scan.py --pool career/review-panel/ca
 規則：
 - 只能根據 persona 的「先看哪裡、必要條件、紅旗」判斷，不要每位都講一樣的話。
 - 扣分點必須**引用履歷原句**；不能引用就不能扣分。
-- **v2 共通清單**：除了 persona 本身的 7 項（人資）或 6 項（主管），每位審查者另依 `career/review-panel/reviewers/*.md` 的〈共通審查清單 v2〉逐項檢查（人資 HR-A…HR-G、主管 HM-A…HM-G，含詳略校準），扣分時寫出對應編號。
+- **v2 共通清單**：除了 persona 本身的 7 項（人資）或 6 項（主管），每位審查者另依 `career/review-panel/reviewers/*.md` 的〈共通審查清單 v2〉逐項檢查（人資 HR-A…HR-H、主管 HM-A…HM-H，含詳略校準），扣分時寫出對應編號。
 - 人資與用人主管分開彙總。
 
 ### 4. 同儕比較

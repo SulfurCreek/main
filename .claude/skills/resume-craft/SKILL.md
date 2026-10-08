@@ -90,11 +90,11 @@ description: >
 
 | 弱 | 強（PM 適用）|
 | :--- | :--- |
-| Responsible for / 負責 | Owned, Spearheaded, Drove / 主導、推動 |
+| Responsible for / 負責 | Owned, Drove, Led / 主導、推動 |
 | Worked with / 協助 | Orchestrated, Aligned / 統籌、對齊 |
 | Managed / 管理 | Led, Scaled, Directed / 帶領、規模化 |
 | Increased / 增加 | Grew, Accelerated, Optimized / 提升、加速 |
-| Made / 做了 | Shipped, Architected, Validated / 交付、設計、驗證 |
+| Made / 做了 | Shipped, Defined, Validated / 交付、定義、驗證 |
 
 **Before → After：**
 
@@ -125,7 +125,7 @@ description: >
 | Business Logic & Requirements | **F10**, F2 | 權限／審核／配對／續約規則盤成 MECE；多重條件建模；後端邏輯重構、API 整合協定設計 |
 | Technical Fluency | F2, F4 | 狀態驅動規格、權限代碼建模、API 串接；循序圖／活動圖／使用案例圖／BPMN；設計稿轉前端規格、欄位檢核與防呆 |
 | AI Product | **F4** | 生成式（公司簡介／JD 生成）＋ 推薦（AI 推薦人才）|
-| Problem-Solving & Ops | **F11** | 1,279 工單／~88% 結案；工單→Kanban→上線閉環；96.5% 來自付費廠商、觸及 1,109 家付費帳號 |
+| Problem-Solving & Ops | **F11** | 截至 2026/09 累計 1,857 張、處理率約 93%；週期 100.4→30.9 天；管線覆蓋 1,279 家付費廠商、年化留存 81.2% vs 全站 74.2% |
 | Process & Tooling | F7 | `spec-doc-1111` skill、程式化重建文件樹 |
 | 0→1 & Consumer Mobile | **F12** | 3 個 0→1 ＋ 4 個既有產品；iOS／Android／RWD 三端；MVP 交付 |
 | Monetization & Pricing | **F13** | IAP 模型與價格點、第三方金流串接、配額計價、牌價結構分析 |
@@ -162,7 +162,11 @@ description: >
 4. 遇到 `〔待補數據〕`：先問使用者，**一次只問一題**，優先順序是商業影響 → 規模 → 方法／工具；拿不到就保留標記，不要編。
 5. 依目標 JD 與市場版本選範本、客製 top-third。
 6. 依 [`references/anti-ai-ats.md`](references/anti-ai-ats.md) 掃禁用詞與破折號；空泛條目先做 CAR 盤問（Context／Action／Result），問不到照實寫過程，不補數字；最後依 §6（V4 防禦型規則：職稱包裝、量級錨定、RACR、剔除弱訊號）做毒性稽核。與事實衝突時以事實為準。
-7. 跑下方檢查清單。
+7. **職能覆蓋檢查（2026-10-08 新增，必做）**：改稿一律從 library＋F 頁出發，不只從上一版刪修。逐項確認以下都看得到，缺的要補或說明理由：
+   - **交付鏈**（`library/decisions.md` §7）：定義段（User Journey Map、User Story、Use Case、SA、Flowchart／Sequence、Wireframe、與 UI/UX 協作、Prototype、Stakeholder 匯報、Spec）與交付段（與工程追時程、與 QA 協作、上線計畫、完整交付），至少各一條條列，技能欄列產出物。
+   - **F01–F15 對照**：列出本版涵蓋與刻意未放的職能，未放的寫理由（例如職缺不需要）。
+   - 「少用技術詞」只針對工程實作與內部縮寫，**不得**因此刪掉 PM 產出物。
+8. 跑下方檢查清單。
 
 ---
 
@@ -190,9 +194,10 @@ description: >
 - [ ] **Bullet 公式**：每條 = 強動詞 + 任務 + 量化結果，1–3 行。
 - [ ] **量化覆蓋**：≥ 80% bullet 有數字；無硬數據處用代理指標。
 - [ ] **職能叢集**：5–7 叢集 + 證據點，已映射 F1–F15。
+- [ ] **交付鏈與產出物**：定義段、交付段各至少一條；技能欄列出產出物（`library/decisions.md` §7）。
 - [ ] **作品集**：資深者於 header 放連結；3–5 篇（含一個誠實的失敗實驗）。
 - [ ] **大企業訊號**：對映 4–5 條目標公司價值；範圍、模糊度、跨職能影響、商業成果到位。
-- [ ] **強動詞**：spearheaded／orchestrated／architected／shipped／scaled／validated。
+- [ ] **強動詞**：drove／orchestrated／defined／shipped／scaled／validated（不用 Spearheaded、Architected，見 `career/library/decisions.md` §1）。
 - [ ] **無紅旗**：無錯字、無 buzzword 堆砌、**無捏造數字**、無 AI 腔、無未解釋空檔。
 - [ ] **誠實**：所有 `〔待補數據〕` 要嘛填真實數字、要嘛保留標記；職稱屬實。
 - [ ] **長度與格式**：1–2 頁；hybrid 或反時序。
