@@ -29,6 +29,7 @@ description: >
 | 投遞硬技術公司（NVIDIA-tier）| [`references/reverse-xyz.md`](references/reverse-xyz.md) | `wiki/flagship-e1.md`、`wiki/F02`、`wiki/F10` |
 | 依 JD 客製／ATS／HR 用 AI 掃履歷 | [`references/ats-and-ai-screening.md`](references/ats-and-ai-screening.md) | `wiki/resume-extract.md` |
 | 作品集 case study | [`references/portfolio.md`](references/portfolio.md)（含市場路由、NDA 去識別化）＋ 範本：外商／英文 [`assets/portfolio-case-study.md`](assets/portfolio-case-study.md)；台灣本土／新創 [`assets/portfolio-case-study-tw.md`](assets/portfolio-case-study-tw.md) | `portfolio/e1-cross-system-messaging.md`（範例）。**內部版輸出位置固定在 `career/portfolio/`；要上網站的篇章另產對外版 `career/portfolio/public/`（規則見 `references/portfolio.md`〈對外版〉）；career 內容禁止寫入 HackMD**（`career/CLAUDE.md` 硬規則二）。 |
+| 去 AI 感、ATS 格式、CAR 盤問（交付前必做）| [`references/anti-ai-ats.md`](references/anti-ai-ats.md)：掃禁用詞與破折號、空泛條目先停下來問 Context／Action／Result，問不到不補數字 |
 | 撰寫中文履歷／自傳／專案說明（語氣與誇大護欄）| [`references/tw-voice.md`](references/tw-voice.md) | 數字與事實只取自 `wiki/` |
 | 產生／填寫／驗證 **104 履歷** | 先讀 `career/104/README.md`（`fields-spec.md` 欄位規格、`resume-104.md` 內容、`resume-104-import.txt` 匯入用純文字）；**Cake Resume 另案，不得套用 104 的欄位規格與字數上限**；語氣依 [`references/tw-voice.md`](references/tw-voice.md) | 這些檔案在個人線分支 `claude/happy-lamport-ljis8c` 的 `career/104/` |
 | 求職信：中文自我推薦信（英文 cover letter 走 career-ops `cover` 模式）| [`references/cover-letters.md`](references/cover-letters.md) ＋ 範本 [`assets/cover-letter-tw-zh.md`](assets/cover-letter-tw-zh.md) | `letters/story-bank.md`（數字唯一來源）；成品存 `letters/archive/` ＋ `letters/log.md` 加一列 |
@@ -159,7 +160,8 @@ description: >
 3. 取入口的 Profile Snapshot／Positioning → 寫 Summary/Headline；學歷證照取 `wiki/education-certifications.md`。
 4. 遇到 `〔待補數據〕`：先問使用者，**一次只問一題**，優先順序是商業影響 → 規模 → 方法／工具；拿不到就保留標記，不要編。
 5. 依目標 JD 與市場版本選範本、客製 top-third。
-6. 跑下方檢查清單。
+6. 依 [`references/anti-ai-ats.md`](references/anti-ai-ats.md) 掃禁用詞與破折號；空泛條目先做 CAR 盤問（Context／Action／Result），問不到照實寫過程，不補數字。
+7. 跑下方檢查清單。
 
 ---
 
