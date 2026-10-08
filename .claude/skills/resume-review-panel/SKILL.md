@@ -18,6 +18,7 @@ description: >
 | 檔案 | 用途 |
 | :--- | :--- |
 | `career/review-panel/research.md` | 審查角度的研究依據與來源；**每條審查意見都要能對回這裡或 wiki** |
+| `career/review-panel/research-hr-hm-2026-10-08.md` | 人資／用人主管關注點 100 條（v2 清單的來源，編號 1–100） |
 | `career/review-panel/reviewers/hr.md` | H1–H10 人資 persona 與共通清單 |
 | `career/review-panel/reviewers/hiring-managers.md` | M1–M10 用人主管 persona 與共通清單 |
 | `career/review-panel/candidates/` | 50 份虛構同儕履歷（含 A／B／C 品質分級），當比較基準 |
@@ -44,6 +45,7 @@ python3 .claude/skills/resume-review-panel/scan.py --pool career/review-panel/ca
 規則：
 - 只能根據 persona 的「先看哪裡、必要條件、紅旗」判斷，不要每位都講一樣的話。
 - 扣分點必須**引用履歷原句**；不能引用就不能扣分。
+- **v2 共通清單**：除了 persona 本身的 7 項（人資）或 6 項（主管），每位審查者另依 `career/review-panel/reviewers/*.md` 的〈共通審查清單 v2〉逐項檢查（人資 HR-A…HR-G、主管 HM-A…HM-G，含詳略校準），扣分時寫出對應編號。
 - 人資與用人主管分開彙總。
 
 ### 4. 同儕比較
