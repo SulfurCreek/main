@@ -6,7 +6,6 @@
 
 | # | 問題 | 影響 | 來源 |
 | :--- | :--- | :--- | :--- |
-| Q1 | Juicy 的角色：主導或協作？（10-04 記「主導」，10-06 更正 JustDating 角色時未一併確認） | 前段職涯 bullet | `wiki/evidence-prior-products.md` |
 | Q2 | 泰國「約會」功能的市場差異，使用者扮演什麼角色 | 能否寫成在地化洞察 | `wiki/evidence-prior-products.md` |
 | Q3 | CodaPay 開放國家完整清單（Keynote：印尼、泰國；口述：含馬來西亞、越南） | 目前寫「印尼、泰國等」 | 同上 |
 | Q4 | AWS CCP 到期日（約 2026/12）與是否續證 | 證照欄 | `wiki/education-certifications.md` |

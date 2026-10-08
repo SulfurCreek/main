@@ -6,7 +6,7 @@
 
 | 舊說法（作廢） | 現行說法 | 更正日期 | 舊說法還殘留在哪 |
 | :--- | :--- | :--- | :--- |
-| 主導 Peach、JD2、Juicy | 主責 JustDating 重新上架版；規劃 KOOL 變現功能；Peach 0→1 為次要 | 2026-10-06 | `wiki/prior-roles.md`（2026-10-08 已加註） |
+| 主導 Peach、JD2、Juicy（三者並列為主打） | 主導 JustDating 重新上架版與 Juicy（同一 BU、換皮，合併一條帶過）；規劃 KOOL 變現功能；Peach 0→1 為次要 | 2026-10-06；Juicy 角色 2026-10-08 確認 | `wiki/prior-roles.md`（2026-10-08 已加註） |
 | 「JD2」 | 「JustDating 重新上架版」 | 2026-10-06 | `wiki/evidence-prior-products.md` 前段、多份 review 檔 |
 | JD（JustDating）為協作 PM、非主要 | 原版協作；重新上架版主責 | 2026-10-06 | `wiki/evidence-prior-products.md` 2026-10-04 段 |
 | Juicy 改名為 Siren | 就叫 Juicy，已下架 | 2026-10-05 | — |
@@ -21,4 +21,5 @@
 | 正式 Scrum | Kanban 推進瀑布式，有站會與回顧 | 2026-10-05 | — |
 | CodaPay 是 JustDating 時期導入 | SweetRing（思維特）時期導入，JustDating 也串接 | 2026-10-08 | `wiki/F13`、`F14` 2026-10-06 段 |
 | 0→1 代表作是 Peach | JustDating 與 KOOL | 2026-10-06 | — |
-| `resume-104-import.txt` 是最新版 | 現行版是 `resume-104-v5.1.txt` | 2026-10-08 | `104/README.md`（2026-10-08 已修正） |
+| `resume-104-import.txt`、v5.1 是最新版 | 現行版是 `resume-104-v5.2.txt`（v5.1 已移入 `104/archive/`） | 2026-10-08 | `104/README.md`（2026-10-08 已修正） |
+| Juicy 角色未確認／協作 | Juicy 為**主導**，與 JustDating 重新上架版同一 BU | 2026-10-08 | `library/facts-prior.md` 舊列（已更新） |
