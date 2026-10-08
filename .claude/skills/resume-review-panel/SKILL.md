@@ -8,6 +8,8 @@ description: >
 
 # 履歷審查模擬小組
 
+> **在履歷工作流程中的位置**：`resume-craft` 八步流程的步驟 6（人資）與步驟 7（用人主管），前置是步驟 5（去 AI 感）。**人資先、主管後**；兩者都過了才能進步驟 8 定版（`resume-craft/references/workflow.md`）。單獨使用時流程不變。報告需註明：審查者是同一模型扮演，不是真人意見；分數上升若來自補了清單要求的內容，要明寫。
+
 > 狀態：2026-10-06 由 career session 建立草稿，使用者同日核可、主幹收錄到 `.claude/skills/`。
 > **使用限制（先讀）**：
 > 1. **素材只在個人線分支 `claude/happy-lamport-ljis8c`**（`career/review-panel/`、`career/wiki/`）。從 main 開的 session 看不到，要用請在該分支工作，或先 `git fetch` 後用 `git show` 唯讀讀取。

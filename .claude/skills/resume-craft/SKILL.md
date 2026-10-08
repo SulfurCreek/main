@@ -18,20 +18,39 @@ description: >
 本 skill 是證據庫的下游：`career/library/`（**使用者確認過的現行事實與裁定，衝突時最優先**）→ `career/competency-framework.md`（wiki 入口）＋ `career/wiki/` 分頁存「證據」，
 本 skill 是「把證據變成履歷的方法」。
 
+## 🔁 標準工作流程（8 步，2026-10-08 使用者裁定）
+
+做履歷、自傳、求職信素材一律走這八步，不跳步、不只拿上一版刪修。詳細產出、出口條件、回退規則見 [`references/workflow.md`](references/workflow.md)（中間產物放 `career/drafts/<版本>/`）。
+
+| # | 步驟 | 做什麼 | 工具／規則 |
+| :-- | :--- | :--- | :--- |
+| 1 | 調用職能 | 讀 `career/library/`、`competency-framework.md`、F01–F15；F 職能與交付鏈 14 項逐項標去向 | 本檔「從職能框架產出」 |
+| 2 | 蒐集證據 | 每職能一張證據表（事實／口徑／出處／可寫程度）；缺口一次問一題，答案先寫 library | `superseded.md` 比對 |
+| 3 | 每項目寫成小 essay | 150–400 字白話短文：處境、決定、做法與產出文件、協作、結果、角色邊界；**先寫完整，不精簡** | — |
+| 4 | 精簡成履歷文字 | essay → bullet；產出 essay 去向表（履歷／自傳／面試備忘）；職能覆蓋檢查 | 本檔 Bullet 公式、`tw-voice.md`、`anti-ai-ats.md` §6 |
+| 5 | 去 AI 感 | 以讀者角度逐句標 AI 腔、整齊過頭、通用句、無來源感受，念出來測試 | `anti-ai-ats.md`、`career/style/resume-voice-zh.md` |
+| 6 | HR 檢測 | 人資 H1–H10＋HR-A…H＋作廢比對＋覆蓋核對 | skill `resume-review-panel` |
+| 7 | 用人主管檢測 | M1–M10＋HM-A…H（含交付鏈）；**HR 先、主管後** | 同上 |
+| 8 | 定版 | 閘門全過＋使用者核可措辭，才產 txt／PDF、歸檔舊版、更新指標 | `workflow.md` 步驟 8 |
+
+> 6、7 發現問題依 `workflow.md`〈回退規則〉回到對應步驟；**不可只為審查分數改稿**，每個改動要對得回 library 事實或使用者裁定。
+
+---
+
 ## 🗺️ 任務路由 / Task routing
 
 本檔只放**每次都用得到的核心**；其餘按需載入 `references/`：
 
 | 任務 | 讀什麼 | 證據分頁（`career/`）|
 | :--- | :--- | :--- |
-| 產第一版履歷 | 本檔全部 | `competency-framework.md` → `wiki/resume-extract.md` ＋ 相關 F 分頁 |
+| 產履歷／改版（任何版本） | **先走上方 8 步工作流程**，細節見 [`references/workflow.md`](references/workflow.md) | `career/library/` → `competency-framework.md` → 相關 F 分頁 |
 | 改寫 bullet／把日常產出變 bullet | 本檔 Bullet 公式 ＋ [`references/reverse-xyz.md`](references/reverse-xyz.md) | 對應 `wiki/F0x-*.md` |
 | 投遞硬技術公司（NVIDIA-tier）| [`references/reverse-xyz.md`](references/reverse-xyz.md) | `wiki/flagship-e1.md`、`wiki/F02`、`wiki/F10` |
 | 依 JD 客製／ATS／HR 用 AI 掃履歷 | [`references/ats-and-ai-screening.md`](references/ats-and-ai-screening.md) | `wiki/resume-extract.md` |
 | 作品集 case study | [`references/portfolio.md`](references/portfolio.md)（含市場路由、NDA 去識別化）＋ 範本：外商／英文 [`assets/portfolio-case-study.md`](assets/portfolio-case-study.md)；台灣本土／新創 [`assets/portfolio-case-study-tw.md`](assets/portfolio-case-study-tw.md) | `portfolio/e1-cross-system-messaging.md`（範例）。**內部版輸出位置固定在 `career/portfolio/`；要上網站的篇章另產對外版 `career/portfolio/public/`（規則見 `references/portfolio.md`〈對外版〉）；career 內容禁止寫入 HackMD**（`career/CLAUDE.md` 硬規則二）。 |
 | 去 AI 感、ATS 格式、CAR 盤問（交付前必做）| [`references/anti-ai-ats.md`](references/anti-ai-ats.md)：掃禁用詞與破折號、空泛條目先停下來問 Context／Action／Result，問不到不補數字 |
 | 撰寫中文履歷／自傳／專案說明（語氣與誇大護欄）| [`references/tw-voice.md`](references/tw-voice.md) | 數字與事實只取自 `wiki/` |
-| 產生／填寫／驗證 **104 履歷** | 先讀 `career/104/README.md`（`fields-spec.md` 欄位規格、`resume-104.md` 內容、現行版見 README 標示（2026-10-08 為 `resume-104-v5.1.txt`））；**Cake Resume 另案，不得套用 104 的欄位規格與字數上限**；語氣依 [`references/tw-voice.md`](references/tw-voice.md) | 這些檔案在個人線分支 `claude/happy-lamport-ljis8c` 的 `career/104/` |
+| 產生／填寫／驗證 **104 履歷** | 先讀 `career/104/README.md`（`fields-spec.md` 欄位規格、`resume-104.md` 內容、現行版見 README 標示（以 README 為準，不要寫死版本號））；**Cake Resume 另案，不得套用 104 的欄位規格與字數上限**；語氣依 [`references/tw-voice.md`](references/tw-voice.md) | 這些檔案在個人線分支 `claude/happy-lamport-ljis8c` 的 `career/104/` |
 | 求職信：中文自我推薦信（英文 cover letter 走 career-ops `cover` 模式）| [`references/cover-letters.md`](references/cover-letters.md) ＋ 範本 [`assets/cover-letter-tw-zh.md`](assets/cover-letter-tw-zh.md) | `letters/story-bank.md`（數字唯一來源）；成品存 `letters/archive/` ＋ `letters/log.md` 加一列 |
 | 目標公司價值觀對映（Amazon LP 等）| [`references/portfolio.md`](references/portfolio.md) | — |
 | 高顏值可列印版（HTML／LaTeX）| [`references/visual-output.md`](references/visual-output.md) | 已定稿的內容版履歷 |
@@ -152,6 +171,8 @@ description: >
 ---
 
 ## 從職能框架產出
+
+> 本節是工作流程步驟 1、2、4 的操作細節；完整八步與產出檔見 [`references/workflow.md`](references/workflow.md)。
 
 先讀 `career/library/decisions.md`＋對應 `facts-*.md`（現行事實；與 wiki 衝突以 library 為準，審稿對照 `superseded.md`），
 再以 `career/competency-framework.md`（**wiki 入口**）依其路由表只載入需要的 `career/wiki/` 分頁：
