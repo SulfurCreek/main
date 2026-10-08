@@ -14,6 +14,9 @@
 
 ## 步驟 1：調用職能
 
+- **必用職缺**：讀 `career/104/jobs-2026-10.md`（分級）與 `career/104/analysis.md`（46 份 JD 的需求頻率）或使用者貼的 JD；產出「JD 需求 → 履歷落點」對照，決定主版或某類職缺版（支付、B 端 SaaS、AI、電信）。
+- **必用 career-ops**：目標職缺 URL 寫進 `career/career-ops/data/pipeline.md`；`CAREER_OPS_ROOT=/home/user/main/career/career-ops`，先跑 `npm run doctor`（在 `/home/user/career-ops`）。
+
 - 讀：`career/library/`（decisions → profile → facts-1111／facts-prior）、`career/competency-framework.md`、F01–F15 分頁；目標 JD（若有）。
 - 產出 `01-competencies.md`：
   - 本次要涵蓋的職能（F01–F15 逐項標「納入／刻意不放＋理由」）。
@@ -39,6 +42,7 @@
   4. 跟誰協作、怎麼說服或對齊
   5. 結果與數字（含口徑）；沒有就寫「結果數字待補」
   6. 我負責的與不負責的（角色邊界：規劃、協作、驗收、時程；不寫工程實作）
+- **essay 就要對照職缺（使用者 2026-10-08 裁定）**：每篇開頭標「回應的 JD 需求」（取自步驟 1 對照表，例：跨部門 36／46、驗收 28／46），內文用 JD 的說法描述同一件事（例：JD 寫 UAT，就說明驗收怎麼做），不為了 JD 新增事實。
 - **先寫完整，不管長短**——這一步不精簡。essay 是下一步的原料，也是自傳與面試備忘的來源。
 - 出口條件：每個 essay 能讓不懂背景的人看懂「做了什麼、為什麼、結果如何」。
 
@@ -92,6 +96,10 @@
 - 回退最多兩輪；兩輪後仍有缺口，列給使用者決定，不無限優化。
 
 ## 步驟 8：定版
+
+- **career-ops 驗證（必做）**：把定稿轉成 HTML 後，在 `/home/user/career-ops` 跑
+  `node verify-cv-facts.mjs <cv.html> --source $CAREER_OPS_ROOT/article-digest.md --source $CAREER_OPS_ROOT/cv.md`（每個數字都要在來源找得到）與
+  `node verify-ats.mjs <cv.html> --keywords "<步驟 1 的 JD 關鍵字>"`（結構分數 ≥ 70、關鍵字覆蓋列入報告）。`article-digest.md` 由 `career/library/` 萃取，library 改了要同步。
 
 閘門（全部成立才能定版）：
 
