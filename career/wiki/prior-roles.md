@@ -78,3 +78,5 @@
 ---
 
 **相關分頁 / Related**：[證據頁：前段產品公開數據](evidence-prior-products.md) ・ [F12 C 端行動產品與 0→1](F12-consumer-mobile.md) ・ [F13 變現、定價與金流](F13-monetization-pricing.md) ・ [F14 國際化與在地化](F14-localization-intl.md) ・ [學歷・證照](education-certifications.md)
+
+- **匯報線（使用者 2026-10-08 確認）**：1111 職稱為「產品企劃主任」，實際角色為招募系統 PO／PM；直屬上級為副總（再上為副董等），部門編制的經理不在匯報線上，無法管轄使用者。
