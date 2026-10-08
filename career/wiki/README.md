@@ -4,6 +4,7 @@
 # career/wiki — 職能框架分頁 / Competency wiki pages
 
 > 入口與路由表在 [`../competency-framework.md`](../competency-framework.md)（Home）。本頁僅為目錄。
+> 📚 **現行事實以 [`../library/`](../library/README.md) 為準**：wiki 是逐次疊加的證據層，舊段落可能已被更正（清單見 [`../library/superseded.md`](../library/superseded.md)）。
 > ⚠️ 個人職涯資料，非 1111 規格文件（規則見 [`../CLAUDE.md`](../CLAUDE.md)）。
 
 - [F01 產品定義全鏈路](F01-product-definition.md)

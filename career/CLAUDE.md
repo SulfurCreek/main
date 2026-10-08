@@ -6,34 +6,45 @@
 這裡是**使用者的個人職涯資料**（職能盤點、履歷素材、作品集），與本 repo 的 1111 規格文件工作**刻意分開**。
 當成一般 Markdown 文件處理即可。
 
+## 📚 開工第一步：讀 `library/`（2026-10-08 起）
+
+**使用者提供、確認、更正過的所有事實與決定收在 [`library/`](library/README.md)**，衝突時優先於 `wiki/` 與任何產出檔。
+動筆前至少讀 [`library/decisions.md`](library/decisions.md)＋對應的 `facts-*.md`；審稿時對照 [`library/superseded.md`](library/superseded.md)；
+遇到〔待補〕先查 [`library/open-questions.md`](library/open-questions.md)，已答過的不要再問。
+
+**使用者在對話中提供任何新事實、更正或決定 → 當下先寫進 library（附日期與來源），再改下游檔案。** 被推翻的舊說法移到 `superseded.md`，不刪。
+這條是為了解決「之前提供的資訊被忘記」：wiki 是逐次疊加的證據層，讀到舊段落就會寫回已更正的內容。
+
 *The user's personal career material — competency inventory, résumé source, portfolio. Deliberately kept apart
 from this repo's 1111 spec-documentation work. Treat as plain Markdown.*
 
-## 🚫 硬規則一：全部可讀，只有 `career/` 可寫 / Read everything, write only `career/`
+## 🚫 硬規則一：全部可讀，只有 `career/` 與自有 skill 可寫 / Read everything, write only `career/` and owned skills
 
-這條 session（分支 `claude/happy-lamport-ljis8c`，側欄「Career move function definition」）的工作是
+這條 session（分支 `claude/happy-lamport-ljis8c`，側欄「Career Move」，`session_017u5Po6SGpjD3iLBZ2VL2HH`）的工作是
 **讀既有產出 → 萃取成職能與履歷素材**。它對 repo 內其他所有東西是**唯讀**的。
 
 | 動作 | 可以嗎 |
 | :--- | :--- |
 | Read／Grep／Glob 任何檔案（規格書、`notes/`、`.claude/skills/`、`wiki/`、分析產出、其他分支） | ✅ 不受限制——這些是職能證據的來源 |
 | 寫 `career/` 底下的檔案（職能 wiki、portfolio、履歷素材） | ✅ 這是它唯一的主場。**例外：`career/site/` 歸「作品集網站助手」session 寫，Career Move 不動** |
-| 改 `CLAUDE.md`／`.claude/skills/`（含 `resume-craft`）／`wiki/`／`scripts/`／`.claude_index.md` | ❌ 一律禁止 |
+| 改個人線自有 skill：`.claude/skills/resume-craft/`、`resume-review-panel/`、`portfolio-site/` | ✅ **2026-10-08 起由你自己改、自己推**（使用者裁示：這些 skill 跟 1111 主線無關）。commit 前綴 `career(skill):`；推到本分支即可，Repo Steward 會單向同步到 main |
+| 改其他 `.claude/skills/`、根目錄 `CLAUDE.md`、`wiki/`、`scripts/`、`.claude_index.md` | ❌ 一律禁止 |
 | 改 `notes/`、`handoff/`、`job-classification-kb/` 等任何專案產出 | ❌ 一律禁止 |
 | push 到 `claude/happy-lamport-ljis8c` 以外的分支 | ❌ 一律禁止 |
 | 在 HackMD 上建立或修改任何 note | ❌ 一律禁止（另見下方硬規則二）|
 
-**需要改 `career/` 以外的東西時**（例如覺得 `resume-craft` skill 該補一段、或發現某份規格書寫錯）：
+**需要改以上範圍以外的東西時**（例如發現某份規格書寫錯、想改 `spec-doc-1111`）：
 不要自己動手，把需求寫進 **`career/_requests-to-main.md`**（自己開檔即可，格式：一段標題＋想改什麼＋為什麼），
 由主幹管理 session（Repo Steward）判斷後統一施作。
 
 **為什麼**：證據來源與證據解讀必須分開。這條分支若同時能改產出又能引用產出當證據，履歷素材就失去可查證性；
-實務上也已經發生過越界（刪掉主幹刻意保留的 `hackmd-api` 空殼、反覆改 `resume-craft` 與 `CLAUDE.md`），
+實務上也已經發生過越界（刪掉主幹刻意保留的 `hackmd-api` 空殼、改根目錄 `CLAUDE.md`），
 造成跟主幹的合併衝突。護欄：`scripts/guard_career_scope.sh`（PreToolUse hook，只在本分支生效，
-擋 `career/` 以外的寫入，讀取完全不擋）。
+放行 `career/` 與三個自有 skill，其餘寫入擋下，讀取完全不擋）。
+改自有 skill 時：main 不會直接改這三個目錄，所以 merge main 時不會撞；但**不要**順手改其他 skill 或共用檔。
 
 *This session reads the repo's existing output and distils it into competency and résumé material.
-Everything outside `career/` is **read-only** for it. To change anything outside `career/`, write the request
+Everything outside `career/` and its three owned skills (resume-craft, resume-review-panel, portfolio-site) is **read-only** for it. To change anything outside `career/`, write the request
 into `career/_requests-to-main.md` instead of editing — the trunk-managing session decides and applies it.
 Enforced by `scripts/guard_career_scope.sh` (PreToolUse hook, this branch only; reads are never blocked).*
 
@@ -51,11 +62,11 @@ Enforced by `scripts/guard_career_scope.sh` (PreToolUse hook, this branch only; 
 
 | 任務 | 讀這裡 | 備註 |
 | :--- | :--- | :--- |
-| 產生、填寫、驗證 **104 履歷** | `104/README.md` →（`104/fields-spec.md` 欄位規格、`104/ui-notes.md` 介面紀錄、`104/resume-104.md` 逐欄內容、`104/chrome-playbook.md` Chrome 操作手冊、`104/resume-104-import.txt` 匯入用純文字版） | 必填欄位、字數上限、個資與機密規則一律以 `fields-spec.md` 為準 |
+| 產生、填寫、驗證 **104 履歷** | `104/README.md` →（`104/fields-spec.md` 欄位規格、`104/ui-notes.md` 介面紀錄、`104/resume-104.md` 逐欄內容、`104/chrome-playbook.md` Chrome 操作手冊、`104/resume-104-v5.1.txt` 現行版） | 必填欄位、字數上限、個資與機密規則一律以 `fields-spec.md` 為準 |
 | 產生 **Cake Resume** | 尚未建立 `cake/`；要做時先開 `cake/` 目錄、先取得 Cake 編輯頁欄位規格再寫 | **不得套用 104 的欄位規格與字數上限**；內容事實與數字仍共用 `wiki/` |
 | 英文 ATS 履歷、自傳、求職信 | `resume-craft` skill、`letters/` | 與平台表單無關 |
 
-事實與數字的唯一來源是 `wiki/`；各平台檔案只是格式不同的呈現。**中文語氣一律依 `style/resume-voice-zh.md`**（104、Cake 共用，第 3 節護欄優先於語氣）。
+事實與數字的來源：先 `library/`（現行事實），細節再查 `wiki/`；各平台檔案只是格式不同的呈現。**中文語氣一律依 `style/resume-voice-zh.md`**（104、Cake 共用，第 3 節護欄優先於語氣）。
 
 ## 🚫 硬規則二：不外流 / Hard rule: never publish
 
@@ -72,9 +83,14 @@ it is a shared company space and the leak would be irreversible.*
 
 | 路徑 | 內容 |
 | :--- | :--- |
+| `library/` | **使用者提供資料庫**：現行事實、裁定、已推翻說法、待確認問題（衝突時最優先） |
 | `HANDOFF.md` | **新 session 開工先讀**：角色邊界、慣例、完整檔案清單、未完成事項 |
 | `competency-framework.md` | **wiki 入口**：定位、Profile Snapshot、路由表、F1–F15 總覽 |
 | `wiki/` | 職能分頁（`F01`–`F15`）、旗艦專案、履歷摘要、學歷證照、證據頁、PM 語彙對照、缺口盤點 |
+| `104/` | 104 履歷工作區；現行版見 `104/README.md` 標示，舊版在 `104/archive/` |
+| `style/` | 中文語氣（`resume-voice-zh.md`）、去 AI 感＋ATS（`anti-ai-ats.md`）、PM 履歷最佳實務 |
+| `letters/` | 求職信、素材庫（`story-bank.md`）、投遞紀錄 |
+| `review-panel/` | `resume-review-panel` skill 的審查者與同儕素材 |
 | `portfolio/` | 作品集 case study（內部完整版）；`portfolio/public/` 為對外版與 `STATUS.md` |
 | `site/` | **作品集網站助手的暫存區**（網站原始碼、`QUESTIONS.md`），Career Move 唯讀 |
 | `career-ops/` | [career-ops](https://github.com/career-ops-hq/career-ops) 求職工具的個人資料層（`cv.md`、`config/profile.yml`）與產出（`reports/`、`output/`、`data/`），經 `CAREER_OPS_ROOT` 直接讀寫；`cv.md` 由 `wiki/` 單向同步 |

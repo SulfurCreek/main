@@ -3,6 +3,8 @@
 
 > 🧭 [← 職能框架首頁 / Home](../competency-framework.md)
 
+> 📚 **現行事實以 [`../library/`](../library/README.md) 為準**；本頁含逐次疊加的舊層，衝突時以 library 為準（2026-10-08 健檢）。
+
 # 完整職涯時間軸 / Career History
 
 > F1–F11 記錄的是**現職（1111）**的職能；本頁補上 **2013–2022 的前段職涯**——
@@ -14,11 +16,11 @@
 | 期間 | 公司 | 職稱 | 產品 |
 | :--- | :--- | :--- | :--- |
 | 2022/08 – 至今 | **1111 人力銀行** | 產品企劃（求才系統主責）| 求才 B 端平台、公司頁、求才側 AI（見 F1–F11）|
-| 2018/01 – 2022/03 | **尚凡國際創新科技 / Sunfun Info** | Project Manager | **JustDating**（App ＋ Web 版）、**KOOL 網紅人力銀行**；主導 **Peach**（0→1）、**JD2**、**Juicy** 上線與馬來西亞定價實驗（見[內部營運數據](evidence-prior-products.md)） |
+| 2018/01 – 2022/03 | **尚凡國際創新科技 / Sunfun Info** | Project Manager | **JustDating**（App ＋ Web 版）、**KOOL 網紅人力銀行**；**主責 JustDating 重新上架版**、規劃 KOOL 變現功能、Peach 0→1（次要）、Juicy 上線（角色待確認）；〔2026-10-08 改寫：原寫「主導 Peach、JD2、Juicy」已作廢，見 `library/superseded.md`〕與馬來西亞定價實驗（見[內部營運數據](evidence-prior-products.md)） |
 | 2016/06 – 2018/01 | **思維特網路資訊 / Sweet Tech** | Associate Product Manager | **SweetRing** 交友 App |
 | 2014/08 – 2015/01 | **台灣新蛋 / Newegg Taiwan** | 校對實習生（商品內容編輯／翻譯） | Newegg.com 商品內容（英→中）|
 
-**PM 年資累計約 10 年**（2016/06 起；Newegg 為畢業前後的校對實習，不計）；**總職涯橫跨 B2C 行動產品 → B2B 招募平台**。
+**PM 年資累計近 10 年**（對外寫「近 10 年」；104 總年資選 9~10 年）（2016/06 起；Newegg 為畢業前後的校對實習，不計）；**總職涯橫跨 B2C 行動產品 → B2B 招募平台**。
 
 > 📌 **舊履歷寫「5 years of hands-on experience」是 2022 年的版本，現已約 10 年**——
 > 新履歷務必更新資歷年數與定位層級（Senior PM，而非中階）。
@@ -71,9 +73,9 @@
 | :--- | :--- | :--- |
 | **幾乎零量化** | "Grew sales and boosted profits"、"Successfully reduced user churn"、"Delivered numbers of product initial launch" | 補上 %／金額／用戶數；拿不到就用代理指標（產品數、市場數、團隊規模）|
 | 模糊量詞 | "numbers of…"（多次／多項）| 改成確切數字：**3 個 0→1 ＋ 4 個既有產品** |
-| 形容詞開頭 | "Successfully proposed…"、"Successfully introduced…" | 刪 `Successfully`，改強動詞（Spearheaded／Architected／Drove）|
+| 形容詞開頭 | "Successfully proposed…"、"Successfully introduced…" | 刪 `Successfully`，改強動詞（Led／Planned／Drove／Coordinated；⚠️ 不用 Spearheaded／Architected——違反規劃者定位，見 `library/decisions.md` §1）|
 | 職責而非成果 | "Carried out day-to-day mobile app operating routine tasks" | 改寫為帶結果的成就，或刪除 |
-| 資歷過時 | "5 years of hands-on experience" | 更新為約 **10 年** |
+| 資歷過時 | "5 years of hands-on experience" | 更新為「近 10 年」（nearly 10 years） |
 
 ---
 

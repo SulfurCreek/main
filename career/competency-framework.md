@@ -52,10 +52,11 @@ Before this, six years in **B2C mobile** (dating and influencer-marketplace apps
 
 | 任務類型 / Task | 讀哪些分頁 / Load these pages |
 | :--- | :--- |
+| **任何任務開工前**：確認事實、數字、角色、禁用詞 | [`library/`](library/README.md)（現行事實＋使用者裁定，**與分頁衝突時以 library 為準**） |
 | 產出／修改**履歷 bullet** | [`wiki/resume-extract.md`](wiki/resume-extract.md)（草稿基底）＋ 相關 F 分頁補細節 |
 | 準備**面試某項職能**的談資 | 對應 F 分頁（下表）＋ [`wiki/flagship-e1.md`](wiki/flagship-e1.md) |
 | 講**旗艦專案**（跨系統訊息）| [`wiki/flagship-e1.md`](wiki/flagship-e1.md) → 完整敘事見 [`portfolio/e1-cross-system-messaging.md`](portfolio/e1-cross-system-messaging.md) |
-| 講**前段職涯／0→1／變現／國際化** | [`wiki/prior-roles.md`](wiki/prior-roles.md) ＋ F12／F13／F14 分頁 |
+| 講**前段職涯／0→1／變現／國際化** | [`library/facts-prior.md`](library/facts-prior.md)（現行角色與數字）→ [`wiki/prior-roles.md`](wiki/prior-roles.md) ＋ F12／F13／F14 分頁 |
 | 講**AI 能力**（被問「你怎麼用 AI」）| [`wiki/F15-ai-workflow-governance.md`](wiki/F15-ai-workflow-governance.md)（對內工作流）＋ [`wiki/F04-ai-product.md`](wiki/F04-ai-product.md)（對外產品）|
 | 填**學歷／證照／語言** | [`wiki/education-certifications.md`](wiki/education-certifications.md) |
 | **JD 關鍵字覆蓋／面試概念對應** | [`wiki/pm-vocabulary-map.md`](wiki/pm-vocabulary-map.md)（50 個 PM 概念 → 你的證據／缺口）|

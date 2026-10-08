@@ -2,20 +2,18 @@
 
 # 交接 / Session Handoff — career session
 
-> 前任：`session_018VJFZiuZYfnPhMppvaGFcR`（側欄「Career move function definition」），2026-09-29 交接。
-> **接手**：`session_01PKC4scvp58BuQxq5JKMHPw`（側欄「Career move function definition (v2)」），2026-09-29 接手；
-> 同日因需載入 `CAREER_OPS_ROOT` 環境變數再換手給 v3（新 session 開工時自行回填 ID 於此行下方），v2 自此停止寫入。
-> **接手（v3）**：`session_017u5Po6SGpjD3iLBZ2VL2HH`（側欄「Career move function definition (v3)」），2026-09-29 接手，現役。
-> 接手的 session **沿用同一分支 `claude/happy-lamport-ljis8c`**，前任自交接起停止寫入，不會撞推送。
-> **開工順序**：本檔 → [`CLAUDE.md`](CLAUDE.md)（硬規則一、二）→ [`competency-framework.md`](competency-framework.md)（wiki 入口）。其餘依任務按需讀取。
+> **現役**：`session_017u5Po6SGpjD3iLBZ2VL2HH`，側欄「**Career Move**」（2026-09-29 接手；v1 `session_018VJFZiuZYfnPhMppvaGFcR`、v2 `session_01PKC4scvp58BuQxq5JKMHPw` 皆已 ARCHIVED）。分支 `claude/happy-lamport-ljis8c`。
+> **2026-10-08 Repo Steward 健檢重建**：新增 [`library/`](library/README.md)（使用者提供資料庫）、修正矛盾檔、104 舊版歸檔、自有 skill 擁有權移交本 session。
+> **開工順序**：[`library/README.md`](library/README.md) → 本檔 → [`CLAUDE.md`](CLAUDE.md)（硬規則一、二）→ [`competency-framework.md`](competency-framework.md)（wiki 入口）。其餘依任務按需讀取。
 
 ## 1. 你是誰、邊界在哪
 
 - **角色**：替使用者（聶崑淮，1111 人力銀行求才產品企劃）讀 repo 既有產出 → 萃取成職能框架（F1–F15）、作品集、履歷素材；並操作 career-ops 求職工具。
-- **只能寫 `career/`**。全 repo 可讀。要改 `career/` 以外的東西 → 寫進 [`_requests-to-main.md`](_requests-to-main.md)（想改什麼＋為什麼），由 Repo Steward 施作。
+- **只能寫 `career/` 與自有 skill**（`resume-craft`／`resume-review-panel`／`portfolio-site`，2026-10-08 起自己改自己推，commit 前綴 `career(skill):`）。全 repo 可讀。其餘 → 寫進 [`_requests-to-main.md`](_requests-to-main.md)，由 Repo Steward 施作。
+- **使用者給的新事實、更正、決定 → 當下寫進 [`library/`](library/README.md)**（附日期與來源），再改下游檔。這是防止「忘記使用者提供過的資訊」的唯一機制。
 - **只能 push `claude/happy-lamport-ljis8c`**。
 - **不外流**：`career/` 內容絕不寫進 HackMD；對外版本抽象化 1111 內部名稱（API 名、欄位名、權限代碼、廠商／合作對象名稱）。
-- 護欄 `scripts/guard_career_scope.sh` 只在本分支生效。這些規則在 2026-09-16 由使用者下達，前任曾越界（刪 `hackmd-api` 空殼、改 `resume-craft`／根 `CLAUDE.md`），已還原。
+- 護欄 `scripts/guard_career_scope.sh` 只在本分支生效。這些規則在 2026-09-16 由使用者下達，前任曾越界（刪 `hackmd-api` 空殼、改根 `CLAUDE.md`），已還原。
 
 ## 2. 工作慣例（使用者已確認過的）
 
@@ -24,10 +22,10 @@
 | 語言與風格 | 繁中回覆、結論先行、簡短；wiki 為中英雙語 |
 | 誠實契約 | 沒數字就寫 `〔待補數據〕`，**絕不捏造**；區分相關與因果；統計主張附 n 與顯著性 |
 | 規模脈絡 ≠ 個人貢獻 | 公司營收、App 下載量只能當脈絡，不可寫成個人成果（見 `evidence-prior-products.md` 使用邊界表） |
-| 數字版本 | 付費帳號用 **1,279**（舊的 1,109 已過時）；roadmap 227 項、111 上線、94% 準時 |
+| 數字版本 | 一律取 [`library/facts-1111.md`](library/facts-1111.md)、[`library/facts-prior.md`](library/facts-prior.md)；本頁不重複，避免兩處不同步 |
 | 新職能判定 | 先對照 F1–F15，能歸入既有職能就不開新號（例：異業 API 合約 → 併入 F2＋F13，未開 F16） |
 | 修改後驗證 | 跑相對連結檢查（見 §6），`git status` 確認只動到 `career/` |
-| 使用者更正過的事實 | Juicy **沒有**改名 Siren，就叫 Juicy，已下架；JustDating 與 Juicy 都上過暢銷榜 |
+| 使用者更正過的事實 | **全部收在 [`library/`](library/README.md)**（現行版）與 [`library/superseded.md`](library/superseded.md)（防倒退清單），本表不再逐條列 |
 
 ## 3. 檔案清單 / File index
 
@@ -38,7 +36,8 @@
 | [`CLAUDE.md`](CLAUDE.md) | 硬規則一（只寫 career/）、硬規則二（不外流）、目錄結構 |
 | [`HANDOFF.md`](HANDOFF.md) | 本檔 |
 | [`competency-framework.md`](competency-framework.md) | **wiki 入口**：定位、Profile Snapshot、路由表、F1–F15 總覽 |
-| [`_requests-to-main.md`](_requests-to-main.md) | 給主幹的變更請求（1 條：殘留 skill 檔，見檔內） |
+| [`library/`](library/README.md) | **使用者提供資料庫**：`profile`、`facts-1111`、`facts-prior`、`decisions`、`superseded`、`open-questions` |
+| [`_requests-to-main.md`](_requests-to-main.md) | 給主幹的變更請求（自有 skill 不必走這裡） |
 | [`wiki/README.md`](wiki/README.md) | wiki 分頁目錄 |
 
 ### 職能分頁 `wiki/F01`–`F15`（定義 → 實際展現 → 證據 → 資深度訊號）
@@ -80,6 +79,7 @@
 | 檔案 | 內容 |
 | :--- | :--- |
 | [`104/README.md`](104/README.md) | 104 工作區入口：職缺分析、職缺分級、履歷逐欄內容、Claude in Chrome 操作手冊 |
+| [`104/resume-104-v5.1.txt`](104/resume-104-v5.1.txt) | **現行版**（2026-10-08）；改版另存新版號，舊版移入 `104/archive/` |
 
 ### 求職信 `letters/`
 
@@ -117,10 +117,7 @@
 | 項目 | 狀態 | 位置 |
 | :--- | :--- | :--- |
 | **`CAREER_OPS_ROOT` 環境變數**：已改為直接讀寫 repo（不再 cp）；需使用者在環境設定加入 | 等使用者設定 | `career-ops/README.md` |
-| career-ops TODO：LinkedIn／作品集網址、電話、薪資區間、目標職稱、輸出語言、預告期 | 等使用者提供 | `career-ops/config/profile.yml` |
-| ~~畢業年份~~：已確認 2014；**兵役起訖月份**與退伍到 2016/06 間做什麼，待補 | `wiki/prior-roles.md`、`education-certifications.md` |
-| ~~2014/02–2016/06 空檔~~ 已釐清（畢業 2014/06 → Newegg → 2015/02 入伍一年 → 2016/06）；Newegg 2014/08–2015/01 已確認 | `wiki/prior-roles.md` |
-| 各 F 頁 `〔待補數據〕`：規格份數、AI 功能採用率、規則數、缺陷率、IAP 營收成長 %、流失下降 % | 等使用者提供 | `resume-extract.md` 等 |
+| 所有待使用者回答的事實題 | 集中在 [`library/open-questions.md`](library/open-questions.md)，問之前先查，答完寫回 library | `library/` |
 | growth-edges 缺口：AI 功能採用、續約因果歸因、A/B 實驗主導 | 長期 | `wiki/growth-edges.md` |
 
 ### v2 session 未結案項目（2026-09-29）
@@ -151,8 +148,9 @@ EOF
 git fetch origin main && git merge origin/main
 ```
 
-- 履歷產出：`Skill` 載入 `resume-craft`（它還停在 F1–F11，記得自己把 F12–F15 帶進來）。
+- 履歷產出：`Skill` 載入 `resume-craft`（已涵蓋 F1–F15；這個 skill 現在歸你維護）。
 
-## 待辦（2026-10-05）
-- 使用者將提供每週（至少一次）給公司業務單位的簡報，讀完後補進職能（F09 利害關係人影響、F08 Roadmap 等），再重產 104 txt／PDF。重產前先套用 style/resume-voice-zh.md 補充護欄（Juicy、1111人力銀行招募系統 Product Owner、大型改版）。
-- 2026-10-05：已讀 30 份週報（wiki/evidence-weekly-reports.md）與 25 份封測／上線簡報（wiki/evidence-briefings.md）。重產 104 時：維運工單改用「截至 2026/09 累計 1,857 單、處理率約 93%」；零停機仍待使用者確認。
+## 待辦（2026-10-08 健檢後）
+
+- 健檢報告：Repo Steward 在 main 的對話中產出（見使用者轉達）。重點：事實改以 `library/` 為準；`wiki/evidence-prior-products.md` 前段舊層未刪，只加了指向 library 的橫幅。
+- `library/open-questions.md` Q1（Juicy 角色）會影響前段職涯 bullet，下次與使用者對話時優先確認。

@@ -3,6 +3,8 @@
 
 > 🧭 [← 職能框架首頁 / Home](../competency-framework.md)
 
+> 📚 **現行事實以 [`../library/`](../library/README.md) 為準**；本頁 2026-10-04 至 10-08 的更正逐段疊加，前段多處已被推翻（JD2、JD 為協作 PM 等）；整合後的現行版見 [`../library/facts-prior.md`](../library/facts-prior.md)。本頁含逐次疊加的舊層，衝突時以 library 為準（2026-10-08 健檢）。
+
 # 證據頁：前段職涯產品的公開數據 / Evidence — Public Data on Prior Products
 
 > **目的**：舊履歷幾乎零量化（"Grew sales"、"reduced churn" 全無數字）。本頁用**公開可查證的第三方資料**
