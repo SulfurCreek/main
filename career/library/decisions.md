@@ -71,3 +71,14 @@
 - 順序：HR 先、用人主管後（2026-10-08 使用者指定）。
 - 不得只拿上一版刪修；不得為了審查分數犧牲職能覆蓋（見 `style/postmortem-2026-10-08-deliverables.md`）。
 - 來源：2026-10-08 使用者對話
+
+## 9. 使用者提供過的外部 skill 與採用狀態（2026-10-08 稽核補記）
+
+| 外部 skill | 提供日 | 採用 | 不採用（理由） | 落點 |
+| :--- | :--- | :--- | :--- | :--- |
+| `cv-resume-optimizer`（雙語履歷＋自傳、問診模式） | 2026-10-02 | 自傳每段 ≤ 4 行／空行／不寫家庭背景、前 90 天（須從 JD 推出）、繁中 bullet 結果前置、英文版畢業年份提醒、缺資料一次問一題；另補「轉換動機」 | 技能分 Languages／Frameworks（PM 用職能叢集）、工程式範例 bullet（越權宣稱）、bullet 禁粗體與句號、只輸出不講話 | `resume-craft/assets/template-tw-zh.md`、`references/tw-voice.md` |
+| `pm-portfolio-creator` | 2026-10-03 | 台灣執行導向案例範本、TL;DR／假設／優先級、NDA 去識別（用級距不用假資料）、Mermaid 照柔色系 | 開場問卷、「可用於 HackMD」（違反硬規則二）、工程式範例 | `resume-craft/assets/portfolio-case-study-tw.md`、`references/portfolio.md` |
+| `anti-ai-ats-resume-crafter`（V3、V4 Toxic HR Defense） | 2026-10-08 兩次 | 禁用詞與破折號、CAR 盤問、RACR 結果先行、職稱包裝、量級錨定、產業洗白、ATS 單欄 | 剔除 AWS／交換／遠端意願（使用者調整後保留）、反日常勞力字面解讀（decisions §7 取代）、動詞升級為「架構」「Spearheaded」（decisions §1 禁用） | `style/anti-ai-ats.md`、`resume-craft/references/anti-ai-ats.md` |
+
+- 若使用者所說「AI resume builder」另有所指，請告知名稱；目前紀錄中只有以上三個。
+- 來源：2026-10-02、10-03、10-08 使用者對話
