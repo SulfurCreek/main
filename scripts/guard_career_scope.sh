@@ -11,7 +11,7 @@
 #
 # 行為：
 #   * 只在 GUARDED_BRANCHES 列出的分支上生效，其他分支一律放行。
-#   * 放行 career/ 底下的寫入，以及 repo 以外的路徑（scratchpad／暫存檔）。
+#   * 放行 career/ 與 OWNED_SKILLS（個人線自有 skill）底下的寫入，以及 repo 以外的路徑（scratchpad／暫存檔）。
 #   * 其餘一律 deny，並在訊息裡告訴它該怎麼做（寫進 career/_requests-to-main.md）。
 #   * 任何非預期狀況（拿不到分支、jq 不存在、路徑解析失敗）一律 fail-open 放行，
 #     這是護欄不是安全機制，不該因為自己壞掉就卡住整個 session。
@@ -23,6 +23,14 @@ GUARDED_BRANCHES=(
 )
 
 WRITABLE_PREFIX="career/"
+
+# 2026-10-08 使用者裁示：個人線自有的 skill 跟 1111 主線工作無關，由 Career Move 自己改、自己推。
+# 這些目錄的擁有權在個人線分支；main 上的副本由 Repo Steward 從分支單向同步，main 不改。
+OWNED_SKILLS=(
+  ".claude/skills/resume-craft/"
+  ".claude/skills/resume-review-panel/"
+  ".claude/skills/portfolio-site/"
+)
 
 allow() { exit 0; }
 
@@ -60,10 +68,13 @@ esac
 case "$rel" in
   "$WRITABLE_PREFIX"*) allow ;;
 esac
+for p in "${OWNED_SKILLS[@]}"; do
+  case "$rel" in "$p"*) allow ;; esac
+done
 
-reason="邊界限制：這條分支（${branch}）是個人成長／履歷 session，對 repo 內的產出是**唯讀**的，只能寫 ${WRITABLE_PREFIX} 底下的檔案。\
+reason="邊界限制：這條分支（${branch}）是個人成長／履歷 session，對 repo 內的產出是**唯讀**的，只能寫 ${WRITABLE_PREFIX} 與個人線自有 skill（resume-craft／resume-review-panel／portfolio-site）底下的檔案。\
 被擋下的路徑：${rel}。\
-需要改動 career/ 以外的東西（skill、wiki、CLAUDE.md、規格書、分析產出）時，不要自己動手——把需求寫進 career/_requests-to-main.md，由主幹管理 session（Repo Steward）判斷後統一施作。\
+需要改動以上範圍以外的東西（其他 skill、wiki、CLAUDE.md、規格書、分析產出）時，不要自己動手——把需求寫進 career/_requests-to-main.md，由主幹管理 session（Repo Steward）判斷後統一施作。\
 讀取不受限制：要引用任何產出當職能證據，直接 Read 即可。"
 
 jq -nc --arg r "$reason" '{
