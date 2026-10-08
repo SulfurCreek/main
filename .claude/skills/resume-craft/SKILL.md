@@ -160,7 +160,7 @@ description: >
 3. 取入口的 Profile Snapshot／Positioning → 寫 Summary/Headline；學歷證照取 `wiki/education-certifications.md`。
 4. 遇到 `〔待補數據〕`：先問使用者，**一次只問一題**，優先順序是商業影響 → 規模 → 方法／工具；拿不到就保留標記，不要編。
 5. 依目標 JD 與市場版本選範本、客製 top-third。
-6. 依 [`references/anti-ai-ats.md`](references/anti-ai-ats.md) 掃禁用詞與破折號；空泛條目先做 CAR 盤問（Context／Action／Result），問不到照實寫過程，不補數字。
+6. 依 [`references/anti-ai-ats.md`](references/anti-ai-ats.md) 掃禁用詞與破折號；空泛條目先做 CAR 盤問（Context／Action／Result），問不到照實寫過程，不補數字；最後依 §6（V4 防禦型規則：職稱包裝、量級錨定、RACR、剔除弱訊號）做毒性稽核。與事實衝突時以事實為準。
 7. 跑下方檢查清單。
 
 ---
