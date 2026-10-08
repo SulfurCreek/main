@@ -15,7 +15,7 @@ description: >
 # resume-craft — 個人履歷／作品集優化（大企業標準）
 
 把使用者的職能與經歷，轉成**過得了 ATS（含 AI/LLM 掃描）、6 秒內打中招募者、且不浮誇**的履歷與作品集。
-本 skill 是證據庫的下游：`career/competency-framework.md`（wiki 入口）＋ `career/wiki/` 分頁存「證據」，
+本 skill 是證據庫的下游：`career/library/`（**使用者確認過的現行事實與裁定，衝突時最優先**）→ `career/competency-framework.md`（wiki 入口）＋ `career/wiki/` 分頁存「證據」，
 本 skill 是「把證據變成履歷的方法」。
 
 ## 🗺️ 任務路由 / Task routing
@@ -153,7 +153,8 @@ description: >
 
 ## 從職能框架產出
 
-以 `career/competency-framework.md`（**wiki 入口**）為唯一證據源，依其路由表只載入需要的 `career/wiki/` 分頁：
+先讀 `career/library/decisions.md`＋對應 `facts-*.md`（現行事實；與 wiki 衝突以 library 為準，審稿對照 `superseded.md`），
+再以 `career/competency-framework.md`（**wiki 入口**）依其路由表只載入需要的 `career/wiki/` 分頁：
 
 1. 取 `wiki/resume-extract.md`（action+scope+impact 條目）作為 bullet 草稿基底。
 2. 取 `wiki/F01…F15-*.md` → 映射到上方叢集表，挑 5–7 個最相關的。
