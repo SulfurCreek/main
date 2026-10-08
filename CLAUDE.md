@@ -77,10 +77,12 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
    **HackMD 文件 session** 管 HackMD 規格書內容與 `notes/` 快取。兩邊不動對方主場檔案；
    skill 內容與 HackMD 規格衝突時**以 HackMD 為準**，回頭修 skill。
 1. **新 session 一律從最新 `main` 開分支**。開工第一件事 `git fetch origin main` 確認基準點，繼承最新路由表＋全部 skill。
-   - **例外：個人成長／履歷 session**（`claude/happy-lamport-ljis8c`，側欄「Career move function definition」）
+   - **例外：個人成長／履歷 session**（`claude/happy-lamport-ljis8c`，側欄「Career Move」）
      是**唯讀**角色——全 repo 可讀（產出就是它的職能證據來源），但**只能寫 `career/`**。
      它要改 `career/` 以外的任何東西，一律寫進 `career/_requests-to-main.md` 請主幹施作，不自己動手。
+     **例外中的例外（2026-10-08 使用者裁示）**：個人線自有 skill `resume-craft`／`resume-review-panel`／`portfolio-site` 跟 1111 主線無關，**擁有權歸個人線分支**——Career Move 自己改、自己推到該分支；main 上的副本由 Repo Steward 從分支單向同步（`git checkout origin/claude/happy-lamport-ljis8c -- <三個目錄>`），main 不直接改這三個目錄。
      完整規則見 `career/CLAUDE.md`〈硬規則一〉；護欄見 `scripts/guard_career_scope.sh`（只在該分支生效的 PreToolUse hook）。
+     **事實來源**：使用者提供過的資料一律收在該分支 `career/library/`（現行事實、裁定、已推翻說法、待確認），寫履歷前先讀。
    - **例外：線框圖助手**（側欄「Wireframe helper v2」）可直接推 `main`，但**只能寫 `wireframe-site/<slug>/**` 與 `wireframe-site/index.html` 的 `PAGES` 區**；上線前須使用者核可並去識別化（網址公開）。規則見 `lofi-wireframer/references/publish-to-site.md`。
      **同一分支另有「作品集網站助手」session**，只寫 `career/site/`；兩者的目錄所有權、交接流程、git 規則見 `wiki/personal_line_collab.md`。
 2. **共用資產唯一變更入口＝主幹管理 session**：`CLAUDE.md`／`.claude/skills/`／`.claude/agents/`／`wiki/`／`scripts/`／`.claude_index.md`／`.claude/settings.json` 只由主幹管理 session 修改。其他 session 需要改共用檔時，在自己的 PR 描述註明「請主幹對照吸收」，**不要直接改**——直接改必然跟主幹撞衝突，且會被主幹版本覆蓋。

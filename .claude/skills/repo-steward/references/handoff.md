@@ -55,6 +55,11 @@
 * **不要 force-push**，不要整支 `git merge` 老分支（分岔規模動輒 100+ commit，衝突成本遠大於選擇性搬運）。
 * `career/` 是使用者的個人職能框架，2026-08-31 經明確同意才併入（`resume-craft` skill 依賴它）。
   已做過 secret 掃描。不要再對它做結構性改動。
+  ⚠️ main 上的 `career/` 是 2026-09-16 的舊快照，現行版在 `claude/happy-lamport-ljis8c`（含 `career/library/` 現行事實庫）。查 career 事實要讀分支，不讀 main。
+* **個人線自有 skill（2026-10-08 起）**：`resume-craft`／`resume-review-panel`／`portfolio-site` 擁有權在個人線分支，
+  Career Move 自己改自己推。main 不直接改；定期（或使用者說「同步個人線 skill」時）單向同步：
+  `git fetch origin claude/happy-lamport-ljis8c && git checkout origin/claude/happy-lamport-ljis8c -- .claude/skills/resume-craft .claude/skills/resume-review-panel .claude/skills/portfolio-site`，
+  再更新 `.claude_index.md` 對應列的變更摘要後 commit。
 
 ## 四、兩個 session 的交界
 
