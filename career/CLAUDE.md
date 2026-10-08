@@ -87,6 +87,7 @@ it is a shared company space and the leak would be irreversible.*
 | `HANDOFF.md` | **新 session 開工先讀**：角色邊界、慣例、完整檔案清單、未完成事項 |
 | `competency-framework.md` | **wiki 入口**：定位、Profile Snapshot、路由表、F1–F15 總覽 |
 | `wiki/` | 職能分頁（`F01`–`F15`）、旗艦專案、履歷摘要、學歷證照、證據頁、PM 語彙對照、缺口盤點 |
+| `drafts/` | 履歷工作流程中間產物（職能清單、證據表、essay、去 AI 感、審查），每版一個資料夾 |
 | `104/` | 104 履歷工作區；現行版見 `104/README.md` 標示，舊版在 `104/archive/` |
 | `style/` | 中文語氣（`resume-voice-zh.md`）、去 AI 感＋ATS（`anti-ai-ats.md`）、PM 履歷最佳實務 |
 | `letters/` | 求職信、素材庫（`story-bank.md`）、投遞紀錄 |
