@@ -31,3 +31,8 @@
 - **不推測**：缺資料就留在 [`open-questions.md`](open-questions.md)，產出裡標〔待補〕。
 - **只收使用者提供／確認的事**。session 自己的推論、建議寫法不進 library（放 `style/` 或 review 檔）。
 - 原始資料檔（Numbers、Excel、截圖、簡報）**不進 repo**，只記萃取後的數字與出處描述。
+
+## 稽核紀錄
+
+- **2026-10-08 第一次稽核**（使用者指出交付鏈與技術素養「早就提供過」）：重建時只收了 10/04 之後對話中的更正，**漏收** `competency-framework.md`、F01、F02、F05、F06、F07、F15、`resume-extract.md`、`prior-roles.md`（舊履歷）、`104/resume-104.md` §6 裡的既有能力與方法。已補進 `facts-1111.md` §4、`facts-prior.md`〈方法與能力〉、`profile.md` §4。
+- **之後規則**：library 不只收「更正」，也要收「使用者提供過的能力、方法、產出物」；每次重建或大改後，對照 `competency-framework.md` 與 F01–F15 檢查一次覆蓋。

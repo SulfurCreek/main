@@ -18,7 +18,7 @@
 | 專案管理：Kanban 看板推進瀑布式開發；艾森豪矩陣排先後；主持 Daily Stand-up 與 Retrospective | **不是正式 Scrum**，不寫 Scrum；站會／回顧頻率〔待補〕 | 2026-10-05 使用者確認｜F08、`wiki/pm-vocabulary-map.md` #21 |
 | 優先級制度定到 P0–P5，實際只用到 P3 → 履歷寫 P0–P3 | — | 2026-10-05 使用者確認｜F08 |
 
-| 個人標準交付流程：User Journey Map、User Story、Use Case、SA、Flowchart／Sequence Diagram、Wireframe、與 UI/UX 協作、Prototype（Axure RP）、Stakeholder 匯報、Spec 文件、與工程跑專案追時程、與 QA 協作（由規格推導驗收案例）、上線計畫、完整交付 | 產出物可對外寫；份數〔待補〕 | 2026-10-08 使用者口述｜F01、F02、F05、`user-journey/`、`qa-happy-path-cases` |
+| 個人標準交付流程：User Journey Map、User Story、Use Case、SA、Flowchart／Sequence Diagram、Wireframe、與 UI/UX 協作、Prototype（Axure RP）、Stakeholder 匯報、Spec 文件、與工程跑專案追時程、與 QA 協作（由規格推導驗收案例）、上線計畫、完整交付 | 產出物可對外寫；份數〔待補〕 | **早已記錄於** `competency-framework.md`（User Story → Wireframe → 規格 → 交接）、F01、F02、F05、`wiki/resume-extract.md`、`104/resume-104.md` 專長；2026-10-08 使用者重申完整順序。library 重建時漏收 |
 
 ## 2. 交付與數字
 
@@ -46,3 +46,23 @@
 | 帳號安全升級（2026/04） | 十多家廠商遭冒用 → 新裝置驗證等；使用者負責影響評估、範圍與時程、驗證解鎖流程、客服說明與回饋收斂，**不參與技術實作**；一週內依客服回饋調整 | `wiki/evidence-weekly-reports.md`、`wiki/soft-skills.md` |
 | 承攬制職缺 | 需求來自業務；先研究法規，與法務、稽核對齊後才進系統設計 | F09、F10 |
 | AI 功能 | 已上線：公司簡介生成、職缺工作說明生成、職缺匯入、AI 推薦人才等；**職缺健檢尚未上線** | 2026-10-05 使用者確認｜F04 |
+
+## 4. 方法與產出（2026-10-08 library 稽核補收；皆為既有 wiki 記錄）
+
+| 事實 | 口徑／限制 | 來源 |
+| :--- | :--- | :--- |
+| 狀態驅動的規格方法：MECE 四狀態、權限代碼建模、條件邏輯，降低 RD／QA 反工 | 一般職缺寫白話「狀態與例外寫清楚」 | F02、`wiki/resume-extract.md` |
+| UML／BPMN 建模：循序圖、活動圖、使用案例圖、BPMN | 產出物名稱可寫 | F02、`competency-framework.md` |
+| 由規格推導驗收測試案例（跨系統即時訊息第二階段 11 條，逐條回連規格章節），與 QA 共寫並管理範圍異動 | 2026/09 起 | F05、`wiki/resume-extract.md` |
+| PM／RD／QA／設計之間的樞紐；產出交接文件、功能說明頁、競品分析、跨組會議紀錄 | — | F06 |
+| 流程工具化：把規格撰寫、驗收案例寫法沉澱成可重用 skill | — | F07、F05 |
+| AI 協作系統：12 條分支、14 個常駐 session、23 個共用 skill、1 份共用規則書；SSOT、重複造輪偵測（攔截 2 次） | 對外寫「AI 協作流程」 | F15 |
+| 227 項 roadmap、P0–P3 分級、時間盒交付 | — | F08、`competency-framework.md` |
+| 負責範圍：求才（企業端）系統全模組（內部 A–M）＋求職端公司頁；HackMD 工作區 307 份文件為多人共用，只能說本人負責的範圍 | 對外不寫模組代號；撰寫份數〔待補〕 | `competency-framework.md` Profile Snapshot |
+| AI 產品線：職缺匯入、公司簡介生成、職缺工作說明生成、AI 推薦人才（職缺健檢未上線） | — | F04、Profile Snapshot |
+| 與第一線 tech support（同部門平行單位）協作 | — | Profile Snapshot |
+| 每週發布需求處理週報（30 份以上） | — | `wiki/evidence-weekly-reports.md`、`wiki/soft-skills.md` |
+
+## 5. 軟實力行為證據
+
+完整表在 `wiki/soft-skills.md`（傾聽第一線、讓同仁參與決策、預先回答 FAQ、透明認錯、跨部門說服、接手困局、帶人與委派、跨文化協作、對外夥伴、平台政策、用證據說服、持續回報），皆有對應證據，**library 視為現行可用**；與 library 其他條衝突時以 library 為準（例：CodaPay 國家寫「印尼、泰國等」）。

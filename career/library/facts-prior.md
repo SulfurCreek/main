@@ -41,3 +41,15 @@
 - 公司營收、分潤金額、IAP 營收成長 %（無資料）
 - 「JD2」這個名稱
 - 「主導 Peach／JD2／Juicy」這類把三者並列為主導的舊寫法（見 [superseded](superseded.md)）
+
+## 方法與能力（2026-10-08 library 稽核補收；來源為使用者 2022 舊履歷 PDF 與既有 wiki）
+
+| 事實 | 口徑／限制 | 來源 |
+| :--- | :--- | :--- |
+| 0→1 產品從提案、User Story、Wireframe、Prototype 到上線，用以展示架構與 user flow | — | `wiki/prior-roles.md`（舊履歷）、`wiki/resume-extract.md` |
+| 在嚴格時程下交付多次初版上線，達成可用 MVP | 無數字 | 同上 |
+| 以 growth model／AARRR 調整專案計畫 | — | F13、`wiki/prior-roles.md` |
+| 研究中國行動應用市場案例，設計召回策略降低流失 | 流失下降 %〔待補〕 | F12、`wiki/prior-roles.md` |
+| 第三方金流導入成熟產品，擔任串接與營運期單一窗口 | 與 CodaPay 同一件事 | `wiki/prior-roles.md` |
+| 使用者訪談與問卷 | 使用者確認的 104 專長；具體場次〔待補〕 | `104/resume-104.md` §6 |
+| Figma、Axure 做 wireframe／prototype（尚凡起） | — | F01 |

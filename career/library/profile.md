@@ -37,9 +37,11 @@
 ## 4. 工具
 
 - **已確認用過**：Figma、Axure RP、Notion、GA4、Trello、Excel；日常用 AI 工具整理規格與資料｜2026-10-05｜`104/resume-104.md`
-- **技術素養（使用者 2026-10-08 口述）**：Markdown、基本 HTML／CSS、基本 SA（系統分析）知識、資料庫知識、Figma wireframing、Axure prototyping、AI 技能｜2026-10-08 使用者對話
+- **技術素養（使用者 2026-10-08 列出；交付鏈部分早已記錄在 wiki，HTML／CSS、Markdown、資料庫在 career/ 內未找到先前紀錄）**：Markdown、基本 HTML／CSS、基本 SA（系統分析）知識、資料庫知識、Figma wireframing、Axure prototyping、AI 技能｜2026-10-08 使用者對話
   - AI 技能的證據：以 Claude Code 建立多分身協作與共用 skill 庫（12 條分支、23 個共用 skill，見 `wiki/F15`）；1111 AI 功能定義與驗收（F04）
   - 寫法：列在技能欄當「素養」，不寫成工程實作（decisions §1）
+- **104 專長（使用者已確認，2026-10-05 前）**：產品規格撰寫（PRD、User Story、流程圖、Wireframe）、跨系統整合與 API 契約設計、0→1 上線與 Roadmap、IAP 定價與第三方金流、數據分析與實驗設計（GA4、世代分析、對照組實驗）、**使用者訪談與問卷**、AI 功能企劃與 Claude Code 工作流｜`104/resume-104.md` §6（2026-10-08 library 稽核補收）
+  - 其中「Agile／Sprint 專案管理」與現行裁定衝突，改寫 Kanban（見 superseded「正式 Scrum」）
 - **未確認，不得寫**：Jira、Confluence、SQL
 
 ## 5. 求職條件（104 實際設定，2026-10-05）
