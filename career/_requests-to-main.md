@@ -8,4 +8,4 @@
 
 ---
 
-（目前沒有待處理請求。已施作：……、去 AI 感＋ATS 規範（主幹 `__SHA__`）。）。）
+（目前沒有待處理請求。已施作：resume-craft F1–F15、作品集雙軌、求職信、`portfolio-site`、個人線協作規則、104 履歷路由與 `tw-voice.md`、`resume-review-panel`、去 AI 感＋ATS 規範（主幹 `80bf591`）。）。）
