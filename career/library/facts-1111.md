@@ -18,6 +18,8 @@
 | 專案管理：Kanban 看板推進瀑布式開發；艾森豪矩陣排先後；主持 Daily Stand-up 與 Retrospective | **不是正式 Scrum**，不寫 Scrum；站會／回顧頻率〔待補〕 | 2026-10-05 使用者確認｜F08、`wiki/pm-vocabulary-map.md` #21 |
 | 優先級制度定到 P0–P5，實際只用到 P3 → 履歷寫 P0–P3 | — | 2026-10-05 使用者確認｜F08 |
 
+| 個人標準交付流程：User Journey Map、User Story、Use Case、SA、Flowchart／Sequence Diagram、Wireframe、與 UI/UX 協作、Prototype（Axure RP）、Stakeholder 匯報、Spec 文件、與工程跑專案追時程、與 QA 協作（由規格推導驗收案例）、上線計畫、完整交付 | 產出物可對外寫；份數〔待補〕 | 2026-10-08 使用者口述｜F01、F02、F05、`user-journey/`、`qa-happy-path-cases` |
+
 ## 2. 交付與數字
 
 | 事實 | 口徑／限制 | 來源 |

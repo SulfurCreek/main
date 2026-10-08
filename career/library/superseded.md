@@ -21,5 +21,7 @@
 | 正式 Scrum | Kanban 推進瀑布式，有站會與回顧 | 2026-10-05 | — |
 | CodaPay 是 JustDating 時期導入 | SweetRing（思維特）時期導入，JustDating 也串接 | 2026-10-08 | `wiki/F13`、`F14` 2026-10-06 段 |
 | 0→1 代表作是 Peach | JustDating 與 KOOL | 2026-10-06 | — |
-| `resume-104-import.txt`、v5.1 是最新版 | 現行版是 `resume-104-v5.2.txt`（v5.1 已移入 `104/archive/`） | 2026-10-08 | `104/README.md`（2026-10-08 已修正） |
+| `resume-104-import.txt`、v5.1、v5.2 是最新版 | 現行版是 `resume-104-v6.txt`（舊版在 `104/archive/`） | 2026-10-08 | `104/README.md`（2026-10-08 已修正） |
 | Juicy 角色未確認／協作 | Juicy 為**主導**，與 JustDating 重新上架版同一 BU | 2026-10-08 | `library/facts-prior.md` 舊列（已更新） |
+| 少用技術詞 → 不寫產出文件；「反日常勞力」不寫 user story、需求蒐集 | 少用**工程實作詞**；PM 產出物（Journey、User Story、Use Case、SA、流程圖、Wireframe、Prototype、Spec、QA 驗收、上線計畫）必須呈現（decisions §7） | 2026-10-08 | v5～v5.2、`style/anti-ai-ats.md` §6、`resume-craft/references/anti-ai-ats.md` |
+| Spearheaded（resume-craft 強動詞表）、1,279 工單／~88% 結案（resume-craft 叢集表） | 依 decisions §1；工單數用 1,857／93% | 2026-10-08 | `.claude/skills/resume-craft/SKILL.md`（本次修正） |

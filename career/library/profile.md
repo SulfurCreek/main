@@ -37,6 +37,9 @@
 ## 4. 工具
 
 - **已確認用過**：Figma、Axure RP、Notion、GA4、Trello、Excel；日常用 AI 工具整理規格與資料｜2026-10-05｜`104/resume-104.md`
+- **技術素養（使用者 2026-10-08 口述）**：Markdown、基本 HTML／CSS、基本 SA（系統分析）知識、資料庫知識、Figma wireframing、Axure prototyping、AI 技能｜2026-10-08 使用者對話
+  - AI 技能的證據：以 Claude Code 建立多分身協作與共用 skill 庫（12 條分支、23 個共用 skill，見 `wiki/F15`）；1111 AI 功能定義與驗收（F04）
+  - 寫法：列在技能欄當「素養」，不寫成工程實作（decisions §1）
 - **未確認，不得寫**：Jira、Confluence、SQL
 
 ## 5. 求職條件（104 實際設定，2026-10-05）
