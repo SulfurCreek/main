@@ -26,10 +26,17 @@ description: >
 | 1 | **盲審＋多輪＋校準** | 用 Agent 另開 context，**換模型**（寫稿者以外的模型，例如 sonnet），只給履歷文字、JD、persona 表；**不給** library、essay、改稿理由。每輪 6 份匿名亂序：待比較的版本、一份已知較差版本（對照組）、A／B／C 同儕各一。跑 **5 輪**，報告平均與波動；**差距小於波動不算進步**。對照組沒有排在後面、或 C 級同儕沒有墊底 → 這次評分不可信 | 資料包範本 `career/review-panel/runs/2026-10-09/packet-template-run1.md` |
 | 2 | **ATS 招募者搜尋排名** | 從目標職缺推導招募者會打的查詢（每職缺 3 組），把各版本分別放進 50 份同儕索引，看 Top-10 命中率與平均名次 | `scripts/ats_search.py` |
 | 2b | **ATS 解析測試** | PDF 轉回文字與原稿比對（還原率、標題、日期、亂碼、Email） | `scripts/parse_check.py` |
-| 3 | **HR 7 秒測驗** | 只給第一屏（前 600 字）給另一個小模型，回答職稱、年資、公司、產品、三個強項、要不要往下看；對照想傳達的訊息 | Agent（haiku） |
+| 3 | **HR 6 秒 F 型初篩**（v3.1） | 不再給「前 600 字」，改給 **F 型視野**：上方 3 行看全句、經歷抬頭只看前 24 字、其餘每行只看左緣 10 字（模擬眼動的 F 型掃描）。另一個模型回答：最近職稱、目前公司、年資、能不能做這份工作（依據哪一句）、6 秒內找到的 yes 理由（最多 3 個）、要不要往下看。**答錯職稱／公司／年資任一項 = 初篩不過**。同儕 C 級也跑一次，C 級應找不到 yes 理由，否則這輪不可信 | `scripts/f_scan.py --view-only`＋Agent（寫稿者以外的模型） |
+| 3b | **6 秒版面結構檢查**（v3.1） | 抬頭職稱在左、日期在前 24 字內；摘要不是求職目標；條列左緣 10 字有訊號 ≥ 60%；職責式開頭；10 年前無關經歷 | `scripts/f_scan.py` |
 | 4 | **主管模擬面試** | 盲審同時產生每份 8 題追問；逐題對照 `career/library/` 能不能作答；答不出來的條列標為面試風險 | 盲審輸出＋library |
 | 5 | **真實依據** | 104「誰看過我／被搜尋」每週紀錄＋投遞追蹤；與模擬分數衝突時以真實數據為準 | `career/career-ops/data/exposure-104.md` |
 
+- **v3.1 盲審資料包加四題（2026-10-09，依 `career/style/hr-6-second-source.md`）**：盲審輸出 JSON 另加
+  `triage`（每位候選人：6 秒內看到的職稱／公司／年資、yes 理由、往下看與否）、
+  `xyz`（篇幅最長 3 位，逐條標 `X/Y/Z` 有無與「成果／職責」）、
+  `objective`（摘要是否回答「能不能做這份工作」，是／否＋依據）、
+  `cut`（與目標職缺無關、建議刪的段落）。
+  輸出格式範本：`career/review-panel/blind-output-v3.1.md`。報告彙整：初篩通過率、平均 yes 理由數、XYZ 完整條列比例、職責條列數，5 輪平均與波動，規則同項目 1（差距小於波動不算進步）。
 - 已知限制：同儕池是短摘要，A／B 級在盲審中分不出來（2026-10-09 首輪），需補成完整長度後再當校準組。
 - 報告放 `career/review-panel/runs/<日期>/report.md`。
 
@@ -41,6 +48,7 @@ description: >
 | `career/review-panel/reviewers/hr.md` | H1–H10 人資 persona 與共通清單 |
 | `career/review-panel/reviewers/hiring-managers.md` | M1–M10 用人主管 persona 與共通清單 |
 | `career/review-panel/candidates/` | 50 份虛構同儕履歷（含 A／B／C 品質分級），當比較基準 |
+| `career/style/hr-6-second-source.md` | 6 秒篩選原文（眼動 F 型、職稱／公司／日期、XYZ、相關性刪減）；HR-I、HR-J 與初篩的依據 |
 | `scan.py`（本 skill 目錄內） | 機械掃描（數字比例、基準值、職責式條列、空泛詞、術語密度、軟實力關鍵字） |
 | `career/wiki/`、`career/wiki/soft-skills.md` | **事實的唯一來源**，用來抓誇大與遺漏 |
 
@@ -68,7 +76,8 @@ python3 .claude/skills/resume-review-panel/scan.py --pool career/review-panel/ca
 規則：
 - 只能根據 persona 的「先看哪裡、必要條件、紅旗」判斷，不要每位都講一樣的話。
 - 扣分點必須**引用履歷原句**；不能引用就不能扣分。
-- **v2 共通清單**：除了 persona 本身的 7 項（人資）或 6 項（主管），每位審查者另依 `career/review-panel/reviewers/*.md` 的〈共通審查清單 v2〉逐項檢查（人資 HR-A…HR-H、主管 HM-A…HM-H，含詳略校準），扣分時寫出對應編號。
+- **v2 共通清單**：除了 persona 本身的 7 項（人資）或 6 項（主管），每位審查者另依 `career/review-panel/reviewers/*.md` 的〈共通審查清單 v2〉逐項檢查（人資 HR-A…HR-J、主管 HM-A…HM-H，含詳略校準），扣分時寫出對應編號。
+- **人資一律先做 6–10 秒初篩**（2026-10-09）：persona 表的「先看哪裡（秒數）」是**通過初篩之後**的第二輪閱讀時間；第一輪每位都只看 F 型視野，初篩不過的不往下審。
 - 人資與用人主管分開彙總。
 
 ### 4. 同儕比較

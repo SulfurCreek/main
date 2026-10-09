@@ -8,14 +8,26 @@
       variants.md 格式：每個單位一段「### U01 標題」，下面每行「V01: 文字」…「V20: 文字」。
       輸出每個版本的機械分（0–40）與旗標，供人工再加 0–60 分。
   python3 resume_score.py ats <resume.txt> --jd "必備詞,..." --preferred "加分詞,..."
-      依 career/style/ats-2026-source.md 算分表算 B（關鍵字對應）、C（7 秒可讀）、D（量化），
+      依 career/style/ats-2026-source.md 算分表算 B（關鍵字對應）、C（6 秒 F 型可讀，v2）、D（量化），
       A（格式）請用 career-ops verify-ats，E（AI 實證）人工。
+
+2026-10-09 起依 career/style/hr-6-second-source.md 加：左緣 10 字訊號、職責式開頭、求職目標語、
+經歷抬頭「職稱在左、日期在 24 字內」。C 分算法改為 v2，與先前版本的 C 分不可直接比較。
 """
 import argparse, re, sys
 
 BANNED = ['致力於', '深入探討', '扮演關鍵角色', '成功實現', '無縫', '編織', 'Spearheaded', 'Architected',
           '協助', '參與', '負責', '具備良好', '熱情洋溢', '賦能']
 NUM = re.compile(r'\d')
+# 6 秒 F 型掃描（career/style/hr-6-second-source.md）
+EDGE = 10            # 招募者視線只停在每行左緣幾個字
+HEADER_CHARS = 24    # 經歷抬頭的可見寬度
+DUTY_START = re.compile(r'^(主責|負責|職責|協助|參與|處理|管理|Responsible|Managed|Worked|Assisted|Helped)')
+OBJECTIVE = ['希望', '尋求', '期望', '追求', '挑戰性', '發揮所長', '貢獻所學', '學習成長', 'Seeking', 'Objective']
+RESULT_VERB = ['主導', '上線', '降到', '提升', '成長', '0 到 1', '→', '縮短', '增加', '減少']
+TITLE_WORDS = ['經理', 'Manager', 'PM', 'Owner', '主任', '企劃', '工程師', '專員', '工讀生', 'Intern',
+               'Lead', 'Director', '總監', '主管', '顧問', 'Analyst', '分析師', '設計師']
+DATE = re.compile(r'\d{4}/\d{1,2}\s*[-–~至]\s*(?:\d{4}/\d{1,2}|迄今|至今|Present)')
 
 def kw_list(s):
     return [k.strip() for k in (s or '').split(',') if k.strip()]
@@ -34,9 +46,13 @@ def score_line(text, jd):
     else: flags.append('過長')
     if NUM.search(text): s += 10
     else: flags.append('無數字')
-    head = text[:20]
-    if NUM.search(head) or hits(head, jd): s += 8
+    edge, head = text[:EDGE], text[:20]
+    if NUM.search(edge) or hits(edge, jd + RESULT_VERB): s += 8
+    elif NUM.search(head) or hits(head, jd): s += 4; flags.append('左緣 10 字無結果')
     else: flags.append('開頭無結果或關鍵詞')
+    if DUTY_START.match(text): s -= 8; flags.append('職責式開頭')
+    obj = [o for o in OBJECTIVE if o in text]
+    if obj: s -= 6; flags.append('求職目標語:' + '/'.join(obj))
     h = hits(text, jd)
     s += min(len(h), 3) * 2 + (0 if len(h) <= 4 else -4)
     if len(h) > 4: flags.append('疑似塞詞')
@@ -72,15 +88,28 @@ def cmd_ats(path, jd, pref):
     pref_both = [k for k in pref if k.lower() in exp.lower() and k.lower() in skills.lower()]
     pref_ratio = len(pref_both) / len(pref) if pref else 1
     b = round(b * (0.6 + 0.4 * pref_ratio))
-    hook = sum(1 for x in bullets if NUM.search(x[:20]) or hits(x[:20], allkw)) / max(len(bullets), 1)
-    c = round(20 * hook)
-    numr = sum(1 for x in bullets if NUM.search(x)) / max(len(bullets), 1)
-    d = 20 if numr >= 0.6 else round(20 * numr / 0.6)
+    nb = max(len(bullets), 1)
+    hook = sum(1 for x in bullets if NUM.search(x[:20]) or hits(x[:20], allkw)) / nb
+    edge = sum(1 for x in bullets if NUM.search(x[:EDGE]) or hits(x[:EDGE], allkw + RESULT_VERB)) / nb
+    lines = [l.strip() for l in exp.split('\n學歷')[0].split('\n')]   # 抬頭只看工作經歷，不含學歷
+    heads = [l for l in lines if '｜' in l and DATE.search(l)]
+    head_ok = [h for h in heads if any(w in h.split('｜')[0] for w in TITLE_WORDS) and DATE.search(h).start() < HEADER_CHARS]
+    head_r = len(head_ok) / len(heads) if heads else 0
+    first = ' '.join([l for l in lines if l][:3])
+    summ = text.split('專業摘要')[1].split('工作經歷')[0] if '專業摘要' in text else ''
+    obj = [o for o in OBJECTIVE if o in summ]
+    c = round(8 * edge + 4 * hook + 4 * head_r + (2 if not obj else 0) + (2 if any(w in first for w in TITLE_WORDS) else 0))
+    numr = sum(1 for x in bullets if NUM.search(x)) / nb
+    duty = [x for x in bullets + lines if DUTY_START.match(x)]
+    d = max((20 if numr >= 0.6 else round(20 * numr / 0.6)) - 2 * len(duty), 0)
     print(f'B 關鍵字對應 {b}/25（覆蓋 {cov:.0%}；加分詞同時在技能與經歷 {len(pref_both)}/{len(pref)}）')
     print(f'  缺：{"、".join(k for k in allkw if k not in hits(text, allkw)) or "無"}')
     print(f'  加分詞只出現一處：{"、".join(k for k in pref if k not in pref_both) or "無"}')
-    print(f'C 7 秒可讀 {c}/20（前 20 字有結果或關鍵詞的條列 {hook:.0%}）')
-    print(f'D 量化影響 {d}/20（含數字條列 {numr:.0%}）')
+    print(f'C 6 秒可讀 v2 {c}/20（左緣 {EDGE} 字有訊號 {edge:.0%}；前 20 字 {hook:.0%}；'
+          f'抬頭職稱在左且日期在 {HEADER_CHARS} 字內 {len(head_ok)}/{len(heads)}；'
+          f'摘要求職目標語 {"、".join(obj) or "無"}）')
+    print(f'D 量化影響 {d}/20（含數字條列 {numr:.0%}；職責式開頭 {len(duty)} 處，每處 -2）')
+    for x in duty: print(f'  職責式：{x[:24]}')
     print('A 格式請用 career-ops verify-ats；E AI 實證人工給分。')
 
 if __name__ == '__main__':

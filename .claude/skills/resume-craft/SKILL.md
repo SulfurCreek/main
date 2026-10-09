@@ -26,11 +26,11 @@ description: >
 | :-- | :--- | :--- | :--- |
 | 1 | 調用職能與職缺 | 讀 `career/library/`、F01–F15、交付鏈 14 項；讀目標 JD（`career/104/jd-digest-A.md`），列必備詞與加分詞；職缺進 career-ops pipeline | 本檔「從職能框架產出」、career-ops |
 | 2 | 蒐集證據 | 每職能一張證據表；缺口一次問一題，答案先寫 library | `superseded.md` 比對 |
-| 3 | 每項目寫成小 essay | 150–400 字：處境、決定、做法與產出文件、協作、結果、角色邊界；對照 JD 加分條件；拆得出 X 結果＋Y 指標＋Z 做法；AI 要寫怎麼用、產出什麼 | `career/style/ats-2026-source.md` 洞見 |
-| 4 | 精簡×20 版本 | 每個單位（摘要、每條條列、技能、自傳每段）寫 20 版，機械分＋人工分，**只留最高分**，組裝成最完整履歷 | `scripts/resume_score.py variants`、本檔 Bullet 公式、`tw-voice.md` |
+| 3 | 每項目寫成小 essay | 150–400 字：處境、決定、做法與產出文件、協作、結果、角色邊界；對照 JD 加分條件；**文末標出 X 結果／Y 指標／Z 做法**；AI 要寫怎麼用、產出什麼 | `career/style/ats-2026-source.md`、`hr-6-second-source.md` |
+| 4 | 精簡×20 版本 | 每個單位（摘要、每條條列、技能、自傳每段）寫 20 版，機械分＋人工分，**只留最高分**，組裝成最完整履歷；組裝時套 6 秒版面（抬頭職稱在左、相關性刪減） | `scripts/resume_score.py variants`、本檔 Bullet 公式與〈6 秒版面〉、`tw-voice.md` |
 | 5 | 去 AI 感 | 讀者角度逐句標 AI 腔、整齊過頭、通用句、無來源感受 | `anti-ai-ats.md`、`career/style/resume-voice-zh.md` |
-| 6 | HR 檢測 | 人資 H1–H10＋HR-A…H＋作廢比對＋覆蓋核對 | skill `resume-review-panel` |
-| 7 | **ATS 檢測** | 依算分表 100 分：格式、關鍵字對應（不塞詞）、7 秒可讀、量化、AI 實證 | `career/style/ats-2026-source.md`、career-ops `verify-ats`、`scripts/resume_score.py ats` |
+| 6 | HR 檢測 | **先做 6 秒 F 型初篩**（另一個模型只看 F 型視野），再做人資 H1–H10＋HR-A…J＋作廢比對＋覆蓋核對 | skill `resume-review-panel`（`scripts/f_scan.py`） |
+| 7 | **ATS 檢測** | 依算分表 100 分：格式、關鍵字對應（不塞詞）、6 秒可讀（C v2）、量化、AI 實證 | `career/style/ats-2026-source.md`、career-ops `verify-ats`、`scripts/resume_score.py ats` |
 | 8 | 用人主管檢測 | M1–M10＋HM-A…H（含交付鏈）；順序 HR → ATS → 主管 | skill `resume-review-panel` |
 | 9 | 定版 | 閘門全過（含 ATS ≥ 75）＋使用者核可措辭，才產 txt／PDF、歸檔、更新指標；career-ops `verify-cv-facts` | `workflow.md` 步驟 9 |
 
@@ -49,6 +49,7 @@ description: >
 | 投遞硬技術公司（NVIDIA-tier）| [`references/reverse-xyz.md`](references/reverse-xyz.md) | `wiki/flagship-e1.md`、`wiki/F02`、`wiki/F10` |
 | 依 JD 客製／ATS／HR 用 AI 掃履歷 | [`references/ats-and-ai-screening.md`](references/ats-and-ai-screening.md) | `wiki/resume-extract.md` |
 | 作品集 case study | [`references/portfolio.md`](references/portfolio.md)（含市場路由、NDA 去識別化）＋ 範本：外商／英文 [`assets/portfolio-case-study.md`](assets/portfolio-case-study.md)；台灣本土／新創 [`assets/portfolio-case-study-tw.md`](assets/portfolio-case-study-tw.md) | `portfolio/e1-cross-system-messaging.md`（範例）。**內部版輸出位置固定在 `career/portfolio/`；要上網站的篇章另產對外版 `career/portfolio/public/`（規則見 `references/portfolio.md`〈對外版〉）；career 內容禁止寫入 HackMD**（`career/CLAUDE.md` 硬規則二）。 |
+| 6 秒篩選、F 型版面、XYZ、相關性刪減（排版與組裝時必讀）| `career/style/hr-6-second-source.md`（原文＋與既有裁定的衝突處理）＋本檔〈6 秒版面〉 | — |
 | 去 AI 感、ATS 格式、CAR 盤問（交付前必做）| [`references/anti-ai-ats.md`](references/anti-ai-ats.md)：掃禁用詞與破折號、空泛條目先停下來問 Context／Action／Result，問不到不補數字 |
 | 撰寫中文履歷／自傳／專案說明（語氣與誇大護欄）| [`references/tw-voice.md`](references/tw-voice.md) | 數字與事實只取自 `wiki/` |
 | 產生／填寫／驗證 **104 履歷** | 先讀 `career/104/README.md`（`fields-spec.md` 欄位規格、`resume-104.md` 內容、現行版見 README 標示（以 README 為準，不要寫死版本號））；**Cake Resume 另案，不得套用 104 的欄位規格與字數上限**；語氣依 [`references/tw-voice.md`](references/tw-voice.md) | 這些檔案在個人線分支 `claude/happy-lamport-ljis8c` 的 `career/104/` |
@@ -99,13 +100,27 @@ description: >
 | 6 | （選）作品集連結、發表、演講 | （選）自傳、作品集連結 | ATS 版不放自傳 |
 
 > **Top-third 法則**：招募者前 6 秒以 F 型掃描第一頁上三分之一；最強的 2–3 個差異點**必須**在那裡。
-> **長度**：中階 1 頁、資深至多 2 頁；**絕不 3 頁**。
+> **長度**：中階 1 頁、資深至多 2 頁；**絕不 3 頁**。資深 2 頁時，第一屏（約前 1,400 字）必須單獨就能通過 6 秒篩選。
+
+### 6 秒版面（2026-10-09，依 `career/style/hr-6-second-source.md`）
+
+招募者初篩 6–10 秒、不讀只掃，視線走 F 型集中在左緣，先找**最近職稱、目前公司、起訖日期**，在找「快速說 yes 的理由」。
+
+1. **經歷抬頭一律 `職稱｜公司｜起訖`**，職稱在最左；整行控制在日期落在前 24 字內（公司名用簡稱、上市櫃代號移到範圍行）。正式職稱與對外職稱不同時，抬頭放 `decisions.md` §3 允許的對外寫法，正式職稱放括號或第二行。
+2. **摘要不是求職目標**：不寫「希望／尋求／期望／發揮所長」；第一句回答「能不能做這份工作」（職稱＋年資＋最強一項成果）。
+3. **左緣 10 字**：每條條列的前 10 字要有結果數字、成果動詞（主導、上線、降到）或 JD 詞；目標 ≥ 60% 條列做到。
+4. **範圍行**（抬頭下一行的職務範圍）不以「主責／負責」開頭，改寫成「規模＋角色」（例：`6.6 萬家付費廠商的企業端招募系統，向副總匯報、帶 2 名企劃`）。
+5. **相關性刪減**：依目標職缺，刪掉 10 年前結束、與職缺無關的經歷（例：工讀）；兵役等解釋空窗的行保留。104 表單是否刪由使用者決定。
+6. **自評**：`python3 .claude/skills/resume-review-panel/scripts/f_scan.py <resume.txt> --jd "<JD 詞>"` 看 F 型視野與抬頭檢查。
 
 ---
 
 ## Bullet 公式
 
-**[強動詞] + [具體任務] + [量化結果]**，一條一個成就，1–3 行。可套 **STAR** 或 **SOAR**（多一個「阻礙」、凸顯張力，
+**[強動詞] + [具體任務] + [量化結果]**，一條一個成就，1–3 行。
+等同 Google 招募團隊的 **XYZ：做到 X（結果）、以 Y 衡量（指標）、靠 Z 做到（做法）**。寫完每條自問三格是否都有；缺 Y 寫「指標待補」問使用者，不補數字。
+**職責不是成果**：「負責／主責／協助／參與」開頭的句子只說明該做什麼，不說明做到什麼，一律改寫。
+**交付鏈例外**（`library/decisions.md` §7）：產出物名稱優先放進 Z；每段經歷**至多 1 條**只有做法的條列，且不排在該段第一條。可套 **STAR** 或 **SOAR**（多一個「阻礙」、凸顯張力，
 適合跨系統整合／代碼整併／跨部門協調的素材）。過去式寫過去職位、現在式寫現職。
 
 | 弱 | 強（PM 適用）|
@@ -213,6 +228,8 @@ description: >
 - [ ] **市場版本已選**（ATS-EN／繁中／雙語），用對應範本；ATS 版已去照片與個資。
 - [ ] **ATS 格式**：單欄、標準字體、標準標題、無圖表 icon、輸出 PDF/.docx。
 - [ ] **Top-third 衝擊**：Summary + 前 2–3 bullet 鏡射 JD、6 秒看得到 2–3 個差異點。
+- [ ] **6 秒版面**：抬頭 `職稱｜公司｜起訖` 且日期在前 24 字內；摘要無求職目標語；左緣 10 字有訊號 ≥ 60%；範圍行不以職責開頭；已做相關性刪減（`f_scan.py` 全 ✅ 或有理由）。
+- [ ] **XYZ**：每條拆得出 X／Y／Z；職責式開頭 0 條；只有做法的條列每段 ≤ 1 且不在第一條。
 - [ ] **Bullet 公式**：每條 = 強動詞 + 任務 + 量化結果，1–3 行。
 - [ ] **量化覆蓋**：≥ 80% bullet 有數字；無硬數據處用代理指標。
 - [ ] **職能叢集**：5–7 叢集 + 證據點，已映射 F1–F15。
