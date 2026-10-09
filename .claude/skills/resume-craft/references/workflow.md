@@ -14,6 +14,7 @@
 
 ## 步驟 1：調用職能
 
+- **JD 全文已由使用者提供**：先讀 `career/104/jd-digest-A.md`（A 級 15 筆摘要），需要其他筆或全文時查使用者上傳檔（51 筆 md）；**不要再向使用者索取 JD**。
 - **必用職缺**：讀 `career/104/jobs-2026-10.md`（分級）與 `career/104/analysis.md`（46 份 JD 的需求頻率）或使用者貼的 JD；產出「JD 需求 → 履歷落點」對照，決定主版或某類職缺版（支付、B 端 SaaS、AI、電信）。
 - **必用 career-ops**：目標職缺 URL 寫進 `career/career-ops/data/pipeline.md`；`CAREER_OPS_ROOT=/home/user/main/career/career-ops`，先跑 `npm run doctor`（在 `/home/user/career-ops`）。
 
