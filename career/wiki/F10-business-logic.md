@@ -24,3 +24,5 @@ truth that precedes specs and engineering. This is upstream of F2: clarify the b
 ---
 
 **相關分頁 / Related**：[F2 功能規格與系統思維（下游）](F02-spec-systems-thinking.md) ・ [F4 AI 產品企劃（規則→AI 演進）](F04-ai-product.md) ・ [旗艦專案 E.1（代碼衝突仲裁）](flagship-e1.md)
+
+- **業務邏輯 → 工程語言：人才搜尋邏輯（2026-10-09 使用者提供）**：至少三次協助工程師調整招募平台的人才搜尋邏輯。使用者不寫 SQL，由使用者先把業務想要的搜尋結果與規則講清楚，借助 AI 轉成工程師看得懂的條件描述，再與工程確認、驗收。具體三次與結果〔待補，見 `library/open-questions.md` Q14〕。資深度訊號：能把模糊的業務需求翻成可實作、可驗收的規則，並善用 AI 縮短溝通成本。

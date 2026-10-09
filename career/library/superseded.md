@@ -25,3 +25,4 @@
 | Juicy 角色未確認／協作 | Juicy 為**主導**，與 JustDating 重新上架版同一 BU | 2026-10-08 | `library/facts-prior.md` 舊列（已更新） |
 | 少用技術詞 → 不寫產出文件；「反日常勞力」不寫 user story、需求蒐集 | 少用**工程實作詞**；PM 產出物（Journey、User Story、Use Case、SA、流程圖、Wireframe、Prototype、Spec、QA 驗收、上線計畫）必須呈現（decisions §7） | 2026-10-08 | v5～v5.2、`style/anti-ai-ats.md` §6、`resume-craft/references/anti-ai-ats.md` |
 | Spearheaded（resume-craft 強動詞表）、1,279 工單／~88% 結案（resume-craft 叢集表） | 依 decisions §1；工單數用 1,857／93% | 2026-10-08 | `.claude/skills/resume-craft/SKILL.md`（本次修正） |
+| SQL、Jira、Confluence 一律「未確認」 | SQL：不會寫，但借助 AI 協助工程師改搜尋邏輯 ≥3 次；Jira、Confluence 仍未確認 | 2026-10-09 | `library/profile.md`、`104/analysis.md` §3 |

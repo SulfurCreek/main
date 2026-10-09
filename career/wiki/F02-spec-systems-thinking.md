@@ -26,3 +26,5 @@ verify without ambiguity.*
 ---
 
 **相關分頁 / Related**：[F10 業務邏輯梳理（上游）](F10-business-logic.md) ・ [F1 產品定義全鏈路](F01-product-definition.md) ・ [F5 交付流程與品質](F05-delivery-quality.md) ・ [旗艦專案 E.1](flagship-e1.md)
+
+- **搜尋邏輯轉工程語言（2026-10-09）**：見 [F10](F10-business-logic.md)；至少三次，借助 AI，把業務邏輯轉成工程可實作的條件，非自寫 SQL。
