@@ -1,0 +1,656 @@
+{
+ "hr": {
+  "候選人A": [
+   3,
+   3,
+   4,
+   3,
+   2,
+   3,
+   3,
+   3,
+   2,
+   3
+  ],
+  "候選人B": [
+   4,
+   4,
+   5,
+   4,
+   4,
+   4,
+   4,
+   4,
+   4,
+   4
+  ],
+  "候選人C": [
+   2,
+   2,
+   1,
+   1,
+   2,
+   2,
+   2,
+   1,
+   2,
+   1
+  ],
+  "候選人D": [
+   3,
+   3,
+   3,
+   3,
+   3,
+   4,
+   3,
+   2,
+   3,
+   2
+  ],
+  "候選人E": [
+   4,
+   4,
+   5,
+   4,
+   4,
+   4,
+   4,
+   4,
+   4,
+   4
+  ],
+  "候選人F": [
+   4,
+   4,
+   4,
+   4,
+   4,
+   3,
+   4,
+   4,
+   4,
+   4
+  ]
+ },
+ "hm": {
+  "候選人A": [
+   3,
+   2,
+   4,
+   4,
+   3,
+   2,
+   2,
+   3,
+   5,
+   3
+  ],
+  "候選人B": [
+   4,
+   4,
+   3,
+   4,
+   5,
+   4,
+   4,
+   4,
+   4,
+   4
+  ],
+  "候選人C": [
+   1,
+   2,
+   1,
+   1,
+   1,
+   1,
+   1,
+   1,
+   1,
+   1
+  ],
+  "候選人D": [
+   2,
+   3,
+   3,
+   3,
+   3,
+   3,
+   3,
+   2,
+   2,
+   3
+  ],
+  "候選人E": [
+   4,
+   4,
+   3,
+   4,
+   5,
+   4,
+   4,
+   4,
+   4,
+   4
+  ],
+  "候選人F": [
+   4,
+   4,
+   3,
+   3,
+   4,
+   4,
+   4,
+   3,
+   4,
+   4
+  ]
+ },
+ "rank_overall": [
+  "候選人B",
+  "候選人E",
+  "候選人F",
+  "候選人D",
+  "候選人A",
+  "候選人C"
+ ],
+ "pairwise_notes": "B 與 E 內容幾乎相同，B 在每份工作下的職稱、年資與成果先後更清楚，且技能與 AI／英文／UAT／SQL 類關鍵字齊全，對應 Gogolook 的 PRD、數據、AI 與英文要求最完整。",
+ "triage": {
+  "候選人A": {
+   "title": "資深產品經理",
+   "company": "某跨境電商平台（未具名）",
+   "years": "11 年（產品約 6 年）",
+   "yes_reasons": [
+    "在地化有具體例子（清真認證）",
+    "轉換率 +22% 有數字",
+    "英文流利"
+   ],
+   "read_on": "往下看"
+  },
+  "候選人B": {
+   "title": "資深產品經理 Senior PM",
+   "company": "1111 全球華人",
+   "years": "近 10 年 PM",
+   "yes_reasons": [
+    "B2B 招募平台 Product Owner",
+    "約 50 項功能、16 個需求單位",
+    "有 PRD／UAT／Claude Code 關鍵字"
+   ],
+   "read_on": "往下看"
+  },
+  "候選人C": {
+   "title": "產品經理",
+   "company": "某電信公司（未具名）",
+   "years": "9 年",
+   "yes_reasons": [
+    "電信產業",
+    "有產品經理職稱"
+   ],
+   "read_on": "略過"
+  },
+  "候選人D": {
+   "title": "資深產品經理",
+   "company": "某人力銀行（未具名）",
+   "years": "11 年",
+   "yes_reasons": [
+    "B2B 企業端產品",
+    "技能有 PRD、Jira、SQL",
+    "有 AI 職缺描述專案"
+   ],
+   "read_on": "往下看"
+  },
+  "候選人E": {
+   "title": "資深產品經理 Senior PM",
+   "company": "1111 全球華人",
+   "years": "近 10 年 PM",
+   "yes_reasons": [
+    "B2B 招募平台 Product Owner",
+    "約 50 項功能、16 個需求單位",
+    "時間 2022/08 至今清楚"
+   ],
+   "read_on": "往下看"
+  },
+  "候選人F": {
+   "title": "資深產品經理 Senior PM",
+   "company": "1111 全球華人",
+   "years": "近 10 年 PM",
+   "yes_reasons": [
+    "企業端招募系統 Product Owner",
+    "有東南亞金流與 0→1 經驗",
+    "有成果導向條列"
+   ],
+   "read_on": "往下看"
+  }
+ },
+ "objective": {
+  "候選人A": {
+   "answers_can_do": "否",
+   "evidence": "11 年，國際業務轉產品。在馬來西亞住過兩年，知道「在地化」不只是翻譯。"
+  },
+  "候選人B": {
+   "answers_can_do": "是",
+   "evidence": "主導約 50 項功能上線、對接 16 個需求單位的 B2B 招募平台 Product Owner。…每個功能從 User Journey、PRD、Prototype 到 UAT 與上線計畫都由我帶，並用自建的 Claude Code AI 協作流程寫規格、做分析。"
+  },
+  "候選人C": {
+   "answers_can_do": "否",
+   "evidence": "9 年電信加值服務經驗。"
+  },
+  "候選人D": {
+   "answers_can_do": "是",
+   "evidence": "11 年，專案經理背景，目前負責人力銀行企業端產品。"
+  },
+  "候選人E": {
+   "answers_can_do": "是",
+   "evidence": "主導約 50 項功能上線、對接 16 個需求單位的 B2B 招募平台 Product Owner。…每個功能從 User Journey、PRD、Prototype 到 UAT 與上線計畫都由我帶，並用自建的 Claude Code AI 協作流程寫規格、做分析。"
+  },
+  "候選人F": {
+   "answers_can_do": "是",
+   "evidence": "後段是 1111 人力銀行企業端招募系統的 Product Owner。2023 至 2026 年主導約 50 項功能上線，並接手停擺的系統改版、分三階段推進。擅長在舊系統與多部門需求之間排出先後，把專案準時帶到上線。"
+  }
+ },
+ "xyz": {
+  "候選人B": [
+   {
+    "bullet": "先找問題，再寫規格：User Jo",
+    "X": false,
+    "Y": false,
+    "Z": true,
+    "type": "只有做法"
+   },
+   {
+    "bullet": "主導約 50 項功能上線（20",
+    "X": true,
+    "Y": false,
+    "Z": true,
+    "type": "成果"
+   },
+   {
+    "bullet": "接手前任主管未落地的招募系統",
+    "X": true,
+    "Y": true,
+    "Z": true,
+    "type": "成果"
+   },
+   {
+    "bullet": "新增 E-mail 登入、與舊系",
+    "X": true,
+    "Y": true,
+    "Z": true,
+    "type": "成果"
+   },
+   {
+    "bullet": "實測主要競品反推配對規則，重",
+    "X": true,
+    "Y": false,
+    "Z": true,
+    "type": "成果"
+   },
+   {
+    "bullet": "需求平均處理週期 100.4",
+    "X": true,
+    "Y": true,
+    "Z": true,
+    "type": "成果"
+   },
+   {
+    "bullet": "至少 3 次：人才搜尋的邏輯",
+    "X": true,
+    "Y": false,
+    "Z": true,
+    "type": "職責"
+   },
+   {
+    "bullet": "與資料科學團隊上線 4 項 A",
+    "X": true,
+    "Y": true,
+    "Z": false,
+    "type": "職責"
+   },
+   {
+    "bullet": "Juicy 上線 6 週男性 D",
+    "X": true,
+    "Y": true,
+    "Z": true,
+    "type": "成果"
+   },
+   {
+    "bullet": "規劃並上線 KOOL 網紅媒",
+    "X": false,
+    "Y": false,
+    "Z": true,
+    "type": "職責"
+   },
+   {
+    "bullet": "設計馬來西亞 iOS 三階段",
+    "X": true,
+    "Y": true,
+    "Z": true,
+    "type": "成果"
+   },
+   {
+    "bullet": "Peach 網頁付款占比 24",
+    "X": true,
+    "Y": true,
+    "Z": true,
+    "type": "成果"
+   },
+   {
+    "bullet": "訂閱制內容 App Peach",
+    "X": true,
+    "Y": true,
+    "Z": false,
+    "type": "成果"
+   },
+   {
+    "bullet": "與最多約 10 位外國實習生",
+    "X": true,
+    "Y": true,
+    "Z": true,
+    "type": "成果"
+   },
+   {
+    "bullet": "導入東南亞金流 CodaPay",
+    "X": true,
+    "Y": false,
+    "Z": true,
+    "type": "職責"
+   },
+   {
+    "bullet": "Newegg.com 商品資訊",
+    "X": false,
+    "Y": false,
+    "Z": true,
+    "type": "職責"
+   }
+  ],
+  "候選人E": [
+   {
+    "bullet": "先找問題，再寫規格：User Jo",
+    "X": false,
+    "Y": false,
+    "Z": true,
+    "type": "只有做法"
+   },
+   {
+    "bullet": "主導約 50 項功能上線（20",
+    "X": true,
+    "Y": false,
+    "Z": true,
+    "type": "成果"
+   },
+   {
+    "bullet": "接手前任主管未落地的招募系統",
+    "X": true,
+    "Y": true,
+    "Z": true,
+    "type": "成果"
+   },
+   {
+    "bullet": "新增 E-mail 登入、與舊系",
+    "X": true,
+    "Y": true,
+    "Z": true,
+    "type": "成果"
+   },
+   {
+    "bullet": "實測主要競品反推配對規則，重",
+    "X": true,
+    "Y": false,
+    "Z": true,
+    "type": "成果"
+   },
+   {
+    "bullet": "需求平均處理週期 100.4",
+    "X": true,
+    "Y": true,
+    "Z": true,
+    "type": "成果"
+   },
+   {
+    "bullet": "至少 3 次：人才搜尋的邏輯",
+    "X": true,
+    "Y": false,
+    "Z": true,
+    "type": "職責"
+   },
+   {
+    "bullet": "與資料科學團隊上線 4 項 A",
+    "X": true,
+    "Y": true,
+    "Z": false,
+    "type": "職責"
+   },
+   {
+    "bullet": "Juicy 上線 6 週男性 D",
+    "X": true,
+    "Y": true,
+    "Z": true,
+    "type": "成果"
+   },
+   {
+    "bullet": "規劃並上線 KOOL 網紅媒",
+    "X": false,
+    "Y": false,
+    "Z": true,
+    "type": "職責"
+   },
+   {
+    "bullet": "設計馬來西亞 iOS 三階段",
+    "X": true,
+    "Y": true,
+    "Z": true,
+    "type": "成果"
+   },
+   {
+    "bullet": "Peach 網頁付款占比 24",
+    "X": true,
+    "Y": true,
+    "Z": true,
+    "type": "成果"
+   },
+   {
+    "bullet": "訂閱制內容 App Peach",
+    "X": true,
+    "Y": true,
+    "Z": false,
+    "type": "成果"
+   },
+   {
+    "bullet": "與最多約 10 位外國實習生",
+    "X": true,
+    "Y": true,
+    "Z": true,
+    "type": "成果"
+   },
+   {
+    "bullet": "導入東南亞金流 CodaPay",
+    "X": true,
+    "Y": false,
+    "Z": true,
+    "type": "職責"
+   },
+   {
+    "bullet": "Newegg.com 商品資訊",
+    "X": false,
+    "Y": false,
+    "Z": true,
+    "type": "職責"
+   }
+  ],
+  "候選人F": [
+   {
+    "bullet": "接手停擺的招募系統改版，拆成",
+    "X": true,
+    "Y": true,
+    "Z": true,
+    "type": "成果"
+   },
+   {
+    "bullet": "為與舊系統及既有商業流程相容",
+    "X": true,
+    "Y": true,
+    "Z": true,
+    "type": "成果"
+   },
+   {
+    "bullet": "2023/12 至 2026/",
+    "X": true,
+    "Y": true,
+    "Z": true,
+    "type": "成果"
+   },
+   {
+    "bullet": "需求平均處理週期由 100.",
+    "X": true,
+    "Y": true,
+    "Z": true,
+    "type": "成果"
+   },
+   {
+    "bullet": "維運工單服務過的 1,279",
+    "X": true,
+    "Y": true,
+    "Z": false,
+    "type": "成果"
+   },
+   {
+    "bullet": "實測主要競品反推配對規則，重",
+    "X": true,
+    "Y": false,
+    "Z": true,
+    "type": "成果"
+   },
+   {
+    "bullet": "2026/04 廠商帳號遭冒用",
+    "X": true,
+    "Y": false,
+    "Z": true,
+    "type": "職責"
+   },
+   {
+    "bullet": "與法務、稽核對齊勞基法認定後",
+    "X": true,
+    "Y": false,
+    "Z": true,
+    "type": "職責"
+   },
+   {
+    "bullet": "與資料科學團隊上線公司簡介生",
+    "X": true,
+    "Y": false,
+    "Z": true,
+    "type": "職責"
+   },
+   {
+    "bullet": "主導 Juicy 與 JustD",
+    "X": true,
+    "Y": true,
+    "Z": true,
+    "type": "成果"
+   },
+   {
+    "bullet": "規劃並上線 KOOL 網紅媒",
+    "X": false,
+    "Y": true,
+    "Z": true,
+    "type": "職責"
+   },
+   {
+    "bullet": "設計馬來西亞 iOS 三階段",
+    "X": true,
+    "Y": true,
+    "Z": true,
+    "type": "成果"
+   },
+   {
+    "bullet": "推動 App 內購轉向網頁付款",
+    "X": true,
+    "Y": true,
+    "Z": true,
+    "type": "成果"
+   },
+   {
+    "bullet": "訂閱制內容 App Peach",
+    "X": true,
+    "Y": true,
+    "Z": false,
+    "type": "成果"
+   },
+   {
+    "bullet": "與最多約 10 位外國實習生",
+    "X": true,
+    "Y": true,
+    "Z": true,
+    "type": "成果"
+   },
+   {
+    "bullet": "導入東南亞金流 CodaPay",
+    "X": true,
+    "Y": false,
+    "Z": true,
+    "type": "職責"
+   },
+   {
+    "bullet": "Newegg.com 商品資訊",
+    "X": false,
+    "Y": false,
+    "Z": true,
+    "type": "職責"
+   }
+  ]
+ },
+ "cut": {
+  "候選人B": [
+   "台灣新蛋｜翻譯工讀生",
+   "Markdown、基本 HTML／CSS、資料庫概念",
+   "證照：AWS Certified Cloud Practitioner",
+   "為什麼想換環境（「能做的我已經做到」）",
+   "自傳「出錯的時候」中的即時通致歉段"
+  ],
+  "候選人E": [
+   "翻譯工讀生｜台灣新蛋",
+   "Markdown、基本 HTML／CSS、資料庫概念",
+   "證照：AWS Certified Cloud Practitioner",
+   "為什麼想換環境（「能做的我已經做到」）"
+  ],
+  "候選人F": [
+   "台灣新蛋｜翻譯工讀生",
+   "證照：AWS Certified Cloud Practitioner",
+   "為什麼想換環境（「在產品方針不變的前提下…」）",
+   "工具：Notion"
+  ]
+ },
+ "interview_questions": {
+  "候選人B": [
+   "1,857 張需求單與 100.4 → 30.9 天的週期，是怎麼定義起訖並計算的？排除了哪些單？",
+   "年化留存 81.2% 與全站 74.2% 是比對哪兩份名冊快照？廠商被服務與否有選樣偏誤嗎？",
+   "三階段改版第一階段離峰切換，停機 1.5 小時的回復計畫是什麼？",
+   "上千組重複 E-mail 為何不強制修改？最後處理比例與風險？",
+   "借助 AI 把業務規則轉成工程條件，具體流程與出錯時如何驗證？",
+   "這份職缺要求 B2B/B2G 與海外客戶、接近母語英語，你有直接面對海外客戶的經驗嗎？",
+   "SQL／BI 你實際獨立查詢到什麼程度？履歷只寫 GA4 與資料庫概念。",
+   "自述「多半協調與執行」想參與方向決定，Roadmap 227 項排序你的決策權在哪？"
+  ],
+  "候選人E": [
+   "約 50 項功能上線是怎麼界定一項？你本人負責比例？",
+   "需求處理週期 100.4 天降到 30.9 天，主要因素是流程還是減少需求量？",
+   "競品反推配對規則時，如何驗證新規則比舊規則好？上線後成效？",
+   "兩份名冊快照比對的年化留存，怎麼處理新增與歇業廠商？",
+   "4 項 AI 功能的驗收標準是什麼？客服測試回饋如何改規則？",
+   "Claude Code 協作流程 12 條分工、23 個 skill 實際減少多少時間？",
+   "與總部／外國團隊意見不同時，你有過英文協作的案例嗎？",
+   "防詐與風險偵測你有哪些接觸？帳號遭冒用事件中你的判斷與取捨？"
+  ],
+  "候選人F": [
+   "94% 準時的分母是哪些項目？沒排日期的呢？",
+   "近半年上線 111 項，品質與回退情況如何？",
+   "帳號遭冒用事件的根因、你統籌的升級內容、成效如何衡量？",
+   "承攬制職缺的審核分流具體規則與例外狀態有哪些？",
+   "配對規則改為上線日排序、20 天不重複，成效數據是什麼？",
+   "AI 功能你定義的驗收標準與失敗案例？",
+   "履歷技能只列 Excel、GA4，SQL／BI 能力到什麼程度？",
+   "英文工作能力除 TOEIC 外，有實際英文書面或口說協作經驗嗎？"
+  ]
+ }
+}

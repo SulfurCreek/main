@@ -1,0 +1,130 @@
+{
+"hr": {
+"候選人A": [3,3,3,3,3,3,3,3,3,3],
+"候選人B": [4,4,3,4,4,4,4,3,4,3],
+"候選人C": [2,2,2,2,2,1,2,1,2,2],
+"候選人D": [4,4,4,4,4,4,4,4,4,4],
+"候選人E": [4,4,4,4,4,4,4,4,4,4],
+"候選人F": [4,4,4,4,4,4,4,4,4,4]
+},
+"hm": {
+"候選人A": [2,2,3,4,3,2,2,3,5,2],
+"候選人B": [2,3,2,2,3,4,3,2,2,4],
+"候選人C": [1,2,1,1,1,1,1,1,1,1],
+"候選人D": [5,5,4,4,5,5,5,4,4,5],
+"候選人E": [4,4,4,4,4,4,3,3,4,3],
+"候選人F": [5,5,4,4,5,5,5,4,4,5]
+},
+"rank_overall": ["候選人D","候選人F","候選人E","候選人B","候選人A","候選人C"],
+"pairwise_notes": "D 與 F 內容近乎相同，D 摘要把規模、AI 流程與 PRD→UAT 全流程放在最前，對 Gogolook 的 PRD、UAT、AI、數據、金流需求命中最完整，且用開頭先給成果的條列排序更易掃讀；F 第一條先講方法，成果稍晚才出現。",
+"triage": {
+"候選人A": {"title": "資深產品經理", "company": "某跨境電商平台（匿名）", "years": "11年（產品約6年）", "yes_reasons": ["馬來西亞/泰國在地化", "跨國小組"], "read_on": "往下看"},
+"候選人B": {"title": "資深產品經理", "company": "某人力銀行（匿名）", "years": "11年", "yes_reasons": ["Jira、PRD 關鍵字", "專案經理轉產品", "AI 職缺描述生成"], "read_on": "往下看"},
+"候選人C": {"title": "產品經理", "company": "某電信公司（匿名）", "years": "9年", "yes_reasons": ["電信加值服務"], "read_on": "略過"},
+"候選人D": {"title": "資深產品經理 Senior PM", "company": "1111 全球華人", "years": "近10年", "yes_reasons": ["B2B 招募平台 Product Owner", "約 50 項功能、16 個需求單位", "0 到 1、東南亞金流", "Claude Code AI 協作"], "read_on": "往下看"},
+"候選人E": {"title": "資深產品經理 Senior PM", "company": "1111 全球華人", "years": "近10年", "yes_reasons": ["B2B 招募系統 Product Owner", "東南亞市場與金流", "尚凡上櫃公司"], "read_on": "往下看"},
+"候選人F": {"title": "資深產品經理 Senior PM", "company": "1111 全球華人", "years": "近10年", "yes_reasons": ["B2B 招募平台 Product Owner", "約 50 項功能、16 個需求單位", "Claude Code AI 協作", "0 到 1、東南亞金流"], "read_on": "往下看"}
+},
+"objective": {
+"候選人A": {"answers_can_do": "否", "evidence": "摘要只說「11 年，國際業務轉產品」與「知道在地化不只是翻譯」，未對應 B2B、PRD、數據、AI 等職缺需求。"},
+"候選人B": {"answers_can_do": "否", "evidence": "「專案經理背景，目前負責人力銀行企業端產品」說明身分，但沒有說明能交付什麼成果。"},
+"候選人C": {"answers_can_do": "否", "evidence": "「9 年電信加值服務經驗」只有年資與領域，沒有能力或成果。"},
+"候選人D": {"answers_can_do": "是", "evidence": "主導約 50 項功能上線、對接 16 個需求單位的 B2B 招募平台 Product Owner；每個功能從 User Journey、PRD、Prototype 到 UAT 與上線計畫都由我帶，並用自建的 Claude Code AI 協作流程寫規格、做分析。"},
+"候選人E": {"answers_can_do": "是", "evidence": "2023 至 2026 年主導約 50 項功能上線，並接手停擺的系統改版、分三階段推進；擅長在舊系統與多部門需求之間排出先後，把專案準時帶到上線。（未提 PRD、UAT、數據、AI 能力）"},
+"候選人F": {"answers_can_do": "是", "evidence": "主導約 50 項功能上線、對接 16 個需求單位的 B2B 招募平台 Product Owner；每個功能從 User Journey、PRD、Prototype 到 UAT 與上線計畫都由我帶，並用自建的 Claude Code AI 協作流程寫規格、做分析。"}
+},
+"xyz": {
+"候選人D": [
+{"bullet": "主導約 50 項功能上線（2023/", "X": true, "Y": true, "Z": false, "type": "職責"},
+{"bullet": "接手前任主管未落地的招募系統", "X": true, "Y": true, "Z": true, "type": "成果"},
+{"bullet": "先找問題，再寫規格：User", "X": true, "Y": false, "Z": true, "type": "只有做法"},
+{"bullet": "新增 E-mail 登入、與舊系統", "X": true, "Y": true, "Z": true, "type": "成果"},
+{"bullet": "實測主要競品反推配對規則，重", "X": true, "Y": false, "Z": true, "type": "只有做法"},
+{"bullet": "需求平均處理週期 100.4", "X": true, "Y": true, "Z": true, "type": "成果"},
+{"bullet": "至少 3 次：人才搜尋的邏輯彼", "X": true, "Y": false, "Z": true, "type": "只有做法"},
+{"bullet": "與資料科學團隊上線 4 項 AI", "X": true, "Y": false, "Z": false, "type": "職責"},
+{"bullet": "Juicy 上線 6 週男性 D", "X": true, "Y": true, "Z": false, "type": "成果"},
+{"bullet": "規劃並上線 KOOL 網紅媒合", "X": true, "Y": false, "Z": false, "type": "職責"},
+{"bullet": "設計馬來西亞 iOS 三階段定", "X": true, "Y": true, "Z": true, "type": "成果"},
+{"bullet": "Peach 網頁付款占比 24", "X": true, "Y": true, "Z": false, "type": "成果"},
+{"bullet": "訂閱制內容 App Peach", "X": true, "Y": true, "Z": false, "type": "成果"},
+{"bullet": "與最多約 10 位外國實習生協", "X": true, "Y": false, "Z": false, "type": "職責"},
+{"bullet": "導入東南亞金流 CodaPay", "X": true, "Y": false, "Z": true, "type": "只有做法"},
+{"bullet": "Newegg.com 商品資訊英", "X": false, "Y": false, "Z": false, "type": "職責"}
+],
+"候選人F": [
+{"bullet": "先找問題，再寫規格：User", "X": true, "Y": false, "Z": true, "type": "只有做法"},
+{"bullet": "主導約 50 項功能上線（2023/", "X": true, "Y": true, "Z": false, "type": "職責"},
+{"bullet": "接手前任主管未落地的招募系統", "X": true, "Y": true, "Z": true, "type": "成果"},
+{"bullet": "新增 E-mail 登入、與舊系統", "X": true, "Y": true, "Z": true, "type": "成果"},
+{"bullet": "實測主要競品反推配對規則，重", "X": true, "Y": false, "Z": true, "type": "只有做法"},
+{"bullet": "需求平均處理週期 100.4", "X": true, "Y": true, "Z": true, "type": "成果"},
+{"bullet": "至少 3 次：人才搜尋的邏輯彼", "X": true, "Y": false, "Z": true, "type": "只有做法"},
+{"bullet": "與資料科學團隊上線 4 項 AI", "X": true, "Y": false, "Z": false, "type": "職責"},
+{"bullet": "Juicy 上線 6 週男性 D", "X": true, "Y": true, "Z": false, "type": "成果"},
+{"bullet": "規劃並上線 KOOL 網紅媒合", "X": true, "Y": false, "Z": false, "type": "職責"},
+{"bullet": "設計馬來西亞 iOS 三階段定", "X": true, "Y": true, "Z": true, "type": "成果"},
+{"bullet": "Peach 網頁付款占比 24", "X": true, "Y": true, "Z": false, "type": "成果"},
+{"bullet": "訂閱制內容 App Peach", "X": true, "Y": true, "Z": false, "type": "成果"},
+{"bullet": "與最多約 10 位外國實習生協", "X": true, "Y": false, "Z": false, "type": "職責"},
+{"bullet": "導入東南亞金流 CodaPay", "X": true, "Y": false, "Z": true, "type": "只有做法"},
+{"bullet": "Newegg.com 商品資訊英", "X": false, "Y": false, "Z": false, "type": "職責"}
+],
+"候選人E": [
+{"bullet": "接手停擺的招募系統改版，拆成", "X": true, "Y": true, "Z": false, "type": "成果"},
+{"bullet": "為與舊系統及既有商業流程相容", "X": true, "Y": true, "Z": true, "type": "成果"},
+{"bullet": "2023/12 至 2026/", "X": true, "Y": true, "Z": true, "type": "成果"},
+{"bullet": "需求平均處理週期由 100.4", "X": true, "Y": true, "Z": true, "type": "成果"},
+{"bullet": "維運工單服務過的 1,279", "X": true, "Y": true, "Z": false, "type": "成果"},
+{"bullet": "實測主要競品反推配對規則，重", "X": true, "Y": false, "Z": true, "type": "只有做法"},
+{"bullet": "2026/04 廠商帳號遭冒用", "X": true, "Y": false, "Z": true, "type": "職責"},
+{"bullet": "與法務、稽核對齊勞基法認定後", "X": true, "Y": false, "Z": true, "type": "只有做法"},
+{"bullet": "與資料科學團隊上線公司簡介生", "X": true, "Y": false, "Z": false, "type": "職責"},
+{"bullet": "主導 Juicy 與 Just", "X": true, "Y": true, "Z": false, "type": "成果"},
+{"bullet": "規劃並上線 KOOL 網紅媒合", "X": true, "Y": false, "Z": false, "type": "職責"},
+{"bullet": "設計馬來西亞 iOS 三階段定", "X": true, "Y": true, "Z": true, "type": "成果"},
+{"bullet": "推動 App 內購轉向網頁付款", "X": true, "Y": true, "Z": false, "type": "成果"},
+{"bullet": "訂閱制內容 App Peach", "X": true, "Y": true, "Z": false, "type": "成果"},
+{"bullet": "與最多約 10 位外國實習生完", "X": true, "Y": false, "Z": false, "type": "職責"},
+{"bullet": "導入東南亞金流 CodaPay", "X": true, "Y": false, "Z": true, "type": "只有做法"},
+{"bullet": "Newegg.com 商品資訊英", "X": false, "Y": false, "Z": false, "type": "職責"}
+]
+},
+"cut": {
+"候選人D": ["翻譯工讀生｜台灣新蛋｜2014/08", "2015/02 - 2016/02 服義務役", "規劃並上線 KOOL 網紅媒合平台", "為什麼想換環境（「能做的我已經做到」帶負面訊號）", "證照：AWS Certified Cloud"],
+"候選人F": ["翻譯工讀生｜台灣新蛋｜2014/08", "2015/02 - 2016/02 服義務役", "規劃並上線 KOOL 網紅媒合平台", "為什麼想換環境（「能做的我已經做到」帶負面訊號）", "證照：AWS Certified Cloud"],
+"候選人E": ["台灣新蛋｜翻譯工讀生｜2014/08", "2015/02 - 2016/02 服義務役", "規劃並上線 KOOL 網紅媒合平台", "為什麼想換環境（「能做的已經做到」帶負面訊號）", "接下來（泛用願景，無具體內容）"]
+},
+"interview_questions": {
+"候選人D": [
+"約 50 項功能、16 個需求單位，你如何決定優先順序？Roadmap 227 項的 P0–P3 怎麼分的？",
+"三階段改版第一階段離峰切換停機 1.5 小時，若切換失敗回復計畫是什麼？",
+"需求處理週期 100.4 天降到 30.9 天，是流程改了什麼？哪些是你的功勞、哪些是人力或其他因素？",
+"年化留存 81.2% vs 全站 74.2%，兩份名冊快照怎麼比？如何排除廠商本來就比較穩的偏差？",
+"自建 Claude Code 流程的 12 條分工、23 個 skill 實際長怎樣？AI 產出的規格錯誤你怎麼把關？",
+"你能獨立用 SQL 查數據嗎？舉一次你自己查並影響決策的例子。",
+"履歷寫英文 TOEIC 980，但工作經歷多為本土；請用英文說明一次跨國或與海外客戶溝通的情境（本職缺需接近母語等級）。",
+"你沒有防詐或 B2G 經驗，為何對 Whoscall 的防詐產品有熱情？2026/04 帳號遭冒用的安全升級，具體做了什麼、成效如何？"
+],
+"候選人F": [
+"約 50 項功能、16 個需求單位，你如何決定優先順序？Roadmap 227 項的 P0–P3 怎麼分的？",
+"三階段改版第一階段離峰切換停機 1.5 小時，若切換失敗回復計畫是什麼？",
+"需求平均處理週期 100.4 天降到 30.9 天，是流程改了什麼？哪些是你的功勞？",
+"年化留存 81.2% vs 全站 74.2%，兩份名冊快照怎麼比？如何排除偏差？",
+"自建 Claude Code 流程的 12 條分工、23 個 skill 實際長怎樣？AI 產出的規格錯誤你怎麼把關？",
+"你能獨立用 SQL 查數據嗎？舉一次你自己查並影響決策的例子。",
+"請用英文說明一次跨國或與海外客戶溝通的情境（本職缺需接近母語等級英語）。",
+"你沒有防詐或 B2G 經驗，為何想做 Whoscall？2026/04 帳號遭冒用事件你的處置與成效？"
+],
+"候選人E": [
+"近半年上線 111 項、94% 準時或提前，準時的定義是什麼？排定日期的項目占總數多少？",
+"首次登入引導確認重複 E-mail 的決定，上線後實際有多少廠商處理了？有無副作用？",
+"年化留存 81.2% 高於全站 74.2%，如何計算？能歸因於你的維運嗎？",
+"你說日常以 AI 工具整理規格與資料，具體用什麼工具、流程與驗證方式？",
+"你的履歷沒有寫 PRD、UAT、SQL、Jira，這些實際做過嗎？舉例說明。",
+"2026/04 帳號遭冒用後的安全性升級具體做了哪些改動？成效如何？",
+"即時通整合失誤，影響多少廠商、時間多長？預防方式實際落地了嗎？",
+"請用英文說明在尚凡與新加坡 CodaPay 團隊串接金流時遇到的最大問題。"
+]
+}
+}
