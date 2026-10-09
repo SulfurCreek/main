@@ -18,22 +18,23 @@ description: >
 本 skill 是證據庫的下游：`career/library/`（**使用者確認過的現行事實與裁定，衝突時最優先**）→ `career/competency-framework.md`（wiki 入口）＋ `career/wiki/` 分頁存「證據」，
 本 skill 是「把證據變成履歷的方法」。
 
-## 🔁 標準工作流程（8 步，2026-10-08 使用者裁定）
+## 🔁 標準工作流程（9 步，2026-10-08 使用者裁定、2026-10-09 修訂）
 
-做履歷、自傳、求職信素材一律走這八步，不跳步、不只拿上一版刪修。詳細產出、出口條件、回退規則見 [`references/workflow.md`](references/workflow.md)（中間產物放 `career/drafts/<版本>/`）。
+做履歷、自傳、求職信素材一律走這九步，不跳步、不只拿上一版刪修。詳細產出、出口條件、回退規則見 [`references/workflow.md`](references/workflow.md)（中間產物放 `career/drafts/<版本>/`）。
 
 | # | 步驟 | 做什麼 | 工具／規則 |
 | :-- | :--- | :--- | :--- |
-| 1 | 調用職能 | 讀 `career/library/`、`competency-framework.md`、F01–F15；F 職能與交付鏈 14 項逐項標去向 | 本檔「從職能框架產出」 |
-| 2 | 蒐集證據 | 每職能一張證據表（事實／口徑／出處／可寫程度）；缺口一次問一題，答案先寫 library | `superseded.md` 比對 |
-| 3 | 每項目寫成小 essay | 150–400 字白話短文：處境、決定、做法與產出文件、協作、結果、角色邊界；**先寫完整，不精簡** | — |
-| 4 | 精簡成履歷文字 | essay → bullet；產出 essay 去向表（履歷／自傳／面試備忘）；職能覆蓋檢查 | 本檔 Bullet 公式、`tw-voice.md`、`anti-ai-ats.md` §6 |
-| 5 | 去 AI 感 | 以讀者角度逐句標 AI 腔、整齊過頭、通用句、無來源感受，念出來測試 | `anti-ai-ats.md`、`career/style/resume-voice-zh.md` |
+| 1 | 調用職能與職缺 | 讀 `career/library/`、F01–F15、交付鏈 14 項；讀目標 JD（`career/104/jd-digest-A.md`），列必備詞與加分詞；職缺進 career-ops pipeline | 本檔「從職能框架產出」、career-ops |
+| 2 | 蒐集證據 | 每職能一張證據表；缺口一次問一題，答案先寫 library | `superseded.md` 比對 |
+| 3 | 每項目寫成小 essay | 150–400 字：處境、決定、做法與產出文件、協作、結果、角色邊界；對照 JD 加分條件；拆得出 X 結果＋Y 指標＋Z 做法；AI 要寫怎麼用、產出什麼 | `career/style/ats-2026-source.md` 洞見 |
+| 4 | 精簡×20 版本 | 每個單位（摘要、每條條列、技能、自傳每段）寫 20 版，機械分＋人工分，**只留最高分**，組裝成最完整履歷 | `scripts/resume_score.py variants`、本檔 Bullet 公式、`tw-voice.md` |
+| 5 | 去 AI 感 | 讀者角度逐句標 AI 腔、整齊過頭、通用句、無來源感受 | `anti-ai-ats.md`、`career/style/resume-voice-zh.md` |
 | 6 | HR 檢測 | 人資 H1–H10＋HR-A…H＋作廢比對＋覆蓋核對 | skill `resume-review-panel` |
-| 7 | 用人主管檢測 | M1–M10＋HM-A…H（含交付鏈）；**HR 先、主管後** | 同上 |
-| 8 | 定版 | 閘門全過＋使用者核可措辭，才產 txt／PDF、歸檔舊版、更新指標 | `workflow.md` 步驟 8 |
+| 7 | **ATS 檢測** | 依算分表 100 分：格式、關鍵字對應（不塞詞）、7 秒可讀、量化、AI 實證 | `career/style/ats-2026-source.md`、career-ops `verify-ats`、`scripts/resume_score.py ats` |
+| 8 | 用人主管檢測 | M1–M10＋HM-A…H（含交付鏈）；順序 HR → ATS → 主管 | skill `resume-review-panel` |
+| 9 | 定版 | 閘門全過（含 ATS ≥ 75）＋使用者核可措辭，才產 txt／PDF、歸檔、更新指標；career-ops `verify-cv-facts` | `workflow.md` 步驟 9 |
 
-> 6、7 發現問題依 `workflow.md`〈回退規則〉回到對應步驟；**不可只為審查分數改稿**，每個改動要對得回 library 事實或使用者裁定。
+> 6、7、8 發現問題依 `workflow.md`〈回退規則〉回到對應步驟；**不可只為審查分數改稿**，每個改動要對得回 library 事實或使用者裁定。
 
 ---
 
@@ -43,7 +44,7 @@ description: >
 
 | 任務 | 讀什麼 | 證據分頁（`career/`）|
 | :--- | :--- | :--- |
-| 產履歷／改版（任何版本） | **先走上方 8 步工作流程**，細節見 [`references/workflow.md`](references/workflow.md) | `career/library/` → `competency-framework.md` → 相關 F 分頁 |
+| 產履歷／改版（任何版本） | **先走上方 9 步工作流程**，細節見 [`references/workflow.md`](references/workflow.md) | `career/library/` → `competency-framework.md` → 相關 F 分頁 |
 | 改寫 bullet／把日常產出變 bullet | 本檔 Bullet 公式 ＋ [`references/reverse-xyz.md`](references/reverse-xyz.md) | 對應 `wiki/F0x-*.md` |
 | 投遞硬技術公司（NVIDIA-tier）| [`references/reverse-xyz.md`](references/reverse-xyz.md) | `wiki/flagship-e1.md`、`wiki/F02`、`wiki/F10` |
 | 依 JD 客製／ATS／HR 用 AI 掃履歷 | [`references/ats-and-ai-screening.md`](references/ats-and-ai-screening.md) | `wiki/resume-extract.md` |
