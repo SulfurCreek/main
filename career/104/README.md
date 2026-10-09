@@ -6,6 +6,7 @@
 | :--- | :--- |
 | [`analysis.md`](analysis.md) | 51 筆目標職缺的產業與能力需求分析、缺口、待回答問題 |
 | [`jobs-2026-10.md`](jobs-2026-10.md) | 職缺索引與 A／B／C 分級 |
+| [`jd-digest-A.md`](jd-digest-A.md) | A 級 15 筆 JD 摘要（職責、必備、加分；已去福利與聯絡方式），工作流程步驟 1、3 的 JD 來源 |
 | [`resume-104.md`](resume-104.md) | 104 履歷逐欄內容（唯一內容來源） |
 | [`../style/resume-voice-zh.md`](../style/resume-voice-zh.md) | 中文履歷語氣規範（從使用者潤飾稿萃取，含誇大護欄），104 與 Cake 共用 |
 | [`resume-104-v7.1.txt`](resume-104-v7.1.txt)／[`.pdf`](resume-104-v7.1.pdf) | **現行版**（2026-10-08）：工作內容、專長、自傳的最新文字；改版時另存 v5.2 並把舊版移入 `archive/` |

@@ -27,3 +27,25 @@
 
 ## career-ops 驗證用關鍵字（步驟 8）
 `產品經理,規格書,PRD,跨部門,驗收,UAT,API,AI,Claude,Figma,Axure,Wireframe,Roadmap,數據分析,使用者訪談,B2B,SaaS,金流,0 到 1,A/B,Kanban`
+
+## 補充（2026-10-09）：改用 A 級 15 筆 JD 全文驗證
+JD 全文來自使用者上傳檔（原先誤以為只有索引）；摘要 `104/jd-digest-A.md`。A 級 15 筆需求頻率：
+
+| 需求 | 筆數／15 | v7.1 狀態 |
+| :--- | :-: | :--- |
+| PRD／規格 | 14 | ✅ |
+| UAT／測試／驗收 | 12 | ✅ |
+| 數據／SQL／BI | 12 | ⚠️ 有分析，**SQL 未確認，不寫** |
+| 跨部門 | 10 | ✅ |
+| AI／Claude／LLM | 8 | ✅（摘要） |
+| Roadmap | 7 | ✅ |
+| API／串接 | 7 | ✅ |
+| Figma／Wireframe／Prototype | 7 | ✅ |
+| 金流／支付 | 7 | ✅ |
+| Jira／Confluence | 5 | ❌ 未確認，不寫 |
+| 英文 | 5 | ✅（但全中文履歷，需英文版） |
+| B2B／SaaS | 5 | ✅ |
+| 0→1 | 5 | ✅ |
+| 使用者訪談 | 5 | ⚠️ 只有技能欄 |
+| Agile／Scrum | 4 | 寫 Kanban，不寫 Scrum |
+| 定價／變現 | 2 | ✅ |
