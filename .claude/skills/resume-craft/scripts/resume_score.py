@@ -20,7 +20,7 @@ BANNED = ['致力於', '深入探討', '扮演關鍵角色', '成功實現', '�
           '協助', '參與', '負責', '具備良好', '熱情洋溢', '賦能']
 NUM = re.compile(r'\d')
 # 6 秒 F 型掃描（career/style/hr-6-second-source.md）
-EDGE = 10            # 招募者視線只停在每行左緣幾個字
+EDGE = 10            # 招募者視線只停在每行左緣幾個字（視覺寬度：中文 1、英數 0.5）
 HEADER_CHARS = 24    # 經歷抬頭的可見寬度
 DUTY_START = re.compile(r'^(主責|負責|職責|協助|參與|處理|管理|Responsible|Managed|Worked|Assisted|Helped)')
 OBJECTIVE = ['希望', '尋求', '期望', '追求', '挑戰性', '發揮所長', '貢獻所學', '學習成長', 'Seeking', 'Objective']
@@ -28,6 +28,17 @@ RESULT_VERB = ['主導', '上線', '降到', '提升', '成長', '0 到 1', '→
 TITLE_WORDS = ['經理', 'Manager', 'PM', 'Owner', '主任', '企劃', '工程師', '專員', '工讀生', 'Intern',
                'Lead', 'Director', '總監', '主管', '顧問', 'Analyst', '分析師', '設計師']
 DATE = re.compile(r'\d{4}/\d{1,2}\s*[-–~至]\s*(?:\d{4}/\d{1,2}|迄今|至今|Present)')
+
+def vw(t):
+    return sum(0.5 if ord(c) < 0x2E80 else 1 for c in t)
+
+def cut(t, w):
+    out, n = '', 0
+    for c in t:
+        n += vw(c)
+        if n > w: break
+        out += c
+    return out
 
 def kw_list(s):
     return [k.strip() for k in (s or '').split(',') if k.strip()]
@@ -46,7 +57,7 @@ def score_line(text, jd):
     else: flags.append('過長')
     if NUM.search(text): s += 10
     else: flags.append('無數字')
-    edge, head = text[:EDGE], text[:20]
+    edge, head = cut(text, EDGE), text[:20]
     if NUM.search(edge) or hits(edge, jd + RESULT_VERB): s += 8
     elif NUM.search(head) or hits(head, jd): s += 4; flags.append('左緣 10 字無結果')
     else: flags.append('開頭無結果或關鍵詞')
@@ -90,10 +101,10 @@ def cmd_ats(path, jd, pref):
     b = round(b * (0.6 + 0.4 * pref_ratio))
     nb = max(len(bullets), 1)
     hook = sum(1 for x in bullets if NUM.search(x[:20]) or hits(x[:20], allkw)) / nb
-    edge = sum(1 for x in bullets if NUM.search(x[:EDGE]) or hits(x[:EDGE], allkw + RESULT_VERB)) / nb
+    edge = sum(1 for x in bullets if NUM.search(cut(x, EDGE)) or hits(cut(x, EDGE), allkw + RESULT_VERB)) / nb
     lines = [l.strip() for l in exp.split('\n學歷')[0].split('\n')]   # 抬頭只看工作經歷，不含學歷
     heads = [l for l in lines if '｜' in l and DATE.search(l)]
-    head_ok = [h for h in heads if any(w in h.split('｜')[0] for w in TITLE_WORDS) and DATE.search(h).start() < HEADER_CHARS]
+    head_ok = [h for h in heads if any(w in h.split('｜')[0] for w in TITLE_WORDS) and vw(h[:DATE.search(h).start()]) < HEADER_CHARS]
     head_r = len(head_ok) / len(heads) if heads else 0
     first = ' '.join([l for l in lines if l][:3])
     summ = text.split('專業摘要')[1].split('工作經歷')[0] if '專業摘要' in text else ''

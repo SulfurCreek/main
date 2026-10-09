@@ -11,7 +11,8 @@
 
 用法：
   python3 f_scan.py <resume.txt> [--jd "PRD,UAT,..."] [--view-only]
-      [--top 3] [--header-chars 24] [--edge 10] [--page-chars 1400] [--stale-years 10]
+      [--top 3] [--header-chars 24] [--edge 10] [--page-chars 1400] [--stale-years 10] [--keep 新蛋]
+  寬度一律以視覺寬度計：中文 1、英數 0.5。
 """
 import argparse, re, datetime
 
@@ -23,6 +24,20 @@ OBJECTIVE = ['希望', '尋求', '期望', '追求', '挑戰性', '發揮所長'
              'objective', 'looking for']
 DUTY_START = re.compile(r'^(主責|負責|職責|協助|參與|處理|管理|Responsible|Managed|Worked|Assisted|Helped)')
 RESULT_VERB = ['主導', '上線', '降到', '提升', '成長', '從 0 到 1', '0 到 1', '→', '縮短', '增加', '減少']
+
+
+def vw(text):
+    """視覺寬度：中文全形算 1，英數半形算 0.5（眼睛一次掃到的英數字比中文多）。"""
+    return sum(0.5 if ord(c) < 0x2E80 else 1 for c in text)
+
+
+def cut(text, width):
+    out, w = '', 0
+    for c in text:
+        w += vw(c)
+        if w > width: break
+        out += c
+    return out
 
 
 def kw_list(s):
@@ -64,11 +79,11 @@ def f_view(lines, top, header_chars, edge, page_chars):
             out.append('〔第一屏結束〕')
             break
         if shown < top:
-            v = s[:80]
+            v = cut(s, 80)
         elif DATE.search(s) and '｜' in s:
-            v = s[:header_chars]
+            v = cut(s, header_chars)
         else:
-            v = s[:edge]
+            v = cut(s, edge)
         out.append(v + ('…' if len(v) < len(s) else ''))
         used += len(s)
         shown += 1
@@ -99,6 +114,7 @@ def main():
     ap.add_argument('--edge', type=int, default=10)
     ap.add_argument('--page-chars', type=int, default=1400)
     ap.add_argument('--stale-years', type=int, default=10)
+    ap.add_argument('--keep', default='新蛋', help='使用者裁定保留、不列可刪的經歷關鍵字（逗號分隔）')
     a = ap.parse_args()
     jd = kw_list(a.jd)
     lines = open(a.path, encoding='utf8').read().split('\n')
@@ -126,16 +142,16 @@ def main():
         head = h.split('｜')[0]
         title_first = bool(has_any(head, TITLE_WORDS))
         m = DATE.search(h)
-        date_vis = m.start() < a.header_chars
-        stale = y2 < now - a.stale_years and not has_any(h, jd) and not has_any(h, ['PM', 'Product', '產品'])
+        date_vis = vw(h[:m.start()]) < a.header_chars
+        stale = y2 < now - a.stale_years and not has_any(h, kw_list(a.keep)) and not has_any(h, jd) and not has_any(h, ['PM', 'Product', '產品'])
         notes = []
         if not title_first: notes.append('左緣是公司不是職稱')
-        if not date_vis: notes.append(f'起訖在第 {m.start()} 字，超出 {a.header_chars} 字視野')
+        if not date_vis: notes.append(f'起訖在視覺寬度 {vw(h[:m.start()]):.0f}，超出 {a.header_chars} 字視野')
         if stale: notes.append(f'{y2} 年結束、與職缺無關：可刪候選')
         ok = title_first and date_vis and not stale
         print(f'| 抬頭：{h[:30]} | {"✅" if ok else "⚠️"} | {"；".join(notes) or "職稱在左、日期可見"} |')
     if bullets:
-        edge_ok = [b for b in bullets if NUM.search(b[:a.edge]) or has_any(b[:a.edge], jd + RESULT_VERB)]
+        edge_ok = [b for b in bullets if NUM.search(cut(b, a.edge)) or has_any(cut(b, a.edge), jd + RESULT_VERB)]
         duty = [b for b in bullets if DUTY_START.match(b)]
         print(f'| 條列左緣 {a.edge} 字有結果或關鍵詞 | {len(edge_ok)}/{len(bullets)} | 目標 ≥ 60% |')
         print(f'| 職責式開頭 | {len(duty)}/{len(bullets)} | {"；".join(d[:16] for d in duty) or "無"} |')
