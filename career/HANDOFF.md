@@ -25,7 +25,7 @@
 | 數字版本 | 一律取 [`library/facts-1111.md`](library/facts-1111.md)、[`library/facts-prior.md`](library/facts-prior.md)；本頁不重複，避免兩處不同步 |
 | 新職能判定 | 先對照 F1–F15，能歸入既有職能就不開新號（例：異業 API 合約 → 併入 F2＋F13，未開 F16） |
 | 修改後驗證 | 跑相對連結檢查（見 §6），`git status` 確認只動到 `career/` |
-| **履歷標準工作流程（8 步）** | 調用職能 → 蒐集證據 → 小 essay → 精簡成履歷 → 去 AI 感 → HR 檢測 → 主管檢測 → 定版；詳見 `library/decisions.md` §8 與 `resume-craft/references/workflow.md`，中間產物放 [`drafts/`](drafts/README.md) |
+| **履歷標準工作流程（9 步）** | 職能＋職缺 → 證據 → 小 essay → 精簡×20 版本取最高分 → 去 AI 感 → HR → ATS → 主管 → 定版；ATS 算分見 `style/ats-2026-source.md`；詳見 `library/decisions.md` §8 與 `resume-craft/references/workflow.md`，中間產物放 [`drafts/`](drafts/README.md) |
 | 使用者更正過的事實 | **全部收在 [`library/`](library/README.md)**（現行版）與 [`library/superseded.md`](library/superseded.md)（防倒退清單），本表不再逐條列 |
 
 ## 3. 檔案清單 / File index
