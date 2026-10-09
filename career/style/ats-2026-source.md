@@ -69,7 +69,7 @@ Finally, as AI becomes standard in the workplace, simply listing "ChatGPT" as a 
 | :--- | :-: | :--- | :--- |
 | A. 可解析格式 | 25 | 單欄、標準標題、標準字型、無表格圖片與技能條、檔案 < 2.5MB、聯絡方式可解析（Email）。career-ops `cv:verify-ats` 結構分數 ×0.25 為基礎，有 critical 扣到 ≤ 15 | `verify-ats.mjs`、`resume_score.py ats` |
 | B. 關鍵字對應 | 25 | 目標 JD 的必備＋加分詞在履歷出現的比例；**加分條件的詞要同時出現在技能欄與經歷**。覆蓋率 70–90% 滿分；< 50% 或 ≥ 95%（疑似塞詞）扣分 | `resume_score.py ats --jd` |
-| C. 7 秒可讀（F 型） | 20 | 第一屏有職稱與職稱落差說明、摘要 ≤ 4 行；每條條列前 20 字內有結果數字或 JD 關鍵詞的比例 | `resume_score.py ats` |
-| D. 量化影響（XYZ） | 20 | 條列含數字的比例（目標 ≥ 60%）、含基準的比例 | `resume_score.py ats` |
+| C. 6 秒可讀（F 型，v2 2026-10-09） | 20 | 依 `hr-6-second-source.md`：條列左緣 10 字有結果或 JD 詞（8）、前 20 字有結果或 JD 詞（4）、經歷抬頭職稱在左且日期在前 24 字內（4）、摘要無求職目標語（2）、前 3 行看得到職稱（2）。v2 與 10-09 之前的 C 分不可直接比較 | `resume_score.py ats`、`f_scan.py` |
+| D. 量化影響（XYZ） | 20 | 條列含數字的比例（目標 ≥ 60%）、含基準的比例；職責式開頭（負責／主責／協助）每處 −2 | `resume_score.py ats` |
 | E. AI 實證 | 10 | 有寫 AI 怎麼用、產出什麼；有作品集或連結可佐證 | 人工 |
 | 一票否決 | — | 白字或隱藏文字、純關鍵字清單與經歷無關、事實無來源 → ATS 判不通過 | 人工＋`verify-cv-facts` |

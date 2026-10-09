@@ -89,7 +89,7 @@ it is a shared company space and the leak would be irreversible.*
 | `wiki/` | 職能分頁（`F01`–`F15`）、旗艦專案、履歷摘要、學歷證照、證據頁、PM 語彙對照、缺口盤點 |
 | `drafts/` | 履歷工作流程中間產物（職能清單、證據表、essay、去 AI 感、審查），每版一個資料夾 |
 | `104/` | 104 履歷工作區；現行版見 `104/README.md` 標示，舊版在 `104/archive/` |
-| `style/` | 中文語氣（`resume-voice-zh.md`）、去 AI 感＋ATS（`anti-ai-ats.md`）、PM 履歷最佳實務 |
+| `style/` | 中文語氣（`resume-voice-zh.md`）、去 AI 感＋ATS（`anti-ai-ats.md`、`ats-2026-source.md`）、HR 6 秒篩選（`hr-6-second-source.md`）、PM 履歷最佳實務 |
 | `letters/` | 求職信、素材庫（`story-bank.md`）、投遞紀錄 |
 | `review-panel/` | `resume-review-panel` skill 的審查者與同儕素材 |
 | `portfolio/` | 作品集 case study（內部完整版）；`portfolio/public/` 為對外版與 `STATUS.md` |
