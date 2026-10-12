@@ -115,9 +115,14 @@ input[type=search]{width:180px}
 /* bar chart (daily) */
 .daily{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(14px,1fr);gap:4px;align-items:end;height:160px;border-bottom:1px solid var(--line-strong);padding-top:16px;position:relative}
 .daily .col{height:100%;display:flex;flex-direction:column;justify-content:flex-end;cursor:default}
-.daily .bar{background:var(--bar);border-radius:4px 4px 0 0;min-height:2px}
-.daily .col.we .bar{opacity:.55}
-.daily .col:hover .bar{filter:brightness(1.12)}
+.daily .stk{display:flex;flex-direction:column;border-radius:4px 4px 0 0;overflow:hidden;min-height:2px}
+.daily .bar{background:var(--bar);min-height:0}
+.daily .bar.in{background:var(--bar-2)}
+.daily .bar.in + .bar{border-top:2px solid var(--surface)}
+.key{display:flex;gap:12px;font-size:12px;color:var(--fg-2)}
+.key i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:4px;vertical-align:-1px}
+.daily .col.we .stk{opacity:.55}
+.daily .col:hover .stk{filter:brightness(1.12)}
 .xlab{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(14px,1fr);gap:4px;font-size:11px;color:var(--fg-3);text-align:center}
 .gridline{position:absolute;left:0;right:0;border-top:1px dashed var(--line);font-size:11px;color:var(--fg-3)}
 .gridline span{position:absolute;right:0;top:-16px;background:var(--surface);padding-left:4px}
@@ -154,7 +159,8 @@ tr.zero td{color:var(--fg-3)}
 .pill{display:inline-block;font-size:11px;border-radius:999px;padding:1px 8px;border:1px solid var(--line-strong);color:var(--fg-2);white-space:nowrap}
 .pill.ok{border-color:var(--accent);color:var(--accent-ink)}
 .pill.none{border-style:dashed;color:var(--fg-3)}
-.pill.in{background:var(--fg);color:var(--surface);border-color:var(--fg)}
+.pill.in{border-color:var(--bar-2);border-width:2px;color:var(--fg);font-weight:600}
+.pill.ext{border-color:var(--bar);border-width:2px;color:var(--fg)}
 .path{display:flex;flex-wrap:wrap;gap:4px;align-items:center;white-space:normal;max-width:520px}
 .path .step{font-size:12px;background:var(--surface-2);border:1px solid var(--line);border-radius:4px;padding:1px 6px}
 .path .arr{color:var(--fg-3);font-size:11px}
@@ -269,7 +275,8 @@ tr.detail td{background:var(--surface-2);white-space:normal}
     <div class="kpis" id="kpiA"></div>
     <div class="grid2">
       <div class="panel">
-        <div class="ph"><h3>每日活躍廠商數</h3><span class="sub">每日各自以 OrganNo 去重；週末淡色</span></div>
+        <div class="ph"><h3>每日活躍廠商數</h3><span class="sub">每日各網段各自以 OrganNo 去重；週末淡色</span></div>
+        <div class="key"><span><i style="background:var(--bar)"></i>外網</span><span><i style="background:var(--bar-2)"></i>內網</span><span class="muted">同一廠商當天內外網都有登入時，兩邊各算一次</span></div>
         <div class="scroll"><div style="min-width:320px">
           <div class="daily" id="daily"></div>
           <div class="xlab" id="dailyX"></div>
@@ -282,7 +289,7 @@ tr.detail td{background:var(--surface-2);white-space:normal}
       </div>
     </div>
     <div class="panel">
-      <div class="ph"><h3>內網／外網</h3><span class="sub">內網多為客服代登入，是否從統計排除待確認</span></div>
+      <div class="ph"><h3>內網／外網</h3><span class="sub">內外網都納入統計；用上方「網段」可單看其一</span></div>
       <div class="scroll"><table id="netTable"></table></div>
     </div>
   </section>
@@ -338,14 +345,13 @@ tr.detail td{background:var(--surface-2);white-space:normal}
       <dt>資料串連</dt><dd>同一次登入的 <code>sessionId</code> 在登入成功、Topbar 抵達事件相同；一個 Session ＝ 1 筆 <code>login:success</code> ＋ N 筆 <code>topbar:view</code>，依時間戳記排序成動線。</dd>
       <dt>活躍廠商</dt><dd>期間內有任一 Session 的 OrganNo 去重；區間模式是整段去重，不是每日加總。</dd>
       <dt>VIP 狀態</dt><dd>取 <code>metadata.oStatus</code>（0 普通會員／1 VIP／2 過期／3 關權／4 免費VIP／5 免費曝光／6 準VIP）；同一廠商期間內若變動，以該 Session 當下值計算。</dd>
-      <dt>網段</dt><dd>由事件 IP 判斷內網／外網。</dd>
+      <dt>網段</dt><dd>由事件 IP 判斷內網／外網，兩者都納入統計：KPI、每日趨勢、內外網表、頁面使用表皆並列外網與內網；篩選「網段」可單看其一。</dd>
       <dt>頁面</dt><dd>Topbar 事件的 URL 路徑對應〈附錄：頁面一覽表〉（Sitemap）。履歷詳細頁、履歷列印頁不渲染預設 Topbar，不會出現在本後台。</dd>
       <dt>篩選套用方式</dt><dd>日期、VIP 狀態、網段、廠商、Session ID 以 Session 為單位過濾；功能分區／抵達頁面保留「期間內抵達過該處的 Session」，其完整動線仍會顯示。</dd>
       <dt>期間內無紀錄</dt><dd>頁面一覽表中有、但期間內沒有任何 Topbar 抵達的頁面，可對照文件的「op log 抵達確認」欄。</dd>
     </dl>
     <div class="todo"><b>待確認</b>
       <ul>
-        <li>內網（客服代登入）是否也送事件、是否要從所有統計排除；目前預設「全部」。</li>
         <li>Topbar 事件是否帶有 OrganNo／廠商名稱，或需用 Session ID 回查登入事件取得。</li>
         <li>舊版 wireframe 的「產業 tCodeTrade」「裝置」篩選只存在於登入事件；若要加回，需確認 Topbar 事件可透過 Session ID 帶入。</li>
         <li>後台載體（Grafana、客服後台或獨立報表）與查詢 API 驗證方式。</li>
@@ -526,21 +532,21 @@ function bindTip(el,html){el.addEventListener("mouseenter",function(){tip.innerH
 var cur;
 function compute(ss){
   var vend=new Set(),daily=[],heat=[],net={ext:{s:0,v:new Set(),pv:0},int:{s:0,v:new Set(),pv:0}};
-  for(var d=0;d<NDAYS;d++)daily.push({v:new Set(),s:0});
+  for(var d=0;d<NDAYS;d++)daily.push({v:new Set(),s:0,ve:new Set(),vi:new Set()});
   for(var i=0;i<7;i++){heat.push(new Array(24).fill(0));}
-  var hits=new Array(PAGES.length).fill(0),pv=PAGES.map(function(){return new Set();}),firsts=new Array(PAGES.length).fill(0);
+  var hitsE=new Array(PAGES.length).fill(0),hitsI=new Array(PAGES.length).fill(0),hits=new Array(PAGES.length).fill(0),pv=PAGES.map(function(){return new Set();}),firsts=new Array(PAGES.length).fill(0);
   var trans={},totalPV=0,bounce=0;
   var stV={};ST.forEach(function(s){stV[s[0]]={all:new Set(),sec:SECTIONS.map(function(){return new Set();})};});
   ss.forEach(function(s){
-    vend.add(s.v);daily[s.d].v.add(s.v);daily[s.d].s++;heat[wd(s.d)][s.h]++;
+    vend.add(s.v);daily[s.d].v.add(s.v);daily[s.d].s++;(s.net==="int"?daily[s.d].vi:daily[s.d].ve).add(s.v);heat[wd(s.d)][s.h]++;
     var nn=net[s.net];nn.s++;nn.v.add(s.v);nn.pv+=s.pg.length;
     totalPV+=s.pg.length;if(s.pg.length===1)bounce++;
     firsts[s.pg[0]]++;stV[s.st].all.add(s.v);
-    s.pg.forEach(function(p,j){hits[p]++;pv[p].add(s.v);stV[s.st].sec[PAGES[p].si].add(s.v);
+    s.pg.forEach(function(p,j){hits[p]++;(s.net==="int"?hitsI:hitsE)[p]++;pv[p].add(s.v);stV[s.st].sec[PAGES[p].si].add(s.v);
       if(j>0){var k=s.pg[j-1]+">"+p;trans[k]=(trans[k]||0)+1;}});
   });
   var nTrans=0;for(var k in trans)nTrans+=trans[k];
-  return {ss:ss,vend:vend,daily:daily,heat:heat,net:net,hits:hits,pv:pv,firsts:firsts,trans:trans,nTrans:nTrans,totalPV:totalPV,bounce:bounce,stV:stV};
+  return {hitsE:hitsE,hitsI:hitsI,ss:ss,vend:vend,daily:daily,heat:heat,net:net,hits:hits,pv:pv,firsts:firsts,trans:trans,nTrans:nTrans,totalPV:totalPV,bounce:bounce,stV:stV};
 }
 
 /* ───────── 繪製 ───────── */
@@ -549,20 +555,20 @@ function renderA(c){
   var days=F.to-F.from+1,dailyAvg=0;for(var d=F.from;d<=F.to;d++)dailyAvg+=c.daily[d].v.size;dailyAvg/=days;
   var ns=c.net.ext.s+c.net.int.s,ip=pct(c.net.int.s,ns);
   $("kpiA").innerHTML=
-    kpi("活躍廠商數",N(c.vend.size),"期間內 OrganNo 去重（"+days+" 天）")+
+    kpi("活躍廠商數",N(c.vend.size),"外網 "+N(c.net.ext.v.size)+"・內網 "+N(c.net.int.v.size)+" 家（"+days+" 天去重）")+
     kpi("日均活躍廠商",N(dailyAvg),"每日去重後平均")+
     kpi("登入 Session 數",N(c.ss.length),"login:success 筆數")+
     kpi("內網占比",P1(ip),"外網 "+N(c.net.ext.s)+"・內網 "+N(c.net.int.s)+" Session",
       '<div class="split" aria-hidden="true"><i style="width:'+(100-ip)+'%;background:var(--bar)"></i><i style="width:'+ip+'%;background:var(--bar-2)"></i></div>');
   // daily
-  var max=1;for(d=F.from;d<=F.to;d++)max=Math.max(max,c.daily[d].v.size);
+  var max=1;for(d=F.from;d<=F.to;d++)max=Math.max(max,c.daily[d].ve.size+c.daily[d].vi.size);
   var step=Math.pow(10,Math.floor(Math.log10(max)));var nice=Math.ceil(max/step)*step;if(nice/step>5)step*=2;
   var html="";for(var g=step;g<=nice;g+=step)html+='<div class="gridline" style="bottom:'+(g/nice*100*(144/160))+'%"><span class="num">'+N(g)+'</span></div>';
   var el=$("daily");el.innerHTML=html;var xl="";
   for(d=F.from;d<=F.to;d++){
     var col=document.createElement("div");var w=wd(d);col.className="col"+((w===0||w===6)?" we":"");
-    col.innerHTML='<div class="bar" style="height:'+(c.daily[d].v.size/nice*90)+'%"></div>';el.appendChild(col);
-    (function(d){bindTip(col,function(){return isoD(d)+"（"+WD[wd(d)]+"）<br>活躍廠商 <b>"+N(c.daily[d].v.size)+"</b> 家<br>登入 Session "+N(c.daily[d].s);});})(d);
+    var di=c.daily[d].vi.size,de=c.daily[d].ve.size;col.innerHTML='<div class="stk" style="height:'+((di+de)/nice*90)+'%">'+(di?'<div class="bar in" style="flex:'+di+' 0 0"></div>':'')+'<div class="bar" style="flex:'+de+' 0 0"></div></div>';el.appendChild(col);
+    (function(d){bindTip(col,function(){return isoD(d)+"（"+WD[wd(d)]+"）<br>活躍廠商 <b>"+N(c.daily[d].v.size)+"</b> 家<br>外網 "+N(c.daily[d].ve.size)+" 家・內網 "+N(c.daily[d].vi.size)+" 家<br>登入 Session "+N(c.daily[d].s);});})(d);
     var lblEvery=days>14?5:days>7?2:1;xl+='<span>'+(((d-F.from)%lblEvery===0||d===F.to)?fmtD(d):"")+'</span>';
   }
   $("dailyX").innerHTML=xl;
@@ -584,7 +590,7 @@ function renderA(c){
   // net table
   var rows=[["ext","外網"],["int","內網"]];
   $("netTable").innerHTML='<thead><tr><th>網段</th><th class="n">Session 數</th><th class="n">占比</th><th class="n">廠商數</th><th class="n">平均每 Session 頁數</th></tr></thead><tbody>'+
-    rows.map(function(r){var x=c.net[r[0]];return '<tr><td><span class="pill'+(r[0]==="int"?" in":"")+'">'+r[1]+'</span></td><td class="n">'+N(x.s)+'</td><td class="n">'+P1(pct(x.s,ns))+'</td><td class="n">'+N(x.v.size)+'</td><td class="n">'+(x.s?(x.pv/x.s).toFixed(1):"–")+'</td></tr>';}).join("")+'</tbody>';
+    rows.map(function(r){var x=c.net[r[0]];return '<tr><td><span class="pill '+(r[0]==="int"?"in":"ext")+'">'+r[1]+'</span></td><td class="n">'+N(x.s)+'</td><td class="n">'+P1(pct(x.s,ns))+'</td><td class="n">'+N(x.v.size)+'</td><td class="n">'+(x.s?(x.pv/x.s).toFixed(1):"–")+'</td></tr>';}).join("")+'</tbody>';
 }
 function renderB(c){
   var reached=c.hits.filter(function(h){return h>0;}).length;
@@ -616,7 +622,7 @@ function renderB(c){
     (fs.length?fs.map(function(x){return '<tr><td>'+esc(PAGES[x[0]].name)+'</td><td class="muted">'+esc(PAGES[x[0]].sec)+'</td><td><div class="barcell"><i style="width:'+(x[1]/fsmax*120)+'px"></i><span>'+N(x[1])+'</span></div></td><td class="n">'+P1(pct(x[1],c.ss.length))+'</td></tr>';}).join(""):'<tr><td colspan="4" class="empty">沒有資料</td></tr>')+'</tbody>';
 }
 function renderPages(c){
-  var rows=PAGES.map(function(p){return {p:p,hits:c.hits[p.i],vend:c.pv[p.i].size,first:c.firsts[p.i]};});
+  var rows=PAGES.map(function(p){return {p:p,hits:c.hits[p.i],e:c.hitsE[p.i],i:c.hitsI[p.i],vend:c.pv[p.i].size,first:c.firsts[p.i]};});
   if(F.sec)rows=rows.filter(function(r){return r.p.sec===F.sec;});
   var k=pageSort.k,dir=pageSort.dir;
   rows.sort(function(a,b){var x=k==="name"?a.p.name.localeCompare(b.p.name,"zh-Hant"):k==="sec"?a.p.si-b.p.si:a[k]-b[k];return (x*dir)||(b.hits-a.hits);});
@@ -624,8 +630,8 @@ function renderPages(c){
   var shown=showAllPages?rows:rows.filter(function(r){return r.hits>0;}).slice(0,15);
   var max=Math.max(1,Math.max.apply(null,rows.map(function(r){return r.hits;})));
   function th(key,label,n){return '<th class="sortable'+(n?" n":"")+'" data-k="'+key+'" tabindex="0"'+(pageSort.k===key?' aria-sort="'+(dir<0?"descending":"ascending")+'"':'')+'>'+label+'</th>';}
-  $("pageTable").innerHTML='<thead><tr>'+th("name","頁面")+th("sec","分區")+'<th>路徑</th>'+th("hits","Topbar 抵達次數")+th("vend","抵達廠商數",1)+th("first","作為第一站",1)+'<th>op log 抵達確認</th></tr></thead><tbody>'+
-    shown.map(function(r){return '<tr class="'+(r.hits?"":"zero")+'"><td>'+esc(r.p.name)+'</td><td class="muted">'+esc(r.p.sec)+'</td><td><code>'+esc(r.p.path)+'</code></td><td><div class="barcell"><i style="width:'+(r.hits/max*140)+'px"></i><span>'+N(r.hits)+'</span></div></td><td class="n">'+N(r.vend)+'</td><td class="n">'+N(r.first)+'</td><td>'+(r.hits?'<span class="pill ok">已抵達</span>':'<span class="pill none">期間內無紀錄</span>')+'</td></tr>';}).join("")+'</tbody>';
+  $("pageTable").innerHTML='<thead><tr>'+th("name","頁面")+th("sec","分區")+'<th>路徑</th>'+th("hits","Topbar 抵達次數")+th("e","外網",1)+th("i","內網",1)+th("vend","抵達廠商數",1)+th("first","作為第一站",1)+'<th>op log 抵達確認</th></tr></thead><tbody>'+
+    shown.map(function(r){return '<tr class="'+(r.hits?"":"zero")+'"><td>'+esc(r.p.name)+'</td><td class="muted">'+esc(r.p.sec)+'</td><td><code>'+esc(r.p.path)+'</code></td><td><div class="barcell"><i style="width:'+(r.hits/max*140)+'px"></i><span>'+N(r.hits)+'</span></div></td><td class="n">'+N(r.e)+'</td><td class="n">'+N(r.i)+'</td><td class="n">'+N(r.vend)+'</td><td class="n">'+N(r.first)+'</td><td>'+(r.hits?'<span class="pill ok">已抵達</span>':'<span class="pill none">期間內無紀錄</span>')+'</td></tr>';}).join("")+'</tbody>';
   [].forEach.call($("pageTable").querySelectorAll("th.sortable"),function(t){
     function go(){var key=t.dataset.k;if(pageSort.k===key)pageSort.dir*=-1;else{pageSort.k=key;pageSort.dir=(key==="name"||key==="sec")?1:-1;}renderPages(cur);}
     t.addEventListener("click",go);t.addEventListener("keydown",function(e){if(e.key==="Enter"||e.key===" "){e.preventDefault();go();}});});
@@ -639,7 +645,7 @@ function renderSess(c){
   if(!list.length)h+='<tr><td colspan="8" class="empty">沒有符合條件的 Session，請放寬篩選條件</td></tr>';
   list.forEach(function(s){var vv=V[s.v],open=openSess===s.id;
     var path=s.pg.slice(0,5).map(function(p){return '<span class="step">'+esc(PAGES[p].name)+'</span>';}).join('<span class="arr">➜</span>')+(s.pg.length>5?'<span class="arr">…+'+(s.pg.length-5)+'</span>':'');
-    h+='<tr class="sess" data-id="'+s.id+'" tabindex="0" aria-expanded="'+open+'"><td>'+(open?"▾":"▸")+'</td><td><code>'+s.id.slice(0,13)+'…</code></td><td>'+esc(vv.n)+'<div class="muted num" style="font-size:12px">'+vv.o+'</div></td><td><span class="pill">'+esc(STNAME[s.st])+'</span></td><td><span class="pill'+(s.net==="int"?" in":"")+'">'+(s.net==="int"?"內網":"外網")+'</span></td><td class="num">'+isoD(s.d).replace(/-/g,"/")+' '+tsStr(s)+'</td><td class="n">'+s.pg.length+'</td><td><div class="path">'+path+'</div></td></tr>';
+    h+='<tr class="sess" data-id="'+s.id+'" tabindex="0" aria-expanded="'+open+'"><td>'+(open?"▾":"▸")+'</td><td><code>'+s.id.slice(0,13)+'…</code></td><td>'+esc(vv.n)+'<div class="muted num" style="font-size:12px">'+vv.o+'</div></td><td><span class="pill">'+esc(STNAME[s.st])+'</span></td><td><span class="pill '+(s.net==="int"?"in":"ext")+'">'+(s.net==="int"?"內網":"外網")+'</span></td><td class="num">'+isoD(s.d).replace(/-/g,"/")+' '+tsStr(s)+'</td><td class="n">'+s.pg.length+'</td><td><div class="path">'+path+'</div></td></tr>';
     if(open){h+='<tr class="detail"><td></td><td colspan="7"><div style="font-size:12px;margin-bottom:4px">Session ID <code>'+s.id+'</code></div><div class="tl">'+
       '<div class="ev"><span class="t">'+tsStr(s)+'</span><span class="fid"><code>recruit:login:success</code></span><span>登入成功・'+(s.net==="int"?"內網":"外網")+'・'+esc(STNAME[s.st])+'</span></div>'+
       s.pg.map(function(p,j){return '<div class="ev"><span class="t">'+tsStr(s,j)+'</span><span class="fid"><code>recruit:topbar:view</code></span><span>'+esc(PAGES[p].name)+' <span class="muted">'+esc(PAGES[p].path)+'</span></span></div>';}).join("")+'</div></td></tr>';}
