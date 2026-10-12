@@ -25,6 +25,8 @@ HEADER_CHARS = 24    # 經歷抬頭的可見寬度
 DUTY_START = re.compile(r'^(主責|負責|職責|協助|參與|處理|管理|Responsible|Managed|Worked|Assisted|Helped)')
 OBJECTIVE = ['希望', '尋求', '期望', '追求', '挑戰性', '發揮所長', '貢獻所學', '學習成長', 'Seeking', 'Objective']
 RESULT_VERB = ['主導', '上線', '降到', '提升', '成長', '0 到 1', '→', '縮短', '增加', '減少']
+ABSOLUTE = ['每個功能', '都由我', '一路帶', '全部由我', '所有功能']
+NEG_ORG = ['前任主管未', '停擺', '推倒', '不是他們的主管', '不是主管']
 TITLE_WORDS = ['經理', 'Manager', 'PM', 'Owner', '主任', '企劃', '工程師', '專員', '工讀生', 'Intern',
                'Lead', 'Director', '總監', '主管', '顧問', 'Analyst', '分析師', '設計師']
 DATE = re.compile(r'\d{4}/\d{1,2}\s*[-–~至]\s*(?:\d{4}/\d{1,2}|迄今|至今|Present)')
@@ -64,6 +66,10 @@ def score_line(text, jd):
     if DUTY_START.match(text): s -= 8; flags.append('職責式開頭')
     obj = [o for o in OBJECTIVE if o in text]
     if obj: s -= 6; flags.append('求職目標語:' + '/'.join(obj))
+    ab = [w for w in ABSOLUTE if w in text]
+    if ab: s -= 6; flags.append('絕對語氣:' + '/'.join(ab))
+    ng = [w for w in NEG_ORG if w in text]
+    if ng: s -= 6; flags.append('組織負面:' + '/'.join(ng))
     h = hits(text, jd)
     s += min(len(h), 3) * 2 + (0 if len(h) <= 4 else -4)
     if len(h) > 4: flags.append('疑似塞詞')
@@ -121,6 +127,8 @@ def cmd_ats(path, jd, pref):
           f'摘要求職目標語 {"、".join(obj) or "無"}）')
     print(f'D 量化影響 {d}/20（含數字條列 {numr:.0%}；職責式開頭 {len(duty)} 處，每處 -2）')
     for x in duty: print(f'  職責式：{x[:24]}')
+    for w in ABSOLUTE + NEG_ORG:
+        if w in text: print(f'  Level 8 旗標：「{w}」（絕對語氣或組織負面敘事）')
     print('A 格式請用 career-ops verify-ats；E AI 實證人工給分。')
 
 if __name__ == '__main__':

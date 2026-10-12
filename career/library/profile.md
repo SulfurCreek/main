@@ -59,5 +59,6 @@
 
 ## 6. 聯絡資料
 
+- 姓名：聶崑淮（履歷第一行，v7.6 起；2026-10-12 外部審查指出 PDF 缺姓名）
 - Email（履歷用）：kunhuainie@gmail.com（2026-10-12 使用者提供；寫在履歷抬頭，v7.5 起）
 - 電話、LinkedIn、作品集網址、目標薪資區間：**未提供**（見 [`open-questions.md`](open-questions.md)）

@@ -18,4 +18,5 @@
 | Q11 | 待補數據：規格份數、AI 功能採用率、規則數、缺陷率、IAP 營收成長 %、流失下降 % | 各 F 頁〔待補數據〕 | `wiki/resume-extract.md` 等 |
 | Q12 | 104 analysis §4 尚未回答的題目（測試、作品集、隱私等） | 104 | `104/analysis.md` §4 |
 | Q13 | 定位句年資起算點（story-bank A1：2013 或 2016；空檔怎麼處理） | 信件 | `letters/story-bank.md`；現行對外統一寫「近 10 年」 |
+| Q16 | 一個完整的 Roadmap 取捨案例：為什麼先做 A、延後 B、誰做決定、依據什麼資料、結果（升 Level 8 與 Senior c 型的關鍵證據） | 履歷、自傳、面試 | `style/external-review-chatgpt-2026-10-12.md` |
 

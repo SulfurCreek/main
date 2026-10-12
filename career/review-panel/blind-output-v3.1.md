@@ -55,6 +55,12 @@ python3 .claude/skills/resume-review-panel/scripts/f_scan.py <resume.txt> --view
  "xyz": {"候選人X": [{"bullet": "條列前 15 字", "X": true, "Y": true, "Z": true, "type": "成果／職責／只有做法"}]},
    （只針對篇幅最長的 3 位，逐條標）
  "cut": {"候選人X": ["與目標職缺無關、建議刪除的段落或條列（引用前 15 字）"]},
+ "level": {"候選人A": {"level": 1-10 的整數, "why": "一句依據（引用原句）"}, ...共 6 位},
+   （Level 7＝Good、8＝明確優於同級、9–10＝頂尖；只用整數，視為 ±1 級）
+ "senior_type": {"候選人X": {"type": "a 資深交付／b PO 跨部門協調／c 獨立負責方向與資源", "evidence": "引用原句", "missing": "要到下一型缺什麼"}},
+   （只針對篇幅最長的 3 位）
+ "number_hygiene": {"候選人X": ["缺分母、期間、口徑或個人／團隊邊界的數字（引用原句＋缺什麼）"]},
+ "red_wording": {"候選人X": ["絕對語氣、組織負面敘事、只有問題沒有結果的事件（引用原句）"]},
  "interview_questions": {"候選人X": ["8 個最可能追問、針對該份履歷具體內容的問題"]}
    （只針對篇幅最長的 3 位）
 }
@@ -70,5 +76,8 @@ python3 .claude/skills/resume-review-panel/scripts/f_scan.py <resume.txt> --view
 | 職責條列數 | B 段 type＝職責 | 應為 0 |
 | 只有做法的條列 | B 段 type＝只有做法，每段 ≤ 1 | 交付鏈例外是否用過頭 |
 | 建議刪除 | B 段 cut，5 輪中 ≥ 3 輪出現才列 | 相關性刪減 |
+| Level（v3.2） | B 段 level 的中位數與範圍 | 兩版中位數差 < 1 級視為同級 |
+| Senior 型（v3.2） | B 段 senior_type 眾數 | 是否出現 c 型證據 |
+| 數字與用字（v3.2） | number_hygiene、red_wording，≥ 3 輪才列 | 回步驟 2 補口徑或步驟 5 改寫 |
 
 規則同 v3：5 輪平均與波動；**兩版差距小於波動不算進步**；對照組或 C 級同儕沒排在預期位置，這次評分不可信。

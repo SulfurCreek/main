@@ -85,6 +85,7 @@
 | `pm-portfolio-creator` | 2026-10-03 | 台灣執行導向案例範本、TL;DR／假設／優先級、NDA 去識別（用級距不用假資料）、Mermaid 照柔色系 | 開場問卷、「可用於 HackMD」（違反硬規則二）、工程式範例 | `resume-craft/assets/portfolio-case-study-tw.md`、`references/portfolio.md` |
 | `anti-ai-ats-resume-crafter`（V3、V4 Toxic HR Defense） | 2026-10-08 兩次 | 禁用詞與破折號、CAR 盤問、RACR 結果先行、職稱包裝、量級錨定、產業洗白、ATS 單欄 | 剔除 AWS／交換／遠端意願（使用者調整後保留）、反日常勞力字面解讀（decisions §7 取代）、動詞升級為「架構」「Spearheaded」（decisions §1 禁用） | `style/anti-ai-ats.md`、`resume-craft/references/anti-ai-ats.md` |
 | 自傳 FAB 提示詞（獵頭攻擊型自傳） | 2026-10-12 | 首段 ≤ 100 字直接寫最強戰功與職缺契合；FAB 分段（做法與工具／差異化／雇主痛點與商業價值）；極致減法（無家庭、興趣、熱愛學習、希望來學習）；數字佐證；短段落可掃描 | 「具備高適應力、能迅速提供即戰力」形容詞不寫，改用事實證明（例：接手停擺改版）；粗體不用（104 自傳欄是純文字，且 anti-ai §結構）；「節省多少時間」沒有資料不寫；FAB 標籤不出現在正文 | `drafts/v7.3/autobio-fab.txt` |
+| ChatGPT 外部審查（評 v7.5、驗證方法） | 2026-10-12 | 姓名在抬頭、去絕對語氣、主打數字補口徑並拆開相關結果、去組織負面敘事、刪沒結果的事件、自傳 3 案例＋一句動機、Senior 三型、Level 1–10±1 | 「我先研究勞基法」不改（是事實、不負面）；不另建 `validate-resume-scoring` skill（併入 resume-review-panel v3.2）；電話與 Roadmap 取捨案例待使用者提供 | `style/external-review-chatgpt-2026-10-12.md` |
 
 - 若使用者所說「AI resume builder」另有所指，請告知名稱；目前紀錄中只有以上三個。
 - 來源：2026-10-02、10-03、10-08 使用者對話

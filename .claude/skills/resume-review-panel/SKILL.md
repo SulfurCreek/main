@@ -37,6 +37,10 @@ description: >
   `objective`（摘要是否回答「能不能做這份工作」，是／否＋依據）、
   `cut`（與目標職缺無關、建議刪的段落）。
   輸出格式範本：`career/review-panel/blind-output-v3.1.md`。報告彙整：初篩通過率、平均 yes 理由數、XYZ 完整條列比例、職責條列數，5 輪平均與波動，規則同項目 1（差距小於波動不算進步）。
+- **v3.2（2026-10-12，外部 ChatGPT 審查採用，`career/style/external-review-chatgpt-2026-10-12.md`）**：
+  - 絕對分數會飽和、系統性高估（對方 50 份測試：平均高估 8.6 分、高分段分不開），**報告不解讀 1–2 分的差**；以名次、**Level 1–10 ±1 級**與分項證據為主。
+  - 盲審 JSON 另加 `level`（每位候選人 1–10 與一句依據）、`senior_type`（a 資深交付／b PO 跨部門協調／c 獨立負責方向與資源，附證據句）、`number_hygiene`（最長 3 位：主打數字缺分母、期間、口徑或責任邊界者）、`red_wording`（絕對語氣、組織負面敘事、沒結果的事件）。格式見 `career/review-panel/blind-output-v3.1.md`〈B〉。
+  - PDF／ATS 解析、AI 來源判讀、真人招聘效度**分開判斷**，不合成一個分數；真人效度只看 104 曝光與投遞回覆。
 - 已知限制：同儕池是短摘要，A／B 級在盲審中分不出來（2026-10-09 首輪），需補成完整長度後再當校準組。
 - 報告放 `career/review-panel/runs/<日期>/report.md`。
 
