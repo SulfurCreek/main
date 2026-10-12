@@ -26,7 +26,7 @@ description: >
 | :-- | :--- | :--- | :--- |
 | 1 | 調用職能與職缺 | 讀 `career/library/`、F01–F15、交付鏈 14 項；讀目標 JD（`career/104/jd-digest-A.md`），列必備詞與加分詞；職缺進 career-ops pipeline | 本檔「從職能框架產出」、career-ops |
 | 2 | 蒐集證據 | 每職能一張證據表；缺口一次問一題，答案先寫 library | `superseded.md` 比對 |
-| 3 | 每項目寫成小 essay | 150–400 字：處境、決定、做法與產出文件、協作、結果、角色邊界；對照 JD 加分條件；**文末標出 X 結果／Y 指標／Z 做法**；AI 要寫怎麼用、產出什麼 | `career/style/ats-2026-source.md`、`hr-6-second-source.md` |
+| 3 | 每項目寫成小 essay＋**自傳初稿**（3b：FAB 結構，原料只取 essay） | 150–400 字：處境、決定、做法與產出文件、協作、結果、角色邊界；對照 JD 加分條件；**文末標出 X 結果／Y 指標／Z 做法**；AI 要寫怎麼用、產出什麼 | `career/style/ats-2026-source.md`、`hr-6-second-source.md` |
 | 4 | 精簡×20 版本 | 每個單位（摘要、每條條列、技能、自傳每段）寫 20 版，機械分＋人工分，**只留最高分**，組裝成最完整履歷；組裝時套 6 秒版面（抬頭職稱在左、相關性刪減） | `scripts/resume_score.py variants`、本檔 Bullet 公式與〈6 秒版面〉、`tw-voice.md` |
 | 5 | 去 AI 感 | 讀者角度逐句標 AI 腔、整齊過頭、通用句、無來源感受 | `anti-ai-ats.md`、`career/style/resume-voice-zh.md` |
 | 6 | HR 檢測 | **先做 6 秒 F 型初篩**（另一個模型只看 F 型視野），再做人資 H1–H10＋HR-A…J＋作廢比對＋覆蓋核對 | skill `resume-review-panel`（`scripts/f_scan.py`） |

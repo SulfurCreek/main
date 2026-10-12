@@ -27,3 +27,4 @@
 | Spearheaded（resume-craft 強動詞表）、1,279 工單／~88% 結案（resume-craft 叢集表） | 依 decisions §1；工單數用 1,857／93% | 2026-10-08 | `.claude/skills/resume-craft/SKILL.md`（本次修正） |
 | SQL、Jira、Confluence 一律「未確認」 | SQL：不會寫，但借助 AI 協助工程師改搜尋邏輯 ≥3 次；Jira、Confluence 仍未確認 | 2026-10-09 | `library/profile.md`、`104/analysis.md` §3 |
 | 履歷工作流程八步（精簡只出一版；HR 後直接主管） | 九步：步驟 4 每單位 20 版本取最高分組裝；HR 與主管之間加 ATS 檢測 | 2026-10-09 | `library/decisions.md` §8 舊版、`resume-craft/references/workflow.md`（已更新） |
+| 即時通事故寫成「週報公開說明、致歉並寫出預防方式」 | 「密集和業務單位溝通」 | 2026-10-12 | `104/resume-104-v7.2.txt` 自傳、`drafts/v7.3/resume-v7.3.txt` 自傳 |
