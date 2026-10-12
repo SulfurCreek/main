@@ -62,8 +62,8 @@
 ### 3b／3c. 自傳：先寫 essay，再潤飾（2026-10-12 使用者裁定）
 
 - **完整方法見 [`autobiography.md`](autobiography.md)**（含「為什麼想離開」的寫法）。
-- 3b：產出 `03b-autobio-essay.md`：每個自傳段落一篇 essay（B2B 判斷、商業化、跨部門或跨國、有結果的事故、離職動機、有目標 JD 時的 90 天），開頭標「想讓讀者相信什麼」與素材來源；原料只取 library 與步驟 3 essay。
-- 3c：產出 `03c-autobio-draft.md`：從 essay 潤飾成自傳初稿（每段 ≤ 4 行），再進步驟 4（每段 20 版本）與**步驟 5 去 AI 感**，和履歷一起過 6–8 的檢測。
+- 3b：產出 `03b-autobio-essay.md`：**四段敘事**的 essay（選一個戰役並寫理由、Hook 候選 3 句、戰役 essay、方法、動機），原料只取 library 與步驟 3 essay；價值觀取 `career/library/profile.md` §8。輸入資訊不再問使用者。
+- 3c：產出 `03c-autobio-draft.md`：潤飾成四段、不加小標、500–800 字，再進步驟 4（每段 20 版本）與**步驟 5 去 AI 感**，和履歷一起過 6–8 的檢測。
 - 使用者口述的內容當事實用，句子照 skill 重寫，不加沒說過的細節。
 - FAB 結構的攻擊型自傳（`career/drafts/v7.3/autobio-fab.txt`）在 2026-10-12 盲審輸給故事式自傳，只留作有目標 JD 時的求職信素材。
 

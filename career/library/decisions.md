@@ -87,6 +87,7 @@
 | 自傳 FAB 提示詞（獵頭攻擊型自傳） | 2026-10-12 | 首段 ≤ 100 字直接寫最強戰功與職缺契合；FAB 分段（做法與工具／差異化／雇主痛點與商業價值）；極致減法（無家庭、興趣、熱愛學習、希望來學習）；數字佐證；短段落可掃描 | 「具備高適應力、能迅速提供即戰力」形容詞不寫，改用事實證明（例：接手停擺改版）；粗體不用（104 自傳欄是純文字，且 anti-ai §結構）；「節省多少時間」沒有資料不寫；FAB 標籤不出現在正文 | `drafts/v7.3/autobio-fab.txt` |
 | ChatGPT 外部審查（評 v7.5、驗證方法） | 2026-10-12 | 姓名在抬頭、去絕對語氣、主打數字補口徑並拆開相關結果、去組織負面敘事、刪沒結果的事件、自傳 3 案例＋一句動機、Senior 三型、Level 1–10±1 | 「我先研究勞基法」不改（是事實、不負面）；不另建 `validate-resume-scoring` skill（併入 resume-review-panel v3.2）；電話與 Roadmap 取捨案例待使用者提供 | `style/external-review-chatgpt-2026-10-12.md` |
 | 「為什麼想離開」寫法（okworkoklife 整合） | 2026-10-12 | HR 問的目的（動機、地雷區、預測行為）；三 NG（主管、同事、加班）；誠實避重就輕、不批評、聚焦職涯；推力轉拉力三步公式；自傳先 essay 再潤飾 | — | `style/leaving-reason-source.md`、`resume-craft/references/autobiography.md` |
+| 〈Executive Storyteller〉自傳四段敘事 | 2026-10-12 | 四段固定（破題信念 → 一個關鍵戰役 → 方法 → 動機與對齊）；禁止主題 Q&A 式段落；特質藏在細節；禁用詞 13 個；咖啡廳資深職人語氣 | 通則式 Hook 改為「我」的信念（v8 盲審教訓）；戰役數字 ≤ 2；不問使用者輸入（library 已有） | `style/autobio-storyteller-source.md`、`resume-craft/references/autobiography.md`、`profile.md` §8 |
 
 - 若使用者所說「AI resume builder」另有所指，請告知名稱；目前紀錄中只有以上三個。
 - 來源：2026-10-02、10-03、10-08 使用者對話
