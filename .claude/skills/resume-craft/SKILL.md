@@ -94,7 +94,7 @@ description: >
 | # | 英文 ATS | 繁中在地 | 備註 |
 | :-- | :--- | :--- | :--- |
 | 1 | Contact + Headline | 姓名 + 一句定位 + 聯絡方式〔＋照片視情況〕| ATS 版去照片/個資 |
-| 2 | Professional Summary（2–3 行）| 專業摘要 | **用摘要、不要 Objective**；含 2–3 個 JD 關鍵字 |
+| 2 | Professional Summary（3–5 行）| 專業摘要 | **用摘要、不要 Objective**；年資＋經手產品／Domain＋核心方法＋最具代表性的量化成就；不寫性格形容詞；含 2–3 個 JD 關鍵字 |
 | 3 | Core Competencies（5–7 叢集）| 核心職能 | 叢集 + 證據點 |
 | 4 | Professional Experience（反時序）| 工作經歷（反時序）| 每段 3–6 條量化 bullet |
 | 5 | Education & Certifications | 學歷／證照 | 年資 10+ 可移到經歷之後 |
