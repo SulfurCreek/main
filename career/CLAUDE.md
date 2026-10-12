@@ -64,7 +64,7 @@ Enforced by `scripts/guard_career_scope.sh` (PreToolUse hook, this branch only; 
 | :--- | :--- | :--- |
 | 產生、填寫、驗證 **104 履歷** | `104/README.md` →（`104/fields-spec.md` 欄位規格、`104/ui-notes.md` 介面紀錄、`104/resume-104.md` 逐欄內容、`104/chrome-playbook.md` Chrome 操作手冊、`104/resume-104-v7.5.txt` 現行版） | 必填欄位、字數上限、個資與機密規則一律以 `fields-spec.md` 為準 |
 | 產生 **Cake Resume** | 尚未建立 `cake/`；要做時先開 `cake/` 目錄、先取得 Cake 編輯頁欄位規格再寫 | **不得套用 104 的欄位規格與字數上限**；內容事實與數字仍共用 `wiki/` |
-| 英文 ATS 履歷、自傳、求職信 | `resume-craft` skill、`letters/` | 與平台表單無關 |
+| 英文 ATS 履歷、自傳、求職信 | `resume-craft` skill、`letters/`；**自傳與「為什麼想離開」先讀 `resume-craft/references/autobiography.md`** | 與平台表單無關 |
 
 事實與數字的來源：先 `library/`（現行事實），細節再查 `wiki/`；各平台檔案只是格式不同的呈現。**中文語氣一律依 `style/resume-voice-zh.md`**（104、Cake 共用，第 3 節護欄優先於語氣）。
 

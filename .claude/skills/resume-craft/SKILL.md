@@ -3,7 +3,7 @@ name: resume-craft
 description: >
   撰寫、修改、批改使用者個人履歷／CV／LinkedIn／作品集，或把職能、經歷、專案成果轉成履歷 bullet、依 JD 客製化時使用。
   觸發詞：履歷、resume、CV、自傳、作品集、portfolio、case study、LinkedIn、投遞、應徵、求職、JD 客製、
-  求職信、自我推薦信、推薦函、cover letter、應徵信、
+  求職信、自我推薦信、推薦函、cover letter、應徵信、轉職動機、離職原因、為什麼想離開、
   把 F1–F15 職能或專案變成履歷條目——使用者沒明講「履歷」兩字也算。
   以 Senior PM / Product 視角、大型企業招募標準（含 ATS 與 AI／LLM 履歷掃描）優化，雙語（英文 ATS 版 + 繁中在地版）。
   證據來源是 `career/` 的職能框架 wiki。
@@ -26,7 +26,7 @@ description: >
 | :-- | :--- | :--- | :--- |
 | 1 | 調用職能與職缺 | 讀 `career/library/`、F01–F15、交付鏈 14 項；讀目標 JD（`career/104/jd-digest-A.md`），列必備詞與加分詞；職缺進 career-ops pipeline | 本檔「從職能框架產出」、career-ops |
 | 2 | 蒐集證據 | 每職能一張證據表；缺口一次問一題，答案先寫 library | `superseded.md` 比對 |
-| 3 | 每項目寫成小 essay＋**自傳初稿**（3b：FAB 結構，原料只取 essay） | 150–400 字：處境、決定、做法與產出文件、協作、結果、角色邊界；對照 JD 加分條件；**文末標出 X 結果／Y 指標／Z 做法**；AI 要寫怎麼用、產出什麼 | `career/style/ats-2026-source.md`、`hr-6-second-source.md` |
+| 3 | 每項目寫成小 essay；**自傳先寫 essay（3b）再潤飾（3c）**，方法見 `references/autobiography.md` | 150–400 字：處境、決定、做法與產出文件、協作、結果、角色邊界；對照 JD 加分條件；**文末標出 X 結果／Y 指標／Z 做法**；AI 要寫怎麼用、產出什麼 | `career/style/ats-2026-source.md`、`hr-6-second-source.md` |
 | 4 | 精簡×20 版本 | 每個單位（摘要、每條條列、技能、自傳每段）寫 20 版，機械分＋人工分，**只留最高分**，組裝成最完整履歷；組裝時套 6 秒版面（抬頭職稱在左、相關性刪減） | `scripts/resume_score.py variants`、本檔 Bullet 公式與〈6 秒版面〉、`tw-voice.md` |
 | 5 | 去 AI 感 | 讀者角度逐句標 AI 腔、整齊過頭、通用句、無來源感受 | `anti-ai-ats.md`、`career/style/resume-voice-zh.md` |
 | 6 | HR 檢測 | **先做 6 秒 F 型初篩**（另一個模型只看 F 型視野），再做人資 H1–H10＋HR-A…J＋作廢比對＋覆蓋核對 | skill `resume-review-panel`（`scripts/f_scan.py`） |
@@ -51,6 +51,7 @@ description: >
 | 作品集 case study | [`references/portfolio.md`](references/portfolio.md)（含市場路由、NDA 去識別化）＋ 範本：外商／英文 [`assets/portfolio-case-study.md`](assets/portfolio-case-study.md)；台灣本土／新創 [`assets/portfolio-case-study-tw.md`](assets/portfolio-case-study-tw.md) | `portfolio/e1-cross-system-messaging.md`（範例）。**內部版輸出位置固定在 `career/portfolio/`；要上網站的篇章另產對外版 `career/portfolio/public/`（規則見 `references/portfolio.md`〈對外版〉）；career 內容禁止寫入 HackMD**（`career/CLAUDE.md` 硬規則二）。 |
 | 6 秒篩選、F 型版面、XYZ、相關性刪減（排版與組裝時必讀）| `career/style/hr-6-second-source.md`（原文＋與既有裁定的衝突處理）＋本檔〈6 秒版面〉 | — |
 | 去 AI 感、ATS 格式、CAR 盤問（交付前必做）| [`references/anti-ai-ats.md`](references/anti-ai-ats.md)：掃禁用詞與破折號、空泛條目先停下來問 Context／Action／Result，問不到不補數字 |
+| **寫自傳、轉職動機、「為什麼想離開」**（先 essay 再潤飾）| [`references/autobiography.md`](references/autobiography.md)＋版面 `assets/template-tw-zh.md`〈自傳〉 | `career/library/profile.md` §7、`career/style/leaving-reason-source.md` |
 | 撰寫中文履歷／自傳／專案說明（語氣與誇大護欄）| [`references/tw-voice.md`](references/tw-voice.md) | 數字與事實只取自 `wiki/` |
 | 產生／填寫／驗證 **104 履歷** | 先讀 `career/104/README.md`（`fields-spec.md` 欄位規格、`resume-104.md` 內容、現行版見 README 標示（以 README 為準，不要寫死版本號））；**Cake Resume 另案，不得套用 104 的欄位規格與字數上限**；語氣依 [`references/tw-voice.md`](references/tw-voice.md) | 這些檔案在個人線分支 `claude/happy-lamport-ljis8c` 的 `career/104/` |
 | 求職信：中文自我推薦信（英文 cover letter 走 career-ops `cover` 模式）| [`references/cover-letters.md`](references/cover-letters.md) ＋ 範本 [`assets/cover-letter-tw-zh.md`](assets/cover-letter-tw-zh.md) | `letters/story-bank.md`（數字唯一來源）；成品存 `letters/archive/` ＋ `letters/log.md` 加一列 |
