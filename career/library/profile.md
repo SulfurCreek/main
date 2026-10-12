@@ -59,5 +59,5 @@
 
 ## 6. 聯絡資料
 
-- Email：見 `career-ops/config/profile.yml`（不寫進對外檔案以外的地方）
+- Email（履歷用）：kunhuainie@gmail.com（2026-10-12 使用者提供；寫在履歷抬頭，v7.5 起）
 - 電話、LinkedIn、作品集網址、目標薪資區間：**未提供**（見 [`open-questions.md`](open-questions.md)）
