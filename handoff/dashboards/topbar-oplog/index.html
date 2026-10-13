@@ -62,6 +62,33 @@ h3{font-size:16px;font-weight:600}
 .num{font-family:var(--font-num);font-variant-numeric:tabular-nums}
 code{font-family:var(--font-num);font-size:12px;background:var(--surface-2);border:1px solid var(--line);border-radius:4px;padding:0 4px}
 
+
+/* app shell（版型參照 wireframes/recruit-login-tracking：頂欄＋左側分析模組＋內容＋右側 300px 規格欄） */
+.app{display:flex;min-height:100vh;align-items:flex-start}
+.app-main{flex:1;min-width:0}
+.app-head{display:flex;flex-wrap:wrap;gap:12px 24px;align-items:flex-end;justify-content:space-between;background:var(--surface-2);border-bottom:2px solid var(--fg);padding:16px 24px}
+.head-r{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.app-body{display:flex;align-items:flex-start}
+.app-nav{width:224px;flex:none;border-right:2px solid var(--fg);background:var(--surface);padding:12px;display:grid;gap:8px;align-content:start;position:sticky;top:0;min-height:100vh}
+.navi{font:inherit;text-align:left;display:flex;gap:8px;align-items:center;border:2px solid var(--line-strong);border-radius:6px;background:var(--surface);color:var(--fg);padding:8px;cursor:pointer}
+.navi b{display:block;font-size:15px;line-height:1.2} .navi small{display:block;font-size:12px;color:var(--fg-3)}
+.navi .nsq{flex:none;width:28px;height:28px;border:2px solid var(--line-strong);border-radius:4px;display:grid;place-items:center;font-weight:700;color:var(--fg-3)}
+.navi[aria-pressed="true"]{background:var(--surface-2);border-color:var(--fg)} .navi[aria-pressed="true"] .nsq{background:var(--fg);color:var(--surface);border-color:var(--fg)}
+.app-content{flex:1;min-width:0;padding:20px;display:grid;gap:20px;align-content:start}
+.view{display:grid;gap:16px} .view[hidden]{display:none}
+.viewhd{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:8px 16px;border-bottom:2px solid var(--fg);padding-bottom:8px}
+.viewhd h2{font-size:24px}
+.pb,.bw{position:relative}
+.badge{position:absolute;top:-12px;left:-12px;z-index:5;width:26px;height:26px;border-radius:50%;background:var(--fg);color:var(--surface);font:700 14px/26px var(--font-num);text-align:center;border:2px solid var(--fg);box-shadow:2px 2px 0 var(--line-strong)}
+.specs{width:300px;flex:none;border-left:2px solid var(--fg);background:var(--surface);padding:16px;position:sticky;top:0;max-height:100vh;overflow-y:auto}
+.specs h2{font-size:20px;border-bottom:2px solid var(--fg);padding-bottom:4px;margin-bottom:16px}
+.note{background:var(--warn-bg);border:1px solid var(--warn-line);padding:12px;margin-bottom:12px;font-size:13px;line-height:1.55;color:var(--fg)}
+.note[hidden]{display:none}
+.note code{background:var(--surface);border:1px solid var(--warn-line)}
+.note .todo{border-top:1px dashed var(--warn-ink);margin-top:6px;padding-top:6px;color:var(--warn-ink)}
+.note.hl{outline:3px solid var(--accent)}
+@media (max-width:1180px){.app{display:block}.specs{width:auto;position:static;max-height:none;border-left:0;border-top:2px solid var(--fg)}}
+@media (max-width:860px){.app-body{display:block}.app-nav{width:auto;min-height:0;position:static;border-right:0;border-bottom:2px solid var(--fg);display:flex;overflow-x:auto}.navi{flex:none}.app-nav .eyebrow{display:none}.app-content{padding:16px}.app-head{padding:16px}}
 /* header */
 .head{display:flex;flex-wrap:wrap;gap:12px 24px;align-items:flex-end;justify-content:space-between}
 .head .src{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
@@ -207,12 +234,12 @@ tr.detail td{background:var(--surface-2);white-space:normal}
 </style>
 </head>
 <body>
-<div class="wrap">
-
-  <header class="head">
+<div class="app">
+<main class="app-main">
+  <header class="app-head">
     <div>
-      <div class="eyebrow">Recruit-web op log ・ 數據後台</div>
-      <h1>Topbar 動線後台</h1>
+      <div class="eyebrow">RECRUIT-WEB OP LOG ・ 數據後台</div>
+      <h1>1111 求才 Topbar 動線數據後台</h1>
       <div class="src">
         <span class="tag"><code>recruit:login:success</code> 已埋</span>
         <span class="tag"><code>recruit:topbar:view</code> 已埋</span>
@@ -221,14 +248,13 @@ tr.detail td{background:var(--surface-2);white-space:normal}
         <span class="tag">以 Session ID 串連</span>
       </div>
     </div>
-    <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
-      <span class="mock">畫面數字為示意資料，非正式 log</span>
-      <button class="btn theme-btn" id="themeBtn" type="button">切換深淺色</button>
-    </div>
+    <div class="head-r"><span class="mock">畫面數字為示意資料，非正式 log</span><button class="btn theme-btn" id="themeBtn" type="button">切換深淺色</button></div>
   </header>
-
+  <div class="app-body">
+    <nav class="app-nav" aria-label="分析模組"><div class="eyebrow">分析模組</div><button type="button" class="navi" data-view="A" aria-pressed="true"><span class="nsq">A</span><span><b>廠商輪廓</b><small>Vendor Login Profile</small></span></button><button type="button" class="navi" data-view="B" aria-pressed="false"><span class="nsq">B</span><span><b>功能與動線</b><small>Topbar Flow</small></span></button><button type="button" class="navi" data-view="C" aria-pressed="false"><span class="nsq">C</span><span><b>Session 明細</b><small>Session Timeline</small></span></button><button type="button" class="navi" data-view="D" aria-pressed="false"><span class="nsq">D</span><span><b>埋點覆蓋</b><small>Tracking Coverage</small></span></button></nav>
+    <div class="app-content">
   <!-- Filters -->
-  <section class="filters" aria-label="篩選條件">
+  <section class="filters pb" aria-label="篩選條件"><span class="badge" aria-hidden="true">1</span>
     <div class="f">
       <span class="lbl">日期</span>
       <div class="seg" id="presetSeg" role="group" aria-label="日期快選">
@@ -278,21 +304,19 @@ tr.detail td{background:var(--surface-2);white-space:normal}
     <div class="f-summary" id="fSummary"></div>
   </section>
 
+
   <!-- Conclusion -->
-  <section class="concl" aria-label="結論">
+  <section class="concl pb" aria-label="結論"><span class="badge" aria-hidden="true">2</span>
     <div class="eyebrow">本期結論</div>
     <ul id="conclList"></ul>
   </section>
 
-  <!-- Module A -->
-  <section class="module" aria-labelledby="mA">
-    <div class="mhead">
-      <h2 id="mA">廠商輪廓</h2>
-      <span class="flow">廠商登入成功 <code>login:success</code> ➜ Topbar 抵達任一頁面 <code>topbar:view</code></span>
-    </div>
-    <div class="kpis" id="kpiA"></div>
+
+      <div class="viewhd"><div><div class="eyebrow">CURRENT VIEW</div><h2 id="viewTitle">廠商輪廓</h2></div><div class="flow" id="viewFlow"></div></div>
+<section class="view" data-view="A" data-flow='廠商登入成功 <code>login:success</code> ➜ Topbar 抵達任一頁面 <code>topbar:view</code>' data-title="廠商輪廓" aria-label="廠商輪廓">  <!-- Module A -->
+<div class="bw"><span class="badge" aria-hidden="true">3</span><div class="kpis" id="kpiA"></div></div>
     <div class="grid2">
-      <div class="panel">
+      <div class="panel pb"><span class="badge" aria-hidden="true">4</span>
         <div class="ph"><h3>每日活躍廠商數</h3><span class="sub">每日各網段各自以 OrganNo 去重；週末淡色</span></div>
         <div class="key"><span><i style="background:var(--bar)"></i>外網</span><span><i style="background:var(--bar-2)"></i>內網</span><span class="muted">同一廠商當天內外網都有登入時，兩邊各算一次</span></div>
         <div class="scroll"><div style="min-width:320px">
@@ -300,89 +324,77 @@ tr.detail td{background:var(--surface-2);white-space:normal}
           <div class="xlab" id="dailyX"></div>
         </div></div>
       </div>
-      <div class="panel">
+      <div class="panel pb"><span class="badge" aria-hidden="true">5</span>
         <div class="ph"><h3>登入高頻時段</h3><span class="sub">登入 Session 數，星期 × 小時；粗框＝最高峰</span></div>
         <div class="scroll"><div class="hm" id="heat"></div></div>
         <div class="legend"><span>少</span><span class="ramp" id="heatRamp"></span><span>多</span><span id="peakTxt"></span></div>
       </div>
     </div>
-    <div class="panel">
+    <div class="panel pb"><span class="badge" aria-hidden="true">6</span>
       <div class="ph"><h3>內網／外網</h3><span class="sub">內外網都納入統計；用上方「網段」可單看其一</span></div>
       <div class="scroll"><table id="netTable"></table></div>
       <div class="cmp" id="cmp"></div>
     </div>
-  </section>
+</section>
+<section class="view" data-view="B" data-flow='Topbar 抵達任一頁面 ➜ Topbar 抵達任一頁面（同一 Session ID 依時間排序）' data-title="功能與動線" aria-label="功能與動線" hidden>  <!-- Module B -->
+<div class="bw"><span class="badge" aria-hidden="true">7</span><div class="kpis" id="kpiB"></div></div>
 
-  <!-- Module B -->
-  <section class="module" aria-labelledby="mB">
-    <div class="mhead">
-      <h2 id="mB">功能與動線</h2>
-      <span class="flow">Topbar 抵達任一頁面 ➜ Topbar 抵達任一頁面（同一 Session ID 依時間排序）</span>
-    </div>
-    <div class="kpis" id="kpiB"></div>
-
-    <div class="panel">
+    <div class="panel pb"><span class="badge" aria-hidden="true">8</span>
       <div class="ph"><h3>VIP 狀態 × 功能分區</h3><span class="sub">該 oStatus 的活躍廠商中，期間內抵達過該分區的比例</span></div>
       <div class="scroll"><div class="mx" id="matrix"></div></div>
     </div>
 
-    <div class="panel">
+    <div class="panel pb"><span class="badge" aria-hidden="true">9</span>
       <div class="ph"><h3>各頁面使用情況</h3><span class="sub" id="pageSub"></span></div>
       <div class="scroll"><table id="pageTable"></table></div>
       <button type="button" class="btn more" id="pageMore">顯示全部頁面（含期間內無紀錄）</button>
     </div>
 
     <div class="grid2">
-      <div class="panel">
+      <div class="panel pb"><span class="badge" aria-hidden="true">10</span>
         <div class="ph"><h3>常見動線 Top 10</h3><span class="sub">相鄰兩次 Topbar 抵達（A ➜ B）</span></div>
         <div class="scroll"><table id="flowTable"></table></div>
       </div>
-      <div class="panel">
+      <div class="panel pb"><span class="badge" aria-hidden="true">11</span>
         <div class="ph"><h3>登入後第一站 Top 10</h3><span class="sub">每個 Session 的第一筆 Topbar 抵達</span></div>
         <div class="scroll"><table id="firstTable"></table></div>
       </div>
     </div>
-  </section>
-
-  <!-- Session detail -->
-  <section class="module" aria-labelledby="mC">
-    <div class="mhead">
-      <h2 id="mC">Session 明細</h2>
-      <span class="flow">點一列展開完整事件時間軸；可用上方 Session ID 直接查</span>
-    </div>
-    <div class="panel">
+</section>
+<section class="view" data-view="C" data-flow='點一列展開完整事件時間軸；可用上方 Session ID 直接查' data-title="Session 明細" aria-label="Session 明細" hidden>  <!-- Session detail -->
+<div class="panel pb"><span class="badge" aria-hidden="true">12</span>
       <div class="ph"><span class="sub" id="sessSub"></span></div>
       <div class="scroll"><table id="sessTable"></table></div>
       <button type="button" class="btn more" id="sessMore">再多顯示 20 筆</button>
     </div>
-  </section>
+</section>
+<section class="view" data-view="D" data-flow='依 HackMD〈求才埋點需求統整〉v0.0.3；不自行擬 featureID' data-title="埋點覆蓋" aria-label="埋點覆蓋" hidden>  <!-- Coverage -->
+<div class="panel pb"><span class="badge" aria-hidden="true">13</span><div class="scroll"><table id="covTable"></table></div></div>
+</section>
 
-  <!-- Coverage -->
-  <section class="module" aria-labelledby="mE">
-    <div class="mhead"><h2 id="mE">埋點覆蓋</h2><span class="flow">依 HackMD〈求才埋點需求統整〉v0.0.3；狀態以文件為準，不自行擬 featureID</span></div>
-    <div class="panel"><div class="scroll"><table id="covTable"></table></div></div>
-  </section>
-
-  <!-- Notes -->
-  <section class="notes" aria-labelledby="mD">
-    <h2 id="mD">計算口徑</h2>
-    <dl>
-      <dt>資料串連</dt><dd>同一次登入的 <code>sessionId</code> 在登入成功、Topbar 抵達事件相同；一個 Session ＝ 1 筆 <code>login:success</code> ＋ N 筆 <code>topbar:view</code>，依時間戳記排序成動線。</dd>
-      <dt>活躍廠商</dt><dd>期間內有任一 Session 的 OrganNo 去重；區間模式是整段去重，不是每日加總。</dd>
-      <dt>VIP 狀態</dt><dd>取 <code>metadata.oStatus</code>（0 普通會員／1 VIP／2 過期／3 關權／4 免費VIP／5 免費曝光／6 準VIP）；同一廠商期間內若變動，以該 Session 當下值計算。</dd>
-      <dt>網段</dt><dd>由事件 IP 判斷內網／外網，兩者都納入統計：KPI、每日趨勢、內外網表、頁面使用表皆並列外網與內網；篩選「網段」可單看其一。</dd>
-      <dt>頁面</dt><dd>Topbar 事件的 URL 路徑對應〈附錄：頁面一覽表〉（Sitemap）。履歷詳細頁、履歷列印頁不渲染預設 Topbar，不會出現在本後台。</dd>
-      <dt>篩選套用方式</dt><dd>日期、VIP 狀態、網段、廠商、Session ID 以 Session 為單位過濾；功能分區／抵達頁面保留「期間內抵達過該處的 Session」，其完整動線仍會顯示。</dd>
-      <dt>期間內無紀錄</dt><dd>頁面一覽表中有、但期間內沒有任何 Topbar 抵達的頁面，可對照文件的「op log 抵達確認」欄。</dd>
-    </dl>
-    <div class="todo"><b>待確認</b>
-      <ul>
-        <li>Topbar 事件是否帶有 OrganNo／廠商名稱，或需用 Session ID 回查登入事件取得。</li>
-        <li>舊版 wireframe 的「產業 tCodeTrade」「裝置」篩選只存在於登入事件；若要加回，需確認 Topbar 事件可透過 Session ID 帶入。</li>
-        <li>後台載體（Grafana、客服後台或獨立報表）與查詢 API 驗證方式。</li>
-      </ul>
     </div>
-  </section>
+  </div>
+</main>
+<aside class="specs" aria-label="技術規格與流程邏輯"><h2>Technical Specs &amp; Flow Logic</h2>
+<div class="note" data-v="all"><b>資料來源（全畫面共用）</b><br>同一次登入的 <code>sessionId</code> 在 <code>recruit:login:success</code>、<code>recruit:topbar:view</code> 相同；一個 Session ＝ 1 筆登入成功 ＋ N 筆 Topbar 抵達，依時間串成動線。事件欄位：時間、IP（判斷內外網）、頁面路徑、<code>metadata.oStatus</code>。
+<div class="todo">⚠ 本畫面為示意資料；Topbar 事件是否帶 OrganNo／廠商名稱，或需用 Session ID 回查登入事件，待確認。</div></div>
+<div class="note" data-v="all"><b>① 篩選列</b><br>日期、VIP 狀態（oStatus 0–6，可多選）、網段（全部／外網／內網）、功能分區、抵達頁面、廠商名稱／OrganNo、Session ID。以 Session 為單位過濾，同時套用到所有分析模組；功能分區／抵達頁面保留「期間內抵達過該處的 Session」。
+<div class="todo">🚧 舊 wireframe 的「產業 tCodeTrade」「裝置」只存在登入事件，Topbar 事件沒有，已移除。</div></div>
+<div class="note" data-v="all"><b>② 本期結論</b><br>由目前篩選條件自動產生的幾句話，只引用下方模組已算出的數字。</div>
+<div class="note" data-v="A"><b>③ 廠商輪廓 KPI</b><br>活躍廠商 ＝ 期間內有任一 Session 的 <code>DISTINCT OrganNo</code>（區間整段去重，不是每日加總）；日均活躍 ＝ 每日去重後平均；內網占比 ＝ 內網 Session ÷ 全部 Session。</div>
+<div class="note" data-v="A"><b>④ 每日活躍廠商</b><br>每日各網段各自以 OrganNo 去重，堆疊長條：外網在下、內網在上；同一廠商當天內外網都有登入時，兩邊各算一次。週末淡色。</div>
+<div class="note" data-v="A"><b>⑤ 登入高頻時段</b><br>星期 × 小時的登入 Session 數，色階一個色相由淺到深；粗框＝最高峰。</div>
+<div class="note" data-v="A"><b>⑥ 內網／外網並列</b><br>內外網都納入、不排除，並列比較：廠商數、Session 數、平均頁數、只到一頁離開率、高峰時段、第一站、Top 5 頁面。並列卡不受「網段」篩選影響，其他篩選仍套用。
+<div class="todo">🚧 內網「客服人員直接登入」是否也送事件；若會，要不要排除，待確認。</div></div>
+<div class="note" data-v="B"><b>⑦ 功能與動線 KPI</b><br>Topbar 抵達次數、平均每 Session 頁數、只到一頁就離開的比例、有抵達紀錄的頁面數（對照頁面一覽表）。</div>
+<div class="note" data-v="B"><b>⑧ VIP 狀態 × 功能分區</b><br>該 oStatus 的活躍廠商中，期間內抵達過該分區（Sitemap 模組 2–9）的比例。同一廠商期間內若 oStatus 變動，以該 Session 當下的值計。</div>
+<div class="note" data-v="B"><b>⑨ 各頁面使用情況</b><br>頁面對照〈附錄：頁面一覽表〉（Sitemap）；列出抵達次數、外網／內網、抵達廠商數、作為第一站次數；「op log 抵達確認」＝期間內是否有紀錄。可點欄位排序。履歷詳細頁、履歷列印頁不渲染預設 Topbar，不在本後台。</div>
+<div class="note" data-v="B"><b>⑩ 常見動線 Top 10</b><br>同一 Session 內相鄰兩次 Topbar 抵達（A ➜ B）的次數；占比 ＝ 該動線 ÷ 全部相鄰轉換。</div>
+<div class="note" data-v="B"><b>⑪ 登入後第一站</b><br>每個 Session 的第一筆 Topbar 抵達頁面。</div>
+<div class="note" data-v="C"><b>⑫ Session 明細</b><br>每列一個 Session：廠商、oStatus、網段、登入時間、頁數、動線摘要；點列展開完整事件時間軸（時間＋頁面）。可用篩選列的 Session ID 直接查。</div>
+<div class="note" data-v="D"><b>⑬ 埋點覆蓋</b><br>featureID 狀態照 HackMD 矩陣：已埋／規劃中；未定義的 featureID 一律「待補」。「op log 抵達確認」尚未由 op log 驗證，一律「待確認」。</div>
+<div class="note" data-v="all"><b>系統面（尚未決定）</b><div class="todo">🚧 後台載體（Grafana、客服後台或獨立報表）與查詢 API 驗證方式。此畫面只定義資訊結構，與載體無關。</div></div>
+</aside>
 </div>
 <div id="tip" hidden></div>
 
@@ -733,6 +745,22 @@ function renderCov(c){
 }
 function update(){syncUI();summary();cur=compute(filterSessions());renderA(cur);renderB(cur);renderSess(cur);renderConcl(cur);renderCmp();renderCov(cur);}
 update();
+})();
+
+/* ───────── 分析模組切換（左側 nav）＋規格欄跟著切換 ───────── */
+(function(){
+  var navs=document.querySelectorAll(".navi"),views=document.querySelectorAll(".view"),notes=document.querySelectorAll(".note");
+  function show(k){
+    navs.forEach(function(n){n.setAttribute("aria-pressed",String(n.dataset.view===k));});
+    views.forEach(function(v){var on=v.dataset.view===k;v.hidden=!on;if(on){document.getElementById("viewTitle").textContent=v.dataset.title;document.getElementById("viewFlow").innerHTML=v.dataset.flow;}});
+    notes.forEach(function(n){n.hidden=!(n.dataset.v==="all"||n.dataset.v===k);});
+    try{localStorage.setItem("topbar-view",k);}catch(e){}
+  }
+  navs.forEach(function(n){n.addEventListener("click",function(){show(n.dataset.view);});});
+  var k0="A";try{k0=localStorage.getItem("topbar-view")||"A";}catch(e){} if(!document.querySelector('.view[data-view="'+k0+'"]'))k0="A";
+  show(k0);
+  document.addEventListener("click",function(e){var b=e.target.closest(".badge");if(!b)return;var n=+b.textContent,nm=document.querySelectorAll(".note");
+    nm.forEach(function(x){x.classList.remove("hl");if(!x.hidden&&x.querySelector("b")&&x.querySelector("b").textContent.indexOf(String.fromCharCode(9311+n))===0){x.classList.add("hl");x.scrollIntoView({block:"nearest",behavior:"smooth"});}});});
 })();
 </script>
 </body>
