@@ -1,0 +1,799 @@
+{
+ "version": "4.1",
+ "note": "S01–S30 沿用 resume-bullets-research-50.md 的筆記，本次未重開網頁；S31–S50 於 2026-10-13 開啟查閱。50 個去重頁面≠50 個獨立研究或受訪者。來源支持「為什麼問這個問題」，不證明候選人聲明為真，也不構成淘汰門檻。",
+ "sources": [
+  {
+   "source_id": "S01",
+   "original_no": "1",
+   "title": "Accomplishment Statements ／ Career Center",
+   "url": "https://careercenter.ucdavis.edu/resumes-and-materials/resumes/accomplishment-statements",
+   "type": "C 職涯／寫作指南",
+   "acquisition": "沿用既有研究筆記（本次未重開網頁）",
+   "accessed": "2026-10-13",
+   "region_stage": null,
+   "adopted": "以行動、情境、結果交代貢獻；本研究另區分設計目的與實際結果。",
+   "limits": null,
+   "mapped_rule_ids": [
+    "HR04"
+   ]
+  },
+  {
+   "source_id": "S02",
+   "original_no": "2",
+   "title": "Action-Oriented Accomplishment Statements ／ Center for Career Development",
+   "url": "https://careerdevelopment.princeton.edu/resume-guide/action-oriented-accomplishment-statements",
+   "type": "C 職涯／寫作指南",
+   "acquisition": "沿用既有研究筆記（本次未重開網頁）",
+   "accessed": "2026-10-13",
+   "region_stage": null,
+   "adopted": "ACE 結構提醒補上工作情境及成果證據，不只列動詞。",
+   "limits": null,
+   "mapped_rule_ids": [
+    "HR05"
+   ]
+  },
+  {
+   "source_id": "S03",
+   "original_no": "3",
+   "title": "Accomplishment Statements / Bullet Points - Career Services ／ myUSF",
+   "url": "https://myusf.usfca.edu/career-services/career-resources/resumes-cover-letters/resumes/bullet-points",
+   "type": "C 職涯／寫作指南",
+   "acquisition": "沿用既有研究筆記（本次未重開網頁）",
+   "accessed": "2026-10-13",
+   "region_stage": null,
+   "adopted": "動作、對象、背景、結果可作為原始材料檢查表。",
+   "limits": null,
+   "mapped_rule_ids": [
+    "HR07"
+   ]
+  },
+  {
+   "source_id": "S04",
+   "original_no": "4",
+   "title": "Accomplishment Statements - Career Center - Santa Clara University",
+   "url": "https://www.scu.edu/careercenter/toolkit/resumes/accomplishment-statements/",
+   "type": "C 職涯／寫作指南",
+   "acquisition": "沿用既有研究筆記（本次未重開網頁）",
+   "accessed": "2026-10-13",
+   "region_stage": null,
+   "adopted": "成果不必是大型商業成功，具體交付也能說明貢獻。",
+   "limits": null,
+   "mapped_rule_ids": [
+    "HR04"
+   ]
+  },
+  {
+   "source_id": "S05",
+   "original_no": "5",
+   "title": "Sample Resumes - Career Center",
+   "url": "https://career.sa.ua.edu/develop/resumes/sample-resumes/",
+   "type": "C 職涯／寫作指南",
+   "acquisition": "沿用既有研究筆記（本次未重開網頁）",
+   "accessed": "2026-10-13",
+   "region_stage": null,
+   "adopted": "以具體工作及結果取代職責清單；學生範本篇幅不直接套用。",
+   "limits": null,
+   "mapped_rule_ids": [
+    "HR08"
+   ]
+  },
+  {
+   "source_id": "S06",
+   "original_no": "6",
+   "title": "How to Create Strong Resume Bullet Points ／ University of Michigan-Dearborn",
+   "url": "https://umdearborn.edu/career-services/job-and-internship-prep/resumes-and-cover-letters/how-create-strong-resume-bullet",
+   "type": "C 職涯／寫作指南",
+   "acquisition": "沿用既有研究筆記（本次未重開網頁）",
+   "accessed": "2026-10-13",
+   "region_stage": null,
+   "adopted": "STAR 適合先整理事件，再濃縮；補上本人角色與規模。",
+   "limits": null,
+   "mapped_rule_ids": [
+    "HR03"
+   ]
+  },
+  {
+   "source_id": "S07",
+   "original_no": "7",
+   "title": "Resumes and Curriculum Vitae ／ Career Center",
+   "url": "https://miamioh.edu/centers-institutes/career-center/professional-development/resumes.html",
+   "type": "C 職涯／寫作指南",
+   "acquisition": "沿用既有研究筆記（本次未重開網頁）",
+   "accessed": "2026-10-13",
+   "region_stage": null,
+   "adopted": "優先排列相關且重要的貢獻，保留必要情境。",
+   "limits": null,
+   "mapped_rule_ids": [
+    "HR02"
+   ]
+  },
+  {
+   "source_id": "S08",
+   "original_no": "8",
+   "title": "Guidelines for Accomplishment Statements ／ Human Resources",
+   "url": "https://hr.ucdavis.edu/departments/learning/toolkits/career-dev/action/accomplish-guidelines",
+   "type": "C 職涯／寫作指南",
+   "acquisition": "沿用既有研究筆記（本次未重開網頁）",
+   "accessed": "2026-10-13",
+   "region_stage": null,
+   "adopted": "APR 強調問題、行動、結果，以短句表達。",
+   "limits": null,
+   "mapped_rule_ids": [
+    "HR04"
+   ]
+  },
+  {
+   "source_id": "S09",
+   "original_no": "9",
+   "title": "Resumes ／ Career Development Center ／ Student Affairs ／ Oregon State University",
+   "url": "https://career.oregonstate.edu/resumes-cvs-cover-letters/resumes",
+   "type": "C 職涯／寫作指南",
+   "acquisition": "沿用既有研究筆記（本次未重開網頁）",
+   "accessed": "2026-10-13",
+   "region_stage": null,
+   "adopted": "明確提醒適度量化，避免每一點都硬塞數字。",
+   "limits": null,
+   "mapped_rule_ids": [
+    "HR04"
+   ]
+  },
+  {
+   "source_id": "S10",
+   "original_no": "10",
+   "title": "Career toolkit: Crafting an effective resume – Career Advising & Professional Development ／ MIT",
+   "url": "https://capd.mit.edu/resources/career-toolkit-crafting-an-effective-resume/",
+   "type": "C 職涯／寫作指南",
+   "acquisition": "沿用既有研究筆記（本次未重開網頁）",
+   "accessed": "2026-10-13",
+   "region_stage": null,
+   "adopted": "PAR、精準動詞及非專業讀者可理解的表達；AI 草稿需核對。",
+   "limits": null,
+   "mapped_rule_ids": [
+    "HR05"
+   ]
+  },
+  {
+   "source_id": "S11",
+   "original_no": "11",
+   "title": "CV/Resume : Broad Institute of MIT and Harvard",
+   "url": "https://mitcommlab.mit.edu/broad/commkit/cvresume/",
+   "type": "C 職涯／寫作指南",
+   "acquisition": "沿用既有研究筆記（本次未重開網頁）",
+   "accessed": "2026-10-13",
+   "region_stage": null,
+   "adopted": "挑選相關內容，說清個人貢獻，降低專業術語閱讀門檻。",
+   "limits": null,
+   "mapped_rule_ids": [
+    "HR03",
+    "HR07"
+   ]
+  },
+  {
+   "source_id": "S12",
+   "original_no": "12",
+   "title": "Harvard College Guide to Creating a Strong Resume – Harvard FAS ／ Mignone Center for Career Success",
+   "url": "https://careerservices.fas.harvard.edu/resources/create-a-strong-resume/",
+   "type": "C 職涯／寫作指南",
+   "acquisition": "沿用既有研究筆記（本次未重開網頁）",
+   "accessed": "2026-10-13",
+   "region_stage": null,
+   "adopted": "具體、主動、以事實為本；重點是清楚表達而非華麗修飾。",
+   "limits": null,
+   "mapped_rule_ids": [
+    "HR08",
+    "HR09"
+   ]
+  },
+  {
+   "source_id": "S13",
+   "original_no": "13",
+   "title": "How to Write Effective Resume Bullets ／ Wellesley Career Education",
+   "url": "https://careereducation.wellesley.edu/resources/how-write-effective-resume-bullets",
+   "type": "C 職涯／寫作指南",
+   "acquisition": "沿用既有研究筆記（本次未重開網頁）",
+   "accessed": "2026-10-13",
+   "region_stage": null,
+   "adopted": "補上做法、原因、受益者，使工作內容成為具體貢獻。",
+   "limits": null,
+   "mapped_rule_ids": [
+    "HR04",
+    "HR07"
+   ]
+  },
+  {
+   "source_id": "S14",
+   "original_no": "14",
+   "title": "Resume & CV: Career Process & Resources: Career Services: Student Portal: Luddy School of Informatics, Computing, and Engineering: Indiana University Indianapolis",
+   "url": "https://luddy.indianapolis.iu.edu/student-portal/career-services/career-prep/resume.html",
+   "type": "C 職涯／寫作指南",
+   "acquisition": "沿用既有研究筆記（本次未重開網頁）",
+   "accessed": "2026-10-13",
+   "region_stage": null,
+   "adopted": "從解決問題、責任範圍及實際工作量找證據。",
+   "limits": null,
+   "mapped_rule_ids": [
+    "HR02",
+    "HR04"
+   ]
+  },
+  {
+   "source_id": "S15",
+   "original_no": "15",
+   "title": "Elevating Bullet Points ／ Ohio University",
+   "url": "https://www.ohio.edu/business/about/centers-institutes/academic-advising-career-services/enhance-resumes-cover-letters/elevating-bullet-points",
+   "type": "C 職涯／寫作指南",
+   "acquisition": "沿用既有研究筆記（本次未重開網頁）",
+   "accessed": "2026-10-13",
+   "region_stage": null,
+   "adopted": "用 what/how/why 辨識工作價值，避免只有任務名稱。",
+   "limits": null,
+   "mapped_rule_ids": [
+    "HR05"
+   ]
+  },
+  {
+   "source_id": "S16",
+   "original_no": "16",
+   "title": "UVA Darden Career Corner : Pro Tips: How to Write a Great Resume Bullet –",
+   "url": "https://blogs.darden.virginia.edu/careercorner/2023/11/28/pro-tips-how-to-write-a-great-resume-bullet/",
+   "type": "C 職涯／寫作指南",
+   "acquisition": "沿用既有研究筆記（本次未重開網頁）",
+   "accessed": "2026-10-13",
+   "region_stage": null,
+   "adopted": "具體專案與影響優於泛稱跨部門合作；可採成果先行。",
+   "limits": null,
+   "mapped_rule_ids": [
+    "HR02",
+    "HR04"
+   ]
+  },
+  {
+   "source_id": "S17",
+   "original_no": "17",
+   "title": "Resumes – Center for Career and Professional Development ／ Kalamazoo College",
+   "url": "https://career.kzoo.edu/navigating-the-application-process/resumes/",
+   "type": "C 職涯／寫作指南",
+   "acquisition": "沿用既有研究筆記（本次未重開網頁）",
+   "accessed": "2026-10-13",
+   "region_stage": null,
+   "adopted": "選擇最相關成果；大型專案可依不同貢獻拆點。",
+   "limits": null,
+   "mapped_rule_ids": [
+    "HR06"
+   ]
+  },
+  {
+   "source_id": "S18",
+   "original_no": "18",
+   "title": "Writing Bullet Points – Graduate Students and Postdocs   – UConn Center for Career Readiness and Life Skills",
+   "url": "https://career.uconn.edu/writing-bullet-points-grad-students-postdocs/",
+   "type": "C 職涯／寫作指南",
+   "acquisition": "沿用既有研究筆記（本次未重開網頁）",
+   "accessed": "2026-10-13",
+   "region_stage": null,
+   "adopted": "先列做過什麼，再補如何、為何；最後排序與縮寫。",
+   "limits": null,
+   "mapped_rule_ids": [
+    "HR08"
+   ]
+  },
+  {
+   "source_id": "S19",
+   "original_no": "19",
+   "title": "台灣就業通 - 找工作-- 一定要會的學經歷、工作經驗簡述 3 技巧！ - 履歷攻略",
+   "url": "https://job.taiwanjobs.gov.tw/internet/index/DocDetail.aspx?docid=41540&uk=2747",
+   "type": "B/C 台灣平台指南",
+   "acquisition": "沿用既有研究筆記（本次未重開網頁）",
+   "accessed": "2026-10-13",
+   "region_stage": null,
+   "adopted": "工作經歷需有具體細節並對應職缺；Cake 授權轉載僅計一次。",
+   "limits": null,
+   "mapped_rule_ids": [
+    "HR01"
+   ]
+  },
+  {
+   "source_id": "S20",
+   "original_no": "20",
+   "title": "履歷怎麼寫？履歷 STAR 原則，讓你的工作經歷 / 學歷更耀眼！｜Yourator 職涯平台專欄｜找工作、求職、徵才",
+   "url": "https://www.yourator.co/articles/177",
+   "type": "B/C 台灣平台指南",
+   "acquisition": "沿用既有研究筆記（本次未重開網頁）",
+   "accessed": "2026-10-13",
+   "region_stage": null,
+   "adopted": "STAR 作為整理背景與行動的框架，非逐句硬套模板。",
+   "limits": null,
+   "mapped_rule_ids": [
+    "HR05"
+   ]
+  },
+  {
+   "source_id": "S21",
+   "original_no": "21",
+   "title": "104履歷「個人特色標籤」怎麼寫？3招學會名片簡介、專案成果厲害寫法 ／ 履歷範本篇｜104職場力",
+   "url": "https://blog.104.com.tw/resume_teach_2022/",
+   "type": "B/C 台灣平台指南",
+   "acquisition": "沿用既有研究筆記（本次未重開網頁）",
+   "accessed": "2026-10-13",
+   "region_stage": null,
+   "adopted": "專案成果應交代自己負責的部分與問題處理。",
+   "limits": null,
+   "mapped_rule_ids": [
+    "HR03"
+   ]
+  },
+  {
+   "source_id": "S22",
+   "original_no": "22",
+   "title": "2026履歷表範本免費下載│格式、寫作技巧、自傳密技一次搞定！｜104職場力",
+   "url": "https://blog.104.com.tw/resume-download/",
+   "type": "B/C 台灣平台指南",
+   "acquisition": "沿用既有研究筆記（本次未重開網頁）",
+   "accessed": "2026-10-13",
+   "region_stage": null,
+   "adopted": "一般履歷架構與重點篩選參考，不作為 PM 專屬實證。",
+   "limits": null,
+   "mapped_rule_ids": [
+    "HR08"
+   ]
+  },
+  {
+   "source_id": "S23",
+   "original_no": "23",
+   "title": "〖最新履歷教學〗新鮮人就靠這篇搞定（附範本）｜104職場力",
+   "url": "https://blog.104.com.tw/2020-resume-all-in-one/",
+   "type": "B/C 台灣平台指南",
+   "acquisition": "沿用既有研究筆記（本次未重開網頁）",
+   "accessed": "2026-10-13",
+   "region_stage": null,
+   "adopted": "團隊成果與個人角色應分清；新鮮人案例僅取通用原則。",
+   "limits": null,
+   "mapped_rule_ids": [
+    "HR03"
+   ]
+  },
+  {
+   "source_id": "S24",
+   "original_no": "24",
+   "title": "履歷定生死，編輯教你怎麼寫！內容篇（附104履歷範本）｜104職場力",
+   "url": "https://blog.104.com.tw/how-to-write-a-resume/",
+   "type": "B/C 台灣平台指南",
+   "acquisition": "沿用既有研究筆記（本次未重開網頁）",
+   "accessed": "2026-10-13",
+   "region_stage": null,
+   "adopted": "具體期間、內容、成果比抽象能力標籤有辨識度。",
+   "limits": null,
+   "mapped_rule_ids": [
+    "HR05"
+   ]
+  },
+  {
+   "source_id": "S25",
+   "original_no": "25",
+   "title": "一份好履歷怎麼寫？10 分鐘完成人資最愛履歷表〖附履歷範本、履歷健檢表〗｜Yourator 職涯平台專欄｜找工作、求職、徵才",
+   "url": "https://www.yourator.co/articles/152",
+   "type": "B/C 台灣平台指南",
+   "acquisition": "沿用既有研究筆記（本次未重開網頁）",
+   "accessed": "2026-10-13",
+   "region_stage": null,
+   "adopted": "職務、角色與成果需清楚；不採用保證通過 ATS 的推論。",
+   "limits": null,
+   "mapped_rule_ids": [
+    "HR01"
+   ]
+  },
+  {
+   "source_id": "S26",
+   "original_no": "26",
+   "title": "〖PM 產品經理履歷範本〗掌握 5 點寫出優質 PM 履歷！｜Yourator 職涯平台專欄｜找工作、求職、徵才",
+   "url": "https://s.yourator.co/articles/814",
+   "type": "B/C 台灣平台指南",
+   "acquisition": "沿用既有研究筆記（本次未重開網頁）",
+   "accessed": "2026-10-13",
+   "region_stage": null,
+   "adopted": "PM 成效指標可參考；示例中的留存與營收因果不可套到本人。",
+   "limits": null,
+   "mapped_rule_ids": [
+    "HR07"
+   ]
+  },
+  {
+   "source_id": "S27",
+   "original_no": "44",
+   "title": "8 Tips for Writing a Resume",
+   "url": "https://www.roberthalf.com/us/en/insights/landing-job/8-tips-for-writing-a-resume",
+   "type": "B/C 招聘／職涯指南",
+   "acquisition": "沿用既有研究筆記（本次未重開網頁）",
+   "accessed": "2026-10-13",
+   "region_stage": null,
+   "adopted": "條列易讀、解釋縮寫、保持真實，不堆砌專業術語。",
+   "limits": null,
+   "mapped_rule_ids": [
+    "HR08",
+    "HR09"
+   ]
+  },
+  {
+   "source_id": "S28",
+   "original_no": "45",
+   "title": "How to write a resume",
+   "url": "https://www.roberthalf.com/au/en/insights/landing-job/resume",
+   "type": "B/C 招聘／職涯指南",
+   "acquisition": "沿用既有研究筆記（本次未重開網頁）",
+   "accessed": "2026-10-13",
+   "region_stage": null,
+   "adopted": "保留與職務相關內容，刪泛泛敘述，維持本人專業語氣。",
+   "limits": null,
+   "mapped_rule_ids": [
+    "HR08",
+    "HR10"
+   ]
+  },
+  {
+   "source_id": "S29",
+   "original_no": "46",
+   "title": "How to talk about achievements in your resume - SEEK",
+   "url": "https://au.seek.com/career-advice/article/how-to-talk-about-achievements-in-your-resume",
+   "type": "B/C 招聘／職涯指南",
+   "acquisition": "沿用既有研究筆記（本次未重開網頁）",
+   "accessed": "2026-10-13",
+   "region_stage": null,
+   "adopted": "CAR 加上非量化成果，工作職責與貢獻分開理解。",
+   "limits": null,
+   "mapped_rule_ids": [
+    "HR04"
+   ]
+  },
+  {
+   "source_id": "S30",
+   "original_no": "50",
+   "title": "7 Resume Writing Tips to Get You to the Finance Interview",
+   "url": "https://www.roberthalf.com/us/en/insights/landing-job/7-resume-writing-tips-to-get-you-to-the-finance-interview",
+   "type": "B/C 招聘／職涯指南",
+   "acquisition": "沿用既有研究筆記（本次未重開網頁）",
+   "accessed": "2026-10-13",
+   "region_stage": null,
+   "adopted": "招聘顧問建議具體工作範圍與小型案例；財會要求不直接套用 PM。",
+   "limits": null,
+   "mapped_rule_ids": [
+    "HR02",
+    "HR04"
+   ]
+  },
+  {
+   "source_id": "S31",
+   "original_no": null,
+   "title": "Robert Half｜How to Master the Art of Reviewing Resumes",
+   "url": "https://www.roberthalf.com/us/en/insights/hiring-help/reviewing-resumes-heres-what-you-need-to-know",
+   "type": "B 招聘實務",
+   "acquisition": "本次開啟查閱",
+   "accessed": "2026-10-13",
+   "region_stage": null,
+   "adopted": "先依工作必要條件分類，再看職涯與適配；保留 maybe。",
+   "limits": "文章的紅旗是經驗建議；不採空窗、未升遷直接推論性格。",
+   "mapped_rule_ids": [
+    "HR01",
+    "HR06",
+    "HR09"
+   ]
+  },
+  {
+   "source_id": "S32",
+   "original_no": null,
+   "title": "Robert Half｜Recent Work History Top Factor…（2019）",
+   "url": "https://press.roberthalf.com/2019-09-19-Survey-Recent-Work-History-Top-Factor-For-Hiring-Managers-When-Evaluating-Tech-Candidates",
+   "type": "A 雇主問卷",
+   "acquisition": "本次開啟查閱",
+   "accessed": "2026-10-13",
+   "region_stage": null,
+   "adopted": "逾 2,800 名美國 IT 決策者調查，近期經驗及過往專案對中高階候選人重要。",
+   "limits": "2019 美國 IT 招聘、自陳偏好；不是台灣 PM 預測效度，不能由此固定權重。",
+   "mapped_rule_ids": [
+    "HR02",
+    "HR04"
+   ]
+  },
+  {
+   "source_id": "S33",
+   "original_no": null,
+   "title": "Robert Half｜5 Considerations to Improve Your Job Search（2022）",
+   "url": "https://press.roberthalf.com/2022-10-25-Robert-Half-Shares-5-Considerations-to-Improve-Your-Job-Search",
+   "type": "A 雇主問卷",
+   "acquisition": "本次開啟查閱",
+   "accessed": "2026-10-13",
+   "region_stage": null,
+   "adopted": "逾 2,300 名美國資深主管調查，模糊工作描述與技能不符會引起疑慮，轉職頻繁也常被注意。",
+   "limits": "關注比例不是淘汰率；不導出任職必須滿兩年或推斷離職原因。",
+   "mapped_rule_ids": [
+    "HR01",
+    "HR06",
+    "HR08"
+   ]
+  },
+  {
+   "source_id": "S34",
+   "original_no": null,
+   "title": "Robert Half｜Promising Resumes Often Don't Equal Promising Hires（2018）",
+   "url": "https://press.roberthalf.com/2018-03-20-Promising-Resumes-Often-Dont-Equal-Promising-Hires",
+   "type": "A 雇主問卷",
+   "acquisition": "本次開啟查閱",
+   "accessed": "2026-10-13",
+   "region_stage": null,
+   "adopted": "主管回報漂亮履歷與面試表現可能不同；書面篩選只是一個環節。",
+   "limits": "舊年度調查且屬自陳；不以此估計本人的錄取機率。",
+   "mapped_rule_ids": [
+    "HR09",
+    "HR12"
+   ]
+  },
+  {
+   "source_id": "S35",
+   "original_no": null,
+   "title": "Robert Half｜AI in the hiring process: … recruit tech talent with more confidence",
+   "url": "https://www.roberthalf.com/us/en/insights/management-tips/ai-in-the-hiring-process-and-recruiting-strategies-for-tech-talent",
+   "type": "B 招聘實務",
+   "acquisition": "本次開啟查閱",
+   "accessed": "2026-10-13",
+   "region_stage": null,
+   "adopted": "以理解深度、本人工作範圍及改變結果追問經驗，工具曝光不等於應用能力。",
+   "limits": "採框架，不採 AI 作者推測；技術職案例不要求 PM 親自寫程式。",
+   "mapped_rule_ids": [
+    "HR03",
+    "HR04",
+    "HR07"
+   ]
+  },
+  {
+   "source_id": "S36",
+   "original_no": null,
+   "title": "Hays｜Three Burning Questions Your CV Must Answer",
+   "url": "https://www.hays.ae/career-advice/article/questions-cv-must-answer-1",
+   "type": "B 招聘實務",
+   "acquisition": "本次開啟查閱",
+   "accessed": "2026-10-13",
+   "region_stage": null,
+   "adopted": "職缺興趣、可帶來的價值與未來潛力，是閱讀履歷的三種問題。",
+   "limits": "不把所有動機塞進摘要；不因未寫雄心、空窗未學習或單一錯字推論能力。",
+   "mapped_rule_ids": [
+    "HR01",
+    "HR06",
+    "HR10"
+   ]
+  },
+  {
+   "source_id": "S37",
+   "original_no": null,
+   "title": "Hays｜How to make your CV stand out?",
+   "url": "https://www.hays.nl/en/web/hays-netherlands/career-coach/how-to-make-your-cv-stand-out",
+   "type": "B 招聘實務",
+   "acquisition": "本次開啟查閱",
+   "accessed": "2026-10-13",
+   "region_stage": null,
+   "adopted": "能力摘要之後須在經歷找到證據；近期相關工作優先，舊經歷可簡述。",
+   "limits": "兩頁是該文建議，不是全球硬門檻；不強制技能重複列兩次。",
+   "mapped_rule_ids": [
+    "HR02",
+    "HR07",
+    "HR08"
+   ]
+  },
+  {
+   "source_id": "S38",
+   "original_no": null,
+   "title": "Workable｜Best practices: Candidate Screening",
+   "url": "https://help.workable.com/hc/en-us/articles/23365968258711-Best-practices-Candidate-Screening",
+   "type": "D 系統操作／B 實務",
+   "acquisition": "本次開啟查閱",
+   "accessed": "2026-10-13",
+   "region_stage": null,
+   "adopted": "先定必要條件，可用申請問題確認技能、年資、地點與薪資。",
+   "limits": "明確回答 No 不等於履歷沒寫；產品的自動淘汰功能不是普遍適當門檻。",
+   "mapped_rule_ids": [
+    "HR01",
+    "HR11"
+   ]
+  },
+  {
+   "source_id": "S39",
+   "original_no": null,
+   "title": "Workable｜Screening applicants: best methods and handy tips",
+   "url": "https://resources.workable.com/tutorial/screening-applicants",
+   "type": "B 招聘實務",
+   "acquisition": "本次開啟查閱",
+   "accessed": "2026-10-13",
+   "region_stage": null,
+   "adopted": "履歷、求職信及電話篩選各有用途；未說明空窗值得追問，不是直接淘汰理由。",
+   "limits": "不從錯字推斷人格；語氣、溝通與能力仍需其他評估。",
+   "mapped_rule_ids": [
+    "HR06",
+    "HR09",
+    "HR10",
+    "HR11"
+   ]
+  },
+  {
+   "source_id": "S40",
+   "original_no": null,
+   "title": "Indeed Employer Guide｜How to Read an Applicant Resume",
+   "url": "https://www.indeed.com/hire/c/info/how-to-read-a-resume?co=US",
+   "type": "B 雇主指南",
+   "acquisition": "本次開啟查閱",
+   "accessed": "2026-10-13",
+   "region_stage": null,
+   "adopted": "以一致規準看工作範圍、影響、技能、責任成長與協作；給候選人解釋疑慮的機會。",
+   "limits": "不採空窗暗示被解僱或難相處的推測，也不依 mentoring 等字詞自動判協作能力。",
+   "mapped_rule_ids": [
+    "HR01",
+    "HR03",
+    "HR04",
+    "HR06",
+    "HR07"
+   ]
+  },
+  {
+   "source_id": "S41",
+   "original_no": null,
+   "title": "Greenhouse｜Unsuccessful resume parse",
+   "url": "https://support.greenhouse.io/hc/en-us/articles/200989175-Unsuccessful-resume-parse",
+   "type": "D 產品原始文件",
+   "acquisition": "本次開啟查閱",
+   "accessed": "2026-10-13",
+   "region_stage": null,
+   "adopted": "解析失敗可能仍保留附件；姓名聯絡資料置於頁首頁尾或文字框等格式可能造成問題。",
+   "limits": "僅說明此產品行為；不等於所有 ATS 自動淘汰，不把格式問題當能力不足。",
+   "mapped_rule_ids": [
+    "HR08",
+    "HR12"
+   ]
+  },
+  {
+   "source_id": "S42",
+   "original_no": null,
+   "title": "Greenhouse｜Scorecard overview",
+   "url": "https://support.greenhouse.io/hc/en-us/articles/4414777492891-Scorecard-overview",
+   "type": "D 產品原始文件",
+   "acquisition": "本次開啟查閱",
+   "accessed": "2026-10-13",
+   "region_stage": null,
+   "adopted": "先設定職缺相關準則，各面試官記錄回饋後再討論。",
+   "limits": "是結構化招聘流程，不是模型 persona 已具有真人獨立性的證據。",
+   "mapped_rule_ids": [
+    "HR01",
+    "HR12"
+   ]
+  },
+  {
+   "source_id": "S43",
+   "original_no": null,
+   "title": "Greenhouse｜Structured hiring: Scorecard definitions",
+   "url": "https://support.greenhouse.io/hc/en-us/articles/360007247412-Structured-hiring-Scorecard-definitions",
+   "type": "D 產品原始文件",
+   "acquisition": "本次開啟查閱",
+   "accessed": "2026-10-13",
+   "region_stage": null,
+   "adopted": "把職務成功所需的能力明確化，並用後續面試驗證。",
+   "limits": "能力項目仍須依職缺設定，不直接搬 traits 作人格評分。",
+   "mapped_rule_ids": [
+    "HR01",
+    "HR07",
+    "HR12"
+   ]
+  },
+  {
+   "source_id": "S44",
+   "original_no": null,
+   "title": "104／楊琮熙｜人資只花XX秒看履歷？重點不在秒數，而是三個關鍵內容",
+   "url": "https://blog.104.com.tw/3-key-resume-points-to-catch-the-hr-attention/",
+   "type": "B 台灣招聘者經驗",
+   "acquisition": "本次開啟查閱",
+   "accessed": "2026-10-13",
+   "region_stage": null,
+   "adopted": "科技業有經驗者會被看工作環境、專業年資、成就及角色；不把審閱簡化成固定秒數。",
+   "limits": "作者自述適用情境有限；公司規模只作脈絡，不因公司名氣加分，也不採自傳普遍必備。",
+   "mapped_rule_ids": [
+    "HR02",
+    "HR03",
+    "HR06",
+    "HR08"
+   ]
+  },
+  {
+   "source_id": "S45",
+   "original_no": null,
+   "title": "104｜用對方法找人才快！5 大查詢履歷技巧",
+   "url": "https://blog.104.com.tw/5-important-ways-to-find-talents/",
+   "type": "D 平台操作文件",
+   "acquisition": "本次開啟查閱",
+   "accessed": "2026-10-13",
+   "region_stage": null,
+   "adopted": "招聘者可透過條件、關鍵字及不同排序查找履歷；搜尋與內容判斷是不同環節。",
+   "limits": "文章為歷史操作說明，不保證現行全部功能；不採年齡條件作評分，也不採宣傳成效推論本人曝光。",
+   "mapped_rule_ids": [
+    "HR01",
+    "HR12"
+   ]
+  },
+  {
+   "source_id": "S46",
+   "original_no": null,
+   "title": "104｜人資老實說：投履歷無回的可能原因",
+   "url": "https://blog.104.com.tw/why-hr-no-reply/",
+   "type": "B 台灣招聘者訪談彙整",
+   "acquisition": "本次開啟查閱",
+   "accessed": "2026-10-13",
+   "region_stage": null,
+   "adopted": "可能由多人、Email 或其他系統閱讀，平台未讀不能直接等同未被評估。",
+   "limits": "非代表性樣本；不採七天無邀請必定失敗等時間推論。",
+   "mapped_rule_ids": [
+    "HR09",
+    "HR12"
+   ]
+  },
+  {
+   "source_id": "S47",
+   "original_no": null,
+   "title": "104｜人資該怎麼挑新鮮人履歷、如何有效面談？",
+   "url": "https://blog.104.com.tw/best-ways-to-attract-gen-z-talent/",
+   "type": "A 平台調查轉述／B 實務",
+   "acquisition": "本次開啟查閱",
+   "accessed": "2026-10-13",
+   "region_stage": null,
+   "adopted": "提供無工作經驗者的欄位關注資料及人資經驗，顯示審閱重點有職涯階段差異。",
+   "limits": "對象是新鮮人，不能把比例或科系權重套用近 10 年 PM；本條主要作適用邊界。",
+   "mapped_rule_ids": [
+    "HR02",
+    "HR12"
+   ]
+  },
+  {
+   "source_id": "S48",
+   "original_no": null,
+   "title": "104／王語逢｜30 年人資主管教你用關鍵字掌握黃金 6 秒",
+   "url": "https://blog.104.com.tw/write-your-resume-as-a-marketing-plan/",
+   "type": "B 台灣招聘者經驗",
+   "acquisition": "本次開啟查閱",
+   "accessed": "2026-10-13",
+   "region_stage": null,
+   "adopted": "主張扣緊工作內容，從關鍵字延伸到曾解決的問題與價值。",
+   "limits": "其六秒說法與 S44 觀點不同；保留內容對位，不轉成十字遮罩或一律限時。",
+   "mapped_rule_ids": [
+    "HR01",
+    "HR07",
+    "HR08"
+   ]
+  },
+  {
+   "source_id": "S49",
+   "original_no": null,
+   "title": "U.S. OPM｜Training and Experience Evaluations",
+   "url": "https://www.opm.gov/policy-data-oversight/assessment-and-selection/other-assessment-methods/training-and-experience-evaluations/",
+   "type": "A 評估研究綜述",
+   "acquisition": "本次開啟查閱",
+   "accessed": "2026-10-13",
+   "region_stage": null,
+   "adopted": "以工作需求設定經驗評估；傳統經驗評等與工作表現的關係有侷限，自陳需要驗證。",
+   "limits": "多為美國公部門及早期篩選脈絡；不能把所有履歷模型或台灣 PM 的效度一概定量。",
+   "mapped_rule_ids": [
+    "HR09",
+    "HR12"
+   ]
+  },
+  {
+   "source_id": "S50",
+   "original_no": null,
+   "title": "U.S. OPM｜Structured Interviews",
+   "url": "https://www.opm.gov/policy-data-oversight/assessment-and-selection/other-assessment-methods/structured-interviews/",
+   "type": "A 評估方法指南",
+   "acquisition": "本次開啟查閱",
+   "accessed": "2026-10-13",
+   "region_stage": null,
+   "adopted": "問題與評分尺度依工作相關能力設計，保持候選人間的一致性。",
+   "limits": "結構化面試的證據不能直接當履歷文字評分的效度。",
+   "mapped_rule_ids": [
+    "HR01",
+    "HR07",
+    "HR12"
+   ]
+  }
+ ]
+}

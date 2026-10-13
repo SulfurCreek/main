@@ -1,8 +1,8 @@
 <!--markdownlint-disable MD013-->
 
-# 審查規準 v4（rubric_version 4.0，2026-10-13）
+# 審查規準 v4.1（rubric_version 4.1，2026-10-13）
 
-> 依使用者提供的〈給 Claude Code：履歷評分機制修訂規格 v4〉（原檔存 `career/style/scoring-improvement-v4-source.md`）實作。取代 `blind-output-v3.1.md` 的評分與彙整；v3.x 的歷史報告保留，**跨規準分數不可直接比較**。
+> 依使用者提供的修訂規格 v4（`career/style/scoring-improvement-v4-source.md`）與 v4.1（`career/style/scoring-improvement-v4.1-source.md`，新增 §12–15：人資十二問、50 筆來源、分歧處理）實作。v4.0 的 2026-10-13 結果保留於 `runs/2026-10-13-v4/`。取代 `blind-output-v3.1.md` 的評分與彙整；v3.x 的歷史報告保留，**跨規準分數不可直接比較**。
 > 本規準是模型內部檢查工具，**human_calibration: not_performed**。不得宣稱招聘成功率或「真人會更喜歡」。
 
 ## 1. 原則（審查者與彙整者都要遵守）
@@ -44,6 +44,45 @@ issue severity：`blocking`（事實衝突、關鍵資料不可讀、有證據�
 
 requirement 狀態：`supported`／`partial`／`unknown`／`contradicted`／`not_applicable`；只有「明文必要條件＋有證據顯示不符」才可列 blocking。
 
+## 3.1 人資十二問 HR01–HR12（v4.1；對應六維度，**不是另加十二項總分**）
+
+來源與限制：`rule-registry-v4.1.json`（規則）、`research-registry-v4.1.json`（50 筆來源；S01–S30 沿用筆記未重開網頁，S31–S50 本次查閱）。來源只說明「為什麼問這個問題」，不證明候選人聲明為真，**不能因來源提及就列 blocking**。
+
+| ID | 問題 | 主維度 | 不足時怎麼處理 | 來源 |
+| :-- | :-- | :-- | :-- | :-- |
+| HR01 | 這個人和這份工作有哪些直接關聯？ | role_evidence | 區分必要與加分；未寫列 unknown，不要求字面全命中 | S19、S25、S31、S38、S40、S43、S48、S50 |
+| HR02 | 他最近實際在做什麼、工作環境和我們有何異同？ | positioning | 產品名或公司名不清楚可建議一句範圍，不因規模／名氣直接加分 | S07、S16、S32、S37、S44、S47 |
+| HR03 | 這些經驗中，他本人做了哪一部分？ | ownership | 「協助」後有清楚動作可成立；整體成長不能全歸本人 | S06、S11、S21、S23、S35、S40、S44 |
+| HR04 | 工作留下什麼可確認的改變？ | outcome_quality | 質性結果可支持；未量測不補數字，目的與結果分開 | S01、S04、S08、S09、S13、S29、S32、S35、S40 |
+| HR05 | 面對限制，他如何作判斷？ | decision_depth | 對 PM 把結果背後的判斷轉成追問；不強制每點都列被否決方案 | S02、S10、S15、S20、S24、S35、S48 |
+| HR06 | 職涯的責任與方向如何演變？ | positioning | 任職短或空窗不直接等於不穩定；升遷不是唯一成長證據 | S17、S31、S33、S36、S39、S40、S44 |
+| HR07 | 列出的技能、溝通與協作能力是否用過？ | role_evidence | 工具清單和形容詞只是線索；缺案例列待補，不從英文名稱推測熟練度 | S03、S11、S13、S26、S35、S37、S40、S43、S50 |
+| HR08 | 能否容易找到並理解重點？ | readability | 可建議排序與減字；不按固定秒數、十字、頁數或每句字數淘汰 | S05、S12、S18、S22、S27、S28、S37、S44、S48 |
+| HR09 | 哪些聲明需要面試核對，而不是現在直接否定？ | outcome_quality | 矛盾才走事實修正；未知列追問。內部資料不公開不等於造假 | S12、S27、S31、S34、S35、S39、S40、S46、S49 |
+| HR10 | 他的下一步方向和這個職位是否相容？ | positioning | 沒有動機段不推論沒興趣；有明顯方向落差才列需釐清 | S28、S36、S37、S39 |
+| HR11 | 實際工作條件是否有已知衝突？ | role_evidence | 未提供不猜；平台已有欄位不要求 PDF 重複。薪資等可留電話確認 | S38、S39 |
+| HR12 | 這份文件足以支持下一步面試嗎？還不能回答什麼？ | decision | 輸出邀約／先釐清／不匹配／資訊不足；不把文件分數當聘用能力或錄取率 | S34、S39、S41、S42、S43、S45、S46、S47、S49、S50 |
+
+- 每題標 supported／partial／unknown／not_applicable，附履歷證據（`resume_evidence`）與招聘意義；只展開與本職缺有關的題目。
+- 路線差異：企業平台 PO 在 HR02／03／05／07 優先找系統情境、需求取捨、工程／QA／第一線協作；偏策略的資深 PM 優先找問題選擇、商業模式、定價、優先級與成果衡量。
+- 跨國、英文、法遵、人員管理只在 JD 有關時展開；自傳、求職信、平台欄位裡的資料都算證據位置，不只看 PDF。
+- 理念句（例如「產品是作品」）是敘事脈絡；能否支持能力要回到具體行動與選擇。
+
+### 3.2 分歧資料的處理（規格 §13）
+
+| 議題 | 採用方式 |
+| :-- | :-- |
+| 看履歷幾秒 | 保留可掃讀檢查；不把遮罩通過率叫真人初篩率 |
+| 空窗／轉職 | 可列追問；不判不穩定、不推論人格或離職原因 |
+| 數字 | 能衡量就交代口徑；不能衡量就寫可確認的改變；不以比例湊分 |
+| 公司背景、年資、學校 | 只當環境與責任脈絡，不直接加分 |
+| 自傳／照片／英文版 | 依投遞平台與 JD 明文要求 |
+| 動機位置 | 看整份申請材料；未寫動機≠無意願 |
+| ATS 與搜尋 | 解析、可搜尋性、內容判斷分開；本地 BM25≠104 排名 |
+| 104 未讀／未回 | 不等於履歷失敗；投遞追蹤要記管道與時間 |
+| 新鮮人規範 | 資深 PM 不套一頁、學歷優先 |
+| 文字精緻度 | 有助理解，不證明真實；不做 AI 作者機率 |
+
 ## 4. 四個獨立請求（每個都是新 context，互不可見）
 
 | 階段 | 拿到什麼 | 不給什麼 | 產出 |
@@ -80,6 +119,10 @@ PDF 畫面可讀性、ATS 匯入、真人限時初篩：沒做就標 `not_tested
 不要推測空窗或轉職的負面原因。
 同一缺口不要重複扣分。
 允許資訊不足、未呈現與不適用。
+依 HR01–HR12 提問，先辨識人資需要解決的招聘問題，再引用履歷證據。
+對每個問題標記 supported／partial／unknown／not_applicable，並說明招聘意義。
+必要資料是否已在平台欄位、求職信或本次提供的附件呈現，須一併考慮；不要只盯 PDF。
+來源中的個人偏好、學生規範、國外情境或產品功能，不得轉成普遍淘汰門檻。
 輸出職缺對應、六維度、招聘決定、三個優勢、主要缺口及最多八題面試追問。
 本次沒有實際測試的 PDF、ATS 或 AI 作者辨識不得宣稱已完成。
 ```
@@ -99,12 +142,13 @@ PDF 畫面可讀性、ATS 匯入、真人限時初篩：沒做就標 `not_tested
 ## 6. A 的輸出 JSON（驗證：`scripts/schema_v4.py validate`）
 
 ```json
-{"rubric_version":"4.0","resume_id":"anonymous_01","job_id":"gogolook_950oe","job_input":"summary",
+{"rubric_version":"4.1","resume_id":"anonymous_01","job_id":"gogolook_950oe","job_input":"summary",
  "model_id":"","run_id":"","human_calibrated":false,
  "requirements":[{"id":"R01","text":"JD 原句","type":"required|preferred|context","status":"supported|partial|unknown|contradicted|not_applicable","evidence":["履歷原句"],"blocks_interview":false,"reason":""}],
  "dimensions":[{"id":"positioning|role_evidence|decision_depth|outcome_quality|ownership|readability","rating":"強|足夠|待補|未呈現|不適用","evidence":[""],"missing":[""],"issue_ids":[""]}],
  "results":[{"quote":"","kinds":["context|output|outcome|decision|in_progress"]}],
- "issues":[{"id":"I01","category":"measurement|ownership|fact|readability|requirement|style","severity":"blocking|interview_follow_up|editorial","claim":"原句","reason":"","suggestion":""}],
+ "hr_questions":[{"rule_id":"HR01","status":"supported|partial|unknown|not_applicable","resume_evidence":["履歷原句"],"application_note":"招聘意義"}],
+ "issues":[{"id":"I01","rule_id":"HR01–HR12","source_ids":["S..."],"application_note":"","context_limit":"來源適用限制","category":"measurement|ownership|fact|readability|requirement|style","severity":"blocking|interview_follow_up|editorial","claim":"原句","reason":"","suggestion":""}],
  "decision":{"recommendation":"interview|clarify_first|not_matched|insufficient_info","evidence":[""],"blocking_unknowns":[]},
  "seniority":{"delivery":"強|足夠|待補|未呈現","po_coordination":"…","direction_resources":"…"},
  "strengths":["三個"],"interview_questions":["最多八題"],

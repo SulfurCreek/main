@@ -16,11 +16,26 @@ SEV = ['blocking', 'interview_follow_up', 'editorial']
 REC = ['interview', 'clarify_first', 'not_matched', 'insufficient_info']
 KINDS = ['context', 'output', 'outcome', 'decision', 'in_progress']
 PREF = ['甲', '乙', '無明確偏好', '兩者均須先修正']
+HR = [f'HR{i:02d}' for i in range(1, 13)]
+HRS = ['supported', 'partial', 'unknown', 'not_applicable']
+SRC = [f'S{i:02d}' for i in range(1, 51)]
 
 
 def check(o):
     err = []
-    if str(o.get('rubric_version')) != '4.0': err.append('rubric_version≠4.0')
+    ver = str(o.get('rubric_version'))
+    if ver not in ('4.0', '4.1'): err.append('rubric_version 不是 4.0／4.1')
+    if ver == '4.1':
+        hq = o.get('hr_questions', [])
+        if not hq: err.append('v4.1 缺 hr_questions')
+        for q in hq:
+            if q.get('rule_id') not in HR: err.append(f'hr_questions rule_id 非法：{q.get("rule_id")}')
+            if q.get('status') not in HRS: err.append(f'{q.get("rule_id")} status 非法：{q.get("status")}')
+            if q.get('status') in ('supported', 'partial') and not q.get('resume_evidence'): err.append(f'{q.get("rule_id")} 缺 resume_evidence')
+        for i in o.get('issues', []):
+            if i.get('rule_id') not in HR: err.append(f'issue {i.get("id")} 缺合法 rule_id')
+            bad = [x for x in i.get('source_ids', []) if x not in SRC]
+            if bad: err.append(f'issue {i.get("id")} source_ids 不在 registry：{bad}')
     if o.get('human_calibrated') is not False: err.append('human_calibrated 必須為 false')
     ds = {d.get('id'): d for d in o.get('dimensions', [])}
     for d in DIMS:
@@ -94,6 +109,13 @@ def aggregate(run, manifest):
         if lvv: out.append(f'\nLevel 中位數 {S.median(lvv)}、範圍 {min(lvv)}–{max(lvv)}（±1 級為粗略範圍）；決定：{dict(C.Counter(recs))}')
         out.append('\n維度評等分布：\n\n| 維度 | ' + ' | '.join(RATINGS) + ' |\n| :-- |' + ' :-: |' * len(RATINGS))
         for d in DIMS: out.append(f'| {d} | ' + ' | '.join(str(dimc[d][r]) for r in RATINGS) + ' |')
+        hqc = C.defaultdict(C.Counter)
+        for p in sorted(glob.glob(f'{run}/A_{v}_r*.json')):
+            o, e = load(p)
+            for q in (o or {}).get('hr_questions', []): hqc[q.get('rule_id')][q.get('status')] += 1
+        if hqc:
+            out.append('\n人資十二問（每題各輪狀態）：\n\n| 題 | ' + ' | '.join(HRS) + ' |\n| :-- |' + ' :-: |' * len(HRS))
+            for r in HR: out.append(f'| {r} | ' + ' | '.join(str(hqc[r][x]) for x in HRS) + ' |')
         out.append('\n資深能力分布（分別評，不是逐級）：' + '；'.join(f'{k} {dict(c)}' for k, c in sen.items()))
         top = [(k, n) for k, n in issues.most_common() if n >= 2 or k[0] == 'blocking']
         out.append('\n重複出現或 blocking 的 issue（同輪去重；重複≠正確）：')
