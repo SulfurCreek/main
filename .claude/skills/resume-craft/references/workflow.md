@@ -1,3 +1,5 @@
+> **2026-10-13 規準 v4**：步驟 4 的「機械分 0–40」與步驟 7 的 B／C／D 分數已廢止（`resume_score.py` 只輸出 lint 與描述統計）；步驟 6／8 的審查改用 `resume-review-panel` 規準 v4（`career/review-panel/rubric-v4.md`）。下文舊分數段落保留作歷史。
+
 <!--markdownlint-disable MD013-->
 
 # 履歷標準工作流程（9 步）

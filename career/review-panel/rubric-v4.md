@@ -1,0 +1,134 @@
+<!--markdownlint-disable MD013-->
+
+# 審查規準 v4（rubric_version 4.0，2026-10-13）
+
+> 依使用者提供的〈給 Claude Code：履歷評分機制修訂規格 v4〉（原檔存 `career/style/scoring-improvement-v4-source.md`）實作。取代 `blind-output-v3.1.md` 的評分與彙整；v3.x 的歷史報告保留，**跨規準分數不可直接比較**。
+> 本規準是模型內部檢查工具，**human_calibration: not_performed**。不得宣稱招聘成功率或「真人會更喜歡」。
+
+## 1. 原則（審查者與彙整者都要遵守）
+
+1. 「未提供證據（unknown）」「證據顯示不符合（contradicted）」「部分支持（partial）」三種狀態分開。
+2. 有數字 ≠ 有影響；有影響不一定要數字。數字依性質分類：context／output／outcome／decision／in_progress（可並存）。
+3. 使用者的語氣偏好是編輯規則（editorial），不是招聘淘汰條件。
+4. 結果、決策品質、交付能力分開評；進行中專案可支持決策，不能算已實現結果。
+5. 學歷名氣、公司名氣、管理人數、術語密度、強勢動詞不自動加分；「負責／協助／參與」等誠實描述不自動扣分。
+6. a 交付／b PO 跨部門協調／c 方向與資源是能力分布，分別評，不是逐級晉升。
+7. 同一缺口只在主要維度計一次（issue_id），其他維度交叉引用。
+8. 每個負面判斷都要說明它影響「是否值得面試」或「要追問什麼」。
+9. 允許平手、不確定、不適用；不強迫分出高下。
+10. 履歷內部一致不代表外部查證成功；使用者口述不能冒充監測紀錄。
+11. 不推測空窗、離職原因、性格或誠信。
+
+## 2. 目標職缺（每次只用一份）
+
+本次：Gogolook Senior Product Manager（Anti-Scam BU／2B），104 #950oe，擷取 2026-10 的 `104/jd-digest-A.md` §20。**job_input: summary**（英文原文的中文摘要，可能缺條件；不推測缺漏）。
+路線：企業平台／PO 與偏產品策略的資深 PM 兩條路線分開看；使用者目前希望把心力放回產品策略。
+
+## 3. 六維度與評等錨點
+
+| 評等 | 定義 |
+| :-- | :-- |
+| 強 | 有直接相關的具體案例，關鍵動作與責任清楚，足以支持本職缺所需能力 |
+| 足夠 | 有相關證據，足以支持面試，仍有可釐清處 |
+| 待補 | 有線索但不足；說明缺口與對面試決策的影響 |
+| 未呈現 | 文件沒提供；不推論本人沒有能力 |
+| 不適用 | 不是本職缺或本文件需判斷的項目 |
+
+維度：`positioning` 定位與職涯脈絡／`role_evidence` 目標職缺能力證據／`decision_depth` 決策、取捨與使用者理解／`outcome_quality` 結果與衡量品質／`ownership` 個人角色、協作與責任邊界／`readability` 可讀性與資訊取捨。不加權、不算總分。
+
+Level（次要概括，±1 級，非信賴區間、非百分位）：6 有相關案例與可信範圍但缺重要角色或判斷依據；7 多案例足以支持面試；8 另有清楚取捨、可比較衡量、限制、一致專業模式；9–10 高度對應具體目標工作、關鍵量測與責任可追溯。
+
+招聘決定（只能四選一）：`interview` 建議面試／`clarify_first` 需先釐清關鍵條件／`not_matched` 本職缺不匹配／`insufficient_info` 資訊不足。
+
+issue severity：`blocking`（事實衝突、關鍵資料不可讀、有證據顯示不符必要條件）／`interview_follow_up`／`editorial`。
+
+requirement 狀態：`supported`／`partial`／`unknown`／`contradicted`／`not_applicable`；只有「明文必要條件＋有證據顯示不符」才可列 blocking。
+
+## 4. 四個獨立請求（每個都是新 context，互不可見）
+
+| 階段 | 拿到什麼 | 不給什麼 | 產出 |
+| :-- | :-- | :-- | :-- |
+| V 截斷文字可見性壓力測試 | 職缺＋遮罩後文字（`f_scan.py --view-only`：前 3 行全句、抬頭 24 字寬、其他行 10 字寬、約 1,400 字截斷；**內部代理規則，不是真實視線**） | 全文、其他版本 | 職稱／公司／年資／職缺相關證據是否可見；unknown 允許；**結果先存檔，之後不得被全文改寫** |
+| A 獨立內容審查 | 職缺＋本規準＋**一份**全文 | 事實庫、版本名稱、其他版本、過往排名、改稿目的 | §6 JSON |
+| B 版本比較 | 職缺＋兩份全文（甲、乙；順序每輪交換並記錄） | 版本名稱、A 的結果 | 偏好甲／乙／無明確偏好／兩者均須先修正＋差異的招聘意義 |
+| F 事實核對 | 履歷＋事實庫（**不給 A、B 審查者**） | — | claim 表：supported／incomplete／unsupported／contradicted／superseded |
+
+PDF 畫面可讀性、ATS 匯入、真人限時初篩：沒做就標 `not_tested`，不可由模型遮罩測試冒稱。
+
+## 5. 提示原文
+
+### V
+```text
+你在做「截斷文字可見性壓力測試」。下面是一份履歷經過遮罩後還看得到的字（上方幾行全句，其餘每行只剩開頭，…代表被遮住）。
+這是內部代理規則，不是真實招募者視線。只能根據看得到的字回答；看不到就寫 unknown，unknown 不代表履歷不合格。
+目標職缺：{JD}
+{遮罩文字}
+只輸出 JSON：{"title":{"value":"","visible":true},"company":{"value":"","visible":true},"years":{"value":"","visible":true},
+"job_evidence_visible":[{"requirement":"","quote":""}],"unknown":["看不到、無法判斷的項目"],"note":"一句話"}
+```
+
+### A（規格 §5.A，原文照用）
+```text
+你要根據一份職缺與一份履歷，判斷履歷是否提供足夠證據支持面試。
+你不是在替文字競賽評分，也不能查驗候選人所有經歷的真偽。
+只使用本次提供的 JD、履歷和固定規準，不使用版本名稱、過往排名或改稿目的。
+把「未寫」「部分支持」「明確不符合」「事實矛盾」分開。
+每個判斷引用原句，說明對該職缺的意義。
+不要因數字、術語、公司名氣、管理人數或強勢動詞直接加分。
+不要因協助／負責／參與等誠實描述直接扣分。
+進行中案例可以支持決策能力，但不能算已實現成果。
+不要推測空窗或轉職的負面原因。
+同一缺口不要重複扣分。
+允許資訊不足、未呈現與不適用。
+輸出職缺對應、六維度、招聘決定、三個優勢、主要缺口及最多八題面試追問。
+本次沒有實際測試的 PDF、ATS 或 AI 作者辨識不得宣稱已完成。
+```
+
+### B（規格 §5.B，原文照用）
+```text
+以下兩份履歷來自同一候選人，版本名稱已隱藏。
+它們的既有聲明已按同一事實快照核對；不要假定任一版本較新或較好。
+比較的是資訊選擇與表達如何影響本職缺的面試判斷。
+先指出差異，再說明差異的招聘意義。
+允許 A、B、無明確偏好、兩者均須先修正。
+每個偏好必須引用不同的證據；事實相同的同義改寫不應改變能力評價。
+不要以篇幅、數字個數、關鍵字個數或與範本一致程度直接決定輸贏。
+若優勢只是排版、語氣或資訊可見性，明確標示，不升格成能力差異。
+```
+
+## 6. A 的輸出 JSON（驗證：`scripts/schema_v4.py validate`）
+
+```json
+{"rubric_version":"4.0","resume_id":"anonymous_01","job_id":"gogolook_950oe","job_input":"summary",
+ "model_id":"","run_id":"","human_calibrated":false,
+ "requirements":[{"id":"R01","text":"JD 原句","type":"required|preferred|context","status":"supported|partial|unknown|contradicted|not_applicable","evidence":["履歷原句"],"blocks_interview":false,"reason":""}],
+ "dimensions":[{"id":"positioning|role_evidence|decision_depth|outcome_quality|ownership|readability","rating":"強|足夠|待補|未呈現|不適用","evidence":[""],"missing":[""],"issue_ids":[""]}],
+ "results":[{"quote":"","kinds":["context|output|outcome|decision|in_progress"]}],
+ "issues":[{"id":"I01","category":"measurement|ownership|fact|readability|requirement|style","severity":"blocking|interview_follow_up|editorial","claim":"原句","reason":"","suggestion":""}],
+ "decision":{"recommendation":"interview|clarify_first|not_matched|insufficient_info","evidence":[""],"blocking_unknowns":[]},
+ "seniority":{"delivery":"強|足夠|待補|未呈現","po_coordination":"…","direction_resources":"…"},
+ "strengths":["三個"],"interview_questions":["最多八題"],
+ "spectrum":{"level":7,"uncertainty_levels":1,"basis":""},
+ "tests":{"pdf_extraction":"not_tested","ats_import":"not_tested","ai_provenance":"indeterminate_from_text_alone"}}
+```
+
+B 的輸出：`{"order":"甲=…/乙=…","differences":[{"what":"","hiring_meaning":"","type":"capability|measurement|readability|tone"}],"preference":"甲|乙|無明確偏好|兩者均須先修正","reason":"","evidence_甲":[""],"evidence_乙":[""]}`。
+
+## 7. 彙整（`schema_v4.py aggregate`）
+
+- 先列每輪決定，再列中位數、範圍；比較列甲／乙／平手次數，並檢查**交換順序後偏好是否翻轉**（翻轉＝順序敏感，照實標示）。
+- 這些是描述性結果，不是招聘勝率；不用「差距小於波動」當統計檢定。
+- 單一重大事實矛盾只出現一次也要查證；≥ 3 輪重複只提高檢視優先度，不代表正確。
+- 對照組或同儕沒排在預期位置：保留該輪，做方法診斷，不刪資料。工具失敗標 `technical_failure`，保留紀錄另重跑。
+- 修訂後結果不覆蓋舊報告。
+
+## 8. 機械檢查（只報結果，不轉能力分）
+
+| 工具 | v4 行為 |
+| :-- | :-- |
+| `resume_score.py stats` | 描述性統計（關鍵詞證據對應、含數字比例、左緣訊號比例、抬頭位置）＋`style_lint`（使用者偏好）＋`factual_guard`（事實禁寫）；**不產生 B／C／D 分數** |
+| `parse_check.py` | 95% 為**內部回歸門檻**（非業界標準）＋關鍵欄位（職稱、Email、各段日期歸屬）＋重要數字遺漏＋章節讀序 |
+| `f_scan.py` | 改名「截斷文字可見性壓力測試」；結構提醒只作版面提醒 |
+| `ats_search.py` | 改名「指定語料與查詢下的搜尋實驗」；印出語料、查詢、切詞、參數；**ATS import: not tested** |
+| 自傳、照片、英文版 | 依平台與 JD 明文要求，否則 N/A |
+| 雙欄 PDF | 以實際還原、讀序、匯入結果判定，不由欄數推論 |

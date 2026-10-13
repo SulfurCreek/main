@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
-"""ATS 模擬招募者搜尋排名（驗證機制 v3 第 2 項）。
+"""指定語料與查詢下的搜尋實驗（規準 v4；舊名「ATS 招募者搜尋排名」）。
+
+⚠️ 結果只代表「這組同儕語料＋這組查詢＋bigram 切詞＋BM25(k1=1.5,b=0.75)」下的名次，
+**不能解釋為 104 或任何商用 ATS 的真實排名**；沒有實際匯入一律寫 ATS import: not tested。
 
 ATS 多半是讓招募者「搜尋」的資料庫（career/style/ats-2026-source.md）。本工具把使用者各版履歷
 與 50 份同儕履歷放進同一個索引，用 A 級職缺推導的招募者查詢詞搜尋，看使用者排第幾。
@@ -60,6 +63,7 @@ if __name__ == '__main__':
             rank = bm25_rank({**peers, k: d}, qtoks(q)).index(k) + 1
             res[k].append(rank); row.append(str(rank))
         print(f'| {job} | {q} | ' + ' | '.join(row) + ' |')
-    print(f'\n同儕數：{len(peers)}；查詢數：{len(qs)}')
+    print(f'\n搜尋實驗設定：語料 {a.peers}（同儕 {len(peers)} 份）；查詢檔 {a.queries}（{len(qs)} 條）；切詞＝中文字元 bigram＋英數單字；BM25 k1=1.5、b=0.75')
+    print('ATS import: not tested；Top-10 不代表商用 ATS 排名')
     for k, r in res.items():
         print(f'{k}: Top-10 命中 {sum(x <= 10 for x in r)}/{len(r)}（{sum(x <= 10 for x in r)/len(r):.0%}），Top-3 {sum(x <= 3 for x in r)}/{len(r)}，平均名次 {sum(r)/len(r):.1f}')

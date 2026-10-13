@@ -17,6 +17,23 @@ description: >
 > 3. **審查結果是結構化的自我檢查，不是真人意見**（見文末〈可靠度〉）。
 
 
+## ⭐ 規準 v4（2026-10-13 起，取代下方 v3／v3.1／v3.2 的評分與彙整）
+
+依使用者提供的修訂規格（`career/style/scoring-improvement-v4-source.md`）。完整規準：`career/review-panel/rubric-v4.md`；迴歸：`regression-v4.md`＋`tests/test_v4_rules.py`。
+
+| 舊（v3.x） | 新（v4） |
+| :-- | :-- |
+| 20 persona 各 1–5 分取平均、6 份匿名混排、只審最長 3 份 | 每份**獨立**審查（新 context、同一 JD、同一深度）＋兩兩比較（甲乙順序交換）；HR／主管兩視角；20 persona 改為選用情境 |
+| 15 筆職缺高頻詞＋20 種公司情境混成總分 | **一份目標 JD**（記錄擷取日期與 full／summary）；requirement matrix：supported／partial／unknown／contradicted／not_applicable |
+| 1–5 分、Level 為主 | 六維度：強／足夠／待補／未呈現／不適用（不記零分、不加權）；招聘決定 interview／clarify_first／not_matched／insufficient_info；Level 次要 |
+| 6 秒 F 型初篩、答錯一項＝不過 | **截斷文字可見性壓力測試**（內部代理規則），獨立請求、先存檔；unknown 不等於不合格 |
+| 事實庫不給審查者，但事實核對與審查混在一起 | 事實核對獨立（可讀事實庫）；比較前用同一事實快照清理版本，原版保留 |
+| B 關鍵字甜蜜區間、C／D 分數、禁用詞命中扣 Level | `resume_score.py stats`：只報證據對應與描述統計；style_lint（偏好）與 factual_guard（事實禁寫）分開 |
+| 「差距小於波動不算進步」、對照組沒排預期就作廢 | 先列每輪決定、再列中位數與範圍；允許平手；對照組異常保留並做方法診斷；工具失敗標 technical_failure |
+| ATS 搜尋排名 | 「指定語料與查詢下的搜尋實驗」，不代表商用 ATS；ATS import: not tested |
+
+執行：產提示（見 `runs/2026-10-13-v4/raw/prompt-example-A.md`）→ 子代理各寫 JSON → `scripts/schema_v4.py validate`／`aggregate`。所有報告標 human_calibration: not_performed，不得寫「已證明優於同級」「真人會更喜歡」。
+
 ## 驗證機制 v3（2026-10-09 使用者核可，優先於下方舊流程的分數判讀）
 
 舊流程的問題：寫稿與評分是同一個模型、評分者看得到背景、分數沒有校準、只跑一次。v3 五項：

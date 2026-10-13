@@ -1,41 +1,51 @@
 #!/usr/bin/env python3
-"""履歷機械評分（resume-craft 工作流程步驟 4 與 7 用）。
+"""履歷機械檢查（規準 v4，2026-10-13；依 career/style/scoring-improvement-v4-source.md）。
 
-只算得出來的部分；事實一致、語氣、HR／主管判斷由模型在報告裡人工給分。
+v4 只報「檢查結果與描述性統計」，**不產生任何能力分數**：
+- 舊 B（關鍵字 70–90% 甜蜜區間、≥95% 扣分、經歷＋技能重複加分）→ 刪除。改為逐項能力證據對應（含同義詞），
+  列出每個詞在哪一段有證據；無關重複另列可讀性提醒。
+- 舊 C（左緣 10 字、抬頭 24 字換成分數）→ 只當版面提醒（可讀性以實際排版另驗）。
+- 舊 D（含數字條列 ≥60% 得滿分、職責式開頭每處 −2）→ 數字比例只作描述；「負責／協助／參與」不扣分，
+  只有該條列看不出具體貢獻時才標「貢獻待釐清」。
+- 禁用詞拆成 style_lint（使用者語氣偏好，editorial）與 factual_guard（事實禁寫）；兩者都不影響 Level。
 
 用法：
-  python3 resume_score.py variants <variants.md> --jd "PRD,UAT,跨部門,..."
-      variants.md 格式：每個單位一段「### U01 標題」，下面每行「V01: 文字」…「V20: 文字」。
-      輸出每個版本的機械分（0–40）與旗標，供人工再加 0–60 分。
-  python3 resume_score.py ats <resume.txt> --jd "必備詞,..." --preferred "加分詞,..."
-      依 career/style/ats-2026-source.md 算分表算 B（關鍵字對應）、C（6 秒 F 型可讀，v2）、D（量化），
-      A（格式）請用 career-ops verify-ats，E（AI 實證）人工。
-
-2026-10-09 起依 career/style/hr-6-second-source.md 加：左緣 10 字訊號、職責式開頭、求職目標語、
-經歷抬頭「職稱在左、日期在 24 字內」。C 分算法改為 v2，與先前版本的 C 分不可直接比較。
+  python3 resume_score.py stats <resume.txt> --jd "PRD,UAT,跨部門,..."     # ats 為舊名，仍可用
+  python3 resume_score.py variants <variants.md> --jd "..."               # 只輸出 lint，不排分數
 """
-import argparse, re, sys
+import argparse, re
 
-BANNED = ['致力於', '深入探討', '扮演關鍵角色', '成功實現', '無縫', '編織', 'Spearheaded', 'Architected',
-          '協助', '參與', '負責', '具備良好', '熱情洋溢', '賦能',
-          '至關重要', '不可或缺', '值得注意的是', '總而言之', '展現了', '充滿熱情', '積極進取',
-          '0 到 1', '從 0 到 1', '0→1', '東南亞金流',
-          '期許自己', '挑戰自我', '團隊合作能力', '抗壓性極佳']
 NUM = re.compile(r'\d')
-# 6 秒 F 型掃描（career/style/hr-6-second-source.md）
-EDGE = 10            # 招募者視線只停在每行左緣幾個字（視覺寬度：中文 1、英數 0.5）
-HEADER_CHARS = 24    # 經歷抬頭的可見寬度
+EDGE, HEADER_CHARS = 10, 24
+DATE = re.compile(r'\d{4}/\d{1,2}\s*[-–~至]\s*(?:\d{4}/\d{1,2}|迄今|至今|Present)')
 DUTY_START = re.compile(r'^(主責|負責|職責|協助|參與|處理|管理|Responsible|Managed|Worked|Assisted|Helped)')
-OBJECTIVE = ['希望', '尋求', '期望', '追求', '挑戰性', '發揮所長', '貢獻所學', '學習成長', 'Seeking', 'Objective']
-RESULT_VERB = ['主導', '上線', '降到', '提升', '成長', '0 到 1', '→', '縮短', '增加', '減少']
-ABSOLUTE = ['每個功能', '都由我', '一路帶', '全部由我', '所有功能']
-NEG_ORG = ['前任主管未', '停擺', '推倒', '不是他們的主管', '不是主管']
+RESULT_VERB = ['主導', '上線', '降到', '降至', '提升', '成長', '→', '縮短', '增加', '減少', '導入', '推進', '規劃', '選擇', '改用', '完成']
 TITLE_WORDS = ['經理', 'Manager', 'PM', 'Owner', '主任', '企劃', '工程師', '專員', '工讀生', 'Intern',
                'Lead', 'Director', '總監', '主管', '顧問', 'Analyst', '分析師', '設計師']
-DATE = re.compile(r'\d{4}/\d{1,2}\s*[-–~至]\s*(?:\d{4}/\d{1,2}|迄今|至今|Present)')
+OBJECTIVE = ['希望', '尋求', '期望', '追求', '挑戰性', '發揮所長', '貢獻所學', '學習成長', 'Seeking', 'Objective']
+
+# 使用者語氣偏好與去 AI 腔（editorial；不影響能力判斷）
+STYLE_LINT = ['致力於', '深入探討', '扮演關鍵角色', '成功實現', '無縫', '編織', 'Spearheaded', 'Architected',
+              '具備良好', '熱情洋溢', '賦能', '至關重要', '不可或缺', '值得注意的是', '總而言之', '展現了',
+              '充滿熱情', '積極進取', '期許自己', '挑戰自我', '團隊合作能力', '抗壓性極佳',
+              '0 到 1', '從 0 到 1', '0→1', '每個功能', '都由我', '一路帶', '全部由我', '所有功能']
+# 事實禁寫（事實快照 career/library/fact-snapshot-2026-10-13.md；命中＝需事實核對，不是語氣問題）
+FACTUAL_GUARD = {'準時': '準時率已刪（定義不明，superseded）', '職缺匯入': '尚未開發，不得列為已上線',
+                 '4 項 AI': '已上線 AI 功能為 3 項', '東南亞金流': '使用者改口徑：IAP 與 Web 金流',
+                 'JD2': '一律寫 JustDating', 'SQL': '使用者未確認具備', 'Jira': '使用者未確認具備',
+                 'Scrum': '開發方式是瀑布＋Kanban', '零停機': '實際停機約 1.5 小時',
+                 '前任主管未': '組織負面敘事', '停擺': '組織負面敘事'}
+# 同義詞：英文關鍵字換成意思清楚的中文，不應被判為缺證據（迴歸案例 10）
+SYN = {'prd': ['prd', '規格', '需求文件'], 'uat': ['uat', '驗收'], 'roadmap': ['roadmap', '路線圖', '優先級', '排優先'],
+       '跨部門': ['跨部門', '對接', '協調', '需求單位'], 'ai': ['ai', 'claude', '資料科學'], 'api': ['api', '串接'],
+       '金流': ['金流', '付款', 'iap', 'codapay', '內購'], '數據': ['數據', 'ga4', '世代分析', '分析'],
+       'figma': ['figma', 'wireframe', 'prototype', '原型'], 'b2b': ['b2b', '企業端', '廠商', 'saas'],
+       '使用者訪談': ['使用者訪談', '訪談', '問卷'], 'agile': ['agile', 'kanban', '敏捷'], '英文': ['英文', 'toeic', 'toefl', 'english']}
+
 
 def vw(t):
     return sum(0.5 if ord(c) < 0x2E80 else 1 for c in t)
+
 
 def cut(t, w):
     out, n = '', 0
@@ -45,101 +55,87 @@ def cut(t, w):
         out += c
     return out
 
+
 def kw_list(s):
     return [k.strip() for k in (s or '').split(',') if k.strip()]
 
-def hits(text, kws):
-    t = text.lower()
-    return [k for k in kws if k.lower() in t]
 
-def score_line(text, jd):
-    flags = []
-    s = 0
-    n = len(text)
-    # 長度：條列 25–90 字最佳
-    if 25 <= n <= 90: s += 10
-    elif n <= 120: s += 6
-    else: flags.append('過長')
-    if NUM.search(text): s += 10
-    else: flags.append('無數字')
-    edge, head = cut(text, EDGE), text[:20]
-    if NUM.search(edge) or hits(edge, jd + RESULT_VERB): s += 8
-    elif NUM.search(head) or hits(head, jd): s += 4; flags.append('左緣 10 字無結果')
-    else: flags.append('開頭無結果或關鍵詞')
-    if DUTY_START.match(text): s -= 8; flags.append('職責式開頭')
-    obj = [o for o in OBJECTIVE if o in text]
-    if obj: s -= 6; flags.append('求職目標語:' + '/'.join(obj))
-    ab = [w for w in ABSOLUTE if w in text]
-    if ab: s -= 6; flags.append('絕對語氣:' + '/'.join(ab))
-    ng = [w for w in NEG_ORG if w in text]
-    if ng: s -= 6; flags.append('組織負面:' + '/'.join(ng))
-    h = hits(text, jd)
-    s += min(len(h), 3) * 2 + (0 if len(h) <= 4 else -4)
-    if len(h) > 4: flags.append('疑似塞詞')
-    bad = [b for b in BANNED if b in text]
-    if bad: s -= 10; flags.append('禁用詞:' + '/'.join(bad))
-    if '—' in text or '**' in text: s -= 10; flags.append('破折號或粗體')
-    return max(s, 0), h, flags
+def where(text, kw):
+    """回傳證據所在段落（摘要／經歷／技能／自傳），含同義詞。"""
+    alts = SYN.get(kw.lower(), [kw.lower()])
+    secs = re.split(r'\n(專業摘要|工作經歷|學歷|專業技能|求職條件|自傳)\n', '\n' + text)
+    out, name = [], '抬頭'
+    for i, part in enumerate(secs):
+        if part in ('專業摘要', '工作經歷', '學歷', '專業技能', '求職條件', '自傳'):
+            name = part; continue
+        low = part.lower()
+        if any((re.search(r'(?<![a-z])' + re.escape(a) + r'(?![a-z])', low) if a.isascii() else a in low) for a in alts): out.append(name)
+    return sorted(set(out))
+
+
+def lint(text):
+    style = [w for w in STYLE_LINT if w in text]
+    if '—' in text or '**' in text: style.append('破折號或粗體')
+    guard = [f'{k}（{v}）' for k, v in FACTUAL_GUARD.items() if k in text]
+    return style, guard
+
+
+def contribution_gap(b):
+    """誠實協作描述不扣分；只有看不出具體動作或結果時才標待釐清。"""
+    return bool(DUTY_START.match(b)) and not NUM.search(b) and not any(v in b for v in RESULT_VERB)
+
+
+def cmd_stats(path, jd):
+    text = open(path, encoding='utf8').read()
+    lines = [l.strip() for l in text.split('\n')]
+    exp = text.split('\n學歷')[0]
+    bullets = [l[2:] for l in exp.split('\n') if l.startswith('- ')]
+    nb = max(len(bullets), 1)
+    print('## 機械檢查 v4（只報結果，不轉能力分；human_calibration: not_performed）\n')
+    if jd:
+        print('### 能力證據對應（含同義詞；不設覆蓋率甜蜜區間）')
+        for k in jd:
+            w = where(text, k)
+            only_skill = w == ['專業技能']
+            print(f'- {k}：{"、".join(w) or "unknown（未寫，不推論不會）"}{"（只在技能索引，經歷無證據）" if only_skill else ""}')
+    numr = sum(1 for b in bullets if NUM.search(b)) / nb
+    edge = sum(1 for b in bullets if NUM.search(cut(b, EDGE)) or any(v in cut(b, EDGE) for v in RESULT_VERB + jd)) / nb
+    heads = [l for l in exp.split('\n') if '｜' in l and DATE.search(l)]
+    late = [h[:20] for h in heads if vw(h[:DATE.search(h).start()]) >= HEADER_CHARS]
+    print('\n### 描述性統計（不換算影響力）')
+    print(f'- 工作經歷條列 {len(bullets)} 條；含數字 {numr:.0%}（有數字≠有影響，數字性質由內容審查分類）')
+    print(f'- 條列左緣 10 字寬有數字或動作詞 {edge:.0%}（版面提醒）')
+    print(f'- 經歷抬頭 {len(heads)} 段；日期超過 24 字寬：{"、".join(late) or "無"}（版面提醒，以實際排版另驗）')
+    summ = text.split('專業摘要')[1].split('工作經歷')[0] if '專業摘要' in text else ''
+    obj = [o for o in OBJECTIVE if o in summ]
+    print(f'- 摘要求職目標語：{"、".join(obj) or "無"}')
+    gaps = [b[:24] for b in bullets if contribution_gap(b)]
+    print(f'- 貢獻待釐清（協作動詞開頭且無具體動作或結果）：{"；".join(gaps) or "無"}')
+    style, guard = lint(text)
+    print('\n### style_lint（使用者偏好，editorial）：' + ('、'.join(style) or '無'))
+    print('### factual_guard（事實禁寫，需事實核對）：' + ('、'.join(guard) or '無'))
+    print('\nA 格式：career-ops verify-ats；PDF：parse_check.py；ATS import: not tested。')
+
 
 def cmd_variants(path, jd):
     unit = None
-    print('| 單位 | 版本 | 機械分/40 | 關鍵詞 | 旗標 |')
-    print('| :-- | :-- | :-: | :--- | :--- |')
+    print('| 單位 | 版本 | 字數 | 含數字 | style_lint | factual_guard | 貢獻待釐清 |')
+    print('| :-- | :-- | :-: | :-: | :-- | :-- | :-: |')
     for line in open(path, encoding='utf8'):
         m = re.match(r'###\s+(\S+)', line)
         if m: unit = m.group(1); continue
         m = re.match(r'(V\d+)\s*[:：]\s*(.+)', line.strip())
         if m and unit:
-            sc, h, fl = score_line(m.group(2), jd)
-            print(f'| {unit} | {m.group(1)} | {sc} | {"、".join(h)} | {"；".join(fl)} |')
+            t = m.group(2); s, g = lint(t)
+            print(f'| {unit} | {m.group(1)} | {len(t)} | {"有" if NUM.search(t) else "無"} | {"、".join(s)} | {"、".join(g)} | {"是" if contribution_gap(t) else ""} |')
 
-def cmd_ats(path, jd, pref):
-    text = open(path, encoding='utf8').read()
-    bullets = [l[2:] for l in text.split('\n') if l.startswith('- ')]
-    exp = text.split('專業技能')[0]
-    skills = text.split('專業技能')[1].split('求職條件')[0] if '專業技能' in text else ''
-    allkw = list(dict.fromkeys(jd + pref))
-    cov = len(hits(text, allkw)) / len(allkw) if allkw else 0
-    if 0.70 <= cov <= 0.90: b = 25
-    elif 0.90 < cov < 0.95: b = 22
-    elif cov >= 0.95: b = 18   # 疑似塞詞
-    elif cov >= 0.50: b = 15
-    else: b = 8
-    pref_both = [k for k in pref if k.lower() in exp.lower() and k.lower() in skills.lower()]
-    pref_ratio = len(pref_both) / len(pref) if pref else 1
-    b = round(b * (0.6 + 0.4 * pref_ratio))
-    nb = max(len(bullets), 1)
-    hook = sum(1 for x in bullets if NUM.search(x[:20]) or hits(x[:20], allkw)) / nb
-    edge = sum(1 for x in bullets if NUM.search(cut(x, EDGE)) or hits(cut(x, EDGE), allkw + RESULT_VERB)) / nb
-    lines = [l.strip() for l in exp.split('\n學歷')[0].split('\n')]   # 抬頭只看工作經歷，不含學歷
-    heads = [l for l in lines if '｜' in l and DATE.search(l)]
-    head_ok = [h for h in heads if any(w in h.split('｜')[0] for w in TITLE_WORDS) and vw(h[:DATE.search(h).start()]) < HEADER_CHARS]
-    head_r = len(head_ok) / len(heads) if heads else 0
-    first = ' '.join([l for l in lines if l][:3])
-    summ = text.split('專業摘要')[1].split('工作經歷')[0] if '專業摘要' in text else ''
-    obj = [o for o in OBJECTIVE if o in summ]
-    c = round(8 * edge + 4 * hook + 4 * head_r + (2 if not obj else 0) + (2 if any(w in first for w in TITLE_WORDS) else 0))
-    numr = sum(1 for x in bullets if NUM.search(x)) / nb
-    duty = [x for x in bullets + lines if DUTY_START.match(x)]
-    d = max((20 if numr >= 0.6 else round(20 * numr / 0.6)) - 2 * len(duty), 0)
-    print(f'B 關鍵字對應 {b}/25（覆蓋 {cov:.0%}；加分詞同時在技能與經歷 {len(pref_both)}/{len(pref)}）')
-    print(f'  缺：{"、".join(k for k in allkw if k not in hits(text, allkw)) or "無"}')
-    print(f'  加分詞只出現一處：{"、".join(k for k in pref if k not in pref_both) or "無"}')
-    print(f'C 6 秒可讀 v2 {c}/20（左緣 {EDGE} 字有訊號 {edge:.0%}；前 20 字 {hook:.0%}；'
-          f'抬頭職稱在左且日期在 {HEADER_CHARS} 字內 {len(head_ok)}/{len(heads)}；'
-          f'摘要求職目標語 {"、".join(obj) or "無"}）')
-    print(f'D 量化影響 {d}/20（含數字條列 {numr:.0%}；職責式開頭 {len(duty)} 處，每處 -2）')
-    for x in duty: print(f'  職責式：{x[:24]}')
-    for w in ABSOLUTE + NEG_ORG:
-        if w in text: print(f'  Level 8 旗標：「{w}」（絕對語氣或組織負面敘事）')
-    print('A 格式請用 career-ops verify-ats；E AI 實證人工給分。')
 
 if __name__ == '__main__':
     ap = argparse.ArgumentParser()
-    ap.add_argument('mode', choices=['variants', 'ats'])
+    ap.add_argument('mode', choices=['stats', 'ats', 'variants'])
     ap.add_argument('path')
     ap.add_argument('--jd', default='')
-    ap.add_argument('--preferred', default='')
+    ap.add_argument('--preferred', default='')  # 舊參數，v4 併入 --jd 對應
     a = ap.parse_args()
     if a.mode == 'variants': cmd_variants(a.path, kw_list(a.jd))
-    else: cmd_ats(a.path, kw_list(a.jd), kw_list(a.preferred))
+    else: cmd_stats(a.path, kw_list(a.jd) + kw_list(a.preferred))
