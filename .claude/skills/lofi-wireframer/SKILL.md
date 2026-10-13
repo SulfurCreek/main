@@ -45,3 +45,7 @@ description: >
 1. 分析輸入內容的核心版面結構。
 2. 依上述美學規則轉成 lo-fi 版本。
 3. 把任何功能性邏輯（狀態機、資料庫欄位、觸發條件等）抽取到右側註記側欄，並用編號徽章對應連結。
+
+## 4. 上線到網站
+
+使用者要求把線框圖上線（Cloudflare）時，讀 [`references/publish-to-site.md`](references/publish-to-site.md)：寫入範圍只限 `wireframe-site/`，上線前要使用者明確核可並去識別化，推到 `main` 自動部署。

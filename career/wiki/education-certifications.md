@@ -9,7 +9,7 @@
 
 | 學校 / School | 系所・學程 / Program | 期間 / Period | 備註 / Note |
 | :--- | :--- | :--- | :--- |
-| **淡江大學 / Tamkang University** | 國際企業學系 / Dept. of International Business（學士 / B.B.A.）| Class of 2013 | 商管本科，奠定商業與國際視野 |
+| **淡江大學 / Tamkang University** | 國際企業學系 / Dept. of International Business（學士 / B.B.A.）| Class of 2014 | 商管本科，奠定商業與國際視野 |
 | **California State University, Sacramento (CSUS)** | 交換學生・商學主修 / Exchange student, Business major | 一學年 / one academic year | 赴美交換一年（修商學課程、應考 TOEFL iBT），佐證英語環境與國際適應力 |
 
 > **定位用法 / Positioning**：**國際企業**本科 ＋ **美國 CSUS 交換一年**，共同支撐「**商業敏銳度 ＋ 英語／國際環境即戰力**」，呼應 PM 對商業化思維與跨國協作的期待。
@@ -20,7 +20,7 @@
 
 | 類別 / Type | 證照 / Credential | 等級・分數 / Level・Score | 履歷價值 / Résumé value |
 | :--- | :--- | :--- | :--- |
-| 雲端技術 / Cloud | **AWS Certified Cloud Practitioner** | 基礎級 / foundational | 雲端素養佐證，強化**技術型 PM／硬技術公司**（NVIDIA-tier）定位與 F2 技術素養 |
+| 雲端技術 / Cloud | **AWS Certified Cloud Practitioner** | 基礎級 / foundational；**2023/12/29 取得**（Credly 徽章信件）；AWS 證照有效期 3 年，〔待確認：到期日約 2026/12，需續證或標示效期〕 | 雲端素養佐證，強化**技術型 PM／硬技術公司**（NVIDIA-tier）定位與 F2 技術素養 |
 | 英語 / English | **TOEIC** | **金色證書 Gold・980／990** | 近滿分英語力——國際／英文 ATS 版的**頭牌**訊號 |
 | 英語 / English | **TOEFL iBT** | **93／120** | 學術英語能力（赴美 CSUS 交換期間應考）|
 | 英語 / English | **全民英檢 GEPT** | 中高級 / High-Intermediate | 台灣在地英語能力佐證 |
