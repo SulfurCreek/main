@@ -18,6 +18,8 @@ description: >
 本 skill 是證據庫的下游：`career/library/`（**使用者確認過的現行事實與裁定，衝突時最優先**）→ `career/competency-framework.md`（wiki 入口）＋ `career/wiki/` 分頁存「證據」，
 本 skill 是「把證據變成履歷的方法」。
 
+> **PDF 版型（2026-10-13）**：給人看的 PDF 一律用雙欄版型（`references/pdf-layout.md`、`scripts/render_twocol.py`）；上傳 ATS／求職網站另附單欄版。
+
 ## 🔁 標準工作流程（9 步，2026-10-08 使用者裁定、2026-10-09 修訂）
 
 做履歷、自傳、求職信素材一律走這九步，不跳步、不只拿上一版刪修。詳細產出、出口條件、回退規則見 [`references/workflow.md`](references/workflow.md)（中間產物放 `career/drafts/<版本>/`）。
