@@ -1,17 +1,17 @@
 # 00 — tCode 代碼表總覽 (Index & Purpose)
 
-> `TCode_Export_20260707T090934846Z.xlsx`（官方匯出，20260707 到貨，已取代先前 `20260622` 版），15 張工作表。所有表共用同一套 schema（見 [01-schema](01-schema.md)）。本頁是用途對照與選表指南。
+> `job-classification-kb/TCode_Export.xlsx`，15 張工作表。tCodeDutyHL／NM／PT／ST 四表已於 20261013 依官方最新匯出更新（工程師尚未實際套用本輪異動，此為目前真實現況，非需求草案）；其餘 11 表仍是 20260707 版，未變動。所有表共用同一套 schema（見 [01-schema](01-schema.md)）。本頁是用途對照與選表指南。
 
 ## 15 張表一覽
 
-> 下表 tCodeDutyNM／HL／PT 與 tCodeWorkAbility 之列數/葉數已依 20260707 官方匯出更新（其餘 11 表與 20260622 版相同，未變動）。
+> 下表 tCodeDutyNM／HL／PT／ST 之列數/葉數已依 20261013 最新官方匯出更新（其餘 11 表與 20260707 版相同，未變動）。
 
 | 表名 | 用途（一句話） | 列數 | 葉數 | 葉 CodeType | 中類數 |
 |---|---|---|---|---|---|
-| **tCodeDutyNM** | **職務小類（全職 Normal）— 本專案主用** | 694 | 617 | 3 | 57 |
-| tCodeDutyHL | 職務（精簡/高階 HL） | 137 | 79 | 3 | 40 |
-| tCodeDutyPT | 職務（兼職 Part-Time） | 605 | 528 | 3 | 57 |
-| tCodeDutyST | 職務（ST，219 葉） | 286 | 219 | 3 | 47 |
+| **tCodeDutyNM** | **職務小類（全職 Normal）— 本專案主用** | 649 | 572 | 3 | 58（20 大類） |
+| tCodeDutyHL | 職務（精簡/高階 HL） | 136 | 78 | 3 | 42（18 大類） |
+| tCodeDutyPT | 職務（兼職 Part-Time） | 579 | 502 | 3 | 59（20 大類） |
+| tCodeDutyST | 職務（ST） | 275 | 208 | 3 | 48（20 大類） |
 | tCodeDutyTU | 職務（家教 TUtor） | 214 | 199 | 3 | 18 |
 | tCodeCertify | 證照／認證 | 2,621 | 2,451 | 3 | 149 |
 | tCodeCompSkill | 電腦／工作技能（Word, Excel…） | 790 | 765 | 2 | 26 |
@@ -31,10 +31,10 @@
 
 | 表名 | 現成 MD | 狀態 |
 |---|---|---|
-| tCodeDutyNM | [`data_tCodeDutyNM.md`](data_tCodeDutyNM.md) | ✅ 完整（20260707 依官方 Excel 匯出重新產出並確認與 20260701 Google Sheet 版一致，617葉，add/edit 已正式落地） |
-| tCodeDutyPT | [`data_tCodeDutyPT.md`](data_tCodeDutyPT.md) | ✅ 完整（20260707 依官方 Excel 匯出重新產出，528葉；250513 資料錯誤仍未修正，見 [`change_request_tCodeDuty_engineering.md`](change_request_tCodeDuty_engineering.md)） |
-| tCodeDutyHL | [`data_tCodeDutyHL.md`](data_tCodeDutyHL.md) | ✅ 完整（20260707 依官方 Excel 匯出重新產出，79葉） |
-| tCodeDutyST | [`data_tCodeDutyST.md`](data_tCodeDutyST.md) | ✅ 完整（20260707 依官方 Excel 匯出重新產出，219葉） |
+| tCodeDutyNM | [`data_tCodeDutyNM.md`](data_tCodeDutyNM.md) | ✅ 完整（20261013 依官方 Excel 最新匯出重新產出，572葉；含本輪 170204/190205/190207/230110/270202 五筆 delete 已確認正確歸位後移除） |
+| tCodeDutyPT | [`data_tCodeDutyPT.md`](data_tCodeDutyPT.md) | ✅ 完整（20261013 依官方 Excel 最新匯出重新產出，502葉；250513 資料錯誤仍未修正，見 [`change_request_tCodeDuty_engineering.md`](change_request_tCodeDuty_engineering.md)） |
+| tCodeDutyHL | [`data_tCodeDutyHL.md`](data_tCodeDutyHL.md) | ✅ 完整（20261013 依官方 Excel 最新匯出重新產出，78葉） |
+| tCodeDutyST | [`data_tCodeDutyST.md`](data_tCodeDutyST.md) | ✅ 完整（20261013 依官方 Excel 最新匯出重新產出，208葉） |
 | tCodeCompSkill | [`data_tCodeCompSkill.md`](data_tCodeCompSkill.md) | ✅ 完整 |
 | tCodeBenefit | [`data_tCodeBenefit.md`](data_tCodeBenefit.md) | ✅ 完整（含 CodeNo/CodeNoNew，供 B 公司>福利制度） |
 | tCodeCertify | [`data_tCodeCertify_summary.md`](data_tCodeCertify_summary.md) | ◑ 中類摘要（大表，葉太多） |
