@@ -18,14 +18,33 @@ KINDS = ['context', 'output', 'outcome', 'decision', 'in_progress']
 PREF = ['甲', '乙', '無明確偏好', '兩者均須先修正']
 HR = [f'HR{i:02d}' for i in range(1, 13)]
 HRS = ['supported', 'partial', 'unknown', 'not_applicable']
-SRC = [f'S{i:02d}' for i in range(1, 51)]
+SRC = [f'S{i:02d}' for i in range(1, 51)] + [f'A{i:02d}' for i in range(1, 51)] + [f'M{i:02d}' for i in range(1, 51)]
+HM = [f'HM{i:02d}' for i in range(1, 14)]
+ATS = [f'ATS{i:02d}' for i in range(1, 15)]
+ATSS = ['pass', 'risk', 'fail', 'unknown', 'not_applicable']
+CQS = ['supported', 'partial', 'unknown', 'contradicted', 'not_applicable', 'not_assessed']
+BT = ['claim', 'draft', 'file', 'job_fit']
 
 
 def check(o):
     err = []
     ver = str(o.get('rubric_version'))
-    if ver not in ('4.0', '4.1'): err.append('rubric_version 不是 4.0／4.1')
-    if ver == '4.1':
+    if ver not in ('4.0', '4.1', '4.2'): err.append('rubric_version 不是 4.0／4.1／4.2')
+    if ver == '4.2':
+        for q in o.get('content_questions', []):
+            if q.get('rule_id') not in HM: err.append(f'content_questions rule_id 非法：{q.get("rule_id")}')
+            if q.get('status') not in CQS: err.append(f'{q.get("rule_id")} status 非法：{q.get("status")}')
+            if q.get('status') in ('supported', 'partial') and not q.get('resume_evidence'): err.append(f'{q.get("rule_id")} 缺 resume_evidence')
+        if not o.get('content_questions'): err.append('v4.2 缺 content_questions（HM）')
+        if len(o.get('interview_reasons', [])) > 3: err.append('約談理由超過 3 個')
+        if len(o.get('key_gaps', [])) > 3: err.append('關鍵缺口超過 3 個')
+        au = o.get('ai_authorship', {})
+        if au.get('determination') != 'not_determinable_from_style' or au.get('probability') is not None: err.append('ai_authorship 不得給作者判定或機率')
+        for c in o.get('ats_checks', []):
+            if c.get('rule_id') not in ATS or c.get('status') not in ATSS: err.append(f'ats_check 非法：{c.get("rule_id")}/{c.get("status")}')
+        for i in o.get('issues', []):
+            if i.get('severity') == 'blocking' and i.get('block_target') not in BT: err.append(f'issue {i.get("id")} blocking 缺 block_target')
+    if ver in ('4.1', '4.2'):
         hq = o.get('hr_questions', [])
         if not hq: err.append('v4.1 缺 hr_questions')
         for q in hq:
@@ -33,7 +52,7 @@ def check(o):
             if q.get('status') not in HRS: err.append(f'{q.get("rule_id")} status 非法：{q.get("status")}')
             if q.get('status') in ('supported', 'partial') and not q.get('resume_evidence'): err.append(f'{q.get("rule_id")} 缺 resume_evidence')
         for i in o.get('issues', []):
-            if i.get('rule_id') not in HR: err.append(f'issue {i.get("id")} 缺合法 rule_id')
+            if i.get('rule_id') not in HR + HM + ATS: err.append(f'issue {i.get("id")} 缺合法 rule_id')
             bad = [x for x in i.get('source_ids', []) if x not in SRC]
             if bad: err.append(f'issue {i.get("id")} source_ids 不在 registry：{bad}')
     if o.get('human_calibrated') is not False: err.append('human_calibrated 必須為 false')
@@ -116,6 +135,13 @@ def aggregate(run, manifest):
         if hqc:
             out.append('\n人資十二問（每題各輪狀態）：\n\n| 題 | ' + ' | '.join(HRS) + ' |\n| :-- |' + ' :-: |' * len(HRS))
             for r in HR: out.append(f'| {r} | ' + ' | '.join(str(hqc[r][x]) for x in HRS) + ' |')
+        hmc = C.defaultdict(C.Counter)
+        for p in sorted(glob.glob(f'{run}/A_{v}_r*.json')):
+            o, e = load(p)
+            for q in (o or {}).get('content_questions', []): hmc[q.get('rule_id')][q.get('status')] += 1
+        if hmc:
+            out.append('\n用人主管十三問 HM（每題各輪狀態）：\n\n| 題 | ' + ' | '.join(CQS) + ' |\n| :-- |' + ' :-: |' * len(CQS))
+            for r in HM: out.append(f'| {r} | ' + ' | '.join(str(hmc[r][x]) for x in CQS) + ' |')
         out.append('\n資深能力分布（分別評，不是逐級）：' + '；'.join(f'{k} {dict(c)}' for k, c in sen.items()))
         top = [(k, n) for k, n in issues.most_common() if n >= 2 or k[0] == 'blocking']
         out.append('\n重複出現或 blocking 的 issue（同輪去重；重複≠正確）：')

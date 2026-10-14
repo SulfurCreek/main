@@ -17,7 +17,10 @@ description: >
 > 3. **審查結果是結構化的自我檢查，不是真人意見**（見文末〈可靠度〉）。
 
 
-## ⭐ 規準 v4.1（2026-10-13 起，取代下方 v3／v3.1／v3.2 的評分與彙整）
+## ⭐ 規準 v4.2（2026-10-14 起，取代下方 v3／v3.1／v3.2 的評分與彙整）
+
+**v4.2 追加**（規格 `career/style/scoring-improvement-v4.2-source.md` §16–22；規準 `rubric-v4.md` §9）：ATS01–ATS14 用 `scripts/ats_check.py <pdf> <txt> --jd … [--vendor …]` 產五塊報告（不加總、不產生通用 ATS 分數、test_level=local_extraction）；用人主管十三問 HM01–HM13 進 A 審查的 `content_questions`，主管報告只列 ≤3 約談理由、≤3 關鍵缺口，語句微調放 editorial_appendix；不給 AI 作者機率；blocking 需 block_target。來源 A01–A50／M01–M50（`research-registry-v4.2.json`）、規則 `rule-registry-v4.2.json`。同模型新 context 不稱「另一模型」。
+
 
 **v4.1 追加**：人資十二問 HR01–HR12（`career/review-panel/rule-registry-v4.1.json`，對應六維度、不另加總分）；50 筆來源登錄（`research-registry-v4.1.json`，S01–S30 沿用筆記未重開、S31–S50 本次查閱）；issue 需帶 rule_id／source_ids／application_note／context_limit，`hr_questions` 分開記 resume_evidence；來源不構成淘汰門檻。原檔 `career/style/scoring-improvement-v4.1-source.md`。
 

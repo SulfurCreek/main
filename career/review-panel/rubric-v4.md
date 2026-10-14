@@ -1,6 +1,6 @@
 <!--markdownlint-disable MD013-->
 
-# 審查規準 v4.1（rubric_version 4.1，2026-10-13）
+# 審查規準 v4.2（rubric_version 4.2，2026-10-14）
 
 > 依使用者提供的修訂規格 v4（`career/style/scoring-improvement-v4-source.md`）與 v4.1（`career/style/scoring-improvement-v4.1-source.md`，新增 §12–15：人資十二問、50 筆來源、分歧處理）實作。v4.0 的 2026-10-13 結果保留於 `runs/2026-10-13-v4/`。取代 `blind-output-v3.1.md` 的評分與彙整；v3.x 的歷史報告保留，**跨規準分數不可直接比較**。
 > 本規準是模型內部檢查工具，**human_calibration: not_performed**。不得宣稱招聘成功率或「真人會更喜歡」。
@@ -176,3 +176,18 @@ B 的輸出：`{"order":"甲=…/乙=…","differences":[{"what":"","hiring_mean
 | `ats_search.py` | 改名「指定語料與查詢下的搜尋實驗」；印出語料、查詢、切詞、參數；**ATS import: not tested** |
 | 自傳、照片、英文版 | 依平台與 JD 明文要求，否則 N/A |
 | 雙欄 PDF | 以實際還原、讀序、匯入結果判定，不由欄數推論 |
+
+
+## 9. v4.2 增補（規格 `career/style/scoring-improvement-v4.2-source.md` §16–22，2026-10-14）
+
+| 項目 | 實作 |
+| :-- | :-- |
+| 來源 | `research-registry-v4.2.json`：A01–A50（ATS 官方文件）、M01–M50（用人主管與選才方法），規格作者 2026-10-13 查閱；本 session 未重開網頁。與 S01–S50 有重疊，不可相加稱 150 個獨立來源；篇數不是投票權重 |
+| 規則 | `rule-registry-v4.2.json`：保留 HR01–HR12，新增 ATS01–ATS14、HM01–HM13（各帶反向 source_ids） |
+| ATS 檢查 | `scripts/ats_check.py`：五塊（檔案接受／欄位解析／搜尋可見性／資格流程／匹配與未知設定），pass／risk／fail／unknown／not_applicable，不加總；職稱→公司→日期逐段檢查，總還原率不能掩蓋錯配；test_level 固定 local_extraction |
+| A 審查 | 提示加 §19.3 原文與 HM01–HM13 表；JSON 新增 content_questions、interview_reasons（≤3）、key_gaps（≤3）、editorial_appendix、ai_authorship（不給機率）、blocking issue 的 block_target |
+| B 比較 | 加一句「依 HM 角度看哪版更能回答值得面試驗證什麼」 |
+| 驗證 | `schema_v4.py` 接受 4.2 並檢查上列欄位；`tests/test_v4_rules.py` 新增 7 個確定性案例（R42-03／11／12／14、SCHEMA-42a–c） |
+| 未做 | 真實 ATS 匯入、跨模型（本次全為同一模型的新 context，不稱「另一模型」）、真人校準 |
+
+ATS 檢查狀態、事實狀態、六維度評等是三套不同 enum，不混用。
