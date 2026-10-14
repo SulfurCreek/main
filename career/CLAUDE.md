@@ -8,6 +8,8 @@
 
 ## 📚 開工第一步：讀 `library/`（2026-10-08 起）
 
+> **省 token 導覽（2026-10-14）**：先讀 [`library/INDEX.md`](library/INDEX.md)（依任務只讀需要的小節）；skill 與驗證指令總表見 [`wiki/skills-index.md`](wiki/skills-index.md)；驗證檔案地圖見 [`review-panel/INDEX.md`](review-panel/INDEX.md)。不要整包讀 library、registry JSON、rubric。
+
 **使用者提供、確認、更正過的所有事實與決定收在 [`library/`](library/README.md)**，衝突時優先於 `wiki/` 與任何產出檔。
 動筆前至少讀 [`library/decisions.md`](library/decisions.md)＋對應的 `facts-*.md`；審稿時對照 [`library/superseded.md`](library/superseded.md)；
 遇到〔待補〕先查 [`library/open-questions.md`](library/open-questions.md)，已答過的不要再問。

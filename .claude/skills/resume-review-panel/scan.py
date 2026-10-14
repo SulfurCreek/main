@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""履歷機械掃描：可重複、不靠 LLM 判斷的指標。
+"""履歷機械掃描（v3 舊工具，v4 起單份模式不再輸出 score）：可重複、不靠 LLM 判斷的指標。
 用法：python3 scan.py <履歷.md>            # 單份
       python3 scan.py --pool <candidates 目錄>  # 對 50 份同儕池算分並檢查與品質分級的相關
 """
@@ -66,4 +66,5 @@ def pool(d):
 if __name__=='__main__':
     if sys.argv[1]=='--pool': pool(sys.argv[2])
     else:
-        for k,v in metrics(open(sys.argv[1]).read()).items(): print(f'{k}: {v}')
+        for k,v in metrics(open(sys.argv[1]).read()).items():
+            if k != 'score': print(f'{k}: {v}')  # v4：不輸出總分（舊 v3 分數已廢，見 SKILL.md）

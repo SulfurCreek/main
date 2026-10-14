@@ -59,6 +59,9 @@ description: >
 | 求職信：中文自我推薦信（英文 cover letter 走 career-ops `cover` 模式）| [`references/cover-letters.md`](references/cover-letters.md) ＋ 範本 [`assets/cover-letter-tw-zh.md`](assets/cover-letter-tw-zh.md) | `letters/story-bank.md`（數字唯一來源）；成品存 `letters/archive/` ＋ `letters/log.md` 加一列 |
 | 目標公司價值觀對映（Amazon LP 等）| [`references/portfolio.md`](references/portfolio.md) | — |
 | 高顏值可列印版（HTML／LaTeX）| [`references/visual-output.md`](references/visual-output.md) | 已定稿的內容版履歷 |
+| **找事實／裁定**（動筆前） | `career/library/INDEX.md`（依任務列出最小讀取集合，別整包讀 library） | — |
+| **轉 PDF** | 雙欄（給人看）`scripts/render_twocol.py`＋`scripts/mkpdf.js`；單欄（ATS）`scripts/render_onecol.py`＋`scripts/mkpdf.js`；版型見 [`references/pdf-layout.md`](references/pdf-layout.md) | — |
+| **驗證履歷** | 改走 skill `resume-review-panel`（一鍵 `build_run.py`）；索引 `career/wiki/skills-index.md` | — |
 | 填學歷／證照 | 本檔結構與順序 | `wiki/education-certifications.md` |
 
 ---
