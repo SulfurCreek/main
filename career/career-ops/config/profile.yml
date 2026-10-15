@@ -1,0 +1,81 @@
+# career-ops profile for 聶崑淮 — copy to <career-ops>/config/profile.yml
+# Source: career/wiki/ (F1–F15, resume-extract.md, education-certifications.md).
+# Fields marked TODO are decisions only you can make — career-ops will ask on first launch if left blank.
+
+candidate:
+  full_name: "Kun Huai Nie"
+  title: "Senior Product Manager"
+  email: "nathaniessc@gmail.com"
+  phone: ""            # TODO
+  location: "Taipei, Taiwan"
+  linkedin: ""         # TODO
+  portfolio_url: ""    # TODO
+  github: ""
+  photo: ""
+
+target_roles:
+  primary:             # TODO: confirm — drafted from the framework's Senior PM positioning
+    - "Senior Product Manager"
+    - "AI Product Manager"
+  archetypes:
+    - name: "B2B Platform / HR-Tech Product Manager"
+      level: "Senior"
+      fit: "primary"
+    - name: "AI Product Manager"
+      level: "Senior"
+      fit: "primary"
+    - name: "Consumer Mobile / Monetization Product Manager"
+      level: "Senior"
+      fit: "secondary"
+    - name: "Technical PM (APIs, platform integrations)"
+      level: "Senior"
+      fit: "adjacent"
+
+narrative:
+  headline: "Senior PM who proves product impact with data — B2C mobile monetization to B2B recruitment platforms and AI features"
+  exit_story: "Ten years on one question — retention. Early on I cut app churn with call-back strategies; today I prove with cohort analysis that the pipeline I run keeps paying accounts 7pt above baseline."
+  superpowers:
+    - "Turning tangled business rules into MECE, engineering-ready specs"
+    - "Shipping cross-system flagships (real-time messaging across two platforms)"
+    - "Proving commercial impact with cohort and retention analysis"
+    - "Monetization: IAP pricing, payment integration, quota-based pricing"
+    - "Designing and governing multi-agent AI workflows"
+  proof_points:
+    - name: "Cross-system real-time messaging flagship"
+      url: ""
+      hero_metric: "Unified 2 legacy channels into one SignalR conversation stream"
+    - name: "Ops pipeline retention study"
+      url: ""
+      hero_metric: "+7pt annualized retention vs baseline, p=0.011, 1,279 paying accounts"
+    - name: "Roadmap delivery"
+      url: ""
+      hero_metric: "111 items shipped in ~5 months, 94% on or ahead of schedule"
+    - name: "Multi-agent AI working system"
+      url: ""
+      hero_metric: "12 domain agents, 23 shared skills, 2 duplicate builds caught"
+
+compensation:            # TODO: all four fields
+  target_range: ""
+  currency: "TWD"
+  minimum: ""
+  location_flexibility: ""
+
+location:
+  country: "Taiwan"
+  city: "Taipei"
+  timezone: "Asia/Taipei"
+  visa_status: ""        # TODO
+  authorized_in: ["Taiwan"]
+  needs_sponsorship: false   # TODO: confirm if targeting overseas roles
+
+language:
+  output: en             # TODO: zh-TW if you mainly apply to Taiwanese companies
+
+spend_tier: standard
+
+cv:
+  output_format: "html"
+
+cover_letter:
+  notice_period_days: 30   # TODO
+  primary_domain: "HR tech / recruitment platforms"
