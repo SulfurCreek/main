@@ -115,13 +115,23 @@ description: >
 
 ### 6.1 MD 內嵌片段規則
 
-- **只給語法，不給整份檔案**：不要 `<!doctype>`、`<html>`、`<head>`、`<style>` 區塊；樣式全部寫成 inline `style`（MD 渲染器多半會濾掉 `<style>`）。
-- **圖片**：轉灰階後上傳 R2（key 前綴 `photo-skill/`），片段用 `background:url(R2網址) 0 0/寬px 高px no-repeat` 的容器承載，容器 `position:relative`、寬高等於圖片原尺寸；新增元件用 `position:absolute` 疊在上面。
-- **新增的元件用虛線框**：`box-sizing:border-box; border:2px dashed #555`，跟其他 wireframe 一致；元件內的 checkbox 用 `<input type="checkbox" id=…>` ＋ `<label for=…>` 綁定，文字用使用者指定的字樣原文（例：`按下enter送出`），不要自己改寫。
-- **擦掉使用者畫在圖上的紅框／標記**：**只把紅色像素換成底色**（`R-G>40 且 R-B>40`，並限制 x 範圍），**不要用整塊矩形塗白**——矩形會連旁邊的邊線（例如輸入框上緣）一起擦掉，使用者看到的就是「圖片被蓋住、留白」。擦完裁出來對照原圖確認邊線完整。
-- **改圖要換檔名**（`_v2`），R2 與 HackMD 有快取，同名覆蓋使用者可能看到舊圖。
-- **驗證**：用 Playwright `page.set_content('<body style="margin:12px;background:#fff">'+片段)` 渲染截圖，確認圖、虛線框、checkbox 位置正確再交給使用者。
-- **提醒使用者兩個風險**（交付時一句話帶過）：HackMD 有時會濾掉 `<input>`（失效時改用 ☐ 符號）；圖寬超過版面寬度時會被切，必要時改 `max-width:100%` 等比縮放。
+- **結構比照 `photo` skill 的 MD 內嵌規範**（另一個 session 已驗證過的 HackMD 安全寫法，**畫面長相仍以本 skill 的風格為準**：灰階、虛線框、覆蓋式改字）。逐條照抄，不要自創：
+  1. **最外層白底容器**：`<div style="background:#fff; padding:14px; border-radius:8px;">`——HackMD 深色模式下沒有白底，截圖的深色文字會看不見。**不可省略**。
+  2. **圖片用 `<img>`，不用 `background:url()`**；放在 `position:relative; width:100%; max-width:<原圖寬>px; aspect-ratio:<寬>/<高>` 的容器裡，`<img>` 寫 `display:block; width:100%; height:100%; object-fit:fill`。**`aspect-ratio` 必加**，否則百分比定位的疊加元件在 HackMD 會塌陷（photo skill 的真實事故）。
+  3. **疊加元件的位置與尺寸一律用 `%`**（`left/top/width/height` ＝ px ÷ 原圖寬或高），不寫死 px，圖縮小時才會一起對齊。
+  4. **疊加文字的字級、間距要跟著縮放**：容器加 `container-type:inline-size`，字級寫成 `font-size:15px; font-size:1.426cqw;`（第一個 px 是不支援 cqw 時的備援；cqw ＝ px ÷ 原圖寬 × 100）。
+  5. **不用 `<svg>`、`<input>`**（HackMD 可能濾掉）：箭頭 icon 用 CSS 邊框旋轉（`border-right/bottom` ＋ `rotate(45deg)`）；手形 cursor 等圖形先轉成透明 PNG 上傳 R2，再用 `<img>`。
+  6. **純圖片也要由外層容器限寬**，不要只靠 `<img>` 自己的 `max-width`（HackMD 的樣式可能蓋掉）。
+  7. **不要 `<!doctype>`、`<html>`、`<head>`、`<style>` 區塊**；樣式全 inline。
+- **圖片**：灰階後上傳 R2（key 前綴 `photo-skill/`）；改圖換檔名（`_v2`）；上傳後對**片段裡真正寫的網址**逐一 `curl` 驗證 200（不是驗證上傳腳本裡的變數檔名）。
+- **新增的元件用虛線框**：`outline:2px dashed #555; outline-offset:3px`，與其他 wireframe 一致；文字用使用者指定的字樣原文，不要自己改寫。
+- **擦掉使用者畫在圖上的紅框／標記**：**只把紅色像素換成底色**（`R-G>40 且 R-B>40`，並限制 x 範圍），**不要用整塊矩形塗白**——矩形會連旁邊的邊線一起擦掉（使用者看到的就是「圖片被蓋住、留白」）。擦完裁出來對照原圖確認邊線完整。
+- **驗證（比照 photo skill 的敵意模擬）**：
+  - 用 Playwright 把片段包進 `<div class="markdown-body">`，並加 `.markdown-body img{max-width:100% !important} .markdown-body div{box-sizing:border-box}`。
+  - **viewport 一定要測 760（HackMD 實際欄寬），不要只用寬螢幕**；再測一次寬版對照。
+  - 用 `getBoundingClientRect` 程式化檢查沒有元素右緣超出容器，並讀 `aspect-ratio` 容器的實際寬高確認比例正確。
+  - 對 Playwright **實際渲染出的截圖**檢查（不是原圖），確認疊加元件位置對、文字沒被截斷；這張截圖就是預覽 PNG，連同片段交給使用者。
+- **提醒使用者一個風險**（交付時一句話帶過）：`cqw`（容器單位）需要較新的瀏覽器，不支援時字級會退回固定 px。
 
 ### 6.2 既有頁面截圖改版（導覽列／按鈕／下拉選單）
 
