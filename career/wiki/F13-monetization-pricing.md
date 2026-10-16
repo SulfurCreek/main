@@ -40,3 +40,6 @@ integrate third-party payment rails into mature products.*
 **相關分頁 / Related**：[證據頁：前段產品公開數據](evidence-prior-products.md) ・ [F12 C 端行動產品與 0→1](F12-consumer-mobile.md) ・ [證據頁：工單 × 付費客戶](evidence-paying-customers.md) ・ [旗艦專案 E.1](flagship-e1.md) ・ [完整職涯時間軸](prior-roles.md)
 
 - **2026-10-06 使用者補充**：JustDating 導入東南亞金流 **CodaPay**（電信代扣等替代支付），由使用者負責溝通與串接；Peach 付款管道轉移仍可用，但非使用者首推代表作。
+
+## 2026-10-16 補充證據：Peach 網頁付款不是單純搬移（library facts-prior 2026-10-16 節）
+- 2021/03→09 網頁付款占比 34%→80%，同期總營收約 8.4 倍、App 內購仍成長約 2.5 倍；同期 DAU 亦成長，不可全歸因網頁付款。淨收入（金流費率）無資料。

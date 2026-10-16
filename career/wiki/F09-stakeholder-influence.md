@@ -28,3 +28,6 @@ frontline/customer needs, aligning everyone through regular communication and da
 ---
 
 **相關分頁 / Related**：[F8 專案管理／路線圖交付](F08-roadmap-delivery.md) ・ [F6 跨職能協作與交接](F06-collaboration-handoff.md) ・ [F11 問題解決與維運交付](F11-problem-solving-ops.md)
+
+## 2026-10-16 更正
+- 「16 個需求單位」作廢；實際 **10 個單位**：總管理處、業務（含客服，北中南算 1）、工程、UIUX 設計、維運、APP、行銷、AI 技術、稽核、法務。董事長、策略長、協理副總為各單位主管；求職主網、系統中心屬本人同部門，不另計。見 library facts-1111 §16、§18。

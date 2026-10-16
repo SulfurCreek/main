@@ -28,3 +28,7 @@ verify without ambiguity.*
 **相關分頁 / Related**：[F10 業務邏輯梳理（上游）](F10-business-logic.md) ・ [F1 產品定義全鏈路](F01-product-definition.md) ・ [F5 交付流程與品質](F05-delivery-quality.md) ・ [旗艦專案 E.1](flagship-e1.md)
 
 - **搜尋邏輯轉工程語言（2026-10-09）**：見 [F10](F10-business-logic.md)；至少三次，借助 AI，把業務邏輯轉成工程可實作的條件，非自寫 SQL。
+
+## 2026-10-16 補充證據（library facts-1111 §19）
+- **外部合作 API 規格**：本人與工程議定 JSON 契約——簽章（HMAC-SHA256 簽 Timestamp＋Body）、防重放（>5 分鐘拒絕）、保護名單判定規則、400／401／429 錯誤碼與頻率限制。對外抽象化，不外露內部狀態代碼與合作廠商名。
+- **登入安全**：簽章驗證 2026/04/17 上線後至 2026/10 未再接獲廠商回報同類盜用（來源＝廠商回報，非系統監測）。

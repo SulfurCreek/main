@@ -26,3 +26,6 @@ assessment and solution design, then break down and track to launch on a Kanban 
 ---
 
 **相關分頁 / Related**：[F8 專案管理／路線圖交付](F08-roadmap-delivery.md) ・ [F9 利害關係人管理](F09-stakeholder-influence.md) ・ [下一步補強建議（商業成效數字）](growth-edges.md)
+
+## 2026-10-16 更新
+- 帳號冒用事件：上線後至 2026/10 未再接獲廠商回報（來源＝廠商回報）。信件與即時通整合、搜尋結果頁改版預計 2026/11 上線。
