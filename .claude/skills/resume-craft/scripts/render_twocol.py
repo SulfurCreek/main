@@ -123,8 +123,6 @@ ul{margin:3px 0 4px 15px;padding:0}li{margin:2px 0}
 .ach{padding:5px 0;border-bottom:1px dotted #bbb}.ach b{display:block;font-size:9.8pt}.ach span{font-size:9pt}
 .sk{margin:3px 0}.sk b{display:block}.sk span{font-size:9pt}
 .edu{margin:4px 0 8px}.edu b{font-size:10pt}
-h1,h2,.jt,.co,b,.tagline,.contact{-webkit-text-stroke:.35px currentColor}
-h1{-webkit-text-stroke:.8px currentColor}
 .full{margin-top:6px}.full p{margin:0 0 7px}"""
 
 
