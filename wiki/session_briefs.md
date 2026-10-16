@@ -24,7 +24,7 @@
 | 項目 | 內容 |
 | :--- | :--- |
 | 職責 | 1111 求才／求職系統 HackMD 規格書的內容撰寫與修改：章節結構、MECE 狀態表、Use Case、紅字需求、版控表、`🚧 待補` 區塊；E.1 聯絡人才／信件即時通整併；履歷文件編修之外的 HackMD 文件維護 |
-| 分支 | `main`（歷史上 outcome 寫 `claude/claude-md-docs-BmaVo`，該分支仍可能被它使用，**不要刪**） |
+| 分支 | `main`。2026-10-16 起 outcome 一律用 `main`；舊的 `claude/claude-md-docs-BmaVo` 已裁示刪除，不要再推送到它 |
 | 專屬資料 | HackMD 團隊 `1111-jobdocs`；本機快取 `notes/`、API 契約 `notes/api/`；素材與 inference 規則見 `wiki/recruitment_system_rules.md` §3、§6 |
 | 必讀 | `spec-doc-1111` skill（格式細則）、`wiki/hackmd_rules.md`（API）、`wiki/recruitment_system_rules.md`（業務代碼、求才 vs 求職先確認）、`wiki/glossary.md`（縮寫） |
 | 寫入方式 | 改既有 HackMD note 一律走 `scripts/hackmd_safe_patch.py`（baseline → 本地改 → 回寫；遠端被改過會 exit 1 中止，不盲蓋）。Token 在環境變數 `HACKMD_TOKEN`，不寫進任何檔案 |

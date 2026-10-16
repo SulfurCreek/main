@@ -43,6 +43,7 @@
 
 ## ⚠️ 特別注意（2026-09-10 發現，待處理）
 
+0. **2026-10-16 使用者裁示：刪除 `claude/claude-md-docs-BmaVo`，文件助手改以 `main` 為 outcome，且不再碰 `career/`**（該分支帶著 8/31 的 `career/` 舊快照 20 檔，GitHub Pages 的 Jekyll 建置因此讀到個人資料並失敗）。本環境刪不了遠端分支（proxy 403），需使用者在 GitHub 的 Branches 頁面刪除。刪除前已核對：分支上無 main 沒有的內容（唯一的 spec-doc-1111 改動已在 main）。以下第 1 點為刪除前的舊記錄。
 1. **「文件助手」目前仍把 `claude/claude-md-docs-BmaVo` 當 outcome 分支，這支分支還在被實際使用**。
    Repo Steward 先前（同日稍早）誤判該分支「內容已完全含於 main、可安全刪除」——**這個判斷需要收回**，
    刪之前要先確認「文件助手」不會再往那支推東西，否則會讓它下次推送失敗。
