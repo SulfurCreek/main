@@ -46,7 +46,7 @@ requirement 狀態：`supported`／`partial`／`unknown`／`contradicted`／`not
 
 ## 3.1 人資十二問 HR01–HR12（v4.1；對應六維度，**不是另加十二項總分**）
 
-來源與限制：`rule-registry-v4.1.json`（規則）、`research-registry-v4.1.json`（50 筆來源；S01–S30 沿用筆記未重開網頁，S31–S50 本次查閱）。來源只說明「為什麼問這個問題」，不證明候選人聲明為真，**不能因來源提及就列 blocking**。
+來源與限制：`rule-registry-v4.2.json`（規則；v4.1 的 12 條 HR 已含於內）、`research-registry-v4.1.json`（50 筆來源；S01–S30 沿用筆記未重開網頁，S31–S50 本次查閱）。來源只說明「為什麼問這個問題」，不證明候選人聲明為真，**不能因來源提及就列 blocking**。
 
 | ID | 問題 | 主維度 | 不足時怎麼處理 | 來源 |
 | :-- | :-- | :-- | :-- | :-- |

@@ -15,6 +15,7 @@
 | 作品集渲染成靜態網站 | `portfolio-site` | SKILL.md §0 分層與邊界 | 只渲染不寫內容 |
 | 找事實、查使用者裁定 | （非 skill）`career/library/INDEX.md` | — | library 最優先 |
 | 找驗證相關檔案／規則／來源 | （非 skill）`career/review-panel/INDEX.md` | — | — |
+| **查驗證歷史、某版結果、跨版缺口、模型傾向** | （非 skill）`career/review-panel/HISTORY.md` | 先讀 §0–§1 | 每輪驗證後依 §9 更新 |
 
 ## 二、skill 檔案與大小（讀之前先看值不值得）
 
@@ -31,6 +32,7 @@
 | 產提示＋執行單 | `python3 .claude/skills/resume-review-panel/scripts/build_run.py --run career/review-panel/runs/<日期-名稱> --jd career/review-panel/jd/gogolook-950oe.md --resume v9.4=career/drafts/v9.4/resume-v9.4.txt --resume v8.1c=career/drafts/v8.1c/resume-v8.1c.txt [--anon 標籤=路徑] --rounds 5 --anon-rounds 2 --b-rounds 4` |
 | 子代理驗證輸出 | `python3 .claude/skills/resume-review-panel/scripts/schema_v4.py validate <raw/X.json>` |
 | 彙整出報告草稿 | `python3 .claude/skills/resume-review-panel/scripts/run_report.py --run <runs/…>` |
+| 更新逐職缺跨版矩陣 | `python3 .claude/skills/resume-review-panel/scripts/history_matrix.py` |
 | ATS 準備檢查 | `python3 .claude/skills/resume-review-panel/scripts/ats_check.py <pdf> <txt> --jd "詞,詞" --vendor Greenhouse` |
 | PDF 抽字還原 | `python3 .claude/skills/resume-review-panel/scripts/parse_check.py <pdf> <txt>` |
 | 機械檢查（只報結果） | `python3 .claude/skills/resume-craft/scripts/resume_score.py stats <txt> --jd "…"` |
