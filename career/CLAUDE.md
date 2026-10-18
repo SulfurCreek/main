@@ -93,7 +93,8 @@ it is a shared company space and the leak would be irreversible.*
 | `104/` | 104 履歷工作區；現行版見 `104/README.md` 標示，舊版在 `104/archive/` |
 | `style/` | 中文語氣（`resume-voice-zh.md`）、去 AI 感＋ATS（`anti-ai-ats.md`、`ats-2026-source.md`）、HR 6 秒篩選（`hr-6-second-source.md`）、PM 履歷最佳實務 |
 | `letters/` | 求職信、素材庫（`story-bank.md`）、投遞紀錄 |
-| `review-panel/` | `resume-review-panel` skill 的審查者與同儕素材 |
+| `review-panel/` | `resume-review-panel` skill 的審查者與同儕素材、驗證職缺分層（`jd/routing.tsv`）與各版驗證封包（`handoff/<版本>/`） |
+| `targets/` | 目標職缺與公司原文（104 已儲存清單 `jobs.md`、`companies.md`），驗證與投遞共用的職缺來源 |
 | `portfolio/` | 作品集 case study（內部完整版）；`portfolio/public/` 為對外版與 `STATUS.md` |
 | `site/` | **作品集網站助手的暫存區**（網站原始碼、`QUESTIONS.md`），Career Move 唯讀 |
 | `career-ops/` | [career-ops](https://github.com/career-ops-hq/career-ops) 求職工具的個人資料層（`cv.md`、`config/profile.yml`）與產出（`reports/`、`output/`、`data/`），經 `CAREER_OPS_ROOT` 直接讀寫；`cv.md` 由 `wiki/` 單向同步 |

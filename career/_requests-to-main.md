@@ -8,4 +8,12 @@
 
 ---
 
-（目前沒有待處理請求。已施作：resume-craft F1–F15、作品集雙軌、求職信、`portfolio-site`、個人線協作規則、104 履歷路由與 `tw-voice.md`、`resume-review-panel`、去 AI 感＋ATS 規範（主幹 `80bf591`）、V4 防禦型規則（主幹 `95e4223`）、resume-review-panel 審查清單 v2（主幹 `a6997eb`）。）
+## 2026-10-19｜移除誤傳到 `claude/claude-md-docs-BmaVo` 的 `career/companies.md`、`career/jobs.md`
+
+- 使用者在 GitHub 網頁上傳時落在 `claude/claude-md-docs-BmaVo`（commit `17ca5ab`），不是個人線分支。
+- 個人線已收進 `career/targets/jobs.md`、`career/targets/companies.md`（內容相同，修正一處表格跳脫）。
+- 請主幹在 BmaVo 刪除這兩個檔，避免 `career/` 在兩條線各有一份。個人線不推其他分支。
+
+---
+
+（其餘無待處理請求。已施作：resume-craft F1–F15、作品集雙軌、求職信、`portfolio-site`、個人線協作規則、104 履歷路由與 `tw-voice.md`、`resume-review-panel`、去 AI 感＋ATS 規範（主幹 `80bf591`）、V4 防禦型規則（主幹 `95e4223`）、resume-review-panel 審查清單 v2（主幹 `a6997eb`）。）

@@ -2,17 +2,20 @@
 """掃描 career/review-panel/runs/*/raw/A_*.json，產出 Opus 逐職缺跨版矩陣 career/review-panel/opus-matrix.md。
 只整理「每份職缺的決定／Level」與維度分布，不平均、不排名；跨規準與跨審查者不可比（見 HISTORY.md §可比性）。
 用法：python3 history_matrix.py   （在 repo 根目錄執行）"""
-import json, glob, re, collections as C, os
+import json, glob, re, csv, collections as C, os
 
 RUNS = "career/review-panel/runs"
 OUT = "career/review-panel/opus-matrix.md"
+# 舊 run 的 jdNN 代號依 routing.tsv 對到 104 職缺代碼，新舊 run 同一職缺排在同一列
+OLD = {r["old_id"]: "j-" + r["code"] for r in csv.DictReader(open("career/review-panel/jd/routing.tsv"), delimiter="\t") if r["old_id"]}
 rows = C.OrderedDict()   # (run, ver) -> {jd: (decision, level)}
 dims = {}
 for f in sorted(glob.glob(f"{RUNS}/*/raw/A_*.json")):
-    m = re.search(r"/([^/]+)/raw/A_(jd\d+)[^/]*?_(v[\d.]+)\.json$", f)
+    m = re.search(r"/([^/]+)/raw/A_(jd\d+|j-\w+?)[^/]*?_(v[\d.]+)\.json$", f)
     if not m:
         continue
     run, jd, ver = m.groups()
+    jd = OLD.get(jd, jd)
     try:
         d = json.load(open(f))
     except Exception:

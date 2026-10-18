@@ -20,12 +20,12 @@
 | :-- | :-- | :-- |
 | 最新一版整體怎麼樣 | §0 → `runs/2026-10-18-v10.3-consolidated/CONSOLIDATED.md` | 三家統整＋共同質疑 |
 | 某版本被審得怎樣（各模型） | §5 表 → 該版的 `*-consolidated/CONSOLIDATED.md` | v9.7、v10、v10.2、v10.3 各一份 |
-| 某個**職缺**在各版的 Level 變化 | [`opus-matrix.md`](opus-matrix.md)（Opus 單一審查者，可跨版看趨勢） | 跨模型的職缺表在各 CONSOLIDATED 第一張表 |
+| 某個**職缺**在各版的 Level 變化 | [`opus-matrix.md`](opus-matrix.md)（Opus 單一審查者，可跨版看趨勢；v10.4 起列名改用 104 職缺代碼 `j-xxxxx`，舊 `jdNN` 依 `routing.tsv` 的 `old_id` 對應） | 跨模型的職缺表在各 CONSOLIDATED 第一張表 |
 | 某個**缺口／質疑**從哪版開始、有沒有解決 | §6 追蹤表 | 主題 × 版本 |
 | 某版**改了什麼** | §3 版本表 → `drafts/<版本>/`（文字）、`library/decisions.md`（裁定） | 事實以 `library/` 為準 |
 | 某次驗證的**原始 JSON／逐職缺評語／審查者質疑原文** | `runs/<run>/raw/A_<jd>_<版本>.json`、`*.doubts.md` | 只在查特定輪時讀 |
 | 外部 ChatGPT／Gemini 的原始報告 | `runs/*-consolidated/report-chatgpt.md`、`report-gemini.md` | 每份 0.5–0.7 MB，**用 grep，別整份讀** |
-| 驗證套件（要貼給外部 AI 的檔案） | `handoff/validation-kit-single-15jd-v10.3.md`（唯一保留） | 新版本＝複製此檔、只換附錄 A 履歷；含「審查者質疑」 |
+| 驗證套件（要貼給外部 AI 的檔案） | `handoff/<版本>/`（v10.4 起分流版：`00-start-here.md`＋`F-*.md`×14＋`L-*.md`×5） | 由 `build_routed_kit.py` 產生；職缺分層 `jd/routing.tsv`、職缺卡 `jd/full/`、`jd/light-cards.md`；全部職缺原文 `career/targets/` |
 | 怎麼跑一次驗證 | `INDEX.md` 與 skill `resume-review-panel` 的〈路由〉 | 腳本 `build_multi.py`、`multi_report.py` |
 | 規準全文 | `rubric-v4.md` | 跑驗證不用讀 |
 | 舊盲審（v7–v9.4，規準 v3.x／v4.x） | §4 時間線 → `runs/<日期>-<版本>/report.md` | 與現行規準**不可比** |
@@ -173,3 +173,17 @@
 | `drafts/v10.3/resume-v10.3-draft.{md,txt}` | 被定稿 `resume-v10.3.{md,txt}` 取代 |
 
 **刻意保留**：`reviewers/`、`candidates/`（`scripts/ats_search.py --peers` 與 `scan.py` 還會讀）、`research*.md`＋`research-registry-v4.1.json`（v4.x 來源登錄 S01–S30 的出處）、`blind-output-v3.1.md`（`references-legacy-v3.md` 引用）、各 run 的 `report-draft.md`（與 `report.md` 不重複：前者是完整逐職缺表）、所有 `raw/A_*.json`（`history_matrix.py` 讀取）、外部 ChatGPT／Gemini 原始報告（無法重現）、`drafts/` 全部履歷版本（§3 追溯用）。
+
+## 11. 分流版驗證（2026-10-19 起）
+
+使用者把 104 已儲存的 63 份職缺與 38 間公司放進 `career/targets/`，要求驗證涵蓋更多職缺、同時省 token。改法：
+
+| 項目 | 做法 |
+| :-- | :-- |
+| 分層 | `jd/routing.tsv`：F 完整審查 14（原核心面板 15 份留 13，同公司同型的 `7996v`、`95mvt` 降為 L；新增 AI-first TPM `8kebd`）、L 輕量批次 44（5 批）、X 略過 5（非 PM 或明顯不符） |
+| 規準 | F＝rubric 4.2（含審查者質疑），輸出只交 JSON＋質疑＋評語；L＝L1 條件對位（`kit/rules-light.md`）；ATS 只在本機跑 |
+| 模型分工 | Opus 跑 F 全部；外部模型跑 L 5 批＋F 錨點 5 份（`8ocje`、`92io8`、`94le0`、`950oe`、`8kebd`）；Gemini 只在錨點有 ≥2 份與 Opus 不同時才跑 |
+| 版本路由 | 依改動位置決定重跑範圍，見 `handoff/<版本>/00-start-here.md` §4 |
+| 可比性 | F 層 13 份與 v10.3 前的核心面板同一職缺，可在 `opus-matrix.md` 同列看；L 層是新規準，**不與 F 層 Level 比**；職缺摘要依 2026-10-19 擷取更新經歷欄 |
+
+已刪除：`handoff/validation-kit-single-15jd-v10.3.md`（被分流版取代；規準內容已搬進 skill 的 `kit/`）。

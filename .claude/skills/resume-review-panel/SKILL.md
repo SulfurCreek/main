@@ -21,6 +21,7 @@ description: >
 
 | 任務 | 做法／讀什麼 | 不要讀 |
 | :-- | :-- | :-- |
+| **分流版驗證（2026-10-19 起預設；多職缺）** | ① 職缺分層表 `career/review-panel/jd/routing.tsv`（F 完整／L 輕量批次／X 略過，**一次分好、跨版沿用**；新職缺才加列）→ ② `python3 .claude/skills/resume-review-panel/scripts/build_routed_kit.py --version <版本> --resume career/drafts/<版本>/resume-<版本>.txt` 產生 `career/review-panel/handoff/<版本>/`（每檔＝一次呼叫的完整封包；`00-start-here.md` 有呼叫清單、模型分工、版本路由）→ ③ F 層派 Opus 子代理（每份讀一個 `F-*.md`）；L 層與錨點由使用者在外部模型跑 → ④ L 層回覆用 `scripts/light_report.py <raw.md…> --out …` 整理、F 層用 `schema_v4.py` | 舊單檔套件、`jd/a/`（僅歷史 run 用） |
 | **跑一次驗證（最常用）** | ① `python3 .claude/skills/resume-review-panel/scripts/build_run.py --run career/review-panel/runs/<日期-名稱> --jd career/review-panel/jd/<職缺>.md --resume 標籤=路徑.txt …` 產全部提示＋`RUN.md` → ② 照 `RUN.md` 派子代理（指令一句話，**不要把提示貼進 Agent prompt**）→ ③ `scripts/run_report.py --run …` 自動出表 → ④ 只補結論 3 行 | rubric-v4.md 全文、兩份 registry JSON（程式會讀，不要進 context）、歷史 runs |
 | 查某條規則／來源是什麼 | `career/review-panel/INDEX.md` 的對照 → 再 grep 該 ID 於 `rule-registry-v4.2.json`／`research-registry-v4.2.json` | 整份 JSON |
 | 改規準 | `career/review-panel/rubric-v4.md` §9（v4.2 增補）＋規格原檔 `career/style/scoring-improvement-v4.2-source.md`（僅查特定節） | 舊 v3 |
