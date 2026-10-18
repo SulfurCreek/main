@@ -29,3 +29,5 @@ assessment and solution design, then break down and track to launch on a Kanban 
 
 ## 2026-10-16 更新
 - 帳號冒用事件：上線後至 2026/10 未再接獲廠商回報（來源＝廠商回報）。信件與即時通整合、搜尋結果頁改版預計 2026/11 上線。
+
+- **關鍵字搜尋語法改版與歷史資料清洗（2026/10，進行中）**：定義轉換規則、盤點 Solr 解析問題並訂驗收測試關鍵字；運用 AI 清洗搜尋條件 16.9 萬＋配對條件 2 萬筆（需修改約 2 萬筆），不覆蓋原值並二次比對後交裁示。詳見 [證據頁](evidence-keyword-migration.md)。

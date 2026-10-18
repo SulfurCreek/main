@@ -95,3 +95,5 @@ skill 的 `SKILL.md` ＋ `references/` 漸進揭露拆分。
 ---
 
 **相關分頁 / Related**：[F4 AI 產品企劃（對外）](F04-ai-product.md) ・ [F7 流程標準化與工具化](F07-process-tooling.md) ・ [F11 問題解決與維運交付](F11-problem-solving-ops.md) ・ [PM 語彙對照表](pm-vocabulary-map.md)
+
+- **關鍵字搜尋語法改版與歷史資料清洗（2026/10，進行中）**：定義轉換規則、盤點 Solr 解析問題並訂驗收測試關鍵字；運用 AI 清洗搜尋條件 16.9 萬＋配對條件 2 萬筆（需修改約 2 萬筆），不覆蓋原值並二次比對後交裁示。詳見 [證據頁](evidence-keyword-migration.md)。
