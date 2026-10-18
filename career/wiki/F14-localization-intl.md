@@ -19,6 +19,7 @@ authentic localization rather than translated UI.*
   - **與母語者共同改版體驗**：與 native speakers／實際用戶合作revamp 使用者體驗，
     專注交付**道地的在地化**而非直譯。
   - **內容在地化（Newegg）**：將商品資訊、規格與描述英翻中，並改善既有上架內容的**可讀性與台灣在地適配**。
+  - **英文工作場景**：與外籍實習生的會議討論全程英文；尚凡時期以英文視訊會議與一家歐洲金流商洽談合作（未談成）。來源 `library/facts-prior.md`〈英文工作場景〉。
   - **語言能力佐證**：**TOEIC 980（金色證書）**、TOEFL iBT 93、GEPT 中高級、**CSUS 交換一學年**
     （見[學歷・證照](education-certifications.md)）。
 - **公開佐證 / Public corroboration**（見[證據頁](evidence-prior-products.md)）：**SweetRing 至今支援 16 種語言**（英／西／葡／印尼／馬來／日／韓／泰／阿拉伯…），與你列出的 7 個市場**一一對應**——這是在地化主張的**直接物證**。另尚凡 2020 年公開策略即為**交友 App 拓展海外**（香港／馬來西亞／泰國／印尼／印度／美國／墨西哥）。
