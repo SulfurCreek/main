@@ -115,7 +115,7 @@ h1{font-size:24pt;font-weight:700;letter-spacing:.5px;margin:0}
 .ic svg{width:11px;height:11px;fill:none;stroke:var(--blue);stroke-width:2;vertical-align:-1px;margin-right:4px}
 .grid{display:grid;grid-template-columns:63fr 37fr;gap:22px}
 h2{font-size:12pt;font-weight:700;letter-spacing:1px;border-bottom:3px solid var(--ink);padding-bottom:2px;margin:10px 0 6px;break-after:avoid}
-.job{margin-top:8px;break-after:avoid}.jt{font-size:11pt;font-weight:700}.co{color:var(--blue);font-weight:700}
+.job{margin-top:8px;break-after:avoid}li{break-inside:avoid}.job *{break-after:avoid;page-break-after:avoid}.jt{font-size:11pt;font-weight:700}.co{color:var(--blue);font-weight:700}
 .meta{font-size:8.8pt;color:var(--mute);margin:1px 0 2px}.meta .ic svg{stroke:var(--mute)}
 .scope{color:var(--mute);font-size:9pt;margin:2px 0}.note{font-size:9pt;color:var(--mute);margin:6px 0 0}
 ul{margin:3px 0 4px 15px;padding:0}li{margin:2px 0}

@@ -20,5 +20,5 @@ for i,l in enumerate(t):
 if ul: out.append('</ul>')
 css="""@page{size:A4;margin:12mm 14mm}body{font-family:Arial,'Noto Sans TC','WenQuanYi Zen Hei',sans-serif;font-size:10.2pt;line-height:1.5;color:#111}
 h1{font-size:18pt;margin:0 0 6px}h2{break-after:avoid;page-break-after:avoid;font-size:12pt;border-bottom:1px solid #444;margin:10px 0 4px;padding-bottom:2px}h3{break-after:avoid;page-break-after:avoid;font-size:10.5pt;margin:8px 0 2px}
-p{margin:2px 0}ul{margin:2px 0 4px 18px;padding:0}li{margin:2px 0}"""
+p{margin:2px 0}ul{margin:2px 0 4px 18px;padding:0}li{margin:2px 0;break-inside:avoid}h3+p{break-after:avoid;page-break-after:avoid}h3+p+ul>li:first-child{break-before:avoid}"""
 open(dst,'w',encoding='utf8').write(f'<!doctype html><html lang="zh-Hant"><meta charset=utf-8><title>Resume</title><style>{css}</style><body>'+'\n'.join(out)+'</body></html>')
