@@ -39,6 +39,7 @@ integrate third-party payment rails into mature products.*
 
 **相關分頁 / Related**：[證據頁：前段產品公開數據](evidence-prior-products.md) ・ [F12 C 端行動產品與 0→1](F12-consumer-mobile.md) ・ [證據頁：工單 × 付費客戶](evidence-paying-customers.md) ・ [旗艦專案 E.1](flagship-e1.md) ・ [完整職涯時間軸](prior-roles.md)
 
+- **2026-10-19 更正**：Peach、JustDating 在台灣的網頁付款串接**智冠金流**；CodaPay 只用於東南亞市場（見 `library/facts-prior.md`〈金流商更正〉）。
 - **2026-10-06 使用者補充**：JustDating 導入東南亞金流 **CodaPay**（電信代扣等替代支付），由使用者負責溝通與串接；Peach 付款管道轉移仍可用，但非使用者首推代表作。
 
 ## 2026-10-16 補充證據：Peach 網頁付款不是單純搬移（library facts-prior 2026-10-16 節）
