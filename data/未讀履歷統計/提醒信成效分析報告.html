@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="zh-Hant" data-theme="auto">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>未讀履歷提醒信成效分析報告</title>
+<style>
+:root {
+  --surface-1: #fcfcfb;
+  --page: #f9f9f7;
+  --ink-1: #0b0b0b;
+  --ink-2: #52514e;
+  --ink-muted: #898781;
+  --grid: #e1e0d9;
+  --baseline: #c3c2b7;
+  --border: rgba(11,11,11,0.10);
+  --s-blue: #2a78d6;
+  --s-blue-light: #86b6ef;
+  --s-blue-dark: #1c5cab;
+  --s-red: #e34948;
+  --s-gray: #b0afa7;
+  --warn-bg: #fff7e0;
+  --warn-border: #eda100;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --surface-1: #1a1a19;
+    --page: #0d0d0d;
+    --ink-1: #ffffff;
+    --ink-2: #c3c2b7;
+    --ink-muted: #898781;
+    --grid: #2c2c2a;
+    --baseline: #383835;
+    --border: rgba(255,255,255,0.10);
+    --s-blue: #3987e5;
+    --s-blue-light: #6da7ec;
+    --s-blue-dark: #9ec5f4;
+    --s-red: #e66767;
+    --s-gray: #5a5955;
+    --warn-bg: #33290e;
+    --warn-border: #c98500;
+  }
+}
+:root[data-theme="light"] {
+  --surface-1: #fcfcfb; --page: #f9f9f7; --ink-1: #0b0b0b; --ink-2: #52514e;
+  --ink-muted: #898781; --grid: #e1e0d9; --baseline: #c3c2b7; --border: rgba(11,11,11,0.10);
+  --s-blue: #2a78d6; --s-blue-light: #86b6ef; --s-blue-dark: #1c5cab;
+  --s-red: #e34948; --s-gray: #b0afa7; --warn-bg: #fff7e0; --warn-border: #eda100;
+}
+:root[data-theme="dark"] {
+  --surface-1: #1a1a19; --page: #0d0d0d; --ink-1: #ffffff; --ink-2: #c3c2b7;
+  --ink-muted: #898781; --grid: #2c2c2a; --baseline: #383835; --border: rgba(255,255,255,0.10);
+  --s-blue: #3987e5; --s-blue-light: #6da7ec; --s-blue-dark: #9ec5f4;
+  --s-red: #e66767; --s-gray: #5a5955; --warn-bg: #33290e; --warn-border: #c98500;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0; background: var(--page); color: var(--ink-1);
+  font-family: system-ui, -apple-system, "Segoe UI", "Noto Sans TC", sans-serif;
+  line-height: 1.65; font-size: 15px;
+}
+.wrap { max-width: 960px; margin: 0 auto; padding: 32px 20px 80px; }
+h1 { font-size: 26px; margin: 0 0 4px; }
+h2 { font-size: 19px; margin: 44px 0 8px; padding-top: 12px; border-top: 1px solid var(--grid); }
+h3 { font-size: 16px; margin: 24px 0 6px; }
+p, li { color: var(--ink-2); }
+strong { color: var(--ink-1); }
+.meta { color: var(--ink-muted); font-size: 13px; margin-bottom: 24px; }
+.card {
+  background: var(--surface-1); border: 1px solid var(--border);
+  border-radius: 10px; padding: 18px 20px; margin: 14px 0;
+}
+.kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; margin: 18px 0; }
+.tile { background: var(--surface-1); border: 1px solid var(--border); border-radius: 10px; padding: 14px 16px; }
+.tile .lbl { font-size: 13px; color: var(--ink-2); }
+.tile .val { font-size: 30px; font-weight: 600; margin: 2px 0; }
+.tile .sub { font-size: 12px; color: var(--ink-muted); }
+.hero { font-size: 52px; font-weight: 650; line-height: 1.15; }
+.hero-note { color: var(--ink-2); font-size: 14px; }
+.chart-title { font-weight: 600; font-size: 15px; margin-bottom: 2px; }
+.chart-sub { font-size: 13px; color: var(--ink-muted); margin-bottom: 10px; }
+.legend { display: flex; flex-wrap: wrap; gap: 14px; font-size: 12.5px; color: var(--ink-2); margin: 6px 0 4px; }
+.legend .key { display: inline-flex; align-items: center; gap: 6px; }
+.legend .sw { width: 12px; height: 12px; border-radius: 3px; display: inline-block; }
+.legend .ln { width: 16px; height: 2.5px; border-radius: 2px; display: inline-block; }
+svg text { font-family: inherit; }
+.svgbox { width: 100%; overflow-x: auto; }
+details.tblview { margin-top: 10px; font-size: 13px; }
+details.tblview summary { cursor: pointer; color: var(--ink-muted); }
+details.tblview table { border-collapse: collapse; margin-top: 8px; width: 100%; }
+details.tblview th, details.tblview td {
+  border: 1px solid var(--grid); padding: 4px 10px; text-align: right;
+  font-variant-numeric: tabular-nums; color: var(--ink-2);
+}
+details.tblview th { background: var(--page); color: var(--ink-1); text-align: center; }
+details.tblview td:first-child { text-align: left; }
+.callout { background: var(--warn-bg); border-left: 3px solid var(--warn-border); border-radius: 6px; padding: 10px 14px; font-size: 13.5px; margin: 12px 0; }
+.callout p { margin: 4px 0; }
+#tooltip {
+  position: fixed; pointer-events: none; z-index: 50; display: none;
+  background: var(--surface-1); border: 1px solid var(--border); border-radius: 8px;
+  padding: 8px 12px; font-size: 12.5px; box-shadow: 0 4px 16px rgba(0,0,0,.18);
+  max-width: 260px;
+}
+#tooltip .tt-title { color: var(--ink-muted); font-size: 12px; margin-bottom: 2px; }
+#tooltip .tt-row { display: flex; align-items: center; gap: 6px; color: var(--ink-2); }
+#tooltip .tt-row b { color: var(--ink-1); font-size: 13.5px; }
+#tooltip .tt-key { width: 10px; height: 3px; border-radius: 2px; display: inline-block; }
+.theme-toggle {
+  float: right; font-size: 12.5px; border: 1px solid var(--border); background: var(--surface-1);
+  color: var(--ink-2); border-radius: 8px; padding: 5px 12px; cursor: pointer;
+}
+ol.actions > li { margin-bottom: 10px; }
+table.plain { border-collapse: collapse; font-size: 13.5px; margin: 10px 0; }
+table.plain th, table.plain td { border: 1px solid var(--grid); padding: 5px 12px; color: var(--ink-2); }
+table.plain th { background: var(--surface-1); color: var(--ink-1); }
+footer { margin-top: 48px; font-size: 12.5px; color: var(--ink-muted); border-top: 1px solid var(--grid); padding-top: 14px; }
+</style>
+</head>
+<body>
+<div class="wrap viz-root">
+  <button class="theme-toggle" id="themeBtn">🌗 切換深/淺色</button>
+  <h1>未讀履歷提醒信成效分析報告</h1>
+  <div class="meta">
+    資料期間 5/29 – 7/6（39 個發送日）｜資料來源：每日提醒信 log（尾數 0–9 共 10 批，每批 10 天一循環）｜產出日期 2026-07-09
+  </div>
+
+  <!-- ============ TL;DR ============ -->
+  <div class="card">
+    <div class="hero" id="heroNum"></div>
+    <div class="hero-note">
+      每寄一輪提醒信，平均只有 <strong>15.4%</strong> 的廠商在下一輪離開「完全未讀」名單；
+      其中約 <strong>1/3 之後又回到名單</strong>，估計單輪淨清除率僅約 <strong>10%</strong>。
+      名單規模在觀察期間<strong>不減反增</strong>，且近半數廠商<strong>每一輪都在名單上</strong>、
+      囤積了 <strong>9 成</strong>的未讀履歷 —— 現行提醒信對喚回「慢性未讀廠商」<strong>基本無效</strong>，
+      僅對邊際廠商可能有小幅作用（受限於無控制組，無法與自然流動區分）。
+    </div>
+  </div>
+  <div class="kpis" id="kpiRow"></div>
+
+  <!-- ============ 方法 ============ -->
+  <h2>1. 分析方法與 Proxy 假設</h2>
+  <p>系統每日對一批廠商（依廠商編號尾數分 10 批）寄送「有職缺收到履歷、但全公司無任何帳號讀取」的提醒信，同一批廠商每 10 天收到一次。log 每列＝當日仍「完全未讀」的一家廠商。由於<strong>看不到廠商實際的讀取事件</strong>，本分析以名單的進出作為代理指標（proxy）：</p>
+  <table class="plain">
+    <tr><th>觀察到的現象</th><th>解讀（proxy）</th></tr>
+    <tr><td>廠商第 N 輪在名單、第 N+1 輪消失</td><td><strong>疑似回流</strong>：所有未讀職缺至少被讀過一次（干擾因子：職缺關閉／到期、無新應徵）</td></tr>
+    <tr><td>連續出現、但未讀履歷數／職缺數下降</td><td><strong>部分處理</strong>：讀了部分職缺的履歷</td></tr>
+    <tr><td>每一輪都出現且數字未降</td><td><strong>慢性未回流</strong>：提醒信對其無效</td></tr>
+    <tr><td>消失後又重新出現（回鍋）</td><td>回流不持久，或職缺變動造成的假性回流</td></tr>
+  </table>
+  <div class="callout">
+    <p><strong>⚠️ 限制聲明（解讀所有數字前必讀）</strong></p>
+    <p>① <strong>無控制組</strong>：所有廠商都收到提醒信，觀察到的回流無法區分「提醒信效果」與「自然回流」，只能評估整體回流水準的高低與提醒疊加是否遞增。</p>
+    <p>② <strong>消失 ≠ 必然已讀</strong>：職缺關閉、到期、期間無新應徵，都會讓廠商離開名單。因此 15.4% 是回流率的<strong>上限估計</strong>。</p>
+    <p>③ <strong>無開信／點擊數據</strong>：無法得知廠商是否看到信件。</p>
+    <p>④ <strong>來源資料落差</strong>：總覽表「寄送廠商數」比明細表廠商數固定多約 6%（39 天皆如此），推測總覽含明細未列出的廠商；本報告以明細表為分析基礎。</p>
+  </div>
+
+  <!-- ============ 回流率 ============ -->
+  <h2>2. 疑似回流率：每輪僅 ~15%，重複提醒沒有遞增效果</h2>
+  <p>10 批廠商、共 <span id="txnN"></span> 筆「廠商 × 輪次」轉換樣本。第 1、2、3 次提醒後的離開名單比例幾乎相同（15.5% / 15.5% / 15.2%）——<strong>多寄幾輪並不會累積出更高的回流</strong>，提醒信的邊際效果沒有隨次數上升。</p>
+  <div class="card">
+    <div class="chart-title">各輪提醒後的疑似回流率（10 批平均）</div>
+    <div class="chart-sub">柱＝10 批平均；細線＝10 批中的最小–最大範圍</div>
+    <div class="svgbox" id="chartRetention"></div>
+    <details class="tblview"><summary>表格檢視</summary><div id="tblRetention"></div></details>
+  </div>
+
+  <!-- ============ flow ============ -->
+  <h2>3. 離開名單的廠商，1/3 又回鍋</h2>
+  <p>離開名單不代表問題解決：在能觀察後續輪次的樣本中，消失的廠商有 <strong>33.1%</strong> 之後又重新出現在名單上（新履歷進來後依然無人讀）。扣除回鍋後，<strong>單輪淨清除率只剩約 10%</strong>。</p>
+  <div class="card">
+    <div class="chart-title">每輪提醒後名單廠商的去向（10 批合計）</div>
+    <div class="chart-sub">僅列可觀察後續輪次的第 1、2 輪轉換</div>
+    <div class="legend" id="legFlow"></div>
+    <div class="svgbox" id="chartFlow"></div>
+    <details class="tblview"><summary>表格檢視</summary><div id="tblFlow"></div></details>
+  </div>
+
+  <!-- ============ 改善度 ============ -->
+  <h2>4. 留在名單上的廠商：未讀量多數還在增加</h2>
+  <p>連續兩輪都在名單上的廠商（<span id="stayN"></span> 筆轉換）中，未讀履歷數<strong>上升的（48.4%）多於下降的（33.9%）</strong>——大多數留名單廠商不是「處理中」，而是持續累積。職缺數則過半持平，代表未讀的是同一批職缺，不是新職缺輪替造成。</p>
+  <div class="card">
+    <div class="chart-title">連續出現廠商的數值變化方向</div>
+    <div class="chart-sub">相鄰兩輪皆在名單上的廠商，其未讀履歷數／未讀職缺數的變化</div>
+    <div class="legend" id="legImprove"></div>
+    <div class="svgbox" id="chartImprove"></div>
+    <details class="tblview"><summary>表格檢視</summary><div id="tblImprove"></div></details>
+  </div>
+
+  <!-- ============ 持續性 ============ -->
+  <h2>5. 近半廠商每一輪都在名單上，囤積 9 成未讀履歷</h2>
+  <p>在完整經歷 4 輪提醒的 9 批廠商中，<strong>47.7%（12,029 家）4 輪全數在列</strong>（尾數 9 批 3 輪全在列的另有 1,422 家）。這群「慢性未讀廠商」合計 <strong>13,451 家</strong>，在各批最後一輪持有 <strong>350,047 封未讀履歷，占總量 90.2%</strong> —— 未讀問題高度集中在對提醒信完全無反應的族群。</p>
+  <div class="card">
+    <div class="chart-title">廠商出現輪數分佈（尾數 0–8，共 4 輪）</div>
+    <div class="chart-sub">出現 4 輪＝每次提醒都無效的慢性族群</div>
+    <div class="svgbox" id="chartPersist"></div>
+    <details class="tblview"><summary>表格檢視</summary><div id="tblPersist"></div></details>
+  </div>
+  <div class="card">
+    <div class="chart-title">慢性族群的未讀履歷量級（最後一輪，10 批合計）</div>
+    <div class="chart-sub">超過 1,300 家慢性廠商積壓 50+ 封未讀履歷</div>
+    <div class="svgbox" id="chartChronic"></div>
+    <details class="tblview"><summary>表格檢視</summary><div id="tblChronic"></div></details>
+  </div>
+
+  <!-- ============ 總量趨勢 ============ -->
+  <h2>6. 名單規模不減反增</h2>
+  <p>若提醒信有效，名單應逐輪縮小。實際上 10 批廠商<strong>全數</strong>「末輪名單 ≥ 首輪名單」，每日寄送廠商數整體呈微幅上升（新進未讀廠商 &gt; 被清除的廠商）。</p>
+  <div class="card">
+    <div class="chart-title">每日寄送廠商數走勢（5/29 – 7/6，總覽表）</div>
+    <div class="chart-sub">每日對應一個尾數批次；同批次每 10 天出現一次</div>
+    <div class="svgbox" id="chartTrend"></div>
+    <details class="tblview"><summary>表格檢視</summary><div id="tblTrend"></div></details>
+  </div>
+  <div class="card">
+    <div class="chart-title">各批次：首輪 vs 末輪名單廠商數（明細表）</div>
+    <div class="legend" id="legDumb"></div>
+    <div class="svgbox" id="chartDumbbell"></div>
+    <details class="tblview"><summary>表格檢視</summary><div id="tblDumbbell"></div></details>
+  </div>
+
+  <!-- ============ 行動方案 ============ -->
+  <h2>7. 建議的產品行動方案</h2>
+  <ol class="actions">
+    <li><strong>先建控制組，量測真實 lift（最優先）</strong>：隨機抽 5–10% 廠商暫停提醒 1–2 輪，比較兩組回流率。目前 15.4% 的回流無法歸因給提醒信，這是所有後續決策的前提數據。</li>
+    <li><strong>對慢性族群（13,451 家）停止無效重複</strong>：連續 3–4 輪無反應的廠商，同版型信件已證實無效。改為：降頻（避免信箱疲乏／進垃圾信）＋改走其他觸點（業務／客服電訪、App 推播、登入後彈窗）。488 家未讀 100+ 封的重災戶建議人工跟進。</li>
+    <li><strong>補齊歸因數據缺口</strong>：接入開信率／點擊率、廠商登入事件、職缺關閉事件。可區分「信沒被看到」「看到但不理」「職缺失效的假性回流」三種完全不同的問題，對策各異。</li>
+    <li><strong>從求職者端止血</strong>：慢性未讀廠商的職缺，考慮在求職端降權或加註回覆率提示，避免求職者持續投遞石沉大海的履歷（觀察期末仍有 38.8 萬封未讀）。</li>
+    <li><strong>把「離開名單」改成「已讀事件」作為成效 KPI</strong>：目前 log 只能推測，若系統直接記錄提醒信寄出後 N 天內的首次讀取事件，成效評估可以從 proxy 變成直接量測。</li>
+  </ol>
+
+  <footer>
+    分析基礎：明細表 10 批共 81,125 列（27,730 家不重複廠商）；彙總邏輯見 repo <code>data/未讀履歷統計/analysis/</code>。
+    本報告所有「回流」均為 proxy 推估，非直接觀測（見 §1 限制聲明）。
+  </footer>
+</div>
+<div id="tooltip"></div>
+
+<script>
+const DATA = {"kpi": {"avg_gone_rate": 0.154, "total_transitions_n": 58336, "unique_vendors": 27730, "chronic": 13451, "chronic_unread": 350047, "total_unread_last": 388052, "back_rate": 0.3309}, "retention_by_transition": [{"transition": 1, "mean": 0.1547, "min": 0.1361, "max": 0.1738, "batches": 10}, {"transition": 2, "mean": 0.1554, "min": 0.1322, "max": 0.1821, "batches": 10}, {"transition": 3, "mean": 0.1515, "min": 0.1355, "max": 0.1679, "batches": 9}], "flow": [{"transition": 1, "n": 19825, "stay": 16758, "gone_back": 1152, "gone_clean": 1915}, {"transition": 2, "n": 20180, "stay": 17040, "gone_back": 794, "gone_clean": 2346}], "improvement": {"n_stay": 49349, "unread": {"down": 16727, "flat": 8748, "up": 23874}, "jobs": {"down": 10157, "flat": 26498, "up": 12694}}, "persistence_4cycle": [{"times": 1, "vendors": 5296}, {"times": 2, "vendors": 3905}, {"times": 3, "vendors": 3990}, {"times": 4, "vendors": 12029}], "persistence_digit9": [{"times": 1, "vendors": 609}, {"times": 2, "vendors": 479}, {"times": 3, "vendors": 1422}], "chronic_unread_bins": [{"bin": "1-5", "vendors": 3969}, {"bin": "6-10", "vendors": 2759}, {"bin": "11-20", "vendors": 2914}, {"bin": "21-50", "vendors": 2481}, {"bin": "51-100", "vendors": 840}, {"bin": "100+", "vendors": 488}], "overview": [{"date": "5/29", "digit": 0, "sent": 2126}, {"date": "5/30", "digit": 1, "sent": 2089}, {"date": "5/31", "digit": 2, "sent": 2044}, {"date": "6/1", "digit": 3, "sent": 2124}, {"date": "6/2", "digit": 4, "sent": 2145}, {"date": "6/3", "digit": 5, "sent": 2142}, {"date": "6/4", "digit": 6, "sent": 2165}, {"date": "6/5", "digit": 7, "sent": 2160}, {"date": "6/6", "digit": 8, "sent": 2059}, {"date": "6/7", "digit": 9, "sent": 2032}, {"date": "6/8", "digit": 0, "sent": 2194}, {"date": "6/9", "digit": 1, "sent": 2139}, {"date": "6/10", "digit": 2, "sent": 2097}, {"date": "6/11", "digit": 3, "sent": 2085}, {"date": "6/12", "digit": 4, "sent": 2140}, {"date": "6/13", "digit": 5, "sent": 2132}, {"date": "6/14", "digit": 6, "sent": 2200}, {"date": "6/15", "digit": 7, "sent": 2212}, {"date": "6/16", "digit": 8, "sent": 2121}, {"date": "6/17", "digit": 9, "sent": 2069}, {"date": "6/18", "digit": 0, "sent": 2153}, {"date": "6/19", "digit": 1, "sent": 2133}, {"date": "6/20", "digit": 2, "sent": 2145}, {"date": "6/21", "digit": 3, "sent": 2140}, {"date": "6/22", "digit": 4, "sent": 2181}, {"date": "6/23", "digit": 5, "sent": 2188}, {"date": "6/24", "digit": 6, "sent": 2198}, {"date": "6/25", "digit": 7, "sent": 2178}, {"date": "6/26", "digit": 8, "sent": 2132}, {"date": "6/27", "digit": 9, "sent": 2078}, {"date": "6/28", "digit": 0, "sent": 2174}, {"date": "6/29", "digit": 1, "sent": 2189}, {"date": "6/30", "digit": 2, "sent": 2158}, {"date": "7/1", "digit": 3, "sent": 2160}, {"date": "7/2", "digit": 4, "sent": 2168}, {"date": "7/3", "digit": 5, "sent": 2255}, {"date": "7/4", "digit": 6, "sent": 2222}, {"date": "7/5", "digit": 7, "sent": 2224}, {"date": "7/6", "digit": 8, "sent": 2238}], "first_last": [{"digit": 0, "first": 1989, "last": 2055, "first_date": "5/29", "last_date": "6/28", "n_cycles": 4}, {"digit": 1, "first": 1965, "last": 2080, "first_date": "5/30", "last_date": "6/29", "n_cycles": 4}, {"digit": 2, "first": 1911, "last": 2043, "first_date": "5/31", "last_date": "6/30", "n_cycles": 4}, {"digit": 3, "first": 2004, "last": 2040, "first_date": "6/1", "last_date": "7/1", "n_cycles": 4}, {"digit": 4, "first": 2010, "last": 2059, "first_date": "6/2", "last_date": "7/2", "n_cycles": 4}, {"digit": 5, "first": 1997, "last": 2114, "first_date": "6/3", "last_date": "7/3", "n_cycles": 4}, {"digit": 6, "first": 2033, "last": 2091, "first_date": "6/4", "last_date": "7/4", "n_cycles": 4}, {"digit": 7, "first": 2055, "last": 2113, "first_date": "6/5", "last_date": "7/5", "n_cycles": 4}, {"digit": 8, "first": 1947, "last": 2132, "first_date": "6/6", "last_date": "7/6", "n_cycles": 4}, {"digit": 9, "first": 1914, "last": 1962, "first_date": "6/7", "last_date": "6/27", "n_cycles": 3}]};
+
+/* ---------- theme toggle ---------- */
+const btn = document.getElementById('themeBtn');
+btn.addEventListener('click', () => {
+  const r = document.documentElement;
+  const cur = r.getAttribute('data-theme');
+  const sysDark = matchMedia('(prefers-color-scheme: dark)').matches;
+  const isDark = cur === 'dark' || (cur === 'auto' && sysDark);
+  r.setAttribute('data-theme', isDark ? 'light' : 'dark');
+  renderAll();
+});
+
+/* ---------- helpers ---------- */
+const css = v => getComputedStyle(document.documentElement).getPropertyValue(v).trim();
+const NS = 'http://www.w3.org/2000/svg';
+function E(tag, attrs, parent) {
+  const e = document.createElementNS(NS, tag);
+  for (const k in attrs) e.setAttribute(k, attrs[k]);
+  if (parent) parent.appendChild(e);
+  return e;
+}
+function txt(e, s) { e.appendChild(document.createTextNode(s)); return e; }
+const fmt = n => n.toLocaleString('en-US');
+const pct = (x, d=1) => (x*100).toFixed(d) + '%';
+
+const tip = document.getElementById('tooltip');
+function showTip(evt, title, rows) {
+  tip.innerHTML = '';
+  const t = document.createElement('div'); t.className = 'tt-title'; t.textContent = title; tip.appendChild(t);
+  for (const r of rows) {
+    const d = document.createElement('div'); d.className = 'tt-row';
+    if (r.color) { const k = document.createElement('span'); k.className = 'tt-key'; k.style.background = r.color; d.appendChild(k); }
+    const b = document.createElement('b'); b.textContent = r.value; d.appendChild(b);
+    const s = document.createElement('span'); s.textContent = r.label; d.appendChild(s);
+    tip.appendChild(d);
+  }
+  tip.style.display = 'block';
+  moveTip(evt);
+}
+function moveTip(evt) {
+  const pad = 14;
+  let x = evt.clientX + pad, y = evt.clientY + pad;
+  const r = tip.getBoundingClientRect();
+  if (x + r.width > innerWidth - 8) x = evt.clientX - r.width - pad;
+  if (y + r.height > innerHeight - 8) y = evt.clientY - r.height - pad;
+  tip.style.left = x + 'px'; tip.style.top = y + 'px';
+}
+function hideTip() { tip.style.display = 'none'; }
+
+function makeTable(el, headers, rows) {
+  el.innerHTML = '';
+  const t = document.createElement('table');
+  const tr = document.createElement('tr');
+  headers.forEach(h => { const th = document.createElement('th'); th.textContent = h; tr.appendChild(th); });
+  t.appendChild(tr);
+  rows.forEach(r => {
+    const trr = document.createElement('tr');
+    r.forEach(c => { const td = document.createElement('td'); td.textContent = c; trr.appendChild(td); });
+    t.appendChild(trr);
+  });
+  el.appendChild(t);
+}
+function legend(el, items) {
+  el.innerHTML = '';
+  items.forEach(it => {
+    const k = document.createElement('span'); k.className = 'key';
+    const sw = document.createElement('span'); sw.className = it.line ? 'ln' : 'sw'; sw.style.background = it.color;
+    k.appendChild(sw); const s = document.createElement('span'); s.textContent = it.label; k.appendChild(s);
+    el.appendChild(k);
+  });
+}
+
+/* ---------- KPI row ---------- */
+function renderKPIs() {
+  const k = DATA.kpi;
+  document.getElementById('heroNum').textContent = pct(k.avg_gone_rate);
+  const tiles = [
+    { lbl: '平均疑似回流率（每輪）', val: pct(k.avg_gone_rate), sub: '離開名單即視為回流的上限估計' },
+    { lbl: '離開名單後的回鍋率', val: pct(k.back_rate), sub: '消失後又重新出現的比例' },
+    { lbl: '慢性未回流廠商', val: fmt(k.chronic) + ' 家', sub: '占不重複廠商 ' + pct(k.chronic / k.unique_vendors) + '（每輪都在名單上）' },
+    { lbl: '慢性族群未讀履歷占比', val: pct(k.chronic_unread / k.total_unread_last), sub: fmt(k.chronic_unread) + ' / ' + fmt(k.total_unread_last) + ' 封（各批末輪）' },
+  ];
+  const row = document.getElementById('kpiRow'); row.innerHTML = '';
+  tiles.forEach(t => {
+    const d = document.createElement('div'); d.className = 'tile';
+    const a = document.createElement('div'); a.className = 'lbl'; a.textContent = t.lbl;
+    const b = document.createElement('div'); b.className = 'val'; b.textContent = t.val;
+    const c = document.createElement('div'); c.className = 'sub'; c.textContent = t.sub;
+    d.append(a, b, c); row.appendChild(d);
+  });
+  document.getElementById('txnN').textContent = fmt(k.total_transitions_n);
+  document.getElementById('stayN').textContent = fmt(DATA.improvement.n_stay);
+}
+
+/* ---------- C1: retention columns + whisker ---------- */
+function renderRetention() {
+  const box = document.getElementById('chartRetention'); box.innerHTML = '';
+  const d = DATA.retention_by_transition;
+  const W = 560, H = 260, m = { t: 16, r: 16, b: 40, l: 46 };
+  const svg = E('svg', { viewBox: `0 0 ${W} ${H}`, width: '100%', style: 'max-width:560px;display:block' }, box);
+  const yMax = 0.20;
+  const y = v => m.t + (1 - v / yMax) * (H - m.t - m.b);
+  const bandW = (W - m.l - m.r) / d.length;
+  for (let g = 0; g <= 4; g++) {
+    const v = yMax * g / 4, yy = y(v);
+    E('line', { x1: m.l, x2: W - m.r, y1: yy, y2: yy, stroke: css(g === 0 ? '--baseline' : '--grid'), 'stroke-width': 1 }, svg);
+    txt(E('text', { x: m.l - 8, y: yy + 4, 'text-anchor': 'end', 'font-size': 11, fill: css('--ink-muted') }, svg), (v*100).toFixed(0) + '%');
+  }
+  const labels = ['第1輪 → 第2輪', '第2輪 → 第3輪', '第3輪 → 第4輪'];
+  d.forEach((r, i) => {
+    const cx = m.l + bandW * i + bandW / 2, bw = 24;
+    const barTop = y(r.mean), barBot = y(0);
+    const p = E('path', {
+      d: `M${cx-bw/2},${barBot} L${cx-bw/2},${barTop+4} Q${cx-bw/2},${barTop} ${cx-bw/2+4},${barTop} L${cx+bw/2-4},${barTop} Q${cx+bw/2},${barTop} ${cx+bw/2},${barTop+4} L${cx+bw/2},${barBot} Z`,
+      fill: css('--s-blue')
+    }, svg);
+    E('line', { x1: cx, x2: cx, y1: y(r.min), y2: y(r.max), stroke: css('--ink-muted'), 'stroke-width': 1.5 }, svg);
+    E('line', { x1: cx-5, x2: cx+5, y1: y(r.max), y2: y(r.max), stroke: css('--ink-muted'), 'stroke-width': 1.5 }, svg);
+    E('line', { x1: cx-5, x2: cx+5, y1: y(r.min), y2: y(r.min), stroke: css('--ink-muted'), 'stroke-width': 1.5 }, svg);
+    txt(E('text', { x: cx, y: y(r.max) - 8, 'text-anchor': 'middle', 'font-size': 12.5, 'font-weight': 600, fill: css('--ink-1') }, svg), pct(r.mean));
+    txt(E('text', { x: cx, y: H - m.b + 20, 'text-anchor': 'middle', 'font-size': 12, fill: css('--ink-2') }, svg), labels[i]);
+    const hit = E('rect', { x: m.l + bandW*i, y: m.t, width: bandW, height: H - m.t - m.b, fill: 'transparent' }, svg);
+    hit.addEventListener('pointermove', e => showTip(e, labels[i] + '（' + r.batches + ' 批）', [
+      { value: pct(r.mean), label: '平均疑似回流率', color: css('--s-blue') },
+      { value: pct(r.min) + ' – ' + pct(r.max), label: '各批範圍' },
+    ]));
+    hit.addEventListener('pointerleave', hideTip);
+  });
+  makeTable(document.getElementById('tblRetention'), ['輪次轉換', '平均回流率', '最小（批）', '最大（批）', '批數'],
+    d.map((r, i) => [labels[i], pct(r.mean,2), pct(r.min,2), pct(r.max,2), r.batches]));
+}
+
+/* ---------- C2: flow 100% stacked horizontal ---------- */
+function renderFlow() {
+  const box = document.getElementById('chartFlow'); box.innerHTML = '';
+  const colors = { stay: css('--s-gray'), gone_back: css('--s-red'), gone_clean: css('--s-blue') };
+  legend(document.getElementById('legFlow'), [
+    { label: '續留名單（依然完全未讀）', color: colors.stay },
+    { label: '消失後又回鍋', color: colors.gone_back },
+    { label: '消失且未再出現（淨清除）', color: colors.gone_clean },
+  ]);
+  const W = 640, rowH = 54, m = { l: 120, r: 16 };
+  const H = rowH * DATA.flow.length + 26;
+  const svg = E('svg', { viewBox: `0 0 ${W} ${H}`, width: '100%', style: 'max-width:640px;display:block' }, box);
+  const names = { 1: '第1輪 → 後續', 2: '第2輪 → 後續' };
+  DATA.flow.forEach((f, i) => {
+    const y0 = 10 + i * rowH, bh = 26;
+    const segs = [
+      { key: 'stay', v: f.stay, lbl: '續留名單' },
+      { key: 'gone_back', v: f.gone_back, lbl: '消失後回鍋' },
+      { key: 'gone_clean', v: f.gone_clean, lbl: '淨清除' },
+    ];
+    txt(E('text', { x: m.l - 10, y: y0 + bh/2 + 4, 'text-anchor': 'end', 'font-size': 12.5, fill: css('--ink-2') }, svg), names[f.transition]);
+    let x = m.l;
+    const totalW = W - m.l - m.r;
+    segs.forEach((s, si) => {
+      const w = Math.max(0, s.v / f.n * totalW - (si < segs.length - 1 ? 2 : 0));
+      const r = E('rect', { x, y: y0, width: w, height: bh, rx: 3, fill: colors[s.key] }, svg);
+      const shareTxt = pct(s.v / f.n);
+      if (w > 64) {
+        const inside = E('text', { x: x + w/2, y: y0 + bh/2 + 4, 'text-anchor': 'middle', 'font-size': 11.5, 'font-weight': 600,
+          fill: s.key === 'stay' ? css('--ink-1') : '#ffffff' }, svg);
+        txt(inside, shareTxt);
+        inside.style.pointerEvents = 'none';
+      }
+      r.addEventListener('pointermove', e => showTip(e, names[f.transition] + '｜' + s.lbl, [
+        { value: fmt(s.v) + ' 家', label: '（' + shareTxt + '）', color: colors[s.key] },
+        { value: fmt(f.n) + ' 家', label: '該輪名單總數' },
+      ]));
+      r.addEventListener('pointerleave', hideTip);
+      x += s.v / f.n * totalW;
+    });
+  });
+  makeTable(document.getElementById('tblFlow'), ['輪次', '名單總數', '續留', '消失後回鍋', '淨清除', '淨清除率'],
+    DATA.flow.map(f => [names[f.transition], fmt(f.n), fmt(f.stay), fmt(f.gone_back), fmt(f.gone_clean), pct(f.gone_clean / f.n)]));
+}
+
+/* ---------- C3: improvement stacked ---------- */
+function renderImprove() {
+  const box = document.getElementById('chartImprove'); box.innerHTML = '';
+  const colors = { down: css('--s-blue'), flat: css('--s-gray'), up: css('--s-red') };
+  legend(document.getElementById('legImprove'), [
+    { label: '下降（部分處理）', color: colors.down },
+    { label: '持平', color: colors.flat },
+    { label: '上升（持續累積）', color: colors.up },
+  ]);
+  const rows = [
+    { name: '未讀履歷數', d: DATA.improvement.unread },
+    { name: '未讀職缺數', d: DATA.improvement.jobs },
+  ];
+  const n = DATA.improvement.n_stay;
+  const W = 640, rowH = 54, m = { l: 120, r: 16 };
+  const H = rowH * rows.length + 26;
+  const svg = E('svg', { viewBox: `0 0 ${W} ${H}`, width: '100%', style: 'max-width:640px;display:block' }, box);
+  rows.forEach((row, i) => {
+    const y0 = 10 + i * rowH, bh = 26;
+    txt(E('text', { x: m.l - 10, y: y0 + bh/2 + 4, 'text-anchor': 'end', 'font-size': 12.5, fill: css('--ink-2') }, svg), row.name);
+    let x = m.l;
+    const totalW = W - m.l - m.r;
+    const keys = [
+      { k: 'down', lbl: '下降' }, { k: 'flat', lbl: '持平' }, { k: 'up', lbl: '上升' },
+    ];
+    keys.forEach((s, si) => {
+      const v = row.d[s.k];
+      const w = Math.max(0, v / n * totalW - (si < keys.length - 1 ? 2 : 0));
+      const r = E('rect', { x, y: y0, width: w, height: bh, rx: 3, fill: colors[s.k] }, svg);
+      const shareTxt = pct(v / n);
+      if (w > 64) {
+        const inside = E('text', { x: x + w/2, y: y0 + bh/2 + 4, 'text-anchor': 'middle', 'font-size': 11.5, 'font-weight': 600,
+          fill: s.k === 'flat' ? css('--ink-1') : '#ffffff' }, svg);
+        txt(inside, shareTxt);
+        inside.style.pointerEvents = 'none';
+      }
+      r.addEventListener('pointermove', e => showTip(e, row.name + '｜' + s.lbl, [
+        { value: fmt(v) + ' 筆', label: '（' + shareTxt + '）', color: colors[s.k] },
+        { value: fmt(n) + ' 筆', label: '連續出現轉換總數' },
+      ]));
+      r.addEventListener('pointerleave', hideTip);
+      x += v / n * totalW;
+    });
+  });
+  makeTable(document.getElementById('tblImprove'), ['指標', '下降', '持平', '上升', '轉換總數'],
+    rows.map(r => [r.name,
+      fmt(r.d.down) + '（' + pct(r.d.down/n) + '）',
+      fmt(r.d.flat) + '（' + pct(r.d.flat/n) + '）',
+      fmt(r.d.up) + '（' + pct(r.d.up/n) + '）', fmt(n)]));
+}
+
+/* ---------- generic column chart ---------- */
+function columnChart(boxId, tblId, data, xKey, yKey, xLabel, yLabelFmt, tipLabel, highlightIdx) {
+  const box = document.getElementById(boxId); box.innerHTML = '';
+  const W = 560, H = 260, m = { t: 16, r: 16, b: 40, l: 56 };
+  const svg = E('svg', { viewBox: `0 0 ${W} ${H}`, width: '100%', style: 'max-width:560px;display:block' }, box);
+  const yMaxRaw = Math.max(...data.map(d => d[yKey]));
+  const step = Math.pow(10, Math.floor(Math.log10(yMaxRaw)));
+  const yMax = Math.ceil(yMaxRaw / step) * step;
+  const y = v => m.t + (1 - v / yMax) * (H - m.t - m.b);
+  const bandW = (W - m.l - m.r) / data.length;
+  for (let g = 0; g <= 4; g++) {
+    const v = yMax * g / 4, yy = y(v);
+    E('line', { x1: m.l, x2: W - m.r, y1: yy, y2: yy, stroke: css(g === 0 ? '--baseline' : '--grid'), 'stroke-width': 1 }, svg);
+    txt(E('text', { x: m.l - 8, y: yy + 4, 'text-anchor': 'end', 'font-size': 11, fill: css('--ink-muted') }, svg), fmt(v));
+  }
+  data.forEach((d, i) => {
+    const cx = m.l + bandW * i + bandW / 2, bw = Math.min(24, bandW * 0.5);
+    const topY = y(d[yKey]), botY = y(0);
+    const isHl = highlightIdx !== undefined && i === highlightIdx;
+    const fill = highlightIdx === undefined ? css('--s-blue') : (isHl ? css('--s-blue') : css('--s-gray'));
+    E('path', {
+      d: `M${cx-bw/2},${botY} L${cx-bw/2},${Math.min(topY+4,botY)} Q${cx-bw/2},${topY} ${cx-bw/2+4},${topY} L${cx+bw/2-4},${topY} Q${cx+bw/2},${topY} ${cx+bw/2},${Math.min(topY+4,botY)} L${cx+bw/2},${botY} Z`,
+      fill
+    }, svg);
+    txt(E('text', { x: cx, y: topY - 7, 'text-anchor': 'middle', 'font-size': 11.5, 'font-weight': isHl ? 700 : 400, fill: css(isHl ? '--ink-1' : '--ink-muted') }, svg), fmt(d[yKey]));
+    txt(E('text', { x: cx, y: H - m.b + 20, 'text-anchor': 'middle', 'font-size': 12, fill: css('--ink-2') }, svg), d[xKey]);
+    const hit = E('rect', { x: m.l + bandW*i, y: m.t, width: bandW, height: H - m.t - m.b, fill: 'transparent' }, svg);
+    hit.addEventListener('pointermove', e => showTip(e, xLabel + '：' + d[xKey], [
+      { value: fmt(d[yKey]) + ' 家', label: tipLabel, color: fill },
+    ]));
+    hit.addEventListener('pointerleave', hideTip);
+  });
+  makeTable(document.getElementById(tblId), [xLabel, tipLabel], data.map(d => [d[xKey], fmt(d[yKey])]));
+}
+
+function renderPersist() {
+  const d = DATA.persistence_4cycle.map(r => ({ x: r.times + ' 輪', v: r.vendors }));
+  columnChart('chartPersist', 'tblPersist', d, 'x', 'v', '出現輪數', fmt, '廠商數', d.length - 1);
+}
+function renderChronic() {
+  const d = DATA.chronic_unread_bins.map(r => ({ x: r.bin, v: r.vendors }));
+  columnChart('chartChronic', 'tblChronic', d, 'x', 'v', '未讀履歷量級（封）', fmt, '慢性廠商數');
+}
+
+/* ---------- C6: trend line ---------- */
+function renderTrend() {
+  const box = document.getElementById('chartTrend'); box.innerHTML = '';
+  const d = DATA.overview;
+  const W = 860, H = 280, m = { t: 18, r: 20, b: 40, l: 56 };
+  const svg = E('svg', { viewBox: `0 0 ${W} ${H}`, width: '100%', style: 'max-width:860px;display:block' }, box);
+  const vals = d.map(r => r.sent);
+  const yMin = 1900, yMax = 2300;
+  const x = i => m.l + i / (d.length - 1) * (W - m.l - m.r);
+  const y = v => m.t + (1 - (v - yMin) / (yMax - yMin)) * (H - m.t - m.b);
+  for (let g = 0; g <= 4; g++) {
+    const v = yMin + (yMax - yMin) * g / 4, yy = y(v);
+    E('line', { x1: m.l, x2: W - m.r, y1: yy, y2: yy, stroke: css(g === 0 ? '--baseline' : '--grid'), 'stroke-width': 1 }, svg);
+    txt(E('text', { x: m.l - 8, y: yy + 4, 'text-anchor': 'end', 'font-size': 11, fill: css('--ink-muted') }, svg), fmt(v));
+  }
+  d.forEach((r, i) => {
+    if (i % 5 === 0 || i === d.length - 1)
+      txt(E('text', { x: x(i), y: H - m.b + 20, 'text-anchor': 'middle', 'font-size': 11, fill: css('--ink-muted') }, svg), r.date);
+  });
+  const path = d.map((r, i) => (i ? 'L' : 'M') + x(i).toFixed(1) + ',' + y(r.sent).toFixed(1)).join(' ');
+  E('path', { d: path + ` L${x(d.length-1)},${y(yMin)} L${x(0)},${y(yMin)} Z`, fill: css('--s-blue'), opacity: 0.10 }, svg);
+  E('path', { d: path, fill: 'none', stroke: css('--s-blue'), 'stroke-width': 2, 'stroke-linejoin': 'round', 'stroke-linecap': 'round' }, svg);
+  const endI = d.length - 1;
+  E('circle', { cx: x(endI), cy: y(d[endI].sent), r: 4.5, fill: css('--s-blue'), stroke: css('--surface-1'), 'stroke-width': 2 }, svg);
+  txt(E('text', { x: x(endI) - 6, y: y(d[endI].sent) - 10, 'text-anchor': 'end', 'font-size': 12, 'font-weight': 600, fill: css('--ink-1') }, svg), fmt(d[endI].sent));
+  E('circle', { cx: x(0), cy: y(d[0].sent), r: 4.5, fill: css('--s-blue'), stroke: css('--surface-1'), 'stroke-width': 2 }, svg);
+  txt(E('text', { x: x(0) + 8, y: y(d[0].sent) - 10, 'font-size': 12, 'font-weight': 600, fill: css('--ink-1') }, svg), fmt(d[0].sent));
+  // crosshair
+  const cross = E('line', { y1: m.t, y2: H - m.b, stroke: css('--ink-muted'), 'stroke-width': 1, visibility: 'hidden' }, svg);
+  const dot = E('circle', { r: 4.5, fill: css('--s-blue'), stroke: css('--surface-1'), 'stroke-width': 2, visibility: 'hidden' }, svg);
+  const hit = E('rect', { x: m.l, y: m.t, width: W - m.l - m.r, height: H - m.t - m.b, fill: 'transparent' }, svg);
+  hit.addEventListener('pointermove', e => {
+    const rect = svg.getBoundingClientRect();
+    const px = (e.clientX - rect.left) * (W / rect.width);
+    const i = Math.max(0, Math.min(d.length - 1, Math.round((px - m.l) / (W - m.l - m.r) * (d.length - 1))));
+    cross.setAttribute('x1', x(i)); cross.setAttribute('x2', x(i)); cross.setAttribute('visibility', 'visible');
+    dot.setAttribute('cx', x(i)); dot.setAttribute('cy', y(d[i].sent)); dot.setAttribute('visibility', 'visible');
+    showTip(e, d[i].date + '（尾數 ' + d[i].digit + '）', [
+      { value: fmt(d[i].sent) + ' 家', label: '寄送廠商數', color: css('--s-blue') },
+    ]);
+  });
+  hit.addEventListener('pointerleave', () => { cross.setAttribute('visibility', 'hidden'); dot.setAttribute('visibility', 'hidden'); hideTip(); });
+  makeTable(document.getElementById('tblTrend'), ['日期', '尾數批次', '寄送廠商數'],
+    d.map(r => [r.date, r.digit, fmt(r.sent)]));
+}
+
+/* ---------- C7: dumbbell ---------- */
+function renderDumbbell() {
+  const box = document.getElementById('chartDumbbell'); box.innerHTML = '';
+  const cFirst = css('--s-blue-light'), cLast = css('--s-blue-dark');
+  legend(document.getElementById('legDumb'), [
+    { label: '首輪名單', color: cFirst },
+    { label: '末輪名單', color: cLast },
+  ]);
+  const d = DATA.first_last;
+  const W = 640, rowH = 30, m = { l: 100, r: 30, t: 8 };
+  const H = m.t + rowH * d.length + 34;
+  const svg = E('svg', { viewBox: `0 0 ${W} ${H}`, width: '100%', style: 'max-width:640px;display:block' }, box);
+  const xMin = 1600, xMax = 2200;
+  const x = v => m.l + (v - xMin) / (xMax - xMin) * (W - m.l - m.r);
+  for (let g = 0; g <= 3; g++) {
+    const v = xMin + (xMax - xMin) * g / 3, xx = x(v);
+    E('line', { x1: xx, x2: xx, y1: m.t, y2: H - 30, stroke: css('--grid'), 'stroke-width': 1 }, svg);
+    txt(E('text', { x: xx, y: H - 12, 'text-anchor': 'middle', 'font-size': 11, fill: css('--ink-muted') }, svg), fmt(v));
+  }
+  d.forEach((r, i) => {
+    const cy = m.t + rowH * i + rowH / 2;
+    txt(E('text', { x: m.l - 10, y: cy + 4, 'text-anchor': 'end', 'font-size': 12, fill: css('--ink-2') }, svg), '尾數 ' + r.digit);
+    E('line', { x1: x(r.first), x2: x(r.last), y1: cy, y2: cy, stroke: css('--grid'), 'stroke-width': 2 }, svg);
+    const c1 = E('circle', { cx: x(r.first), cy, r: 5, fill: cFirst, stroke: css('--surface-1'), 'stroke-width': 2 }, svg);
+    const c2 = E('circle', { cx: x(r.last), cy, r: 5, fill: cLast, stroke: css('--surface-1'), 'stroke-width': 2 }, svg);
+    const hit = E('rect', { x: m.l, y: cy - rowH/2, width: W - m.l - m.r, height: rowH, fill: 'transparent' }, svg);
+    hit.addEventListener('pointermove', e => showTip(e, '尾數 ' + r.digit + '（共 ' + r.n_cycles + ' 輪）', [
+      { value: fmt(r.first) + ' 家', label: '首輪 ' + r.first_date, color: cFirst },
+      { value: fmt(r.last) + ' 家', label: '末輪 ' + r.last_date, color: cLast },
+      { value: (r.last >= r.first ? '+' : '') + fmt(r.last - r.first), label: '變化' },
+    ]));
+    hit.addEventListener('pointerleave', hideTip);
+  });
+  makeTable(document.getElementById('tblDumbbell'), ['批次', '首輪日期', '首輪廠商數', '末輪日期', '末輪廠商數', '變化'],
+    d.map(r => ['尾數 ' + r.digit, r.first_date, fmt(r.first), r.last_date, fmt(r.last), (r.last >= r.first ? '+' : '') + fmt(r.last - r.first)]));
+}
+
+function renderAll() {
+  renderKPIs(); renderRetention(); renderFlow(); renderImprove();
+  renderPersist(); renderChronic(); renderTrend(); renderDumbbell();
+}
+renderAll();
+matchMedia('(prefers-color-scheme: dark)').addEventListener('change', renderAll);
+</script>
+</body>
+</html>
