@@ -34,3 +34,7 @@
 - 任一家判「不符」（6 份）：台哥大 數據服務與金流、D637 金流營運、I110 AI PM，遠傳行動支付，FedGPT（科系必備），Klook API PM。
 - **Gemini 新指出、可直接修的缺口**：v10.4 技能欄沒有 Scrum／Kanban／Sprint，13 份以 Agile／Scrum 為必備的職缺因此落入 unknown。library §13 已確認：入職初期（2022–2023）跑過完整 Scrum；現行 Kanban 搭配瀑布；2026 重新導入 Daily Stand-up——可以寫。
 - 其他 Gemini 缺口：已上線功能缺採用／留存數據（18 份；使用者尚未提供成效數字）、SQL／BI（不會，不寫）、Jira／Confluence（沒用過，不寫）、進行中專案未上線、直接對外客戶。
+
+## 補：v10.7（ChatGPT GPT-6，同一對話連續審）2026-10-19
+- L 44：fit 高 31／中 7／低 6；面試 39、先釐清 4、不符 1（同模型 v10.4：高 14、面試 24）。
+- 原始報告：`runs/2026-10-19-v10.7-ext/report.md`；整理表 `light.md`。
