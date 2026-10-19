@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """履歷 txt → 單欄 ATS 版 HTML。用法：python3 render_onecol.py <resume.txt> <out.html>；接著 node mkpdf.js <out.html 絕對路徑> <out.pdf>"""
 import html,sys
-src,dst=sys.argv[1],sys.argv[2]
+src,dst=sys.argv[1],sys.argv[2]  # 選項 --bio-newpage：自傳另起一頁
 t=open(src,encoding='utf8').read().split('\n')
 heads={'專業摘要','工作經歷','學歷','專業技能','求職條件','自傳'}
 out=[];ul=False
@@ -10,7 +10,7 @@ for i,l in enumerate(t):
     if i==0: out.append(f'<h1>{html.escape(l)}</h1>');continue
     if not l.startswith('- ') and ul: out.append('</ul>');ul=False
     if not l: continue
-    if l in heads: out.append(f'<h2>{l}</h2>');continue
+    if l in heads: out.append(f'<h2 style="break-before:page">{l}</h2>' if l=='自傳' and '--bio-newpage' in sys.argv else f'<h2>{l}</h2>');continue
     if l.startswith('- '):
         if not ul: out.append('<ul>');ul=True
         out.append(f'<li>{html.escape(l[2:])}</li>');continue

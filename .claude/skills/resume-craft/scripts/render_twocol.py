@@ -138,7 +138,8 @@ def main():
     body = (f'<header><h1>{e(name)}</h1><div class="tagline">{e(tag)}</div><div class="contact">{cs}</div></header>'
             f'<div class="grid"><div>{col(LEFT)}</div><div>{col(RIGHT)}</div></div>')
     if '自傳' in secs:
-        body += f'<div class="full">{col(FULL)}</div>'
+        brk = ' style="break-before:page"' if '--bio-newpage' in sys.argv else ''
+        body += f'<div class="full"{brk}>{col(FULL)}</div>'
     open(dst, 'w', encoding='utf8').write(
         f'<!doctype html><html lang="zh-Hant"><meta charset=utf-8><title>{e(name)}</title><style>{CSS}</style><body>{body}</body></html>')
 
