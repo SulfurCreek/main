@@ -27,3 +27,10 @@
 5. 對外客戶責任：直接面對客戶的訪談與決策權較少呈現。
 
 原始資料：`runs/2026-10-19-v10.4-f14-opus/`、`runs/2026-10-19-v10.4-l44-opus/report.md`、`runs/2026-10-19-v10.4-chatgpt/{report-chatgpt.md,light.md}`。
+
+## 補：Gemini（gemini-4-argon，同一對話連續審）
+- L 44：fit 高 20／中 18／低 6；面試 26、先釐清 12、不符 6。F 錨點：Level 8×2（8ocje、92io8）、7×3。Gemini 最寬，與歷來一致。
+- 三家 fit 完全一致 27／44。**三家都評高（8 份）**：玩美 SaaS PM、玩美 App PM、買即可、拍付支付連、LINE Pay、台哥大 AI 專案 PM、台哥大 D597、蝦皮 Product Solution。
+- 任一家判「不符」（6 份）：台哥大 數據服務與金流、D637 金流營運、I110 AI PM，遠傳行動支付，FedGPT（科系必備），Klook API PM。
+- **Gemini 新指出、可直接修的缺口**：v10.4 技能欄沒有 Scrum／Kanban／Sprint，13 份以 Agile／Scrum 為必備的職缺因此落入 unknown。library §13 已確認：入職初期（2022–2023）跑過完整 Scrum；現行 Kanban 搭配瀑布；2026 重新導入 Daily Stand-up——可以寫。
+- 其他 Gemini 缺口：已上線功能缺採用／留存數據（18 份；使用者尚未提供成效數字）、SQL／BI（不會，不寫）、Jira／Confluence（沒用過，不寫）、進行中專案未上線、直接對外客戶。
