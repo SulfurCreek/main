@@ -71,6 +71,8 @@ Enforced by `scripts/guard_career_scope.sh` (PreToolUse hook, this branch only; 
 - **不得在任何 `CLAUDE.md` 用 `@AGENTS.md` 引用它的指示檔**（會把 Codex 規則帶進本 session）。
 - commit 前綴 `career:`。
 
+> **找檔案先看 [`ROUTER.md`](ROUTER.md)**（Career Move 與 Resume Writer 共用的路由表；新增或搬動重要檔案時同步更新）。
+
 ## 🧭 履歷平台路由：104 與 Cake 不要混用
 
 | 任務 | 讀這裡 | 備註 |

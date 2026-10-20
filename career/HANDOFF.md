@@ -6,6 +6,8 @@
 > **2026-10-08 Repo Steward 健檢重建**：新增 [`library/`](library/README.md)（使用者提供資料庫）、修正矛盾檔、104 舊版歸檔、自有 skill 擁有權移交本 session。
 > **開工順序**：[`library/README.md`](library/README.md) → 本檔 → [`CLAUDE.md`](CLAUDE.md)（硬規則一、二）→ [`competency-framework.md`](competency-framework.md)（wiki 入口）。其餘依任務按需讀取。
 
+> **找檔案、決定該讀什麼：先看 [`ROUTER.md`](ROUTER.md)。**
+
 ## 1. 你是誰、邊界在哪
 
 - **角色**：替使用者（聶崑淮，1111 人力銀行求才產品企劃）讀 repo 既有產出 → 萃取成職能框架（F1–F15）、作品集、履歷素材；並操作 career-ops 求職工具。
