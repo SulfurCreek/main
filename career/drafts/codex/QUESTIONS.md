@@ -1,0 +1,59 @@
+來源檔：本次指示、ZIP handoff/02、03、06、project_state、v10.10 draft；career/wiki/resume-extract.md、education-certifications.md；career/ 目錄盤點。
+〔待補〕：共同 SSOT 位置、完整對話、已確認的現行事實與撤回規則。
+事實疑問：Q001–Q005 均待本人或其授權的來源核對；未更改原始資料。
+
+# Resume Gen 待確認事項
+
+建立日期：2026-10-20（Asia/Taipei）。本檔是問題登記，不是另一份有效 facts。除來源位置與對話缺口外，其餘事項待真的用到正文時再聚焦確認，不重做整輪 grill。
+
+## Q001｜共用來源位置與完整對話缺口
+
+問題：Claude Code 實際使用的 career/library/、style/ 與共同工作狀態在哪個 checkout？本 checkout 未見它們；另行提供的完整對話也尚未收到。確認位置後才有辦法核對既有改動、本人最新決定與已撤回說法。
+
+出處：使用者固定指令；career/ 盤點；ZIP conversations/README.md、handoff/06_scope_and_gaps.md。處理：不自行建立替代 facts、不讀取未授權路徑。
+
+## Q002｜訊息整合的交付進度不同
+
+問題：career/wiki/resume-extract.md 寫為已交付；ZIP archive/workspace/resume-v10.10-draft.md 寫為內部封測、預計 2026/11 底上線。哪份本人已確認的現行紀錄可用來核對範圍與日期？
+
+處理：只登記來源差異，不自行改寫 wiki，不把封測或預計上線寫成已上線。
+
+## Q003｜AI 功能上線範圍不同
+
+問題：career/wiki/resume-extract.md 將多項功能合併寫成已交付，包含職缺匯入與職缺健檢；ZIP v10.10 draft 的已上線段落僅列公司簡介生成、職缺工作說明生成、推薦人才三項，且職缺匯入描述為延後。需核對各功能是否同一範圍及本人確認的進度。
+
+處理：不合併成五項已上線，不自行新增採用率或商業成效。
+
+## Q004｜學歷年份與交換期間不同
+
+問題：career/wiki/education-certifications.md 記 Class of 2013、交換一學年；ZIP v10.10 draft 記淡江 2010/09–2014/06、CSUS 2011/01–2012/06。應以哪份已確認紀錄為準？
+
+處理：不自行更正年月，也不由年份差推算新的修業期間。
+
+## Q005｜編輯底稿尚未指定
+
+問題：下一次具體改稿時，本人指定的唯一檔案與版本為何？ZIP project_state.json 的 active_resume 為 null，不能因最後編輯的是 v10.10 就指定它為底稿。
+
+出處：本次使用者第 4 項要求；ZIP README.md、handoff/02_current_state.md、project_state.json。
+
+處理：接收盤點不因本題停擺；未開始改稿或定版。PDF 已找到的是 v10.9，沒有 v10.10 排版產物，不混同兩者。
+
+
+## 2026-10-20 接續狀態（保留原始問題記錄）
+
+- Q001：已收到《優化履歷評分.md》，完整對話檔缺口已由此附件接續；不再要求重傳。現仍缺路由／來源庫的實際儲存庫與分支定位。使用者指定 library/ 為共用來源，未另建 facts。
+- Q005：使用者最新明確指出現行投遞版位於 career/drafts/v11/。此資訊優先於封存包狀態；不把 v10.10 當現行稿。仍待讀取路由與實體檔確認具體工作檔，不因收到目錄位置就開始改稿。
+- Q002–Q004：維持待來源比對，不在接手階段要求使用者重新回答；取得現行 library/decisions.md、superseded.md 與相關 facts 後先核對是否已有裁定。
+
+本輪對話定位與遠端路由缺口見 2026-10-20-conversation-reconciliation.md。
+
+
+## 2026-10-20 共用分支定位後更新
+
+Q001 已解決來源定位：Career Move 的 origin/claude/happy-lamport-ljis8c 包含 ROUTER.md 與 library；完整對話附件也已收到。無須使用者重新提供。
+
+Q002 已查現行來源：facts-1111 §20 指明內部封測、預計 2026/11 底上線，舊 wiki 的已交付說法不可回填。Q003 已查 superseded 與 facts-1111 後續更正：已上線功能三項，職缺匯入未開發，職缺健檢未上線。Q004 已查 profile §2：淡江 2010/09–2014/06，CSUS 2011/01–2012/06。這些差異可依 SSOT 處理，撤回重問本人需求；沒有修改原來源。
+
+Q005 已定位現行稿：路由與 decisions §19 指向 career/drafts/v11/resume-v11.md。它的投遞正文與封存 v10.10 相同，但現行版本地位來自使用者與共同路由，不是 Codex 取最新檔的推定。尚無本輪改稿任務；不改正文或 PDF。
+
+仍需共同來源維護者留意的防倒退問題：library 的 facts-1111 舊層與 superseded 部分列仍有歷史說法（例如三名團隊成員 vs 兩名直屬、舊處理週期、舊日期）。本輪按較後確認及具體範圍讀取，不自行改 library，也不把歷史快照當成高於較後裁定的資料。
