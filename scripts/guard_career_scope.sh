@@ -30,6 +30,8 @@ OWNED_SKILLS=(
   ".claude/skills/resume-craft/"
   ".claude/skills/resume-review-panel/"
   ".claude/skills/portfolio-site/"
+  ".claude/skills/104coverletter/"
+  ".claude/skills/104resume/"
 )
 
 allow() { exit 0; }
@@ -72,7 +74,7 @@ for p in "${OWNED_SKILLS[@]}"; do
   case "$rel" in "$p"*) allow ;; esac
 done
 
-reason="邊界限制：這條分支（${branch}）是個人成長／履歷 session，對 repo 內的產出是**唯讀**的，只能寫 ${WRITABLE_PREFIX} 與個人線自有 skill（resume-craft／resume-review-panel／portfolio-site）底下的檔案。\
+reason="邊界限制：這條分支（${branch}）是個人成長／履歷 session，對 repo 內的產出是**唯讀**的，只能寫 ${WRITABLE_PREFIX} 與個人線自有 skill（resume-craft／resume-review-panel／portfolio-site／104coverletter／104resume）底下的檔案。\
 被擋下的路徑：${rel}。\
 需要改動以上範圍以外的東西（其他 skill、wiki、CLAUDE.md、規格書、分析產出）時，不要自己動手——把需求寫進 career/_requests-to-main.md，由主幹管理 session（Repo Steward）判斷後統一施作。\
 讀取不受限制：要引用任何產出當職能證據，直接 Read 即可。"
