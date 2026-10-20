@@ -1,7 +1,8 @@
-# 個人線協作規則：Career Move × 作品集網站助手
+# 個人線協作規則：Career Move × 作品集網站助手 × Resume Writer
 
 > 適用兩個 session：**Career Move**（`session_017u5Po6SGpjD3iLBZ2VL2HH`，管內容）與 **作品集網站助手**（`session_01X5B4jtorqQNpioe46ePnFs`，管渲染）。
-> 共用分支 `claude/happy-lamport-ljis8c`。本檔只有 Repo Steward 能改。2026-10-05 起生效。
+> 2026-10-20 起新增第三方 **Resume Writer**（OpenAI Codex session，不是 Claude Code，**沒有 session_id**，不受 `guard_career_scope.sh` 約束，只靠指示約束）：文字編輯者，讀 `career/` 的事實把履歷與求職文件寫順。詳見本檔 §7。
+> 共用分支 `claude/happy-lamport-ljis8c`（Resume Writer 用自己的分支，見 §7）。本檔只有 Repo Steward 能改。2026-10-05 起生效。
 
 ## 1. 目錄所有權（一個目錄只有一個寫入者）
 
@@ -54,3 +55,16 @@
 ## 6. 需要改規則時
 
 改上述三個個人線 skill 不需主幹（Career Move 直接改、commit 前綴 `career(skill):`）。其餘兩邊都寫進各自可寫的地方請主幹施作：Career Move 用 `career/_requests-to-main.md`；作品集助手用 `career/site/QUESTIONS.md` 開頭加「請主幹：…」。
+
+## 7. Resume Writer（Codex，2026-10-20 使用者決定納入）
+
+| 項目 | 內容 |
+| :--- | :--- |
+| 角色 | 文字編輯者。事實唯一來源是 `career/library/`（Career Move 維護）；Resume Writer 只負責把事實寫成通順自然的文字，**不新增事實** |
+| 讀取 | 只讀 `career/`；repo 其他目錄一律不碰 |
+| 寫入 | 只寫 `career/drafts/codex/`（草稿、產出、`QUESTIONS.md`）。`library/`、`wiki/`、`style/`、`104/` 等一律唯讀 |
+| 分支 | 自己的分支（建議 `codex/resume-writer`），**不推 `main`、不推 `claude/happy-lamport-ljis8c`**，不 force push |
+| 事實有疑問 | 寫進 `career/drafts/codex/QUESTIONS.md`（編號、問題、出處），由使用者決定；Career Move 查證後更新 library 並答覆 |
+| 取用成果 | 由使用者決定採用哪份產出。Career Move 只**讀取**（`git checkout origin/codex/resume-writer -- career/drafts/codex`），採用的內容由 Career Move 納入自己的檔案，不整支合併分支 |
+| 約束方式 | 無 hook，只靠環境指示與 `AGENTS.md`；`AGENTS.md` 放 `career/drafts/codex/` 內，不放根目錄或 `career/` 根目錄，**不得在任何 `CLAUDE.md` 用 `@AGENTS.md` 引用**（否則會把 Codex 規則帶進 Claude session） |
+| 隱私 | Resume Writer 能讀到的範圍取決於 Codex 環境連的 repo；若連 `SulfurCreek/main` 就讀得到整個 repo。真要隔離需另開只放 `career/` 的私有 repo（使用者尚未決定） |
