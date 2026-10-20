@@ -8,3 +8,7 @@
 - [接手紀錄](2026-10-20-resumegen-handoff.md)、[對話與共用來源核對](2026-10-20-conversation-reconciliation.md)、[疑問與處理狀態](QUESTIONS.md)。
 
 現行資料讀取順序以共用 career/ROUTER.md 及 library/ 的最新裁定為準。本區歷史來源與索引不替代 SSOT。共用來源位於同一儲存庫的 Career Move 分支，不要求每個聊天各自維護副本。
+
+## 新收到的編輯素材（待 Career Move 整合，非第二套 SSOT）
+
+- [2026-10-20 管理案例：指導同仁完成類別對照](2026-10-20-management-case-handoff.md)
