@@ -1,0 +1,16 @@
+{
+  "independent_method_notes.json": "6c2ed9f37b3258248207fdef59c0bea51e422c0077bb0380b199d25caaf83af3",
+  "score_comparison.csv": "17045614c1775b6803374ebb785b59f3e0e739bf3d338585e90529bbd7cabf0f",
+  "skill_metrics_smoke.json": "c22e78e1f55f38d1ae92ccdf7b4b75a84d0130988166be114ac6ef615e60ede3",
+  "品質梯度履歷驗證報告.md": "2943751550cb90251c118a2f60992119807d23c9ebe1cd523517f47b24edb972",
+  "50份品質梯度履歷.md": "b6421b4be0b0664c63aa62570aa130ad366f1beb6af31f18d91080f7f8490041",
+  "analyze_gradient.py": "d7f6e5cecd02c46f287cefb3f58fc1f8bae0384744e0ed3adb5abadb45c3e1f0",
+  "generate_gradient.py": "b594d173cf4d9fe12ff7164542d9bbbf13c471fec23ca797d1dcb7d9f4f2bc32",
+  "gradient_metrics.json": "6705bc7704a5af0e32f5750b5d23ae90ce49433ebce22e3c2aa280538ce15322",
+  "independent_scores.json": "1d28a1c6ef1208b3966cfc96b1210b9a0896de235e68beeeccef528e8678d8de",
+  "private/preregistration.json": "d02827310405bdded4f37f0964539cffb7520d8de9716983a0384b6450860e38",
+  "private/answer_key.json": "3d25976d2a3a8fd774ebc83def6ee6459fbfe6e576416808b617d4b70788396d",
+  "private/frozen_hashes.json": "df99791d8c8c4d7938d8d049316b2a94319c797fe5fbf76214f6c20557ed3833",
+  "blind/rubric_v3.json": "747a67a22612740fb0eec5a04940bdf363b7e93d703ddca9b5b6982b3b36b2fc",
+  "blind/gradient_resumes.json": "828b0095e3be23df67a28288f6b8ceef1d83d0d74681dfb673972b482e32d7af"
+}

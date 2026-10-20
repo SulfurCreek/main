@@ -1,0 +1,702 @@
+[
+  {
+    "id": "R01",
+    "scores": {
+      "positioning": 10,
+      "achievements": 22,
+      "fit": 17,
+      "structure": 12,
+      "wording": 9,
+      "ats": 8,
+      "differentiation": 4
+    },
+    "total": 82,
+    "method": "primary_pre_registered_template_estimate_not_gold_standard"
+  },
+  {
+    "id": "R02",
+    "scores": {
+      "positioning": 10,
+      "achievements": 9,
+      "fit": 12,
+      "structure": 13,
+      "wording": 7,
+      "ats": 8,
+      "differentiation": 2
+    },
+    "total": 61,
+    "method": "primary_pre_registered_template_estimate_not_gold_standard"
+  },
+  {
+    "id": "R03",
+    "scores": {
+      "positioning": 10,
+      "achievements": 9,
+      "fit": 12,
+      "structure": 13,
+      "wording": 7,
+      "ats": 8,
+      "differentiation": 2
+    },
+    "total": 61,
+    "method": "primary_pre_registered_template_estimate_not_gold_standard"
+  },
+  {
+    "id": "R04",
+    "scores": {
+      "positioning": 10,
+      "achievements": 9,
+      "fit": 12,
+      "structure": 13,
+      "wording": 7,
+      "ats": 8,
+      "differentiation": 2
+    },
+    "total": 61,
+    "method": "primary_pre_registered_template_estimate_not_gold_standard"
+  },
+  {
+    "id": "R05",
+    "scores": {
+      "positioning": 13,
+      "achievements": 22,
+      "fit": 17,
+      "structure": 14,
+      "wording": 9,
+      "ats": 8,
+      "differentiation": 4
+    },
+    "total": 87,
+    "method": "primary_pre_registered_template_estimate_not_gold_standard"
+  },
+  {
+    "id": "R06",
+    "scores": {
+      "positioning": 13,
+      "achievements": 22,
+      "fit": 17,
+      "structure": 14,
+      "wording": 9,
+      "ats": 8,
+      "differentiation": 4
+    },
+    "total": 87,
+    "method": "primary_pre_registered_template_estimate_not_gold_standard"
+  },
+  {
+    "id": "R07",
+    "scores": {
+      "positioning": 10,
+      "achievements": 8,
+      "fit": 11,
+      "structure": 12,
+      "wording": 5,
+      "ats": 8,
+      "differentiation": 2
+    },
+    "total": 56,
+    "method": "primary_pre_registered_template_estimate_not_gold_standard"
+  },
+  {
+    "id": "R08",
+    "scores": {
+      "positioning": 10,
+      "achievements": 9,
+      "fit": 12,
+      "structure": 13,
+      "wording": 7,
+      "ats": 8,
+      "differentiation": 2
+    },
+    "total": 61,
+    "method": "primary_pre_registered_template_estimate_not_gold_standard"
+  },
+  {
+    "id": "R09",
+    "scores": {
+      "positioning": 10,
+      "achievements": 9,
+      "fit": 12,
+      "structure": 13,
+      "wording": 7,
+      "ats": 8,
+      "differentiation": 2
+    },
+    "total": 61,
+    "method": "primary_pre_registered_template_estimate_not_gold_standard"
+  },
+  {
+    "id": "R10",
+    "scores": {
+      "positioning": 10,
+      "achievements": 9,
+      "fit": 12,
+      "structure": 13,
+      "wording": 7,
+      "ats": 8,
+      "differentiation": 2
+    },
+    "total": 61,
+    "method": "primary_pre_registered_template_estimate_not_gold_standard"
+  },
+  {
+    "id": "R11",
+    "scores": {
+      "positioning": 13,
+      "achievements": 22,
+      "fit": 17,
+      "structure": 14,
+      "wording": 9,
+      "ats": 8,
+      "differentiation": 4
+    },
+    "total": 87,
+    "method": "primary_pre_registered_template_estimate_not_gold_standard"
+  },
+  {
+    "id": "R12",
+    "scores": {
+      "positioning": 10,
+      "achievements": 22,
+      "fit": 17,
+      "structure": 12,
+      "wording": 9,
+      "ats": 8,
+      "differentiation": 4
+    },
+    "total": 82,
+    "method": "primary_pre_registered_template_estimate_not_gold_standard"
+  },
+  {
+    "id": "R13",
+    "scores": {
+      "positioning": 10,
+      "achievements": 8,
+      "fit": 11,
+      "structure": 12,
+      "wording": 5,
+      "ats": 8,
+      "differentiation": 2
+    },
+    "total": 56,
+    "method": "primary_pre_registered_template_estimate_not_gold_standard"
+  },
+  {
+    "id": "R14",
+    "scores": {
+      "positioning": 13,
+      "achievements": 22,
+      "fit": 17,
+      "structure": 14,
+      "wording": 9,
+      "ats": 8,
+      "differentiation": 4
+    },
+    "total": 87,
+    "method": "primary_pre_registered_template_estimate_not_gold_standard"
+  },
+  {
+    "id": "R15",
+    "scores": {
+      "positioning": 10,
+      "achievements": 9,
+      "fit": 12,
+      "structure": 13,
+      "wording": 7,
+      "ats": 8,
+      "differentiation": 2
+    },
+    "total": 61,
+    "method": "primary_pre_registered_template_estimate_not_gold_standard"
+  },
+  {
+    "id": "R16",
+    "scores": {
+      "positioning": 10,
+      "achievements": 8,
+      "fit": 11,
+      "structure": 12,
+      "wording": 5,
+      "ats": 8,
+      "differentiation": 2
+    },
+    "total": 56,
+    "method": "primary_pre_registered_template_estimate_not_gold_standard"
+  },
+  {
+    "id": "R17",
+    "scores": {
+      "positioning": 13,
+      "achievements": 22,
+      "fit": 17,
+      "structure": 14,
+      "wording": 9,
+      "ats": 8,
+      "differentiation": 4
+    },
+    "total": 87,
+    "method": "primary_pre_registered_template_estimate_not_gold_standard"
+  },
+  {
+    "id": "R18",
+    "scores": {
+      "positioning": 10,
+      "achievements": 22,
+      "fit": 17,
+      "structure": 12,
+      "wording": 9,
+      "ats": 8,
+      "differentiation": 4
+    },
+    "total": 82,
+    "method": "primary_pre_registered_template_estimate_not_gold_standard"
+  },
+  {
+    "id": "R19",
+    "scores": {
+      "positioning": 10,
+      "achievements": 22,
+      "fit": 17,
+      "structure": 12,
+      "wording": 9,
+      "ats": 8,
+      "differentiation": 4
+    },
+    "total": 82,
+    "method": "primary_pre_registered_template_estimate_not_gold_standard"
+  },
+  {
+    "id": "R20",
+    "scores": {
+      "positioning": 10,
+      "achievements": 22,
+      "fit": 17,
+      "structure": 12,
+      "wording": 9,
+      "ats": 8,
+      "differentiation": 4
+    },
+    "total": 82,
+    "method": "primary_pre_registered_template_estimate_not_gold_standard"
+  },
+  {
+    "id": "R21",
+    "scores": {
+      "positioning": 10,
+      "achievements": 22,
+      "fit": 17,
+      "structure": 12,
+      "wording": 9,
+      "ats": 8,
+      "differentiation": 4
+    },
+    "total": 82,
+    "method": "primary_pre_registered_template_estimate_not_gold_standard"
+  },
+  {
+    "id": "R22",
+    "scores": {
+      "positioning": 10,
+      "achievements": 8,
+      "fit": 11,
+      "structure": 12,
+      "wording": 5,
+      "ats": 8,
+      "differentiation": 2
+    },
+    "total": 56,
+    "method": "primary_pre_registered_template_estimate_not_gold_standard"
+  },
+  {
+    "id": "R23",
+    "scores": {
+      "positioning": 13,
+      "achievements": 22,
+      "fit": 17,
+      "structure": 14,
+      "wording": 9,
+      "ats": 8,
+      "differentiation": 4
+    },
+    "total": 87,
+    "method": "primary_pre_registered_template_estimate_not_gold_standard"
+  },
+  {
+    "id": "R24",
+    "scores": {
+      "positioning": 10,
+      "achievements": 22,
+      "fit": 17,
+      "structure": 12,
+      "wording": 9,
+      "ats": 8,
+      "differentiation": 4
+    },
+    "total": 82,
+    "method": "primary_pre_registered_template_estimate_not_gold_standard"
+  },
+  {
+    "id": "R25",
+    "scores": {
+      "positioning": 13,
+      "achievements": 22,
+      "fit": 17,
+      "structure": 14,
+      "wording": 9,
+      "ats": 8,
+      "differentiation": 4
+    },
+    "total": 87,
+    "method": "primary_pre_registered_template_estimate_not_gold_standard"
+  },
+  {
+    "id": "R26",
+    "scores": {
+      "positioning": 10,
+      "achievements": 8,
+      "fit": 11,
+      "structure": 12,
+      "wording": 5,
+      "ats": 8,
+      "differentiation": 2
+    },
+    "total": 56,
+    "method": "primary_pre_registered_template_estimate_not_gold_standard"
+  },
+  {
+    "id": "R27",
+    "scores": {
+      "positioning": 13,
+      "achievements": 22,
+      "fit": 17,
+      "structure": 14,
+      "wording": 9,
+      "ats": 8,
+      "differentiation": 4
+    },
+    "total": 87,
+    "method": "primary_pre_registered_template_estimate_not_gold_standard"
+  },
+  {
+    "id": "R28",
+    "scores": {
+      "positioning": 13,
+      "achievements": 22,
+      "fit": 17,
+      "structure": 14,
+      "wording": 9,
+      "ats": 8,
+      "differentiation": 4
+    },
+    "total": 87,
+    "method": "primary_pre_registered_template_estimate_not_gold_standard"
+  },
+  {
+    "id": "R29",
+    "scores": {
+      "positioning": 10,
+      "achievements": 8,
+      "fit": 11,
+      "structure": 12,
+      "wording": 5,
+      "ats": 8,
+      "differentiation": 2
+    },
+    "total": 56,
+    "method": "primary_pre_registered_template_estimate_not_gold_standard"
+  },
+  {
+    "id": "R30",
+    "scores": {
+      "positioning": 13,
+      "achievements": 22,
+      "fit": 17,
+      "structure": 14,
+      "wording": 9,
+      "ats": 8,
+      "differentiation": 4
+    },
+    "total": 87,
+    "method": "primary_pre_registered_template_estimate_not_gold_standard"
+  },
+  {
+    "id": "R31",
+    "scores": {
+      "positioning": 13,
+      "achievements": 22,
+      "fit": 17,
+      "structure": 14,
+      "wording": 9,
+      "ats": 8,
+      "differentiation": 4
+    },
+    "total": 87,
+    "method": "primary_pre_registered_template_estimate_not_gold_standard"
+  },
+  {
+    "id": "R32",
+    "scores": {
+      "positioning": 10,
+      "achievements": 8,
+      "fit": 11,
+      "structure": 12,
+      "wording": 5,
+      "ats": 8,
+      "differentiation": 2
+    },
+    "total": 56,
+    "method": "primary_pre_registered_template_estimate_not_gold_standard"
+  },
+  {
+    "id": "R33",
+    "scores": {
+      "positioning": 13,
+      "achievements": 22,
+      "fit": 17,
+      "structure": 14,
+      "wording": 9,
+      "ats": 8,
+      "differentiation": 4
+    },
+    "total": 87,
+    "method": "primary_pre_registered_template_estimate_not_gold_standard"
+  },
+  {
+    "id": "R34",
+    "scores": {
+      "positioning": 10,
+      "achievements": 9,
+      "fit": 12,
+      "structure": 13,
+      "wording": 7,
+      "ats": 8,
+      "differentiation": 2
+    },
+    "total": 61,
+    "method": "primary_pre_registered_template_estimate_not_gold_standard"
+  },
+  {
+    "id": "R35",
+    "scores": {
+      "positioning": 10,
+      "achievements": 9,
+      "fit": 12,
+      "structure": 13,
+      "wording": 7,
+      "ats": 8,
+      "differentiation": 2
+    },
+    "total": 61,
+    "method": "primary_pre_registered_template_estimate_not_gold_standard"
+  },
+  {
+    "id": "R36",
+    "scores": {
+      "positioning": 10,
+      "achievements": 22,
+      "fit": 17,
+      "structure": 12,
+      "wording": 9,
+      "ats": 8,
+      "differentiation": 4
+    },
+    "total": 82,
+    "method": "primary_pre_registered_template_estimate_not_gold_standard"
+  },
+  {
+    "id": "R37",
+    "scores": {
+      "positioning": 13,
+      "achievements": 22,
+      "fit": 17,
+      "structure": 14,
+      "wording": 9,
+      "ats": 8,
+      "differentiation": 4
+    },
+    "total": 87,
+    "method": "primary_pre_registered_template_estimate_not_gold_standard"
+  },
+  {
+    "id": "R38",
+    "scores": {
+      "positioning": 13,
+      "achievements": 22,
+      "fit": 17,
+      "structure": 14,
+      "wording": 9,
+      "ats": 8,
+      "differentiation": 4
+    },
+    "total": 87,
+    "method": "primary_pre_registered_template_estimate_not_gold_standard"
+  },
+  {
+    "id": "R39",
+    "scores": {
+      "positioning": 10,
+      "achievements": 8,
+      "fit": 11,
+      "structure": 12,
+      "wording": 5,
+      "ats": 8,
+      "differentiation": 2
+    },
+    "total": 56,
+    "method": "primary_pre_registered_template_estimate_not_gold_standard"
+  },
+  {
+    "id": "R40",
+    "scores": {
+      "positioning": 13,
+      "achievements": 22,
+      "fit": 17,
+      "structure": 14,
+      "wording": 9,
+      "ats": 8,
+      "differentiation": 4
+    },
+    "total": 87,
+    "method": "primary_pre_registered_template_estimate_not_gold_standard"
+  },
+  {
+    "id": "R41",
+    "scores": {
+      "positioning": 10,
+      "achievements": 22,
+      "fit": 17,
+      "structure": 12,
+      "wording": 9,
+      "ats": 8,
+      "differentiation": 4
+    },
+    "total": 82,
+    "method": "primary_pre_registered_template_estimate_not_gold_standard"
+  },
+  {
+    "id": "R42",
+    "scores": {
+      "positioning": 10,
+      "achievements": 22,
+      "fit": 17,
+      "structure": 12,
+      "wording": 9,
+      "ats": 8,
+      "differentiation": 4
+    },
+    "total": 82,
+    "method": "primary_pre_registered_template_estimate_not_gold_standard"
+  },
+  {
+    "id": "R43",
+    "scores": {
+      "positioning": 10,
+      "achievements": 8,
+      "fit": 11,
+      "structure": 12,
+      "wording": 5,
+      "ats": 8,
+      "differentiation": 2
+    },
+    "total": 56,
+    "method": "primary_pre_registered_template_estimate_not_gold_standard"
+  },
+  {
+    "id": "R44",
+    "scores": {
+      "positioning": 13,
+      "achievements": 22,
+      "fit": 17,
+      "structure": 14,
+      "wording": 9,
+      "ats": 8,
+      "differentiation": 4
+    },
+    "total": 87,
+    "method": "primary_pre_registered_template_estimate_not_gold_standard"
+  },
+  {
+    "id": "R45",
+    "scores": {
+      "positioning": 13,
+      "achievements": 22,
+      "fit": 17,
+      "structure": 14,
+      "wording": 9,
+      "ats": 8,
+      "differentiation": 4
+    },
+    "total": 87,
+    "method": "primary_pre_registered_template_estimate_not_gold_standard"
+  },
+  {
+    "id": "R46",
+    "scores": {
+      "positioning": 10,
+      "achievements": 8,
+      "fit": 11,
+      "structure": 12,
+      "wording": 5,
+      "ats": 8,
+      "differentiation": 2
+    },
+    "total": 56,
+    "method": "primary_pre_registered_template_estimate_not_gold_standard"
+  },
+  {
+    "id": "R47",
+    "scores": {
+      "positioning": 13,
+      "achievements": 22,
+      "fit": 17,
+      "structure": 14,
+      "wording": 9,
+      "ats": 8,
+      "differentiation": 4
+    },
+    "total": 87,
+    "method": "primary_pre_registered_template_estimate_not_gold_standard"
+  },
+  {
+    "id": "R48",
+    "scores": {
+      "positioning": 13,
+      "achievements": 22,
+      "fit": 17,
+      "structure": 14,
+      "wording": 9,
+      "ats": 8,
+      "differentiation": 4
+    },
+    "total": 87,
+    "method": "primary_pre_registered_template_estimate_not_gold_standard"
+  },
+  {
+    "id": "R49",
+    "scores": {
+      "positioning": 13,
+      "achievements": 22,
+      "fit": 17,
+      "structure": 14,
+      "wording": 9,
+      "ats": 8,
+      "differentiation": 4
+    },
+    "total": 87,
+    "method": "primary_pre_registered_template_estimate_not_gold_standard"
+  },
+  {
+    "id": "R50",
+    "scores": {
+      "positioning": 10,
+      "achievements": 9,
+      "fit": 12,
+      "structure": 13,
+      "wording": 7,
+      "ats": 8,
+      "differentiation": 2
+    },
+    "total": 61,
+    "method": "primary_pre_registered_template_estimate_not_gold_standard"
+  }
+]

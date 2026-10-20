@@ -1,0 +1,10 @@
+{
+ "version":"v2-plus-ai-review",
+ "purpose":"按使用者要求檢查是否有AI生成痕跡；區分可證明的來源與可觀察的文風，禁止用文風推定作者。",
+ "provenance_status_values":["known_ai_from_generation_log","known_human_from_verified_history","ai_assisted_from_verified_history","indeterminate_from_text_only"],
+ "style_review":["列出模板式或可泛用於其他職務的原句","檢查抽象框架、術語與具體工作證據是否相連","檢查重複句型及形容詞是否妨礙理解","檢查誇大的責任語氣、因果與數字口徑","指出個人決策、交付物、範圍與限制等具體內容"],
+ "output_fields":["provenance_status","observed_style_risk_low_medium_high","quoted_evidence","alternative_explanations","editing_suggestion","authorship_confidence"],
+ "constraints":["文風風險分級是編輯判斷，不是AI生成概率","不宣稱部署過外部AI檢測器","不向第三方上傳個人履歷","AI使用本身不扣分，只有可觀察的模糊或誇大依既有维度處理，不重複扣分","僅有文字時來源預設無法判定，不輸出百分比"],
+ "synthetic_sample_validation":{"known_provenance":"50/50 model-generated, proven by this task generation process, not detected from prose","cannot_estimate":["human false-positive rate","specificity","balanced accuracy","mixed human/AI authorship detection"],"required_next_benchmark":"有可驗證來源的真人、純AI、人寫AI潤飾、AI寫人重編履歷；同語言、職類、長度，獨立持出及跨模型測試"},
+ "sources":[{"title":"Why AI-Generated Text Detection Fails: Evidence from Explainable AI Beyond Benchmark Accuracy","url":"https://arxiv.org/abs/2603.23146","year":2026,"status":"preprint; not a validation on Chinese resumes"},{"title":"Testing of Detection Tools for AI-Generated Text","url":"https://arxiv.org/abs/2306.15666","year":2023,"status":"published research; evaluated tools and datasets from that study, not current Chinese resume ground truth"}]
+}

@@ -1,0 +1,218 @@
+{
+  "metrics": {
+    "v1": {
+      "evidence_vague_mean_gap": 38.8,
+      "evidence_vague_pass": 10,
+      "jargon_mean_gain": -8,
+      "jargon_pass": 10,
+      "equivalent_mean_abs_gap": 1,
+      "equivalent_max_abs_gap": 1,
+      "equivalent_pass": 10,
+      "overlap_flag_keyword_count": 10,
+      "mean_total": 70.78
+    },
+    "v2": {
+      "evidence_vague_mean_gap": 43.9,
+      "evidence_vague_pass": 10,
+      "jargon_mean_gain": -3.2,
+      "jargon_pass": 10,
+      "equivalent_mean_abs_gap": 0,
+      "equivalent_max_abs_gap": 0,
+      "equivalent_pass": 10,
+      "overlap_flag_keyword_count": 10,
+      "mean_total": 72.6
+    },
+    "repeat_v1": {
+      "n": 10,
+      "median_abs_difference": 0.0,
+      "mean_abs_difference": 0.1,
+      "max_abs_difference": 1
+    },
+    "primary_secondary": {
+      "mean_absolute_total_difference": 5.94,
+      "note": "主模型為按設計版本預先給定的簡化估計，不是50份獨立盲評，也不是正確答案。"
+    }
+  },
+  "pairs": [
+    {
+      "version": "v1",
+      "family": 8,
+      "role": "資深專案經理",
+      "evidence_vague_gap": 36,
+      "jargon_gain": -8,
+      "equivalent_abs_gap": 1,
+      "overlap_flag_keyword": true
+    },
+    {
+      "version": "v1",
+      "family": 5,
+      "role": "資深業務經理",
+      "evidence_vague_gap": 39,
+      "jargon_gain": -8,
+      "equivalent_abs_gap": 1,
+      "overlap_flag_keyword": true
+    },
+    {
+      "version": "v1",
+      "family": 3,
+      "role": "資深人資專員",
+      "evidence_vague_gap": 38,
+      "jargon_gain": -8,
+      "equivalent_abs_gap": 1,
+      "overlap_flag_keyword": true
+    },
+    {
+      "version": "v1",
+      "family": 4,
+      "role": "資深行銷經理",
+      "evidence_vague_gap": 39,
+      "jargon_gain": -8,
+      "equivalent_abs_gap": 1,
+      "overlap_flag_keyword": true
+    },
+    {
+      "version": "v1",
+      "family": 6,
+      "role": "資深供應鏈規劃師",
+      "evidence_vague_gap": 39,
+      "jargon_gain": -8,
+      "equivalent_abs_gap": 1,
+      "overlap_flag_keyword": true
+    },
+    {
+      "version": "v1",
+      "family": 10,
+      "role": "資深法務專員",
+      "evidence_vague_gap": 39,
+      "jargon_gain": -8,
+      "equivalent_abs_gap": 1,
+      "overlap_flag_keyword": true
+    },
+    {
+      "version": "v1",
+      "family": 7,
+      "role": "資深資料分析師",
+      "evidence_vague_gap": 40,
+      "jargon_gain": -8,
+      "equivalent_abs_gap": 1,
+      "overlap_flag_keyword": true
+    },
+    {
+      "version": "v1",
+      "family": 1,
+      "role": "資深產品經理",
+      "evidence_vague_gap": 40,
+      "jargon_gain": -8,
+      "equivalent_abs_gap": 1,
+      "overlap_flag_keyword": true
+    },
+    {
+      "version": "v1",
+      "family": 2,
+      "role": "資深財務分析師",
+      "evidence_vague_gap": 39,
+      "jargon_gain": -8,
+      "equivalent_abs_gap": 1,
+      "overlap_flag_keyword": true
+    },
+    {
+      "version": "v1",
+      "family": 9,
+      "role": "資深客戶成功經理",
+      "evidence_vague_gap": 39,
+      "jargon_gain": -8,
+      "equivalent_abs_gap": 1,
+      "overlap_flag_keyword": true
+    },
+    {
+      "version": "v2",
+      "family": 8,
+      "role": "資深專案經理",
+      "evidence_vague_gap": 39,
+      "jargon_gain": -5,
+      "equivalent_abs_gap": 0,
+      "overlap_flag_keyword": true
+    },
+    {
+      "version": "v2",
+      "family": 5,
+      "role": "資深業務經理",
+      "evidence_vague_gap": 44,
+      "jargon_gain": -3,
+      "equivalent_abs_gap": 0,
+      "overlap_flag_keyword": true
+    },
+    {
+      "version": "v2",
+      "family": 3,
+      "role": "資深人資專員",
+      "evidence_vague_gap": 45,
+      "jargon_gain": -3,
+      "equivalent_abs_gap": 0,
+      "overlap_flag_keyword": true
+    },
+    {
+      "version": "v2",
+      "family": 4,
+      "role": "資深行銷經理",
+      "evidence_vague_gap": 45,
+      "jargon_gain": -3,
+      "equivalent_abs_gap": 0,
+      "overlap_flag_keyword": true
+    },
+    {
+      "version": "v2",
+      "family": 6,
+      "role": "資深供應鏈規劃師",
+      "evidence_vague_gap": 44,
+      "jargon_gain": -3,
+      "equivalent_abs_gap": 0,
+      "overlap_flag_keyword": true
+    },
+    {
+      "version": "v2",
+      "family": 10,
+      "role": "資深法務專員",
+      "evidence_vague_gap": 44,
+      "jargon_gain": -3,
+      "equivalent_abs_gap": 0,
+      "overlap_flag_keyword": true
+    },
+    {
+      "version": "v2",
+      "family": 7,
+      "role": "資深資料分析師",
+      "evidence_vague_gap": 45,
+      "jargon_gain": -3,
+      "equivalent_abs_gap": 0,
+      "overlap_flag_keyword": true
+    },
+    {
+      "version": "v2",
+      "family": 1,
+      "role": "資深產品經理",
+      "evidence_vague_gap": 45,
+      "jargon_gain": -3,
+      "equivalent_abs_gap": 0,
+      "overlap_flag_keyword": true
+    },
+    {
+      "version": "v2",
+      "family": 2,
+      "role": "資深財務分析師",
+      "evidence_vague_gap": 44,
+      "jargon_gain": -3,
+      "equivalent_abs_gap": 0,
+      "overlap_flag_keyword": true
+    },
+    {
+      "version": "v2",
+      "family": 9,
+      "role": "資深客戶成功經理",
+      "evidence_vague_gap": 44,
+      "jargon_gain": -3,
+      "equivalent_abs_gap": 0,
+      "overlap_flag_keyword": true
+    }
+  ]
+}
