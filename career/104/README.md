@@ -13,6 +13,7 @@
 | [`../review-panel/runs/2026-10-12-v75/report.md`](../review-panel/runs/2026-10-12-v75/report.md) | 現行版的盲審報告（v7.3 vs v7.5，打平）；v7.2 的完整審查在 [`../drafts/v7.2/08-hm-review.md`](../drafts/v7.2/08-hm-review.md)（逐句證據比對＋模擬人資／主管＋同儕比較） |
 | [`archive/`](archive/) | 已被取代的版本：`import.txt`、v4、v4.1、v5、v5.1、v5.2、v6、v6.1、v7、v7.1、`draft.md`（v3.1 md）及其審查。**只供對照，不得當內容來源** |
 | [`fields-spec.md`](fields-spec.md) | 104 履歷編輯頁欄位規格（必填、字數上限、格式限制、尚未驗證項目），原樣保存 |
+| [`content-spec-quill.md`](content-spec-quill.md) | **104 內容特化規格**（2026-10-20 本人提供）：Quill HTML 樣式、各欄位撰寫公式、技能 tag、管理責任欄位；範例只取格式 |
 | [`ui-notes.md`](ui-notes.md) | Claude in Chrome 探索 104 履歷編輯頁的欄位結構紀錄（2026Q3 版介面） |
 | [`chrome-playbook.md`](chrome-playbook.md) | 給 Claude in Chrome 的分段操作指令 |
 

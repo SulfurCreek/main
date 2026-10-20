@@ -23,7 +23,7 @@
 | 寫／潤中文履歷 | 現行稿（§3）＋ [`style/resume-voice-zh.md`](style/resume-voice-zh.md) ＋ [`library/decisions.md`](library/decisions.md) | [`style/anti-ai-ats.md`](style/anti-ai-ats.md) |
 | 寫自傳、轉職動機 | [`library/about-me.md`](library/about-me.md)（**編輯參考，不可給驗證者**）＋ [`library/profile.md`](library/profile.md) §7 | `.claude/skills/resume-craft/references/autobiography.md` |
 | 求職信、故事素材 | [`letters/README.md`](letters/README.md)、[`letters/story-bank.md`](letters/story-bank.md) | [`letters/log.md`](letters/log.md) |
-| 104 履歷欄位 | [`104/README.md`](104/README.md) → [`104/fields-spec.md`](104/fields-spec.md) | [`104/resume-104.md`](104/resume-104.md)、[`104/chrome-playbook.md`](104/chrome-playbook.md) |
+| 104 履歷欄位 | [`104/README.md`](104/README.md) → [`104/fields-spec.md`](104/fields-spec.md) → [`104/content-spec-quill.md`](104/content-spec-quill.md)（Quill HTML 與各欄撰寫規格；範例只取格式） | [`104/resume-104.md`](104/resume-104.md)、[`104/chrome-playbook.md`](104/chrome-playbook.md) |
 | 作品集／case study | [`portfolio/`](portfolio/)（內部版）、`portfolio/public/`（對外版） | [`site/`](site/)（網站助手專屬） |
 | 職缺與公司資料 | [`targets/README.md`](targets/README.md)、`targets/jobs.md`、`targets/companies.md` | [`review-panel/jd/routing.tsv`](review-panel/jd/routing.tsv)（每份職缺的分層） |
 | 看驗證結果、投遞優先序 | [`review-panel/HISTORY.md`](review-panel/HISTORY.md)、[`review-panel/opus-matrix.md`](review-panel/opus-matrix.md) | `review-panel/runs/<日期>-<版本>-*/`（單次結果） |
@@ -41,6 +41,8 @@
 | Codex 產出 | `drafts/codex/`（只有 Resume Writer 寫；Career Move 只讀取） |
 | Resume Gen 歷史封存 | `drafts/codex/archive/2026-10-20-resumegen/`（歷史 ZIP 全部原檔與後補對話；**僅供追溯，不是現行 facts、About Me 或投遞版**）；分類索引 `drafts/codex/wiki/`、`FILE_INDEX` 由 Codex 維護 |
 | 草稿慣例 | [`drafts/README.md`](drafts/README.md) |
+
+> **產出格式（2026-10-20 起）**：每次產生履歷只交雙欄 PDF＋104 特化版 md（見 `library/decisions.md` §20）。
 
 ## 4. 目錄速查
 
