@@ -30,6 +30,7 @@
 | 遇到〔待補〕或想問使用者 | [`library/open-questions.md`](library/open-questions.md)（問前先查） | Codex 的疑問寫 `drafts/codex/QUESTIONS.md` |
 | Resume Gen 原 ChatGPT 交接、歷史稿／PDF／對話追溯 | Codex 分類 wiki：`drafts/codex/wiki/README.md` | 逐檔索引：`drafts/codex/FILE_INDEX.md`、雜湊清單 `drafts/codex/FILE_INDEX.csv` |
 | Codex 內容編輯協作與交付 | Resume Writer 指令：`drafts/codex/AGENTS.md` | 接手核對 `drafts/codex/2026-10-20-conversation-reconciliation.md`、`drafts/codex/QUESTIONS.md` |
+| 潤飾 104 特化版草稿（Codex） | [`codex-skills/polish-104/SKILL.md`](codex-skills/polish-104/SKILL.md) | `drafts/v11/104-v11.md` |
 | 職能證據（F1–F15） | [`competency-framework.md`](competency-framework.md) → `wiki/F*.md`、`wiki/evidence-*.md` | — |
 
 ## 3. 現行稿與歷史稿
