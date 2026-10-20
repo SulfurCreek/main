@@ -16,3 +16,7 @@
 ## 104 內容潤飾稿
 
 - [104 v11 完整潤飾稿與修改紀錄](104-v11-polished.md)：依 polish-104 skill 處理，待 Career Move 核對，未自動取代現行稿。
+
+## 每輪 About Me 同步
+
+- [About Me 同步增補與給 Career Move 的指令](2026-10-20-about-me-sync.md)：管理案例、來源落差及常態同步授權；共用 About Me 實際寫入狀態見交接稿。
