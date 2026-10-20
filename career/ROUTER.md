@@ -4,6 +4,7 @@
 
 > 目的：不用掃資料夾就知道檔案在哪、該讀什麼。交接與歷史見 [`HANDOFF.md`](HANDOFF.md)；規則見 [`CLAUDE.md`](CLAUDE.md)。
 > 維護：Career Move（Claude）維護本檔；新增或搬動重要檔案時同步更新。Resume Writer（Codex）只讀。
+> Codex 的檔案只在 `origin/codex/resume-writer` 分支；Career Move 讀取用 `git show origin/codex/resume-writer:career/drafts/codex/<檔>`。
 > ⚠️ 個人職涯資料，不外流 HackMD；對外版本須抽象化公司內部名稱與數字。
 
 ## 1. 先看：誰能寫哪裡
@@ -27,6 +28,8 @@
 | 職缺與公司資料 | [`targets/README.md`](targets/README.md)、`targets/jobs.md`、`targets/companies.md` | [`review-panel/jd/routing.tsv`](review-panel/jd/routing.tsv)（每份職缺的分層） |
 | 看驗證結果、投遞優先序 | [`review-panel/HISTORY.md`](review-panel/HISTORY.md)、[`review-panel/opus-matrix.md`](review-panel/opus-matrix.md) | `review-panel/runs/<日期>-<版本>-*/`（單次結果） |
 | 遇到〔待補〕或想問使用者 | [`library/open-questions.md`](library/open-questions.md)（問前先查） | Codex 的疑問寫 `drafts/codex/QUESTIONS.md` |
+| Resume Gen 原 ChatGPT 交接、歷史稿／PDF／對話追溯 | Codex 分類 wiki：`drafts/codex/wiki/README.md` | 逐檔索引：`drafts/codex/FILE_INDEX.md`、雜湊清單 `drafts/codex/FILE_INDEX.csv` |
+| Codex 內容編輯協作與交付 | Resume Writer 指令：`drafts/codex/AGENTS.md` | 接手核對 `drafts/codex/2026-10-20-conversation-reconciliation.md`、`drafts/codex/QUESTIONS.md` |
 | 職能證據（F1–F15） | [`competency-framework.md`](competency-framework.md) → `wiki/F*.md`、`wiki/evidence-*.md` | — |
 
 ## 3. 現行稿與歷史稿
@@ -36,6 +39,7 @@
 | **現行投遞版** | `drafts/v11/`：`resume-v11.md`（文字來源）、`resume-v11.txt`、`聶崑淮_資深產品經理_履歷.pdf`（單欄，投遞用）、`…_雙欄.pdf`（僅寄信） |
 | 歷史稿 | `drafts/v7` … `drafts/v10.9`（v10.8 已被使用者否決，僅供查閱；不做版本間逐項比較） |
 | Codex 產出 | `drafts/codex/`（只有 Resume Writer 寫；Career Move 只讀取） |
+| Resume Gen 歷史封存 | `drafts/codex/archive/2026-10-20-resumegen/`（歷史 ZIP 全部原檔與後補對話；**僅供追溯，不是現行 facts、About Me 或投遞版**）；分類索引 `drafts/codex/wiki/`、`FILE_INDEX` 由 Codex 維護 |
 | 草稿慣例 | [`drafts/README.md`](drafts/README.md) |
 
 ## 4. 目錄速查
