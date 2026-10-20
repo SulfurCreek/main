@@ -8,6 +8,7 @@
 | :--- | :--- |
 | [`story-bank.md`](story-bank.md) | 可重複使用的段落素材：開場鉤子、成果證據（附來源）、動機、收尾，中英對照 |
 | [`log.md`](log.md) | 每封信的投遞紀錄：日期、公司、職缺、語言、檔案、結果 |
+| [`104/`](104/) | 104 自我推薦信（逐職缺）：`<code>-<公司>-draft.md` 草稿、`<code>-<公司>.md` 定稿；規則見 `../skills/104coverletter/SKILL.md` |
 | [`archive/`](archive/) | 寫好的信，一封一檔：`YYYY-MM-DD-公司-職稱-zh|en.md` |
 
 ## 規則

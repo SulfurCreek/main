@@ -152,3 +152,10 @@ v9.7 = v9.6 ＋ 使用者自寫自傳與各段 summary（16→10 個單位、業
 - 投遞檔：`drafts/v11.1/聶崑淮_資深產品經理_履歷_雙欄.pdf`（3 頁；PDF 抽字讀序與原稿不同屬雙欄預期，數字無遺漏）＋`drafts/v11/104-v11.md`（Codex 潤飾、Career Move 核對後採用）。
 - 驗證套件：`review-panel/handoff/v11.1/`（ALL-IN-ONE 給外部模型）。
 - **2026-10-20 v11.1 更新**：正文改採 Codex 潤飾稿（`codex/resume-writer` 1b1b60b，含新增帶人條列與自傳 AI 段帶人案例，七段結構不變），Career Move 核對後整合；雙欄 PDF、104 特化版（1111 經歷加「指導同仁」條列）、驗證套件 `handoff/v11.1/` 均依此重產。先前 v11.1 Opus／ChatGPT／Gemini 驗證結果屬前一個 v11.1 文字（無帶人條列）。
+
+## 22. 2026-10-20 104 自我推薦信與 skill 獨立
+
+- 開始寫 104 自我推薦信：做法同履歷（Claude 從 library 取材產草稿 → ChatGPT 潤飾 → Career Move 核對），但**逐職缺客製**，職缺由本人指定｜2026-10-20 對話
+- 寫法依本人提供的研究（`104/cover-letter-research.md`）：150–300 字、前 40 字破題、2–3 點場景＋行動＋結果、分級鉤子（主力職缺的產品觀察只能由本人提供）。
+- skill：`career/skills/104coverletter/`、`career/skills/104resume/`（104 履歷流程自 resume-craft 獨立）。放 `career/` 是因 `.claude/skills/` 新增須主幹納管（已提請求）。
+

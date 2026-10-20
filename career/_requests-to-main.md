@@ -17,3 +17,9 @@
 ---
 
 （其餘無待處理請求。已施作：resume-craft F1–F15、作品集雙軌、求職信、`portfolio-site`、個人線協作規則、104 履歷路由與 `tw-voice.md`、`resume-review-panel`、去 AI 感＋ATS 規範（主幹 `80bf591`）、V4 防禦型規則（主幹 `95e4223`）、resume-review-panel 審查清單 v2（主幹 `a6997eb`）。）
+
+## 2026-10-20 納管兩個個人線 skill：104coverletter、104resume
+
+- 想要：把 `career/skills/104coverletter/`、`career/skills/104resume/` 註冊為可用 skill（例如在 `.claude/skills/` 建同名目錄，或加入個人線自有 skill 清單讓本分支自行維護）。
+- 為什麼：本人要求獨立成 skill；本 session 依硬規則一不能新建 `.claude/skills/` 目錄。內容與 1111 主線無關，建議比照 resume-craft 歸個人線擁有。
+
