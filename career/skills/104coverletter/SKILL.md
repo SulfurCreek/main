@@ -64,3 +64,11 @@ description: 針對指定的 104 職缺產生「104 自我推薦信」草稿（2
 1. 讀潤飾稿：公司名、職缺名逐字相同；數字、日期、限定詞不變；禁用詞為 0；字數 200–400。
 2. 只把語意偏移處回報本人決定；本人同意後存 `career/letters/104/<code>-<公司>.md`（定稿），並在 `career/letters/log.md` 加一列（日期、公司、職缺、語言 zh、檔案、結果〔待填〕）。
 3. 新用到的成果句回填 `letters/story-bank.md`；本人新提供的動機或觀察先寫進 `library/`（about-me 或 facts）。
+
+## 6. 潤飾者是 Resume Writer（Codex）時
+
+- 讀草稿：`git show origin/claude/happy-lamport-ljis8c:career/letters/104/<code>-<公司>-draft.md`；依草稿檔頭規則與本檔 §2–§3 潤飾。
+- 寫到：`career/drafts/codex/letters/<code>-<公司>-polished.md`（整封＋檔末〈修改紀錄〉＋字數／行數）；推 `codex/resume-writer`。
+- 不改：公司名、職缺名、數字、日期、限定詞、條列點數；不新增事實或對公司的觀察。事實疑問寫 `drafts/codex/QUESTIONS.md`。
+- 交付後告訴本人檔名；Career Move 依 §5 核對、定稿。
+
