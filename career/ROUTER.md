@@ -38,7 +38,7 @@
 
 | 項目 | 位置 |
 | :-- | :-- |
-| **現行投遞版** | `drafts/v11.1/聶崑淮_資深產品經理_履歷_雙欄.pdf`（文字來源 `resume-v11.1.md`）＋`drafts/v11/104-v11.md`；前版 `drafts/v11/`：`resume-v11.md`（文字來源）、`resume-v11.txt`、`聶崑淮_資深產品經理_履歷.pdf`（單欄，投遞用）、`…_雙欄.pdf`（僅寄信）、`104-v11.md`（104 特化版，給填表 agent） |
+| **現行投遞版** | `drafts/v11.1/聶崑淮_資深產品經理_履歷_雙欄.pdf`（文字來源 `resume-v11.1.md`）＋`drafts/v11.1/104-v11.1.md`；前版 `drafts/v11/`：`resume-v11.md`（文字來源）、`resume-v11.txt`、`聶崑淮_資深產品經理_履歷.pdf`（單欄，投遞用）、`…_雙欄.pdf`（僅寄信）、`104-v11.md`（104 特化版，給填表 agent） |
 | 歷史稿 | `drafts/v7` … `drafts/v10.9`（v10.8 已被使用者否決，僅供查閱；不做版本間逐項比較） |
 | Codex 產出 | `drafts/codex/`（只有 Resume Writer 寫；Career Move 只讀取） |
 | Resume Gen 歷史封存 | `drafts/codex/archive/2026-10-20-resumegen/`（歷史 ZIP 全部原檔與後補對話；**僅供追溯，不是現行 facts、About Me 或投遞版**）；分類索引 `drafts/codex/wiki/`、`FILE_INDEX` 由 Codex 維護 |
