@@ -12,3 +12,7 @@
 ## 新收到的編輯素材（待 Career Move 整合，非第二套 SSOT）
 
 - [2026-10-20 管理案例：指導同仁完成類別對照](2026-10-20-management-case-handoff.md)
+
+## 104 內容潤飾稿
+
+- [104 v11 完整潤飾稿與修改紀錄](104-v11-polished.md)：依 polish-104 skill 處理，待 Career Move 核對，未自動取代現行稿。
