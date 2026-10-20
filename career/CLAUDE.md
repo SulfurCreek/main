@@ -60,6 +60,17 @@ Enforced by `scripts/guard_career_scope.sh` (PreToolUse hook, this branch only; 
 - 推送前 `git pull --rebase origin claude/happy-lamport-ljis8c`，禁止 force push，commit 前綴 `career:`。
 - 雲端 session 之間傳不了訊息：交接完成後在回報最後一行寫「請到作品集網站助手說：請看 `career/portfolio/public/STATUS.md`」，由使用者轉達。
 
+## 🤝 協作：Resume Writer（OpenAI Codex，2026-10-20 起）
+
+個人線第三個協作者，**不是 Claude Code**，是文字編輯者。規則：**`wiki/personal_line_collab.md` §7**。重點：
+
+- **事實唯一來源是 `library/`**（你維護）；它只把事實寫順、**不新增事實**。
+- **邊界**：它只讀 `career/`、只寫 `career/drafts/codex/`，用自己的分支 `codex/resume-writer`，不推 `main`、不推本分支。**你不要寫 `drafts/codex/`。**
+- **它的疑問在 `drafts/codex/QUESTIONS.md`**：你查證後更新 `library/`（附日期與來源），把答覆告訴使用者，由使用者轉達。
+- **取用成果只讀取、不整支合併**：`git fetch origin codex/resume-writer`，再 `git checkout origin/codex/resume-writer -- career/drafts/codex` 取出來看；採用哪份由使用者決定，採用的內容由你納入自己的檔案。
+- **不得在任何 `CLAUDE.md` 用 `@AGENTS.md` 引用它的指示檔**（會把 Codex 規則帶進本 session）。
+- commit 前綴 `career:`。
+
 ## 🧭 履歷平台路由：104 與 Cake 不要混用
 
 | 任務 | 讀這裡 | 備註 |

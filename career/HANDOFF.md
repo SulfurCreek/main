@@ -15,6 +15,8 @@
 - **不外流**：`career/` 內容絕不寫進 HackMD；對外版本抽象化 1111 內部名稱（API 名、欄位名、權限代碼、廠商／合作對象名稱）。
 - 護欄 `scripts/guard_career_scope.sh` 只在本分支生效。這些規則在 2026-09-16 由使用者下達，前任曾越界（刪 `hackmd-api` 空殼、改根 `CLAUDE.md`），已還原。
 
+- **協作者：Resume Writer（Codex，2026-10-20 起）**——只寫 `drafts/codex/`（自己的分支 `codex/resume-writer`），事實依 `library/`；疑問在 `drafts/codex/QUESTIONS.md`，查證後更新 library 並答覆使用者。取用成果只讀取不合併，細節見 `CLAUDE.md` 協作段與 `wiki/personal_line_collab.md` §7。
+
 ## 2. 工作慣例（使用者已確認過的）
 
 | 慣例 | 內容 |
