@@ -1,0 +1,302 @@
+[
+  {
+    "id": "R01",
+    "family": 8,
+    "variant": "overlap",
+    "role": "資深專案經理"
+  },
+  {
+    "id": "R02",
+    "family": 5,
+    "variant": "vague",
+    "role": "資深業務經理"
+  },
+  {
+    "id": "R03",
+    "family": 3,
+    "variant": "vague",
+    "role": "資深人資專員"
+  },
+  {
+    "id": "R04",
+    "family": 4,
+    "variant": "vague",
+    "role": "資深行銷經理"
+  },
+  {
+    "id": "R05",
+    "family": 6,
+    "variant": "plain",
+    "role": "資深供應鏈規劃師"
+  },
+  {
+    "id": "R06",
+    "family": 4,
+    "variant": "evidence",
+    "role": "資深行銷經理"
+  },
+  {
+    "id": "R07",
+    "family": 3,
+    "variant": "jargon",
+    "role": "資深人資專員"
+  },
+  {
+    "id": "R08",
+    "family": 10,
+    "variant": "vague",
+    "role": "資深法務專員"
+  },
+  {
+    "id": "R09",
+    "family": 7,
+    "variant": "vague",
+    "role": "資深資料分析師"
+  },
+  {
+    "id": "R10",
+    "family": 1,
+    "variant": "vague",
+    "role": "資深產品經理"
+  },
+  {
+    "id": "R11",
+    "family": 2,
+    "variant": "evidence",
+    "role": "資深財務分析師"
+  },
+  {
+    "id": "R12",
+    "family": 5,
+    "variant": "overlap",
+    "role": "資深業務經理"
+  },
+  {
+    "id": "R13",
+    "family": 2,
+    "variant": "jargon",
+    "role": "資深財務分析師"
+  },
+  {
+    "id": "R14",
+    "family": 3,
+    "variant": "plain",
+    "role": "資深人資專員"
+  },
+  {
+    "id": "R15",
+    "family": 2,
+    "variant": "vague",
+    "role": "資深財務分析師"
+  },
+  {
+    "id": "R16",
+    "family": 5,
+    "variant": "jargon",
+    "role": "資深業務經理"
+  },
+  {
+    "id": "R17",
+    "family": 7,
+    "variant": "evidence",
+    "role": "資深資料分析師"
+  },
+  {
+    "id": "R18",
+    "family": 2,
+    "variant": "overlap",
+    "role": "資深財務分析師"
+  },
+  {
+    "id": "R19",
+    "family": 10,
+    "variant": "overlap",
+    "role": "資深法務專員"
+  },
+  {
+    "id": "R20",
+    "family": 6,
+    "variant": "overlap",
+    "role": "資深供應鏈規劃師"
+  },
+  {
+    "id": "R21",
+    "family": 7,
+    "variant": "overlap",
+    "role": "資深資料分析師"
+  },
+  {
+    "id": "R22",
+    "family": 7,
+    "variant": "jargon",
+    "role": "資深資料分析師"
+  },
+  {
+    "id": "R23",
+    "family": 4,
+    "variant": "plain",
+    "role": "資深行銷經理"
+  },
+  {
+    "id": "R24",
+    "family": 4,
+    "variant": "overlap",
+    "role": "資深行銷經理"
+  },
+  {
+    "id": "R25",
+    "family": 2,
+    "variant": "plain",
+    "role": "資深財務分析師"
+  },
+  {
+    "id": "R26",
+    "family": 8,
+    "variant": "jargon",
+    "role": "資深專案經理"
+  },
+  {
+    "id": "R27",
+    "family": 10,
+    "variant": "evidence",
+    "role": "資深法務專員"
+  },
+  {
+    "id": "R28",
+    "family": 9,
+    "variant": "plain",
+    "role": "資深客戶成功經理"
+  },
+  {
+    "id": "R29",
+    "family": 4,
+    "variant": "jargon",
+    "role": "資深行銷經理"
+  },
+  {
+    "id": "R30",
+    "family": 5,
+    "variant": "plain",
+    "role": "資深業務經理"
+  },
+  {
+    "id": "R31",
+    "family": 8,
+    "variant": "plain",
+    "role": "資深專案經理"
+  },
+  {
+    "id": "R32",
+    "family": 6,
+    "variant": "jargon",
+    "role": "資深供應鏈規劃師"
+  },
+  {
+    "id": "R33",
+    "family": 5,
+    "variant": "evidence",
+    "role": "資深業務經理"
+  },
+  {
+    "id": "R34",
+    "family": 9,
+    "variant": "vague",
+    "role": "資深客戶成功經理"
+  },
+  {
+    "id": "R35",
+    "family": 8,
+    "variant": "vague",
+    "role": "資深專案經理"
+  },
+  {
+    "id": "R36",
+    "family": 9,
+    "variant": "overlap",
+    "role": "資深客戶成功經理"
+  },
+  {
+    "id": "R37",
+    "family": 9,
+    "variant": "evidence",
+    "role": "資深客戶成功經理"
+  },
+  {
+    "id": "R38",
+    "family": 3,
+    "variant": "evidence",
+    "role": "資深人資專員"
+  },
+  {
+    "id": "R39",
+    "family": 10,
+    "variant": "jargon",
+    "role": "資深法務專員"
+  },
+  {
+    "id": "R40",
+    "family": 6,
+    "variant": "evidence",
+    "role": "資深供應鏈規劃師"
+  },
+  {
+    "id": "R41",
+    "family": 3,
+    "variant": "overlap",
+    "role": "資深人資專員"
+  },
+  {
+    "id": "R42",
+    "family": 1,
+    "variant": "overlap",
+    "role": "資深產品經理"
+  },
+  {
+    "id": "R43",
+    "family": 9,
+    "variant": "jargon",
+    "role": "資深客戶成功經理"
+  },
+  {
+    "id": "R44",
+    "family": 7,
+    "variant": "plain",
+    "role": "資深資料分析師"
+  },
+  {
+    "id": "R45",
+    "family": 8,
+    "variant": "evidence",
+    "role": "資深專案經理"
+  },
+  {
+    "id": "R46",
+    "family": 1,
+    "variant": "jargon",
+    "role": "資深產品經理"
+  },
+  {
+    "id": "R47",
+    "family": 10,
+    "variant": "plain",
+    "role": "資深法務專員"
+  },
+  {
+    "id": "R48",
+    "family": 1,
+    "variant": "plain",
+    "role": "資深產品經理"
+  },
+  {
+    "id": "R49",
+    "family": 1,
+    "variant": "evidence",
+    "role": "資深產品經理"
+  },
+  {
+    "id": "R50",
+    "family": 6,
+    "variant": "vague",
+    "role": "資深供應鏈規劃師"
+  }
+]

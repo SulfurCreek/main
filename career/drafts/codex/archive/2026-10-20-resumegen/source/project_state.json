@@ -1,0 +1,39 @@
+{
+  "schema_version": 1,
+  "project": "Resume Gen",
+  "snapshot_created_at": "2026-10-20T15:03:48+08:00",
+  "migration_status": "snapshot_only_not_integrated_into_receiving_repository",
+  "active_resume": null,
+  "active_resume_status": "not_selected_in_this_packaging_request",
+  "last_edited_text_observed": {
+    "version": "v10.10",
+    "path": "archive/workspace/resume-v10.10-draft.md",
+    "status": "draft_not_final",
+    "sha256": "d47d84b2f27f62904546721210b455a0cb08f2388413677ede6181345ac9bb03"
+  },
+  "highest_version_pdf_found": {
+    "version": "v10.9",
+    "path": "pdf/resume-v10.9-twocol.pdf",
+    "is_v10_10_render": false
+  },
+  "v10_10_pdf_found": false,
+  "about_me": {
+    "path": "reference/context/about-me-resume-gen.md",
+    "source_revision_label": "第四版",
+    "source_updated_at": "2026-10-19T15:33:00+08:00",
+    "modified_during_handoff": false
+  },
+  "pending_editorial_requirements": "handoff/07_editorial_preservation.md",
+  "existing_skill_modified_during_handoff": false,
+  "receiving_repository": null,
+  "claude_code_local_files_received": false,
+  "conversation_export_received": false,
+  "conversation_export_directory": "conversations",
+  "collaboration_roles_document": "handoff/08_collaboration_roles.md",
+  "codex_primary_role": "content_editing_and_meaning_preservation",
+  "claude_code_primary_role": "confirmed_source_integration_versioning_and_pdf_production",
+  "current_single_writer": null,
+  "pdf_count": 19,
+  "independent_validation_performed": false,
+  "validation_history_directory": "archive/historical_validation"
+}

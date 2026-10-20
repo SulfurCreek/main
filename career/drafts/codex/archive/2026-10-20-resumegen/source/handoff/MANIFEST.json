@@ -1,0 +1,1348 @@
+{
+  "created_at": "2026-10-20T15:03:48+08:00",
+  "files": [
+    {
+      "path": "AGENTS.md",
+      "size_bytes": 2412,
+      "sha256": "3a3d0b65adde24db9963c763c9a56c744797d7ac157b2e69ef95643abe605b2f",
+      "kind": "generated_handoff_document"
+    },
+    {
+      "path": "README.md",
+      "size_bytes": 3052,
+      "sha256": "4a026e9404cac35758d7b64e91ee65cf37ea28bc96e303055f14ba7d58ed9921",
+      "kind": "generated_handoff_document"
+    },
+    {
+      "path": "archive/historical_validation/README.md",
+      "size_bytes": 739,
+      "sha256": "d197ef93f5508cfa2a5db88a98343166691baca0e36303d53ead6e5f0ff0abcc",
+      "kind": "generated_handoff_document"
+    },
+    {
+      "path": "archive/historical_validation/library/50份品質梯度驗證包.zip",
+      "size_bytes": 52670,
+      "sha256": "13a6d74e59fc4cf3535adc9a2de0ad0ce3c558a28c440473db90964b6210d433",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "archive/historical_validation/library/resume-validation-15-jobs-2026-10-17-1709.md",
+      "size_bytes": 529312,
+      "sha256": "95f517f1d43cc19f16e2ce2054d70f4394f949b09d916880820e049f2a801796",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "archive/historical_validation/library/resume-validation-15-jobs-v10.2-2026-10-17.md",
+      "size_bytes": 450179,
+      "sha256": "e4103e5cc0e2e64e0b66e8e6b996e30d011f9974b7766de1ac791adcd72c28ca",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "archive/historical_validation/library/resume-validation-15-jobs-v10.3-2026-10-18.md",
+      "size_bytes": 569137,
+      "sha256": "b094edba6251d4c66bc07dbaf74918f9759c91264935889cf0cbfad1e425d5f8",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "archive/historical_validation/library/resume-validation-8.1-vs-9.4-2026-10-14.md",
+      "size_bytes": 358505,
+      "sha256": "04b36393e49387cd63361b3a50aa315c49cef9e53ffb4a22686907f144b7eea7",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "archive/historical_validation/library/resume-validation-K-vs-M-15-jobs-2026-10-15.md",
+      "size_bytes": 978831,
+      "sha256": "797a421978cd174784602b7c29965ebd782f7bbabba26abef629091079677dd5",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "archive/historical_validation/library/resume-validation-single-15-jobs-2026-10-16-2005.md",
+      "size_bytes": 575398,
+      "sha256": "651c9dc81cb80bda6e7dfdbd43bb16bac2c6b8285064a46b7b439d5d1b087352",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "archive/historical_validation/library/resume-validation-v9.7-15-jobs-2026-10-16.md",
+      "size_bytes": 463925,
+      "sha256": "c631f980e36f834423fd7c2898f577669cb5a05481f43e116a296bcc5bfc1433",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "archive/historical_validation/library/validation-kit-single-15jd-v10.3.md",
+      "size_bytes": 63397,
+      "sha256": "7be3052b8ee501ddb634874fd0da648aa07cb7416941763fbd069367ea893f62",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "archive/historical_validation/library/validation-kit-single-15jd-v9.7.md",
+      "size_bytes": 61813,
+      "sha256": "9093c9c757bd3654b2ba6fc121443e7c29aab2bfd2ba9252a9f2c91e3ab3cbdf",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "archive/historical_validation/skill_snapshot/validate-resume-scoring/SKILL.md",
+      "size_bytes": 3689,
+      "sha256": "02b2a792301dfeb113789f656357761f6e41bbb23bd80b0abfff973e7259e4ac",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "archive/historical_validation/skill_snapshot/validate-resume-scoring/agents/openai.yaml",
+      "size_bytes": 457,
+      "sha256": "a5202daa793470f4e716754152c4e2024f8202dc25880c5b1596061c7cee09c5",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "archive/historical_validation/skill_snapshot/validate-resume-scoring/assets/icon.svg",
+      "size_bytes": 420,
+      "sha256": "e9301497fa98ef56aaca7ede0857b9a18dc06c34040f0679c609a6bf49b1d38b",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "archive/historical_validation/skill_snapshot/validate-resume-scoring/references/level-spectrum.md",
+      "size_bytes": 2023,
+      "sha256": "41540791422624281102928514921fe010e3a3f6393ec75c8f47e83ad910e9ae",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "archive/historical_validation/skill_snapshot/validate-resume-scoring/references/validation-design.md",
+      "size_bytes": 2491,
+      "sha256": "304a6fc1b030106aef0cf97dde861cc18ebf8a4e4a3ecdc3f1c424ed4fc06943",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "archive/historical_validation/skill_snapshot/validate-resume-scoring/scripts/evaluate_calibration.py",
+      "size_bytes": 2364,
+      "sha256": "a3329a38604218df0b27ef5ea30696013f2e4713bb4c5fed2eec6a66837f3277",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "archive/historical_validation/workspace/outputs/claude-resume-scoring-improvement-v4.md",
+      "size_bytes": 23131,
+      "sha256": "dcff942221c2a59759e941e7d9056d1b09d33bbbb49d1e60bf74134da4cab8fd",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "archive/historical_validation/workspace/outputs/resume-v9.5-validation-v4.2.md",
+      "size_bytes": 15736,
+      "sha256": "de286840dbdb8be69f197556ebae64598b9760a471d9ff572879a8ff37ec9d2a",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "archive/historical_validation/workspace/outputs/v4.1/claude-resume-scoring-improvement-v4.md",
+      "size_bytes": 53679,
+      "sha256": "cdcef24033955d2116418a26ed434c99da07a38126d431fac7d939201cd8b981",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "archive/historical_validation/workspace/outputs/v4.2/claude-resume-scoring-improvement-v4.2.md",
+      "size_bytes": 109394,
+      "sha256": "6d4c1879ecfe3c674e56e94f4e04d155e7a266c224cc2df9d0b6336a97045d95",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "archive/historical_validation/workspace/outputs/v4.3/claude-resume-scoring-improvement-v4.3.md",
+      "size_bytes": 110295,
+      "sha256": "7c2e76d75b1d1e959897c561959cf3612b0e1c041f5e8fab192cf786d1da2cf4",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "archive/historical_validation/workspace/resume_calibration/50份虛構履歷.md",
+      "size_bytes": 87959,
+      "sha256": "299a8cb21c764937ec4cd9afd083b48605d039dca885823bf3c547b5b224e16b",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "archive/historical_validation/workspace/resume_calibration/ai_review_protocol.json",
+      "size_bytes": 2023,
+      "sha256": "be6d796095aa10120b975c28802344695d977d02ab1d85fe161ad6a89d2c65bc",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "archive/historical_validation/workspace/resume_calibration/analyze.py",
+      "size_bytes": 13166,
+      "sha256": "13da8eecc96a5eb2885e9a5074bcc3ae25215ad8d8cc558db4bebe790423e259",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "archive/historical_validation/workspace/resume_calibration/blind/R01.md",
+      "size_bytes": 1884,
+      "sha256": "8329b824bd841787eb72b7a3a3c3d341528e047cea5e3a079bd8be07d0532abd",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "archive/historical_validation/workspace/resume_calibration/blind/R02.md",
+      "size_bytes": 1534,
+      "sha256": "0e6b2f88763d20fa71c8406cca43ce4dc3f69a64426daf52e75f5b9ea94310eb",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "archive/historical_validation/workspace/resume_calibration/blind/R03.md",
+      "size_bytes": 1482,
+      "sha256": "d80ad691b8334afcc7fdb92efbdde710f00875df01e94b09cf09bbf50463867f",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "archive/historical_validation/workspace/resume_calibration/blind/R04.md",
+      "size_bytes": 1510,
+      "sha256": "93566ce88894ac12a03fd5a8a45685603e537a280a51478a531c649e5c814fe8",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "archive/historical_validation/workspace/resume_calibration/blind/R05.md",
+      "size_bytes": 1800,
+      "sha256": "cf05328564b9ebe233a16f4bd845e1272647ef82e526ad75ca99ab133fc15c0b",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "archive/historical_validation/workspace/resume_calibration/blind/R06.md",
+      "size_bytes": 1853,
+      "sha256": "d128d1d28e15fffbbdff2827540f2959db8e1c88cbdcfc0370183fd1948ea2d1",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "archive/historical_validation/workspace/resume_calibration/blind/R07.md",
+      "size_bytes": 1611,
+      "sha256": "9cede801c877b155fb50f58ecf981541996fbaeb0198d6c9f544d08e39660df4",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "archive/historical_validation/workspace/resume_calibration/blind/R08.md",
+      "size_bytes": 1520,
+      "sha256": "3107a0860921f37be02c3af2d974737329481f68ac0bda402f65447d75646989",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "archive/historical_validation/workspace/resume_calibration/blind/R09.md",
+      "size_bytes": 1527,
+      "sha256": "e694809994cd4b60234fc1704b1e46a66c96ae9f0e366caeffcec27cfe77f900",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "archive/historical_validation/workspace/resume_calibration/blind/R10.md",
+      "size_bytes": 1528,
+      "sha256": "4281b43cfb5b70416a893e312a02b3198e704745a70d43b207b207e8af44f413",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "archive/historical_validation/workspace/resume_calibration/blind/R11.md",
+      "size_bytes": 1855,
+      "sha256": "b657eb5dfa6c828c70f88685736a32bdf485f4ae9504d7d50ce0bfcf5e6f32ae",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "archive/historical_validation/workspace/resume_calibration/blind/R12.md",
+      "size_bytes": 1852,
+      "sha256": "5cf97204c6b39c2d2808c3d603b838d5c6931f0661937d6659678a17fdedae8e",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "archive/historical_validation/workspace/resume_calibration/blind/R13.md",
+      "size_bytes": 1639,
+      "sha256": "00c104ebd9dfcfaaaaa41169c618864459c65036218e5c0da435a43cf576a3a0",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "archive/historical_validation/workspace/resume_calibration/blind/R14.md",
+      "size_bytes": 1779,
+      "sha256": "af51acb4dc24bf3c95835d6fee1522d8747dd131204122e0b74e47fdfb927a4d",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "archive/historical_validation/workspace/resume_calibration/blind/R15.md",
+      "size_bytes": 1513,
+      "sha256": "acc9d8408425f2177e557d93f16feceb2b2b92731f03f2a4bbfbfaf1265dfcb0",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "archive/historical_validation/workspace/resume_calibration/blind/R16.md",
+      "size_bytes": 1663,
+      "sha256": "58338b347ed66ee08e690314b9b72e313ee3a5a2dd3367cab65af5da4e0d5ae0",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "archive/historical_validation/workspace/resume_calibration/blind/R17.md",
+      "size_bytes": 1927,
+      "sha256": "2e5c3e90eeb1dfbcfb14ecec14cf44f92324379b897f0a17c4598005634b3354",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "archive/historical_validation/workspace/resume_calibration/blind/R18.md",
+      "size_bytes": 1855,
+      "sha256": "536855881422e54d04e82369a6691feddd3e501cd756b5b92ed49c3a0d6fd6d8",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "archive/historical_validation/workspace/resume_calibration/blind/R19.md",
+      "size_bytes": 1867,
+      "sha256": "d3a7ad84e8f5dbcf6759c5f3be2ba4f88d4f4d90deaab6b06e566ec8a47414cc",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "archive/historical_validation/workspace/resume_calibration/blind/R20.md",
+      "size_bytes": 1812,
+      "sha256": "65ac33bc822310dde56cd217dfb5fc701fc934c7f1bf8072ec9add1ed1476381",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "archive/historical_validation/workspace/resume_calibration/blind/R21.md",
+      "size_bytes": 1927,
+      "sha256": "72970a7a9f3deb23225d4d5fcdff5ceee8499e9aa8463b802fa4128df5e68334",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "archive/historical_validation/workspace/resume_calibration/blind/R22.md",
+      "size_bytes": 1653,
+      "sha256": "0c0e3d347576896af5dc37bc32fb2cff3033cf1f829e44b0ff8beaf488b4ccb4",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "archive/historical_validation/workspace/resume_calibration/blind/R23.md",
+      "size_bytes": 1841,
+      "sha256": "6d3079df78fd6331d109297c56c32ecd3ff5fad7a7c1a243ae5367b737dff231",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "archive/historical_validation/workspace/resume_calibration/blind/R24.md",
+      "size_bytes": 1853,
+      "sha256": "b18a23fb03ce454d7269977001a0779c728e690fb1ce49012d5b7cf3f1e4e27a",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "archive/historical_validation/workspace/resume_calibration/blind/R25.md",
+      "size_bytes": 1843,
+      "sha256": "f174d012554f6197c6f589770128ffdc45e8550cd6ebd0b5fa3bd9fdec3542e6",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "archive/historical_validation/workspace/resume_calibration/blind/R26.md",
+      "size_bytes": 1670,
+      "sha256": "b0ee9d4c3af7e6ac494dfb93fda8de298780e8010664a9337322648acb82a344",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "archive/historical_validation/workspace/resume_calibration/blind/R27.md",
+      "size_bytes": 1867,
+      "sha256": "1734633dc778a53956c4853cad2555a09812e48677dc95c2550c1e70834703f7",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "archive/historical_validation/workspace/resume_calibration/blind/R28.md",
+      "size_bytes": 1824,
+      "sha256": "ac827bc06194928e5e87fe115b1ca7a9162e0114482b22f79ec3c94ecb1ea9cd",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "archive/historical_validation/workspace/resume_calibration/blind/R29.md",
+      "size_bytes": 1639,
+      "sha256": "369951182887e77b9e73eac4434d90f3efcc4bb4d123cf30162a3f977bba38d3",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "archive/historical_validation/workspace/resume_calibration/blind/R30.md",
+      "size_bytes": 1840,
+      "sha256": "8ce79d4d6ac0400b0d6abdb6a6e6b2db6a9bdbafbb3e459a9eb4f658517e4095",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "archive/historical_validation/workspace/resume_calibration/blind/R31.md",
+      "size_bytes": 1872,
+      "sha256": "3f4bfcf6900a0091fdaadb72400acbc5bc193a42315b5cfd652ae53a2f947b2d",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "archive/historical_validation/workspace/resume_calibration/blind/R32.md",
+      "size_bytes": 1649,
+      "sha256": "c48aab8a2c9b1738eafedb6693ea9b104162ef835dd674b21f6d781c70200b06",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "archive/historical_validation/workspace/resume_calibration/blind/R33.md",
+      "size_bytes": 1852,
+      "sha256": "5ae5c5a4ee4e9a9ddc07128a41101e62f95ee05bc22a62f6674f7b826eef14c7",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "archive/historical_validation/workspace/resume_calibration/blind/R34.md",
+      "size_bytes": 1544,
+      "sha256": "b2ae459122e9e0e899a862eb258526cd174e6ed9ad8a4e1d2eb0e26317a093fe",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "archive/historical_validation/workspace/resume_calibration/blind/R35.md",
+      "size_bytes": 1541,
+      "sha256": "9ac3b17bb79b12d16085d157b11c82d84fc3d7e5eb68f8c5cb301af8616032e7",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "archive/historical_validation/workspace/resume_calibration/blind/R36.md",
+      "size_bytes": 1836,
+      "sha256": "80a39a2619694a4da826745226c6405e7251dd62730456b96da468bca2f2a112",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "archive/historical_validation/workspace/resume_calibration/blind/R37.md",
+      "size_bytes": 1836,
+      "sha256": "e69977649ded7a7d9a655e1193fb209e882c92d696dc5c975236d92156e81769",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "archive/historical_validation/workspace/resume_calibration/blind/R38.md",
+      "size_bytes": 1791,
+      "sha256": "3860b4683f7c4b4b6fd62e0a995da84d04f43f1eb0fc5de93b2624fe8f145dba",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "archive/historical_validation/workspace/resume_calibration/blind/R39.md",
+      "size_bytes": 1649,
+      "sha256": "163afc88c56aaffb0ca849523a78ee464c56b35208bfbfe53ddc389790c67006",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "archive/historical_validation/workspace/resume_calibration/blind/R40.md",
+      "size_bytes": 1812,
+      "sha256": "b7844e72be7370cb2192dfc702c065201c61aa7a79e0e77662e82d39f9be44c2",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "archive/historical_validation/workspace/resume_calibration/blind/R41.md",
+      "size_bytes": 1791,
+      "sha256": "95ab9565e5acc79201751e9cf65a69bce3cccc17fe7a47c4352a8a6ca1a6abb4",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "archive/historical_validation/workspace/resume_calibration/blind/R42.md",
+      "size_bytes": 1905,
+      "sha256": "afd7af0e1f5885ff95f8664a1fe21681f641f221fb9a63ef06bffce9d6b547d0",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "archive/historical_validation/workspace/resume_calibration/blind/R43.md",
+      "size_bytes": 1667,
+      "sha256": "d5b99d66c6ae9e03779fa25466f099e9b5e652d3de868c56f027052c75153a5a",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "archive/historical_validation/workspace/resume_calibration/blind/R44.md",
+      "size_bytes": 1915,
+      "sha256": "b999ad45312127e35c711d35d9d30536681147318197d87e96cc0ffcd732a448",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "archive/historical_validation/workspace/resume_calibration/blind/R45.md",
+      "size_bytes": 1884,
+      "sha256": "9ffa65b2b869c46f055b196e936b82bae65b789ba25fc6bccb0a6a0db534fefb",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "archive/historical_validation/workspace/resume_calibration/blind/R46.md",
+      "size_bytes": 1657,
+      "sha256": "2a30153e7c846bdb480bdf6c4ce3d6ad9f96aa0d2c917082d0f571cac299ad55",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "archive/historical_validation/workspace/resume_calibration/blind/R47.md",
+      "size_bytes": 1855,
+      "sha256": "0c00b12cdb4b6b507334754515c041a5bf5b032e40f8e660095f77c9df474e98",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "archive/historical_validation/workspace/resume_calibration/blind/R48.md",
+      "size_bytes": 1893,
+      "sha256": "f3d1f67a36756c5d07f344c803ae9dae08b8c7c93f49c2becf21a42d00355dae",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "archive/historical_validation/workspace/resume_calibration/blind/R49.md",
+      "size_bytes": 1905,
+      "sha256": "3d585f101b6c08152aa1c5a9229fa3b0ae9898bdc66e9bbcfbffc071d10fbf14",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "archive/historical_validation/workspace/resume_calibration/blind/R50.md",
+      "size_bytes": 1526,
+      "sha256": "aadf84dc6826975a96900ddfe53df6ff4fa9e0ef8e115e4ba6806876f1bd684b",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "archive/historical_validation/workspace/resume_calibration/blind/resumes.json",
+      "size_bytes": 91650,
+      "sha256": "e59ab13c049574c1b079e74037d11ab70496400f5167ef7a6e793a106b86bd7e",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "archive/historical_validation/workspace/resume_calibration/blind/rubric_v1.json",
+      "size_bytes": 1046,
+      "sha256": "2cb3562dd279a354da8f580bdcbc999e8684a8d58f3cd255749b5178f3976c93",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "archive/historical_validation/workspace/resume_calibration/blind/rubric_v2.json",
+      "size_bytes": 2808,
+      "sha256": "ec42c26d7b9ff70c813c09ed855659ace3ad8ff51f5f7b3cfdd96b93cd20dc3f",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "archive/historical_validation/workspace/resume_calibration/generate.py",
+      "size_bytes": 11854,
+      "sha256": "7539eb3138786aa776776fafdcb7940e5fceeb3d7a5e8961b2a1620c2502dca0",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "archive/historical_validation/workspace/resume_calibration/manifest.json",
+      "size_bytes": 5889,
+      "sha256": "0244a18f888888eca5d7d14f273121e9c64a2c01a0b86294518dfdf87576ffdb",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "archive/historical_validation/workspace/resume_calibration/metrics.json",
+      "size_bytes": 5326,
+      "sha256": "ae18c0bdcbb6d1cd85ceb39314651f88c9a0ea88105a2069f94057b24e1926b0",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "archive/historical_validation/workspace/resume_calibration/private/design.json",
+      "size_bytes": 5157,
+      "sha256": "76417cf4e55d59c8c6045b0c1f97f3364ce801d683a84676b39802256e7f0c2e",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "archive/historical_validation/workspace/resume_calibration/private/pre_registration.json",
+      "size_bytes": 1277,
+      "sha256": "28eb3ab9e278823e95dbfa63164c7517267334e6a334b86ca8639c79723c3bd5",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "archive/historical_validation/workspace/resume_calibration/private/primary_v1.json",
+      "size_bytes": 14732,
+      "sha256": "63759f87e9b3d31fbd2a465a54b66308149b41edcd10a33226176394400c1fae",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "archive/historical_validation/workspace/resume_calibration/repeat_v1.json",
+      "size_bytes": 10251,
+      "sha256": "b79db82774acd9a7457be0246d849d9b8d985c12de0333c9ec21b565b6b388f8",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "archive/historical_validation/workspace/resume_calibration/secondary_method_notes.json",
+      "size_bytes": 3038,
+      "sha256": "571a87b62ac873cfd9a0cd8b08fdcae5d24a0581c44339f52a270706ad130578",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "archive/historical_validation/workspace/resume_calibration/secondary_v1.json",
+      "size_bytes": 56869,
+      "sha256": "25b49d11d2473d881a2aa5712d724a35adbf5cc97921dbb417d3b9f7ac1c8161",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "archive/historical_validation/workspace/resume_calibration/secondary_v2.json",
+      "size_bytes": 49899,
+      "sha256": "0e2d060b36cf4a899b62d39907de98b65f70312aed8a0753c02ee6d9c8b28726",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "archive/historical_validation/workspace/resume_calibration/secondary_v2_manual.py",
+      "size_bytes": 25854,
+      "sha256": "a7739a85b15f1266de6872f4de6f6c63622268bcf88112902570409b5fa47e1f",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "archive/historical_validation/workspace/resume_calibration/履歷評分校準報告.md",
+      "size_bytes": 10525,
+      "sha256": "826134412d8fd7e956ed7a6d1415f710ec21de55d263588e2362c4885f132dfd",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "archive/historical_validation/workspace/resume_calibration/履歷評分測試包.zip",
+      "size_bytes": 134882,
+      "sha256": "2b295553d1d7ab7aab4dc6ed86a9bc5b5ce297e16fb0b16a338d49dcfe299afa",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "archive/historical_validation/workspace/resume_gradient/50份品質梯度履歷.md",
+      "size_bytes": 77567,
+      "sha256": "b6421b4be0b0664c63aa62570aa130ad366f1beb6af31f18d91080f7f8490041",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "archive/historical_validation/workspace/resume_gradient/50份品質梯度驗證包.zip",
+      "size_bytes": 30720,
+      "sha256": "70f5f49425a932e415674b3f989c547486d7a5155f80caad1f5a56418c674c2c",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "archive/historical_validation/workspace/resume_gradient/analyze_gradient.py",
+      "size_bytes": 9208,
+      "sha256": "d7f6e5cecd02c46f287cefb3f58fc1f8bae0384744e0ed3adb5abadb45c3e1f0",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "archive/historical_validation/workspace/resume_gradient/blind/gradient_resumes.json",
+      "size_bytes": 79184,
+      "sha256": "828b0095e3be23df67a28288f6b8ceef1d83d0d74681dfb673972b482e32d7af",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "archive/historical_validation/workspace/resume_gradient/blind/rubric_v3.json",
+      "size_bytes": 2758,
+      "sha256": "747a67a22612740fb0eec5a04940bdf363b7e93d703ddca9b5b6982b3b36b2fc",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "archive/historical_validation/workspace/resume_gradient/generate_gradient.py",
+      "size_bytes": 16159,
+      "sha256": "b594d173cf4d9fe12ff7164542d9bbbf13c471fec23ca797d1dcb7d9f4f2bc32",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "archive/historical_validation/workspace/resume_gradient/gradient_metrics.json",
+      "size_bytes": 29237,
+      "sha256": "6705bc7704a5af0e32f5750b5d23ae90ce49433ebce22e3c2aa280538ce15322",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "archive/historical_validation/workspace/resume_gradient/independent_method_notes.json",
+      "size_bytes": 3797,
+      "sha256": "6c2ed9f37b3258248207fdef59c0bea51e422c0077bb0380b199d25caaf83af3",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "archive/historical_validation/workspace/resume_gradient/independent_scores.json",
+      "size_bytes": 54627,
+      "sha256": "1d28a1c6ef1208b3966cfc96b1210b9a0896de235e68beeeccef528e8678d8de",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "archive/historical_validation/workspace/resume_gradient/manifest.json",
+      "size_bytes": 1377,
+      "sha256": "6295fd25f66aac376fb6ce97642cdc2fda472b4be5c38f9844c5c5ae35e6fdae",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "archive/historical_validation/workspace/resume_gradient/private/answer_key.json",
+      "size_bytes": 19072,
+      "sha256": "3d25976d2a3a8fd774ebc83def6ee6459fbfe6e576416808b617d4b70788396d",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "archive/historical_validation/workspace/resume_gradient/private/frozen_hashes.json",
+      "size_bytes": 177,
+      "sha256": "df99791d8c8c4d7938d8d049316b2a94319c797fe5fbf76214f6c20557ed3833",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "archive/historical_validation/workspace/resume_gradient/private/preregistration.json",
+      "size_bytes": 1050,
+      "sha256": "d02827310405bdded4f37f0964539cffb7520d8de9716983a0384b6450860e38",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "archive/historical_validation/workspace/resume_gradient/score_comparison.csv",
+      "size_bytes": 3185,
+      "sha256": "17045614c1775b6803374ebb785b59f3e0e739bf3d338585e90529bbd7cabf0f",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "archive/historical_validation/workspace/resume_gradient/skill_metrics_smoke.json",
+      "size_bytes": 388,
+      "sha256": "c22e78e1f55f38d1ae92ccdf7b4b75a84d0130988166be114ac6ef615e60ede3",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "archive/historical_validation/workspace/resume_gradient/品質梯度履歷驗證報告.md",
+      "size_bytes": 4280,
+      "sha256": "2943751550cb90251c118a2f60992119807d23c9ebe1cd523517f47b24edb972",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "archive/historical_validation/workspace/resume_review/v7.5_HR評估與修改建議.md",
+      "size_bytes": 9227,
+      "sha256": "ca1ce885c741ed5872b71d575fa9fd877680eed505f5d40b5cf3a49502fda68b",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "archive/historical_validation/workspace/resume_review/兩版履歷評估.md",
+      "size_bytes": 15842,
+      "sha256": "19d372a03c155150cac6eea6671ec5004f0ee720ed85a199d718b893329aeacd",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "archive/historical_validation/workspace/upload/validation-methods-complete.md",
+      "size_bytes": 27412,
+      "sha256": "b6236453a9858659ff5e3be8d72c010e4e0e536ecfd61c79f7d242d8be65c853",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "archive/historical_validation/workspace/v42-work/research.json",
+      "size_bytes": 393441,
+      "sha256": "4510fcc8bbf14b7bbfb476153ca8839c6c9018ae277f39150b50b64af49ba3e3",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "archive/library/resume-v10.3(1).md",
+      "size_bytes": 23373,
+      "sha256": "cfcf1a26c6833b4d08113308838bb244cb709391efc907c416a8da4a682983a6",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "archive/library/resume-v10.4-draft.md",
+      "size_bytes": 30241,
+      "sha256": "4c339579070c4334d919708c943d4e55a9af0f934f5d13af97e70fe8e5d713f3",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "archive/workspace/autobiography-v10.5-proposal.md",
+      "size_bytes": 2909,
+      "sha256": "1ebfb271059c7ab0ca46fc4e33b4baa83cd56ba63c60b1b89fdfac067fd5c9e6",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "archive/workspace/bio-review.png",
+      "size_bytes": 227922,
+      "sha256": "db5267788b6165523fdb07f2f3dd567a452075a68428e17a9724fb50bac662f3",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "archive/workspace/edit106.py",
+      "size_bytes": 7579,
+      "sha256": "604459589a856f59ae44562080d52b5f8de7ab4ffd350440bb57d897a09a381a",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "archive/workspace/edit_resume.py",
+      "size_bytes": 8611,
+      "sha256": "486c5c193cf2cb240b207c6dc26218016ce0d60f520c2a000358db39e79ad373",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "archive/workspace/merge105.py",
+      "size_bytes": 10454,
+      "sha256": "cbcef74e0b5e151bad9f623189795501df845969d95559c44b5e7befb723996c",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "archive/workspace/outputs/biography-craft-research.md",
+      "size_bytes": 14172,
+      "sha256": "18c8ae8e38be4d8e8513f070a7334c0c0311cfa49e6caf0789b32b2f8d020ce0",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "archive/workspace/outputs/resume-bullets-research-50.md",
+      "size_bytes": 17947,
+      "sha256": "b7ee14b4ac74bef8aa7c5ceb54ebe2bc2e9d3d316230119daf194a4fe0423d12",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "archive/workspace/outputs/resume-v10-polished-2026-10-17.md",
+      "size_bytes": 14595,
+      "sha256": "b8aa4bacdc1f85c51b96404165732d2afb6e8cc211c9001843e9ee51eff6bf29",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "archive/workspace/outputs/resume-v10.1.md",
+      "size_bytes": 16011,
+      "sha256": "4ce08f0c59fc3be4450ca084118a9850971c46cdbace2b4d6cbd7118b5ac8767",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "archive/workspace/outputs/resume-v10.3.md",
+      "size_bytes": 23373,
+      "sha256": "cfcf1a26c6833b4d08113308838bb244cb709391efc907c416a8da4a682983a6",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "archive/workspace/outputs/resume-v9.1.md",
+      "size_bytes": 29945,
+      "sha256": "530baf1672aeddbf88c25304a5fa3320febd72ba73e9eb06836b434f645b0d45",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "archive/workspace/outputs/resume-v9.3.md",
+      "size_bytes": 15861,
+      "sha256": "9979b94abe85de41c60ef95e00b81c0685e8d660477caf135322037b6379076b",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "archive/workspace/outputs/resume-v9.4.md",
+      "size_bytes": 27249,
+      "sha256": "86749b1ee01c12e29964ca82102f4eb0fb6d5d500f3563b5f0ffe48fcde625ab",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "archive/workspace/outputs/resume-v9.md",
+      "size_bytes": 13277,
+      "sha256": "44347ef7cba472e4d76bce72b3f6353f1c0d4a09d1874a7e1fbc4dee2bc463e2",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "archive/workspace/pdftext.txt",
+      "size_bytes": 10401,
+      "sha256": "617c557944fde98c604401347f74f7399e9173d560c6f271bc176e94d2b1d651",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "archive/workspace/polish104.py",
+      "size_bytes": 9247,
+      "sha256": "0daaffc2e15a3ef0661356d23dadc4dc47a3c42c0533b924d74315b69123f5a4",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "archive/workspace/resume-v10.10-draft.md",
+      "size_bytes": 60290,
+      "sha256": "d47d84b2f27f62904546721210b455a0cb08f2388413677ede6181345ac9bb03",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "archive/workspace/resume-v10.2-extracted.txt",
+      "size_bytes": 10723,
+      "sha256": "346a7afebb78b1f2e22561d3b01df5fe048e32ccc735dd5ed03fa148bb5c948b",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "archive/workspace/resume-v10.4-polished-proposal.md",
+      "size_bytes": 10370,
+      "sha256": "991ddd5faf51dff1fed2e47f24bc92c893505c596fa09c0541b032380e7c6136",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "archive/workspace/resume-v10.4-revised-draft.md",
+      "size_bytes": 33689,
+      "sha256": "c6ee4221ca4d827924979aa95f47a27d1be1b957e21164cd28d81f4ac5d05394",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "archive/workspace/resume-v10.5-draft.md",
+      "size_bytes": 40879,
+      "sha256": "dc5b9c619659d2d4029623884f65f72ba82e34b3b6aae8ca569ddddfb5cd9058",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "archive/workspace/resume-v10.5-merged-proposal.md",
+      "size_bytes": 39499,
+      "sha256": "228f571f30f625f01315196d3e1718dfa43bc4d934cd7acbd79c012108483e63",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "archive/workspace/resume-v10.5-with-rewritten-autobiography.md",
+      "size_bytes": 40336,
+      "sha256": "540396cffb25a89ca733d0b1c624a9e554fb362fff3d8cb53a214c93ab536341",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "archive/workspace/resume-v10.6-polished-draft.md",
+      "size_bytes": 45926,
+      "sha256": "ac04942786e6ef9ead16abdd0fe8dc8fd2f6f86f2795d89be9326ab39e07e9d3",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "archive/workspace/resume-v10.7-polished-draft.md",
+      "size_bytes": 46534,
+      "sha256": "ad0e5880f67e0f83efe92d79388e4b58d2ed061768cd4e6c1328bec11b2b9de0",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "archive/workspace/resume-v10.8-polished-draft.md",
+      "size_bytes": 54608,
+      "sha256": "07810d956146aba01de75aa7db9be3116aac6247f0550c0b0d13ff18bffc9891",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "archive/workspace/resume-v10.9-draft.md",
+      "size_bytes": 58522,
+      "sha256": "29aa2cb28088296e3d4da2c9185a11a242f54de0613403969e927c082e906946",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "archive/workspace/review104-1.png",
+      "size_bytes": 322197,
+      "sha256": "09c5bb9c47fdc3b67636d2ecdebf13b4d8471d456cc0ecf76a9ac4e2506123d3",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "archive/workspace/review104-2.png",
+      "size_bytes": 248155,
+      "sha256": "69abcd5ad0a5f7652fd59f796f75544ce5a524e01937178cc7f572c0f584d475",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "archive/workspace/review104-3.png",
+      "size_bytes": 24120,
+      "sha256": "d2fa7ab49d727df2bc444260ad6d1791609239d6cda95bad349a5ec9fca6d13c",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "archive/workspace/tmp/pdfs/current-v8/layout.txt",
+      "size_bytes": 6686,
+      "sha256": "4a41309bdb431bcb3caa2c8db46175cce4932c6c9a09d89e75d8b28419aa7b9d",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "archive/workspace/tmp/pdfs/current-v8/page-1.png",
+      "size_bytes": 292352,
+      "sha256": "55a985d80c4532b06bb26167645fea4b66dcbe6427486bc2bf62e9a98b689041",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "archive/workspace/tmp/pdfs/current-v8/page-2.png",
+      "size_bytes": 356416,
+      "sha256": "f9c8574e16cff82e1f48864dfb182c9c170e956987fa4220ebee80b94e26a9cd",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "archive/workspace/tmp/pdfs/extraction.json",
+      "size_bytes": 14033,
+      "sha256": "f76b4fdeaecc2a136f263f2dbae539375da4518e1c4a37a57a88c1b02c36ca42",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "archive/workspace/tmp/pdfs/resume-v7.3(2).pdf.txt",
+      "size_bytes": 6822,
+      "sha256": "75ffc4e73b6d8f3296c8a11b7999f53ed23a2e1d1edf99654850f26c343925a3",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "archive/workspace/tmp/pdfs/resume-v7.4.pdf.txt",
+      "size_bytes": 6786,
+      "sha256": "27487a325040f183a4ea26eaae3bfb87aa8e69662930b353ae9e59a0c09f187e",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "archive/workspace/tmp/pdfs/v73-1.png",
+      "size_bytes": 544237,
+      "sha256": "7bc6ff0e9b91b5f4b90fe992c2cb52b5023a2c416c9eb6c98b49b45541065a41",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "archive/workspace/tmp/pdfs/v73-2.png",
+      "size_bytes": 422435,
+      "sha256": "f8f200eb589c4beb0e9f8d8de89c3ecca6848d03078b2c5cb340a65a8fec858c",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "archive/workspace/tmp/pdfs/v73-poppler.txt",
+      "size_bytes": 6893,
+      "sha256": "d9b18970a79383c817f2fe9187bbf435bee76eef16fd1da2d35d7592edb10f99",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "archive/workspace/tmp/pdfs/v74-1.png",
+      "size_bytes": 544237,
+      "sha256": "7bc6ff0e9b91b5f4b90fe992c2cb52b5023a2c416c9eb6c98b49b45541065a41",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "archive/workspace/tmp/pdfs/v74-2.png",
+      "size_bytes": 421409,
+      "sha256": "356925e9559df9f9e5b9093a5fb75aeb29bb1a919795b8a11400c52ef8f654a3",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "archive/workspace/tmp/pdfs/v74-poppler.txt",
+      "size_bytes": 6868,
+      "sha256": "f66ecfcfc2d17d99cd5df728cabeec5da7d8ce34b31b003a5a274cbc2d3ec954",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "archive/workspace/tmp/pdfs/v75/extraction.json",
+      "size_bytes": 7183,
+      "sha256": "cb9717382b71eaa794016a0a36a15deb5a4a40c306305d5d11c201a5162be3a0",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "archive/workspace/tmp/pdfs/v75/layout.txt",
+      "size_bytes": 6938,
+      "sha256": "0ba0567c2172b8e65dd2e7c8f4b10ea54a59ccee54b6f7ec1d0e06bb53f91145",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "archive/workspace/tmp/pdfs/v75/page-1.png",
+      "size_bytes": 604153,
+      "sha256": "b7c6eaff94bc754f72961e0ba33c6161c25475e2bb04834bc1e63bed2a39f38b",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "archive/workspace/tmp/pdfs/v75/page-2.png",
+      "size_bytes": 504243,
+      "sha256": "e5a5e549d17f0c92f41e8c806f149d17e021859254d36e762dbbd1dfeff04866",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "archive/workspace/tmp/pdfs/v75/resume-v7.4.pdf.txt",
+      "size_bytes": 6771,
+      "sha256": "78a19ccea8ea287e483ccda75bd49953cc8d0b996f67be49c8c441be777d6933",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "archive/workspace/tmp/pdfs/v75/resume-v7.5.pdf.txt",
+      "size_bytes": 6837,
+      "sha256": "c773b38c436f6c99e4f412a16faaa37aaf76fc9cd4c1993849386bc0f0dd124e",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "archive/workspace/tmp/v94/body.md",
+      "size_bytes": 7428,
+      "sha256": "8e27051dff9317e5d35d8d8e0e19361b0bd346699a1a07328a6075a554da2d25",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "archive/workspace/tmp/v94/mechanical.json",
+      "size_bytes": 2668,
+      "sha256": "decff750852567df1325c51a2063c99e5f0b8122b6000d747c183b1f8193588e",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "archive/workspace/tmp/v94/package-prefix.md",
+      "size_bytes": 16863,
+      "sha256": "0ff4fb87ac6da9ce2eb2ff19a720f95a27583df54a86ed93cb9637db605999e1",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "archive/workspace/tmp/v94/review-addendum.md",
+      "size_bytes": 1351,
+      "sha256": "b068d717a7f4e5e59e773e030cd619034b02f63bf33800287c2539c888b972c8",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "archive/workspace/tmp/v94/review.md",
+      "size_bytes": 8982,
+      "sha256": "c18b98187db9a20df2e61946f7305914ba8001140ff0a5e24e9c8a85d827e71c",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "archive/workspace/tmp/v94/rubric.txt",
+      "size_bytes": 1783,
+      "sha256": "72b092a5ea17a534d51ce6c30bad6cb37f00a299c5dfe3af9503ac817270f46d",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "archive/workspace/upload/2026-10-18-sa-two-cases.md",
+      "size_bytes": 13355,
+      "sha256": "147ea7a9133fa2b2bc6c5ff210a14932d95c9fd0986b17b88ba8206c5de2109c",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "archive/workspace/upload/resume-v10.3-draft.md",
+      "size_bytes": 17550,
+      "sha256": "007f159d1c8fb34e1e366af5cfa2a086ee8d500bb54ff16eaf021656293bdb03",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "archive/workspace/upload/resume-v10.4-draft (1).md",
+      "size_bytes": 32529,
+      "sha256": "b8a0f64e688b443af349e79665eb5582cbb0a4359aee59b7533e7433048f9763",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "archive/workspace/upload/resume-v10.4-draft(1).md",
+      "size_bytes": 30241,
+      "sha256": "4c339579070c4334d919708c943d4e55a9af0f934f5d13af97e70fe8e5d713f3",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "archive/workspace/upload/resume-v10.8-draft.md",
+      "size_bytes": 50481,
+      "sha256": "cdaec60bae14e28d1ddfdf673ecaa48a920c1896f06d7de1c8bb523737bec169",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "archive/workspace/v1010-bio.tmp",
+      "size_bytes": 3137,
+      "sha256": "12c83939c4be9c97f66b9c875b4b5e1d41f2c3343971918b8ab9e42b67281e58",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "archive/workspace/v102-review-1.png",
+      "size_bytes": 438949,
+      "sha256": "05d08a923ed96b6218a707d7cc4df693b9d0ebaf2f828a3bdfb755d34eb059b7",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "archive/workspace/v102-review-2.png",
+      "size_bytes": 356006,
+      "sha256": "ffa59b7b6750fa80a2068bf3a47f605aff4e7e10c00d804ac55cacbb60ef633b",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "archive/workspace/v103-latest.txt",
+      "size_bytes": 11514,
+      "sha256": "491920dec8ae6cbf5885e03048bf1ea885b72fa2fe7e5927a79a64f4356c9d58",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "archive/workspace/v103-page-3.png",
+      "size_bytes": 23906,
+      "sha256": "63e5c3073293344ef054a9d5733961147e7a95d7ffb56dc0ccba1c1b7791f4c4",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "archive/workspace/v108-edit-notes.tmp",
+      "size_bytes": 4831,
+      "sha256": "25b75eec8b39294161020f0ad441486f42f378535d811f4450fd3fdcae4916aa",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "archive/workspace/v109-bio.tmp",
+      "size_bytes": 3206,
+      "sha256": "95dc3a96342f61c2bd4288b33fecf8189720ac0ac93cc2b6f96ed0efb90dc885",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "archive/workspace/v109-review-3.png",
+      "size_bytes": 118884,
+      "sha256": "4e5972f068ba98717e83f70519b78b51438a39349ec7f1b2947396d5c56e05c3",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "conversations/README.md",
+      "size_bytes": 408,
+      "sha256": "0c63733150b38b7f8326fff9263eee3a492680cd8b1b927557c116a388c2ba15",
+      "kind": "generated_handoff_document"
+    },
+    {
+      "path": "handoff/01_project_instructions.md",
+      "size_bytes": 2874,
+      "sha256": "2cf9a0e349b196aed5b2062bcaeefeb345d6586381c666af13bbe45df17276c6",
+      "kind": "generated_handoff_document"
+    },
+    {
+      "path": "handoff/02_current_state.md",
+      "size_bytes": 2495,
+      "sha256": "6403e78d523540187c19d11f662c2af9aaf6c5024434eb59899b49fb6199806b",
+      "kind": "generated_handoff_document"
+    },
+    {
+      "path": "handoff/03_ssot_workflow.md",
+      "size_bytes": 3202,
+      "sha256": "f1adfdd08a2883f41f42914aababc0ac21df5fcaba2b3aaf358f47526d86757a",
+      "kind": "generated_handoff_document"
+    },
+    {
+      "path": "handoff/04_codex_import_prompt.md",
+      "size_bytes": 3635,
+      "sha256": "2d24a36f336eda08fb8fcd5ca4a583f51fe10089c583b7f880df83ccac944b8b",
+      "kind": "generated_handoff_document"
+    },
+    {
+      "path": "handoff/05_version_index.md",
+      "size_bytes": 3838,
+      "sha256": "216e9e0c9a76c486d6c93265964f41eab1042a5435abeda5340f8e0e4836e676",
+      "kind": "generated_handoff_document"
+    },
+    {
+      "path": "handoff/06_scope_and_gaps.md",
+      "size_bytes": 2230,
+      "sha256": "5b459ec3d04d4f4c11b971043fbdc42c9fa979cb630751d66e3907e85ff9f635",
+      "kind": "generated_handoff_document"
+    },
+    {
+      "path": "handoff/07_editorial_preservation.md",
+      "size_bytes": 2392,
+      "sha256": "5a319e4ef8d5c3bdfc4c9f227a6c9b9b636ccc07caf005178e1a379b8599e480",
+      "kind": "generated_handoff_document"
+    },
+    {
+      "path": "handoff/08_collaboration_roles.md",
+      "size_bytes": 3460,
+      "sha256": "85c0f9c06de93ef2e0838ed7cd0b9049ba1197dc2a83bc840c872523530b826a",
+      "kind": "generated_handoff_document"
+    },
+    {
+      "path": "handoff/EXCLUDED_ENVIRONMENT_FILES.json",
+      "size_bytes": 6601,
+      "sha256": "c037d0ecefe964097746ddca56b2ec2c81377938127e06f91fc8a55201e58f60",
+      "kind": "generated_handoff_document"
+    },
+    {
+      "path": "handoff/INTEGRITY_REPORT.json",
+      "size_bytes": 518,
+      "sha256": "fab8d40e31c55eada7fe72e4599faa74742844fe31c6864acfcc2ac57ed9f371",
+      "kind": "generated_handoff_document"
+    },
+    {
+      "path": "handoff/PDF_INVENTORY.csv",
+      "size_bytes": 3126,
+      "sha256": "ac7e7e2884f973a44297c763a5e164a6cdeac9e7383f4e8e86996ae130a59ccc",
+      "kind": "generated_handoff_document"
+    },
+    {
+      "path": "handoff/PDF_INVENTORY.md",
+      "size_bytes": 1940,
+      "sha256": "e4f95dcc6c8e738736903e7dcf46f398a9405c3ed99517e5df120eb5fa52b7fa",
+      "kind": "generated_handoff_document"
+    },
+    {
+      "path": "handoff/SOURCE_MAP.csv",
+      "size_bytes": 56038,
+      "sha256": "c21a99233b2b25fac79ead9b7eb9ddbdbf9716fa262b6fbf5185c591ae18f527",
+      "kind": "generated_handoff_document"
+    },
+    {
+      "path": "handoff/SOURCE_MAP.json",
+      "size_bytes": 97497,
+      "sha256": "141808f443995a6da60e14d129bfebc42482bd04810f2db951c1635a902a5d87",
+      "kind": "generated_handoff_document"
+    },
+    {
+      "path": "pdf/resume-v10-twocol(1).pdf",
+      "size_bytes": 839782,
+      "sha256": "a11970a923070a0ce6f320c56aa1218a9186a4cf020f8e83899284bd08e07ac6",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "pdf/resume-v10-twocol(2).pdf",
+      "size_bytes": 839782,
+      "sha256": "a11970a923070a0ce6f320c56aa1218a9186a4cf020f8e83899284bd08e07ac6",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "pdf/resume-v10-twocol.pdf",
+      "size_bytes": 833292,
+      "sha256": "7a2bde545eee4f87e9a58b1ebb5e3bcf61ab47cdda2d90eef7d201fa8615109f",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "pdf/resume-v10.2-twocol(1).pdf",
+      "size_bytes": 793878,
+      "sha256": "71f037d52ada7e651e5308aff09829dac1c82cde3973b00cb99a173070451a80",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "pdf/resume-v10.2-twocol(2).pdf",
+      "size_bytes": 793878,
+      "sha256": "71f037d52ada7e651e5308aff09829dac1c82cde3973b00cb99a173070451a80",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "pdf/resume-v10.2-twocol.pdf",
+      "size_bytes": 793878,
+      "sha256": "71f037d52ada7e651e5308aff09829dac1c82cde3973b00cb99a173070451a80",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "pdf/resume-v10.3-twocol(1).pdf",
+      "size_bytes": 803180,
+      "sha256": "c18b78c924ab31eb8285e69e7f563428bdba9b70b4e0ed053a018e697be5fdb4",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "pdf/resume-v10.3-twocol.pdf",
+      "size_bytes": 803180,
+      "sha256": "c18b78c924ab31eb8285e69e7f563428bdba9b70b4e0ed053a018e697be5fdb4",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "pdf/resume-v10.4-twocol.pdf",
+      "size_bytes": 785545,
+      "sha256": "48590041d9d877c228c9075b52395ef2112eaf6fd3286c30f8edcceddeeee276",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "pdf/resume-v10.8-twocol.pdf",
+      "size_bytes": 786793,
+      "sha256": "371aee030ea150c8f6ae08b9d0f106c304c0f5262403cc29af6e942160a29dd2",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "pdf/resume-v10.9-twocol.pdf",
+      "size_bytes": 805931,
+      "sha256": "55de4421e331f194587e21aaca15e6f8196659427f4902715fef5c0b009fdc3b",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "pdf/resume-v7.3(1).pdf",
+      "size_bytes": 140125,
+      "sha256": "7c43d48d9755e8a28126a7a76b21fd5dede94449d2c1c4b4d7d89c025a3d2fe6",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "pdf/resume-v7.3(2).pdf",
+      "size_bytes": 140125,
+      "sha256": "7c43d48d9755e8a28126a7a76b21fd5dede94449d2c1c4b4d7d89c025a3d2fe6",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "pdf/resume-v7.3.pdf",
+      "size_bytes": 140125,
+      "sha256": "7c43d48d9755e8a28126a7a76b21fd5dede94449d2c1c4b4d7d89c025a3d2fe6",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "pdf/resume-v7.4.pdf",
+      "size_bytes": 136358,
+      "sha256": "9ab570eb331cd4320faed21fd0b27ac91c5b702c6c8ec24288cf974a4b992828",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "pdf/resume-v7.5.pdf",
+      "size_bytes": 140724,
+      "sha256": "31d1cf56fdf1621a9465957a326666055e51df7470e35c3230c5fd99d28b85df",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "pdf/resume-v8.pdf",
+      "size_bytes": 140020,
+      "sha256": "e167d24dd84ee964052315d2d01d41c265ec3d8cf02edaa5bfe8293034c0c401",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "pdf/resume-v9.5-twocol.pdf",
+      "size_bytes": 791910,
+      "sha256": "027094fd88455ef61ff710382d1df363cf0c8a884e4414ac3efd5a6a77c1f0ff",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "pdf/resume-v9.5.pdf",
+      "size_bytes": 159799,
+      "sha256": "034c8cc4a426b912c942bfeef157d7e4f67a5a474bf804133166d65755a96c2a",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "project_state.json",
+      "size_bytes": 1579,
+      "sha256": "fe19bcb40fa487f31012c95ceaf5e40fbf05e8a1aad8442efd037dba2d036b6f",
+      "kind": "generated_handoff_document"
+    },
+    {
+      "path": "reference/context/about-me-resume-gen.md",
+      "size_bytes": 22389,
+      "sha256": "8cea57c14d75826317d8cca381797448868a0fcdb3aa7c198c844dcd7cd89b36",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "reference/context/claude-code-about-me-instructions.md",
+      "size_bytes": 27422,
+      "sha256": "5f6146343edfb5ec4438ee5bfc4ead8984a0455c4c52719ed0c1a4eca4d42519",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "reference/skill_snapshots/README.md",
+      "size_bytes": 483,
+      "sha256": "e10385a652e9d54db404f8169c05d444b1a8d850381c6c2954452a4dff013d55",
+      "kind": "generated_handoff_document"
+    },
+    {
+      "path": "reference/skill_snapshots/resume-gen-editing/SKILL.md",
+      "size_bytes": 7387,
+      "sha256": "b794dd979fab8b4375ab72c2ac4fc81e10b35d3669321284dcc46b49540c02b5",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "reference/skill_snapshots/resume-gen-editing/agents/openai.yaml",
+      "size_bytes": 462,
+      "sha256": "c91f5953ddd0601ad8be57f1d900ab8c3ed6283ee7fddf95c762688d3baabbc1",
+      "kind": "preserved_original"
+    },
+    {
+      "path": "reference/skill_snapshots/resume-gen-editing/assets/icon.svg",
+      "size_bytes": 1210,
+      "sha256": "49315dda7125ec5fc77ef5f2b96126d8b2121c6e72944b4702972e90f321d3ee",
+      "kind": "preserved_original"
+    }
+  ],
+  "inventory_excludes_self": [
+    "handoff/FILE_INVENTORY.csv",
+    "handoff/MANIFEST.json",
+    "SHA256SUMS.txt"
+  ]
+}

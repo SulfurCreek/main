@@ -1,0 +1,134 @@
+{
+  "body_sha256": "3468b876a5144a2122086d0f66558037d5889daf35ce1c373926aeda9c919ded",
+  "banned": [],
+  "weak_openings": [],
+  "bullets": 13,
+  "prefix_pass": 12,
+  "prefix_rows": [
+    {
+      "prefix": "約 50 項大項功能上線",
+      "pass": true,
+      "matches": [
+        "上線"
+      ],
+      "number": true
+    },
+    {
+      "prefix": "三階段推進招募系統改",
+      "pass": true,
+      "matches": [
+        "推進"
+      ],
+      "number": true
+    },
+    {
+      "prefix": "登入安全盤點源於 202",
+      "pass": true,
+      "matches": [
+        "登入"
+      ],
+      "number": true
+    },
+    {
+      "prefix": "需求平均處理週期由 1",
+      "pass": true,
+      "matches": [
+        "需求"
+      ],
+      "number": true
+    },
+    {
+      "prefix": "需求管線觸及 1,279 ",
+      "pass": true,
+      "matches": [
+        "需求"
+      ],
+      "number": true
+    },
+    {
+      "prefix": "AI 功能已上線公司簡",
+      "pass": true,
+      "matches": [
+        "上線",
+        "AI"
+      ],
+      "number": false
+    },
+    {
+      "prefix": "定價實驗採原價、iOS ",
+      "pass": true,
+      "matches": [
+        "定價"
+      ],
+      "number": false
+    },
+    {
+      "prefix": "Peach 網頁付款占營收",
+      "pass": true,
+      "matches": [
+        "付款"
+      ],
+      "number": false
+    },
+    {
+      "prefix": "KOOL 訂閱與付費牆規",
+      "pass": true,
+      "matches": [
+        "訂閱"
+      ],
+      "number": false
+    },
+    {
+      "prefix": "主導 Juicy 上線，配",
+      "pass": true,
+      "matches": [
+        "主導",
+        "上線"
+      ],
+      "number": false
+    },
+    {
+      "prefix": "SweetRing 在地化涵蓋",
+      "pass": true,
+      "matches": [
+        "在地化"
+      ],
+      "number": false
+    },
+    {
+      "prefix": "導入 CodaPay，開放印",
+      "pass": true,
+      "matches": [
+        "導入"
+      ],
+      "number": false
+    },
+    {
+      "prefix": "Newegg.com 商品資訊",
+      "pass": false,
+      "matches": [],
+      "number": false
+    }
+  ],
+  "headers": [
+    {
+      "text": "Product Owner／PM｜1111 全球華人｜2022/08 - 迄今",
+      "date_start_width": 17.0
+    },
+    {
+      "text": "Product Manager｜尚凡國際創新科技｜2018/01 - 2022/03",
+      "date_start_width": 17.5
+    },
+    {
+      "text": "Associate PM｜思維特網路資訊｜2016/06 - 2018/01",
+      "date_start_width": 15.0
+    },
+    {
+      "text": "翻譯工讀生｜台灣新蛋｜2014/08 - 2015/01",
+      "date_start_width": 11
+    }
+  ],
+  "biography_paragraphs": 4,
+  "biography_chars": 652,
+  "body_chars": 3025
+}

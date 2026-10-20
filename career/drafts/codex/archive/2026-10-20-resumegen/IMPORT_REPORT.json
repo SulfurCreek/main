@@ -1,0 +1,27 @@
+{
+  "import_date": "2026-10-20",
+  "zip_sha256": "839f55f6195110cf3abb7da4b7e609c1524af6fd0fd190a25838eb7106040de8",
+  "zip_files": 226,
+  "supplement_files": 1,
+  "pdf_files": 19,
+  "source_checksum_entries_verified": 225,
+  "classification_counts": {
+    "交接與來源清單": 20,
+    "歷史驗證與合成資料": 111,
+    "歷史文字稿與提案": 29,
+    "版面檢查與中間產物": 34,
+    "歷史編輯腳本": 4,
+    "寫作研究": 2,
+    "對話封存": 2,
+    "歷史履歷 PDF": 19,
+    "人物與敘事參考封存": 2,
+    "技能快照": 4
+  },
+  "source_byte_comparison": "passed",
+  "original_relative_paths_preserved": true,
+  "shared_ssot_changed": false,
+  "shared_router_changed": false,
+  "owned_instructions": "career/drafts/codex/AGENTS.md",
+  "category_wiki": "career/drafts/codex/wiki/README.md",
+  "shared_router_integration_proposal": "career/drafts/codex/ROUTER-INTEGRATION.md"
+}
