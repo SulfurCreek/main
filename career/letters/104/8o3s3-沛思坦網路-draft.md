@@ -1,5 +1,5 @@
 <!--
-104 自我推薦信草稿（2026-10-21 v2：改為中英混合）｜j-8o3s3 沛思坦網路【北士科】Product Manager｜分級：一般｜2026-10-21 Career Move
+104 自我推薦信草稿（2026-10-21 v3：本人選 A；採 Codex 重寫稿＋公司鉤子）｜j-8o3s3 沛思坦網路【北士科】Product Manager｜分級：一般｜2026-10-21 Career Move
 給潤飾者：
 1. 只改語感與順暢度；不改公司名、職缺名、數字、日期、條列點數；不新增事實或對公司的觀察。
 2. 純文字（104 企業端只保留換行，**不要用 ** 粗體或 Markdown**）；條列用「‧」。方案 A：中文約 100 字＋英文約 120–150 words；方案 B：250–350 字。
@@ -12,15 +12,15 @@
 
 ```text
 您好：
-應徵貴司【北士科】Product Manager。我有近 10 年產品經理經驗，現任人力銀行企業端招募系統 Product Owner。此職缺需以中英文撰寫文件，以下以英文說明與職缺最相關的三項經驗：
+應徵貴司【北士科】Product Manager。我有近 10 年產品經理經驗，目前擔任人力銀行企業端招募系統 Product Owner，做過 AI 功能規劃與既有系統改版。以下是三項相關經驗：
 
-‧Generative content: Worked with our data science team to define use cases and acceptance criteria for three launched AI features: company profile generation, job description generation, and AI talent recommendations.
-‧AI workflow with human review: For a mapping task of 100+ job-category codes, I introduced an AI Agent workflow that checked completed mappings, added category context gathered by a lower-cost model, and showed a confidence level for each result. My team members made the final calls, and we resolved the remaining exceptions together.
-‧From undocumented rules to specs: Our new recruitment system had to keep its existing back office and database. I recovered undocumented permission and billing rules through hands-on testing and internal interviews, then turned them into new flows and specs for phased releases.
+‧ I worked with the data science team on three AI features that are now live: company profile generation, job description generation, and AI talent recommendations. My role was to define the use cases and acceptance criteria.
+‧ For a task involving 100+ job-category codes, I introduced an AI Agent to check completed mappings and add category information found using a lower-cost model. My colleagues reviewed the results alongside confidence levels and made the final decisions. We discussed and resolved the remaining exceptions together.
+‧ When planning the new recruitment system, we had to keep the existing back office and database. I used hands-on testing and internal interviews to work out undocumented permission and billing rules, then turned them into workflows and specifications for phased releases.
 
-完整經歷與自傳在履歷中，期待有機會進一步說明。
+貴司也服務人才招募平臺，與我目前的工作直接相關。完整經歷在履歷中，謝謝您的閱讀。
 
-聶崑淮 敬上
+聶崑淮
 ```
 
 # 方案 B：全中文（備選）
@@ -47,7 +47,8 @@
 | ‧ AI workflow with human review | 加分 2：LLM／automated content pipelines；職責 4 優化流程 | facts-1111 §2026-10-20 指導同仁（上百筆代碼對照、較便宜模型搜尋、信心程度、人工判斷例外）；about-me〈四〉帶人 |
 | ‧ 企業資料與權限（方案 B）／From undocumented rules to specs（方案 A） | 職責 2、4（PRD、流程；employee data processes） | facts-1111（新版求才系統；about-me〈二〉〈三〉缺文件的是權限／計費規則） |
 | ‧ 從訪談到流程 | 職責 1 使用者訪談、2 流程 | facts-prior（KOOL 商家訪談、Miro 流程、VIP／點數上線） |
-| 結尾英文句 | 必要 5 中英文溝通 | facts-prior（外籍實習生全英文會議、歐洲金流商英文視訊） |
+| 結尾鉤子「貴司也服務人才招募平臺」 | 公司 | jd/full/8o3s3.md〈公司資料 A〉104 公司頁原文 |
+| 結尾英文句（方案 B） | 必要 5 中英文溝通 | facts-prior（外籍實習生全英文會議、歐洲金流商英文視訊） |
 
 # 刻意不寫
 

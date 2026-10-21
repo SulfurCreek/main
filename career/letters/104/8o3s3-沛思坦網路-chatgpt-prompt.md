@@ -1,49 +1,31 @@
-你是中英文商務寫作的潤飾者。請潤飾下方的「104 自我推薦信」草稿。這封信會貼進 104 人力銀行的應徵欄位，企業端會在應徵者履歷本文之前、全文展開顯示。
+你是中英文商務寫作的潤飾者。請潤飾下方的「104 自我推薦信」。它會貼進 104 應徵欄位，企業端在履歷本文之前全文顯示（純文字）。
 
-【職缺】沛思坦網路｜【北士科】Product Manager（JD 中英雙語、英文在前；必要條件要求能用中英文撰寫文件與討論；加分：HR Tech／生成式 AI、LLM prompt 或自動化內容生成流程）
+【職缺與公司】沛思坦網路（Pacston）｜【北士科】Product Manager。JD 中英雙語、英文在前；負責 CMS（中文版寫「客戶管理系統」）或 HRIS；必要條件含能用中英文撰寫文件；加分：HR Tech／生成式 AI、LLM prompt 或自動化內容生成。104 公司頁寫明服務對象含「IT 人才招募平臺」。
 
-【你要做的事】
-1. 潤飾「方案 A（中文破題＋英文條列）」：中文順暢自然；英文改成自然、精準的商務英文。
-2. 方案 B（全中文備選）只修明顯不順處。
-3. 回傳兩個方案的完整全文，最後附「修改紀錄」（每處改了什麼、為什麼）與字數（中文字數；英文 word 數）。
+【要做的事】
+1. 中文：順暢自然、直接；不解釋為何用英文；不加能力小標；不做過度正式的書信包裝。
+2. 英文條列：依下方英文規範改成自然、精準的商務英文；保持 3 點、每點 1–3 句、總計 120–150 words（目前 126）。
+3. 回傳完整全文，最後附「修改紀錄」與字數（中文字數、英文 words）。
 
-【格式（104 介面限制）】
-- 純文字，只保留換行。不要用粗體、Markdown、表情符號、網址。
-- 條列用「‧」開頭，最多 3 點，每點 1–3 句。
-- 開頭「您好：」，第一句就寫應徵的職缺名與最相關的經驗；不要「我是某某」式自我介紹。結尾保留「聶崑淮 敬上」。
-- 長度：方案 A 中文約 100 字＋英文 120–150 words；方案 B 250–350 字。
+【格式】純文字只留換行；不用粗體、Markdown、表情符號、網址。條列用「‧ 」。開頭「您好：」，不寫「我是某某」。署名只寫「聶崑淮」，不加「敬上」。
 
-【不能改】
-- 公司名、職缺名「【北士科】Product Manager」、所有數字與數量（近 10 年、三項、100+、上百筆）、條列點數。
-- 事實與責任範圍：不新增事實、成效數字、百分比、採用率；不新增對這家公司產品或商業模式的觀察。
-- 角色用詞：AI 功能是「與資料科學團隊定義使用情境與驗收標準」，不是本人開發；新版系統是「規劃」，不是本人重寫或架構；同仁負責最後判斷。
+【不能改】公司名、職缺名、數字與數量（近 10 年、three、100+）、條列點數；不新增事實、成效數字、百分比、採用率，也不新增對公司的觀察（結尾那句鉤子保留原意）。
 
-【禁用】
-- AI 套話：深感契合、與貴公司願景高度契合、在瀏覽貴公司職缺後、I am writing to express my strong interest。
-- 形容詞自誇：strategic、passionate、visionary、detail-oriented、積極進取、抗壓性強、熱愛學習。
-- 乞求句：懇請給予機會。
-- 不可寫或暗示：Jira、SQL、前後端開發能力、spearheaded、led the architecture、Senior Product Manager（職缺名不是這個）。
+【英文規範（責任範圍不得升級）】
+- 定義 AI 功能：只能用 defined the use cases and acceptance criteria／worked with the data science team；不可用 built、developed。
+- 新版系統：planned、phased releases；不可用 rebuilt、led the architecture。
+- AI Agent：introduced；最後判斷是 colleagues；不可寫 automated the whole process、eliminated manual work。
+- 句子短、第一人稱 I、美式拼字。
+- 禁用：delve、seamlessly、leverage、synergy、robust、transformative、I am writing to express、I am excited、proven track record、strategic、passionate、detail-oriented、results-driven、spearheaded、Jira、SQL。
 
-【草稿｜方案 A】
+【草稿】
 您好：
-應徵貴司【北士科】Product Manager。我有近 10 年產品經理經驗，現任人力銀行企業端招募系統 Product Owner。此職缺需以中英文撰寫文件，以下以英文說明與職缺最相關的三項經驗：
+應徵貴司【北士科】Product Manager。我有近 10 年產品經理經驗，目前擔任人力銀行企業端招募系統 Product Owner，做過 AI 功能規劃與既有系統改版。以下是三項相關經驗：
 
-‧Generative content: Worked with our data science team to define use cases and acceptance criteria for three launched AI features: company profile generation, job description generation, and AI talent recommendations.
-‧AI workflow with human review: For a mapping task of 100+ job-category codes, I introduced an AI Agent workflow that checked completed mappings, added category context gathered by a lower-cost model, and showed a confidence level for each result. My team members made the final calls, and we resolved the remaining exceptions together.
-‧From undocumented rules to specs: Our new recruitment system had to keep its existing back office and database. I recovered undocumented permission and billing rules through hands-on testing and internal interviews, then turned them into new flows and specs for phased releases.
+‧ I worked with the data science team on three AI features that are now live: company profile generation, job description generation, and AI talent recommendations. My role was to define the use cases and acceptance criteria.
+‧ For a task involving 100+ job-category codes, I introduced an AI Agent to check completed mappings and add category information found using a lower-cost model. My colleagues reviewed the results alongside confidence levels and made the final decisions. We discussed and resolved the remaining exceptions together.
+‧ When planning the new recruitment system, we had to keep the existing back office and database. I used hands-on testing and internal interviews to work out undocumented permission and billing rules, then turned them into workflows and specifications for phased releases.
 
-完整經歷與自傳在履歷中，期待有機會進一步說明。
+貴司也服務人才招募平臺，與我目前的工作直接相關。完整經歷在履歷中，謝謝您的閱讀。
 
-聶崑淮 敬上
-
-【草稿｜方案 B】
-您好：
-應徵貴司【北士科】Product Manager。我有近 10 年產品經理經驗，現任人力銀行企業端招募系統 Product Owner。
-
-‧生成式內容：與資料科學團隊定義公司簡介生成、職缺工作說明生成及 AI 推薦人才的使用情境與驗收標準，三項功能已上線。日常也以 AI Agent 協作規格與資料整理，由我定義規則並覆核結果。
-‧企業資料與權限：新版須沿用既有後台與資料庫，我以實測及內部訪談釐清權限與計費規則；另規劃部門、分店共同招募的群組功能與舊資料轉換規則。
-‧從訪談到流程：規劃網紅媒合平台時，先訪談商家的行銷單位，再以流程圖定義雙方的角色與操作，規劃並上線付費機制。
-
-過去也曾以全英文會議與外籍實習生、海外金流商溝通。完整經歷與自傳在履歷中，期待有機會進一步說明。
-
-聶崑淮 敬上
+聶崑淮
