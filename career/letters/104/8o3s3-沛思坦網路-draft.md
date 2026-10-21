@@ -1,13 +1,29 @@
 <!--
-104 自我推薦信草稿｜j-8o3s3 沛思坦網路【北士科】Product Manager｜分級：一般｜2026-10-21 Career Move
+104 自我推薦信草稿（2026-10-21 v2：改為中英混合）｜j-8o3s3 沛思坦網路【北士科】Product Manager｜分級：一般｜2026-10-21 Career Move
 給潤飾者：
 1. 只改語感與順暢度；不改公司名、職缺名、數字、日期、條列點數；不新增事實或對公司的觀察。
-2. 純文字（104 企業端只保留換行）；條列用「‧」；250–350 字、6–8 行。
+2. 純文字（104 企業端只保留換行，**不要用 ** 粗體或 Markdown**）；條列用「‧」。方案 A：中文約 100 字＋英文約 120–150 words；方案 B：250–350 字。
+   英文條列請潤飾成自然的商務英文，動詞具體、不加形容詞（strategic、passionate、detail-oriented 一律不用）。
 3. 禁用：AI 套話（深感契合、願景高度契合、在瀏覽貴公司職缺後）、乞求句、軟性形容詞、主導開發、Jira／英文文件能力的暗示。
 4. 回傳整封；改了什麼列在檔末。
 -->
 
-# 正文
+# 正文（方案 A：中文破題＋英文條列，建議採用）
+
+```text
+您好：
+應徵貴司【北士科】Product Manager。我有近 10 年產品經理經驗，現任人力銀行企業端招募系統 Product Owner。此職缺需以中英文撰寫文件，以下以英文說明與職缺最相關的三項經驗：
+
+‧Generative content: Worked with our data science team to define use cases and acceptance criteria for three launched AI features: company profile generation, job description generation, and AI talent recommendations.
+‧AI workflow with human review: For a mapping task of 100+ job-category codes, I introduced an AI Agent workflow that checked completed mappings, added category context gathered by a lower-cost model, and showed a confidence level for each result. My team members made the final calls, and we resolved the remaining exceptions together.
+‧From undocumented rules to specs: Our new recruitment system had to keep its existing back office and database. I recovered undocumented permission and billing rules through hands-on testing and internal interviews, then turned them into new flows and specs for phased releases.
+
+完整經歷與自傳在履歷中，期待有機會進一步說明。
+
+聶崑淮 敬上
+```
+
+# 方案 B：全中文（備選）
 
 ```text
 您好：
@@ -27,12 +43,16 @@
 | 段落 | JD 需求 | library 出處 |
 | :-- | :-- | :-- |
 | 破題 | 5 年以上 PM；CMS／HRIS 產品 | profile §1（近 10 年）；facts-1111 §1；履歷 v11.1 1111 段首 |
-| ‧ 生成式內容 | 職責 4 content generation workflows；加分 HR Tech／生成式 AI、automated content generation | facts-1111（三項 AI 功能上線）；about-me〈四〉AI Agent＋human in the loop |
-| ‧ 企業資料與權限 | 職責 2、4（PRD、流程；employee data processes） | facts-1111（新版求才系統；about-me〈二〉〈三〉缺文件的是權限／計費規則） |
+| ‧ 生成式內容／Generative content | 職責 4 content generation workflows；加分 HR Tech／生成式 AI、automated content generation | facts-1111（三項 AI 功能上線）；about-me〈四〉AI Agent＋human in the loop |
+| ‧ AI workflow with human review | 加分 2：LLM／automated content pipelines；職責 4 優化流程 | facts-1111 §2026-10-20 指導同仁（上百筆代碼對照、較便宜模型搜尋、信心程度、人工判斷例外）；about-me〈四〉帶人 |
+| ‧ 企業資料與權限（方案 B）／From undocumented rules to specs（方案 A） | 職責 2、4（PRD、流程；employee data processes） | facts-1111（新版求才系統；about-me〈二〉〈三〉缺文件的是權限／計費規則） |
 | ‧ 從訪談到流程 | 職責 1 使用者訪談、2 流程 | facts-prior（KOOL 商家訪談、Miro 流程、VIP／點數上線） |
 | 結尾英文句 | 必要 5 中英文溝通 | facts-prior（外籍實習生全英文會議、歐洲金流商英文視訊） |
 
 # 刻意不寫
+
+（另一份 AI 建議範本中的 [X]% 效率、feature adoption、Jira sprints、A/B testing in this role、「Senior Product Manager」職稱、電話與 Email：**一律不採用**——無 library 依據或職缺名不符）
+
 
 | 缺口 | 處理 |
 | :-- | :-- |
