@@ -3,6 +3,7 @@
 ## 新管線交付（2026-10-21 本人指定，優先）
 
 - [個人語氣指南](../../02_codex_stage/voice_style_guide.md)：新 stage 的語氣參數、禁詞對照、逐區塊協議與檢查規則。
+- [A 方案主動句修整](2026-10-21-stage-active-voice-handoff.md)：在原交稿基礎修正反覆「由我」及倒裝；附完整逐點前後文、驗證結果與 Claude 接續指令。
 - [下游潤飾全文](../../02_codex_stage/final_resume.md)：來自上游 `7839fd4`，20 點已潤飾，12 處 LOCKED 及六處〔待補數據〕原樣保留；原版 verify_polish.py 已通過，修改理由與逐點檢查見本輪交接。
 - [本輪狀態與依賴](2026-10-21-stage-pipeline-handoff.md)。以下為歷史產出與治理入口，不另立 current 工作稿。
 

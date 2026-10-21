@@ -22,6 +22,7 @@ DOCS = (
     "wiki/versions.md", "wiki/collaboration.md", "wiki/research-and-tools.md",
     "wiki/validation-history.md", "2026-10-21-skills-healthcheck-and-claude-handoff.md",
     "2026-10-21-stage-pipeline-handoff.md", "../../02_codex_stage/voice_style_guide.md",
+    "2026-10-21-stage-active-voice-handoff.md",
     "../../02_codex_stage/final_resume.md",
 )
 
