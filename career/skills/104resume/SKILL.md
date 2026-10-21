@@ -21,6 +21,10 @@ description: 從現行履歷產生 104 特化版履歷 md（Quill HTML、逐欄�
 | 個人簡介與頂部個人特色 | `career/104/content-spec-quill.md` **§5**（共用規格，優先於 §3.1 範例公式） |
 | 範本 | 最新一份 `career/drafts/<版本>/104-<版本>.md` |
 
+## 0. 強制門檻
+
+先過 `career/skills/resume-causal-logic-compiler/SKILL.md` §對外選材；交付前跑 T1–T6，結果寫在檔末。未通過不得標「可填表」。
+
 ## 2. 步驟
 
 1. 依欄位放入：自述（`info.info.bio`，依規格 §5.1）→ 個人特色 chip（§5.2）→ 經歷（blockquote 範疇＋`ql-size-large` 主題小標＋條列＋`ql-divider`／`small` 工具列）→ 專長 4 項（name／desc／tag）→ 中文自傳（每段 `<p>`）→ 專案 4 個（name、起訖、isInProgress、introduction）→ 求職條件內容（純文字）。

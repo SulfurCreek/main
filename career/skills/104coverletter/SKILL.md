@@ -48,6 +48,10 @@ description: 針對指定的 104 職缺產生「104 自我推薦信」草稿（2
 - 英文條列同樣只用 library 事實；動詞具體，不用 strategic、passionate、detail-oriented 這類形容詞；不寫 Jira、未有的效率百分比、adoption。
 - 同檔保留全中文備選版，由本人選用。
 
+## 2.9 強制門檻
+
+先過 `career/skills/resume-causal-logic-compiler/SKILL.md` §對外選材（推薦信只挑 2–3 點，其餘放面試備用）；交付前跑 T1、T2、T5、T6。
+
 ## 3. 寫法規則
 
 1. **事實只取 library**；數字沿用履歷口徑與限定詞（例：「上線與導流期間」「依公司公開資料」）。沒有的不補、不估。

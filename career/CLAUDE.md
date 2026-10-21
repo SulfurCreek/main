@@ -73,6 +73,8 @@ Enforced by `scripts/guard_career_scope.sh` (PreToolUse hook, this branch only; 
 
 > **找檔案先看 [`ROUTER.md`](ROUTER.md)**（Career Move 與 Resume Writer 共用的路由表；新增或搬動重要檔案時同步更新）。
 
+> **對外選材門檻（2026-10-21 起，強制）**：寫或改任何對外履歷／104／求職信文字前，先過 `skills/resume-causal-logic-compiler/` 的對外選材，交付前跑驗收 T1–T6；未通過不得標「可填表／定稿」。
+
 > **每輪同步 About Me（2026-10-20 起）**：見 `library/about-me.md`〈九〉；新確認當輪寫入，落差主動回報本人並附指令。
 
 ## 🧭 履歷平台路由：104 與 Cake 不要混用

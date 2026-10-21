@@ -18,6 +18,7 @@
 
 | 任務 | 必讀（依序） | 視需要 |
 | :-- | :-- | :-- |
+| **任何對外文字動筆前（強制）** | [`skills/resume-causal-logic-compiler/SKILL.md`](skills/resume-causal-logic-compiler/SKILL.md) §對外選材 → 驗收 T1–T6 | — |
 | **任何動筆前** | [`library/INDEX.md`](library/INDEX.md) → [`library/decisions.md`](library/decisions.md) §1–§4 | [`library/superseded.md`](library/superseded.md)（改舊稿、審稿） |
 | 查「某個事實現在怎麼說」 | [`library/fact-snapshot-2026-10-13.md`](library/fact-snapshot-2026-10-13.md) | [`library/facts-1111.md`](library/facts-1111.md)、[`library/facts-prior.md`](library/facts-prior.md)、[`library/profile.md`](library/profile.md) |
 | 寫／潤英文（履歷、推薦信英文條列） | [`style/voice-en.md`](style/voice-en.md) | `style/anti-ai-ats.md` |
