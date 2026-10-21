@@ -165,3 +165,10 @@ v9.7 = v9.6 ＋ 使用者自寫自傳與各段 summary（16→10 個單位、業
 - **呈現規則更正 ≠ 事實作廢**：投票名次、延後項目、預計日期、登入信箱例外等仍為真，保留在 library；只是不放對外稿。
 - 撤回：前輪閱讀報告 R05「票選第一／排名第二」的對外寫法、R04 登入例外細節（改為面試素材）。
 
+## 24. 2026-10-21 角色與管線重構（本人指定）
+
+- Claude＝上游架構師與事實鎖定者：只負責事實準確度、選材高度、單向因果順序；不追求文筆；不修改 02_codex_stage。規則：`career/skills/resume-causal-logic-compiler/SKILL.md`（取代 §23 的寫法規則；前版存 references/）。
+- 寫法：完全照新指令（首次定義含量級、量化成果在前、固定拓撲順序、凸顯破局／技術債取捨／商業指標）；**無 library 數字一律標〔待補數據〕，不估不編**。
+- 保留：披露（不寫未公開排序、延後、預計日期、開發中；目標≠成效）與跨欄位一致（本人 2026-10-21 選擇保留）。
+- 目錄：只新增 `01_claude_stage/`；`career/library/` 不搬（＝00_library，對應見 `00_library/README.md`）；`about_me_mindset.md`＝`library/about-me.md`；`02_codex_stage/` 由 Codex 在其分支建立。Codex 潤飾後的核對、104 md 與 PDF 仍由 Claude 做（`scripts/verify_polish.py`）。
+

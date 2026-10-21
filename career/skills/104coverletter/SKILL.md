@@ -50,7 +50,7 @@ description: 針對指定的 104 職缺產生「104 自我推薦信」草稿（2
 
 ## 2.9 強制門檻
 
-先過 `career/skills/resume-causal-logic-compiler/SKILL.md` §對外選材（推薦信只挑 2–3 點，其餘放面試備用）；交付前跑 T1、T2、T5、T6。
+先過 `career/skills/resume-causal-logic-compiler/SKILL.md` §1 編譯規則與 §2.3 披露檢查（推薦信只挑 2–3 點）。
 
 ## 3. 寫法規則
 

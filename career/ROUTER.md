@@ -18,7 +18,7 @@
 
 | 任務 | 必讀（依序） | 視需要 |
 | :-- | :-- | :-- |
-| **任何對外文字動筆前（強制）** | [`skills/resume-causal-logic-compiler/SKILL.md`](skills/resume-causal-logic-compiler/SKILL.md) §對外選材 → 驗收 T1–T6 | — |
+| **任何對外文字動筆前（強制）** | [`skills/resume-causal-logic-compiler/SKILL.md`](skills/resume-causal-logic-compiler/SKILL.md) §2.3 披露與跨欄位檢查 | — |
 | **任何動筆前** | [`library/INDEX.md`](library/INDEX.md) → [`library/decisions.md`](library/decisions.md) §1–§4 | [`library/superseded.md`](library/superseded.md)（改舊稿、審稿） |
 | 查「某個事實現在怎麼說」 | [`library/fact-snapshot-2026-10-13.md`](library/fact-snapshot-2026-10-13.md) | [`library/facts-1111.md`](library/facts-1111.md)、[`library/facts-prior.md`](library/facts-prior.md)、[`library/profile.md`](library/profile.md) |
 | 寫／潤英文（履歷、推薦信英文條列） | [`style/voice-en.md`](style/voice-en.md) | `style/anti-ai-ats.md` |
@@ -52,11 +52,16 @@
 
 > **每輪人物來源同步（2026-10-20 起）**：每輪檢查 `library/about-me.md` 是否需同步新確認內容；發現新補充與稿件落差，回報本人並附具體處理指令。規則見 `library/about-me.md`〈九〉。
 
+> **管線（2026-10-21 起）**：`library/`（＝`00_library/`，見 `00_library/README.md`）→ Claude `01_claude_stage/causal_draft.md` → Codex `02_codex_stage/`（Codex 分支；含 `voice_style_guide.md`、`final_resume.md`）→ Claude `scripts/verify_polish.py` 核對 → `drafts/<版本>/` 成品。
+
 ## 4. 目錄速查
 
 | 目錄／檔 | 內容 | 誰寫 |
 | :-- | :-- | :-- |
-| `library/` | 使用者確認過的現行事實與裁定（**事實唯一來源**） | Career Move |
+| `library/`（＝00_library） | 使用者確認過的現行事實與裁定（**事實唯一來源**） | Career Move |
+| `01_claude_stage/` | Claude 因果草稿 `causal_draft.md` | Career Move |
+| `02_codex_stage/` | Codex 潤飾稿與語氣參數（在 `codex/resume-writer`） | Resume Writer（Codex）；Claude 只讀 |
+| `scripts/verify_polish.py` | 潤飾後驗證：殘留標記、鎖定實體、LOCKED 段、未定義名詞、披露 | Career Move |
 | `style/` | 語氣、去 AI 感、ATS 規則與來源 | Career Move |
 | `wiki/` | 職能 F1–F15 與證據細節（可能含舊層，與 library 衝突以 library 為準） | Career Move |
 | `drafts/` | 各版履歷與中間產物 | Career Move（`codex/` 除外） |

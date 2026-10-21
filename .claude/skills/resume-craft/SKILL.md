@@ -55,7 +55,7 @@ description: >
 | 去 AI 感、ATS 格式、CAR 盤問（交付前必做）| [`references/anti-ai-ats.md`](references/anti-ai-ats.md)：掃禁用詞與破折號、空泛條目先停下來問 Context／Action／Result，問不到不補數字 |
 | **寫自傳、轉職動機、「為什麼想離開」**（先 essay 再潤飾）| [`references/autobiography.md`](references/autobiography.md)＋版面 `assets/template-tw-zh.md`〈自傳〉 | `career/library/profile.md` §7、`career/style/leaving-reason-source.md` |
 | 撰寫中文履歷／自傳／專案說明（語氣與誇大護欄）| [`references/tw-voice.md`](references/tw-voice.md) | 數字與事實只取自 `wiki/` |
-| **寫任何對外中文履歷文字前（強制）** | `career/skills/resume-causal-logic-compiler/SKILL.md` 對外選材＋驗收 T1–T6 | 未通過不得標定稿 |
+| **寫任何對外中文履歷文字前（強制）** | `career/skills/resume-causal-logic-compiler/SKILL.md` 編譯規則＋披露檢查（Claude 上游角色） | 未通過不得標定稿 |
 | 產生／填寫／驗證 **104 履歷** | 先讀 `career/104/README.md`（`fields-spec.md` 欄位規格、`resume-104.md` 內容、現行版見 README 標示（以 README 為準，不要寫死版本號））；**Cake Resume 另案，不得套用 104 的欄位規格與字數上限**；語氣依 [`references/tw-voice.md`](references/tw-voice.md)；**104 特化版依 `career/skills/104resume/SKILL.md`；104 自我推薦信依 `career/skills/104coverletter/SKILL.md`** | 這些檔案在個人線分支 `claude/happy-lamport-ljis8c` 的 `career/104/` |
 | 求職信：中文自我推薦信（英文 cover letter 走 career-ops `cover` 模式）| [`references/cover-letters.md`](references/cover-letters.md) ＋ 範本 [`assets/cover-letter-tw-zh.md`](assets/cover-letter-tw-zh.md) | `letters/story-bank.md`（數字唯一來源）；成品存 `letters/archive/` ＋ `letters/log.md` 加一列 |
 | 目標公司價值觀對映（Amazon LP 等）| [`references/portfolio.md`](references/portfolio.md) | — |

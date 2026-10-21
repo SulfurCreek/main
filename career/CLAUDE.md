@@ -73,7 +73,7 @@ Enforced by `scripts/guard_career_scope.sh` (PreToolUse hook, this branch only; 
 
 > **找檔案先看 [`ROUTER.md`](ROUTER.md)**（Career Move 與 Resume Writer 共用的路由表；新增或搬動重要檔案時同步更新）。
 
-> **對外選材門檻（2026-10-21 起，強制）**：寫或改任何對外履歷／104／求職信文字前，先過 `skills/resume-causal-logic-compiler/` 的對外選材，交付前跑驗收 T1–T6；未通過不得標「可填表／定稿」。
+> **角色（2026-10-21 起）**：你是履歷管線的**上游架構師與事實鎖定者**，規則見 `skills/resume-causal-logic-compiler/SKILL.md`。管線：`library/`（＝00_library）→ 你寫 `01_claude_stage/causal_draft.md`（逐點 STATUS／LOCK_ENTITIES 標記）→ Codex 寫 `02_codex_stage/`（你只讀、絕不修改）→ 你跑 `scripts/verify_polish.py` 核對 → 產 104 md／PDF。
 
 > **每輪同步 About Me（2026-10-20 起）**：見 `library/about-me.md`〈九〉；新確認當輪寫入，落差主動回報本人並附指令。
 

@@ -32,7 +32,7 @@ description: 潤飾 Career Move 產出的 104 特化版草稿（drafts/<版本>/
 | 螢光標記移到更準確的數字上 | 加螢光到非數字的形容詞；新增螢光數字 |
 | 精簡贅字 | 為了變短刪掉動機、轉折、限定詞（例如「上線與導流期間」「依公司公開資料」「非個人單獨成果」） |
 
-**寫作前門檻**：`career/skills/resume-causal-logic-compiler/SKILL.md` §對外選材與驗收 T1–T6。一般潤飾不得用「不刪數字／功能名」把門檻要求移出的內部資訊硬留在對外稿。
+**寫作前門檻**：`career/skills/resume-causal-logic-compiler/SKILL.md` ——Codex 只潤飾 `STATUS: NEEDS_POLISH` 的點、保留 `LOCK_ENTITIES`、不動 `STATUS: LOCKED`；不得把披露規則移出的內部資訊加回。
 
 **兩種任務，先判斷是哪一種**：
 - **一般潤飾**：只修用字、語序與斷句，不新增或刪除事實；未潤飾段落優先，已沿用投遞正文的段落只修明顯不順處。

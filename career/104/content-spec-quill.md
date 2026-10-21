@@ -204,7 +204,7 @@ I am dedicated to combining user-centric design with disciplined commercial exec
 
 > 上方 §1–§4 為本人 2026-10-20 提供的原文，保留不改。本節是共用規格，`career/skills/104resume/SKILL.md` 與 `career/codex-skills/polish-104/SKILL.md` 均引用本節，不另立公式。
 
-> **強制門檻（2026-10-21）**：本規格各欄位都先過 `career/skills/resume-causal-logic-compiler/SKILL.md` 的對外選材與 T1–T6。
+> **強制門檻（2026-10-21）**：本規格各欄位都先過 `career/skills/resume-causal-logic-compiler/SKILL.md` 的編譯規則與披露檢查。
 
 ### 5.1 個人簡介（`info.info.bio`）
 

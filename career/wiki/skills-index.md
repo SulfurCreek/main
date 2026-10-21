@@ -13,7 +13,7 @@
 | 把 txt 履歷轉 PDF | `resume-craft` | `references/pdf-layout.md`；雙欄 `scripts/render_twocol.py`＋`scripts/mkpdf.js`；單欄見下方指令 | 雙欄只給人看，單欄給 ATS |
 | 驗證履歷（模擬人資／主管、ATS 準備檢查、版本比較） | `resume-review-panel` | SKILL.md 的〈路由〉表 | 一鍵 `scripts/build_run.py` |
 | 作品集渲染成靜態網站 | `portfolio-site` | SKILL.md §0 分層與邊界 | 只渲染不寫內容 |
-| **寫任何對外履歷文字之前**（外部讀者看不懂、像工作報告、因果怪、披露檢查） | `resume-causal-logic-compiler` | `career/skills/resume-causal-logic-compiler/SKILL.md` | 強制門檻；驗收 T1–T6 |
+| **寫任何對外履歷文字之前**（外部讀者看不懂、像工作報告、因果怪、披露檢查） | `resume-causal-logic-compiler` | `career/skills/resume-causal-logic-compiler/SKILL.md` | Claude 角色定義；草稿→01_claude_stage |
 | 104 特化版履歷 md／104 自我推薦信 | `104resume`／`104coverletter` | `career/skills/` | 先過上一列門檻 |
 | 找事實、查使用者裁定 | （非 skill）`career/library/INDEX.md` | — | library 最優先 |
 | 找驗證相關檔案／規則／來源 | （非 skill）`career/review-panel/INDEX.md` | — | — |

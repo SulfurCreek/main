@@ -23,7 +23,7 @@ description: 從現行履歷產生 104 特化版履歷 md（Quill HTML、逐欄�
 
 ## 0. 強制門檻
 
-先過 `career/skills/resume-causal-logic-compiler/SKILL.md` §對外選材；交付前跑 T1–T6，結果寫在檔末。未通過不得標「可填表」。
+先過 `career/skills/resume-causal-logic-compiler/SKILL.md` §1 編譯規則與 §2.3 披露與跨欄位檢查；草稿走 `career/01_claude_stage/causal_draft.md`，潤飾後跑 `career/scripts/verify_polish.py`。未通過不得標「可填表」。
 
 ## 2. 步驟
 
