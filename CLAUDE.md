@@ -26,7 +26,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 | 撰寫 QA 測試案例（只寫 happy path）、把規格書轉成可勾選的驗收案例表 | 用 `Skill` 載入 `qa-happy-path-cases` |
 | 從 Sitemap／規格文件反向工程 User Journey Map（旅程地圖，三段式範本；`user-journey/` 專案） | 用 `Skill` 載入 `user-journey-map`（HackMD 文件 session 編輯素材 md，HTML 化歸「產生HTML報告」session，見 `user-journey/README.md`） |
 | 數據分析報告寫作（MD 或靜態 HTML）、或濃縮成單張 PNG 摘要圖 | 用 `Skill` 載入 `report-generator`（報告本體）／`one-pager`（單張決策圖，出圖前需先給文字大綱確認） |
-| 1111 職務分類／不合理清單專案（`plan()` 規則、`sync_md.py`、廠商身分 Google Sheet、AI 職類推薦模型分析） | 用 `Skill` 載入 `job-classification-kb`（知識庫入口）／`gsheet-vendor-identity`／`md-datalayer`／`safe-excel-editor`／`tabular-token-min`／`rawdata`——**與本 repo 主線（1111 聊天室文件）是不同專案**，僅供其他 session 共用 skill 庫 |
+| 1111 職務分類／不合理清單專案（`plan()` 規則、`sync_md.py`、廠商身分 Google Sheet、AI 職類推薦模型分析） | 用 `Skill` 載入 `job-classification-kb`（知識庫入口）／`tcode-bulletinboard`（該專案 tCode 異動公告／異動清單，薄殼指標，規則在 `job-classification-kb/skills/tcode-bulletinboard.md`，位於該專案分支；與 `tcode-excel-ops` 服務不同代碼表體系，不要混用）／`gsheet-vendor-identity`／`md-datalayer`／`safe-excel-editor`／`tabular-token-min`／`rawdata`——**與本 repo 主線（1111 聊天室文件）是不同專案**，僅供其他 session 共用 skill 庫 |
 | 需要用專案縮寫/術語溝通、看不懂某個欄位名稱在講什麼 | `wiki/glossary.md` |
 | 產出/修改 Mermaid 圖表（流程圖、循序圖等） | `wiki/mermaid_styling_rules.md`（§4 為循序圖專屬 frontmatter config，柔色系已裁定為準） |
 | 需判斷該用本 repo 自製 skill 還是執行環境內建的官方 Anthropic skill（docx/pdf/internal-comms/doc-coauthoring 等） | `wiki/platform_skills_reference.md` |
