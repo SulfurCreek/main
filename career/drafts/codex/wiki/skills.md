@@ -1,16 +1,16 @@
 # 技能清單與適用範圍
 
-> 健診基準：2026-10-21，Career Move `dd3d9f14f1acd9e7b887c30f7f1854bb55a917ba`。這是技能導航，不是人物或事實庫。操作回 [ROUTER](../ROUTER.md)。
+> 歷史健診基準：Career Move `dd3d9f14f1acd9e7b887c30f7f1854bb55a917ba`。2026-10-21 本人新管線已讀回 `7839fd42a75c763ff12e4ee23fc1553ed3fa7ec7`；目前下游操作以 [stage 02 語氣指南](../../../02_codex_stage/voice_style_guide.md) 為準。這是技能導航，不是人物或事實庫。操作回 [ROUTER](../ROUTER.md)。
 
 ## 已讀內容的完整清單
 
-共用檔從上述提交讀取；Codex 不直接改它們。共用待修項見 [健診報告與可套用修補](../2026-10-21-skills-healthcheck-and-claude-handoff.md)。
+共用檔從上述提交讀取；Codex 不直接改它們。舊共用待修項須按新角色重核，見 [歷史健診報告與修補](../2026-10-21-skills-healthcheck-and-claude-handoff.md)。
 
 | skill／材料 | 位置 | 狀態、用途與維護者 |
 | --- | --- | --- |
-| resume-editor | [本區 SKILL](../skills/resume-editor/SKILL.md) | Codex 本輪建立並接到固定入口；整合讀取、人工語意檢查及交接，不取代共用規則 |
+| resume-editor | [本區 SKILL](../skills/resume-editor/SKILL.md) | 舊模式參考，已由新管線覆蓋；不能在 stage 02 執行重選材 |
 | polish-104 | `career/codex-skills/polish-104/SKILL.md` | 現行、已讀；Career Move 維護。一般潤飾與指定重整，語感及範例入口待修 |
-| resume-causal-logic-compiler | `career/skills/resume-causal-logic-compiler/SKILL.md` | 現行、已讀；對外選材與 T1–T6；補人工語意檢查的共用修補待同步 |
+| resume-causal-logic-compiler | `career/skills/resume-causal-logic-compiler/SKILL.md` | 新版已讀；現為 Claude 上游角色，產帶標記 causal_draft；前版 T1–T6 與舊修補不得覆蓋新管線 |
 | 104resume | `career/skills/104resume/SKILL.md` | 現行、已讀；104 欄位生成與雙端核對。不得套用其 Career Move 寫入範圍；可填表狀態及舊範例待修 |
 | 104coverletter | `career/skills/104coverletter/SKILL.md` | 現行、已讀；指定職缺推薦信。字數優先序、結尾範本與驗證輸入路由待修 |
 | resume-gen-editing 快照 | [封存 SKILL](../archive/2026-10-20-resumegen/source/reference/skill_snapshots/resume-gen-editing/SKILL.md) | 歷史，僅健診與追溯；保留選材與語感方法，舊 Library ID／存取方式及權限不執行，不安裝為第二份現行 skill |
@@ -26,6 +26,8 @@
 本輪也不宣稱盤點平台所有隱藏／未提供的技能或更新 ChatGPT 專案設定。新增可讀 skill 後，先分類角色、用途、輸入、可寫範圍與狀態，再接路由。
 
 ## 衝突如何處理
+
+以下舊模式衝突表不能授權下游重新選材或改因果。新管線一律保護 LOCKED／LOCK_ENTITIES；若鎖定與禁詞或幅度衝突，列具體位置回上游，不自行解鎖。
 
 | 衝突 | 本區採用的有效要求 |
 | --- | --- |

@@ -1,5 +1,7 @@
 # Codex Resume Writer 路由
 
+> **2026-10-21 新管線優先**：下游角色已改。標記草稿只從 `career/01_claude_stage/causal_draft.md` 讀；語氣參數在 [voice_style_guide](../../02_codex_stage/voice_style_guide.md)，成品目標為 `career/02_codex_stage/final_resume.md`。本區舊選材／重整模式不套到新管線。
+
 > 作用：決定本輪讀什麼、改哪裡、驗什麼、如何交接。事實與現行稿仍從共用來源讀，不在這裡另建一份。
 > 維護：Resume Writer；本區權限見 [AGENTS.md](AGENTS.md)。最後健診與待辦見 [健診報告](2026-10-21-skills-healthcheck-and-claude-handoff.md)。
 
@@ -13,9 +15,9 @@ git fetch --no-tags origin '+refs/heads/claude/happy-lamport-ljis8c:refs/remotes
 git rev-parse origin/claude/happy-lamport-ljis8c
 ```
 
-3. 固定剛取得的提交，再以 `git show <來源提交>:career/<路徑>` 讀 `career/ROUTER.md`、`career/library/INDEX.md`、decisions 的適用裁定、superseded、相關 facts／profile、About Me 與本輪指定稿。記錄來源提交及工作稿 blob hash；本輪共用檔讀取保持同一提交。
+3. 新管線先讀指定四個入口與 causal_draft；若草稿缺檔，先完成指南／入口等不依賴工作，列明缺檔，不用歷史稿替代。其他經本人另行授權的歷史型任務，固定剛取得的提交，再以 `git show <來源提交>:career/<路徑>` 讀 `career/ROUTER.md`、`career/library/INDEX.md`、decisions 的適用裁定、superseded、相關 facts／profile、About Me 與本輪指定稿。記錄來源提交及工作稿 blob hash；本輪共用檔讀取保持同一提交。
 4. 舊 checkout 缺共用檔時仍用同一提交讀，不能改用 archive。沒有指定稿，先查共用 ROUTER 的現行狀態；如有多份且用途不明，先做不依賴底稿的核對，再問最小必要問題。不因最新檔、最新修改日或 skill 範例而自行指定底稿。
-5. 依下表讀技能及語氣，按 [resume-editor](skills/resume-editor/SKILL.md) 開始工作。不要整包載入封存或所有驗證報告。
+5. 新管線按 [voice_style_guide](../../02_codex_stage/voice_style_guide.md) 開始工作；下表其餘舊任務與 [resume-editor](skills/resume-editor/SKILL.md) 只在本人另行指定時參考，不授權下游重選材。不要整包載入封存或所有驗證報告。
 
 ## 2. 任務路由
 
@@ -23,6 +25,7 @@ git rev-parse origin/claude/happy-lamport-ljis8c
 
 | 本輪任務 | 先讀 | 交付與檢查 |
 | --- | --- | --- |
+| **新管線：標記草稿下游潤飾（優先）** | 固定提交的新版因果 skill → 01 README → verify_polish.py → causal_draft；[本區語氣指南](../../02_codex_stage/voice_style_guide.md) | 只修 NEEDS_POLISH、LOCKED 不動、實體／因果不變，逐職位寫入；原版驗證與補充自檢全過才推 |
 | 一般履歷潤飾／指定段落重寫 | 本區 resume-editor → 共用 `skills/resume-causal-logic-compiler/SKILL.md` → 相關 facts／About Me → 指定稿 → `style/resume-voice-zh.md` 與 `style/anti-ai-ats.md` 的有效規則 | 完整指定範圍、選材／修整理由、語意與事實檢查；一般與重整模式分清 |
 | 104 特化版一般潤飾 | 上列＋`codex-skills/polish-104/SKILL.md`、`104/content-spec-quill.md` §5、`104/fields-spec.md` | 全文、逐處紀錄、T1–T6、人工語意檢查、各欄字數；按本人鎖定項比對 |
 | 從正文產生 104 內容稿 | 上列＋`skills/104resume/SKILL.md` | Codex 只寫本區；共同稿與填表狀態由 Career Move 依本人採用整合，不代改其他欄位 |
@@ -37,7 +40,7 @@ git rev-parse origin/claude/happy-lamport-ljis8c
 ## 3. 門檻及狀態
 
 - 先判斷招募用途與是否適合對外，再用共用因果技能檢查定義、順序、責任與狀態；最後做語感與格式。具體回歸案例見 [editorial-regressions](wiki/editorial-regressions.md)。
-- T1–T6 的權威定義在共用因果 skill；本區不重編 T 測試。語意人工檢查依 resume-editor，機械檢查不能替代。
+- 新管線的驗證依來源提交原版 verify_polish.py 及語氣指南補充自檢；新版因果 skill 已取代舊 T1–T6 工作流程，不把歷史測試名稱當新版驗證結果。
 - [交接狀態](wiki/handoff-status.md) 只記讀回依據與下一步，不能替本人採用提案，也不能單憑本檔指定 current。
 - About Me／facts 寫入、文字採用、PDF 更新分別記錄。已推送不等於 Claude 已採用；有交接不等於已同步。
 

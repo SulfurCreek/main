@@ -1,9 +1,12 @@
 ---
 name: resume-editor
+status: historical
 description: Resume Writer 在 career/ 範圍的履歷編輯與交接入口。先按 ROUTER 取用共用技能，核對招募用途、句意、指標語意、自然措辭及交接狀態；不新增事實，不做評分或 PDF 排版。
 ---
 
-# Resume Writer 編輯流程
+# Resume Writer 編輯流程（舊模式參考）
+
+> **2026-10-21 新管線已覆蓋其改稿權限**：上游 Claude 鎖定事實、選材及因果，下游只潤飾 NEEDS_POLISH。新流程讀 `career/02_codex_stage/voice_style_guide.md`；本檔不授權在 stage 02 重選材、重排因果或改 LOCKED。以下只作歷史操作參考，或本人另行指定舊模式時使用。
 
 本檔是本區流程入口，並非第二套共用寫作規範。路由與來源讀取依 [ROUTER](../../ROUTER.md)；T1–T6、對外選材與因果規則依本輪固定提交的 `career/skills/resume-causal-logic-compiler/SKILL.md`。欄位與語氣規格依任務讀取，不整份複製到本檔。
 

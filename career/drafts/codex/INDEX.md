@@ -1,5 +1,12 @@
 # Resume Writer 協作與檔案入口
 
+## 新管線交付（2026-10-21 本人指定，優先）
+
+- [個人語氣指南](../../02_codex_stage/voice_style_guide.md)：新 stage 的語氣參數、禁詞對照、逐區塊協議與檢查規則。
+- [下游潤飾全文](../../02_codex_stage/final_resume.md)：來自上游 `7839fd4`，20 點已潤飾，12 處 LOCKED 及六處〔待補數據〕原樣保留；原版 verify_polish.py 已通過，修改理由與逐點檢查見本輪交接。
+- [本輪狀態與依賴](2026-10-21-stage-pipeline-handoff.md)。以下為歷史產出與治理入口，不另立 current 工作稿。
+
+
 **開工先讀 [ROUTER.md](ROUTER.md)** → [本區流程 skill](skills/resume-editor/SKILL.md)；[交接狀態](wiki/handoff-status.md) 辨認採用／同步／PDF。以下日期型產出與交接僅為索引，不自動指定現行稿。
 
 - [技能健診與共用修補](2026-10-21-skills-healthcheck-and-claude-handoff.md)、[技能清單](wiki/skills.md)、[真實錯誤檢查](wiki/editorial-regressions.md)。

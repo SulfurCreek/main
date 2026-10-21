@@ -1,5 +1,7 @@
 # Resume Writer wiki
 
+> **新管線優先**：[stage 02 語氣指南](../../../02_codex_stage/voice_style_guide.md)；成品為 [final_resume.md](../../../02_codex_stage/final_resume.md)，已依上游 `7839fd4` 完成 20 點潤飾與原版核對。進度見 [本輪交接](../2026-10-21-stage-pipeline-handoff.md)。舊選材／重整工作法不套到下游。
+
 本 wiki 保存操作導航、技能狀態、真實失敗案例與歷史來源定位。有效事實及人物參考仍在共用 `career/library/`；本區沒有第二份 current 履歷。
 
 ## 每次工作使用

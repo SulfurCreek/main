@@ -21,6 +21,8 @@ DOCS = (
     "wiki/editorial-regressions.md", "wiki/handoff-status.md",
     "wiki/versions.md", "wiki/collaboration.md", "wiki/research-and-tools.md",
     "wiki/validation-history.md", "2026-10-21-skills-healthcheck-and-claude-handoff.md",
+    "2026-10-21-stage-pipeline-handoff.md", "../../02_codex_stage/voice_style_guide.md",
+    "../../02_codex_stage/final_resume.md",
 )
 
 
@@ -74,18 +76,29 @@ def run(source_ref):
             failures.append("Local skill is not indexed: " + relative)
     staged = git("diff", "--cached", "--name-only", "-z").split("\0")
     for path in filter(None, staged):
-        if not path.startswith("career/drafts/codex/"):
+        if not path.startswith(("career/drafts/codex/", "career/02_codex_stage/")):
             failures.append("Staged path leaves Codex write scope: " + path)
     status = (OWN / "wiki/handoff-status.md").read_text(encoding="utf-8")
     recorded = re.search(r"Career Move `([0-9a-f]{40})`", status)
     if not recorded or recorded.group(1) != sha:
         warnings.append("Source changed since recorded handoff; read relevant changes before editing.")
+    upstream_exists = "career/01_claude_stage/causal_draft.md" in remote_paths
+    final_exists = (CAREER / "02_codex_stage/final_resume.md").is_file()
+    if not upstream_exists:
+        warnings.append("Pipeline input causal_draft.md is missing; final verification has not run. Do not push.")
+        if final_exists:
+            failures.append("Final resume exists without the required upstream input")
+    historical_local = [p for p in local_skills if "status: historical" in p.read_text(encoding="utf-8")]
     result = {
         "source_commit": sha,
         "workflow_documents": len(DOCS),
         "relative_links_checked": checked_links,
         "shared_skills_indexed": len(remote_skills),
-        "local_active_skills_indexed": len(local_skills),
+        "local_active_skills_indexed": len(local_skills) - len(historical_local),
+        "local_historical_skills_indexed": len(historical_local),
+        "pipeline_input_present": upstream_exists,
+        "pipeline_final_present": final_exists,
+        "pipeline_verify_polish": "not executed by this structural checker",
         "failures": failures,
         "warnings": warnings,
         "limits": "Checks structure only; does not prove reading, semantic quality, adoption, or settings installation.",
