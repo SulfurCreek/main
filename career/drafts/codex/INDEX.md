@@ -28,3 +28,5 @@
 ## 104 自我推薦信
 
 - [沛思坦網路｜【北士科】Product Manager：A／B 完整潤飾稿](letters/8o3s3-%E6%B2%9B%E6%80%9D%E5%9D%A6%E7%B6%B2%E8%B7%AF-polished.md)：中英混合與全中文備選，附修改紀錄、字數及 Career Move 核對指令。
+
+- [沛思坦網路推薦信：依語氣回饋重寫 A／B](letters/8o3s3-%E6%B2%9B%E6%80%9D%E5%9D%A6%E7%B6%B2%E8%B7%AF-rewritten.md)：取消能力小標、英文安排說明與敬上；附 skill／About Me 同步指令，前輪稿保留供追溯。
