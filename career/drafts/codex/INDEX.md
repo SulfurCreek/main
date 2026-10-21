@@ -19,6 +19,7 @@
 
 ## 104 個人簡介與頂部 chip（2026-10-21）
 
+- [104 下載 PDF 逐頁閱讀檢視](2026-10-21-104-downloaded-pdf-reading-review.md)：按七頁實際版面檢查語句、首次背景、分頁及欄位矛盾；附可替換全文、Q006–Q009 與給 Career Move 的處理順序，尚未改動 104 或 PDF。
 - [本輪完整 Claude Code 交接](2026-10-21-104-summary-chips-claude-handoff.md)：243 字簡介、五個短句 chip（含本人指定 Client／Business）、About Me 同步片段及規格／skill 調整；本輪整合入口，PDF 不需更新。
 - [歷版與指令檢視](2026-10-21-summary-review-and-rewrite.md)：47 種摘要文字與來源、規則衝突及取捨，供追溯；較早的六個 chip 已由本輪交接取代。
 - [chip 短句初稿](2026-10-21-104-chips-punchline-proposal.md)：保留本輪措辭演變，整合請採上述完整交接的最新第二句。
