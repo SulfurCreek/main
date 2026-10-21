@@ -224,7 +224,7 @@ I am dedicated to combining user-centric design with disciplined commercial exec
 | chip | 經歷支撐（library） |
 | :-- | :-- |
 | 把構想變成產品 | KOOL 0→1（商家訪談、Airbnb 參考、Miro 流程、簡報與上線） |
-| 懂 Client 體驗，也懂 Business 流程 | 消費型訂閱／付費產品＋企業招募系統 |
+| 兼具Client與Business視角（104 字數限制，本人 2026-10-21 由「懂 Client 體驗，也懂 Business 流程」改） | 消費型訂閱／付費產品＋企業招募系統 |
 | 把商業邏輯說清楚（本人 2026-10-21 由「把複雜規則說清楚」改） | 還原無文件的權限與計費規則、整理成流程與規格；訂閱方案實收試算；互動原型與 FAQ 向客服、業務說明 |
 | 從規劃推進到上線 | 與設計、工程、QA 協作分階段上線 |
 | 帶團隊用 AI 解題 | 指導同仁以 AI Agent 完成職務類別代碼對照（同仁做最後判斷） |
