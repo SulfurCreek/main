@@ -1,6 +1,6 @@
 # 歷史版本與產物
 
-現行投遞版依共用路由 career/drafts/v11/；以下全為歷史封存，不按版本號自動指定底稿。
+現行投遞版讀本輪固定提交的共用 `career/ROUTER.md`；本頁不寫死版本目錄。以下全為歷史封存，不按版本號自動指定底稿。
 
 - [handoff/05_version_index.md](../archive/2026-10-20-resumegen/source/handoff/05_version_index.md)
 - [handoff/PDF_INVENTORY.md](../archive/2026-10-20-resumegen/source/handoff/PDF_INVENTORY.md)

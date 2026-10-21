@@ -1,0 +1,278 @@
+diff --git a/career/codex-skills/polish-104/SKILL.md b/career/codex-skills/polish-104/SKILL.md
+--- a/career/codex-skills/polish-104/SKILL.md
++++ b/career/codex-skills/polish-104/SKILL.md
+@@ -20,7 +20,7 @@
+ | 輸出 | `career/drafts/codex/104-<版本>-polished.md`（**整份**，結構與草稿相同）＋同檔末尾〈修改紀錄〉 |
+ | 事實疑問 | `career/drafts/codex/QUESTIONS.md` |
+
+-讀草稿：`git fetch origin claude/happy-lamport-ljis8c && git show origin/claude/happy-lamport-ljis8c:career/drafts/v11/104-v11.md`
++讀草稿：先以明確 refspec 更新 `origin/claude/happy-lamport-ljis8c`，固定提交，再用 `git show <固定提交>:career/drafts/<本人指定版本>/104-<版本>.md`。不得直接執行本檔舊版本範例；草稿標頭可能已由本人或另一端更新，不能只靠固定狀態字串辨認輸入。
+
+ ## 2. 可以改／不能改
+
+@@ -29,7 +29,7 @@
+ | 語序、斷句、用字、連接詞，讓陌生讀者左到右、上到下讀得懂 | 新增或刪除事實、數字、日期、人數、功能名、產品名 |
+ | 把同一句拆成兩句或合併 | 改 `▼ 欄位路徑`、欄位順序、〔待補〕、管理責任欄 |
+ | 調整小標文字（`<strong>…</strong>` 內） | 改 HTML 標籤與樣式（`blockquote`、`ql-size-large`、`#00afb8`、`#fbf3db`、`ql-divider`、`small`） |
+-| 螢光標記移到更準確的數字上 | 加螢光到非數字的形容詞；新增螢光數字 |
++| 本人明確授權時才移動螢光；一般潤飾預設原位保留 | 自行移動螢光、加到形容詞或新增螢光數字 |
+ | 精簡贅字 | 為了變短刪掉動機、轉折、限定詞（例如「上線與導流期間」「依公司公開資料」「非個人單獨成果」） |
+
+ **寫作前門檻**：`career/skills/resume-causal-logic-compiler/SKILL.md` §對外選材與驗收 T1–T6。一般潤飾不得用「不刪數字／功能名」把門檻要求移出的內部資訊硬留在對外稿。
+@@ -54,8 +54,10 @@
+
+ ## 5. 交付前自檢
+
++先人工實讀指定範圍：每點要讓招募者理解哪項責任、判斷或成果？主詞、對象、動作是否完整？數字量的是回覆、結案、交付還是使用成效？T1–T6、字數與標籤通過不等於語感或句意通過。一般潤飾也須發現問題；超出本人鎖定範圍的重整，附具體替換提案及理由，不靜默略過或擅自擴改。只補最短必要情境，整段順讀不得反覆堆同一產品全名。
++
+ 1. 用 `diff` 比對草稿與潤飾稿：每處差異只動文字，沒有動到數字、日期、欄位路徑、標籤。
+-2. 第 3 節禁止詞全文搜尋為 0。
++2. 對外正文搜尋第 3 節禁止項；編輯分析與反例另區處理，記實際檢查欄位，不宣稱核對未讀文件。
+ 3. 字數全在第 4 節範圍內。
+ 4. 檔末〈修改紀錄〉：逐段一行「改了什麼、為什麼」，以及寫進 QUESTIONS.md 的題號。
+ 5. commit 前綴 `career:`，推 `codex/resume-writer`。完成後告訴使用者檔名，由使用者轉給 Career Move 核對。
+diff --git a/career/skills/resume-causal-logic-compiler/SKILL.md b/career/skills/resume-causal-logic-compiler/SKILL.md
+--- a/career/skills/resume-causal-logic-compiler/SKILL.md
++++ b/career/skills/resume-causal-logic-compiler/SKILL.md
+@@ -31,6 +31,14 @@
+ 3. 有可信成果可先寫，但同句須定義情境。沒有量化資料就寫已確認產出或狀態，不強迫補商業影響。
+ 4. 保留本人形成方案與說明判斷的含義。規格、原型與驗收是可用的 PM 產出，不一律當日常瑣事剔除。
+ 5. 區分團隊成果、本人責任、公司規模、資料觀察與因果。新資料與舊稿衝突時留問題，不自己猜。
++
++## 語意與自然度檢查（T1–T6 之外仍須人工實讀）
++
++- 每點先能用一句話說清楚要讓招募者記住的責任、判斷或成果；只剩操作步驟時，回到選材與結構。
++- 主詞與對象完整，動詞有明確受詞；不能用「依文件規範」「追蹤交付」掩蓋本人做了什麼。
++- 核對指標量的是什麼；案件結案、功能交付、使用成效不混用；兩期觀察變化不直接歸為個人因果。
++- 單點能懂之後，仍需整段順讀；最少背景不等於每點重複產品全名，不為規則堆成報告。
++- 一般潤飾照樣檢查句意；超出鎖定範圍時附具體提案，不以格式或 T 測試通過代替內容編輯。參考案例可讀 Codex 分支 `career/drafts/codex/wiki/editorial-regressions.md`，只作編輯錯誤追溯，不作事實來源。
+
+ ## 四階段輸出（依序，與投遞正文隔離）
+
+diff --git a/career/skills/104resume/SKILL.md b/career/skills/104resume/SKILL.md
+--- a/career/skills/104resume/SKILL.md
++++ b/career/skills/104resume/SKILL.md
+@@ -19,7 +19,7 @@
+ | 範圍 | `library/decisions.md` §20：只寫內容欄；不附英文自傳；專案成就 4 個（JustDating／Juicy 兩次承接、KOOL、新版求才系統、群組共同招募） |
+ | 管理責任 | `library/profile.md`：1111「1~5 人」，尚凡、思維特、新蛋「無」 |
+ | 個人簡介與頂部個人特色 | `career/104/content-spec-quill.md` **§5**（共用規格，優先於 §3.1 範例公式） |
+-| 範本 | 最新一份 `career/drafts/<版本>/104-<版本>.md` |
++| 範本 | 本人指定、已核對用途與狀態的 `career/drafts/<版本>/104-<版本>.md`；不按最高版號自動取稿 |
+
+ ## 0. 強制門檻
+
+@@ -28,9 +28,9 @@
+ ## 2. 步驟
+
+ 1. 依欄位放入：自述（`info.info.bio`，依規格 §5.1）→ 個人特色 chip（§5.2）→ 經歷（blockquote 範疇＋`ql-size-large` 主題小標＋條列＋`ql-divider`／`small` 工具列）→ 專長 4 項（name／desc／tag）→ 中文自傳（每段 `<p>`）→ 專案 4 個（name、起訖、isInProgress、introduction）→ 求職條件內容（純文字）。
+-2. 螢光 `#fbf3db` 只標數字；不新增數字或說法；缺的結構欄（如 KOOL 結束年月）標〔待補〕，填表留空。
++2. 螢光 `#fbf3db` 只標數字；不新增數字或說法；結構欄如缺值，先查 library／open-questions 的最新確認；不能把本檔舊範例的缺值重新標成未知，仍未確認者才標〔待補〕並留空。
+ 3. 字數檢查（去 HTML 計純文字），全部在上限內；禁用詞為 0（Spearheaded、第一大、Jira、案主／業主、3 週上線、千萬、承接率、雙週 Sprint）。
+-4. 檔頭：若有新寫、未潤飾段落，標「草稿，待 Resume Writer（Codex）潤飾」並列出段落；若全部文字已潤飾過，標「可填表」。
++4. 檔頭：新寫或未潤飾段落標為草稿並列出；已潤飾仍須核對語意與格式，且本人已採用，才能標「可填表」。潤飾完成或 T1–T6 通過本身不代表本人定版。
+ 5. 草稿由 Codex 依 `career/codex-skills/polish-104/SKILL.md` 潤飾 → 推 `codex/resume-writer` → 本人轉達。
+-6. 核對潤飾稿（`git show origin/codex/resume-writer:career/drafts/codex/104-<版本>-polished.md`）：欄位路徑相同、各區塊數字與 HTML 標籤不變、禁用詞 0、限定詞未刪；語意偏移處回報本人。
++6. 核對潤飾稿（`git show origin/codex/resume-writer:career/drafts/codex/104-<版本>-polished.md`）：欄位路徑相同、各區塊數字與 HTML 標籤不變、禁用詞 0、限定詞未刪；另人工實讀招募用途、主詞動作、指標語意與整段自然度；語意偏移處回報本人。
+ 7. 本人同意後採用，檔頭改「可填表」，更新 `ROUTER.md` 現行版指向，commit 前綴 `career:`。
+diff --git a/career/skills/104coverletter/SKILL.md b/career/skills/104coverletter/SKILL.md
+--- a/career/skills/104coverletter/SKILL.md
++++ b/career/skills/104coverletter/SKILL.md
+@@ -15,12 +15,14 @@
+ | 項目 | 來源 |
+ | :-- | :-- |
+ | 職缺 | 本人給的職缺代碼或名稱 → `career/review-panel/jd/routing.tsv` 找 code、公司、職稱；JD 原文：`career/targets/jobs.md`（必要時 `review-panel/jd/full/<code>.md`、`light-cards.md`） |
+-| 該職缺的驗證結果 | `review-panel/runs/` 最新一輪對該 code 的 `apply_hook`、`top_gap`、F 層 doubts（可用來選要打的亮點與要避開的缺口） |
++| 該職缺的驗證結果（選讀） | 只在本人指定參考該份結果時讀取；不得自選最新模型結果、以分數／Level 選稿或啟動送驗。事實與職缺仍分別讀 library 與指定 JD |
+ | 事實 | `career/library/`（先 `INDEX.md`、`decisions.md`、`superseded.md`、`about-me.md`）；現行履歷 `drafts/<版本>/resume-<版本>.md` |
+ | 分級 | 本人指定「主力」或「一般」；沒說就當一般 |
+ | 主力職缺的產品觀察 | **只能由本人提供**（試用心得、觀察）；沒提供就用一般鉤子，不自己研究編造 |
+
+-## 2. 結構（250–350 字；欄位上限 2,000）
++## 2. 結構（中文預設編輯建議 250–350 字；欄位上限 2,000）
++
++字數要求先依本人當輪指定，再依指定稿的有效要求；未指定時才用本節中文建議。中英混合另依 §2.1 計英文 words，不拿中文總字數裁掉必要英文事實或限定。指令互相衝突且不能同時滿足時，回報具體衝突，不自行刪改事實。
+
+ > 依據：企業端詳細頁**全文展開、純文字、一行約 45–50 字**，位置在履歷本文前、104「符合分析」上方（本人 2026-10-20 截圖）；104 官方建議「簡短精要，約 400–500 字尤佳」。詳見 `104/cover-letter-research.md`。
+ > - **純文字**：不用 HTML、粗體、Markdown；條列用「‧」開頭＋換行，最多 3 點，每點 1–2 行。
+@@ -36,7 +38,7 @@
+ ‧〔同上〕
+ ‧〔可選第 3 點〕
+
+-〔可選一句鉤子：一般＝產業／商業模式共鳴；主力＝本人提供的產品觀察〕完整經歷在履歷中，謝謝您的閱讀。
++〔可選一句具體公司關聯：一般＝已知業務關聯；主力＝本人提供的產品觀察。自然收尾可省略，不強制套用固定句，已被本人否決的結尾不得由範本帶回。〕
+
+ 聶崑淮
+ ```
+@@ -74,7 +76,7 @@
+
+ ## 5. 潤飾後核對與定稿
+
+-1. 讀潤飾稿：公司名、職缺名逐字相同；數字、日期、限定詞不變；禁用詞為 0；字數 200–400。
++1. 讀潤飾稿：公司名、職缺名逐字相同；數字、日期、限定詞不變；正文禁用詞為 0；字數依 §2 優先序與 §2.1 語言計法，不另套 200–400 的另一組門檻。人工實讀責任動詞、每點用途及收尾是否自然。
+ 2. 只把語意偏移處回報本人決定；本人同意後存 `career/letters/104/<code>-<公司>.md`（定稿），並在 `career/letters/log.md` 加一列（日期、公司、職缺、語言 zh、檔案、結果〔待填〕）。
+ 3. 新用到的成果句回填 `letters/story-bank.md`；本人新提供的動機或觀察先寫進 `library/`（about-me 或 facts）。
+
+diff --git a/career/style/resume-voice-zh.md b/career/style/resume-voice-zh.md
+--- a/career/style/resume-voice-zh.md
++++ b/career/style/resume-voice-zh.md
+@@ -3,7 +3,8 @@
+ # 履歷語氣規範（繁中，從使用者 2026-10-05 潤飾稿萃取）
+
+ > 適用：104、Cake 等所有中文履歷、自傳、專案說明。平台欄位規格各自看 `../104/`、`../cake/`；語氣共用本檔。
+-> 事實與數字仍只能來自 `../wiki/`。語氣可以強，**事實不能誇大**——第 3 節的護欄優先於第 1–2 節。
++> 事實與數字以 `../library/` 及本人當次確認為準，wiki 僅補細節。角色與事實優先於文風。
++> **現行適用順序**：本人當輪鎖定 → library 現行裁定與 About Me → 對外選材及因果技能 → 本檔仍有效的措辭規則。下方保留歷史範本與逐次更正，不能把舊數字、粗體分類前綴、四段自傳或強動詞表當成預設要求。段落數與格式依本人指定稿；104 簡介／特色依 `../104/content-spec-quill.md` §5。例句不作新事實來源。
+
+ ## 1. 使用者偏好的語氣
+
+diff --git a/career/style/anti-ai-ats.md b/career/style/anti-ai-ats.md
+--- a/career/style/anti-ai-ats.md
++++ b/career/style/anti-ai-ats.md
+@@ -9,7 +9,7 @@
+ - 台灣用語：寫「API 串接、專案、提升營運效率、落地、重構」，不寫「應用程式接口、項目、優化了運作」。
+
+ ## 2. CAR 盤問（不准只美化）
+-遇到空泛條目（例「負責系統改版」），**先停下來問使用者**：
++遇到空泛條目（例「負責系統改版」），先查 library、About Me、open-questions 與已回答紀錄，補足已有背景；只有會影響真實性或核心選材的新缺口才問本人，不因句子空泛或沒有量化數字重啟 grill：
+ - Context：在什麼背景下做的？
+ - Action：用了什麼方法、跨了哪些部門？
+ - Result：有什麼可驗證的數字？
+@@ -25,13 +25,15 @@
+ - 日期一律 YYYY/MM。
+
+ ## 5. 流程
+-1. 掃描並移除 AI 詞與視覺元素 → 2. CAR 檢查，空泛就停下來問 → 3. 改寫（結果在前、做法在後，但主詞維持規劃者）→ 4. 只輸出履歷本體，不加客套話。
++1. 先判斷對外用途與任務格式 → 2. 查現行來源並作 CAR 與句意檢查 → 3. 依真實責任改寫，沒有量化成果不硬補 → 4. 交完整指定範圍，正文與理由分開；104 格式鎖定時保留 HTML／螢光，不因 ATS 模板移除。
+
+ ## 與既有規範的整合說明
+ - **結果在前**：成果有數字時放前面；沒數字時不硬湊，維持「情境＋決定」。
+ - **104 匯入版不受「不放表格」影響**（104 本來就是欄位制）；此規則主要用於 PDF／英文 ATS 版。
+
+-## 6. V4 防禦型去潤飾（2026-10-08 使用者再次提供，Toxic HR Defense）
++## 6. V4 防禦型去潤飾（歷史方法與後續更正，不能逐條當現行命令）
++
++舊模板的證照／交換／工讀／遠端刪除規則已由下方本人調整撤回；格式與段落數依本輪任務。本人禁止以分數或 Level 選稿，不自行啟動防禦式評分或跨模型送驗。
+ 以「挑剔、找理由刷人的審查者」角度先做毒性稽核，再改寫。
+ - **RACR，結果先行**：每條先寫可量化的結果，再寫行動與限制。**沒有真實數字的條目不硬套**，改寫限制或決定，不得編數字（§2 優先）。
+ - **職稱包裝**：資歷 7 年以上但在地職稱偏低（產品企劃、主任）→ 以實際範圍寫英文職稱，在地職稱放括號，例如「Product Owner（產品企劃主任）」。
+@@ -40,7 +42,7 @@
+ - **剔除弱訊號**：5 年以上資歷刪除入門證照（AWS Cloud Practitioner）、10 年以上的交換與工讀經歷。
+ - **移除紅旗**：「遠端工作」等條件不寫在履歷，留給面談。
+ - **反日常勞力**：不把日常勞動寫成成就（例如「負責蒐集需求」「每天寫 user story」）。⚠️ 2026-10-08 使用者裁定：**PM 產出物與交付鏈必須呈現**（Journey、User Story、Use Case、SA、流程圖、Wireframe、Prototype、Spec、QA 協作、上線計畫），見 `library/decisions.md` §7。寫法是把產出物當成「怎麼做到」的證據放進成果條列，而不是刪掉。
+-- **動詞**：禁用 協助、參與、負責、處理、管理；改用 主導、上線、優化、定義、規模化。⚠️ 與事實衝突時以事實為準：只是協作的產品**直接刪除**，不能升級成「主導」。§7 規劃者定位仍適用，不用「架構」這類工程動詞。
++- **動詞**：依真實責任選用，協助、參與、負責、處理、管理可在事實支持時使用；不為語勢升級為主導、架構或規模化，也不因只是協作便刪掉有招募用途的案例。英文依 `voice-en.md`，角色依 library。
+ - **結構去 AI 感**：條列開頭不加粗體摘要；條目長短不一；寫出限制與妥協（舊系統、分階段、時程壓力），不寫完美勝利。
+ - **輸出**：單欄純 Markdown／純文字，不加對話式說明。
+
+diff --git a/career/library/decisions.md b/career/library/decisions.md
+--- a/career/library/decisions.md
++++ b/career/library/decisions.md
+@@ -55,7 +55,9 @@
+ - 寫法：至少一條條列呈現「定義」段（Journey → Spec），一條呈現「交付」段（追時程 → QA → 上線）；技能欄列出產出物。
+ - 來源：2026-10-08 使用者對話（「之前說不要有太多技術用語，但不代表不要提到我產出的文件」）
+
+-## 8. 履歷標準工作流程（2026-10-08 使用者裁定，2026-10-09 修訂，取代先前「改稿＝刪修上一版」的做法）
++## 8. 履歷標準工作流程（歷史裁定與後續覆蓋）
++
++> 以下保留 2026-10-08／09 流程以追溯；後續本人已指定兩端為編輯協作者、不宣稱獨立驗證、不以模型分數或 Level 改稿，送驗只含本人指定的履歷、JD 與規準。不得由本節自動啟動 20 版本評分、合成校準、盲審、ATS 評分或定版；當輪按本人指定範圍及 §23 的對外選材流程執行。
+
+ 九步，依序、不跳步（2026-10-09 起；原八步版在步驟 4 加 20 版本、6 與 7 之間加 ATS）：
+ 1. **調用職能與職缺**：讀 library、`competency-framework.md`、F01–F15，加上目標職缺 JD，列出要涵蓋的職能、交付鏈與 JD 需求。
+diff --git a/career/ROUTER.md b/career/ROUTER.md
+--- a/career/ROUTER.md
++++ b/career/ROUTER.md
+@@ -32,10 +32,10 @@
+ | 遇到〔待補〕或想問使用者 | [`library/open-questions.md`](library/open-questions.md)（問前先查） | Codex 的疑問寫 `drafts/codex/QUESTIONS.md` |
+ | Resume Gen 原 ChatGPT 交接、歷史稿／PDF／對話追溯 | Codex 分類 wiki：`drafts/codex/wiki/README.md` | 逐檔索引：`drafts/codex/FILE_INDEX.md`、雜湊清單 `drafts/codex/FILE_INDEX.csv` |
+ | 104 個人簡介與頂部個人特色規格 | `104/content-spec-quill.md` §5 | Codex 交接 `drafts/codex/2026-10-21-104-summary-chips-claude-handoff.md`（在 `codex/resume-writer`） |
+-| Codex 內容編輯協作與交付 | Resume Writer 指令：`drafts/codex/AGENTS.md` | 接手核對 `drafts/codex/2026-10-20-conversation-reconciliation.md`、`drafts/codex/QUESTIONS.md` |
++| Codex 內容編輯協作與交付 | 從 `origin/codex/resume-writer` 固定提交讀 `career/drafts/codex/AGENTS.md` → `ROUTER.md` → `skills/resume-editor/SKILL.md` | 同分支 `wiki/skills.md`、`wiki/editorial-regressions.md`、`wiki/handoff-status.md`；不將這些指令匯入 Claude 角色 |
+ | 產生 104 特化版履歷 md | [`skills/104resume/SKILL.md`](skills/104resume/SKILL.md) | `104/content-spec-quill.md` |
+ | 寫 104 自我推薦信（指定職缺） | [`skills/104coverletter/SKILL.md`](skills/104coverletter/SKILL.md) | `104/cover-letter-research.md`、`letters/104/` |
+-| 潤飾 104 特化版草稿（Codex） | [`codex-skills/polish-104/SKILL.md`](codex-skills/polish-104/SKILL.md) | `drafts/v11/104-v11.md` |
++| 潤飾 104 特化版草稿（Codex） | [`codex-skills/polish-104/SKILL.md`](codex-skills/polish-104/SKILL.md) | 本人當輪指定的 104 草稿；不把歷史 v11 範例指定為底稿 |
+ | 職能證據（F1–F15） | [`competency-framework.md`](competency-framework.md) → `wiki/F*.md`、`wiki/evidence-*.md` | — |
+
+ ## 3. 現行稿與歷史稿
+diff --git a/career/CLAUDE.md b/career/CLAUDE.md
+--- a/career/CLAUDE.md
++++ b/career/CLAUDE.md
+@@ -20,7 +20,9 @@
+ *The user's personal career material — competency inventory, résumé source, portfolio. Deliberately kept apart
+ from this repo's 1111 spec-documentation work. Treat as plain Markdown.*
+
+-## 🚫 硬規則一：全部可讀，只有 `career/` 與自有 skill 可寫 / Read everything, write only `career/` and owned skills
++## 🚫 硬規則一：Career Move 的權限（不授予 Codex）
++
++> 本節「全 repo 可讀／自有 skill 可寫」只適用 Career Move。Resume Writer 仍只讀 career 與本人附件、只寫 career/drafts/codex，不讀取 career 外 skill，不推本分支。不把本檔權限套給另一端。
+
+ 這條 session（分支 `claude/happy-lamport-ljis8c`，側欄「Career Move」，`session_017u5Po6SGpjD3iLBZ2VL2HH`）的工作是
+ **讀既有產出 → 萃取成職能與履歷素材**。它對 repo 內其他所有東西是**唯讀**的。
+@@ -67,7 +69,7 @@
+ - **事實唯一來源是 `library/`**（你維護）；它只把事實寫順、**不新增事實**。
+ - **邊界**：它只讀 `career/`、只寫 `career/drafts/codex/`，用自己的分支 `codex/resume-writer`，不推 `main`、不推本分支。**你不要寫 `drafts/codex/`。**
+ - **它的疑問在 `drafts/codex/QUESTIONS.md`**：你查證後更新 `library/`（附日期與來源），把答覆告訴使用者，由使用者轉達。
+-- **取用成果只讀取、不整支合併**：`git fetch origin codex/resume-writer`，再 `git checkout origin/codex/resume-writer -- career/drafts/codex` 取出來看；採用哪份由使用者決定，採用的內容由你納入自己的檔案。
++- **取用成果只讀取、不整支合併**：以明確 refspec fetch `codex/resume-writer`，固定提交後用 `git show <固定提交>:career/drafts/codex/<指定檔>` 只讀取；不 checkout／覆蓋對方目錄。採用哪份由使用者決定，採用內容再納入 Career Move 自己的檔案。
+ - **不得在任何 `CLAUDE.md` 用 `@AGENTS.md` 引用它的指示檔**（會把 Codex 規則帶進本 session）。
+ - commit 前綴 `career:`。
+
+diff --git a/career/HANDOFF.md b/career/HANDOFF.md
+--- a/career/HANDOFF.md
++++ b/career/HANDOFF.md
+@@ -1,6 +1,8 @@
+ <!--markdownlint-disable MD013-->
+
+ # 交接 / Session Handoff — career session
++
++> 本檔主要為 Career Move 的角色與歷程；Codex 不繼承全 repo 讀取或其他目錄寫入權限。開工先讀當輪固定提交的共用 ROUTER，版本／狀態以本人指定及最新讀回為準，下文版本表與九步評分流程含歷史紀錄，不自動執行或指定底稿。Codex 的有效操作入口在其分支 `career/drafts/codex/ROUTER.md`。
+
+ > **現役**：`session_017u5Po6SGpjD3iLBZ2VL2HH`，側欄「**Career Move**」（2026-09-29 接手；v1 `session_018VJFZiuZYfnPhMppvaGFcR`、v2 `session_01PKC4scvp58BuQxq5JKMHPw` 皆已 ARCHIVED）。分支 `claude/happy-lamport-ljis8c`。
+ > **2026-10-08 Repo Steward 健檢重建**：新增 [`library/`](library/README.md)（使用者提供資料庫）、修正矛盾檔、104 舊版歸檔、自有 skill 擁有權移交本 session。
+diff --git a/career/wiki/skills-index.md b/career/wiki/skills-index.md
+--- a/career/wiki/skills-index.md
++++ b/career/wiki/skills-index.md
+@@ -1,6 +1,8 @@
+ <!--markdownlint-disable MD013-->
+
+ # 個人線 skill 索引與路由（Career Move 專用）
++
++> Codex 只讀 career，不執行本頁 career 外技能路徑或指令；其入口從 `origin/codex/resume-writer` 讀 `career/drafts/codex/ROUTER.md`。本頁舊驗證與 PDF 指令僅供 Career Move 在本人指定任務時核對，不自動啟動評分、子代理或重產 PDF；PDF 交付格式依本人最新指示，不套歷史單欄預設。
+
+ > 三個自有 skill（commit 前綴 `career(skill):`，擁有權在本分支）。**不要整包載入**：先看這張表，只讀「讀什麼」欄的檔案。
+ > 其他分支的 skill（1111 規格書、HackMD、線框圖…）與本線無關，見根目錄 `.claude_index.md`。
+diff --git a/career/codex-skills/README.md b/career/codex-skills/README.md
+--- a/career/codex-skills/README.md
++++ b/career/codex-skills/README.md
+@@ -1,6 +1,8 @@
+ # codex-skills
+
+-Career Move 維護、給 Resume Writer（Codex）使用的 skill。Codex 只讀 `career/`，所以放這裡而非 `.claude/skills/`。
++Career Move 維護、給 Resume Writer（Codex）使用的共用 skill。Codex 只讀 `career/`，所以放這裡而非 `.claude/skills/`。
++
++Codex 開工流程從其分支 `career/drafts/codex/AGENTS.md` → `ROUTER.md` → `skills/resume-editor/SKILL.md`，技能清單在同區 `wiki/skills.md`；本目錄仍維持共用 skill 的單一版本，不複製到 Codex 區。
+
+ | skill | 用途 |
+ | :-- | :-- |
+diff --git a/career/library/INDEX.md b/career/library/INDEX.md
+--- a/career/library/INDEX.md
++++ b/career/library/INDEX.md
+@@ -9,7 +9,7 @@
+
+ | 任務 | 必讀 | 視需要 |
+ | :-- | :-- | :-- |
+-| 任何動筆前 | decisions §1 角色定位、§2 語氣、§4 保密、§3 對外抽象化 | superseded（改舊稿／審稿才讀） |
++| 任何動筆前 | decisions §1 角色定位、§2 語氣、§4 保密、§3 對外抽象化、§23 對外選材；104 另讀 §20 及本人當輪鎖定 | superseded（改舊稿／審稿才讀）；§8 歷史流程不自動執行 |
+ | 寫履歷抬頭／時間軸／學歷／證照／語言／求職條件 | profile §1–§6 | profile §9 摘要用語規則 |
+ | 寫 1111 段（現職） | facts-1111 §1 角色、§2 數字、§3 專案 | §4 方法與產出（交付鏈）、§6 搜尋邏輯、§8 回答 ChatGPT 缺口 |
+ | 寫尚凡／思維特等前段職涯 | facts-prior §1 產品與角色、§2 數字、§3 不可寫 | 〈方法與能力〉 |
+diff --git a/career/library/about-me.md b/career/library/about-me.md
+--- a/career/library/about-me.md
++++ b/career/library/about-me.md
+@@ -242,5 +242,5 @@
+ - 以最新本人確認的陳述修正本檔；保留關鍵更正理由，已撤回內容只在防回退提醒中出現，不並列成兩種有效答案。
+ - 本檔負責動機、思路與編輯選擇；履歷指定稿負責數字及投遞文字；編輯 skill 負責讀取順序與品質門檻，避免多處各存一套互相矛盾的記憶。
+ - **2026-10-20 起常態同步（本人授權，取代舊「要求才更新」）**：每輪討論與潤飾主動檢查本檔；有新確認的動機、工作方式、管理案例或寫作偏好，當輪同步，不等本人另問；沒有新資訊只核對，不為更新而新增推論。Codex 把新確認與同步片段交 Career Move 寫入；潤飾發現本檔、已確認事實與稿件有落差時，主動告訴本人差異、影響與建議範圍，並附給另一端的可執行指令。來源同步不等於素材必須寫進履歷；超出當輪修改範圍的，標明待取捨，由本人決定。
+-- 不宣稱所有模型與對話都自動載入；後續可由 resume-gen-editing skill 明確讀取本檔降低遺漏。
++- 不宣稱所有模型與對話都自動載入；編輯入口須明確讀取本檔。2026-10-21 本人要求 Resume Writer 對其技能進行健診，建立 router 與 wiki，避免規則及交接漏接。這是協作流程要求，不是新的人格或管理能力推論；Codex repo 內入口為其分支 `career/drafts/codex/AGENTS.md` → `ROUTER.md`，不宣稱已修改 ChatGPT 專案設定。
+ - 本人要求停止 grill 或回到履歷時，先交付已能完成的文字，不以探索心境阻塞交件。

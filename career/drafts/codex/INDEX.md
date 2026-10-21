@@ -1,7 +1,11 @@
 # Resume Writer 協作與檔案入口
 
+**開工先讀 [ROUTER.md](ROUTER.md)** → [本區流程 skill](skills/resume-editor/SKILL.md)；[交接狀態](wiki/handoff-status.md) 辨認採用／同步／PDF。以下日期型產出與交接僅為索引，不自動指定現行稿。
+
+- [技能健診與共用修補](2026-10-21-skills-healthcheck-and-claude-handoff.md)、[技能清單](wiki/skills.md)、[真實錯誤檢查](wiki/editorial-regressions.md)。
+
 - [本區工作指令](AGENTS.md)：讀寫邊界、共用來源及歷史資料使用方式。
-- [分類 wiki](wiki/README.md)：按任務查找交接、版本、文字、PDF、人物參考、研究及驗證封存。
+- [分類 wiki](wiki/README.md)：有效操作導航、技能狀態、錯誤案例，以及歷史來源追溯。
 - [逐檔索引](FILE_INDEX.md)、[CSV／SHA-256](FILE_INDEX.csv)。
 - [ZIP 匯入說明](archive/2026-10-20-resumegen/README.md)、[匯入核對報告](archive/2026-10-20-resumegen/IMPORT_REPORT.json)。
 - [共用路由增補稿](ROUTER-INTEGRATION.md)：交由 Career Move 加入共用 ROUTER.md。
@@ -9,11 +13,11 @@
 
 現行資料讀取順序以共用 career/ROUTER.md 及 library/ 的最新裁定為準。本區歷史來源與索引不替代 SSOT。共用來源位於同一儲存庫的 Career Move 分支，不要求每個聊天各自維護副本。
 
-## 對外選材與因果邏輯（2026-10-21 最新重整）
+## 對外選材與因果邏輯（2026-10-21 歷史交接）
 
 - [四階段分析、SweetRing 已上線案例與 Claude 更新指令](2026-10-21-resume-causal-logic-and-sweetring-handoff.md)：本人新 skill 的適用調整、動筆前必過門檻、避免公開 roadmap 的跨欄位檢查、1111／SweetRing 完整片段及共同來源更新。SweetRing 三份規劃均由本人確認主責且已上線；原始 Keynote 與畫面未提交 repo。此輪為分析與送核稿，不自動改版或重產 PDF。
 
-## 新收到的編輯素材（待 Career Move 整合，非第二套 SSOT）
+## 已交接的編輯素材（同步狀態見 wiki/handoff-status.md）
 
 - [2026-10-20 管理案例：指導同仁完成類別對照](2026-10-20-management-case-handoff.md)
 

@@ -1,4 +1,6 @@
-# 共用 ROUTER.md 增補稿（交 Career Move 整合）
+# 共用 ROUTER.md 增補稿（歷史交接）
+
+> 2026-10-21 已讀回：本檔原先兩項路由已在 Career Move 共用 ROUTER 中；不重複要求加入。新一輪固定入口與技能健診請讀 [本區 ROUTER](ROUTER.md) 及 [健診與共用修補](2026-10-21-skills-healthcheck-and-claude-handoff.md)。以下保留原交接內容。
 
 本檔僅提供索引段落；共用 `career/ROUTER.md` 由 Career Move 維護，Codex 未直接改動。
 
