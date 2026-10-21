@@ -76,6 +76,7 @@ description: 針對指定的 104 職缺產生「104 自我推薦信」草稿（2
 ## 6. 潤飾者是 Resume Writer（Codex）時
 
 - 讀草稿：`git show origin/claude/happy-lamport-ljis8c:career/letters/104/<code>-<公司>-draft.md`；依草稿檔頭規則與本檔 §2–§3 潤飾。
+- **讀職缺與公司**：`career/review-panel/jd/full/<code>.md`（JD 全文或重點）、`career/review-panel/jd/routing.tsv`（公司、職稱、年資）、必要時 `career/targets/jobs.md`、`targets/companies.md`。只用來對齊語意與用詞；**不新增對公司的觀察**，JD 檔中標「未查證」的公司推測不得使用。
 - 寫到：`career/drafts/codex/letters/<code>-<公司>-polished.md`（整封＋檔末〈修改紀錄〉＋字數／行數）；推 `codex/resume-writer`。
 - 不改：公司名、職缺名、數字、日期、限定詞、條列點數；不新增事實或對公司的觀察。事實疑問寫 `drafts/codex/QUESTIONS.md`。
 - 交付後告訴本人檔名；Career Move 依 §5 核對、定稿。
