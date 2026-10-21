@@ -39,3 +39,5 @@
 - [沛思坦網路推薦信：依語氣回饋重寫 A／B](letters/8o3s3-%E6%B2%9B%E6%80%9D%E5%9D%A6%E7%B6%B2%E8%B7%AF-rewritten.md)：取消能力小標、英文安排說明與敬上；附 skill／About Me 同步指令，前輪稿保留供追溯。
 
 - [沛思坦網路方案 A：公司鉤子與共用英文規範版](letters/8o3s3-%E6%B2%9B%E6%80%9D%E5%9D%A6%E7%B6%B2%E8%B7%AF-company-hook-polished.md)：依新附件與 voice-en，保留角色、事實及公司服務對象，附修改紀錄與字數。
+
+- [沛思坦推薦信收尾修訂與 pending-edits 核對](2026-10-21-pacston-letter-and-pending-review.md)：完整中英混合提案，英文 120 words；保留公司事實、修掉本人先前質疑的舊收尾，另指出待改清單第 9 項摘要字數應更新為 248。雙欄正文與 PDF 維持待用，尚未投遞或定稿。
