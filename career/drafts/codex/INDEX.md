@@ -9,6 +9,10 @@
 
 現行資料讀取順序以共用 career/ROUTER.md 及 library/ 的最新裁定為準。本區歷史來源與索引不替代 SSOT。共用來源位於同一儲存庫的 Career Move 分支，不要求每個聊天各自維護副本。
 
+## 對外選材與因果邏輯（2026-10-21 最新重整）
+
+- [四階段分析、SweetRing 已上線案例與 Claude 更新指令](2026-10-21-resume-causal-logic-and-sweetring-handoff.md)：本人新 skill 的適用調整、動筆前必過門檻、避免公開 roadmap 的跨欄位檢查、1111／SweetRing 完整片段及共同來源更新。SweetRing 三份規劃均由本人確認主責且已上線；原始 Keynote 與畫面未提交 repo。此輪為分析與送核稿，不自動改版或重產 PDF。
+
 ## 新收到的編輯素材（待 Career Move 整合，非第二套 SSOT）
 
 - [2026-10-20 管理案例：指導同仁完成類別對照](2026-10-20-management-case-handoff.md)
