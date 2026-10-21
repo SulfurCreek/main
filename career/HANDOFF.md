@@ -19,6 +19,8 @@
 
 - **協作者：Resume Writer（Codex，2026-10-20 起）**——只寫 `drafts/codex/`（自己的分支 `codex/resume-writer`），事實依 `library/`；疑問在 `drafts/codex/QUESTIONS.md`，查證後更新 library 並答覆使用者。取用成果只讀取不合併，細節見 `CLAUDE.md` 協作段與 `wiki/personal_line_collab.md` §7。
 
+- **2026-10-21 104 個人簡介與個人特色**：`drafts/v11.1/104-v11.1.md` 個人簡介換成本人選定 243 字版、新增頂部個人特色 5 句（Client／Business）；About Me 記偏好；規格集中於 `104/content-spec-quill.md` §5，`104resume`、`polish-104` 改為引用；`polish-104` 區分一般潤飾與指定欄位重整、停用分數選稿。來源 Codex 交接 `codex/resume-writer`:career/drafts/codex/2026-10-21-104-summary-chips-claude-handoff.md（基準 4a30db8）。經歷、自傳、專長、求職信未改；**PDF 未更新，本輪不需更新**；chip 實際容量待填表時核對。
+
 ## 2. 工作慣例（使用者已確認過的）
 
 | 慣例 | 內容 |

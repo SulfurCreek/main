@@ -30,6 +30,7 @@
 | 看驗證結果、投遞優先序 | [`review-panel/HISTORY.md`](review-panel/HISTORY.md)、[`review-panel/opus-matrix.md`](review-panel/opus-matrix.md) | `review-panel/runs/<日期>-<版本>-*/`（單次結果） |
 | 遇到〔待補〕或想問使用者 | [`library/open-questions.md`](library/open-questions.md)（問前先查） | Codex 的疑問寫 `drafts/codex/QUESTIONS.md` |
 | Resume Gen 原 ChatGPT 交接、歷史稿／PDF／對話追溯 | Codex 分類 wiki：`drafts/codex/wiki/README.md` | 逐檔索引：`drafts/codex/FILE_INDEX.md`、雜湊清單 `drafts/codex/FILE_INDEX.csv` |
+| 104 個人簡介與頂部個人特色規格 | `104/content-spec-quill.md` §5 | Codex 交接 `drafts/codex/2026-10-21-104-summary-chips-claude-handoff.md`（在 `codex/resume-writer`） |
 | Codex 內容編輯協作與交付 | Resume Writer 指令：`drafts/codex/AGENTS.md` | 接手核對 `drafts/codex/2026-10-20-conversation-reconciliation.md`、`drafts/codex/QUESTIONS.md` |
 | 產生 104 特化版履歷 md | [`skills/104resume/SKILL.md`](skills/104resume/SKILL.md) | `104/content-spec-quill.md` |
 | 寫 104 自我推薦信（指定職缺） | [`skills/104coverletter/SKILL.md`](skills/104coverletter/SKILL.md) | `104/cover-letter-research.md`、`letters/104/` |
