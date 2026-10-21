@@ -17,6 +17,12 @@
 
 - [104 v11 完整潤飾稿與修改紀錄](104-v11-polished.md)：依 polish-104 skill 處理，待 Career Move 核對，未自動取代現行稿。
 
+## 104 個人簡介與頂部 chip（2026-10-21）
+
+- [本輪完整 Claude Code 交接](2026-10-21-104-summary-chips-claude-handoff.md)：243 字簡介、五個短句 chip（含本人指定 Client／Business）、About Me 同步片段及規格／skill 調整；本輪整合入口，PDF 不需更新。
+- [歷版與指令檢視](2026-10-21-summary-review-and-rewrite.md)：47 種摘要文字與來源、規則衝突及取捨，供追溯；較早的六個 chip 已由本輪交接取代。
+- [chip 短句初稿](2026-10-21-104-chips-punchline-proposal.md)：保留本輪措辭演變，整合請採上述完整交接的最新第二句。
+
 ## 每輪 About Me 同步
 
 - [About Me 同步增補與給 Career Move 的指令](2026-10-20-about-me-sync.md)：管理案例、來源落差及常態同步授權；共用 About Me 實際寫入狀態見交接稿。

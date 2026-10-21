@@ -46,3 +46,4 @@
 - 本人已選定：消費型產品的付費／媒合，與企業系統的流程／交付兩邊並重。安排摘要與頂部個人特色 chip 時依此分配，不自行改成只強調企業交付或商業策略。
 - 個人特色 chip 需讓 HR 快速注意到有依據的經驗組合；具體措辭未定版。與專長欄的標準技能 tag 區分，不承諾搜尋或投遞效果。
 - 本輪歷版索引、規則衝突及給 Career Move 的 About Me 同步片段見 `2026-10-21-summary-review-and-rewrite.md`。共同人物來源仍是 `career/library/about-me.md`；此報告是編輯追溯，不另建事實庫。
+- 本人接著要求頂部 chip 更有 punch line，並指定表達兩類經驗的 chip 使用 Client／Business。完整整合交接見 `2026-10-21-104-summary-chips-claude-handoff.md`；以該檔的摘要與五個 chip 交接，不回用早期名詞分類提案。此次用語不擴大為英文文件的術語定義或全份履歷的口號風格。
