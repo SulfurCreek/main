@@ -20,11 +20,12 @@
 **繁中**：我是能掌握「產品定義全鏈路」的產品企劃——從 **User Story → Wireframe → 功能規格 → 跨團隊交接**，
 獨立負責 **1111 求才系統（recruit, B 端）的端到端產品定義**，並延伸負責求職端的**公司頁（公司在求職站的呈現）**，
 同時規劃多項**求才側 AI 產品**（生成式與推薦類）。
+在此之前有 **6 年 B2C 行動產品**經歷（交友與網紅媒合 App，含 **3 個 0→1 初創**、IAP 變現與多市場在地化）——合計 **PM 年資約 10 年**，橫跨 **0→1 立產品**與 **1→N 平台治理**兩端。
 
 **English**：A product planner who owns the **full definition pipeline** — *user story → wireframe → functional
 spec → cross-team handoff* — for the **1111 recruit (employer, B-side) platform end-to-end**, extending to the
 jobseeker-facing **company page (公司頁)**, plus a line of **employer-side AI products** (generative + recommendation).
-I originate products from my own user stories and wireframes; I don't transcribe other people's.
+Before this, six years in **B2C mobile** (dating and influencer-marketplace apps, including **three 0→1 launches**, IAP monetization and multi-market localization) — **~10 years in product**, spanning both creating products from scratch and governing a mature platform. I originate products from my own user stories and wireframes; I don't transcribe other people's.
 
 ---
 
@@ -32,9 +33,11 @@ I originate products from my own user stories and wireframes; I don't transcribe
 
 | 維度 / Dimension | 內容 / Detail |
 | :--- | :--- |
+| 資歷 / Experience | **PM 年資約 10 年**（2016 起）：B2C 行動產品 6 年（交友／網紅媒合，含 3 個 0→1）→ B2B 招募平台 4 年（見[職涯時間軸](wiki/prior-roles.md)）|
 | 負責範圍 / Ownership | **求才系統（recruit, B 端）全系統**（A–M 各模組）＋ 求職端**公司頁**；本人撰寫份數〔待補數據 / TODO: count〕 |
 | 平台定位 / Surface | 廠商端（B-side）平台主責；公司頁為連結至求職者端（C-side）的橋接面 |
 | 產品線 / Product lines | 核心交易流程 ＋ **求才側 AI 產品**（職缺匯入、公司簡介生成、JD 生成、職缺健檢、AI 推薦人才） |
+| AI 工作方式 / AI workflow | 自建並治理**多代理 AI 工作系統**：12 條長駐分身、23 個共用 skill、單一規則書路由（見 [F15](wiki/F15-ai-workflow-governance.md)）|
 | 角色定位 / Role | 需求源頭 → 規格輸出 → 交接落地（originate → specify → hand off），非單純文件化 |
 | 路線圖與團隊 / Roadmap & team | 主導 **227 項求才產品 Roadmap**（P0–P3 優先級、時間盒交付節奏）；**直屬管理 2 名企劃**（蔡育琳、楊丞佳）並委派工單、協作工程／QA；與第一線 **tech support 平行單位**（同部門）協作——其升級複雜需求給本人；近半年 111 項上線、**94% 準時或提前** |
 | 方法論 / Method | 狀態驅動規格、MECE 四狀態、權限代碼建模、分階段交付、版本控管、UML／BPMN 建模（循序圖／活動圖／使用案例圖／BPMN） |
@@ -49,16 +52,20 @@ I originate products from my own user stories and wireframes; I don't transcribe
 
 | 任務類型 / Task | 讀哪些分頁 / Load these pages |
 | :--- | :--- |
+| **任何任務開工前**：確認事實、數字、角色、禁用詞 | [`library/`](library/README.md)（現行事實＋使用者裁定，**與分頁衝突時以 library 為準**） |
 | 產出／修改**履歷 bullet** | [`wiki/resume-extract.md`](wiki/resume-extract.md)（草稿基底）＋ 相關 F 分頁補細節 |
 | 準備**面試某項職能**的談資 | 對應 F 分頁（下表）＋ [`wiki/flagship-e1.md`](wiki/flagship-e1.md) |
 | 講**旗艦專案**（跨系統訊息）| [`wiki/flagship-e1.md`](wiki/flagship-e1.md) → 完整敘事見 [`portfolio/e1-cross-system-messaging.md`](portfolio/e1-cross-system-messaging.md) |
+| 講**前段職涯／0→1／變現／國際化** | [`library/facts-prior.md`](library/facts-prior.md)（現行角色與數字）→ [`wiki/prior-roles.md`](wiki/prior-roles.md) ＋ F12／F13／F14 分頁 |
+| 講**AI 能力**（被問「你怎麼用 AI」）| [`wiki/F15-ai-workflow-governance.md`](wiki/F15-ai-workflow-governance.md)（對內工作流）＋ [`wiki/F04-ai-product.md`](wiki/F04-ai-product.md)（對外產品）|
 | 填**學歷／證照／語言** | [`wiki/education-certifications.md`](wiki/education-certifications.md) |
-| 檢視**還缺什麼證據** | [`wiki/growth-edges.md`](wiki/growth-edges.md) |
+| **JD 關鍵字覆蓋／面試概念對應** | [`wiki/pm-vocabulary-map.md`](wiki/pm-vocabulary-map.md)（50 個 PM 概念 → 你的證據／缺口）|
+| 檢視**還缺什麼證據** | [`wiki/growth-edges.md`](wiki/growth-edges.md) ＋ 上表的 ⚠️ 欄 |
 | 履歷**方法論**（ATS／bullet 公式／AI 掃描優化） | `.claude/skills/resume-craft/SKILL.md`（本框架的下游工具） |
 
 ---
 
-## 核心職能總覽 / Core Functions Index（F1–F11）
+## 核心職能總覽 / Core Functions Index（F1–F15）
 
 > 每個分頁格式一致：**定義 → 實際展現 → 工作證據 → 資深度訊號**。
 > Two lenses per function: what a **Senior-PM** move values vs. a **same-craft (spec-specialist)** move.
@@ -75,7 +82,11 @@ I originate products from my own user stories and wireframes; I don't transcribe
 | F8 專案管理／路線圖交付 | [F08](wiki/F08-roadmap-delivery.md) | 管路線圖、配資源、追準時（94% on-time）、帶團隊委派 | 成熟的優先級與交付節奏管理，可直接接手 backlog |
 | F9 利害關係人／向上影響 | [F09](wiki/F09-stakeholder-influence.md) | 對齊 C-suite 目標、協調多團隊、用數據做決策 | 跨層級溝通與需求匯流能力，降低協作成本 |
 | F10 業務邏輯梳理 | [F10](wiki/F10-business-logic.md) | 把混亂規則盤成 MECE 決策邏輯、降低反工根因 | 規格上游的需求分析力，複雜規則一手接管 |
-| F11 問題解決與維運交付 | [F11](wiki/F11-problem-solving-ops.md) | 根因定位、~88% 結案；96.5% 工單來自付費客戶（實證）、觸及 1,109 家付費帳號→直接連結客戶留存與業績 | 即戰力維運窗口，工單→Kanban→上線閉環、付費客戶留存可直接接手 |
+| F11 問題解決與維運交付 | [F11](wiki/F11-problem-solving-ops.md) | 根因定位、~88% 結案；覆蓋 1,279 家付費帳號，該客群年化留存 81.2% vs 全站 74.2%（+7pt、p=0.011）| 即戰力維運窗口，工單→Kanban→上線閉環、付費客戶留存可直接接手 |
+| **F12 C 端行動產品與 0→1** | [F12](wiki/F12-consumer-mobile.md) | 從零立產品、多端交付，補足平台治理缺少的 0→1 光譜 | 配對型雙邊市場領域知識可直接遷移 |
+| **F13 變現、定價與金流** | [F13](wiki/F13-monetization-pricing.md) | 對營收負責：IAP 模型、價格點、金流串接、配額計價 | 少見的定價實戰，可接手商業化題目 |
+| **F14 國際化與在地化** | [F14](wiki/F14-localization-intl.md) | 多市場實際落地＋跨文化團隊協作，非僅語言能力 | 外商／跨國團隊即戰力（TOEIC 980）|
+| **F15 AI 協作系統設計與治理** | [F15](wiki/F15-ai-workflow-governance.md) | **AI-native PM 訊號**：設計並治理 12 條分身／23 skill 的多代理工作系統，含 SSOT、重複偵測與事故機制修復 | 可把同套治理帶進新團隊的 AI 工作流 |
 
 ---
 
@@ -85,10 +96,13 @@ I originate products from my own user stories and wireframes; I don't transcribe
 | :--- | :--- |
 | [旗艦專案 E.1 跨系統聯絡人才](wiki/flagship-e1.md) | F1/F2/F3/F6/F10 綜合輸出；SignalR 即時推播、兩條 legacy 通道整併、代碼衝突仲裁 |
 | [作品集：E.1 案例研究](portfolio/e1-cross-system-messaging.md) | 完整敘事（問題→研究→方法→結果）＋ 本人繪製的跨系統循序圖 |
-| [履歷可用摘要](wiki/resume-extract.md) | 11 條 action + scope + impact 雙語 bullet 草稿基底 |
-| [學歷・證照與語言](wiki/education-certifications.md) | 淡江國企 Class of 2013、CSUS 交換、TOEIC 980 Gold、TOEFL 93、GEPT 中高級、AWS CCP |
-| [證據頁：工單 × 付費客戶](wiki/evidence-paying-customers.md) | F11 商業價值實證：96.5% 工單開單當時付費中、觸及 1,109 家付費帳號（牌價年值 NT$3–5 千萬量級）、留存 85.5% vs 基準 44% |
-| [下一步補強建議](wiki/growth-edges.md) | 誠實缺口盤點：真因果續約率、客訴下降、AI 採用率、A/B 實驗 ownership |
+| [履歷可用摘要](wiki/resume-extract.md) | action + scope + impact 雙語 bullet 草稿基底 |
+| [學歷・證照與語言](wiki/education-certifications.md) | 淡江國企 Class of 2014、CSUS 交換、TOEIC 980 Gold、TOEFL 93、GEPT 中高級、AWS CCP |
+| [完整職涯時間軸](wiki/prior-roles.md) | 2013–2022 前段職涯（尚凡／思維特／Newegg）、產品下架的處理方式、兩處待釐清不一致 |
+| [證據頁：前段產品公開數據](wiki/evidence-prior-products.md) | 上櫃公司 5278 任內營收 8.3→16.5 億、SweetRing 5M+ 下載／16 語言、JustDating 1M+、KOOL 與 Juicy 已下架、榜單成績與資料取得邊界 |
+| [證據頁：工單 × 付費客戶](wiki/evidence-paying-customers.md) | F11 商業價值實證＋**雙快照留存世代分析**：覆蓋 1,279 家付費帳號，年化留存 81.2% vs 全站基準 74.2%（+7pt、p=0.011）|
+| [PM 語彙對照表](wiki/pm-vocabulary-map.md) | 50 個產業標準概念 → 你的證據／缺口（✅23 🟡17 ⚠️10）；含由留存率推導的 LTV |
+| [下一步補強建議](wiki/growth-edges.md) | 誠實缺口盤點：AI 功能採用率、因果歸因、A/B 實驗 ownership、個人層級切片 |
 
 ---
 

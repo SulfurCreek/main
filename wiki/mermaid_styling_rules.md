@@ -17,3 +17,58 @@
   1. **防重疊**：線條與箭頭是否有過度交錯？若有，請重新排列節點宣告的順序，或調整方向（如 `direction TB` 改為 `LR`）。
   2. **防跑版**：檢視長字串是否已妥善換行，確保圖表維持在合理的寬高比例內。
   3. **樣式確認**：確認是否已套用定義好的 `classDef` 柔和色系與邊框。
+
+## 4. 循序圖（sequenceDiagram）專屬設定
+
+`classDef`／`class` 語法只套用在 `flowchart`；`sequenceDiagram` 沒有 `classDef`，樣式改由 frontmatter `config.themeVariables` 注入。**配色仍是本檔第 1 節的柔和色系**，不使用冷灰／莫蘭迪色調（如 `#F4F5F7`／`#C1C7D0`／`#172B4D`／`#42526E`）——曾有分支提案採用該冷灰配色，已裁定不採用，一律沿用下方柔色系 token，維持全 repo 圖表色調一致。
+
+於循序圖頂端強制寫入：
+
+```
+---
+config:
+  theme: base
+  rightAngles: true
+  themeVariables:
+    fontFamily: "Inter, Helvetica, Arial, sans-serif"
+    primaryColor: "#E3F2FD"
+    primaryBorderColor: "#90A4AE"
+    primaryTextColor: "#333333"
+    signalColor: "#90A4AE"
+    signalTextColor: "#333333"
+    noteBkgColor: "#FFF8E1"
+    noteBorderColor: "#FFD54F"
+  sequence:
+    actorFontSize: 17
+    actorFontWeight: bold
+    messageFontSize: 16
+    noteFontSize: 15
+    wrap: true
+    wrapPadding: 12
+    actorMargin: 70
+    boxMargin: 12
+    boxTextMargin: 8
+    messageMargin: 42
+    mirrorActors: false
+---
+```
+
+* `theme: base` ＋ `rightAngles: true` 是啟用自訂 `themeVariables`／訊息線畫直角的必要開關，不是配色選擇，兩者都要保留。
+* `sequence` 區塊的字級／間距是可讀性微調，不是配色：mermaid 預設字級（`actorFontSize:14`／`messageFontSize:16`）中文常態下偏小易擠，上表數值統一放大並加寬 `actorMargin`／`messageMargin` 避免文字疊行；`mirrorActors:false` 讓底部不重複畫一次參與者，減少視覺雜訊。
+* **`box` 語法**：需要區分系統網域（如求才／求職／共用基礎設施）時使用，底色用低透明度 `rgba` 呼應柔色系（不要用高飽和純色）：
+
+  ```
+  box rgba(227,242,253,0.5) 求才系統 Recruit
+      actor Emp as 求才廠商
+      participant RF as 求才前端
+  end
+  box rgba(245,245,245,0.5) 共用基礎設施 Shared
+      participant DB as 資料庫 (DB)
+  end
+  ```
+
+  ⚠️ **box 標題不可含半形括號**——`box rgba(...) 標題` 的標題若含半形括號（如 `求才系統 (Recruit)`），mermaid 會解析失敗：整串 `rgba` 被當成標題文字、底色變 transparent（實測 mermaid v10.9）。標題一律不加半形括號，寫 `求才系統 Recruit` 即可；`participant ... as` 的別名不受此限，可正常使用括號。
+* **`Note over` 標示邊界條件**：前置檢查、逾時、防呆規則、狀態轉換等關鍵條件用 `Note over` 明示，不要藏在訊息文字內；需要表達處理生命週期時可搭配 `activate`／`deactivate`。
+* `autonumber` 一律開啟。
+
+此設定與第 1–3 節的 `flowchart` `classDef` 規範互補、不衝突：`flowchart` 用 `classDef`，`sequenceDiagram` 用本節的 frontmatter config，兩者統一走柔色系。

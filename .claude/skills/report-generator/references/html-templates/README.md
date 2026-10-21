@@ -22,6 +22,16 @@
 - Google Fonts → 換成系統字體堆疊
 - Tailwind CDN → 換成內嵌 `<style>`，並補上 `prefers-color-scheme` + `:root[data-theme]` 雙主題
 
+## ⚠️ 這底下 77 個 `SKILL.md` 不是本 repo 的 skill
+
+每個版型資料夾各有一個 `SKILL.md`，用的是**原產品自己的 frontmatter schema**（`mode`／`scenario`／
+`surface`／`preview`／`design_system`），不是 Claude Code skill 格式。它們位於 `references/` 底下，
+Claude Code 只掃 `.claude/skills/*/SKILL.md` **頂層**，因此不會被自動載入，也不影響健檢的 skill 盤點。
+
+**但用 `**/SKILL.md` 這類 glob 找 skill 時會撈到 77 個假陽性**——要盤點本 repo 的 skill 請用
+`.claude/skills/*/SKILL.md`（單層星號）或直接查 `.claude_index.md`。檔名維持原樣是為了跟上游
+`nexu-io/html-anything` 保持一致，之後要重新同步版型時才對得起來。
+
 ## 每個版型資料夾內容
 
 `<name>/SKILL.md`（原產品的版型說明，含 frontmatter：`mode/scenario/surface/preview/design_system`
