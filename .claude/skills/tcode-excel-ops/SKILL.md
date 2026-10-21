@@ -8,7 +8,7 @@ description: >-
   versions (檔案對照), apply 新增/改名/合併 requirements with translations, verify a
   code's ChangeType/edits got applied, detect CodeNo collisions or 代碼耦合,
   build a multi-sheet 異動清單 xlsx, write a Markdown 異動 table, or draft a
-  系統公告. Trigger even if the user only says "更新 export"、"列出異動項目"、"發公告"、
+  系統公告. Trigger even if the user only says "更新 export"、"列出異動項目"、"發公告"、"整理這次的改動"、
   "比對舊新檔"、"分析這個代碼表" without naming the schema explicitly. Analyze Excel
   the token-efficient way described here rather than dumping whole sheets.
 ---
@@ -93,6 +93,10 @@ EDIT**, ADD before EDIT. If the user says "code snippet" / "in markdown", wrap t
 WHOLE thing in one ```markdown fenced block so they can copy it.
 
 ### 5. 發公告 / write 系統公告 (發公告成果)
+**先讀 `references/bulletinboard-rules.md`**（判定規則與鐵則）：輸出預設是**聊天訊息本身**，
+不產檔案；Duty 系列表名用中文人話名（全職／兼職／工讀／中高階）且各自獨立成節；
+**判定「改了什麼」必須用「修改前」「修改後」兩份獨立檔案逐欄比對**，不可只信需求文件的
+ChangeType 或自身欄位（掛著沒清的 edit 會生出假異動）。
 Format + a full real announcement in `references/announcement-template.md`.
 Structure: one section per affected 表 (證照/工作技能/電腦技能/職務/兼職職務…),
 with 🆕新增分類 / 🆕新增項目 / ✏️更新項目 / 🗑️刪除項目 sub-blocks, items grouped by

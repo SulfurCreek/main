@@ -13,7 +13,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 | 涉及 HackMD API 呼叫（建立／讀取／更新／刪除 note 或 folder） | `wiki/hackmd_rules.md` |
 | 撰寫/修改 1111 規格書、需要求才系統業務代碼（`showfield`／`confirmed`／`oStatus` 等）、需先確認求才 vs 求職專案、**引用後端 API 契約（欄位／前端判斷／已讀未讀等）**、**任何 E.1 聯絡人才／信件即時通整併相關需求** | `wiki/recruitment_system_rules.md`（API 契約見 §3；**E.1／信件即時通整併素材與 inference 規則見 §6**，實體檔在 `notes/`、`notes/api/`） |
 | 截圖存檔＋標註（Figma MCP 截圖、使用者上傳圖、badge／紅框／編號、存進 repo 供 HackMD 引用） | 用 `Skill` 載入 `photo`（`wiki/figma_rules.md` 已收斂為指標）。**繪製（紅框／badge／組合流程圖）只歸「規格文件html示意圖助手」session**，其他 session 只做搬 R2＋限寬嵌入 |
-| TCode 代碼表 Excel（`TCode_Export`、證照／工作技能／職務／福利代碼表的比對、異動清單、公告） | 用 `Skill` 載入 `tcode-excel-ops` |
+| TCode 代碼表 Excel（`TCode_Export`、證照／工作技能／職務／福利代碼表的比對、異動清單、**異動公告**——含職務分類專案的 DutyNM/PT/ST/HL 公告） | 用 `Skill` 載入 `tcode-excel-ops`（公告判定規則在其 `references/bulletinboard-rules.md`） |
 | 需要**覆蓋改寫截圖裡既有文字**、維護舊版「截圖標號＝章節編號」規格書、或把整段說明輸出成單一 PNG | 用 `Skill` 載入 `png`（`photo` 的舊版備用流程，一般標註任務仍優先用 `photo`） |
 | 需要產生 Figma 元件的完整文件（anatomy／design tokens／variants／a11y，非 1111 專屬） | 用 `Skill` 載入 `generate-component-doc-figma` |
 | 手繪風 lo-fi wireframe／線框圖草稿；線框圖上線到 Cloudflare 網站（`wireframe-site/`） | 用 `Skill` 載入 `lofi-wireframer`（上線規則見其 `references/publish-to-site.md`） |
@@ -26,7 +26,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 | 撰寫 QA 測試案例（只寫 happy path）、把規格書轉成可勾選的驗收案例表 | 用 `Skill` 載入 `qa-happy-path-cases` |
 | 從 Sitemap／規格文件反向工程 User Journey Map（旅程地圖，三段式範本；`user-journey/` 專案） | 用 `Skill` 載入 `user-journey-map`（HackMD 文件 session 編輯素材 md，HTML 化歸「產生HTML報告」session，見 `user-journey/README.md`） |
 | 數據分析報告寫作（MD 或靜態 HTML）、或濃縮成單張 PNG 摘要圖 | 用 `Skill` 載入 `report-generator`（報告本體）／`one-pager`（單張決策圖，出圖前需先給文字大綱確認） |
-| 1111 職務分類／不合理清單專案（`plan()` 規則、`sync_md.py`、廠商身分 Google Sheet、AI 職類推薦模型分析） | 用 `Skill` 載入 `job-classification-kb`（知識庫入口）／`tcode-bulletinboard`（該專案 tCode 異動公告／異動清單，薄殼指標，規則在 `job-classification-kb/skills/tcode-bulletinboard.md`，位於該專案分支；與 `tcode-excel-ops` 服務不同代碼表體系，不要混用）／`gsheet-vendor-identity`／`md-datalayer`／`safe-excel-editor`／`tabular-token-min`／`rawdata`——**與本 repo 主線（1111 聊天室文件）是不同專案**，僅供其他 session 共用 skill 庫 |
+| 1111 職務分類／不合理清單專案（`plan()` 規則、`sync_md.py`、廠商身分 Google Sheet、AI 職類推薦模型分析） | 用 `Skill` 載入 `job-classification-kb`（知識庫入口）／`gsheet-vendor-identity`／`md-datalayer`／`safe-excel-editor`／`tabular-token-min`／`rawdata`——**與本 repo 主線（1111 聊天室文件）是不同專案**，僅供其他 session 共用 skill 庫 |
 | 需要用專案縮寫/術語溝通、看不懂某個欄位名稱在講什麼 | `wiki/glossary.md` |
 | 產出/修改 Mermaid 圖表（流程圖、循序圖等） | `wiki/mermaid_styling_rules.md`（§4 為循序圖專屬 frontmatter config，柔色系已裁定為準） |
 | 需判斷該用本 repo 自製 skill 還是執行環境內建的官方 Anthropic skill（docx/pdf/internal-comms/doc-coauthoring 等） | `wiki/platform_skills_reference.md` |
