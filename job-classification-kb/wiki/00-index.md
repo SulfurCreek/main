@@ -21,7 +21,7 @@
 | 讀寫 Google Sheet | [../skills/google-sheets-skill](../skills/google-sheets-skill.md) |
 | 反查某葉的職務說明（Description）判斷職缺歸類 | [../skills/tcode-desc-lookup-skill](../skills/tcode-desc-lookup-skill.md) |
 | 使用者點名 eNo 修正職類1（現有1）的完整操作流程 | [../skills/cat1-correction-workflow-skill](../skills/cat1-correction-workflow-skill.md) |
-| tCode 異動清單／公告產出格式 | [../skills/tcode-bulletinboard](../skills/tcode-bulletinboard.md) |
+| tCode 異動清單／公告產出格式 | `.claude/skills/tcode-excel-ops/references/bulletinboard-rules.md`（已併入 tcode-excel-ops skill） |
 | 已反查過的葉節點說明快取 | [../tcode/data_tCodeDutyNM_descript_cache](../tcode/data_tCodeDutyNM_descript_cache.md) |
 
 ## 概念關鍵字（語意規則）
