@@ -186,3 +186,4 @@ v9.7 = v9.6 ＋ 使用者自寫自傳與各段 summary（16→10 個單位、業
 - **待本人補（未補前不寫入正文）**：Mobile UX 具體事例；Data flow（資料流程圖）是否實際產出過——library 無紀錄。
 - **2026-10-22 本人補充（UI/UX）**：UI/UX 工作方式是自己畫 Wireframe 與 Flowchart，使用流程由本人負責；需要視覺畫面設計時與設計師協作。→ 對外寫「流程與 Wireframe 由本人規劃、視覺與設計師協作」；不寫成視覺設計。Mobile UX 以既有 App 經手事實（JustDating、KOOL、Peach、SweetRing 的使用流程，見 facts-prior／causal_draft 尚凡範疇）支撐，不另編事例。
 - **2026-10-22 本人補充（工具）**：FigJam、Figma 畫過 Web 與 Mobile；Mobile App 的流程用 Miro。
+- **2026-10-22 本人補充（SA 圖）**：畫過簡單的 BPMN 與泳道圖。BPMN 已見 facts-1111 L58；泳道圖為新增（實例未提供，專長欄只列產出物名稱即可）。
