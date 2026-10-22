@@ -56,7 +56,7 @@ def load_file_content(rel_path: str, target_branch: str, prefer_local: bool = Fa
     sys.exit(2)
 
 def parse_tagged_blocks(md_text: str):
-    """以 <!-- [STATUS: ...] --> 為錨點解析所有受管轄區塊（同時涵蓋單行 Bullet 與多行段落）"""
+    """以 <!-- [STATUS: ...] --> 為單位解析全篇所有區塊（涵蓋簡介、特色、經歷、專長、自傳、專案）"""
     blocks = []
     current_section = "Header"
     active_block = None
@@ -107,7 +107,7 @@ def run_verification(draft_text: str, final_text: str, banned_tokens):
     final_blocks = parse_tagged_blocks(final_text)
 
     if len(draft_blocks) != len(final_blocks):
-        errors.append(f"[結構不對稱] 上游草稿有 {len(draft_blocks)} 個標記區塊，下游成品有 {len(final_blocks)} 個。嚴禁合併或漏標！")
+        errors.append(f"[結構不對稱] 上游草稿有 {len(draft_blocks)} 個標記區塊，下游成品有 {len(final_blocks)} 個。請確認每個區塊上方皆保留 <!-- [STATUS: POLISHED/LOCKED] --> 標記！")
 
     for i in range(min(len(draft_blocks), len(final_blocks))):
         d_item, f_item = draft_blocks[i], final_blocks[i]
@@ -164,7 +164,7 @@ def main():
     if errors:
         print(f"❌ 驗收失敗！共發現 {len(errors)} 項違規：\n" + "\n".join(f"{i+1}. {e}" for i, e in enumerate(errors)))
         sys.exit(1)
-    print(f"✅ GATEKEEPER PASSED: 全數 {len(parse_tagged_blocks(final_text))} 個標記區塊（含列點與專案段落）檢查通過！")
+    print(f"✅ GATEKEEPER PASSED: 全篇 {len(parse_tagged_blocks(final_text))} 個標記區塊（簡介、特色、經歷、專長、自傳、專案）全數檢查通過！")
     sys.exit(0)
 
 if __name__ == "__main__":

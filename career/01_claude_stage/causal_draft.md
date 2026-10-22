@@ -1,4 +1,4 @@
-<!-- run: 2026-10-22 r3.3｜專案成就 4 案改 NEEDS_POLISH｜r3.2：專長改 6 筆並重排（decisions §26）；UI/UX、SA 圖依本人補充；不寫 DFD；待 Codex 潤飾｜r3.1：專長「跨部門協作與時程」由 LOCKED 改為 NEEDS_POLISH（Codex 提出改「資料科學團隊」，本人流程允許）｜其餘同 r3
+<!-- run: 2026-10-22 r3.4｜除個人特色、台灣新蛋外全篇 NEEDS_POLISH｜r3.3：專案成就 4 案改 NEEDS_POLISH｜r3.2：專長改 6 筆並重排（decisions §26）；UI/UX、SA 圖依本人補充；不寫 DFD；待 Codex 潤飾｜r3.1：專長「跨部門協作與時程」由 LOCKED 改為 NEEDS_POLISH（Codex 提出改「資料科學團隊」，本人流程允許）｜其餘同 r3
 
 <!--markdownlint-disable MD013-->
 
@@ -48,7 +48,7 @@
 ## 草稿
 
 ### 個人簡介
-<!-- [STATUS: LOCKED] -->
+<!-- [STATUS: NEEDS_POLISH] [LOCK_ENTITIES: 近 10 年, 6 款產品, 1111人力銀行, Product Owner, 2 名直屬產品企劃, AI Agent] -->
 近 10 年產品經理經驗，經手 6 款產品，涵蓋訂閱制社交 App、網紅媒合平台與企業招募系統。具備訂閱與付費機制、定價實驗及雙邊媒合規劃經驗，曾在公司主力交友 App 下架後，主導接續產品上線，承接既有用戶與營收。現任 1111人力銀行招募系統 Product Owner，帶領 2 名直屬產品企劃，負責新版規劃與既有服務迭代。能將產品構想與業務規則轉化為具體方案，透過流程、規格與原型向團隊說明，並與工程及 QA 協作推進驗收上線；目前將 AI Agent 納入規格撰寫、資料整理與分析工作。
 
 ### 個人特色
@@ -116,7 +116,7 @@
 - Newegg.com 商品資訊英翻中與校對。
 
 ### 專長
-<!-- [STATUS: LOCKED] -->
+<!-- [STATUS: NEEDS_POLISH] [LOCK_ENTITIES: AI Agent, Claude Code, Antigravity, skill, 人工判斷] -->
 - AI Agent 協作：運用 Claude Code 與 Antigravity 協作撰寫規格、整理與分析資料，並將共用做法整理成 skill。我負責定義問題、業務規則與驗證要求，在過程中檢查及修正產出，也指導同仁以 AI 處理大量資料對照，保留人工判斷與例外討論。
 <!-- [STATUS: NEEDS_POLISH] [LOCK_ENTITIES: User Journey, User Story, Use Case, PRD, QA, FAQ] -->
 - 產品規劃與交付：從需求訪談出發，整理 User Journey、User Story 與 Use Case，撰寫 PRD，與 QA 由規格推導驗收案例，安排分階段上線；另以互動原型與 FAQ 向客服、業務說明新功能。
@@ -131,7 +131,7 @@
 
 ### 自傳
 
-<!-- [STATUS: LOCKED] -->
+<!-- [STATUS: NEEDS_POLISH] [LOCK_ENTITIES: KOOL, Instagram, Airbnb, Miro, JustDating, DAU, App Store, Juicy, 1111, 2024 年底, 新版求才系統, 帳號登入, 企業資料, 群組功能, AI Agent, Antigravity, Claude Code, 職務類別對照] -->
 面對還沒成形的產品想法，我擅長釐清不同角色的需求與限制，找出彼此如何互動，逐步構思出能運作的產品。我也重視把設計背後的判斷說清楚，讓團隊知道每個環節為什麼這樣安排、如何銜接。從交友與訂閱制 App、網紅媒合平台到企業招募系統，我始終關心兩件事：使用者能否達成目的，以及產品能否支持公司的持續經營。
 
 規劃 KOOL 網紅媒合平台時，沒有直接競品可以照著做。我先訪談商家的行銷單位，了解他們如何在 Instagram 尋找網紅，再借鏡 Airbnb 房東刊登房源的方式，設計商家提出合作需求、網紅尋找機會的機制。接著釐清雙方在刊案、邀約、主動報名、聯繫與付費各環節的角色。我用 Miro 畫出商家邀約與網紅報名的完整流程，向團隊說明雙方的操作如何銜接。這段經驗讓我更確定自己喜歡的工作：從實際需求出發，將尚未連在一起的想法，發展成雙方都走得通的產品體驗。
