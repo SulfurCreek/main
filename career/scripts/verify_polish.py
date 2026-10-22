@@ -28,7 +28,7 @@ RESPONSIBILITY_WARN_TOKENS = ["協助", "參與", "配合", "支援", "維護"]
 # 3) 責任升級詞：成品出現而上游草稿同一點沒有 → 失敗（防止下游悄悄放大責任）。
 #    「主導」只有 library 確認的兩件事（Juicy、JustDating 重新上架）可用，須由上游草稿先寫出。
 OVERCLAIM_PATTERNS = [r"主導", r"架構", r"扛下", r"開發(?!中|複雜度)", r"實作", r"重構"]
-LAZY_SIMILARITY_THRESHOLD = 0.88
+LAZY_SIMILARITY_THRESHOLD = 0.99  # 2026-10-22 本人：不強求改寫比例，只攔原句照抄
 
 TAG_PATTERN = re.compile(
     r"<!--\s*\[STATUS:\s*(?P<status>[A-Z_]+)\](?:\s*\[LOCK_ENTITIES:\s*(?P<entities>[^\]]+)\])?\s*-->"
