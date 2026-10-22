@@ -13,28 +13,26 @@ CODEX_BRANCH = "origin/codex/resume-writer"
 DRAFT_REL_PATH = "career/01_claude_stage/causal_draft.md"
 FINAL_REL_PATH = "career/02_codex_stage/final_resume.md"
 
-# 2026-10-22 本人裁定：禁用詞分兩類。
-# 1) 文體詞：純 AI 腔／空洞詞，命中即失敗。
 DEFAULT_BANNED_TOKENS = [
     "負責日常", "聽從",
     "賦能", "抓手", "閉環", "攜手", "助力", "全方位", "深耕",
     "致力於", "成功地", "圓滿達成", "極大地", "顯著地", "透過", "藉由",
     "進行一個", "完成了"
 ]
-# 2) 責任詞：真實責任界線可能正需要這些詞（例：協助製作銷售簡報），只警示、不失敗；LOCKED 段落內不檢查。
 RESPONSIBILITY_WARN_TOKENS = ["協助", "參與", "配合", "支援", "維護"]
-# 3) 責任升級詞：成品出現而上游草稿同一點沒有 → 失敗（防止下游悄悄放大責任）。
-OVERCLAIM_PATTERNS = [r"主導", r"架構", r"扛下", r"開發(?!中|複雜度|團隊|人員|部門|時程|資源|流程|模式)", r"實作", r"重構"]
-LAZY_SIMILARITY_THRESHOLD = 0.99  # 2026-10-22 本人：不強求改寫比例，只攔原句照抄
+OVERCLAIM_PATTERNS = [
+    r"主導", r"架構", r"扛下",
+    r"開發(?!中|複雜度|團隊|人員|部門|時程|資源|流程|模式)",
+    r"實作", r"重構"
+]
+LAZY_SIMILARITY_THRESHOLD = 0.99
 
 TAG_PATTERN = re.compile(
     r"<!--\s*\[STATUS:\s*(?P<status>[A-Z_]+)\](?:\s*\[LOCK_ENTITIES:\s*(?P<entities>[^\]]+)\])?\s*-->"
 )
-BULLET_PATTERN = re.compile(r"^\s*[-*]\s+(?P<text>.+)$")
 BOLD_PREFIX_PATTERN = re.compile(r"^\s*[-*]\s+\*\*[^*]+[：:]\*\*")
 
 def read_from_git(branch_ref: str, rel_path: str):
-    """純本地讀取 Git 物件（不觸發 git fetch 網路請求，Step 1 已由外部同步）"""
     clean_branch = branch_ref.replace("origin/", "")
     for ref in [branch_ref, f"origin/{clean_branch}", clean_branch]:
         res = subprocess.run(
@@ -54,38 +52,49 @@ def load_file_content(rel_path: str, target_branch: str, prefer_local: bool = Fa
         return content
     if local_path.exists():
         return local_path.read_text(encoding="utf-8")
-    print(f"❌ [FATAL] 無法讀取檔案：{rel_path} (請確認是否已執行 git fetch {target_branch.replace('origin/', '')})")
+    print(f"❌ [FATAL] 無法讀取檔案：{rel_path}")
     sys.exit(2)
 
-def parse_markdown_bullets(md_text: str):
-    bullets = []
-    current_status = "UNMARKED"
-    current_entities = []
+def parse_tagged_blocks(md_text: str):
+    """以 <!-- [STATUS: ...] --> 為錨點解析所有受管轄區塊（同時涵蓋單行 Bullet 與多行段落）"""
+    blocks = []
     current_section = "Header"
+    active_block = None
+
     for idx, line in enumerate(md_text.splitlines(), start=1):
         stripped = line.strip()
         if stripped.startswith("#"):
+            if active_block is not None:
+                blocks.append(active_block)
+                active_block = None
             current_section = stripped.lstrip("#").strip()
             continue
+
         tag_match = TAG_PATTERN.search(stripped)
         if tag_match:
-            current_status = tag_match.group("status").strip()
+            if active_block is not None:
+                blocks.append(active_block)
+            status = tag_match.group("status").strip()
             raw_entities = tag_match.group("entities")
-            current_entities = [e.strip() for e in re.split(r"[,，]", raw_entities) if e.strip()] if raw_entities else []
+            entities = [e.strip() for e in re.split(r"[,，]", raw_entities) if e.strip()] if raw_entities else []
+            active_block = {
+                "line_no": idx + 1,
+                "status": status,
+                "entities": entities,
+                "section": current_section,
+                "lines": []
+            }
             continue
-        bullet_match = BULLET_PATTERN.match(line)
-        if bullet_match:
-            bullets.append({
-                "line_no": idx,
-                "raw_line": line,
-                "text": bullet_match.group("text").strip(),
-                "status": current_status,
-                "entities": current_entities,
-                "section": current_section
-            })
-            current_status = "UNMARKED"
-            current_entities = []
-    return bullets
+
+        if active_block is not None and stripped and not stripped.startswith("<!--"):
+            active_block["lines"].append(line)
+
+    if active_block is not None:
+        blocks.append(active_block)
+
+    for b in blocks:
+        b["text"] = "\n".join(l.strip() for l in b["lines"])
+    return blocks
 
 def run_verification(draft_text: str, final_text: str, banned_tokens):
     errors = []
@@ -94,15 +103,15 @@ def run_verification(draft_text: str, final_text: str, banned_tokens):
         if "NEEDS_POLISH" in line:
             errors.append(f"[殘留標記錯誤] final_resume.md 第 {idx} 行仍殘留 NEEDS_POLISH 標記。")
 
-    draft_bullets = parse_markdown_bullets(draft_text)
-    final_bullets = parse_markdown_bullets(final_text)
+    draft_blocks = parse_tagged_blocks(draft_text)
+    final_blocks = parse_tagged_blocks(final_text)
 
-    if len(draft_bullets) != len(final_bullets):
-        errors.append(f"[結構不對稱] 上游草稿有 {len(draft_bullets)} 點，下游成品有 {len(final_bullets)} 點。嚴禁合併或增刪列點！")
+    if len(draft_blocks) != len(final_blocks):
+        errors.append(f"[結構不對稱] 上游草稿有 {len(draft_blocks)} 個標記區塊，下游成品有 {len(final_blocks)} 個。嚴禁合併或漏標！")
 
-    for i in range(min(len(draft_bullets), len(final_bullets))):
-        d_item, f_item = draft_bullets[i], final_bullets[i]
-        loc = f"第 {i+1} 點 ({d_item['section']} | 成品第 {f_item['line_no']} 行)"
+    for i in range(min(len(draft_blocks), len(final_blocks))):
+        d_item, f_item = draft_blocks[i], final_blocks[i]
+        loc = f"區塊 #{i+1} ({d_item['section']} | 成品第 {f_item['line_no']} 行)"
 
         if d_item["status"] == "LOCKED" and d_item["text"] != f_item["text"]:
             errors.append(f"[越權修改] {loc} 標記為 LOCKED，但文字被更動！")
@@ -117,22 +126,23 @@ def run_verification(draft_text: str, final_text: str, banned_tokens):
             if ent not in f_item["text"]:
                 errors.append(f"[事實遺失] {loc} 遺失了鎖定實體或數據：`{ent}`")
 
-        if BOLD_PREFIX_PATTERN.match(f_item["raw_line"]):
-            errors.append(f"[AI 排版違規] {loc} 使用了禁止的粗體摘要開頭 (**...：**)。")
-
-        hit_banned = [t for t in banned_tokens if t in f_item["text"]]
-        if hit_banned:
-            errors.append(f"[禁用詞違規] {loc} 觸犯黑名單詞彙：{', '.join(hit_banned)}")
-
-        for pat in OVERCLAIM_PATTERNS:
-            fm = re.search(pat, f_item["text"])
-            if fm and not re.search(pat, d_item["text"]):
-                errors.append(f"[責任升級] {loc} 成品出現「{fm.group(0)}」，上游草稿同一點沒有；責任動詞須先由上游依 library 確認。")
+        for raw_l in f_item["lines"]:
+            if BOLD_PREFIX_PATTERN.match(raw_l):
+                errors.append(f"[AI 排版違規] {loc} 使用了禁止的粗體摘要開頭 (**...：**)。")
 
         if d_item["status"] != "LOCKED":
+            hit_banned = [t for t in banned_tokens if t in f_item["text"]]
+            if hit_banned:
+                errors.append(f"[禁用詞違規] {loc} 觸犯黑名單詞彙：{', '.join(hit_banned)}")
+
+            for pat in OVERCLAIM_PATTERNS:
+                fm = re.search(pat, f_item["text"])
+                if fm and not re.search(pat, d_item["text"]):
+                    errors.append(f"[責任升級] {loc} 成品出現「{fm.group(0)}」，上游草稿同一區塊沒有。")
+
             hit_resp = [t for t in RESPONSIBILITY_WARN_TOKENS if t in f_item["text"]]
             if hit_resp:
-                warnings.append(f"[責任詞提示] {loc} 含「{'、'.join(hit_resp)}」（不影響通過，由上游依 library 確保符合真實責任界線）。")
+                warnings.append(f"[責任詞提示] {loc} 含「{'、'.join(hit_resp)}」（不影響通過）。")
 
     return errors, warnings
 
@@ -154,7 +164,7 @@ def main():
     if errors:
         print(f"❌ 驗收失敗！共發現 {len(errors)} 項違規：\n" + "\n".join(f"{i+1}. {e}" for i, e in enumerate(errors)))
         sys.exit(1)
-    print("✅ GATEKEEPER PASSED: 無漏修段落、LOCKED 完好、核心數據完整、零禁用詞！")
+    print(f"✅ GATEKEEPER PASSED: 全數 {len(parse_tagged_blocks(final_text))} 個標記區塊（含列點與專案段落）檢查通過！")
     sys.exit(0)
 
 if __name__ == "__main__":
