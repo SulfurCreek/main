@@ -24,7 +24,7 @@ DEFAULT_BANNED_TOKENS = [
 # 2) 責任詞：真實責任界線可能正需要這些詞（例：協助製作銷售簡報），只警示、不失敗；LOCKED 段落內不檢查。
 RESPONSIBILITY_WARN_TOKENS = ["協助", "參與", "配合", "支援", "維護"]
 # 3) 責任升級詞：成品出現而上游草稿同一點沒有 → 失敗（防止下游悄悄放大責任）。
-OVERCLAIM_PATTERNS = [r"主導", r"架構", r"扛下", r"開發(?!中|複雜度)", r"實作", r"重構"]
+OVERCLAIM_PATTERNS = [r"主導", r"架構", r"扛下", r"開發(?!中|複雜度|團隊|人員|部門|時程|資源|流程|模式)", r"實作", r"重構"]
 LAZY_SIMILARITY_THRESHOLD = 0.99  # 2026-10-22 本人：不強求改寫比例，只攔原句照抄
 
 TAG_PATTERN = re.compile(
@@ -71,7 +71,7 @@ def parse_markdown_bullets(md_text: str):
         if tag_match:
             current_status = tag_match.group("status").strip()
             raw_entities = tag_match.group("entities")
-            current_entities = [e.strip() for e in re.split(r"[,，、]", raw_entities) if e.strip()] if raw_entities else []
+            current_entities = [e.strip() for e in re.split(r"[,，]", raw_entities) if e.strip()] if raw_entities else []
             continue
         bullet_match = BULLET_PATTERN.match(line)
         if bullet_match:
