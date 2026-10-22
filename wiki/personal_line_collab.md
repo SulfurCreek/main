@@ -13,7 +13,7 @@
 | `career/portfolio/public/STATUS.md`（回覆與核可紀錄） | Career Move | 唯讀 |
 | `career/site/**`（網站原始碼、`QUESTIONS.md`） | 作品集網站助手 | Career Move 不動 |
 
-`career/` 以外兩邊都唯讀（`scripts/guard_career_scope.sh` 擋），**唯一例外**：個人線自有 skill `resume-craft`／`resume-review-panel`／`portfolio-site`／`104coverletter`／`104resume` 由 **Career Move** 改（2026-10-08 起；作品集助手要改 `portfolio-site` 時寫進 QUESTIONS.md 請 Career Move 改）。Steward 從本分支單向同步到 main，main 不直接改這五個目錄。護欄分不出是哪個 session，目錄分工靠本規則與兩邊遵守，不靠 hook。
+`career/` 以外兩邊都唯讀（`scripts/guard_career_scope.sh` 擋），**唯一例外**：個人線自有 skill `resume-craft`／`resume-review-panel`／`portfolio-site`／`104coverletter`／`104resume`／`resume-causal-logic-compiler` 由 **Career Move** 改（2026-10-08 起；作品集助手要改 `portfolio-site` 時寫進 QUESTIONS.md 請 Career Move 改）。Steward 從本分支單向同步到 main，main 不直接改這六個目錄。護欄分不出是哪個 session，目錄分工靠本規則與兩邊遵守，不靠 hook。
 
 ## 2. 交接流程
 
@@ -54,7 +54,7 @@
 
 ## 6. 需要改規則時
 
-改上述五個個人線 skill 不需主幹（Career Move 直接改、commit 前綴 `career(skill):`）。其餘兩邊都寫進各自可寫的地方請主幹施作：Career Move 用 `career/_requests-to-main.md`；作品集助手用 `career/site/QUESTIONS.md` 開頭加「請主幹：…」。
+改上述六個個人線 skill 不需主幹（Career Move 直接改、commit 前綴 `career(skill):`）。其餘兩邊都寫進各自可寫的地方請主幹施作：Career Move 用 `career/_requests-to-main.md`；作品集助手用 `career/site/QUESTIONS.md` 開頭加「請主幹：…」。
 
 ## 7. Resume Writer（Codex，2026-10-20 使用者決定納入）
 

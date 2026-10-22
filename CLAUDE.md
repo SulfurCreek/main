@@ -21,6 +21,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 | 分析 API 文件產測試矩陣、或依矩陣產生並執行 pytest | 用 `Skill` 載入 `api`（文件→矩陣）／`auto-test`（矩陣→腳本→報告，需先跑過 `api`） |
 | 撰寫/修改個人履歷、CV、作品集 | 用 `Skill` 載入 `resume-craft`（依賴的 `career/` 職能框架 wiki 已於 2026-08-31 併入本 repo，開箱即用）。**審查履歷（模擬人資／主管、同儕比較）用 `resume-review-panel`**（素材只在個人線分支，結果不取代真人回饋） |
 | 產生 104 特化版履歷 md（Quill HTML、逐欄位）／針對指定職缺寫 104 自我推薦信 | 用 `Skill` 載入 `104resume`／`104coverletter`（個人線自有；找檔案先看個人線分支 `career/ROUTER.md`） |
+| 履歷「概念偷跑／因果斷裂」編譯：Stage 1 把事實編成 `career/01_claude_stage/causal_draft.md`（STATUS／LOCK_ENTITIES 標記），Stage 3 以 `career/scripts/verify_polish.py` 驗收 Codex 成品 | 用 `Skill` 載入 `resume-causal-logic-compiler`（個人線自有；管線規則見 `wiki/personal_line_collab.md` §7） |
 | 產生／填寫／驗證 104 履歷、撰寫中文履歷或自傳語氣（Cake Resume 另案，不得套用 104 規格） | 用 `Skill` 載入 `resume-craft`；104 先讀 `career/104/README.md`（在個人線分支 `claude/happy-lamport-ljis8c`，欄位規格 `fields-spec.md`），中文語氣依 `resume-craft/references/tw-voice.md` |
 | 把作品集（`career/portfolio/*.md`）渲染成靜態網站、部署 GitHub／Cloudflare Pages（作品集網站、靜態網站、portfolio site） | 用 `Skill` 載入 `portfolio-site`（只管渲染；內容由 `resume-craft` 管，輸出在使用者自己的作品集 repo，不進本 repo） |
 | 撰寫 QA 測試案例（只寫 happy path）、把規格書轉成可勾選的驗收案例表 | 用 `Skill` 載入 `qa-happy-path-cases` |
@@ -81,7 +82,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
    - **例外：個人成長／履歷 session**（`claude/happy-lamport-ljis8c`，側欄「Career Move」）
      是**唯讀**角色——全 repo 可讀（產出就是它的職能證據來源），但**只能寫 `career/`**。
      它要改 `career/` 以外的任何東西，一律寫進 `career/_requests-to-main.md` 請主幹施作，不自己動手。
-     **例外中的例外（2026-10-08 使用者裁示）**：個人線自有 skill `resume-craft`／`resume-review-panel`／`portfolio-site`／`104coverletter`／`104resume` 跟 1111 主線無關，**擁有權歸個人線分支**——Career Move 自己改、自己推到該分支；main 上的副本由 Repo Steward 從分支單向同步（`git checkout origin/claude/happy-lamport-ljis8c -- <五個目錄>`），main 不直接改這五個目錄。
+     **例外中的例外（2026-10-08 使用者裁示）**：個人線自有 skill `resume-craft`／`resume-review-panel`／`portfolio-site`／`104coverletter`／`104resume`／`resume-causal-logic-compiler` 跟 1111 主線無關，**擁有權歸個人線分支**——Career Move 自己改、自己推到該分支；main 上的副本由 Repo Steward 從分支單向同步（`git checkout origin/claude/happy-lamport-ljis8c -- <六個目錄>`），main 不直接改這六個目錄。
      完整規則見 `career/CLAUDE.md`〈硬規則一〉；護欄見 `scripts/guard_career_scope.sh`（只在該分支生效的 PreToolUse hook）。
      **事實來源**：使用者提供過的資料一律收在該分支 `career/library/`（現行事實、裁定、已推翻說法、待確認），寫履歷前先讀。
    - **例外：線框圖助手**（側欄「Wireframe helper v2」）可直接推 `main`，但**只能寫 `wireframe-site/<slug>/**` 與 `wireframe-site/index.html` 的 `PAGES` 區**；上線前須使用者核可並去識別化（網址公開）。規則見 `lofi-wireframer/references/publish-to-site.md`。
