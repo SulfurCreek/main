@@ -178,3 +178,9 @@ v9.7 = v9.6 ＋ 使用者自寫自傳與各段 summary（16→10 個單位、業
 - 已知張力（交本人）：`verify_polish.py` 禁用詞含「協助、參與、配合、支援、維護、透過」，但 library 的真實責任用語會用到（例：參與完整 Scrum 流程）；LOCKED 段不得被改，因此 LOCKED 內不得含禁用詞，Claude 在上游改寫（已把「參與完整 Scrum 流程」改為「跑過完整 Scrum 流程」）。
 - **2026-10-22 本人裁定（用詞檢查）**：禁用詞分兩類——文體詞照禁；責任詞（協助、參與、配合、支援、維護）只警示、須對照 library；責任升級詞（主導、架構、扛下、開發、實作、重構）下游不得自行加入，須由上游草稿先寫出。`verify_polish.py` 已實作。Codex `voice_style_guide.md` 的詞彙映射表（負責管理→主導／架構／扛下）與 decisions §1 衝突，需 Codex 修正。
 
+
+## 26. 2026-10-22 104 專長改為 6 筆（本人指定）
+
+- 順序：① AI Agent 協作 → ② 產品規劃與交付 → ③ 系統分析（從②拆出流程／循序圖等 SA 產出）→ ④ UI/UX 規劃（含 Mobile UX；②的 Figma／Axure 移入）→ ⑤ 跨部門協作與時程 → ⑥ App 產品與變現（原「訂閱與付費機制」擴大，加入 IAP、App Store／Google Play 審核政策與上架溝通）。
+- 依據：審核政策＝facts-prior L25／L106；IAP 與網頁費率差＝facts-prior L85（不寫具體費率）；SA 產出＝facts-1111 L21、L58、L189、L212；UI/UX＝profile L40–41、facts-1111 L21。
+- **待本人補（未補前不寫入正文）**：Mobile UX 具體事例；Data flow（資料流程圖）是否實際產出過——library 無紀錄。

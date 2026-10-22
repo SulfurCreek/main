@@ -1,4 +1,4 @@
-<!-- run: 2026-10-22 r3.1｜專長「跨部門協作與時程」由 LOCKED 改為 NEEDS_POLISH（Codex 提出改「資料科學團隊」，本人流程允許）｜其餘同 r3
+<!-- run: 2026-10-22 r3.2｜專長改 6 筆並重排（decisions §26）；Mobile UX、Data flow 待本人補｜r3.1：專長「跨部門協作與時程」由 LOCKED 改為 NEEDS_POLISH（Codex 提出改「資料科學團隊」，本人流程允許）｜其餘同 r3
 
 <!--markdownlint-disable MD013-->
 
@@ -117,13 +117,17 @@
 
 ### 專長
 <!-- [STATUS: LOCKED] -->
-- 訂閱與付費機制：規劃訂閱制 App 的 VIP 訂閱、點數付費牆與精選曝光。曾以 Android 為對照，設計馬來西亞 iOS 定價實驗，並推進網頁付款與第三方金流串接（台灣智冠、海外 CodaPay）。另整理各管道的抽成、稅、手續費與撥款週期，完成實收試算，據此提出訂閱方案。
-<!-- [STATUS: LOCKED] -->
-- 產品規劃與交付：從需求訪談出發，整理 User Journey、User Story 與 Use Case，產出流程／循序圖、PRD 與互動原型。使用 Figma、Axure RP、Miro 呈現流程與畫面，與 QA 制定驗收案例，安排分階段上線；另以互動原型與 FAQ 向客服、業務說明新功能。
+- AI Agent 協作：運用 Claude Code 與 Antigravity 協作撰寫規格、整理與分析資料，並將共用做法整理成 skill。我負責定義問題、業務規則與驗證要求，在過程中檢查及修正產出，也指導同仁以 AI 處理大量資料對照，保留人工判斷與例外討論。
+<!-- [STATUS: NEEDS_POLISH] [LOCK_ENTITIES: User Journey, User Story, Use Case, PRD, QA, FAQ] -->
+- 產品規劃與交付：從需求訪談出發，整理 User Journey、User Story 與 Use Case，撰寫 PRD，與 QA 由規格推導驗收案例，安排分階段上線；另以互動原型與 FAQ 向客服、業務說明新功能。
+<!-- [STATUS: NEEDS_POLISH] [LOCK_ENTITIES: 循序圖, 活動圖, 使用案例圖, BPMN, API, 簽章驗證, 防重放, 錯誤碼, 頻率限制] -->
+- 系統分析：在缺乏文件的既有系統中，以實際操作與內部訪談還原權限及計費規則，用循序圖、活動圖、使用案例圖與 BPMN 說明流程與系統互動；把商業邏輯拆成查詢條件與工程確認後端行為，並與工程議定外部合作夥伴的 API 規格（簽章驗證、防重放、錯誤碼與頻率限制）及既有資料轉換規則。
+<!-- [STATUS: NEEDS_POLISH] [LOCK_ENTITIES: Figma, Axure RP, Miro, UIUX 設計單位] -->
+- UI/UX 規劃：以 Miro 整理使用流程，用 Figma 繪製 Wireframe、Axure RP 製作互動原型，與 UIUX 設計單位協作畫面細節；Mobile UX〔待補數據：本人提供事例〕。
 <!-- [STATUS: NEEDS_POLISH] [LOCK_ENTITIES: 甘特圖, Trello, 2022–2023, Kanban, 2 名直屬產品企劃] -->
 - 跨部門協作與時程：協調工程、行銷、業務、客服與資料科學等需求單位，依使用者需求與開發複雜度安排優先序，以甘特圖、Trello 與內部專案工具管理時程。2022–2023 年跑過完整 Scrum 流程，現行以 Kanban 搭配瀑布式開發推進工作，並帶領 2 名直屬產品企劃。
-<!-- [STATUS: LOCKED] -->
-- AI Agent 協作：運用 Claude Code 與 Antigravity 協作撰寫規格、整理與分析資料，並將共用做法整理成 skill。我負責定義問題、業務規則與驗證要求，在過程中檢查及修正產出，也指導同仁以 AI 處理大量資料對照，保留人工判斷與例外討論。
+<!-- [STATUS: NEEDS_POLISH] [LOCK_ENTITIES: VIP 訂閱, 點數付費牆, 精選曝光, App Store, Google Play, IAP, 馬來西亞, 智冠, CodaPay] -->
+- App 產品與變現：規劃訂閱制 App 的 VIP 訂閱、點數付費牆與精選曝光；熟悉 App Store／Google Play 審核政策，有與 App Store 溝通、處理上架問題的經驗。以 Android 為對照設計馬來西亞 iOS 定價實驗；比較 App 內購（IAP）與網頁付款的抽成、稅、手續費與撥款週期完成實收試算，導流至費率較低的網頁付款，推進台灣智冠與海外 CodaPay 串接，並據此提出訂閱方案。
 
 ### 自傳
 
