@@ -1,4 +1,4 @@
-<!-- run: 2026-10-22 r3｜本人指定父子層級：上層「企業客戶商業需求」統攝信件即時通整合與群組功能兩方案（Codex 檢查 R12；本人手改範例 voice_style_guide §8）｜其餘同 r2
+<!-- run: 2026-10-22 r3.1｜專長「跨部門協作與時程」由 LOCKED 改為 NEEDS_POLISH（Codex 提出改「資料科學團隊」，本人流程允許）｜其餘同 r3
 
 <!--markdownlint-disable MD013-->
 
@@ -120,7 +120,7 @@
 - 訂閱與付費機制：規劃訂閱制 App 的 VIP 訂閱、點數付費牆與精選曝光。曾以 Android 為對照，設計馬來西亞 iOS 定價實驗，並推進網頁付款與第三方金流串接（台灣智冠、海外 CodaPay）。另整理各管道的抽成、稅、手續費與撥款週期，完成實收試算，據此提出訂閱方案。
 <!-- [STATUS: LOCKED] -->
 - 產品規劃與交付：從需求訪談出發，整理 User Journey、User Story 與 Use Case，產出流程／循序圖、PRD 與互動原型。使用 Figma、Axure RP、Miro 呈現流程與畫面，與 QA 制定驗收案例，安排分階段上線；另以互動原型與 FAQ 向客服、業務說明新功能。
-<!-- [STATUS: LOCKED] -->
+<!-- [STATUS: NEEDS_POLISH] [LOCK_ENTITIES: 甘特圖, Trello, 2022–2023, Kanban, 2 名直屬產品企劃] -->
 - 跨部門協作與時程：協調工程、行銷、業務、客服與資料科學等需求單位，依使用者需求與開發複雜度安排優先序，以甘特圖、Trello 與內部專案工具管理時程。2022–2023 年跑過完整 Scrum 流程，現行以 Kanban 搭配瀑布式開發推進工作，並帶領 2 名直屬產品企劃。
 <!-- [STATUS: LOCKED] -->
 - AI Agent 協作：運用 Claude Code 與 Antigravity 協作撰寫規格、整理與分析資料，並將共用做法整理成 skill。我負責定義問題、業務規則與驗證要求，在過程中檢查及修正產出，也指導同仁以 AI 處理大量資料對照，保留人工判斷與例外討論。
