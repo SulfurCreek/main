@@ -12,7 +12,6 @@ CODEX_BRANCH = "origin/codex/resume-writer"
 
 DRAFT_REL_PATH = "career/01_claude_stage/causal_draft.md"
 FINAL_REL_PATH = "career/02_codex_stage/final_resume.md"
-STYLE_REL_PATH = "career/02_codex_stage/voice_style_guide.md"
 
 # 2026-10-22 本人裁定：禁用詞分兩類。
 # 1) 文體詞：純 AI 腔／空洞詞，命中即失敗。
@@ -22,11 +21,9 @@ DEFAULT_BANNED_TOKENS = [
     "致力於", "成功地", "圓滿達成", "極大地", "顯著地", "透過", "藉由",
     "進行一個", "完成了"
 ]
-# 2) 責任詞：真實責任界線可能正需要這些詞（例：協助製作銷售簡報），只警示、不失敗；
-#    LOCKED 段落內不檢查。Codex 須逐點對照 library 確認該詞是真實責任。
+# 2) 責任詞：真實責任界線可能正需要這些詞（例：協助製作銷售簡報），只警示、不失敗；LOCKED 段落內不檢查。
 RESPONSIBILITY_WARN_TOKENS = ["協助", "參與", "配合", "支援", "維護"]
 # 3) 責任升級詞：成品出現而上游草稿同一點沒有 → 失敗（防止下游悄悄放大責任）。
-#    「主導」只有 library 確認的兩件事（Juicy、JustDating 重新上架）可用，須由上游草稿先寫出。
 OVERCLAIM_PATTERNS = [r"主導", r"架構", r"扛下", r"開發(?!中|複雜度)", r"實作", r"重構"]
 LAZY_SIMILARITY_THRESHOLD = 0.99  # 2026-10-22 本人：不強求改寫比例，只攔原句照抄
 
@@ -37,11 +34,13 @@ BULLET_PATTERN = re.compile(r"^\s*[-*]\s+(?P<text>.+)$")
 BOLD_PREFIX_PATTERN = re.compile(r"^\s*[-*]\s+\*\*[^*]+[：:]\*\*")
 
 def read_from_git(branch_ref: str, rel_path: str):
-    # 嘗試先 fetch 確保雲端環境拿到最新分支
+    """純本地讀取 Git 物件（不觸發 git fetch 網路請求，Step 1 已由外部同步）"""
     clean_branch = branch_ref.replace("origin/", "")
-    subprocess.run(["git", "fetch", "origin", clean_branch], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-    for ref in [branch_ref, clean_branch]:
-        res = subprocess.run(["git", "show", f"{ref}:{rel_path}"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, encoding="utf-8")
+    for ref in [branch_ref, f"origin/{clean_branch}", clean_branch]:
+        res = subprocess.run(
+            ["git", "show", f"{ref}:{rel_path}"],
+            stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, encoding="utf-8"
+        )
         if res.returncode == 0:
             return res.stdout
     return None
@@ -55,7 +54,7 @@ def load_file_content(rel_path: str, target_branch: str, prefer_local: bool = Fa
         return content
     if local_path.exists():
         return local_path.read_text(encoding="utf-8")
-    print(f"❌ [FATAL] 無法讀取檔案：{rel_path} (分支: {target_branch})")
+    print(f"❌ [FATAL] 無法讀取檔案：{rel_path} (請確認是否已執行 git fetch {target_branch.replace('origin/', '')})")
     sys.exit(2)
 
 def parse_markdown_bullets(md_text: str):
@@ -112,7 +111,7 @@ def run_verification(draft_text: str, final_text: str, banned_tokens):
         if d_item["status"] == "NEEDS_POLISH":
             sim = difflib.SequenceMatcher(None, d_item["text"], f_item["text"]).ratio()
             if sim >= LAZY_SIMILARITY_THRESHOLD:
-                errors.append(f"[漏修/偷懶攔截] {loc} 標記為 NEEDS_POLISH，但與原句相似度高達 {sim:.0%}！")
+                errors.append(f"[漏修/偷懶攔截] {loc} 標記為 NEEDS_POLISH，但完全原句照抄 (相似度 {sim:.0%})！")
 
         for ent in d_item["entities"]:
             if ent not in f_item["text"]:
@@ -133,7 +132,7 @@ def run_verification(draft_text: str, final_text: str, banned_tokens):
         if d_item["status"] != "LOCKED":
             hit_resp = [t for t in RESPONSIBILITY_WARN_TOKENS if t in f_item["text"]]
             if hit_resp:
-                warnings.append(f"[責任詞確認] {loc} 含「{'、'.join(hit_resp)}」：請對照 library 確認是真實責任，並在修改紀錄說明。")
+                warnings.append(f"[責任詞提示] {loc} 含「{'、'.join(hit_resp)}」（不影響通過，由上游依 library 確保符合真實責任界線）。")
 
     return errors, warnings
 
@@ -151,7 +150,7 @@ def main():
 
     errors, warnings = run_verification(draft_text, final_text, DEFAULT_BANNED_TOKENS)
     if warnings:
-        print(f"⚠️ 責任詞警示 {len(warnings)} 項（不影響通過，須在修改紀錄逐點說明）：\n" + "\n".join(f"  - {w}" for w in warnings))
+        print(f"⚠️ 責任詞提示 {len(warnings)} 項（不影響通過）：\n" + "\n".join(f"  - {w}" for w in warnings))
     if errors:
         print(f"❌ 驗收失敗！共發現 {len(errors)} 項違規：\n" + "\n".join(f"{i+1}. {e}" for i, e in enumerate(errors)))
         sys.exit(1)
