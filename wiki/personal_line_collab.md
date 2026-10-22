@@ -62,7 +62,8 @@
 | :--- | :--- |
 | 角色 | 文字編輯者。事實唯一來源是 `career/library/`（Career Move 維護）；Resume Writer 只負責把事實寫成通順自然的文字，**不新增事實** |
 | 讀取 | 只讀 `career/`；repo 其他目錄一律不碰 |
-| 寫入 | 只寫 `career/drafts/codex/`（草稿、產出、`QUESTIONS.md`）。`library/`、`wiki/`、`style/`、`104/` 等一律唯讀 |
+| 寫入 | 只寫 `career/drafts/codex/`（交接紀錄、`QUESTIONS.md`）與 `career/02_codex_stage/`（`final_resume.md`、`voice_style_guide.md`，2026-10-22 起）。`library/`、`wiki/`、`style/`、`104/`、`01_claude_stage/` 等一律唯讀 |
+| 履歷管線（2026-10-22 起） | Stage 1：Career Move 把事實編譯成 `career/01_claude_stage/causal_draft.md`（每個列點上方標 `STATUS`／`LOCK_ENTITIES`）→ Stage 2：Resume Writer 只潤飾 `NEEDS_POLISH` 段，寫 `career/02_codex_stage/final_resume.md` → Stage 3：Career Move 用 `career/scripts/verify_polish.py` 驗收，通過才發布到 `career/drafts/<版本>/`，不通過退回，**Career Move 不自己改語氣**。兩邊只以 `git show origin/<對方分支>:<路徑>` 唯讀取用對方檔案，不互寫分支 |
 | 分支 | 自己的分支（建議 `codex/resume-writer`），**不推 `main`、不推 `claude/happy-lamport-ljis8c`**，不 force push |
 | 事實有疑問 | 寫進 `career/drafts/codex/QUESTIONS.md`（編號、問題、出處），由使用者決定；Career Move 查證後更新 library 並答覆 |
 | 取用成果 | 由使用者決定採用哪份產出。Career Move 只**讀取**（`git checkout origin/codex/resume-writer -- career/drafts/codex`），採用的內容由 Career Move 納入自己的檔案，不整支合併分支 |
