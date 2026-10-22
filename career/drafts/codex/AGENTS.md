@@ -25,7 +25,7 @@ LOCK_ENTITIES 的詞與數字完整保留；LOCKED 及其他未授權內容原�
 只執行一次：
 
 ```sh
-python3 career/scripts/verify_polish.py --local-codex
+git show origin/claude/happy-lamport-ljis8c:career/scripts/verify_polish.py | python3 - --local-codex
 ```
 
 通過即回覆結果並結束任務。不得再執行額外檢查或 git 指令，也不修改 INDEX.md、ROUTER.md、voice_style_guide.md 等設定與交接檔。驗證失敗或程式缺失時如實回報，不追加 Shell、不建立暫存副本、不自改驗證程式或上游。
