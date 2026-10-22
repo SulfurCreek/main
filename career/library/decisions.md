@@ -176,4 +176,5 @@ v9.7 = v9.6 ＋ 使用者自寫自傳與各段 summary（16→10 個單位、業
 
 - 根 `CLAUDE.md` 不寫（全 repo 治理檔）；角色規則置於 `career/CLAUDE.md` 最前。`career/00_library/` 不建（已刪），讀取優先級併入 `library/README.md`（decisions → superseded → facts/profile → about-me → open-questions）。skill 與 `scripts/verify_polish.py` 依本人提供原文寫入；skill 末加 Career Move 附註（事實界線、披露規則仍有效）。
 - 已知張力（交本人）：`verify_polish.py` 禁用詞含「協助、參與、配合、支援、維護、透過」，但 library 的真實責任用語會用到（例：參與完整 Scrum 流程）；LOCKED 段不得被改，因此 LOCKED 內不得含禁用詞，Claude 在上游改寫（已把「參與完整 Scrum 流程」改為「跑過完整 Scrum 流程」）。
+- **2026-10-22 本人裁定（用詞檢查）**：禁用詞分兩類——文體詞照禁；責任詞（協助、參與、配合、支援、維護）只警示、須對照 library；責任升級詞（主導、架構、扛下、開發、實作、重構）下游不得自行加入，須由上游草稿先寫出。`verify_polish.py` 已實作。Codex `voice_style_guide.md` 的詞彙映射表（負責管理→主導／架構／扛下）與 decisions §1 衝突，需 Codex 修正。
 

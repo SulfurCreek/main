@@ -14,12 +14,20 @@ DRAFT_REL_PATH = "career/01_claude_stage/causal_draft.md"
 FINAL_REL_PATH = "career/02_codex_stage/final_resume.md"
 STYLE_REL_PATH = "career/02_codex_stage/voice_style_guide.md"
 
+# 2026-10-22 本人裁定：禁用詞分兩類。
+# 1) 文體詞：純 AI 腔／空洞詞，命中即失敗。
 DEFAULT_BANNED_TOKENS = [
-    "協助", "參與", "配合", "支援", "負責日常", "聽從", "維護",
+    "負責日常", "聽從",
     "賦能", "抓手", "閉環", "攜手", "助力", "全方位", "深耕",
     "致力於", "成功地", "圓滿達成", "極大地", "顯著地", "透過", "藉由",
     "進行一個", "完成了"
 ]
+# 2) 責任詞：真實責任界線可能正需要這些詞（例：協助製作銷售簡報），只警示、不失敗；
+#    LOCKED 段落內不檢查。Codex 須逐點對照 library 確認該詞是真實責任。
+RESPONSIBILITY_WARN_TOKENS = ["協助", "參與", "配合", "支援", "維護"]
+# 3) 責任升級詞：成品出現而上游草稿同一點沒有 → 失敗（防止下游悄悄放大責任）。
+#    「主導」只有 library 確認的兩件事（Juicy、JustDating 重新上架）可用，須由上游草稿先寫出。
+OVERCLAIM_PATTERNS = [r"主導", r"架構", r"扛下", r"開發(?!中|複雜度)", r"實作", r"重構"]
 LAZY_SIMILARITY_THRESHOLD = 0.88
 
 TAG_PATTERN = re.compile(
@@ -82,6 +90,7 @@ def parse_markdown_bullets(md_text: str):
 
 def run_verification(draft_text: str, final_text: str, banned_tokens):
     errors = []
+    warnings = []
     for idx, line in enumerate(final_text.splitlines(), start=1):
         if "NEEDS_POLISH" in line:
             errors.append(f"[殘留標記錯誤] final_resume.md 第 {idx} 行仍殘留 NEEDS_POLISH 標記。")
@@ -116,7 +125,17 @@ def run_verification(draft_text: str, final_text: str, banned_tokens):
         if hit_banned:
             errors.append(f"[禁用詞違規] {loc} 觸犯黑名單詞彙：{', '.join(hit_banned)}")
 
-    return errors
+        for pat in OVERCLAIM_PATTERNS:
+            fm = re.search(pat, f_item["text"])
+            if fm and not re.search(pat, d_item["text"]):
+                errors.append(f"[責任升級] {loc} 成品出現「{fm.group(0)}」，上游草稿同一點沒有；責任動詞須先由上游依 library 確認。")
+
+        if d_item["status"] != "LOCKED":
+            hit_resp = [t for t in RESPONSIBILITY_WARN_TOKENS if t in f_item["text"]]
+            if hit_resp:
+                warnings.append(f"[責任詞確認] {loc} 含「{'、'.join(hit_resp)}」：請對照 library 確認是真實責任，並在修改紀錄說明。")
+
+    return errors, warnings
 
 def main():
     parser = argparse.ArgumentParser()
@@ -130,7 +149,9 @@ def main():
         draft_text = load_file_content(DRAFT_REL_PATH, CLAUDE_BRANCH, prefer_local=True)
         final_text = load_file_content(FINAL_REL_PATH, CODEX_BRANCH, prefer_local=False)
 
-    errors = run_verification(draft_text, final_text, DEFAULT_BANNED_TOKENS)
+    errors, warnings = run_verification(draft_text, final_text, DEFAULT_BANNED_TOKENS)
+    if warnings:
+        print(f"⚠️ 責任詞警示 {len(warnings)} 項（不影響通過，須在修改紀錄逐點說明）：\n" + "\n".join(f"  - {w}" for w in warnings))
     if errors:
         print(f"❌ 驗收失敗！共發現 {len(errors)} 項違規：\n" + "\n".join(f"{i+1}. {e}" for i, e in enumerate(errors)))
         sys.exit(1)
