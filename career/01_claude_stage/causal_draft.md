@@ -1,4 +1,4 @@
-<!-- run: 2026-10-22 r3.2｜專長改 6 筆並重排（decisions §26）；UI/UX 依本人補充改寫；Data flow 待本人補｜r3.1：專長「跨部門協作與時程」由 LOCKED 改為 NEEDS_POLISH（Codex 提出改「資料科學團隊」，本人流程允許）｜其餘同 r3
+<!-- run: 2026-10-22 r3.2｜專長改 6 筆並重排（decisions §26）；UI/UX、SA 圖依本人補充；不寫 DFD；待 Codex 潤飾｜r3.1：專長「跨部門協作與時程」由 LOCKED 改為 NEEDS_POLISH（Codex 提出改「資料科學團隊」，本人流程允許）｜其餘同 r3
 
 <!--markdownlint-disable MD013-->
 
