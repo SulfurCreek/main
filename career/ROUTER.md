@@ -54,6 +54,30 @@
 
 > **管線（2026-10-21 起）**：`library/`（＝`00_library/`，見 `00_library/README.md`）→ Claude `01_claude_stage/causal_draft.md` → Codex `02_codex_stage/`（Codex 分支；含 `voice_style_guide.md`、`final_resume.md`）→ Claude `scripts/verify_polish.py` 核對 → `drafts/<版本>/` 成品。
 
+### 現行結構（2026-10-22）
+
+```text
+SulfurCreek/main
+├── career/                                   # 分支 claude/happy-lamport-ljis8c（Claude 寫）
+│   ├── library/                              # ＝00_library（不改名；對應表 00_library/README.md）
+│   │   ├── INDEX.md                          # 入口
+│   │   ├── facts-1111.md、facts-prior.md、profile.md   # 事實庫（＝entities_source_of_truth）
+│   │   ├── decisions.md、superseded.md、open-questions.md
+│   │   └── about-me.md                       # 職涯思維與選材（＝about_me_mindset）
+│   ├── 00_library/README.md                  # 新舊名稱對應表
+│   ├── 01_claude_stage/causal_draft.md       # Claude 產出：因果草稿＋STATUS／LOCK_ENTITIES 標記
+│   ├── scripts/verify_polish.py              # Claude 執行：漏修、鎖定實體、未定義名詞、披露
+│   ├── skills/resume-causal-logic-compiler/  # Claude 角色與編譯規則
+│   ├── drafts/<版本>/                        # 成品：104 md、雙欄 PDF（Claude 核對後產出）
+│   └── style/、104/、letters/ …              # 既有語氣、104 規格、推薦信
+│
+└── career/                                   # 分支 codex/resume-writer（Codex 寫；Claude 只讀）
+    ├── 02_codex_stage/
+    │   ├── voice_style_guide.md              # 語氣參數與禁用詞
+    │   └── final_resume.md                   # Codex 潤飾、清除標記的成品
+    └── drafts/codex/                         # Codex 交接與修改紀錄
+```
+
 ## 4. 目錄速查
 
 | 目錄／檔 | 內容 | 誰寫 |
