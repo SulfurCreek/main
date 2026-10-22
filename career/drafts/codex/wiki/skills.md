@@ -1,5 +1,7 @@
 # 技能清單與適用範圍
 
+> 2026-10-22：本頁僅供歷史存檔，不是例行讀取清單。操作只依 [AGENTS.md](../AGENTS.md) 的 Strict 3-Step Workflow；下列舊有來源讀取、工具檢查、索引維護等要求全部失效。
+
 > 歷史健診基準：Career Move `dd3d9f14f1acd9e7b887c30f7f1854bb55a917ba`。2026-10-21 本人新管線已讀回 `7839fd42a75c763ff12e4ee23fc1553ed3fa7ec7`；目前下游操作以 [stage 02 語氣指南](../../../02_codex_stage/voice_style_guide.md) 為準。這是技能導航，不是人物或事實庫。操作回 [ROUTER](../ROUTER.md)。
 
 ## 已讀內容的完整清單
@@ -23,7 +25,7 @@
 
 共用 `career/wiki/skills-index.md` 列出 Career Move 的 `resume-craft`、`resume-review-panel`、`portfolio-site`，實體在 `career/` 以外。本人原有只讀 career 的邊界仍有效，本輪沒有讀取、修改或宣稱已健診其內文。已檢查其 career 內路由敘述，給 Claude 的指令請該端核對內文並回報；不把外部路徑當 Codex 可執行入口。
 
-本輪也不宣稱盤點平台所有隱藏／未提供的技能或更新 ChatGPT 專案設定。新增可讀 skill 後，先分類角色、用途、輸入、可寫範圍與狀態，再接路由。
+本輪也不宣稱盤點平台所有隱藏／未提供的技能或更新 ChatGPT 專案設定。不因新增 skill 自動分類、掃描或更新路由。
 
 ## 衝突如何處理
 
