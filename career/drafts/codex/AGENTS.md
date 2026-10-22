@@ -4,9 +4,11 @@
 
 `career/library/` → Claude `career/01_claude_stage/causal_draft.md` → Codex `career/02_codex_stage/` → Claude 原版 `career/scripts/verify_polish.py` → 成品。
 
-Codex 是下游文字精煉師，只改上游 NEEDS_POLISH 的句法；不重選事實、案例、專有名詞定義順序或句內因果。LOCKED 逐字保留，LOCK_ENTITIES 一字不漏。每個職位區塊完成後寫入，最後移除標記；逐點改寫幅度至少 30%，事實與責任不能放大。
+Codex 是下游文字精煉師，只改上游 NEEDS_POLISH 的句法；不重選事實、案例、專有名詞定義順序或句內因果。LOCKED 逐字保留，LOCK_ENTITIES 一字不漏。每個職位區塊完成後寫入，最後移除標記；事實與責任不能放大。首輪曾要求逐點改寫至少 30%；A 方案後不為差異比例維持倒裝，按本人當輪最新要求處理。
 
 2026-10-21 本人 A 方案補充：本次對已交成品重新潤飾，以主動動詞取代反覆「由我」及倒裝；不為維持首輪 30% 比例扭曲句型。本人主詞可省略，同仁與團隊的歸因要留；不觸動 LOCKED。語感須逐點及整段人工閱讀，不能只靠驗證腳本。
+
+2026-10-22 r2 最新指示：改用 `d26914a` 的草稿、skill〈用詞檢查〉及 verifier，19 點 NEEDS_POLISH、12 處 LOCKED。數字、鎖定詞與責任動詞保留，不升級；「主導」限上游同點已寫出的 Juicy／JustDating 重新上架。禁止把管理、協助映射成架構、開發、實作、重構或扛下。文體詞禁用，責任詞只警示且須逐點對照 library 記錄。執行原版 `verify_polish.py --local-codex`，錯誤 0 且責任警示逐點處理後才推。SweetRing 提問互動只在職責內，「開發中」保留；本人手改語氣範例見語氣指南 §8。本檔固定在 `career/drafts/codex/`，不建立或改寫 repo 根 AGENTS。
 
 先讀 [ROUTER](ROUTER.md) 及 [語氣與逐段協議](../../02_codex_stage/voice_style_guide.md)。語氣指南與最終稿位於新 stage；`drafts/codex/` 只保留路由、歷史索引、修改理由與交接。
 
@@ -21,7 +23,7 @@ Codex 是下游文字精煉師，只改上游 NEEDS_POLISH 的句法；不重選
 1. 明確 fetch 來源 ref，固定提交；讀新因果 skill、01 README、原核對程式、causal_draft 及語氣來源，記上游 hash。
 2. 先枚舉標記及點數，再逐職位潤飾。全程保留原定義次序、因果、限定、責任與數字；詞彙替換不能新增主導權或工程實作。
 3. LOCKED 原樣複製；NEEDS_POLISH 不原句照抄，完成單一區塊就寫檔並記 POLISHED。最後清除全部交接標記，成品只含正文。
-4. 跑原版 verify_polish.py，再核對逐點實體與數字、LOCKED、30% 改寫、禁詞、長度及語感。核對程式不檢查的項目不能宣稱由它保證。
+4. 跑本輪原版 verify_polish.py，再核對逐點實體與數字、LOCKED、當輪相似度門檻、文體詞、責任警示、長度及語感。所有責任詞警示須附 library 出處與理由；核對程式不檢查的項目不能宣稱由它保證。
 5. 完整成品放 `career/02_codex_stage/final_resume.md`。來源／待補／疑問三行與修改紀錄放交接，不污染最終正文。無成品時不建立空檔假裝完成。
 6. 更新 [交接狀態](wiki/handoff-status.md)、[索引](INDEX.md) 與相關 wiki；原版驗證及本區檢查全部通過後，commit 前綴 `career:`，再推自己的分支。由 Claude 接續核對及產 104／PDF，推送不等於本人定版。
 

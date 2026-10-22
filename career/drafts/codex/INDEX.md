@@ -4,8 +4,9 @@
 
 - [個人語氣指南](../../02_codex_stage/voice_style_guide.md)：新 stage 的語氣參數、禁詞對照、逐區塊協議與檢查規則。
 - [A 方案主動句修整](2026-10-21-stage-active-voice-handoff.md)：在原交稿基礎修正反覆「由我」及倒裝；附完整逐點前後文、驗證結果與 Claude 接續指令。
-- [下游潤飾全文](../../02_codex_stage/final_resume.md)：來自上游 `7839fd4`，20 點已潤飾，12 處 LOCKED 及六處〔待補數據〕原樣保留；原版 verify_polish.py 已通過，修改理由與逐點檢查見本輪交接。
-- [本輪狀態與依賴](2026-10-21-stage-pipeline-handoff.md)。以下為歷史產出與治理入口，不另立 current 工作稿。
+- [下游潤飾全文](../../02_codex_stage/final_resume.md)：本輪依本人更新改用 `d26914a` r2，19 點已潤飾、12 處 LOCKED 原樣保留；新數字與「開發中」均保留，SweetRing 提問互動不單列；新版原版 `--local-codex` 錯誤 0、兩項責任警示已逐點附來源。
+- [r2 本輪修改理由與核對交接](2026-10-22-r2-polish-handoff.md)；語氣指南 §8 已收本人手改原文與 About Me 待同步片段。
+- [首輪狀態與依賴（歷史）](2026-10-21-stage-pipeline-handoff.md)。以下為歷史產出與治理入口，不另立 current 工作稿。
 
 
 **開工先讀 [ROUTER.md](ROUTER.md)** → [本區流程 skill](skills/resume-editor/SKILL.md)；[交接狀態](wiki/handoff-status.md) 辨認採用／同步／PDF。以下日期型產出與交接僅為索引，不自動指定現行稿。
