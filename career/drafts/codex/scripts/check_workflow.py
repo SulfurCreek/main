@@ -25,6 +25,7 @@ DOCS = (
     "2026-10-21-stage-active-voice-handoff.md",
     "2026-10-22-r2-polish-handoff.md",
     "2026-10-22-104-pdf-reading-review.md",
+    "2026-10-22-r3-polish-handoff.md",
     "../../02_codex_stage/final_resume.md",
 )
 

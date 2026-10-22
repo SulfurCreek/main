@@ -2,7 +2,7 @@
 
 > **2026-10-21 新管線優先**：下游角色已改。標記草稿只從 `career/01_claude_stage/causal_draft.md` 讀；語氣參數在 [voice_style_guide](../../02_codex_stage/voice_style_guide.md)，成品目標為 `career/02_codex_stage/final_resume.md`。本區舊選材／重整模式不套到新管線。
 
-> **2026-10-22 本輪更新**：指定來源 `d26914a`；使用新版 `verify_polish.py --local-codex`。文體詞禁用；責任詞只警示、逐點對照 library 記錄，不能為清詞升級責任。本人的手改語氣範例在指南 §8，具體核對與 Claude 接續見 [r2 交接](2026-10-22-r2-polish-handoff.md)。
+> **2026-10-22 本輪更新**：指定來源 `1ad8421` r3；使用原版 `verify_polish.py --local-codex`，另用 [層級與完整鎖定補查](scripts/check_polish_structure.py) 核對父層及兩個子項。文體詞禁用；責任詞逐點對照 library 記錄，不能升級。本人手改語氣範例在指南 §8，已讀回共同 About Me；桃園地點為本人已確認。交付與回修理由見 [r3 交接](2026-10-22-r3-polish-handoff.md)。
 
 > 作用：決定本輪讀什麼、改哪裡、驗什麼、如何交接。事實與現行稿仍從共用來源讀，不在這裡另建一份。
 > 維護：Resume Writer；本區權限見 [AGENTS.md](AGENTS.md)。最後健診與待辦見 [健診報告](2026-10-21-skills-healthcheck-and-claude-handoff.md)。

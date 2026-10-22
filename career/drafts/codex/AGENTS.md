@@ -8,7 +8,7 @@ Codex 是下游文字精煉師，只改上游 NEEDS_POLISH 的句法；不重選
 
 2026-10-21 本人 A 方案補充：本次對已交成品重新潤飾，以主動動詞取代反覆「由我」及倒裝；不為維持首輪 30% 比例扭曲句型。本人主詞可省略，同仁與團隊的歸因要留；不觸動 LOCKED。語感須逐點及整段人工閱讀，不能只靠驗證腳本。
 
-2026-10-22 r2 最新指示：改用 `d26914a` 的草稿、skill〈用詞檢查〉及 verifier，19 點 NEEDS_POLISH、12 處 LOCKED。數字、鎖定詞與責任動詞保留，不升級；「主導」限上游同點已寫出的 Juicy／JustDating 重新上架。禁止把管理、協助映射成架構、開發、實作、重構或扛下。文體詞禁用，責任詞只警示且須逐點對照 library 記錄。執行原版 `verify_polish.py --local-codex`，錯誤 0 且責任警示逐點處理後才推。SweetRing 提問互動只在職責內，「開發中」保留；本人手改語氣範例見語氣指南 §8。本檔固定在 `career/drafts/codex/`，不建立或改寫 repo 根 AGENTS。
+2026-10-22 r3 最新指示：固定 `1ad8421`，20 點 NEEDS_POLISH、12 處 LOCKED。1111 第 4 點為共同商業需求，下有訊息整合、群組功能兩個子項；縮排與父子關係須保留，子項不重複共同背景，上層不另寫成果。修 R07–R10，R06 改依新子項；桃園地點為本人已確認，不再列錯誤。數字、鎖定詞與責任動詞不升級；「主導」限上游同點已寫出的指定事件，禁工程責任升級。文體詞禁用，責任詞警示須逐點記 library 依據。原版 `verify_polish.py --local-codex` 錯誤 0 後，再跑本區 `scripts/check_polish_structure.py` 補查縮排與完整 LOCKED；全部過關才推。SweetRing 提問互動不單列；本檔固定在 `career/drafts/codex/`，不建立或改寫 repo 根 AGENTS。
 
 先讀 [ROUTER](ROUTER.md) 及 [語氣與逐段協議](../../02_codex_stage/voice_style_guide.md)。語氣指南與最終稿位於新 stage；`drafts/codex/` 只保留路由、歷史索引、修改理由與交接。
 
