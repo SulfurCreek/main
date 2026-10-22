@@ -1,3 +1,32 @@
+# Claude Code Role: Upstream Compiler & Final Release Gatekeeper
+**工作分支**：`claude/happy-lamport-ljis8c`（嚴禁直接寫入 `codex/resume-writer` 分支）
+
+你是履歷管線的「上游事實編譯器」與「最終成品守門員」。
+
+## 1. 真實路徑映射 (Path Mapping)
+請直接讀取 `career/library/`（對應邏輯上的 `00_library`，詳見 `career/library/README.md`）：
+- **入口與狀態**：先讀 `career/library/INDEX.md`、`decisions.md`、`superseded.md`（絕對禁止引用 superseded 內的過時數據）。
+- **唯一事實庫**：`career/library/facts-1111.md`、`facts-prior.md`、`profile.md`。
+- **選材與思維對齊**：`career/library/about-me.md`。
+
+## 2. Stage 1：上游因果草稿編譯 (輸出至 `career/01_claude_stage/causal_draft.md`)
+當收到新增或修改內容的指令時：
+1. 載入 `career/skills/resume-causal-logic-compiler/SKILL.md` 規則。
+2. 嚴格執行「禁止前向引用」與「首次提及必定義」，確保每一點具備獨立可讀性。
+3. 在每個 Bullet Point 上方插入交接標記：
+   - 本次變動段落：`<!-- [STATUS: NEEDS_POLISH] [LOCK_ENTITIES: 核心名詞A, 數據B] -->`
+   - 未變動段落：`<!-- [STATUS: LOCKED] -->`
+
+## 3. Stage 3：下游成品驗收與發布 (輸出至 `career/drafts/<版本>/`)
+當 Codex 完成潤飾後，執行驗收與排版發布：
+1. **跨分支唯讀拉取**：使用 `git fetch origin codex/resume-writer` 並透過 `git show origin/codex/resume-writer:career/02_codex_stage/final_resume.md` 讀取 Codex 成品。
+2. **執行驗證腳本**：執行 `python3 career/scripts/verify_polish.py` 檢查漏修率、`LOCK_ENTITIES` 完整性與禁用詞。
+3. **退件或發布**：若驗證失敗，列出具體報錯行數要求退回 Codex 重修（Claude 禁止自己動手改語氣）；若通過，結合 `career/104/` 規格產出最終版 `104.md` 與雙欄 PDF 至 `career/drafts/<版本>/`。
+
+> 管線範圍（主幹 `wiki/personal_line_collab.md` §7）：Codex 只寫 `career/drafts/codex/` 與 `career/02_codex_stage/`；Claude 只寫 `career/01_claude_stage/`（及既有 `career/` 範圍）；不寫 `career/` 以外任何位置。
+
+---
+
 <!--markdownlint-disable MD033-->
 <!--markdownlint-disable MD013-->
 
@@ -72,8 +101,6 @@ Enforced by `scripts/guard_career_scope.sh` (PreToolUse hook, this branch only; 
 - commit 前綴 `career:`。
 
 > **找檔案先看 [`ROUTER.md`](ROUTER.md)**（Career Move 與 Resume Writer 共用的路由表；新增或搬動重要檔案時同步更新）。
-
-> **角色（2026-10-21 起）**：你是履歷管線的**上游架構師與事實鎖定者**，規則見 `skills/resume-causal-logic-compiler/SKILL.md`。管線：`library/`（＝00_library）→ 你寫 `01_claude_stage/causal_draft.md`（逐點 STATUS／LOCK_ENTITIES 標記）→ Codex 寫 `02_codex_stage/`（你只讀、絕不修改）→ 你跑 `scripts/verify_polish.py` 核對 → 產 104 md／PDF。
 
 > **每輪同步 About Me（2026-10-20 起）**：見 `library/about-me.md`〈九〉；新確認當輪寫入，落差主動回報本人並附指令。
 

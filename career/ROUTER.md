@@ -52,19 +52,18 @@
 
 > **每輪人物來源同步（2026-10-20 起）**：每輪檢查 `library/about-me.md` 是否需同步新確認內容；發現新補充與稿件落差，回報本人並附具體處理指令。規則見 `library/about-me.md`〈九〉。
 
-> **管線（2026-10-21 起）**：`library/`（＝`00_library/`，見 `00_library/README.md`）→ Claude `01_claude_stage/causal_draft.md` → Codex `02_codex_stage/`（Codex 分支；含 `voice_style_guide.md`、`final_resume.md`）→ Claude `scripts/verify_polish.py` 核對 → `drafts/<版本>/` 成品。
+> **管線（2026-10-21 起）**：`library/`（＝`00_library`，見 `library/README.md`）→ Claude `01_claude_stage/causal_draft.md` → Codex `02_codex_stage/`（Codex 分支；含 `voice_style_guide.md`、`final_resume.md`）→ Claude `scripts/verify_polish.py` 核對 → `drafts/<版本>/` 成品。
 
 ### 現行結構（2026-10-22）
 
 ```text
 SulfurCreek/main
 ├── career/                                   # 分支 claude/happy-lamport-ljis8c（Claude 寫）
-│   ├── library/                              # ＝00_library（不改名；對應表 00_library/README.md）
+│   ├── library/                              # ＝00_library（不改名；優先級見 library/README.md）
 │   │   ├── INDEX.md                          # 入口
 │   │   ├── facts-1111.md、facts-prior.md、profile.md   # 事實庫（＝entities_source_of_truth）
 │   │   ├── decisions.md、superseded.md、open-questions.md
 │   │   └── about-me.md                       # 職涯思維與選材（＝about_me_mindset）
-│   ├── 00_library/README.md                  # 新舊名稱對應表
 │   ├── 01_claude_stage/causal_draft.md       # Claude 產出：因果草稿＋STATUS／LOCK_ENTITIES 標記
 │   ├── scripts/verify_polish.py              # Claude 執行：漏修、鎖定實體、未定義名詞、披露
 │   ├── skills/resume-causal-logic-compiler/  # Claude 角色與編譯規則

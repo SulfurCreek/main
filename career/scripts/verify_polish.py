@@ -1,49 +1,141 @@
 #!/usr/bin/env python3
-"""驗證 Codex 潤飾結果（階段 03，Claude 執行）。
+# -*- coding: utf-8 -*-
+import argparse
+import difflib
+import pathlib
+import re
+import subprocess
+import sys
 
-用法：python3 career/scripts/verify_polish.py <causal_draft.md> <final_resume.md>
-檢查：
-  1. 漏修／殘留標記：final 中不得殘留 [STATUS: ...]／[LOCK_ENTITIES: ...]。
-  2. 鎖定實體：draft 每個 LOCK_ENTITIES 詞都要出現在 final。
-  3. LOCKED 段落：draft 中 STATUS: LOCKED 的 bullet 文字須原樣出現在 final。
-  4. 未定義專有名詞：draft〈實體字典〉的實體，在 final 首次出現處須在同一行帶有字典中的外部定義關鍵詞（粗略檢查，人工複核）。
-  5. 披露：final 不得出現投票名次、預計上線日期、延後、開發中、目標值當成效等字樣。
-exit 0＝全過；1＝有問題（逐條列出）。
-"""
-import re, sys
+CLAUDE_BRANCH = "origin/claude/happy-lamport-ljis8c"
+CODEX_BRANCH = "origin/codex/resume-writer"
 
-draft, final = (open(p, encoding="utf8").read() for p in sys.argv[1:3])
-bad = []
+DRAFT_REL_PATH = "career/01_claude_stage/causal_draft.md"
+FINAL_REL_PATH = "career/02_codex_stage/final_resume.md"
+STYLE_REL_PATH = "career/02_codex_stage/voice_style_guide.md"
 
-if re.search(r"\[STATUS:|\[LOCK_ENTITIES:", final):
-    bad.append("final 仍有交接標記（漏修或未清除）")
+DEFAULT_BANNED_TOKENS = [
+    "協助", "參與", "配合", "支援", "負責日常", "聽從", "維護",
+    "賦能", "抓手", "閉環", "攜手", "助力", "全方位", "深耕",
+    "致力於", "成功地", "圓滿達成", "極大地", "顯著地", "透過", "藉由",
+    "進行一個", "完成了"
+]
+LAZY_SIMILARITY_THRESHOLD = 0.88
 
-for m in re.finditer(r"<!--\s*\[STATUS:\s*(\w+)\](?:\s*\[LOCK_ENTITIES:\s*([^\]]*)\])?\s*-->\s*\n(- .*)", draft):
-    status, ents, bullet = m.group(1), m.group(2) or "", m.group(3)
-    for e in [x.strip() for x in ents.split(",") if x.strip()]:
-        if e not in final:
-            bad.append(f"鎖定實體遺失：「{e}」（{bullet[:30]}…）")
-    if status == "LOCKED" and bullet[2:].strip() not in final:
-        bad.append(f"LOCKED 段落被改：{bullet[:40]}…")
+TAG_PATTERN = re.compile(
+    r"<!--\s*\[STATUS:\s*(?P<status>[A-Z_]+)\](?:\s*\[LOCK_ENTITIES:\s*(?P<entities>[^\]]+)\])?\s*-->"
+)
+BULLET_PATTERN = re.compile(r"^\s*[-*]\s+(?P<text>.+)$")
+BOLD_PREFIX_PATTERN = re.compile(r"^\s*[-*]\s+\*\*[^*]+[：:]\*\*")
 
-dic = re.search(r"## 實體字典.*?\n((?:\|.*\n)+)", draft)
-if dic:
-    for row in dic.group(1).splitlines()[2:]:
-        cells = [c.strip() for c in row.strip("|").split("|")]
-        if len(cells) < 2 or not cells[0]:
+def read_from_git(branch_ref: str, rel_path: str):
+    # 嘗試先 fetch 確保雲端環境拿到最新分支
+    clean_branch = branch_ref.replace("origin/", "")
+    subprocess.run(["git", "fetch", "origin", clean_branch], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    for ref in [branch_ref, clean_branch]:
+        res = subprocess.run(["git", "show", f"{ref}:{rel_path}"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, encoding="utf-8")
+        if res.returncode == 0:
+            return res.stdout
+    return None
+
+def load_file_content(rel_path: str, target_branch: str, prefer_local: bool = False) -> str:
+    local_path = pathlib.Path(rel_path)
+    if prefer_local and local_path.exists():
+        return local_path.read_text(encoding="utf-8")
+    content = read_from_git(target_branch, rel_path)
+    if content is not None:
+        return content
+    if local_path.exists():
+        return local_path.read_text(encoding="utf-8")
+    print(f"❌ [FATAL] 無法讀取檔案：{rel_path} (分支: {target_branch})")
+    sys.exit(2)
+
+def parse_markdown_bullets(md_text: str):
+    bullets = []
+    current_status = "UNMARKED"
+    current_entities = []
+    current_section = "Header"
+    for idx, line in enumerate(md_text.splitlines(), start=1):
+        stripped = line.strip()
+        if stripped.startswith("#"):
+            current_section = stripped.lstrip("#").strip()
             continue
-        ent, definition = cells[0], cells[1]
-        line = next((l for l in final.splitlines() if ent in l), None)
-        if line is None:
+        tag_match = TAG_PATTERN.search(stripped)
+        if tag_match:
+            current_status = tag_match.group("status").strip()
+            raw_entities = tag_match.group("entities")
+            current_entities = [e.strip() for e in re.split(r"[,，、]", raw_entities) if e.strip()] if raw_entities else []
             continue
-        keys = [k for k in re.split(r"[，、；（）()\s]+", definition) if len(k) >= 2][:4]
-        if keys and not any(k in line for k in keys):
-            bad.append(f"可能未定義：「{ent}」首次出現的那行沒有外部定義線索（{'/'.join(keys)}）")
+        bullet_match = BULLET_PATTERN.match(line)
+        if bullet_match:
+            bullets.append({
+                "line_no": idx,
+                "raw_line": line,
+                "text": bullet_match.group("text").strip(),
+                "status": current_status,
+                "entities": current_entities,
+                "section": current_section
+            })
+            current_status = "UNMARKED"
+            current_entities = []
+    return bullets
 
-for pat, why in [(r"第一名|票選第|排名第|業務投票", "未公開排序"), (r"預計\s*20\d\d|預計.{0,6}上線", "預計日期"),
-                 (r"延後.{0,8}功能", "延後項目"), (r"150%|配對率", "目標當成效")]:
-    for hit in re.findall(pat, final):
-        bad.append(f"披露：{why}「{hit}」")
+def run_verification(draft_text: str, final_text: str, banned_tokens):
+    errors = []
+    for idx, line in enumerate(final_text.splitlines(), start=1):
+        if "NEEDS_POLISH" in line:
+            errors.append(f"[殘留標記錯誤] final_resume.md 第 {idx} 行仍殘留 NEEDS_POLISH 標記。")
 
-print("\n".join(f"✗ {b}" for b in bad) if bad else "✓ 全部通過")
-sys.exit(1 if bad else 0)
+    draft_bullets = parse_markdown_bullets(draft_text)
+    final_bullets = parse_markdown_bullets(final_text)
+
+    if len(draft_bullets) != len(final_bullets):
+        errors.append(f"[結構不對稱] 上游草稿有 {len(draft_bullets)} 點，下游成品有 {len(final_bullets)} 點。嚴禁合併或增刪列點！")
+
+    for i in range(min(len(draft_bullets), len(final_bullets))):
+        d_item, f_item = draft_bullets[i], final_bullets[i]
+        loc = f"第 {i+1} 點 ({d_item['section']} | 成品第 {f_item['line_no']} 行)"
+
+        if d_item["status"] == "LOCKED" and d_item["text"] != f_item["text"]:
+            errors.append(f"[越權修改] {loc} 標記為 LOCKED，但文字被更動！")
+            continue
+
+        if d_item["status"] == "NEEDS_POLISH":
+            sim = difflib.SequenceMatcher(None, d_item["text"], f_item["text"]).ratio()
+            if sim >= LAZY_SIMILARITY_THRESHOLD:
+                errors.append(f"[漏修/偷懶攔截] {loc} 標記為 NEEDS_POLISH，但與原句相似度高達 {sim:.0%}！")
+
+        for ent in d_item["entities"]:
+            if ent not in f_item["text"]:
+                errors.append(f"[事實遺失] {loc} 遺失了鎖定實體或數據：`{ent}`")
+
+        if BOLD_PREFIX_PATTERN.match(f_item["raw_line"]):
+            errors.append(f"[AI 排版違規] {loc} 使用了禁止的粗體摘要開頭 (**...：**)。")
+
+        hit_banned = [t for t in banned_tokens if t in f_item["text"]]
+        if hit_banned:
+            errors.append(f"[禁用詞違規] {loc} 觸犯黑名單詞彙：{', '.join(hit_banned)}")
+
+    return errors
+
+def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--local-codex", action="store_true")
+    args = parser.parse_args()
+
+    if args.local_codex:
+        draft_text = load_file_content(DRAFT_REL_PATH, CLAUDE_BRANCH, prefer_local=False)
+        final_text = load_file_content(FINAL_REL_PATH, CODEX_BRANCH, prefer_local=True)
+    else:
+        draft_text = load_file_content(DRAFT_REL_PATH, CLAUDE_BRANCH, prefer_local=True)
+        final_text = load_file_content(FINAL_REL_PATH, CODEX_BRANCH, prefer_local=False)
+
+    errors = run_verification(draft_text, final_text, DEFAULT_BANNED_TOKENS)
+    if errors:
+        print(f"❌ 驗收失敗！共發現 {len(errors)} 項違規：\n" + "\n".join(f"{i+1}. {e}" for i, e in enumerate(errors)))
+        sys.exit(1)
+    print("✅ GATEKEEPER PASSED: 無漏修段落、LOCKED 完好、核心數據完整、零禁用詞！")
+    sys.exit(0)
+
+if __name__ == "__main__":
+    main()

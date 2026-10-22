@@ -170,5 +170,10 @@ v9.7 = v9.6 ＋ 使用者自寫自傳與各段 summary（16→10 個單位、業
 - Claude＝上游架構師與事實鎖定者：只負責事實準確度、選材高度、單向因果順序；不追求文筆；不修改 02_codex_stage。規則：`career/skills/resume-causal-logic-compiler/SKILL.md`（取代 §23 的寫法規則；前版存 references/）。
 - 寫法：完全照新指令（首次定義含量級、量化成果在前、固定拓撲順序、凸顯破局／技術債取捨／商業指標）；**無 library 數字一律標〔待補數據〕，不估不編**。
 - 保留：披露（不寫未公開排序、延後、預計日期、開發中；目標≠成效）與跨欄位一致（本人 2026-10-21 選擇保留）。
-- 目錄：只新增 `01_claude_stage/`；`career/library/` 不搬（＝00_library，對應見 `00_library/README.md`）；`about_me_mindset.md`＝`library/about-me.md`；`02_codex_stage/` 由 Codex 在其分支建立。Codex 潤飾後的核對、104 md 與 PDF 仍由 Claude 做（`scripts/verify_polish.py`）。
+- 目錄：只新增 `01_claude_stage/`；`career/library/` 不搬（＝00_library，對應見 `library/README.md`）；`about_me_mindset.md`＝`library/about-me.md`；`02_codex_stage/` 由 Codex 在其分支建立。Codex 潤飾後的核對、104 md 與 PDF 仍由 Claude 做（`scripts/verify_polish.py`）。
+
+## 25. 2026-10-22 管線檔案依主幹調整重寫
+
+- 根 `CLAUDE.md` 不寫（全 repo 治理檔）；角色規則置於 `career/CLAUDE.md` 最前。`career/00_library/` 不建（已刪），讀取優先級併入 `library/README.md`（decisions → superseded → facts/profile → about-me → open-questions）。skill 與 `scripts/verify_polish.py` 依本人提供原文寫入；skill 末加 Career Move 附註（事實界線、披露規則仍有效）。
+- 已知張力（交本人）：`verify_polish.py` 禁用詞含「協助、參與、配合、支援、維護、透過」，但 library 的真實責任用語會用到（例：參與完整 Scrum 流程）；LOCKED 段不得被改，因此 LOCKED 內不得含禁用詞，Claude 在上游改寫（已把「參與完整 Scrum 流程」改為「跑過完整 Scrum 流程」）。
 
