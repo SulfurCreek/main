@@ -122,8 +122,8 @@
 - 產品規劃與交付：從需求訪談出發，整理 User Journey、User Story 與 Use Case，撰寫 PRD，與 QA 由規格推導驗收案例，安排分階段上線；另以互動原型與 FAQ 向客服、業務說明新功能。
 <!-- [STATUS: NEEDS_POLISH] [LOCK_ENTITIES: 循序圖, 活動圖, 使用案例圖, BPMN, API, 簽章驗證, 防重放, 錯誤碼, 頻率限制] -->
 - 系統分析：在缺乏文件的既有系統中，以實際操作與內部訪談還原權限及計費規則，用循序圖、活動圖、使用案例圖與 BPMN 說明流程與系統互動；把商業邏輯拆成查詢條件與工程確認後端行為，並與工程議定外部合作夥伴的 API 規格（簽章驗證、防重放、錯誤碼與頻率限制）及既有資料轉換規則。
-<!-- [STATUS: NEEDS_POLISH] [LOCK_ENTITIES: Wireframe, Flowchart, Figma, Axure RP, Miro, iOS, Android, 設計師] -->
-- UI/UX 規劃：使用流程由我規劃，以 Flowchart 與 Miro 整理操作路徑，用 Figma 繪製 Wireframe、Axure RP 製作互動原型；經手交友、內容訂閱與網紅媒合等 iOS／Android App 的使用流程，需要視覺設計時與設計師協作完成畫面。
+<!-- [STATUS: NEEDS_POLISH] [LOCK_ENTITIES: Wireframe, Flowchart, FigJam, Figma, Web, Mobile, Axure RP, Miro, iOS, Android, 設計師] -->
+- UI/UX 規劃：使用流程由我規劃，Web 與 Mobile 介面以 FigJam、Figma 繪製 Flowchart 與 Wireframe，Mobile App 流程以 Miro 整理，並用 Axure RP 製作互動原型；經手交友、內容訂閱與網紅媒合等 iOS／Android App 的使用流程，需要視覺設計時與設計師協作完成畫面。
 <!-- [STATUS: NEEDS_POLISH] [LOCK_ENTITIES: 甘特圖, Trello, 2022–2023, Kanban, 2 名直屬產品企劃] -->
 - 跨部門協作與時程：協調工程、行銷、業務、客服與資料科學等需求單位，依使用者需求與開發複雜度安排優先序，以甘特圖、Trello 與內部專案工具管理時程。2022–2023 年跑過完整 Scrum 流程，現行以 Kanban 搭配瀑布式開發推進工作，並帶領 2 名直屬產品企劃。
 <!-- [STATUS: NEEDS_POLISH] [LOCK_ENTITIES: VIP 訂閱, 點數付費牆, 精選曝光, App Store, Google Play, IAP, 馬來西亞, 智冠, CodaPay] -->
