@@ -16,6 +16,9 @@
 3. 在每個 Bullet Point 上方插入交接標記：
    - 本次變動段落：`<!-- [STATUS: NEEDS_POLISH] [LOCK_ENTITIES: 核心名詞A, 數據B] -->`
    - 未變動段落：`<!-- [STATUS: LOCKED] -->`
+4. **責任界線與父子縮排鎖定**：
+   - 高強度責任動詞（`主導、架構、扛下、開發、實作、重構`）必須在草稿階段嚴格依 `library/` 確認後寫出（例如「主導」僅限 `library/` 確認的 Juicy、JustDating 重新上架兩件事可用），下游 Codex 禁止自行升級責任。
+   - 若有父子縮排結構，子項不重複上層背景，上層不另加成果。
 
 ## 3. Stage 3：下游成品驗收與發布 (輸出至 `career/drafts/<版本>/`)
 當 Codex 完成潤飾後，執行驗收與排版發布：
@@ -91,12 +94,13 @@ Enforced by `scripts/guard_career_scope.sh` (PreToolUse hook, this branch only; 
 
 ## 🤝 協作：Resume Writer（OpenAI Codex，2026-10-20 起）
 
-個人線第三個協作者，**不是 Claude Code**，是文字編輯者。規則：**`wiki/personal_line_collab.md` §7**。重點：
+個人線第三個協作者，**不是 Claude Code**，是下游文字精煉師。規則：**`wiki/personal_line_collab.md` §7** 與 2026-10-22 最新管線規範。重點：
 
-- **事實唯一來源是 `library/`**（你維護）；它只把事實寫順、**不新增事實**。
-- **邊界**：它只讀 `career/`、只寫 `career/drafts/codex/`，用自己的分支 `codex/resume-writer`，不推 `main`、不推本分支。**你不要寫 `drafts/codex/`。**
-- **它的疑問在 `drafts/codex/QUESTIONS.md`**：你查證後更新 `library/`（附日期與來源），把答覆告訴使用者，由使用者轉達。
-- **取用成果只讀取、不整支合併**：`git fetch origin codex/resume-writer`，再 `git checkout origin/codex/resume-writer -- career/drafts/codex` 取出來看；採用哪份由使用者決定，採用的內容由你納入自己的檔案。
+- **事實唯一來源是 `library/`**（由你維護並編譯至 `career/01_claude_stage/causal_draft.md`）；Codex 僅依 `causal_draft.md` 與 `voice_style_guide.md` 把文字寫順、**不直接讀 `library/`、不新增事實、不升級責任動詞**。
+- **邊界**：它使用自己的分支 `codex/resume-writer`，例行潤飾只寫 `career/02_codex_stage/final_resume.md`（不自動改 `ROUTER.md`、`INDEX.md`），不推 `main`、不推本分支。**你不要寫 `02_codex_stage/` 與 `drafts/codex/`。**
+- **它的疑問在 `drafts/codex/QUESTIONS.md`**（若有）：你查證後更新 `library/`（附日期與來源），並更新至 `causal_draft.md`。
+- **取用成果與驗收（唯讀拉取，禁止 `git checkout` 污染工作區）**：
+  執行 Stage 3 流程：`git fetch origin codex/resume-writer`，再透過 `git show origin/codex/resume-writer:career/02_codex_stage/final_resume.md` 讀取成品，並執行 `python3 career/scripts/verify_polish.py` 驗收；通過後由你產出 `career/drafts/<版本>/` 下的 104 與雙欄 PDF。
 - **不得在任何 `CLAUDE.md` 用 `@AGENTS.md` 引用它的指示檔**（會把 Codex 規則帶進本 session）。
 - commit 前綴 `career:`。
 
