@@ -8,7 +8,11 @@ description: 專治履歷「概念偷跑（未定義先引用）」與「因果�
 1. **禁止前向引用 (No Forward Referencing)**：撰寫第 N 個 Bullet Point 時，絕對禁止直接使用第 N+1 個（或更後面）才會首次定義的系統名稱、專案代號或業務背景。
 2. **首次提及必定義 (Define on First Use)**：任何內部專有名詞或系統在「第一次出現」時，必須附帶完整的上下文錨點（是什麼系統、服務什麼量級的受眾、解決什麼痛點）。
 3. **單點獨立性測試 (Standalone Readability Test)**：假設把其他所有點遮住，只單獨讀當前這一點，外部 HR 也必須 100% 理解前因、動作與量化影響。
-4. **句內因果結構**：以「量化成果 (Result) ｜ 核心行動與首次定義背景 (Action & Defined Context) ＋ 克服的限制與最終影響 (Constraint & Impact)」呈現。
+4. **敘事起點 LEAD（2026-10-23 取代舊「成果先行」）**：每個 NEEDS_POLISH 區塊依讀者理解所需選一種起點，標在既有註解內 `[LEAD: …]`：
+   - `RESULT`：對象、指標與變化可直接讀懂，採結果開頭。
+   - `ACTION`：重點是本人責任與交付，先寫行動，再補交付量。
+   - `CONTEXT`：需要先理解問題、限制或實驗設計，先交代情境。
+   數字放置：需求件數放問題背景旁；交付量接責任與行動；成效數據保留比較口徑及歸因。不強制全篇成果先行，也不一律把數字移到最後。詳見 Codex `voice_style_guide.md` §9。
 
 ## Execution Workflow
 每次修改 `career/01_claude_stage/causal_draft.md` 時，必須先在內部完成：

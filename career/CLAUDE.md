@@ -14,7 +14,7 @@
 1. 載入 `career/skills/resume-causal-logic-compiler/SKILL.md` 規則。
 2. 嚴格執行「禁止前向引用」與「首次提及必定義」，確保每一點具備獨立可讀性。
 3. 在每個 Bullet Point 上方插入交接標記：
-   - 本次變動段落：`<!-- [STATUS: NEEDS_POLISH] [LOCK_ENTITIES: 核心名詞A, 數據B] -->`
+   - 本次變動段落：`<!-- [STATUS: NEEDS_POLISH] [LOCK_ENTITIES: 核心名詞A, 數據B] [LEAD: RESULT|ACTION|CONTEXT] -->`（LEAD 規則見 skill 規則 4）
    - 未變動段落：`<!-- [STATUS: LOCKED] -->`
 4. **責任界線與父子縮排鎖定**：
    - 高強度責任動詞（`主導、架構、扛下、開發、實作、重構`）必須在草稿階段嚴格依 `library/` 確認後寫出（例如「主導」僅限 `library/` 確認的 Juicy、JustDating 重新上架兩件事可用），下游 Codex 禁止自行升級責任。
