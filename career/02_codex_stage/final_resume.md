@@ -69,17 +69,17 @@
 
 ### 專長
 <!-- [STATUS: POLISHED] -->
-- AI Agent 協作：以 Claude Code 與 Antigravity 協作撰寫規格、整理及分析資料，將共用做法整理成 skill。定義問題、業務規則與驗證要求，持續檢查及修正產出；指導同仁用 AI 處理大量資料對照，保留人工判斷與例外討論。
+- AI Agent 協作：以 Claude Code、Antigravity 等 AI Agent 協作撰寫規格、整理及分析資料，將共用做法整理成 skill。定義問題、業務規則與驗證要求，持續檢查及修正產出；指導團隊用 AI 處理大量資料，保留人工判斷與例外討論。
 <!-- [STATUS: POLISHED] -->
-- 產品規劃與交付：從需求訪談出發，整理 User Journey、User Story 與 Use Case，並撰寫 PRD。與 QA 依規格推導驗收案例，安排分階段上線；以互動原型與 FAQ 向客服、業務說明新功能。
+- 產品規劃與交付：從需求訪談出發，整理 User Journey、User Story 與 Use Case，並撰寫 PRD。與 QA 依規格推導驗收案例，規劃分階段上線；以互動原型與 FAQ 向內部單位說明新功能。
 <!-- [STATUS: POLISHED] -->
-- 系統分析：以實際操作與內部訪談，還原既有系統中缺乏文件的權限及計費規則，並用循序圖、活動圖、使用案例圖、BPMN 與泳道圖說明流程及系統互動。將商業邏輯拆成查詢條件，與工程確認後端行為；另與工程議定外部合作夥伴的 API 規格（簽章驗證、防重放、錯誤碼與頻率限制），以及既有資料轉換規則。
+- 系統分析：以實際操作與內部訪談，還原既有系統中缺乏文件的業務規則，並用循序圖、活動圖、使用案例圖、BPMN 與泳道圖說明流程及系統互動。將商業邏輯拆成查詢條件，與技術人員確認後端行為，並共同議定 API 規格（簽章驗證、防重放、錯誤碼與頻率限制）及資料轉換規則。
 <!-- [STATUS: POLISHED] -->
-- UI/UX 規劃：規劃交友、內容訂閱與網紅媒合等 iOS／Android App 的使用流程。針對 Web 與 Mobile 介面，以 FigJam、Figma 繪製 Flowchart 與 Wireframe，以 Miro 整理 Mobile App 流程，並用 Axure RP 製作互動原型；需要視覺設計時，與設計師協作完成畫面。
+- UI/UX 規劃：熟悉 iOS／Android App 與 Web 的使用流程設計。規劃使用流程，以 FigJam、Figma 繪製 Web 與 Mobile 介面的 Flowchart 與 Wireframe，以 Miro 整理 Mobile App 流程，並用 Axure RP 製作互動原型；需要視覺設計時，與設計師協作完成畫面。
 <!-- [STATUS: POLISHED] -->
-- 跨部門協作與時程：協調工程、行銷、業務、客服與資料科學團隊，依使用者需求及開發複雜度安排優先序，使用甘特圖、Trello 與內部專案工具管理時程。2022–2023 年依完整 Scrum 流程工作，目前以 Kanban 搭配瀑布式開發推進，並帶領 2 名直屬產品企劃。
+- 跨部門協作與時程：與行銷、CRM、設計、技術等單位協調需求，依使用者需求及開發複雜度安排優先序，以甘特圖、Trello 管理時程。熟悉 Scrum、Kanban 與瀑布式開發流程，並帶領產品企劃團隊。
 <!-- [STATUS: POLISHED] -->
-- App 產品與變現：規劃訂閱制 App 的 VIP 訂閱、點數付費牆與精選曝光；熟悉 App Store／Google Play 審核政策，曾與 App Store 溝通並處理上架問題。以 Android 為對照，設計馬來西亞 iOS 定價實驗。比較 App 內購（IAP）與網頁付款的抽成、稅、手續費及撥款週期，完成實收試算；導流至費率較低的網頁付款，推進台灣智冠與海外 CodaPay 串接，並據試算結果提出訂閱方案。
+- App 產品與變現：規劃訂閱制 App 的 VIP 訂閱、點數付費牆與精選曝光；熟悉 App Store／Google Play 審核政策，曾與 App Store 溝通並處理上架問題。以 Android 為對照組，設計跨平台定價實驗。比較 App 內購（IAP）與網頁付款的抽成、稅、手續費及撥款週期，完成實收試算；導流至費率較低的網頁付款，推進本地與海外第三方金流串接，並據試算結果提出訂閱方案。
 
 ### 自傳
 
