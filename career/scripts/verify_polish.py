@@ -28,7 +28,7 @@ OVERCLAIM_PATTERNS = [
 LAZY_SIMILARITY_THRESHOLD = 0.99
 
 TAG_PATTERN = re.compile(
-    r"<!--\s*\[STATUS:\s*(?P<status>[A-Z_]+)\](?:\s*\[LOCK_ENTITIES:\s*(?P<entities>[^\]]+)\])?(?:\s*\[LEAD:\s*(?P<lead>[A-Z]+)\])?\s*-->"
+    r"<!--\s*\[STATUS:\s*(?P<status>[A-Z_]+)\](?:\s*\[LEAD:\s*(?P<lead>[A-Z_]+)\])?(?:\s*\[LOCK_ENTITIES:\s*(?P<entities>[^\]]+)\])?(?:\s*\[LEAD:\s*[A-Z_]+\])?\s*-->"
 )
 BOLD_PREFIX_PATTERN = re.compile(r"^\s*[-*]\s+\*\*[^*]+[：:]\*\*")
 
