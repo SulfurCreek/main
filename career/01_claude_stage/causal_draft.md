@@ -1,4 +1,4 @@
-<!-- run: 2026-10-22 r3.5｜功能交付改「截至 2026/Q3」、群組上線改 2025/Q3（decisions §27）｜r3.4：除個人特色、台灣新蛋外全篇 NEEDS_POLISH｜r3.3：專案成就 4 案改 NEEDS_POLISH｜r3.2：專長改 6 筆並重排（decisions §26）；UI/UX、SA 圖依本人補充；不寫 DFD；待 Codex 潤飾｜r3.1：專長「跨部門協作與時程」由 LOCKED 改為 NEEDS_POLISH（Codex 提出改「資料科學團隊」，本人流程允許）｜其餘同 r3
+<!-- run: 2026-10-23 r3.6｜專長 6 筆去公司化（decisions §28）｜r3.5：功能交付改「截至 2026/Q3」、群組上線改 2025/Q3（decisions §27）｜r3.4：除個人特色、台灣新蛋外全篇 NEEDS_POLISH｜r3.3：專案成就 4 案改 NEEDS_POLISH｜r3.2：專長改 6 筆並重排（decisions §26）；UI/UX、SA 圖依本人補充；不寫 DFD；待 Codex 潤飾｜r3.1：專長「跨部門協作與時程」由 LOCKED 改為 NEEDS_POLISH（Codex 提出改「資料科學團隊」，本人流程允許）｜其餘同 r3
 
 <!--markdownlint-disable MD013-->
 
@@ -117,17 +117,17 @@
 
 ### 專長
 <!-- [STATUS: NEEDS_POLISH] [LOCK_ENTITIES: AI Agent, Claude Code, Antigravity, skill, 人工判斷] -->
-- AI Agent 協作：運用 Claude Code 與 Antigravity 協作撰寫規格、整理與分析資料，並將共用做法整理成 skill。我負責定義問題、業務規則與驗證要求，在過程中檢查及修正產出，也指導同仁以 AI 處理大量資料對照，保留人工判斷與例外討論。
+- AI Agent 協作：運用 Claude Code、Antigravity 等 AI Agent 協作撰寫規格、整理與分析資料，並將共用做法整理成 skill。我負責定義問題、業務規則與驗證要求，在過程中檢查及修正產出，也指導團隊以 AI 處理大量資料，保留人工判斷與例外討論。
 <!-- [STATUS: NEEDS_POLISH] [LOCK_ENTITIES: User Journey, User Story, Use Case, PRD, QA, FAQ] -->
-- 產品規劃與交付：從需求訪談出發，整理 User Journey、User Story 與 Use Case，撰寫 PRD，與 QA 由規格推導驗收案例，安排分階段上線；另以互動原型與 FAQ 向客服、業務說明新功能。
+- 產品規劃與交付：從需求訪談出發，整理 User Journey、User Story 與 Use Case，撰寫 PRD，與 QA 由規格推導驗收案例，規劃分階段上線；並以互動原型與 FAQ 向客服、業務等內部單位說明新功能。
 <!-- [STATUS: NEEDS_POLISH] [LOCK_ENTITIES: 循序圖, 活動圖, 使用案例圖, BPMN, 泳道圖, API, 簽章驗證, 防重放, 錯誤碼, 頻率限制] -->
-- 系統分析：在缺乏文件的既有系統中，以實際操作與內部訪談還原權限及計費規則，用循序圖、活動圖、使用案例圖、BPMN 與泳道圖說明流程與系統互動；把商業邏輯拆成查詢條件與工程確認後端行為，並與工程議定外部合作夥伴的 API 規格（簽章驗證、防重放、錯誤碼與頻率限制）及既有資料轉換規則。
-<!-- [STATUS: NEEDS_POLISH] [LOCK_ENTITIES: Wireframe, Flowchart, FigJam, Figma, Web, Mobile, Axure RP, Miro, iOS, Android, 設計師] -->
-- UI/UX 規劃：使用流程由我規劃，Web 與 Mobile 介面以 FigJam、Figma 繪製 Flowchart 與 Wireframe，Mobile App 流程以 Miro 整理，並用 Axure RP 製作互動原型；經手交友、內容訂閱與網紅媒合等 iOS／Android App 的使用流程，需要視覺設計時與設計師協作完成畫面。
-<!-- [STATUS: NEEDS_POLISH] [LOCK_ENTITIES: 甘特圖, Trello, 2022–2023, Kanban, 2 名直屬產品企劃] -->
-- 跨部門協作與時程：協調工程、行銷、業務、客服與資料科學等需求單位，依使用者需求與開發複雜度安排優先序，以甘特圖、Trello 與內部專案工具管理時程。2022–2023 年跑過完整 Scrum 流程，現行以 Kanban 搭配瀑布式開發推進工作，並帶領 2 名直屬產品企劃。
-<!-- [STATUS: NEEDS_POLISH] [LOCK_ENTITIES: VIP 訂閱, 點數付費牆, 精選曝光, App Store, Google Play, IAP, 馬來西亞, 智冠, CodaPay] -->
-- App 產品與變現：規劃訂閱制 App 的 VIP 訂閱、點數付費牆與精選曝光；熟悉 App Store／Google Play 審核政策，有與 App Store 溝通、處理上架問題的經驗。以 Android 為對照設計馬來西亞 iOS 定價實驗；比較 App 內購（IAP）與網頁付款的抽成、稅、手續費與撥款週期完成實收試算，導流至費率較低的網頁付款，推進台灣智冠與海外 CodaPay 串接，並據此提出訂閱方案。
+- 系統分析：在缺乏文件的既有系統中，以實際操作與內部訪談還原業務規則，用循序圖、活動圖、使用案例圖、BPMN 與泳道圖說明流程與系統互動；把商業邏輯拆成查詢條件與工程確認後端行為，並與工程議定 API 規格（簽章驗證、防重放、錯誤碼與頻率限制）及資料轉換規則。
+<!-- [STATUS: NEEDS_POLISH] [LOCK_ENTITIES: Wireframe, Flowchart, FigJam, Figma, Web, Mobile, Miro, Axure RP, iOS, Android, 設計師] -->
+- UI/UX 規劃：使用流程由我規劃，Web 與 Mobile 介面以 FigJam、Figma 繪製 Flowchart 與 Wireframe，Mobile App 流程以 Miro 整理，並用 Axure RP 製作互動原型；熟悉 iOS／Android App 與 Web 的使用流程設計，需要視覺設計時與設計師協作完成畫面。
+<!-- [STATUS: NEEDS_POLISH] [LOCK_ENTITIES: 行銷, CRM, 設計, 技術, 甘特圖, Trello, Scrum, Kanban, 瀑布式] -->
+- 跨部門協作與時程：與行銷、CRM、設計、技術等單位協調需求，依使用者需求與開發複雜度安排優先序，以甘特圖、Trello 管理時程；熟悉 Scrum、Kanban 與瀑布式開發流程，並帶領產品企劃團隊。
+<!-- [STATUS: NEEDS_POLISH] [LOCK_ENTITIES: VIP 訂閱, 點數付費牆, 精選曝光, App Store, Google Play, IAP, 定價實驗, 第三方金流] -->
+- App 產品與變現：規劃訂閱制 App 的 VIP 訂閱、點數付費牆與精選曝光；熟悉 App Store／Google Play 審核政策，有與 App Store 溝通、處理上架問題的經驗。以 Android 為對照組設計跨平台定價實驗；比較 App 內購（IAP）與網頁付款的抽成、稅、手續費與撥款週期試算實收，導流至費率較低的網頁付款，串接本地與海外第三方金流，並據此提出訂閱方案。
 
 ### 自傳
 
