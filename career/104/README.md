@@ -14,6 +14,7 @@
 | [`archive/`](archive/) | 已被取代的版本：`import.txt`、v4、v4.1、v5、v5.1、v5.2、v6、v6.1、v7、v7.1、`draft.md`（v3.1 md）及其審查。**只供對照，不得當內容來源** |
 | [`fields-spec.md`](fields-spec.md) | 104 履歷編輯頁欄位規格（必填、字數上限、格式限制、尚未驗證項目），原樣保存 |
 | [`content-spec-quill.md`](content-spec-quill.md) | **104 內容特化規格**（2026-10-20 本人提供）：Quill HTML 樣式、各欄位撰寫公式、技能 tag、管理責任欄位；範例只取格式 |
+| [`styling-directive-guide.md`](styling-directive-guide.md) | **產生 104 md 必跑**：Quill 樣式庫＋`@104-directive` 內嵌指令語法（2026-10-23 本人提供；範例只取格式不取事實，見檔頭附註） |
 | [`ui-notes.md`](ui-notes.md) | Claude in Chrome 探索 104 履歷編輯頁的欄位結構紀錄（2026Q3 版介面） |
 | [`chrome-playbook.md`](chrome-playbook.md) | 給 Claude in Chrome 的分段操作指令 |
 

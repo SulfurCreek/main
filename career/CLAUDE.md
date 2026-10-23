@@ -27,7 +27,7 @@
 當 Codex 完成潤飾後，執行驗收與排版發布：
 1. **跨分支唯讀拉取**：使用 `git fetch origin codex/resume-writer` 並透過 `git show origin/codex/resume-writer:career/02_codex_stage/final_resume.md` 讀取 Codex 成品。
 2. **執行驗證腳本**：執行 `python3 career/scripts/verify_polish.py` 檢查漏修率、`LOCK_ENTITIES` 完整性與禁用詞。
-3. **退件或發布**：若驗證失敗，列出具體報錯行數要求退回 Codex 重修（Claude 禁止自己動手改語氣）；若通過，結合 `career/104/` 規格產出最終版 `104.md` 與雙欄 PDF 至 `career/drafts/<版本>/`。
+3. **退件或發布**：若驗證失敗，列出具體報錯行數要求退回 Codex 重修（Claude 禁止自己動手改語氣）；若通過，結合 `career/104/` 規格產出最終版 `104.md` 與雙欄 PDF 至 `career/drafts/<版本>/`。產生 104 md 時**必套** `career/104/styling-directive-guide.md`（Quill 樣式＋每區塊上方 `@104-directive`；檔頭附註優先）。
 
 > 管線範圍（主幹 `wiki/personal_line_collab.md` §7）：Codex 只寫 `career/drafts/codex/` 與 `career/02_codex_stage/`；Claude 只寫 `career/01_claude_stage/`（及既有 `career/` 範圍）；不寫 `career/` 以外任何位置。
 
