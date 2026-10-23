@@ -1,4 +1,4 @@
-<!-- run: 2026-10-23 r3.13｜個人特色第 3 個依本人改為「商業邏輯完整落地」（LOCKED 由本人改）｜r3.12：AI 功能補時間與責任、職務類別對照改寫為類別代碼表主線（Q22、tCode A）｜r3.11：主要功能改約 70 項（難易≥2 排除修正）｜r3.10：冒用補前因（2026/03–04 十多家）、結案比例補責任分工（Q17、Q18）｜r3.9：#7、#34「信件與即時通」改「兩套功能重複的工具」；199 件依本人改述為「兩套訊息合併、機制同步」的需求建議｜r3.8：KOOL 改父子三區塊（規劃→上線成效）、冒用改情境開頭；區塊數 35｜r3.7：NEEDS_POLISH 註解加 LEAD（voice_style_guide §9）｜r3.6：專長 6 筆去公司化（decisions §28）｜r3.5：功能交付改「截至 2026/Q3」、群組上線改 2025/Q3（decisions §27）｜r3.4：除個人特色、台灣新蛋外全篇 NEEDS_POLISH｜r3.3：專案成就 4 案改 NEEDS_POLISH｜r3.2：專長改 6 筆並重排（decisions §26）；UI/UX、SA 圖依本人補充；不寫 DFD；待 Codex 潤飾｜r3.1：專長「跨部門協作與時程」由 LOCKED 改為 NEEDS_POLISH（Codex 提出改「資料科學團隊」，本人流程允許）｜其餘同 r3
+<!-- run: 2026-10-23 r3.14｜工作經歷加 5 個模組大標（▍）、KOOL 付費功能移回 KOOL 段、新增求職條件工作內容；區塊數 41｜r3.13：個人特色第 3 個依本人改為「商業邏輯完整落地」（LOCKED 由本人改）｜r3.12：AI 功能補時間與責任、職務類別對照改寫為類別代碼表主線（Q22、tCode A）｜r3.11：主要功能改約 70 項（難易≥2 排除修正）｜r3.10：冒用補前因（2026/03–04 十多家）、結案比例補責任分工（Q17、Q18）｜r3.9：#7、#34「信件與即時通」改「兩套功能重複的工具」；199 件依本人改述為「兩套訊息合併、機制同步」的需求建議｜r3.8：KOOL 改父子三區塊（規劃→上線成效）、冒用改情境開頭；區塊數 35｜r3.7：NEEDS_POLISH 註解加 LEAD（voice_style_guide §9）｜r3.6：專長 6 筆去公司化（decisions §28）｜r3.5：功能交付改「截至 2026/Q3」、群組上線改 2025/Q3（decisions §27）｜r3.4：除個人特色、台灣新蛋外全篇 NEEDS_POLISH｜r3.3：專案成就 4 案改 NEEDS_POLISH｜r3.2：專長改 6 筆並重排（decisions §26）；UI/UX、SA 圖依本人補充；不寫 DFD；待 Codex 潤飾｜r3.1：專長「跨部門協作與時程」由 LOCKED 改為 NEEDS_POLISH（Codex 提出改「資料科學團隊」，本人流程允許）｜其餘同 r3
 
 <!--markdownlint-disable MD013-->
 
@@ -65,6 +65,8 @@
 #### Product Owner／PM｜1111 全球華人｜2022/08–迄今
 <!-- [STATUS: NEEDS_POLISH] [LEAD: CONTEXT] [LOCK_ENTITIES: 6 萬家, 2 名直屬產品企劃, Product Owner, 產品企劃主任] -->
 - 職位範疇：負責人力銀行企業端招募系統（企業刊登職缺、處理應徵與聯繫求職者，服務約 6 萬家活躍付費廠商，2026 Q3），擔任 Product Owner（正式職稱：產品企劃主任），帶領 2 名直屬產品企劃，協調工程、設計、業務、客服等單位，負責既有服務迭代與新版規劃。
+<!-- [STATUS: NEEDS_POLISH] [LEAD: ACTION] [LOCK_ENTITIES: 核心系統] -->
+▍一、核心系統重整與企業需求推進
 <!-- [STATUS: NEEDS_POLISH] [LEAD: ACTION] [LOCK_ENTITIES: 約 70 項, 截至 2026/Q3] -->
 - 約 70 項主要功能上線（截至 2026/Q3）｜主責企業端招募系統的需求分析、流程與原型設計、規格撰寫，與 QA 制定驗收案例並與工程團隊協作上線。
 <!-- [STATUS: NEEDS_POLISH] [LEAD: CONTEXT] [LOCK_ENTITIES: 840 件, 743 件, 88%, 新版求才系統, 權限及計費規則, 帳號登入、企業資料] -->
@@ -77,6 +79,8 @@
   - 回應自 2020/12 起累積的 55 件相關廠商建議｜規劃群組功能，讓大型企業按部門或分店共同處理招募，定義帳號、職缺與履歷的存取關係及既有資料轉換方式＋補足原系統只有全公司與個人兩種資料範圍的限制，與工程團隊協作上線。
 <!-- [STATUS: NEEDS_POLISH] [LEAD: CONTEXT] [LOCK_ENTITIES: 2026/03–04, 十多家, 冒用, 截至 2026/10] -->
 - 2026/03–04 十多家廠商的招募帳號接連遭冒用登入，協調工程與客服釐清影響範圍，規劃登入驗證與帳號解鎖流程並推進調整上線；上線後截至 2026/10，未再透過客服接獲廠商回報同類冒用。
+<!-- [STATUS: NEEDS_POLISH] [LEAD: ACTION] [LOCK_ENTITIES: AI] -->
+▍二、AI 功能導入與營運流程改善
 <!-- [STATUS: NEEDS_POLISH] [LEAD: ACTION] [LOCK_ENTITIES: 職缺工作說明生成, 2024/10, AI 推薦人才, 2025/11, 公司簡介生成, 2026/06, 帶領企劃] -->
 - 主責企業端招募系統的職缺工作說明生成（2024/10 上線）與 AI 推薦人才（2025/11 上線），並帶領企劃推進公司簡介生成（2026/06 上線）；與資料科學團隊定義使用情境與驗收標準，依客服測試回饋調整推薦規則。
 <!-- [STATUS: NEEDS_POLISH] [LEAD: ACTION] [LOCK_ENTITIES: 15 張, 類別代碼表, 新增、編輯、合併、刪除, 2026/04, 翻譯, AI Agent, 上百筆] -->
@@ -88,25 +92,31 @@
 
 <!-- [STATUS: NEEDS_POLISH] [LEAD: CONTEXT] [LOCK_ENTITIES: JustDating, 暢銷榜第一, 依公司公開資料, Peach] -->
 - 職位範疇：經手公司主力、高營收的訂閱制交友 App JustDating（依公司公開資料，曾長期位居台灣約會類暢銷榜第一）、訂閱制內容 App Peach 與網紅媒合平台 KOOL；負責使用流程、訂閱與付費機制，與工程、設計、行銷及海外金流團隊協作上線，另曾以英文與歐洲金流商視訊洽談合作。
+<!-- [STATUS: NEEDS_POLISH] [LEAD: ACTION] [LOCK_ENTITIES: 網紅媒合平台, 0 到 1] -->
+▍一、網紅媒合平台 0 到 1 規劃與變現
 <!-- [STATUS: NEEDS_POLISH] [LEAD: CONTEXT] [LOCK_ENTITIES: KOOL, 網紅媒合平台] -->
 - 規劃 KOOL 網紅媒合平台，讓商家刊登合作邀約、網紅報名或接受邀約。
 <!-- [STATUS: NEEDS_POLISH] [LEAD: ACTION] [LOCK_ENTITIES: Instagram, Airbnb, Miro, 0 到 1] -->
   - 訪談商家的行銷單位，了解其在 Instagram 尋找網紅的方式；借鏡 Airbnb 房東刊登房源的方式與交友平台的媒合機制，以 Miro 畫出刊案、邀約、報名與聯繫流程，在沒有直接競品可參考的情況下完成平台從 0 到 1 的規劃。
 <!-- [STATUS: NEEDS_POLISH] [LEAD: ACTION] [LOCK_ENTITIES: 2018/05, 專案文件, 甘特圖, 約 1.6 萬份, 8 萬多次, 合作案] -->
   - KOOL 於 2018/05 啟動；撰寫產品規劃簡報，定義商家與網紅的身分權限、邀約案規則，並規劃版本。排定產品、設計與程式部門的時程及完成專案文件，以甘特圖管理；負責功能測試，並確認上線與結案。平台有網紅檔案約 1.6 萬份，半年累計 8 萬多次合作案報名。
+<!-- [STATUS: NEEDS_POLISH] [LEAD: ACTION] [LOCK_ENTITIES: VIP 訂閱, 點數付費牆, 精選曝光] -->
+- 為 KOOL 規劃並上線 VIP 訂閱、點數付費牆與精選曝光，涵蓋 iOS、Android 與網頁（報表無付費數據，不放成果數字）。
+<!-- [STATUS: NEEDS_POLISH] [LEAD: ACTION] [LOCK_ENTITIES: 定價實驗, 網頁付款] -->
+▍二、主力產品承接、定價實驗與網頁付款
 <!-- [STATUS: NEEDS_POLISH] [LEAD: CONTEXT] [LOCK_ENTITIES: Juicy, 3,200, 1.25 萬, 1,500, 1.2 萬, 2020/01–02, 2020/04–06, 上線與導流期間] -->
 - 男性每日活躍用戶（DAU）6 週內約 3,200 → 1.25 萬（2020/01–02）、12 週內約 1,500 → 1.2 萬（2020/04–06）｜JustDating 遭 App Store 下架，主導推出沿用同一套後端的接續產品 Juicy，Juicy 下架後再推進 JustDating 重新上架，協調跨團隊並配合行銷導流＋上線與導流期間的產品整體表現，非個人單獨成果。
 <!-- [STATUS: NEEDS_POLISH] [LEAD: CONTEXT] [LOCK_ENTITIES: 馬來西亞, 5%, 18%, 65%, 2021/05–08, 21 天] -->
 - 降價期 iOS 非續訂營收較原價期 +5%（同期 Android −18%）；還原原價後 −65%｜針對馬來西亞市場設計 iOS 定價實驗，以售價不變的 Android 作對照，依序測試原價、降價與還原原價（2021/05–08，各期 21 天）＋團隊依結果決定採用低價。
 <!-- [STATUS: NEEDS_POLISH] [LEAD: RESULT] [LOCK_ENTITIES: Peach, 24%, 80% 以上, 2020/11–2021/09, 智冠] -->
 - 網頁付款營收占比由 24% 升至 80% 以上（2020/11–2021/09）｜規劃訂閱制內容 App Peach 從 App 內購轉向網頁付款，推進智冠金流串接。
-<!-- [STATUS: NEEDS_POLISH] [LEAD: ACTION] [LOCK_ENTITIES: VIP 訂閱, 點數付費牆, 精選曝光] -->
-- 為 KOOL 規劃並上線 VIP 訂閱、點數付費牆與精選曝光，涵蓋 iOS、Android 與網頁（報表無付費數據，不放成果數字）。
 
 #### Associate PM｜思維特網路資訊｜2016/06–2018/01
 
 <!-- [STATUS: NEEDS_POLISH] [LEAD: CONTEXT] [LOCK_ENTITIES: SweetRing, 產品維運與功能優化, 7 個市場] -->
 - 職位範疇：負責交友 App SweetRing（經營美國、墨西哥、巴西、印尼、馬來西亞、日本與韓國 7 個市場）的產品維運與功能優化企劃（含提問互動等功能規劃），並參與海外市場在地化及支付方案規劃。
+<!-- [STATUS: NEEDS_POLISH] [LEAD: ACTION] [LOCK_ENTITIES: 在地化, 第三方支付] -->
+▍一、多國市場在地化與第三方支付導入
 <!-- [STATUS: NEEDS_POLISH] [LEAD: ACTION] [LOCK_ENTITIES: 約 10 位, 7 個市場, 全英文] -->
 - 7 個市場完成在地化｜與最多約 10 位外籍實習生協作，以全英文會議討論翻譯與粉專經營並分派任務。
 <!-- [STATUS: NEEDS_POLISH] [LEAD: ACTION] [LOCK_ENTITIES: Android 加值頁, CodaPay, 印尼、泰國, 2 國, 8 種付款管道, 7／30／90 天] -->
@@ -183,6 +193,10 @@ DAU 為上線與行銷導流期間的產品整體表現，非個人單獨成果�
 為支援企業按部門或分店共同招募，規劃群組功能，定義帳號、職缺與履歷之間的權限關聯。
 訂定舊資料轉換規則，讓既有帳號與職缺接入群組。
 與工程團隊協作，於 2025/Q3 完成上線。
+
+### 求職條件（工作內容）
+<!-- [STATUS: NEEDS_POLISH] [LEAD: ACTION] [LOCK_ENTITIES: 產品經理, Product Owner, 訂閱, 定價實驗, 金流] -->
+應徵產品經理／產品負責人（Product Owner）。擅長 Web、App 與企業系統的產品規劃，從需求訪談、規格撰寫到驗收與分階段上線；具訂閱付費、定價實驗與金流串接經驗，也善用 AI Agent 處理規格與資料。
 
 ## 檢查（不交付）
 
