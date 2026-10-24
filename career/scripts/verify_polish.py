@@ -49,9 +49,10 @@ OVERCLAIM_PATTERNS = [
 UNRESOLVED_BRACKET_PATTERN = re.compile(r"〔[^〕]*(?:待補|待確認|待本人|確認)[^〕]*〕")
 LAZY_SIMILARITY_THRESHOLD = 0.99
 
-TAG_PATTERN = re.compile(
-    r"<!--\s*\[STATUS:\s*(?P<status>[A-Z_]+)\](?:\s*\[LEAD:\s*(?P<lead>[A-Z_]+)\])?(?:\s*\[LOCK_ENTITIES:\s*(?P<entities>[^\]]+)\])?(?:\s*\[LEAD:\s*[A-Z_]+\])?\s*-->"
-)
+TAG_PATTERN = re.compile(r"<!--\s*\[STATUS:\s*(?P<status>[A-Z_]+)\](?P<attrs>(?:\s*\[[A-Z_]+:[^\]]*\])*)\s*-->")
+ATTR_PATTERN = re.compile(r"\[(?P<key>[A-Z_]+):\s*(?P<val>[^\]]*)\]")
+VISUAL_KEYS = ("G", "B", "BT")  # G＝金黃底色、B＝晴藍底色＋粗體、BT＝純粗體；值以 | 分隔
+
 BOLD_PREFIX_PATTERN = re.compile(r"^\s*[-*]\s+\*\*[^*]+[：:]\*\*")
 
 def read_from_git(branch_ref: str, rel_path: str):
@@ -96,12 +97,15 @@ def parse_tagged_blocks(md_text: str):
             if active_block is not None:
                 blocks.append(active_block)
             status = tag_match.group("status").strip()
-            raw_entities = tag_match.group("entities")
+            attrs = {m.group("key"): m.group("val").strip() for m in ATTR_PATTERN.finditer(tag_match.group("attrs") or "")}
+            raw_entities = attrs.get("LOCK_ENTITIES")
             entities = [e.strip() for e in re.split(r"[,，]", raw_entities) if e.strip()] if raw_entities else []
+            visual = {k: [v.strip() for v in attrs[k].split("|") if v.strip()] for k in VISUAL_KEYS if k in attrs}
             active_block = {
                 "line_no": idx + 1,
                 "status": status,
                 "entities": entities,
+                "visual": visual,
                 "section": current_section,
                 "lines": []
             }
@@ -151,6 +155,11 @@ def run_verification(draft_text: str, final_text: str):
             sim = difflib.SequenceMatcher(None, d_item["text"], f_item["text"]).ratio()
             if sim >= LAZY_SIMILARITY_THRESHOLD:
                 errors.append(f"[漏修/偷懶攔截] {loc} 標記為 NEEDS_POLISH，但原句照抄 (相似度 {sim:.0%})！")
+
+        for key, vals in f_item.get("visual", {}).items():
+            for v in vals:
+                if v not in f_item["text"]:
+                    errors.append(f"[視覺重音不存在] {loc} 註解 [{key}] 指定的「{v}」不在該區塊正文中")
 
         for ent in d_item["entities"]:
             if ent not in f_item["text"]:
@@ -222,6 +231,8 @@ def verify_104_markdown(md_104_path: str, final_text: str):
         errs.append("[104 格式違規] <li> 開頭使用了禁止的 <strong>標題：</strong> 分類前綴！")
     if re.search(r"<li>\s*</?ul>", text) or re.search(r"<li[^>]*>[^<]*<ul>", text):
         errs.append("[104 Quill 縮排違規] 偵測到巢狀 <ul>，請改用扁平 <li class=\"ql-indent-1\">！")
+    if "ql-indent" in "".join(re.findall(r"```html\n(.*?)```", text, re.S)):
+        errs.append("[104 縮排違規] 104 不支援 ql-indent，子項請併入母項 <li> 並以 <br>　　・ 呈現！")
     if re.search(r"<li[^>]*>\s*</li>", text):
         errs.append("[104 空圓點違規] 偵測到空白的 <li></li>！")
     return errs
