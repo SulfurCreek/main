@@ -1,0 +1,15 @@
+{
+  "created_at": "2026-10-20T15:03:48+08:00",
+  "original_workspace_files_examined": 217,
+  "workspace_files_retained_or_mapped": 175,
+  "environment_files_excluded": 42,
+  "library_files_materialized_and_accounted_for": 62,
+  "source_mapping_count": 247,
+  "retained_source_file_count": 203,
+  "pdf_count": 19,
+  "distinct_pdf_byte_contents": 13,
+  "original_source_hash_matches": true,
+  "all_pdf_sources_present": true,
+  "all_in_scope_sources_accounted_for": true,
+  "layout_or_ATS_validation_performed": false
+}

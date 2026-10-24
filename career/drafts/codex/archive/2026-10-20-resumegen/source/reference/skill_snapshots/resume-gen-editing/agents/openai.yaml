@@ -1,0 +1,13 @@
+interface:
+  display_name: Resume Gen 履歷編輯
+  short_description: 履歷素材取捨與自然文字編輯，禁止工作報告化並保留必要事實邊界
+  default_prompt: 使用 $resume-gen-editing 修改指定履歷，精選能呈現職責、判斷與成果的內容，避免寫成工作報告。
+  icon_small: assets/icon.svg
+  icon_large: assets/icon.svg
+policy:
+  products:
+  - chatgpt
+  - codex
+  - api
+  - atlas
+  allow_implicit_invocation: true

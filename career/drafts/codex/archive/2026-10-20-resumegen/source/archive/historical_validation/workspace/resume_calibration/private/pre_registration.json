@@ -1,0 +1,16 @@
+{
+ "created_before_secondary_results":true,
+ "sample":"10 synthetic occupational families × 5 controlled variants; not 50 independent candidates",
+ "thresholds_are_engineering_acceptance_not_validated_hiring_cutoffs":true,
+ "tests":{
+  "evidence_over_vague":"10 pairs; >=12 score gap per family",
+  "jargon_not_rewarded":"jargon minus vague <=3 per family",
+  "equivalent_facts":"abs(plain minus evidence)<=3 per family",
+  "chronology_detection":"explicit unexplained overlap issue in all 10 overlap cases",
+  "repeatability":"10 repeats; median absolute total difference <=3; maximum <=7",
+  "ats_epistemic":"all 50 correctly distinguish not tested from real ATS parsing"
+ },
+ "v2":"Candidate rubric frozen before v1 secondary scores. Re-evaluate same synthetic sample, descriptive comparison only; not out-of-sample validation.",
+ "primary":"primary_v1 is deliberately simple pre-registered dimension estimates per variant; agreement with secondary is descriptive, never a gold-standard accuracy metric.",
+ "limits":["No real candidate ground truth","No recruiter panels","No actual ATS or PDF parsing","No job-offer or interview outcome","Shared synthetic templates; effective occupational clusters n=10","Repeat scoring shares model context; not independent sessions"]
+}

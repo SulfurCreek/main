@@ -1,0 +1,41 @@
+{
+  "version": "v1",
+  "dimensions": [
+    {
+      "key": "positioning",
+      "label": "專業定位與職涯敘事",
+      "max": 15
+    },
+    {
+      "key": "achievements",
+      "label": "工作經歷與成果說服力",
+      "max": 25
+    },
+    {
+      "key": "fit",
+      "label": "專業能力與職缺匹配度",
+      "max": 20
+    },
+    {
+      "key": "structure",
+      "label": "履歷結構與閱讀效率",
+      "max": 15
+    },
+    {
+      "key": "wording",
+      "label": "用字精準度與專業語氣",
+      "max": 10
+    },
+    {
+      "key": "ats",
+      "label": "ATS 招募系統相容性",
+      "max": 10
+    },
+    {
+      "key": "differentiation",
+      "label": "差異化與個人競爭優勢",
+      "max": 5
+    }
+  ],
+  "instructions": "僅依提供文字與合成職務摘要評估，每項給整数分。不可假定成果為真；不可以照片、年齡、性別評分。原規則沒有細項錨點，請照這七項評分，不自行替換權重。這是文字測試，沒有 PDF 或 ATS 解析器。"
+}

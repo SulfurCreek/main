@@ -1,0 +1,59 @@
+{
+  "model": "gpt-6-astra",
+  "input_files": [
+    "blind/resumes.json",
+    "blind/rubric_v1.json",
+    "blind/rubric_v2.json"
+  ],
+  "input_correction": "主端於首次v1評分後、最終交付前修正自動同義詞替換造成的協作句生成瑕疵。重讀R05 R14 R23 R25 R28 R30 R31 R44 R47 R48最新全文；R28與R31依修正內容更新分數及依據，其餘8份重新確認後無分數變動。最終結果對應修正後文字。",
+  "blindness": "未讀private、generate.py或設計答案；只依允許的履歷與規則評分。",
+  "v1_limits": [
+    "v1未有細項錨點，整數評分為主觀判斷。",
+    "全為純文字，不代表ATS或PDF實測；各履歷此項提供條件相同，暫估一致並不代表已驗證。",
+    "成果均為合成自述，不判定真實；職缺僅為摘要。",
+    "不得以模型分數等同真實錄取表現。"
+  ],
+  "repeat": {
+    "order": [
+      "R34",
+      "R18",
+      "R50",
+      "R07",
+      "R40",
+      "R23",
+      "R01",
+      "R45",
+      "R12",
+      "R29"
+    ],
+    "method": "重新讀取原樣v1規則及10份最新全文，以新順序評分；未開啟已評分輸出供複評參照。",
+    "limitation": "與首次評分同一上下文，先前記憶無法排除，不是獨立會話，不能視為獨立重測信度。"
+  },
+  "v2_method": "v1及新順序複評完成保存後，才讀取主端已固定的v2規則；依六維錨點逐份評估最新50份合成履歷，每維一條可追溯內容依據。未使用設計答案或按v1分数比例轉換。",
+  "v2_limits": [
+    "同一評分者與上下文已見過這50份，不是獨立會話或持出測試，無法排除記憶與錨定影響。",
+    "v1與v2權重及構念不同，總分不能直接視為等尺度的品質改善。",
+    "所有履歷均只有純文字，ATS一律not_tested，無格式解析差異證據。",
+    "所有職缺僅是合成摘要，fit_status=provisional，不能證明完整JD匹配或錄取效度。",
+    "成果均是self_report_only；數據口徑與共同成果列核對問題，未查證真實性。",
+    "多份履歷內容結構高度同質；相同分數反映所見證據與錨點相近，不能據此推論跨產業、真實資料或極端格式的穩健性。",
+    "所有confidence為medium，表示目前是合成文本及有限職務摘要的主觀評分，不是機率或校準過的可信區間。"
+  ],
+  "input_sha256": {
+    "blind/resumes.json": "e59ab13c049574c1b079e74037d11ab70496400f5167ef7a6e793a106b86bd7e",
+    "blind/rubric_v1.json": "2cb3562dd279a354da8f580bdcbc999e8684a8d58f3cd255749b5178f3976c93",
+    "blind/rubric_v2.json": "ec42c26d7b9ff70c813c09ed855659ace3ad8ff51f5f7b3cfdd96b93cd20dc3f"
+  },
+  "validation": {
+    "v1_records": 50,
+    "repeat_records": 10,
+    "v2_records": 50,
+    "v2_evidence_statements": 300,
+    "id_completeness": "pass",
+    "unique_ids": "pass",
+    "score_ranges": "pass",
+    "total_sums": "pass",
+    "evidence_keys_and_nonempty": "pass",
+    "v2_status_fields": "pass"
+  }
+}
