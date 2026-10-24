@@ -252,3 +252,4 @@ v9.7 = v9.6 ＋ 使用者自寫自傳與各段 summary（16→10 個單位、業
 ## 38. 2026-10-24 104 公開版去識別化（本人裁定）
 
 - 另建 104「公開版」履歷，不出現現職 1111（104 競爭對手）。公司名稱欄寫「**國內人力銀行平台**」（不用「某大型人力銀行」）。指令見 `drafts/v12.2/public-redaction-prompt.md`。
+- 公開版改由 Antigravity skill `104-public-redaction` 維護（正式版為唯一來源，每次同步重建公開版）；建立指令見 `career/104/antigravity-public-redaction-skill.md`。
