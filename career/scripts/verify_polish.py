@@ -164,9 +164,10 @@ def run_verification(draft_text: str, final_text: str):
             if hit_banned:
                 errors.append(f"[禁用詞違規] {loc} 觸犯文體黑名單：{', '.join(hit_banned)}")
 
-            hit_chore = [t for t in CHORE_AND_HALLUCINATION_TOKENS if t in f_item["text"]]
-            if hit_chore:
-                errors.append(f"[流水帳/幻覺詞攔截] {loc} 出現已禁用之日常雜務或幻覺詞：{', '.join(hit_chore)}")
+            for label, txt in [("上游草稿", d_item["text"]), ("下游成品", f_item["text"])]:
+                hit_chore = [t for t in CHORE_AND_HALLUCINATION_TOKENS if t in txt]
+                if hit_chore:
+                    errors.append(f"[流水帳/幻覺詞攔截] {loc} {label}出現已禁用之日常雜務或幻覺詞：{', '.join(hit_chore)}")
 
             for pat in OVERCLAIM_PATTERNS:
                 fm = re.search(pat, f_item["text"])
@@ -193,8 +194,29 @@ def verify_104_markdown(md_104_path: str, final_text: str):
     text = p.read_text(encoding="utf-8")
     errs = []
     for bad_tag in FORBIDDEN_104_TAGS:
-        if re.search(rf'\b{re.escape(bad_tag)}\b', text):
+        if re.search(r"[^\x00-\x7F]", bad_tag):
+            hit = bad_tag in text  # 含中文：\b 在中文相鄰時失靈，改用子字串
+        else:
+            hit = re.search(rf"(?<![A-Za-z0-9_]){re.escape(bad_tag)}(?![A-Za-z0-9_])", text) is not None
+        if hit:
             errs.append(f"[104 假標籤違規] 104 檔案中出現禁止捏造之工具標籤：`{bad_tag}`")
+
+    # 內文一致性：定稿每一句都必須原樣出現在 104.md 的 code block（剝除 HTML 後）
+    blocks = re.findall(r"```(?:html|text)\n(.*?)```", text, re.S)
+    plain = html.unescape(re.sub(r"<[^>]+>", "", "".join(blocks))).replace("\n", "").replace("　　・", "")
+    section = ""
+    for raw in re.sub(r"<!--.*?-->", "", final_text, flags=re.S).splitlines():
+        s = raw.strip()
+        if not s:
+            continue
+        if s.startswith("#"):
+            section = s.lstrip("#").strip()
+            continue
+        t = re.sub(r"^-\s+", "", s).lstrip("▍").strip()
+        if section == "專長" and "：" in t:
+            t = t.split("：", 1)[1]  # 專長名稱進 name 欄，desc 只放冒號後內文
+        if t and t not in plain:
+            errs.append(f"[104 內文竄改] 定稿句子未原樣出現在 104 檔案（{section}）：「{t[:30]}…」")
     if re.search(r"<li>\s*<strong>[^<]+[：:]\s*</strong>", text):
         errs.append("[104 格式違規] <li> 開頭使用了禁止的 <strong>標題：</strong> 分類前綴！")
     if re.search(r"<li>\s*</?ul>", text) or re.search(r"<li[^>]*>[^<]*<ul>", text):
