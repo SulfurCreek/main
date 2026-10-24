@@ -243,3 +243,8 @@ v9.7 = v9.6 ＋ 使用者自寫自傳與各段 summary（16→10 個單位、業
 
 - compiler skill 新增規則 5（去流水帳、凸顯功績與破局難度）；草稿 r4.0 依此重編。拿掉的例行細節（送簽、甘特圖排程、結案確認、每週回報、翻譯、每月一批、資料層）留作面試素材，事實仍在 library。
 - 需交代政策歸屬時寫成限制條件（「在主管訂定的優先序下」），不寫成工作項目。
+
+## 37. 2026-10-24 104 專案成就圖片＝專案 logo（本人裁定）
+
+- 截圖類素材太細（too in depth），改為每個專案只放 logo：專案 1 JustDating＋Juicy 並排、專案 2 KOOL、專案 3／4 用「1111 招募管理」logo（本人提供網址）。Juicy、KOOL logo 由本人提供；JustDating 用 App Store「JD JustDating App」圖示，本人確認無誤。
+- 檔案在 `drafts/v12.2/images/`；104 md 的專案 directive 以 `image` 對應，上傳到 104「專案素材」→「上傳圖片或影片」。

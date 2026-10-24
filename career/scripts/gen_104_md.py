@@ -97,10 +97,12 @@ ST=[["Claude","生成式AI","AI"],["製作規格說明書","Prototype","功能�
     ["Figma","Axure RP","Wireframe","Prototype","使用者介面設計","使用者體驗設計","iOS","Android"],["專案溝通╱整合管理","專案時間╱進度控管","Scrum","決策能力"],
     ["產品策略","產品營運","數據分析","Electronic Payment","iOS","Android"]]
 MG=['**有管理責任，1~5 人**（直屬 2 名產品企劃）','**無管理責任**','**無管理責任**','**無管理責任**']
+IMG=['images/project1_justdating_juicy.png','images/project2_kool.png','images/project3_1111_recruit.png','images/project4_1111_recruit.png']
 PDATE=['2020/01 – 2020/06｜isInProgress：否','2018/05 – 2022/03｜isInProgress：否','2024/12 – ｜isInProgress：**是**','2025/03 – 2025/09｜isInProgress：否（104 只收年月）']
 o=['<!--markdownlint-disable MD013 MD033-->','','# 104 特化版｜v12.2（2026-10-24）｜**可填表**（verify_polish.py 41 區塊通過）','',
 '> 來源：`causal_draft.md` r4.1 → Codex `final_resume.md`（`codex/resume-writer` 0dc6da3）→ verify_polish 通過。',
 '> 排版依 Antigravity 指南 v2.2.0：子項併入母項（`<br>　　・`）、模組大標、金黃＝成果數字、晴藍＋粗體＝核心產品／系統（每點最多 1 處）、粗體＝專案／系統／產品／buzzword（decisions §33）。**內文逐字取自定稿**，只加容器。',
+'> **專案圖片**：本檔與 `images/` 資料夾一起打包；每個專案的 directive 以 `image` 指定相對路徑，對應關係：5.1→project1_justdating_juicy.png、5.2→project2_kool.png、5.3→project3_1111_recruit.png、5.4→project4_1111_recruit.png。上傳前先確認專案名稱與 `name` 一致。',
 '> 經歷底部不放「核心工具與技能」；標籤只用 `career/104/tool_categories.md`／`skill_categories.md` 清單內名稱，找不到就略過。','','---','',
 '## 1. 個人簡介','',d({"target_block":"info","action":"replace_field","field":"bio","mode":"plain_text"}),'','```text','\n'.join(clean(sec('個人簡介'))),'```','',
 '### 1.1 個人特色（五個分開輸入，依序；LOCKED）','',d({"target_block":"info","action":"replace_field","field":"trait","mode":"plain_text"}),'','```text','\n'.join(clean(sec('個人特色'))),'```','','---','','## 2. 工作經歷','']
@@ -113,7 +115,7 @@ for i,s in enumerate(skills):
 o+=['---','','## 4. 自傳','',d({"target_block":"bio","action":"replace_field","field":"chi","mode":"quill_html"}),'','```html','\n<p><br></p>\n'.join(f'<p>{p}</p>' for p in bio),'```','','---','','## 5. 專案成就','']
 for i,(h,html) in enumerate(zip(ph,projs)):
     n=h.split('｜')[0]
-    o+=[f'### 5.{i+1} {n}','',f'- 起訖：{PDATE[i]}｜url：留空','',d({"target_block":"project","index":i,"action":"replace_all","mode":"quill_html","name":n}),'','```html',html,'```','']
+    o+=[f'### 5.{i+1} {n}','',f'- 起訖：{PDATE[i]}｜url：留空',f'- 圖片：`{IMG[i]}`（104「專案素材」選「上傳圖片或影片」，把此檔上傳到「素材檔」；每個專案只放這一張）','',d({"target_block":"project","index":i,"action":"replace_all","mode":"quill_html","name":n,"media_type":"上傳圖片或影片","image":IMG[i],"image_action":"upload_replace"}),'','```html',html,'```','']
 o+=['---','','## 6. 求職條件（工作內容，純文字；其餘求職條件欄位不動）','',d({"target_block":"jobCondition","action":"replace_field","field":"preferJobContent","mode":"plain_text","locked_fields":["preferJobTitle","salary","workArea","onboardDate","remoteWork"]}),'','```text',job,'```','']
 out='\n'.join(o)+'\n'; open(sys.argv[1],'w',encoding='utf-8').write(out)
 # zero mutation: every source text line must appear in output (tags stripped, ▍ stripped)
