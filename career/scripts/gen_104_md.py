@@ -30,24 +30,24 @@ heads=re.findall(r'^#### (.*)$',exp,re.M); parts=re.split(r'^#### .*$',exp,flags
 # per-experience: list of (pattern-in-line -> decoration)
 D=[
  [('2026 Q3',dict(g=['約 6 萬家'],bt=['Product Owner','企業端招募系統'])),
-  ('約 70 項',dict(g=['約 70 項主要功能已上線'],bt=['QA'])),
-  ('新版求才系統',dict(g=['743 件已完成（88%）'],b='新版求才系統')),
+  ('約 70 項',dict(g=['約 70 項主要功能已上線'],bt=['PRD','QA'])),
+  ('全面翻新',dict(g=['743 件（88%）'],b='全面翻新')),
   ('兩套功能重複',dict(g=['199 件'])),
   ('分店店長',dict(g=['55 件'],b='群組功能')),
   ('冒用',dict(g=['十多家'])),
   ('職缺工作說明生成',dict(b='AI 推薦人才',bt=['職缺工作說明生成','公司簡介生成'])),
   ('15 張',dict(g=['15 張'],b='類別代碼表',bt=['AI Agent'])),
-  ('52%',dict(g=['由 52% 升至 79%']))],
+  ('52%',dict(g=['52%','79%']))],
  [('暢銷榜',dict(b='JustDating',bt=['Peach','KOOL'])),
-  ('KOOL 是網紅',dict(bt=['KOOL'])),
+  ('KOOL 是供',dict(bt=['KOOL'])),
   ('Instagram',dict(bt=['Instagram','Airbnb','Miro'])),
   ('1.6 萬',dict(g=['約 1.6 萬份','8 萬多次'])),
-  ('VIP 訂閱',dict(b='KOOL',bt=['VIP 訂閱','點數付費牆','精選曝光'])),
+  ('VIP 訂閱',dict(b='KOOL',bt=['多元變現','VIP 訂閱','點數付費牆','精選曝光'])),
   ('Juicy；',dict(g=['約 3,200 增至 1.25 萬','約 1,500 增至 1.2 萬'],b='Juicy',bt=['App Store','DAU'])),
   ('馬來西亞',dict(g=['增加 5%','減少 18%'],bt=['iOS 定價實驗'])),
-  ('Peach',dict(g=['從 24% 升至 80% 以上'],bt=['Peach','App 內購','智冠'])) ],
- [('7 個市場。',dict(g=['7 個市場'],bt=['SweetRing'])),
-  ('外籍實習生',dict(g=['約 10 位'])),
+  ('Peach',dict(g=['由 24% 升至 80% 以上'],bt=['Peach','App 內購','智冠'])) ],
+ [('7 個市場的交友',dict(g=['7 個市場'],bt=['SweetRing'])),
+  ('外籍實習生',dict(g=['7 個海外市場','約 10 位'],bt=['UI/UX'])),
   ('CodaPay',dict(g=['2 國','8 種付款管道'],b='CodaPay',bt=['SweetRing Android 加值頁']))],
  []]
 def exp_html(lines,rules):
@@ -74,7 +74,7 @@ bio=[bold(p,BIO_B) for p in clean(sec('自傳'))]
 praw=sec('專案成就'); ph=re.findall(r'^#### (.*)$',praw,re.M); pp=re.split(r'^#### .*$',praw,flags=re.M)[1:]
 PD=[dict(g=['約 3,200 增至 1.25 萬','約 1,500 回升至 1.2 萬'],bt=['JustDating','Juicy','App Store','CodaPay','DAU']),
     dict(g=[],bt=['KOOL','Instagram','Airbnb','Miro','VIP 訂閱','點數付費牆','精選曝光']),
-    dict(g=[],bt=['新版求才系統','企業端招募系統']),
+    dict(g=['743 件（88%）'],bt=['企業端招募系統','全面翻新']),
     dict(g=['2025/Q3'],bt=['群組功能'])]
 def proj(lines,kw):
     body=lines[1:]; out=[]
@@ -98,8 +98,8 @@ ST=[["Claude","生成式AI","AI"],["製作規格說明書","Prototype","功能�
     ["產品策略","產品營運","數據分析","Electronic Payment","iOS","Android"]]
 MG=['**有管理責任，1~5 人**（直屬 2 名產品企劃）','**無管理責任**','**無管理責任**','**無管理責任**']
 PDATE=['2020/01 – 2020/06｜isInProgress：否','2018/05 – 2022/03｜isInProgress：否','2024/12 – ｜isInProgress：**是**','2025/03 – 2025/09｜isInProgress：否（104 只收年月）']
-o=['<!--markdownlint-disable MD013 MD033-->','','# 104 特化版｜v12.1（2026-10-24）｜**可填表**（verify_polish.py 41 區塊通過）','',
-'> 來源：`causal_draft.md` r3.16 → Codex `final_resume.md`（`codex/resume-writer` 8c52b17）→ verify_polish 通過。',
+o=['<!--markdownlint-disable MD013 MD033-->','','# 104 特化版｜v12.2（2026-10-24）｜**可填表**（verify_polish.py 41 區塊通過）','',
+'> 來源：`causal_draft.md` r4.1 → Codex `final_resume.md`（`codex/resume-writer` 0dc6da3）→ verify_polish 通過。',
 '> 排版依 Antigravity 指南 v2.2.0：子項併入母項（`<br>　　・`）、模組大標、金黃＝成果數字、晴藍＋粗體＝核心產品／系統（每點最多 1 處）、粗體＝專案／系統／產品／buzzword（decisions §33）。**內文逐字取自定稿**，只加容器。',
 '> 經歷底部不放「核心工具與技能」；標籤只用 `career/104/tool_categories.md`／`skill_categories.md` 清單內名稱，找不到就略過。','','---','',
 '## 1. 個人簡介','',d({"target_block":"info","action":"replace_field","field":"bio","mode":"plain_text"}),'','```text','\n'.join(clean(sec('個人簡介'))),'```','',
