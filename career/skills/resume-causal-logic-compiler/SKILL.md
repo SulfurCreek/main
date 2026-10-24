@@ -26,6 +26,11 @@ description: 專治履歷「概念偷跑（未定義先引用）」與「因果�
 1. **Phase 1 (Entity Dictionary)**：盤點本次涉及的專有名詞、外部白話定義與首次解鎖位置。
 2. **Phase 2 (Topological Sort)**：檢查依賴順序，若前面的點依賴了後面才定義的系統，強制重排順序或將定義前移。
 3. **Phase 3 (Verification Gate)**：確認無未知黑話、無 `**粗體開頭：**`、且已正確標註 `<!-- [STATUS: NEEDS_POLISH] [LOCK_ENTITIES: ...] -->` 或 `<!-- [STATUS: LOCKED] -->`。
+4. **Phase 4 (Self-Evolving Gatekeeper，2026-10-24 本人新增)**：
+   - **三聯同步鐵律**：每當本人在對話中抓出任何事實偏差、日常流水帳寫法（Chore）、被動語態或下游幻覺詞時，嚴禁只修改單點草稿交差，必須同步完成三件事：
+     1. **事實層**：更新 `career/library/`（`facts-*.md`／`decisions.md`／`superseded.md`）。
+     2. **規則層**：將通用原則補充至 `resume-causal-logic-compiler/SKILL.md`（若涉及下游語氣，同步列出供 Codex 更新 `voice_style_guide.md`）。
+     3. **驗證層（強制程式化回歸）**：若該問題可透過關鍵字、正規表達式或結構比對攔截，**必須當下同步更新 `career/scripts/verify_polish.py`**（加入 `CHORE_AND_HALLUCINATION_TOKENS`、`FORBIDDEN_104_TAGS` 或結構檢查），確保同一錯誤在全篇任何角落與未來版本都無法通過腳本。
 
 ---
 

@@ -23,10 +23,16 @@
    - 當使用者要求新增或修改履歷內容，或你在套用 `LEAD`（RESULT / ACTION / CONTEXT）發現某一點**缺乏前因背景（導致讀者看不懂數字意義）、責任歸屬不明、或與 `library/` 既有紀錄衝突**時，**嚴禁自行腦補或硬湊生硬句子**。
    - 請先暫停修改 `causal_draft.md`，直接用簡短列點向使用者提問（說明：哪一點缺了什麼背景或數據，建議補充什麼資訊語意才會完整），並同步記錄於 `career/library/open-questions.md`。待使用者回覆確認後，先寫入 `career/library/` 再編譯至草稿。
 
+6. **三聯自進化迴路（Feedback-to-Verifier Loop，2026-10-24）**：
+   - **三聯同步鐵律**：每當本人在對話中抓出任何事實偏差、日常流水帳寫法（Chore）、被動語態或下游幻覺詞時，嚴禁只修改單點草稿交差，必須同步完成三件事：
+     1. **事實層**：更新 `career/library/`（`facts-*.md`／`decisions.md`／`superseded.md`）。
+     2. **規則層**：將通用原則補充至 `resume-causal-logic-compiler/SKILL.md`（若涉及下游語氣，同步列出供 Codex 更新 `voice_style_guide.md`）。
+     3. **驗證層（強制程式化回歸）**：若該問題可透過關鍵字、正規表達式或結構比對攔截，**必須當下同步更新 `career/scripts/verify_polish.py`**（加入 `CHORE_AND_HALLUCINATION_TOKENS`、`FORBIDDEN_104_TAGS` 或結構檢查），確保同一錯誤在全篇任何角落與未來版本都無法通過腳本。
+
 ## 3. Stage 3：下游成品驗收與發布 (輸出至 `career/drafts/<版本>/`)
 當 Codex 完成潤飾後，執行驗收與排版發布：
 1. **跨分支唯讀拉取**：使用 `git fetch origin codex/resume-writer` 並透過 `git show origin/codex/resume-writer:career/02_codex_stage/final_resume.md` 讀取 Codex 成品。
-2. **執行驗證腳本**：執行 `python3 career/scripts/verify_polish.py` 檢查漏修率、`LOCK_ENTITIES` 完整性與禁用詞。
+2. **執行驗證腳本**：執行 `python3 career/scripts/verify_polish.py` 檢查漏修率、`LOCK_ENTITIES` 完整性、禁用詞、流水帳／幻覺詞與未清括號；產出 104 md 後加跑 `--verify-104 career/drafts/<版本>/104-<版本>.md`。
 3. **退件或發布**：若驗證失敗，列出具體報錯行數要求退回 Codex 重修（Claude 禁止自己動手改語氣）；若通過，結合 `career/104/` 規格產出最終版 `104.md` 與雙欄 PDF 至 `career/drafts/<版本>/`。產生 104 md 時**必套** `career/104/styling-directive-guide.md`（Quill 樣式＋每區塊上方 `@104-directive`；檔頭附註優先）。
 
 > 管線範圍（主幹 `wiki/personal_line_collab.md` §7）：Codex 只寫 `career/drafts/codex/` 與 `career/02_codex_stage/`；Claude 只寫 `career/01_claude_stage/`（及既有 `career/` 範圍）；不寫 `career/` 以外任何位置。
