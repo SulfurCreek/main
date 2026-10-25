@@ -29,6 +29,12 @@
      2. **規則層**：將通用原則補充至 `resume-causal-logic-compiler/SKILL.md`（若涉及下游語氣，同步列出供 Codex 更新 `voice_style_guide.md`）。
      3. **驗證層（強制程式化回歸）**：若該問題可透過關鍵字、正規表達式或結構比對攔截，**必須當下同步更新 `career/scripts/verify_polish.py`**（加入 `CHORE_AND_HALLUCINATION_TOKENS`、`FORBIDDEN_104_TAGS` 或結構檢查），確保同一錯誤在全篇任何角落與未來版本都無法通過腳本。
 
+7. **提問前強制查庫閘門（Pre-Questioning Lookup Gate，2026-10-25）**：編譯檢查、Clarification Gate、`resume-review-panel` 審查或盲審結束後，**向本人提出任何待補細節或澄清問題之前**，必須先檢索 `career/library/` 全目錄（`facts-*.md`、`decisions.md`、`superseded.md`、`about-me.md`），並先看 `decisions.md` §45〈已結案免追問清單〉：
+   - **library 已有且允許入文** → 直接引用處理，不再問。
+   - **library 已有但本人裁定不入正文**（延後項目、投票名次、預計上線日、無報表數據、面試口述細節等）→ **禁止再問**，在結果旁註記 `[已由 library/decisions 結案：已知事實，依本人裁定不入履歷正文，僅留作面試口頭回答]`。
+   - **唯一可提問條件**：已用 grep 確認 library 完全無紀錄，且提問時標明「已檢索 `library/` 無此紀錄」。本人回答後（含「不寫」「維持現狀」）當下加入 §45。
+   - 同時檢查：要寫進草稿的新內容是否違反 §24 披露規則（不寫未公開排序、延後項目、預計日期）。
+
 ## 3. Stage 3：下游成品驗收與發布 (輸出至 `career/drafts/<版本>/`)
 當 Codex 完成潤飾後，執行驗收與排版發布：
 1. **跨分支唯讀拉取**：使用 `git fetch origin codex/resume-writer` 並透過 `git show origin/codex/resume-writer:career/02_codex_stage/final_resume.md` 讀取 Codex 成品。
