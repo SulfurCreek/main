@@ -44,7 +44,7 @@ RESPONSIBILITY_WARN_TOKENS = ["協助", "參與", "配合", "支援", "維護"]
 OVERCLAIM_PATTERNS = [
     r"主導", r"架構", r"扛下",
     r"開發(?!中|複雜度|團隊|人員|部門|時程|資源|流程|模式)",
-    r"實作", r"重構"
+    r"實作", r"重構", r"確立", r"制定(?!驗收)"
 ]
 UNRESOLVED_BRACKET_PATTERN = re.compile(r"〔[^〕]*(?:待補|待確認|待本人|確認)[^〕]*〕")
 LAZY_SIMILARITY_THRESHOLD = 0.99

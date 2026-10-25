@@ -275,3 +275,8 @@ v9.7 = v9.6 ＋ 使用者自寫自傳與各段 summary（16→10 個單位、業
 - **帳號安全**：新裝置登入驗證＝OTP 驗證碼，屬 MFA；對外可寫「新裝置登入 OTP 驗證（MFA）」「帳號安全」。
 - **6 款產品**：JustDating、Juicy、Peach、SweetRing、KOOL、企業端招募系統（盲審誤數為 5 款）。
 - AI 品質把關細節見 `facts-1111.md`〈2026-10-25 AI 功能品質把關〉。
+
+## 42. 2026-10-25 「確立」屬責任升級（v12.7 盲審比對時發現）
+
+- Codex e2064ba 把結案比例點的「依客戶提案優先原則」改成「確立客戶提案優先原則」；該原則是上級政策（facts-1111 §324），本人負責執行。須改回「依」。
+- 三聯同步：verify_polish.py OVERCLAIM_PATTERNS 加入「確立」「制定（驗收除外）」；compiler skill 與 career/CLAUDE.md 責任詞清單同步。
