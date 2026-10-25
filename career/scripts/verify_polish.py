@@ -50,7 +50,9 @@ OVERCLAIM_PATTERNS = [
 ]
 UNRESOLVED_BRACKET_PATTERN = re.compile(r"〔[^〕]*(?:待補|待確認|待本人|確認)[^〕]*〕")
 LAZY_SIMILARITY_THRESHOLD = 0.99
-BULLET_LENGTH_CAP = 145  # 工作經歷單一列點字數上限（2026-10-25 本人指定）
+BULLET_LENGTH_CAP = 165  # 工作經歷單一列點「主幹敘事淨字數」上限：剝除括號內統計期間後計算（2026-10-25 本人修訂，原 145 含括號）
+BULLET_LENGTH_CAP_JUICY = 190  # 含 Juicy 的兩次下架承接合併點放寬
+PAREN_PATTERN = re.compile(r"（[^（）]*）|\([^()]*\)")
 WORK_SECTION_PATTERN = re.compile(r"｜.*(?:迄今|\d{4}/\d{2})")
 
 TAG_PATTERN = re.compile(r"<!--\s*\[STATUS:\s*(?P<status>[A-Z_]+)\](?P<attrs>(?:\s*\[[A-Z_]+:[^\]]*\])*)\s*-->")
@@ -126,7 +128,7 @@ def parse_tagged_blocks(md_text: str):
     return blocks
 
 def bullet_length_violations(blocks, label):
-    """工作經歷中非母項、非子項的單一列點，字數超過 BULLET_LENGTH_CAP 即違規。"""
+    """工作經歷中非母項、非子項的單一列點，剝除括號後的淨字數超過上限即違規。"""
     out = []
     for i, b in enumerate(blocks):
         if not WORK_SECTION_PATTERN.search(b["section"]) or not b["lines"]:
@@ -137,9 +139,11 @@ def bullet_length_violations(blocks, label):
         nxt = blocks[i + 1] if i + 1 < len(blocks) else None
         if nxt and nxt["lines"] and nxt["lines"][0].startswith((" ", "\t")) and nxt["section"] == b["section"]:
             continue  # 母項
-        n = len(re.sub(r"\s", "", b["text"].lstrip("- ")))
-        if n > BULLET_LENGTH_CAP:
-            out.append((i, n, label))
+        net = PAREN_PATTERN.sub("", b["text"].lstrip("- "))
+        n = len(re.sub(r"\s", "", net))
+        cap = BULLET_LENGTH_CAP_JUICY if "Juicy" in b["text"] else BULLET_LENGTH_CAP
+        if n > cap:
+            out.append((i, n, label, cap))
     return out
 
 def run_verification(draft_text: str, final_text: str):
@@ -158,9 +162,9 @@ def run_verification(draft_text: str, final_text: str):
             "請確認每個區塊上方皆保留 <!-- [STATUS: POLISHED/LOCKED] --> 標記！"
         )
 
-    for bi, n, label in bullet_length_violations(draft_blocks, "上游草稿") + bullet_length_violations(final_blocks, "下游成品"):
+    for bi, n, label, cap in bullet_length_violations(draft_blocks, "上游草稿") + bullet_length_violations(final_blocks, "下游成品"):
         src = draft_blocks if label == "上游草稿" else final_blocks
-        errors.append(f"[篇幅膨脹違規] 區塊 #{bi+1} ({src[bi]['section']}) {label}單點字數達 {n} 字（上限 {BULLET_LENGTH_CAP} 字），請刪除內部作業細節與規格瑣事，僅保留核心產品判斷與功績！")
+        errors.append(f"[篇幅膨脹違規] 區塊 #{bi+1} ({src[bi]['section']}) {label}單點主幹敘事淨字數達 {n} 字（不含括號；上限 {cap} 字），請刪除內部作業細節與規格瑣事，僅保留核心產品判斷與功績！")
 
     for i in range(min(len(draft_blocks), len(final_blocks))):
         d_item, f_item = draft_blocks[i], final_blocks[i]
