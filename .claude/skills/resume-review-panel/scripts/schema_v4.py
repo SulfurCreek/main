@@ -29,8 +29,8 @@ BT = ['claim', 'draft', 'file', 'job_fit']
 def check(o):
     err = []
     ver = str(o.get('rubric_version'))
-    if ver not in ('4.0', '4.1', '4.2'): err.append('rubric_version 不是 4.0／4.1／4.2')
-    if ver == '4.2':
+    if ver not in ('4.0', '4.1', '4.2', '4.3'): err.append('rubric_version 不是 4.0／4.1／4.2／4.3')
+    if ver in ('4.2', '4.3'):
         for q in o.get('content_questions', []):
             if q.get('rule_id') not in HM: err.append(f'content_questions rule_id 非法：{q.get("rule_id")}')
             if q.get('status') not in CQS: err.append(f'{q.get("rule_id")} status 非法：{q.get("status")}')
@@ -44,7 +44,7 @@ def check(o):
             if c.get('rule_id') not in ATS or c.get('status') not in ATSS: err.append(f'ats_check 非法：{c.get("rule_id")}/{c.get("status")}')
         for i in o.get('issues', []):
             if i.get('severity') == 'blocking' and i.get('block_target') not in BT: err.append(f'issue {i.get("id")} blocking 缺 block_target')
-    if ver in ('4.1', '4.2'):
+    if ver in ('4.1', '4.2', '4.3'):
         hq = o.get('hr_questions', [])
         if not hq: err.append('v4.1 缺 hr_questions')
         for q in hq:
