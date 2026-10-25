@@ -22,6 +22,7 @@ description: >
 | 任務 | 做法／讀什麼 | 不要讀 |
 | :-- | :-- | :-- |
 | **分流版驗證（2026-10-19 起預設；多職缺）** | ① 職缺分層表 `career/review-panel/jd/routing.tsv`（F 完整／L 輕量批次／X 略過，**一次分好、跨版沿用**；新職缺才加列）→ ② `python3 .claude/skills/resume-review-panel/scripts/build_routed_kit.py --version <版本> --resume career/drafts/<版本>/resume-<版本>.txt` 產生 `career/review-panel/handoff/<版本>/`（每檔＝一次呼叫的完整封包；`00-start-here.md` 有呼叫清單、模型分工、版本路由）→ ③ F 層派 Opus 子代理（每份讀一個 `F-*.md`）；L 層與錨點由使用者在外部模型跑 → ④ L 層回覆用 `scripts/light_report.py <raw.md…> --out …` 整理、F 層用 `schema_v4.py` | 舊單檔套件、`jd/a/`（僅歷史 run 用） |
+| **Coach 讀後感（v4.3；定稿後盲審）** | 派 `Agent`（`model: opus`、`effort: low`）讀 `kit/coach-prompt.md`；規格 `rubric-v4.md` §10.1；四段 Markdown（15 秒 OS／ATS 概念對位／3–5 句張力與雜訊體檢／5 個深水區追問），**子代理不讀 `library/`、`causal_draft.md`** | 事實庫、歷史 runs |
 | **跑一次驗證（最常用）** | ① `python3 .claude/skills/resume-review-panel/scripts/build_run.py --run career/review-panel/runs/<日期-名稱> --jd career/review-panel/jd/<職缺>.md --resume 標籤=路徑.txt …` 產全部提示＋`RUN.md` → ② 照 `RUN.md` 派子代理（指令一句話，**不要把提示貼進 Agent prompt**）→ ③ `scripts/run_report.py --run …` 自動出表 → ④ 只補結論 3 行 | rubric-v4.md 全文、兩份 registry JSON（程式會讀，不要進 context）、歷史 runs |
 | 查某條規則／來源是什麼 | `career/review-panel/INDEX.md` 的對照 → 再 grep 該 ID 於 `rule-registry-v4.2.json`／`research-registry-v4.2.json` | 整份 JSON |
 | 改規準 | `career/review-panel/rubric-v4.md` §9（v4.2 增補）＋規格原檔 `career/style/scoring-improvement-v4.2-source.md`（僅查特定節） | 舊 v3 |
@@ -34,7 +35,11 @@ description: >
 
 **子代理省 token 規則**：提示只放固定前綴＋一份履歷（前綴逐位元組相同才吃快取）；輸出單行 JSON 並有欄位上限；子代理只做「讀一個檔→一次 Bash 寫入並驗證」；換審查模型＝換條件，須記在 manifest／報告，不能跨條件比較。
 
-## ⭐ 規準 v4.2（2026-10-14 起，取代下方 v3／v3.1／v3.2 的評分與彙整）
+## ⭐ 規準 v4.3（2026-10-25 起；v4.2 原則全數保留）
+
+**v4.3 追加**（`rubric-v4.md` §10；規則 `rule-registry-v4.3.json`）：新增 HM14 AI 產品判斷與人機協作邊界；HM03 改為主動掃描策略張力；HM10／HR08 改為版面投資報酬率與訊號雜訊比；新增 coach 模式（深度讀後感，禁止只輸出 JSON 缺口表）。`build_run.py` 已改讀 v4.3 registry。
+
+## 規準 v4.2（2026-10-14 起，取代下方 v3／v3.1／v3.2 的評分與彙整）
 
 **v4.2 追加**（規格 `career/style/scoring-improvement-v4.2-source.md` §16–22；規準 `rubric-v4.md` §9）：ATS01–ATS14 用 `scripts/ats_check.py <pdf> <txt> --jd … [--vendor …]` 產五塊報告（不加總、不產生通用 ATS 分數、test_level=local_extraction）；用人主管十三問 HM01–HM13 進 A 審查的 `content_questions`，主管報告只列 ≤3 約談理由、≤3 關鍵缺口，語句微調放 editorial_appendix；不給 AI 作者機率；blocking 需 block_target。來源 A01–A50／M01–M50（`research-registry-v4.2.json`）、規則 `rule-registry-v4.2.json`。同模型新 context 不稱「另一模型」。
 

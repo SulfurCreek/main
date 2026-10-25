@@ -34,6 +34,7 @@
 1. **跨分支唯讀拉取**：使用 `git fetch origin codex/resume-writer` 並透過 `git show origin/codex/resume-writer:career/02_codex_stage/final_resume.md` 讀取 Codex 成品。
 2. **執行驗證腳本**：執行 `python3 career/scripts/verify_polish.py` 檢查漏修率、`LOCK_ENTITIES` 完整性、禁用詞、流水帳／幻覺詞與未清括號；產出 104 md 後加跑 `--verify-104 career/drafts/<版本>/104-<版本>.md`。
 3. **退件或發布**：若驗證失敗，列出具體報錯行數要求退回 Codex 重修（Claude 禁止自己動手改語氣）；若通過，結合 `career/104/` 規格產出最終版 `104.md` 與雙欄 PDF 至 `career/drafts/<版本>/`。產生 104 md 時**必套** `career/104/styling-directive-guide.md`（Quill 樣式＋每區塊上方 `@104-directive`；檔頭附註優先）。
+4. **定稿盲審（v4.3，2026-10-25 起）**：`final_resume.md` 或 `104-<版本>.md` 定稿時，派一個**不讀 `library/`、不讀 `causal_draft.md`** 的獨立子代理（`Agent`，`model: opus`、`effort: low`），用 `resume-review-panel` 的 Coach 模式（`.claude/skills/resume-review-panel/kit/coach-prompt.md`），以「策略型資深 PM／B2B 平台 PO」雙視角產出讀後心得與改寫 Feedback，存 `career/review-panel/runs/<日期>-coach-<版本>/report.md`。Feedback 只轉成給 Codex 的指令，Claude 不自己改語氣。
 
 > 管線範圍（主幹 `wiki/personal_line_collab.md` §7）：Codex 只寫 `career/drafts/codex/` 與 `career/02_codex_stage/`；Claude 只寫 `career/01_claude_stage/`（及既有 `career/` 範圍）；不寫 `career/` 以外任何位置。
 

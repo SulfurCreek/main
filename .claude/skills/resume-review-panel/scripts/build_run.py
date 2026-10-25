@@ -42,7 +42,7 @@ SCHEMA = """{"rubric_version":"4.2","resume_id":"","job_id":"","job_input":"summ
 "results":[{"quote":"","kinds":["context|output|outcome|decision|in_progress"]}],
 "hr_questions":[{"rule_id":"HR01","status":"supported|partial|unknown|not_applicable","resume_evidence":[""],"application_note":""}],
 "content_questions":[{"rule_id":"HM01","primary_dimension":"","status":"supported|partial|unknown|contradicted|not_applicable","resume_evidence":[""],"evidence_type":"context|output|outcome|decision|in_progress|null","source_ids":["M.."],"interview_question":null}],
-"issues":[{"id":"I01","rule_id":"HR01–12|HM01–13","source_ids":["S../M.."],"application_note":"","context_limit":"","category":"measurement|ownership|fact|readability|requirement|style","severity":"blocking|interview_follow_up|editorial","block_target":null,"claim":"原句","reason":"","suggestion":""}],
+"issues":[{"id":"I01","rule_id":"HR01–12|HM01–14","source_ids":["S../M.."],"application_note":"","context_limit":"","category":"measurement|ownership|fact|readability|requirement|style","severity":"blocking|interview_follow_up|editorial","block_target":null,"claim":"原句","reason":"","suggestion":""}],
 "decision":{"recommendation":"","evidence":[""],"blocking_unknowns":[]},
 "seniority":{"delivery":"強|足夠|待補|未呈現","po_coordination":"","direction_resources":""},
 "interview_reasons":["≤3"],"key_gaps":["≤3"],"strengths":["3"],"interview_questions":["≤8"],"editorial_appendix":[""],
@@ -53,7 +53,7 @@ SCHEMA = """{"rubric_version":"4.2","resume_id":"","job_id":"","job_input":"summ
 
 
 def rules_block():
-    reg = json.load(open(f'{RP}/rule-registry-v4.2.json', encoding='utf8'))['rules']
+    reg = json.load(open(f'{RP}/rule-registry-v4.3.json', encoding='utf8'))['rules']
     out = []
     for r in reg:
         if r['rule_id'].startswith('HR'):
@@ -65,7 +65,7 @@ def rules_block():
 
 def prefix(jd):
     return (f'# 任務\n{INSTR}\n\n# 職缺（job_input: summary，擷取 2026-10；可能缺少原文條件，勿推測；本次無平台欄位、求職信或附件）\n{jd}\n\n'
-            f'# 固定規準 v4.2\n{ANCHORS}\n\n# HR01–12／HM01–13（取證問題，不是額外分數；格式：ID｜問題｜維度｜source_ids）\n{rules_block()}\n\n'
+            f'# 固定規準 v4.3\n{ANCHORS}\n\n# HR01–12／HM01–14（取證問題，不是額外分數；格式：ID｜問題｜維度｜source_ids）\n{rules_block()}\n\n'
             f'# 輸出\n只輸出一個 JSON，欄位如下；source_ids 只能用上列 ID。{CAPS}\n{SCHEMA}\n\n# 履歷\n')
 
 
