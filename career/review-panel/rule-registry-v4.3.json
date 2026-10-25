@@ -763,8 +763,15 @@
    "name": "AI 產品判斷與人機協作邊界（AI Product Judgment & Reliability）",
    "question": "AI 經驗（AI 產品功能或 AI Agent 工作流）是否說明 (A) 解決了什麼規則引擎做不到的使用者／業務痛點？(B) 面對輸出不確定性，如何定義驗收標準、修正回饋迴路或人工判斷邊界（human-in-the-loop）？",
    "dimension_note": "D2／D3。只列模型／工具名或 AI 功能上線時程者標「有交付但缺產品判斷」，建議補使用情境痛點或品質把關機制；不推測候選人未寫的做法",
-   "source_ids": [],
-   "source_note": "使用者 2026-10-25 指定新增，未登錄外部研究來源；不得引用為已驗證研究結論"
+   "source_ids": [
+    "S35",
+    "M12",
+    "M51",
+    "M52",
+    "M53",
+    "M54"
+   ],
+   "primary_dimension": "D2, D3"
   }
  ]
 }

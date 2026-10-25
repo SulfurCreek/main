@@ -1,6 +1,6 @@
 {
  "version": "4.2",
- "note": "A01–A50（ATS）、M01–M50（用人主管）為規格 v4.2 §21–22 登錄，查閱日 2026-10-13（規格作者查閱，本 session 未重開網頁）。篇數是研究覆蓋量，不是投票權重；與 v4.1 S01–S50 有重疊，不可相加宣稱 150 個獨立來源。",
+ "note": "A01–A50（ATS）、M01–M50（用人主管）為規格 v4.2 §21–22 登錄，查閱日 2026-10-13（規格作者查閱，本 session 未重開網頁）。篇數是研究覆蓋量，不是投票權重；與 v4.1 S01–S50 有重疊，不可相加宣稱 150 個獨立來源。 2026-10-25 追加 M51–M54（AI PM 評估，查閱日 2026-10-25，使用者提供），對應 HM14。",
  "sources": [
   {
    "source_id": "A01",
@@ -929,7 +929,8 @@
    "mapped_rule_ids": [
     "HM06",
     "HM08",
-    "HM11"
+    "HM11",
+    "HM14"
    ]
   },
   {
@@ -1519,6 +1520,65 @@
    "mapped_rule_ids": [
     "HM01",
     "HM13"
+   ]
+  },
+  {
+   "source_id": "M51",
+   "title": "AI Product Manager Interview Questions (and prep) - IGotAnOffer (2026-05-04)",
+   "url": "https://igotanoffer.com/en/advice/ai-product-manager-interview",
+   "group": "hiring_manager",
+   "source_type": "B 招聘與面試實務指南",
+   "accessed_at": "2026-10-25",
+   "reuse_status": "使用者 2026-10-25 查閱提供；本 session 未重開網頁",
+   "adopted_note": "AI PM 須理解 AI 輸出的非確定性（non-deterministic nature），具備設定合理預期、設計錯誤/退場狀態（failure/fallback states）、制定評估指標（evaluation metrics）並與資料科學家協作處理預測不一致的能力。",
+   "context_limit": "屬北美科技大廠 AI PM 面試標準；非 AI 專屬職缺僅在候選人列出 AI 功能或 Agent 工作流時作為證據與追問檢查，不作普遍淘汰門檻。",
+   "mapped_rule_ids": [
+    "HM14",
+    "HM08"
+   ]
+  },
+  {
+   "source_id": "M52",
+   "title": "The Ultimate AI Product Manager Interview Guide (2026 Edition) - TechInterview",
+   "url": "https://www.techinterview.net/blog/ai-product-manager-interview-guide",
+   "group": "hiring_manager",
+   "source_type": "B/C 產品評估框架",
+   "accessed_at": "2026-10-25",
+   "reuse_status": "使用者 2026-10-25 查閱提供；本 session 未重開網頁",
+   "adopted_note": "AI 產品為機率性（probabilistic）而非確定性；關鍵產品挑戰在於定義準確率基準（Precision/Recall 取捨）、可靠性驗收（Evals）以及 Human-in-the-Loop (HITL) 邊界設計（AI 在哪裡停下、人工在哪裡確認或介入）。",
+   "context_limit": "用於檢視履歷中 AI 案例是否交代『驗收標準、回饋修正與人工判斷邊界』；不要求一般 PM 在履歷中計算 Token 成本。",
+   "mapped_rule_ids": [
+    "HM14",
+    "HM07"
+   ]
+  },
+  {
+   "source_id": "M53",
+   "title": "OpenAI Product Manager Interview (questions, process, prep) - IGotAnOffer (2026-05-05)",
+   "url": "https://igotanoffer.com/en/advice/openai-product-manager-interview",
+   "group": "hiring_manager",
+   "source_type": "B 雇主面試實務指南",
+   "accessed_at": "2026-10-25",
+   "reuse_status": "使用者 2026-10-25 查閱提供；本 session 未重開網頁",
+   "adopted_note": "不可直接套用傳統確定性軟體的成功指標；須評估模型權衡（trade-offs）、護欄與異常風險緩解。",
+   "context_limit": "僅借用其『不以單純功能上線等同 AI 品質』的判讀邏輯，不將前沿模型研究室的使命要求套用至一般企業。",
+   "mapped_rule_ids": [
+    "HM14",
+    "HM05"
+   ]
+  },
+  {
+   "source_id": "M54",
+   "title": "AI Product Manager Evaluation Framework 2026 - AIPM Framework",
+   "url": "https://aipmframework.com/",
+   "group": "hiring_manager",
+   "source_type": "B 選才評分框架",
+   "accessed_at": "2026-10-25",
+   "reuse_status": "使用者 2026-10-25 查閱提供；本 session 未重開網頁",
+   "adopted_note": "區分『理解模型能力與限制並實際建立 AI/Agent 工作流解決問題』與『僅掛名或被動閱讀』。",
+   "context_limit": "明確排除該文要求個人 GitHub 專案或親自寫程式的極端門檻；僅採其『須具體呈現 AI 工具/功能之問題定義、限制處理與驗證方式』。",
+   "mapped_rule_ids": [
+    "HM14"
    ]
   }
  ]

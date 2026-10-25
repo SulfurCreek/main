@@ -182,7 +182,7 @@ B 的輸出：`{"order":"甲=…/乙=…","differences":[{"what":"","hiring_mean
 
 | 項目 | 實作 |
 | :-- | :-- |
-| 來源 | `research-registry-v4.2.json`：A01–A50（ATS 官方文件）、M01–M50（用人主管與選才方法），規格作者 2026-10-13 查閱；本 session 未重開網頁。與 S01–S50 有重疊，不可相加稱 150 個獨立來源；篇數不是投票權重 |
+| 來源 | `research-registry-v4.2.json`：A01–A50（ATS 官方文件）、M01–M50（用人主管與選才方法；2026-10-25 追加 M51–M54），規格作者 2026-10-13 查閱；本 session 未重開網頁。與 S01–S50 有重疊，不可相加稱 150 個獨立來源；篇數不是投票權重 |
 | 規則 | `rule-registry-v4.2.json`：保留 HR01–HR12，新增 ATS01–ATS14、HM01–HM13（各帶反向 source_ids） |
 | ATS 檢查 | `scripts/ats_check.py`：五塊（檔案接受／欄位解析／搜尋可見性／資格流程／匹配與未知設定），pass／risk／fail／unknown／not_applicable，不加總；職稱→公司→日期逐段檢查，總還原率不能掩蓋錯配；test_level 固定 local_extraction |
 | A 審查 | 提示加 §19.3 原文與 HM01–HM13 表；JSON 新增 content_questions、interview_reasons（≤3）、key_gaps（≤3）、editorial_appendix、ai_authorship（不給機率）、blocking issue 的 block_target |
@@ -202,7 +202,7 @@ ATS 檢查狀態、事實狀態、六維度評等是三套不同 enum，不混�
 | **HM03（強化）策略張力與限制下的取捨**（D3） | 主動逐條掃描核心經歷有無張力：既有系統限制 vs. 翻新、雙線資源競爭、變現 vs. 體驗、降價轉化 vs. 營收 | 寫得像順風順水的任務清單 → 明確指出缺張力，提示可從哪個業務限制、優先序取捨或破局難度切入；**不替候選人編張力** |
 | **HM10／HR08（強化）版面投資報酬率與訊號雜訊比**（D6） | 仍不以字數淘汰；檢查 (A) 黃金版面是否用來羅列工具／文件通稱而無商業目的 (B) 統計期間或免責說明是否切斷「行動↔成果」 (C) 模組排序、求職條件措辭與目標路線是否訊號衝突 | 指出原句與衝突的目標路線，給收納口徑或調整排序的方向 |
 
-HM14 未登錄外部研究來源（`source_ids` 為空，`source_note` 註明），不得當作已驗證研究結論引用。
+HM14 來源：S35（Robert Half，工具曝光≠應用能力）、M12（SVPG，將技術用於解決問題）、M51–M54（2026 AI PM 評估，查閱日 2026-10-25，登錄於 `research-registry-v4.2.json`）。依各來源 context_limit：非 AI 職缺僅在履歷列出 AI 功能或 Agent 工作流時才檢查，不作普遍淘汰門檻；不要求寫程式、個人 GitHub 或 Token 成本。
 
 ### 10.1 Coach 模式（深度讀後感與優化教練，`--mode coach`）
 
