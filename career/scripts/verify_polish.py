@@ -31,7 +31,8 @@ CHORE_AND_HALLUCINATION_TOKENS = [
     "送簽流程", "及送簽", "結案確認",           # 內部行政表單流水帳
     "新增、編輯、合併、刪除",                   # CRUD 流水帳羅列
     "報表無付費數據",       # 內部備註誤留正文
-    "刊案", "RBAC"                  # 內部行話，對外讀不懂（2026-10-24 本人）
+    "刊案", "RBAC",
+    "簡單舊案", "較易處理的舊案", "不再自動覆蓋", "安排代碼交工程更新", "擔任統一窗口", "業務票選",  # No Detail Dumping（2026-10-25 本人指定）                  # 內部行話，對外讀不懂（2026-10-24 本人）
 ]
 
 # 3. 104 絕對禁止無中生有之假工具標籤（防 Flash / 範本污染）
@@ -48,6 +49,8 @@ OVERCLAIM_PATTERNS = [
 ]
 UNRESOLVED_BRACKET_PATTERN = re.compile(r"〔[^〕]*(?:待補|待確認|待本人|確認)[^〕]*〕")
 LAZY_SIMILARITY_THRESHOLD = 0.99
+BULLET_LENGTH_CAP = 145  # 工作經歷單一列點字數上限（2026-10-25 本人指定）
+WORK_SECTION_PATTERN = re.compile(r"｜.*(?:迄今|\d{4}/\d{2})")
 
 TAG_PATTERN = re.compile(r"<!--\s*\[STATUS:\s*(?P<status>[A-Z_]+)\](?P<attrs>(?:\s*\[[A-Z_]+:[^\]]*\])*)\s*-->")
 ATTR_PATTERN = re.compile(r"\[(?P<key>[A-Z_]+):\s*(?P<val>[^\]]*)\]")
@@ -121,6 +124,23 @@ def parse_tagged_blocks(md_text: str):
         b["text"] = "\n".join(l.strip() for l in b["lines"])
     return blocks
 
+def bullet_length_violations(blocks, label):
+    """工作經歷中非母項、非子項的單一列點，字數超過 BULLET_LENGTH_CAP 即違規。"""
+    out = []
+    for i, b in enumerate(blocks):
+        if not WORK_SECTION_PATTERN.search(b["section"]) or not b["lines"]:
+            continue
+        first = b["lines"][0]
+        if not first.lstrip().startswith("- ") or first.startswith((" ", "\t")):
+            continue  # 非列點或子項
+        nxt = blocks[i + 1] if i + 1 < len(blocks) else None
+        if nxt and nxt["lines"] and nxt["lines"][0].startswith((" ", "\t")) and nxt["section"] == b["section"]:
+            continue  # 母項
+        n = len(re.sub(r"\s", "", b["text"].lstrip("- ")))
+        if n > BULLET_LENGTH_CAP:
+            out.append((i, n, label))
+    return out
+
 def run_verification(draft_text: str, final_text: str):
     errors = []
     warnings = []
@@ -136,6 +156,10 @@ def run_verification(draft_text: str, final_text: str):
             f"[結構不對稱] 上游草稿有 {len(draft_blocks)} 個標記區塊，下游成品有 {len(final_blocks)} 個。"
             "請確認每個區塊上方皆保留 <!-- [STATUS: POLISHED/LOCKED] --> 標記！"
         )
+
+    for bi, n, label in bullet_length_violations(draft_blocks, "上游草稿") + bullet_length_violations(final_blocks, "下游成品"):
+        src = draft_blocks if label == "上游草稿" else final_blocks
+        errors.append(f"[篇幅膨脹違規] 區塊 #{bi+1} ({src[bi]['section']}) {label}單點字數達 {n} 字（上限 {BULLET_LENGTH_CAP} 字），請刪除內部作業細節與規格瑣事，僅保留核心產品判斷與功績！")
 
     for i in range(min(len(draft_blocks), len(final_blocks))):
         d_item, f_item = draft_blocks[i], final_blocks[i]

@@ -35,6 +35,8 @@
    - **唯一可提問條件**：已用 grep 確認 library 完全無紀錄，且提問時標明「已檢索 `library/` 無此紀錄」。本人回答後（含「不寫」「維持現狀」）當下加入 §45。
    - 同時檢查：要寫進草稿的新內容是否違反 §24 披露規則（不寫未公開排序、延後項目、預計日期）。
 
+8. **禁止將 `library/` 作業細節自動傾倒至正文（No Detail Dumping，2026-10-25）**：`library/` 的細部操作流程、Edge Case 規則（例：修改後不自動覆蓋）、內部溝通步驟（例：安排代碼交工程更新、業務票選）只供事實查核與面試口頭題庫。**嚴禁為了迎合 `resume-review-panel`（HM01–HM14）的取證檢查，從 `library/` 撈瑣碎規格塞進 `causal_draft.md`**；審查指出的細節缺口，預設歸入面試口袋案例（§45），不入正文。單一列點維持高訊號密度：概括設計原則與商業目的，不寫 PRD 細則。工作經歷單一列點上限 145 字（`verify_polish.py` 強制）。
+
 ## 3. Stage 3：下游成品驗收與發布 (輸出至 `career/drafts/<版本>/`)
 當 Codex 完成潤飾後，執行驗收與排版發布：
 1. **跨分支唯讀拉取**：使用 `git fetch origin codex/resume-writer` 並透過 `git show origin/codex/resume-writer:career/02_codex_stage/final_resume.md` 讀取 Codex 成品。

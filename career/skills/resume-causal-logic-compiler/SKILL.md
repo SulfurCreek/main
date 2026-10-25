@@ -49,3 +49,7 @@ description: 專治履歷「概念偷跑（未定義先引用）」與「因果�
 ## Pre-Questioning Lookup Gate（2026-10-25，本人指定）
 
 提問前必先 grep `career/library/` 並讀 `decisions.md` §45〈已結案免追問清單〉。已有紀錄者直接引用；屬「依本人裁定不入正文」者不再問、不寫入草稿，標 `[已由 library/decisions 結案：已知事實，依本人裁定不入履歷正文，僅留作面試口頭回答]`。只有 library 確定無紀錄時才問，並寫明「已檢索 `library/` 無此紀錄」；答覆立即補進 §45。把審查建議轉成草稿前，先對照 decisions §24 披露規則（不寫未公開排序、延後項目、預計日期）。
+
+## No Detail Dumping（2026-10-25，本人指定）
+
+`library/` 的操作流程、Edge Case、內部溝通步驟只供查核與面試題庫。審查（HM01–HM14）指出的細節缺口不得自動從 `library/` 撈進草稿；預設列為面試口袋案例（decisions §45）。列點寫設計原則與商業目的，不寫 PRD 細則；工作經歷非母項的單一列點 ≤145 字（不含空白，`verify_polish.py` 的 `BULLET_LENGTH_CAP`）。
