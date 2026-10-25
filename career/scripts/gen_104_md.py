@@ -158,6 +158,8 @@ def d(o):
 
 def main():
     src_path, out_path, ver, origin = sys.argv[1:5]
+    public = "--public" in sys.argv[5:]
+    imgs = [IMG[0], IMG[1], None, None] if public else IMG
     src = pathlib.Path(src_path).read_text(encoding="utf-8")
     vmap, missing = build_visual_map(src)
     if missing:
@@ -192,6 +194,8 @@ def main():
          d({"target_block": "info", "action": "replace_field", "field": "trait", "mode": "plain_text"}), "",
          "```text", "\n".join(clean(sec(src, "個人特色"))), "```", "", "---", "", "## 2. 工作經歷", ""]
     for i, (h, html_) in enumerate(zip(heads, exps)):
+        if public and i == 0:
+            o += ["▼ 公開版：公司名稱設為 104「公司名暫不公開」（不可出現 1111、全球華人）", ""]
         o += [f"### 2.{i+1} {h}", "", f"▼ management：{MG[i]}", "",
               d({"target_block": "experience", "index": i, "action": "replace_description", "mode": "quill_html", "tags": ET[i], "locked_fields": LF}),
               "", "```html", html_, "```", ""]
@@ -204,15 +208,18 @@ def main():
           "```html", "\n<p><br></p>\n".join(f"<p>{p}</p>" for p in bio), "```", "", "---", "", "## 5. 專案成就", ""]
     for i, (h, html_) in enumerate(zip(ph, projs)):
         n = h.split("｜")[0]
-        o += [f"### 5.{i+1} {n}", "", f"- 起訖：{PDATE[i]}｜url：留空",
-              f"- 圖片：`{IMG[i]}`（104「專案素材」選「上傳圖片或影片」，把此檔上傳到「素材檔」；每個專案只放這一張）", "",
-              d({"target_block": "project", "index": i, "action": "replace_all", "mode": "quill_html", "name": n,
-                 "media_type": "上傳圖片或影片", "image": IMG[i], "image_action": "upload_replace"}),
+        img_line = (f"- 圖片：`{imgs[i]}`（104「專案素材」選「上傳圖片或影片」，把此檔上傳到「素材檔」；每個專案只放這一張）"
+                    if imgs[i] else "- 圖片：**無**（公開版刪除此專案的圖片，素材欄留空）")
+        pd = {"target_block": "project", "index": i, "action": "replace_all", "mode": "quill_html", "name": n}
+        pd.update({"media_type": "上傳圖片或影片", "image": imgs[i], "image_action": "upload_replace"} if imgs[i] else {"image_action": "remove"})
+        o += [f"### 5.{i+1} {n}", "", f"- 起訖：{PDATE[i]}｜url：留空", img_line, "", d(pd),
               "", "```html", html_, "```", ""]
     o += ["---", "", "## 6. 求職條件（工作內容，純文字；其餘求職條件欄位不動）", "",
           d({"target_block": "jobCondition", "action": "replace_field", "field": "preferJobContent", "mode": "plain_text",
              "locked_fields": ["preferJobTitle", "salary", "workArea", "onboardDate", "remoteWork"]}),
           "", "```text", job, "```", ""]
+    if public:
+        o = [x.replace("5.3→project3_1111_recruit.png、5.4→project4_1111_recruit.png", "5.3、5.4 公開版不放圖片") for x in o]
     pathlib.Path(out_path).write_text("\n".join(o) + "\n", encoding="utf-8")
 
     errs = vp.verify_104_markdown(out_path, src)
