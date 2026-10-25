@@ -53,3 +53,7 @@ description: 專治履歷「概念偷跑（未定義先引用）」與「因果�
 ## No Detail Dumping（2026-10-25，本人指定）
 
 `library/` 的操作流程、Edge Case、內部溝通步驟只供查核與面試題庫。審查（HM01–HM14）指出的細節缺口不得自動從 `library/` 撈進草稿；預設列為面試口袋案例（decisions §45）。列點寫設計原則與商業目的，不寫 PRD 細則；工作經歷非母項的單一列點，剝除括號內統計期間後的淨字數 ≤165 字（含 Juicy 雙次承接點 ≤190 字；不含空白，`verify_polish.py` 的 `BULLET_LENGTH_CAP`）。
+
+## Autonomous Review & Compile Loop（2026-10-25，本人指定）
+
+本 skill 與 `resume-review-panel` 串成閉環：盲審 → 查 `library/` → A 類直接重編本草稿 → `verify_polish.py` 上游 0 違規 → 出 Codex 指令。A 類重編的硬護欄：事實只取自 library；只能變短或持平（淨字數 ≤165，Juicy ≤190）；不寫 PRD 細則（No Detail Dumping）；不推翻 decisions 本人裁定；LOCKED 段解鎖須附前後對照。B 類歸面試口袋案例，C 類（library 無紀錄）才提問。回報格式見 `career/CLAUDE.md` Stage 1 第 9 點。

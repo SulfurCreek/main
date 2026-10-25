@@ -3,7 +3,7 @@ name: resume-review-panel
 description: >
   用「20 位虛構審查者（10 人資＋10 用人主管）＋50 份虛構同儕履歷」模擬台灣軟體業 PM 履歷的審查，
   找出使用者履歷的問題並排序。當使用者要「檢查履歷」「模擬 HR／主管怎麼看」「跟其他 PM 比」「這份履歷會不會被刷掉」時使用。
-  只產出審查報告，不改履歷；改寫交給 resume-craft 並遵守 career/style/resume-voice-zh.md。
+  2026-10-25 起在 career 管線中與 resume-causal-logic-compiler 串成自治閉環：審查後由主代理依 A／B／C 分流，直接重編上游草稿 causal_draft.md（不改 Codex 成品）。管線外使用時仍只產報告。
 ---
 
 # 履歷審查模擬小組
@@ -13,7 +13,7 @@ description: >
 > 狀態：2026-10-06 由 career session 建立草稿，使用者同日核可、主幹收錄到 `.claude/skills/`。
 > **使用限制（先讀）**：
 > 1. **素材只在個人線分支 `claude/happy-lamport-ljis8c`**（`career/review-panel/`、`career/wiki/`）。從 main 開的 session 看不到，要用請在該分支工作，或先 `git fetch` 後用 `git show` 唯讀讀取。
-> 2. **只產審查報告，不改履歷**；寫入位置只限 `career/`（不是 career session 的 session 要寫報告，請先確認所在分支與目錄所有權，見 `wiki/personal_line_collab.md`）。
+> 2. **管線外只產審查報告**；在 career 履歷管線內改依〈自治閉環〉重編 `career/01_claude_stage/causal_draft.md`（見 `career/CLAUDE.md` Stage 1 第 9 點），子代理本身仍不改任何檔；寫入位置只限 `career/`（不是 career session 的 session 要寫報告，請先確認所在分支與目錄所有權，見 `wiki/personal_line_collab.md`）。
 > 3. **審查結果是結構化的自我檢查，不是真人意見**（見文末〈可靠度〉）。
 
 
@@ -47,6 +47,18 @@ description: >
 | 建議違反 decisions §24 披露規則或 §43 概念詞規則 | 標「不採用」並註明條號 |
 
 過濾結果寫進該次 `runs/<日期>-coach-<版本>/report.md` 末尾（主代理附註區），原始盲審內容不改。
+
+## 🔁 上游自治審查與重編閉環（2026-10-25）
+
+盲審子代理只寫報告；**主代理**收到後依 Post-Review 過濾結果分流，不等本人下令：
+
+| 類別 | 條件 | 主代理動作 |
+| --- | --- | --- |
+| A 自動重編 | 張力不足、商業目的未點破、概念詞不精準、殘留流水帳，且事實已在 `library/` | 直接改 `causal_draft.md`（NEEDS_POLISH；LOCKED 解鎖附前後對照）；只能變短或持平；守 No Detail Dumping、淨字數 165／190、§24、§43、責任詞；不推翻本人裁定 |
+| B 口袋案例 | library 有但本人裁定不入正文，或寫入會變操作規格 | 列報告底部「💡 面試口頭口袋案例」，不改稿、不提問 |
+| C 提問 | 關鍵缺口且 library 確認無紀錄 | A 類做完後於回覆最後提問，答覆補進 decisions §45 |
+
+完成後跑 `verify_polish.py`（上游 0 違規）→ commit／push → 出 Codex 指令。回覆本人用三段式：✅ 已自動優化（Before → After＋library 依據）／💼 轉面試準備／❓ 需本人拍板（無則「無，已全數自治處理完畢」）。完整規則：`career/CLAUDE.md` Stage 1 第 9 點。
 
 ## ⭐ 規準 v4.3（2026-10-25 起；v4.2 原則全數保留）
 

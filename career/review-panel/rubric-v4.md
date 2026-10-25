@@ -223,4 +223,4 @@ HM14 來源：S35（Robert Half，工具曝光≠應用能力）、M12（SVPG，
    - **改寫方向**：`原句 → 建議改寫方向`；只調語序、收納括號口徑，或列出要向候選人追問的 Why；**不得新增數字或未寫出的事實**，需要新事實時寫成追問。
 4. **面試必考 5 個深水區追問**：其中標出 1–2 題「履歷多補半句（≤15 字）就能提前解除疑慮」。
 
-**收尾**：註明 `human_calibration: not_performed`、審查者為同一模型家族的新 context、未讀事實庫。報告存 `career/review-panel/runs/<日期>-coach-<版本>/report.md`。改寫交 Codex（經 `causal_draft.md` 註解）或 `resume-craft`，coach 不改履歷。
+**收尾**：註明 `human_calibration: not_performed`、審查者為同一模型家族的新 context、未讀事實庫。報告存 `career/review-panel/runs/<日期>-coach-<版本>/report.md`。coach 子代理不改檔；主代理依 `career/CLAUDE.md` Stage 1 第 9 點〈自治閉環〉A／B／C 分流，A 類直接重編 `causal_draft.md` 後交 Codex。

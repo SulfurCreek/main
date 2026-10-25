@@ -37,12 +37,22 @@
 
 8. **禁止將 `library/` 作業細節自動傾倒至正文（No Detail Dumping，2026-10-25）**：`library/` 的細部操作流程、Edge Case 規則（例：修改後不自動覆蓋）、內部溝通步驟（例：安排代碼交工程更新、業務票選）只供事實查核與面試口頭題庫。**嚴禁為了迎合 `resume-review-panel`（HM01–HM14）的取證檢查，從 `library/` 撈瑣碎規格塞進 `causal_draft.md`**；審查指出的細節缺口，預設歸入面試口袋案例（§45），不入正文。單一列點維持高訊號密度：概括設計原則與商業目的，不寫 PRD 細則。工作經歷單一列點「主幹敘事淨字數」（剝除括號內統計期間後）上限 165 字、含 Juicy 雙次承接點 190 字（`verify_polish.py` 強制）。
 
+9. **上游自治審查與重編閉環（Autonomous Review & Compile Loop，2026-10-25）**：盲審（Coach）或自查發現草稿可優化時，**不停下來等本人下令**，依三類分流直接執行：
+   - **A 類｜當場自動重編入稿**：缺口是策略張力不足、商業目的未點破、概念詞不精準或殘留流水帳，且所需事實已在 `library/` → 直接改 `causal_draft.md`，標 `NEEDS_POLISH`（原為 `LOCKED` 者解鎖，並在回報附重編前後對照）。護欄：遵守 No Detail Dumping（第 8 點）與主幹敘事淨字數上限（165／Juicy 190），**只能變短或持平，不得越改越長**；不得推翻 `decisions.md` 的本人裁定（裁定項目一律歸 B 類或「不採用」）；不得違反 §24 披露、§43 概念詞規則；責任詞依第 4 點。
+   - **B 類｜自動轉入面試口袋案例**：library 有、但本人裁定不入正文，或寫入會淪為操作規格 → 列入報告底部「💡 面試口頭口袋案例」，不改稿、不提問。
+   - **C 類｜唯一可提問**：影響面試判斷的關鍵缺口，且 grep 全 `library/` 確認無紀錄 → 完成 A 類後，在回覆最後提問（標「已檢索 `library/` 無此紀錄」），答覆後補進 §45。
+   - **流程**：盲審 → 查 library（第 7 點）→ A 類改 `causal_draft.md` → 跑 `python3 career/scripts/verify_polish.py` 確認**上游草稿 0 違規**（下游成品違規屬 Codex 待重寫，不算）→ commit／push → 產出給 Codex 的指令。
+   - **自治交付格式（Self-Healing Report）**，回覆本人只寫三段：
+     1. ✅ 已自動優化並寫入 `causal_draft.md` 的段落（Before → After，附 library 依據）
+     2. 💼 已攔截並轉為面試口頭準備的項目（免改履歷）
+     3. ❓ 唯一需要本人拍板或補充新事實的問題（無則寫「無，已全數自治處理完畢」）
+
 ## 3. Stage 3：下游成品驗收與發布 (輸出至 `career/drafts/<版本>/`)
 當 Codex 完成潤飾後，執行驗收與排版發布：
 1. **跨分支唯讀拉取**：使用 `git fetch origin codex/resume-writer` 並透過 `git show origin/codex/resume-writer:career/02_codex_stage/final_resume.md` 讀取 Codex 成品。
 2. **執行驗證腳本**：執行 `python3 career/scripts/verify_polish.py` 檢查漏修率、`LOCK_ENTITIES` 完整性、禁用詞、流水帳／幻覺詞與未清括號；產出 104 md 後加跑 `--verify-104 career/drafts/<版本>/104-<版本>.md`。
 3. **退件或發布**：若驗證失敗，列出具體報錯行數要求退回 Codex 重修（Claude 禁止自己動手改語氣）；若通過，結合 `career/104/` 規格產出最終版 `104.md` 與雙欄 PDF 至 `career/drafts/<版本>/`。產生 104 md 時**必套** `career/104/styling-directive-guide.md`（Quill 樣式＋每區塊上方 `@104-directive`；檔頭附註優先）。
-4. **定稿盲審（v4.3，2026-10-25 起）**：`final_resume.md` 或 `104-<版本>.md` 定稿時，派一個**不讀 `library/`、不讀 `causal_draft.md`** 的獨立子代理（`Agent`，`model: opus`、`effort: low`），用 `resume-review-panel` 的 Coach 模式（`.claude/skills/resume-review-panel/kit/coach-prompt.md`），以「策略型資深 PM／B2B 平台 PO」雙視角產出讀後心得與改寫 Feedback，存 `career/review-panel/runs/<日期>-coach-<版本>/report.md`。Feedback 只轉成給 Codex 的指令，Claude 不自己改語氣。
+4. **定稿盲審（v4.3，2026-10-25 起）**：`final_resume.md` 或 `104-<版本>.md` 定稿時，派一個**不讀 `library/`、不讀 `causal_draft.md`** 的獨立子代理（`Agent`，`model: opus`、`effort: low`），用 `resume-review-panel` 的 Coach 模式（`.claude/skills/resume-review-panel/kit/coach-prompt.md`），以「策略型資深 PM／B2B 平台 PO」雙視角產出讀後心得與改寫 Feedback，存 `career/review-panel/runs/<日期>-coach-<版本>/report.md`。盲審結果依 Stage 1 第 9 點〈自治閉環〉分流：A 類由 Claude 直接重編 `causal_draft.md`（上游事實與選材），再出 Codex 指令；Claude 仍不改 `final_resume.md` 的語氣。
 
 > 管線範圍（主幹 `wiki/personal_line_collab.md` §7）：Codex 只寫 `career/drafts/codex/` 與 `career/02_codex_stage/`；Claude 只寫 `career/01_claude_stage/`（及既有 `career/` 範圍）；不寫 `career/` 以外任何位置。
 
