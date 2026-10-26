@@ -27,6 +27,7 @@
 | 求職信、故事素材 | [`letters/README.md`](letters/README.md)、[`letters/story-bank.md`](letters/story-bank.md) | [`letters/log.md`](letters/log.md) |
 | 104 履歷欄位 | [`104/README.md`](104/README.md) → [`104/fields-spec.md`](104/fields-spec.md) → [`104/content-spec-quill.md`](104/content-spec-quill.md)（Quill HTML 與各欄撰寫規格；範例只取格式） | [`104/resume-104.md`](104/resume-104.md)、[`104/chrome-playbook.md`](104/chrome-playbook.md) |
 | 作品集／case study | [`portfolio/`](portfolio/)（內部版）、`portfolio/public/`（對外版） | [`site/`](site/)（網站助手專屬） |
+| 投遞紀錄（職缺 × 推薦信 × 履歷版本） | [`applications/INDEX.md`](applications/INDEX.md)，每職缺一檔 `applications/<code>.md` | 推薦信產生流程見 `skills/104coverletter/SKILL.md` §5 |
 | 職缺與公司資料 | [`targets/README.md`](targets/README.md)、`targets/jobs.md`、`targets/companies.md` | [`review-panel/jd/routing.tsv`](review-panel/jd/routing.tsv)（每份職缺的分層） |
 | 看驗證結果、投遞優先序 | [`review-panel/HISTORY.md`](review-panel/HISTORY.md)、[`review-panel/opus-matrix.md`](review-panel/opus-matrix.md) | `review-panel/runs/<日期>-<版本>-*/`（單次結果） |
 | 遇到〔待補〕或想問使用者 | [`library/open-questions.md`](library/open-questions.md)（問前先查） | Codex 的疑問寫 `drafts/codex/QUESTIONS.md` |

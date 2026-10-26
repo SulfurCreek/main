@@ -76,7 +76,8 @@ description: 針對指定的 104 職缺產生「104 自我推薦信」草稿（2
 
 1. 讀潤飾稿：公司名、職缺名逐字相同；數字、日期、限定詞不變；禁用詞為 0；字數 200–400。
 2. 只把語意偏移處回報本人決定；本人同意後存 `career/letters/104/<code>-<公司>.md`（定稿），並在 `career/letters/log.md` 加一列（日期、公司、職缺、語言 zh、檔案、結果〔待填〕）。
-3. 新用到的成果句回填 `letters/story-bank.md`；本人新提供的動機或觀察先寫進 `library/`（about-me 或 facts）。
+3. **登錄職缺關聯（2026-10-27 起必做）**：建立或更新 `career/applications/<code>.md`（職缺代碼、104 連結、`targets/jobs.md` 節號、`review-panel/jd/full/<code>.md`、routing 分層、推薦信定稿與草稿路徑、Codex commit、搭配的履歷版本、投遞狀態，以及**貼入 104 的推薦信全文**與版本紀錄），並在 `career/applications/INDEX.md` 加一列或更新該列。範本見 `applications/8o3s3.md`。不寫進 `targets/jobs.md`（會被重新匯出覆蓋）。
+4. 新用到的成果句回填 `letters/story-bank.md`；本人新提供的動機或觀察先寫進 `library/`（about-me 或 facts）。
 
 ## 6. 潤飾者是 Resume Writer（Codex）時
 
@@ -84,5 +85,6 @@ description: 針對指定的 104 職缺產生「104 自我推薦信」草稿（2
 - **讀職缺與公司**：`career/review-panel/jd/full/<code>.md`（JD 全文或重點）、`career/review-panel/jd/routing.tsv`（公司、職稱、年資）、必要時 `career/targets/jobs.md`、`targets/companies.md`。只用來對齊語意與用詞；**不新增對公司的觀察**，JD 檔中標「未查證」的公司推測不得使用。
 - 寫到：`career/drafts/codex/letters/<code>-<公司>-polished.md`（整封＋檔末〈修改紀錄〉＋字數／行數）；推 `codex/resume-writer`。
 - 不改：公司名、職缺名、數字、日期、限定詞、條列點數；不新增事實或對公司的觀察。事實疑問寫 `drafts/codex/QUESTIONS.md`。
-- 交付後告訴本人檔名；Career Move 依 §5 核對、定稿。
+- 交付後告訴本人檔名；Career Move 依 §5 核對、定稿，並登錄 `career/applications/<code>.md`。
+- 有多個方案時，潤飾稿須寫明本人選用哪一案；Career Move 只把選用案正文寫入定稿與 applications 檔。
 
