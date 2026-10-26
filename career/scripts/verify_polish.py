@@ -35,7 +35,8 @@ CHORE_AND_HALLUCINATION_TOKENS = [
     "簡單舊案", "較易處理的舊案", "不再自動覆蓋", "安排代碼交工程更新", "擔任統一窗口", "業務票選",
     "新增、修改", "合併與刪除",
     "非功能上線比例", "不等同功能上線比例", "不予採納", "已有類似功能", "目的是",  # 免責小尾巴（2026-10-26）
-    "破局者", "治理者", "先行者", "Credibility", "毛利",  # 框架自嗨詞、無紀錄財務詞（2026-10-26）  # 分類治理寫成 CRUD 流水帳（2026-10-26）
+    "破局者", "治理者", "先行者", "Credibility", "毛利",
+    "共同招募的方式", "安全的驗證機制", "建立網頁付款管道",  # AI 硬湊贅詞（2026-10-26）  # 框架自嗨詞、無紀錄財務詞（2026-10-26）  # 分類治理寫成 CRUD 流水帳（2026-10-26）
     "Account Takeover", "權限模型", "舊系統遷移", "分類治理", "雙邊市場",  # 本人不懂的概念詞（2026-10-25）  # No Detail Dumping（2026-10-25 本人指定）                  # 內部行話，對外讀不懂（2026-10-24 本人）
 ]
 
@@ -55,6 +56,10 @@ UNRESOLVED_BRACKET_PATTERN = re.compile(r"〔[^〕]*(?:待補|待確認|待本�
 LAZY_SIMILARITY_THRESHOLD = 0.99
 BULLET_LENGTH_CAP = 165  # 工作經歷單一列點「主幹敘事淨字數」上限：剝除括號內統計期間後計算（2026-10-25 本人修訂，原 145 含括號）
 BULLET_LENGTH_CAP_JUICY = 190
+WORD_FREQ_CAPS = {  # 全篇高頻口癖詞上限（2026-10-26）
+    "建立": (5, "[AI 口癖重複違規] 全篇「建立」出現達 {n} 次（上限 5 次）！請勿濫用「建立…的方式／機制」湊字，改用自然動詞（讓…能…、打通、規劃、推動）！"),
+    "救回": (1, "[戲劇化詞彙重複違規] 全篇「救回」出現達 {n} 次（上限 1 次，僅限工作經歷危機承接亮點使用，簡介、自傳與專案請用自然的「承接既有用戶與營收」）！"),
+}
 PAREN_LENGTH_CAP = 35  # 單一括號內中文字上限；產品英文名、日期、數字與符號不計（2026-10-26）
 PAREN_CJK = re.compile(r"[\u4e00-\u9fff]")  # 含 Juicy 的兩次下架承接合併點放寬
 PAREN_PATTERN = re.compile(r"（[^（）]*）|\([^()]*\)")
@@ -168,6 +173,13 @@ def run_verification(draft_text: str, final_text: str):
             f"[結構不對稱] 上游草稿有 {len(draft_blocks)} 個標記區塊，下游成品有 {len(final_blocks)} 個。"
             "請確認每個區塊上方皆保留 <!-- [STATUS: POLISHED/LOCKED] --> 標記！"
         )
+
+    for label, blocks in (("上游草稿", draft_blocks), ("下游成品", final_blocks)):
+        body = "\n".join(b["text"] for b in blocks)
+        for word, (cap, msg) in WORD_FREQ_CAPS.items():
+            n = body.count(word)
+            if n > cap:
+                errors.append(f"{label}：" + msg.format(n=n))
 
     for label, blocks in (("上游草稿", draft_blocks), ("下游成品", final_blocks)):
         for bi, b in enumerate(blocks):
