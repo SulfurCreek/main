@@ -1,0 +1,68 @@
+{
+  "model": {
+    "self_description": "Codex，依本代理系統說明為GPT-6系模型",
+    "exact_runtime_model_id": "執行環境未提供可驗證的精確模型ID；未由代理角色名稱推測",
+    "agent_task": "gradient_blind_validator"
+  },
+  "read_only_inputs": [
+    {
+      "path": "/workspace/scratch/a4d77dd3f241/resume_gradient/blind/gradient_resumes.json",
+      "sha256": "828b0095e3be23df67a28288f6b8ceef1d83d0d74681dfb673972b482e32d7af"
+    },
+    {
+      "path": "/workspace/scratch/a4d77dd3f241/resume_gradient/blind/rubric_v3.json",
+      "sha256": "747a67a22612740fb0eec5a04940bdf363b7e93d703ddca9b5b6982b3b36b2fc"
+    }
+  ],
+  "forbidden_content_not_read": [
+    "private目錄",
+    "generate_gradient.py",
+    "resume_calibration",
+    "resume_review",
+    "其他代理產物",
+    "答案key或隱藏設計"
+  ],
+  "method": [
+    "先閱讀固定v3六維規準，再按原JSON順序以每批五份顯示輸入，逐份按自身履歷與所附JD作判斷。",
+    "每份分別辨識六維證據並選取整數分；總分只在全部分項已定後以程式相加。",
+    "未配對履歷、推測隱藏等級、排序、跨份校準或根據分布回推分數；沒有查看統計分布或答案。",
+    "只衡量呈現與JD匹配；合成履歷真偽、公司學校聲望、人員管理規模及成果數字大小不直接加減分。",
+    "具體交付與衡量結果分開判斷；重述JD或自稱可稽核不視為新增工作證據。",
+    "主要缺陷優先歸入直接維度；匹配依職責案例、成果依衡量證據、文字依精準歸功、結構依完整與搜尋效率分別評估。",
+    "各份提供六項具體依據、最多三項問題及0至1主觀評分信心。",
+    "在記憶體驗證同一寫入JSON資料的ID順序完整唯一、分項範圍、總和及欄位；未額外讀取輸出或其他檔案。"
+  ],
+  "limitations": [
+    "單一独立代理的一次評分，未進行多評分者信度估計；不能據此宣稱已驗證不同基礎模型間的一致性。",
+    "精確部署模型ID未暴露，無法獨立確認與資料生成模型是否不同。",
+    "v3對一項完整結果加多項交付、具體結果但來源不全等邊界需作判斷，鄰近分數仍有不確定性。",
+    "只看純文字；不評PDF排版、真實能力、背景聲望或成果真偽，也不外部驗證合成資料。",
+    "同份履歷可出現數據限制、重述JD或摘要宣稱，依正文實際證據判讀；概括免責文字不替代具體來源與可比性。",
+    "confidence為評分者主觀確信程度，不是經過校準的機率或統計信賴區間。"
+  ],
+  "blind_difficulties": [
+    "區分具體行動交付、模糊改善宣稱與可衡量成果，尤其完整單一结果與多項未衡量交付的混合。",
+    "辨別責任邊界是否真正指向具體成果，而非只有末段通用聲明。",
+    "自稱所有數字都有資料來源時，仍需檢查正文是否列出各項期間、母體、來源與可比性。",
+    "在JD含多個要求時，避免將技能表或JD重述當作雇主品牌、情境分析、因果判讀等工作的案例。",
+    "避免把同一資料缺口在成果、匹配、文字等維度重複懲罰，同時保留各維獨立要求。"
+  ],
+  "validation": {
+    "passed": true,
+    "count": 50,
+    "checks": [
+      "ID完整且唯一",
+      "保持原JSON順序",
+      "六分項整數且在範圍內",
+      "總分等於六分項加總",
+      "六項證據欄位非空",
+      "issues最多三項",
+      "confidence介於0與1"
+    ],
+    "errors": []
+  },
+  "outputs": [
+    "/workspace/scratch/a4d77dd3f241/resume_gradient/independent_scores.json",
+    "/workspace/scratch/a4d77dd3f241/resume_gradient/independent_method_notes.json"
+  ]
+}

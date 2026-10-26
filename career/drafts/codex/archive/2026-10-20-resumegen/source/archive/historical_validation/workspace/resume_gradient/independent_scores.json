@@ -1,0 +1,1286 @@
+[
+  {
+    "id": "G40",
+    "scores": {
+      "positioning": 15,
+      "achievements": 27,
+      "fit": 25,
+      "structure": 14,
+      "wording": 9,
+      "differentiation": 5
+    },
+    "total": 95,
+    "evidence": {
+      "positioning": "十年補貨到資深規劃歷程連續，明確界定180個SKU、兩倉及合約權限。",
+      "achievements": "列庫存天數、缺貨率及MAPE改善，交代ERP來源、SKU集合及分工，但MAPE比較期間未標明年月。",
+      "fit": "工作案例涵蓋預測、補貨、庫存、S&OP，並說明12個高波動SKU的庫存與服務取捨。",
+      "structure": "摘要、倒序經歷、技能完整，主要成果先列；末段職務全文重述略冗。",
+      "wording": "區分模型建議、業務假設及採購確認責任，少量重複句點不妨礙理解。",
+      "differentiation": "以ABC、安全庫存例外及促銷缺貨門檻形成可辨識的規劃方法。"
+    },
+    "issues": [
+      "MAPE比較期間缺明確年月與資料來源。",
+      "職務對應段重複JD，可改成證據索引。"
+    ],
+    "confidence": 0.93
+  },
+  {
+    "id": "G22",
+    "scores": {
+      "positioning": 14,
+      "achievements": 10,
+      "fit": 18,
+      "structure": 14,
+      "wording": 7,
+      "differentiation": 3
+    },
+    "total": 66,
+    "evidence": {
+      "positioning": "清楚列出三事業部、240料號、報告對象及十年財務職涯。",
+      "achievements": "重建成本模型與交付假設表具體，但『指標有所改善』沒有可辨識的結果或前後口徑。",
+      "fit": "預算預測、成本模型、差異表及管理報表有工作描述，情境模型與數據來源未呈現。",
+      "structure": "聯絡、目標、經歷年月與學歷齊全，現職三項工作易尋找。",
+      "wording": "職權邊界明確，但『相關部門』『完成交付』與『有所改善』仍模糊。",
+      "differentiation": "材料、工時、匯率模型配合版本控管與差異橋接，呈現具體財務方法。"
+    },
+    "issues": [
+      "成果未交代具體指標、期間與共同貢獻。",
+      "缺情境分析與數據來源的工作證據。",
+      "跨部門專案描述未指明對象與影響。"
+    ],
+    "confidence": 0.91
+  },
+  {
+    "id": "G12",
+    "scores": {
+      "positioning": 10,
+      "achievements": 6,
+      "fit": 11,
+      "structure": 12,
+      "wording": 5,
+      "differentiation": 2
+    },
+    "total": 46,
+    "evidence": {
+      "positioning": "有資深財務分析師目標與連續十年相關經歷，但現職『資深專員』責任範圍不明。",
+      "achievements": "整理報表及追蹤專案屬行動，沒有具體交付內容或結果。",
+      "fit": "前職成本結算、預算彙整與管理報表相關，現職多以技能清單代替案例。",
+      "structure": "基本欄位與倒序工作年月完整，技能清单在工作內容再出現降低閱讀效率。",
+      "wording": "『內外部單位溝通』『主管交辦』等泛稱佔多數，工具與職責混列。",
+      "differentiation": "製造業財務範圍及SAP、Power BI工具提供有限的特定背景。"
+    },
+    "issues": [
+      "缺可辨識的成果或交付。",
+      "預測、情境模型與分析口徑缺案例。",
+      "現職範圍與主要貢獻仍抽象。"
+    ],
+    "confidence": 0.92
+  },
+  {
+    "id": "G17",
+    "scores": {
+      "positioning": 14,
+      "achievements": 10,
+      "fit": 17,
+      "structure": 13,
+      "wording": 8,
+      "differentiation": 3
+    },
+    "total": 65,
+    "evidence": {
+      "positioning": "列十年財務進程及三事業部預測範圍，清楚說明向主管報告與無採購簽核權。",
+      "achievements": "有版本表、差異橋接及改善上線交付，明言未保留前後成效數據。",
+      "fit": "預算預測、差異表與管理報表有描述，缺情境模型、模型口徑及數據來源示例。",
+      "structure": "欄位與年月完整、條列清楚，但摘要責任範圍在現職首條原句重複。",
+      "wording": "區分負責與參與、主動說明沒有成效數據，流程改善對象仍未具體。",
+      "differentiation": "版本假設表、差異橋接與月度覆核呈現具體控制方法。"
+    },
+    "issues": [
+      "改善上線只有交付，沒有結果證據。",
+      "未呈現情境分析及數據來源。",
+      "摘要與首條工作內容重複。"
+    ],
+    "confidence": 0.93
+  },
+  {
+    "id": "G29",
+    "scores": {
+      "positioning": 15,
+      "achievements": 27,
+      "fit": 23,
+      "structure": 14,
+      "wording": 9,
+      "differentiation": 5
+    },
+    "total": 93,
+    "evidence": {
+      "positioning": "明確聚焦會員回購、季度媒體預算與跨團隊協作，十年行銷歷程連續。",
+      "achievements": "隨機會員實驗有樣本、八週結果、信賴區間及分工，媒體成本另有期間與歸因視窗但未交代其他變因。",
+      "fit": "CRM、付費媒體、實驗與預算都有證據，非實驗媒體成本的相關與因果界線尚未說明。",
+      "structure": "摘要、現職成果、方法及過往歷程依序呈現，核心證據易掃讀。",
+      "wording": "明確指出本人與數據團隊分工及30天點擊口徑，『完成預定交付』稍泛。",
+      "differentiation": "將隨機分組、實驗登錄、歸因文件與預算決策紀錄整合成具體工作模式。"
+    },
+    "issues": [
+      "媒體成本變動未說明其他因素與因果限制。",
+      "第二項成果的資料來源與責任歸屬可補強。"
+    ],
+    "confidence": 0.93
+  },
+  {
+    "id": "G16",
+    "scores": {
+      "positioning": 14,
+      "achievements": 10,
+      "fit": 17,
+      "structure": 13,
+      "wording": 8,
+      "differentiation": 3
+    },
+    "total": 65,
+    "evidence": {
+      "positioning": "企業採購SaaS目標與十年产品經歷清楚，交代180客戶及無直屬人員的協作邊界。",
+      "achievements": "Roadmap評分表、API例外清單與UAT庫屬具體交付，流程上線沒有成效數據。",
+      "fit": "訪談、排序工具、ERP串接及協作有描述，但產品策略取捨與數據分析案例不足。",
+      "structure": "經歷年月與基本資料完整，摘要在首項工作中重複。",
+      "wording": "以負責、協調及協助區分角色，明言未保留成效，但『一項流程改善』未具名。",
+      "differentiation": "Roadmap評分、API例外及UAT案例庫構成具體企業產品工作方法。"
+    },
+    "issues": [
+      "交付後的使用或業務結果未呈現。",
+      "未呈現策略取捨及數據分析案例。",
+      "摘要與現職首條重複。"
+    ],
+    "confidence": 0.92
+  },
+  {
+    "id": "G13",
+    "scores": {
+      "positioning": 10,
+      "achievements": 6,
+      "fit": 10,
+      "structure": 12,
+      "wording": 5,
+      "differentiation": 2
+    },
+    "total": 45,
+    "evidence": {
+      "positioning": "目標為資深招募夥伴且人資歷程連續，但近四年資深專員的責任範圍模糊。",
+      "achievements": "報表、會議及專案追蹤只有日常行動，沒有具體招募交付或結果。",
+      "fit": "前職招募行政與校招相關，核心漏斗分析、面試及主管協作主要停留在技能列舉。",
+      "structure": "姓名聯絡、目標、工作及學歷年月完整，工作與技能表內容重複。",
+      "wording": "『相關工作』『內外部單位』『交辦事項』使主要工作內容抽象。",
+      "differentiation": "零售、校園招募與ATS提供有限但具體的背景辨識。"
+    },
+    "issues": [
+      "缺具體招募成果。",
+      "未展示一致口徑、招募品質或效率分析。",
+      "現職責任多為通用描述。"
+    ],
+    "confidence": 0.92
+  },
+  {
+    "id": "G47",
+    "scores": {
+      "positioning": 15,
+      "achievements": 29,
+      "fit": 25,
+      "structure": 14,
+      "wording": 9,
+      "differentiation": 5
+    },
+    "total": 97,
+    "evidence": {
+      "positioning": "聚焦製造財務，交代三事業部、240料號及職權邊界，職涯年月與晉展連貫。",
+      "achievements": "預測MAPE有期間、比較集合及會計關帳來源，另有情境採用與六個月報表時效成果並表明因果限制。",
+      "fit": "預算、預測、成本、差異、報表及三種情境模型均有工作證據與跨部門分工。",
+      "structure": "以核心成果、風險、跨部門與交付標示證據，惟摘要及末段技能與JD重述略長。",
+      "wording": "分清模型、關帳及最終決策責任，但『所有數字均標示資料來源』對報表時效的來源交代稍籠統。",
+      "differentiation": "模型可比性、情境敏感度與版本覆核串成清晰財務決策支援模式。"
+    },
+    "issues": [
+      "報表準備時間的紀錄來源可具體列明。",
+      "末段JD全文重述可精簡。"
+    ],
+    "confidence": 0.94
+  },
+  {
+    "id": "G32",
+    "scores": {
+      "positioning": 15,
+      "achievements": 23,
+      "fit": 24,
+      "structure": 14,
+      "wording": 9,
+      "differentiation": 4
+    },
+    "total": 89,
+    "evidence": {
+      "positioning": "財務目標、三事業部範圍與十年進程明確，採購簽核與決策邊界清楚。",
+      "achievements": "MAPE改善有期間、同料號及實際成本基準，三種情境分析是具體交付但未說明採用結果。",
+      "fit": "預算預測、成本差異及情境分析有案例，管理報表工作在前職有列示。",
+      "structure": "現職證據先列且歷程完整，末段職務對應重複JD。",
+      "wording": "明確說明模型、會計關帳及最終決策分工，『相關主管及專業團隊』仍可更具體。",
+      "differentiation": "以料號可比性結合原料與匯率情境、版本控制，呈現具體財務分析方法。"
+    },
+    "issues": [
+      "情境模型未交代採用或決策影響。",
+      "末段職務全文重述無新增證據。"
+    ],
+    "confidence": 0.92
+  },
+  {
+    "id": "G02",
+    "scores": {
+      "positioning": 2,
+      "achievements": 3,
+      "fit": 1,
+      "structure": 6,
+      "wording": 2,
+      "differentiation": 1
+    },
+    "total": 15,
+    "evidence": {
+      "positioning": "僅稱做過辦公室工作與希望發展，未列財務目標、經歷年月或明確職涯。",
+      "achievements": "『大幅提升效率及滿意度』沒有對象、行動、數值或責任佐證。",
+      "fit": "未展示預算、財務分析、報表或情境模型經驗，Office技能不足以對應核心職責。",
+      "structure": "有聯絡與簡單分節，但公司泛稱且缺年月、學歷與可重建的履歷。",
+      "wording": "『各種事情』『深受肯定』『抗壓性高』等空泛表述主導全文。",
+      "differentiation": "僅通用溝通、學習與管理特質，未呈現專業方法。"
+    },
+    "issues": [
+      "缺可重建的工作歷程與目標。",
+      "成果僅空泛宣稱。",
+      "沒有財務核心職責證據。"
+    ],
+    "confidence": 0.96
+  },
+  {
+    "id": "G06",
+    "scores": {
+      "positioning": 7,
+      "achievements": 4,
+      "fit": 7,
+      "structure": 9,
+      "wording": 4,
+      "differentiation": 2
+    },
+    "total": 33,
+    "evidence": {
+      "positioning": "有資深產品目標及企業軟體年資，但專員職稱和泛稱專案無法說明產品責任。",
+      "achievements": "『優化流程並達成目標』沒有具體行動、交付與可辨識結果。",
+      "fit": "產品策略、SQL與API只列於技能表，工作段未提供產品核心職責案例。",
+      "structure": "聯絡及兩段經歷年份可讀，但年月、學歷與關鍵工作證據不完整。",
+      "wording": "『積極負責』『策略思維』『相關專案』多為抽象用語。",
+      "differentiation": "企業軟體背景及PRD、API工具提供有限的特定領域識別。"
+    },
+    "issues": [
+      "產品責任與職涯進展不明。",
+      "成果只有抽象宣稱。",
+      "核心匹配主要依赖技能表。"
+    ],
+    "confidence": 0.94
+  },
+  {
+    "id": "G25",
+    "scores": {
+      "positioning": 14,
+      "achievements": 10,
+      "fit": 20,
+      "structure": 14,
+      "wording": 7,
+      "differentiation": 4
+    },
+    "total": 69,
+    "evidence": {
+      "positioning": "180個SKU、兩倉及供需協作權限明確，十年補貨至規劃職涯連續。",
+      "achievements": "ABC、安全庫存及S&OP文件有交付，但『相關指標有所改善』沒有明確結果。",
+      "fit": "需求補貨、庫存策略、S&OP及協調有工作描述，但未說明服務、庫存與缺貨的實際取捨。",
+      "structure": "現職、前職、技能與學歷分節完整，工作內容易掃讀。",
+      "wording": "清楚界定合約簽署權，惟『相關部門』『完成交付』及指標改善過於籠統。",
+      "differentiation": "需求波動與交期連結ABC規則，並以S&OP例外和交期偏差表支援決策。"
+    },
+    "issues": [
+      "缺具體成果與衡量期間。",
+      "未展示服務水準與库存的取捨。",
+      "專案協作未說明對象及個人貢獻。"
+    ],
+    "confidence": 0.92
+  },
+  {
+    "id": "G08",
+    "scores": {
+      "positioning": 7,
+      "achievements": 4,
+      "fit": 7,
+      "structure": 9,
+      "wording": 4,
+      "differentiation": 2
+    },
+    "total": 33,
+    "evidence": {
+      "positioning": "求職目標為招募夥伴但只寫零售專員歷程，未界定人資職責與職涯轉變。",
+      "achievements": "只有『優化流程』『達成目標』等宣稱，未提供具體招募交付或結果。",
+      "fit": "招募策略、ATS與人才漏斗僅見技能表，未有招募案例。",
+      "structure": "聯絡與工作年份齊備但缺具體年月、學歷及可定位的工作內容。",
+      "wording": "『相關專案』『例行工作』『具策略思維』多為抽象描述。",
+      "differentiation": "零售場景與ATS、面試官訓練列項提供有限專業識別。"
+    },
+    "issues": [
+      "缺可辨識的招募責任。",
+      "成果陳述沒有具體證據。",
+      "核心要求只有技能列舉。"
+    ],
+    "confidence": 0.94
+  },
+  {
+    "id": "G14",
+    "scores": {
+      "positioning": 10,
+      "achievements": 6,
+      "fit": 11,
+      "structure": 12,
+      "wording": 5,
+      "differentiation": 2
+    },
+    "total": 46,
+    "evidence": {
+      "positioning": "成長行銷目標與十年行銷歷程清楚，但現職範圍與資深角色轉變模糊。",
+      "achievements": "報表、會議與追蹤屬日常行動，沒有活動交付细節或會員與媒體結果。",
+      "fit": "前職EDM、會員活動與廣告報表相關，現職預算、實驗及歸因缺工作案例。",
+      "structure": "倒序經歷、年月、學歷及聯絡完整，工作首條重列技能降低效率。",
+      "wording": "工具名稱混入職責，『內外部溝通』『交辦事項』使主要敘述籠統。",
+      "differentiation": "電子商務、CRM與EDM構成特定領域背景但無獨特方法。"
+    },
+    "issues": [
+      "缺具體成果。",
+      "實驗、歸因與預算管理未有工作證據。",
+      "現職責任描述仍泛化。"
+    ],
+    "confidence": 0.93
+  },
+  {
+    "id": "G07",
+    "scores": {
+      "positioning": 7,
+      "achievements": 4,
+      "fit": 7,
+      "structure": 9,
+      "wording": 4,
+      "differentiation": 2
+    },
+    "total": 33,
+    "evidence": {
+      "positioning": "有財務分析師目標與製造年資，但兩段專員經歷未說明財務職責或範圍。",
+      "achievements": "『優化流程並達成目標』未提供具體流程、交付或結果。",
+      "fit": "預算、預測及成本分析集中於技能表，工作段缺財務案例。",
+      "structure": "聯絡及工作年份可辨，缺具體年月、學歷與可快速定位的專業證據。",
+      "wording": "『積極負責』『相關專案』『例行工作』等抽象用語占大部分。",
+      "differentiation": "製造背景與SAP、Power BI提供有限專業識別。"
+    },
+    "issues": [
+      "財務職責與職涯進展不明。",
+      "成果無具體證據。",
+      "核心匹配主要靠技能列舉。"
+    ],
+    "confidence": 0.94
+  },
+  {
+    "id": "G23",
+    "scores": {
+      "positioning": 14,
+      "achievements": 10,
+      "fit": 19,
+      "structure": 14,
+      "wording": 7,
+      "differentiation": 3
+    },
+    "total": 67,
+    "evidence": {
+      "positioning": "招募目標、總部及25門市範圍明確，十年人資歷程和薪酬權限交代清楚。",
+      "achievements": "有漏斗拆分、面試排程、校準及看板交付，但指標改善未具體化。",
+      "fit": "招募、漏斗、面試與主管合作有工作內容，雇主品牌及一致口徑品質衡量缺案例。",
+      "structure": "摘要到倒序經歷、學歷及技能順序完整，主要方法易找。",
+      "wording": "門市與案量描述清楚，但『相關指標』『相關部門』『完成交付』不够精確。",
+      "differentiation": "職類漏斗、面試官校準與結案復盤形成具體招募改善方法。"
+    },
+    "issues": [
+      "缺明確結果及前後衡量口徑。",
+      "雇主品牌與招募品質衡量缺工作證據。",
+      "跨部門專案貢獻敘述泛化。"
+    ],
+    "confidence": 0.92
+  },
+  {
+    "id": "G31",
+    "scores": {
+      "positioning": 15,
+      "achievements": 23,
+      "fit": 24,
+      "structure": 14,
+      "wording": 9,
+      "differentiation": 4
+    },
+    "total": 89,
+    "evidence": {
+      "positioning": "清楚聚焦企業採購SaaS，客戶、協作與無直屬人員範圍明确，產品經歷連續。",
+      "achievements": "完成率有半年期間、既有客戶母體及看板來源，API遷移另有具體方案但缺實施結果。",
+      "fit": "訪談、事件分析、Roadmap排序、跨部門驗收及API方案涵蓋核心要求，策略取捨後果尚未展开。",
+      "structure": "成果與取捨條列優先、履歷欄位完整，末段JD重述稍冗。",
+      "wording": "分清研究驗收與工程開發，另說明決策與實作邊界但主管描述較泛。",
+      "differentiation": "將客戶研究、狀態權限規則與漸進API遷移組合成具體產品方法。"
+    },
+    "issues": [
+      "API方案未交代實際代價或結果。",
+      "職務對應段重述JD，未新增證據。"
+    ],
+    "confidence": 0.92
+  },
+  {
+    "id": "G10",
+    "scores": {
+      "positioning": 7,
+      "achievements": 4,
+      "fit": 7,
+      "structure": 9,
+      "wording": 4,
+      "differentiation": 2
+    },
+    "total": 33,
+    "evidence": {
+      "positioning": "供應鏈規劃目標明確，但消費品專員職涯未说明規劃責任與轉變。",
+      "achievements": "只有『優化流程並達成目標』，無具體交付或衡量結果。",
+      "fit": "需求預測、庫存及S&OP僅列技能，工作段沒有供需案例。",
+      "structure": "工作年份與聯絡資料可辨，但年月、學歷及專業工作資訊不足。",
+      "wording": "『相關專案』『積極負責』『例行工作』等抽象敘述居多。",
+      "differentiation": "消費品場景與SAP、S&OP提供有限領域識別。"
+    },
+    "issues": [
+      "規劃責任與經歷內容不清。",
+      "成果無具體證據。",
+      "核心職責主要靠技能表。"
+    ],
+    "confidence": 0.94
+  },
+  {
+    "id": "G50",
+    "scores": {
+      "positioning": 15,
+      "achievements": 28,
+      "fit": 25,
+      "structure": 14,
+      "wording": 9,
+      "differentiation": 5
+    },
+    "total": 96,
+    "evidence": {
+      "positioning": "十年補貨與規劃進程、180SKU及兩倉範圍完整，合約權限界定明確。",
+      "achievements": "庫存與缺貨有ERP、同SKU及年度口徑，促銷預測有前後三月與分工並聲明因果限制，但其明確年月及來源未列。",
+      "fit": "預測、補貨、庫存與S&OP都有證據，並以高波動SKU及缺貨門檻說明服務取捨。",
+      "structure": "以成果、風險、跨部門及交付分類便於定位，摘要與JD重述增加少量冗文。",
+      "wording": "清楚交代各方責任與因果限制，但『所有數字均標示來源』對促銷MAPE仍欠具體。",
+      "differentiation": "ABC規則、例外安全庫存、促銷事件與S&OP假設管理形成完整規劃模式。"
+    },
+    "issues": [
+      "促銷MAPE的日曆期間與來源可補明。",
+      "摘要及末段JD重述可精簡。"
+    ],
+    "confidence": 0.93
+  },
+  {
+    "id": "G30",
+    "scores": {
+      "positioning": 15,
+      "achievements": 23,
+      "fit": 23,
+      "structure": 14,
+      "wording": 8,
+      "differentiation": 4
+    },
+    "total": 87,
+    "evidence": {
+      "positioning": "供應鏈目標、180SKU兩倉範圍與十年職涯清楚，說明協作及簽署權限。",
+      "achievements": "同180SKU、ERP週報與2025年支援庫存及缺貨改善，高波動SKU決策只述交付且未分清成果責任。",
+      "fit": "補貨、庫存、S&OP與協調相符，服務取捨有決策描述，但需求預測分析案例較少。",
+      "structure": "摘要與條列現職成果易讀，年月、學歷及技能完整。",
+      "wording": "方法與數字清楚，『完成預定交付』未說明具體含義，少量重複句點可修。",
+      "differentiation": "依需求波動及交期調整ABC，並保留高波動SKU安全庫存，展現具體取捨方法。"
+    },
+    "issues": [
+      "庫存改善中的本人與團隊責任未充分說明。",
+      "高波動SKU決策缺後續結果。",
+      "需求預測工作證據可補強。"
+    ],
+    "confidence": 0.92
+  },
+  {
+    "id": "G35",
+    "scores": {
+      "positioning": 15,
+      "achievements": 24,
+      "fit": 23,
+      "structure": 14,
+      "wording": 9,
+      "differentiation": 4
+    },
+    "total": 89,
+    "evidence": {
+      "positioning": "十年供應鏈歷程、SKU與倉庫範圍、協作部門及簽署權限交代清楚。",
+      "achievements": "庫存及缺貨改善有2025年、ERP與固定SKU口徑，安全庫存決策有分工，但未列該決策效果。",
+      "fit": "補貨、庫存、S&OP與供需協作有證據，較少展示預測模型及服務水準取捨的後果。",
+      "structure": "核心成果先列、年月完整，職務對應段較重複。",
+      "wording": "清楚区分分析協調與最終決策實作，未宣稱單獨造成成果。",
+      "differentiation": "以需求波動及交期調整ABC，對高波動SKU保留例外安全庫存，有方法與取捨。"
+    },
+    "issues": [
+      "高波動SKU決策缺後續服務與庫存結果。",
+      "需求預測的實際分析案例可補強。",
+      "末段JD重述可精簡。"
+    ],
+    "confidence": 0.91
+  },
+  {
+    "id": "G33",
+    "scores": {
+      "positioning": 15,
+      "achievements": 23,
+      "fit": 21,
+      "structure": 14,
+      "wording": 9,
+      "differentiation": 4
+    },
+    "total": 86,
+    "evidence": {
+      "positioning": "總部及門市招募定位、每年案量、主管合作與十年進程清楚。",
+      "achievements": "招募中位天數有年度、前後80案、ATS來源及錄用分工，題庫與評分表交付未有成效。",
+      "fit": "招募漏斗、面試及用人主管協作有案例，但雇主品牌與招募品質衡量證據不足。",
+      "structure": "具體成果置前，履歷年月與欄位一致，末段重述JD略冗。",
+      "wording": "区分流程追蹤與錄用決策，使用中位數與明確日期起訖口徑。",
+      "differentiation": "職類漏斗、結構式題庫、行為錨定與校準復盤組成具體方法。"
+    },
+    "issues": [
+      "題庫及評分表未展示招募品質結果。",
+      "雇主品牌未有具體案例。",
+      "可補前後完成案件組成的可比性。"
+    ],
+    "confidence": 0.92
+  },
+  {
+    "id": "G19",
+    "scores": {
+      "positioning": 14,
+      "achievements": 10,
+      "fit": 18,
+      "structure": 13,
+      "wording": 8,
+      "differentiation": 3
+    },
+    "total": 66,
+    "evidence": {
+      "positioning": "會員回購、媒體預算與協作範圍清楚，十年行銷進程連貫。",
+      "achievements": "實驗登錄、歸因文件、預算紀錄及協助上線屬交付，沒有前後結果數據。",
+      "fit": "CRM、媒體預算與實驗管理有內容，但沒有實驗、歸因計算或因果判讀案例。",
+      "structure": "各基本欄位完整、條列易讀，現職首條重複摘要責任。",
+      "wording": "負責與協助分明並坦述數據缺失，『一項流程改善』仍不具體。",
+      "differentiation": "實驗登錄配合歸因口徑及每週預算紀錄呈現具體管理方法。"
+    },
+    "issues": [
+      "缺交付後的可衡量結果。",
+      "未展示歸因與因果判斷的實際案例。",
+      "摘要與現職首項重複。"
+    ],
+    "confidence": 0.92
+  },
+  {
+    "id": "G20",
+    "scores": {
+      "positioning": 14,
+      "achievements": 10,
+      "fit": 18,
+      "structure": 13,
+      "wording": 8,
+      "differentiation": 3
+    },
+    "total": 66,
+    "evidence": {
+      "positioning": "供應鏈目標、180SKU兩倉與簽署權限清楚，十年相關進程完整。",
+      "achievements": "S&OP例外清單與交期偏差表具體，改善上線明言沒有前後成效數據。",
+      "fit": "需求補貨、協調及S&OP有工作內容，庫存策略與服務缺貨取捨缺實際案例。",
+      "structure": "經歷、學歷與技能完整，摘要和現職首項原句重複。",
+      "wording": "責任權限與協助角色交代清楚，但流程改善未指明內容。",
+      "differentiation": "月度S&OP、假設版本與交期偏差追蹤形成具體供需管理方法。"
+    },
+    "issues": [
+      "沒有具體改善結果。",
+      "缺庫存策略及服務水準取捨案例。",
+      "責任範圍重複敘述。"
+    ],
+    "confidence": 0.92
+  },
+  {
+    "id": "G09",
+    "scores": {
+      "positioning": 7,
+      "achievements": 4,
+      "fit": 7,
+      "structure": 9,
+      "wording": 4,
+      "differentiation": 2
+    },
+    "total": 33,
+    "evidence": {
+      "positioning": "有成長行銷目標與電商年資，但專員歷程未说明行銷責任與晉展。",
+      "achievements": "『優化流程並達成目標』沒有流程細節、交付或結果。",
+      "fit": "GA4、CRM、付費媒體及實驗設計只列技能，工作段沒有成長行銷案例。",
+      "structure": "聯絡與年份簡明可讀，但學歷、具體年月與專業證據不足。",
+      "wording": "『積極負責』『相關專案』『例行工作』等抽象敘述主導。",
+      "differentiation": "電子商務背景及GA4、CRM提供有限領域辨識。"
+    },
+    "issues": [
+      "行銷責任與職涯變化不清。",
+      "成果未有具體證據。",
+      "核心職責主要靠技能表。"
+    ],
+    "confidence": 0.94
+  },
+  {
+    "id": "G38",
+    "scores": {
+      "positioning": 15,
+      "achievements": 27,
+      "fit": 23,
+      "structure": 14,
+      "wording": 9,
+      "differentiation": 5
+    },
+    "total": 93,
+    "evidence": {
+      "positioning": "總部及25門市招募責任與十年職涯清晰，案量、主管合作與政策權限俱明。",
+      "achievements": "招募天數、評分完整率及90天留任均有樣本，ATS及因果限制有交代，但後兩項期間、母體可比性未完整。",
+      "fit": "招募、漏斗、面試及主管協作有案例，效率與品質指標有呈現，雇主品牌仍缺實作證據。",
+      "structure": "重要結果先列、完整倒序經歷易讀，末段JD重述較長。",
+      "wording": "明確區分錄用權責，並指出評分表不能證明單獨提高績效。",
+      "differentiation": "職類漏斗、行為錨定、面試校準與新人留任連結形成具體招募品質方法。"
+    },
+    "issues": [
+      "留任率兩批新人與評分抽查缺明確日曆期間及可比性。",
+      "雇主品牌沒有工作案例。"
+    ],
+    "confidence": 0.92
+  },
+  {
+    "id": "G46",
+    "scores": {
+      "positioning": 15,
+      "achievements": 29,
+      "fit": 25,
+      "structure": 14,
+      "wording": 9,
+      "differentiation": 5
+    },
+    "total": 97,
+    "evidence": {
+      "positioning": "B2B採購SaaS、客戶與協作範圍聚焦，連續產品職涯與無直屬權責明確。",
+      "achievements": "完成率、ERP遷移及啟用時效皆有對象和期間，列事件看板及客群差異限制，但部分交付紀錄來源未具名。",
+      "fit": "客戶研究、事件分析、排序、跨部門驗收、API及遷移取捨均有工作證據。",
+      "structure": "成果、風險、協作、交付分列易掃讀，摘要與末段JD內容重複。",
+      "wording": "工程責任、已確認重大事故及啟用時間因果限制說得精確，但『所有數字均標示來源』略超出所列細節。",
+      "differentiation": "以權限狀態、API轉換層、導入檢核點及UAT形成可信產品交付模式。"
+    },
+    "issues": [
+      "啟用時間與遷移事故的紀錄來源可具體列明。",
+      "摘要與JD重述可精簡。"
+    ],
+    "confidence": 0.94
+  },
+  {
+    "id": "G44",
+    "scores": {
+      "positioning": 15,
+      "achievements": 28,
+      "fit": 25,
+      "structure": 14,
+      "wording": 10,
+      "differentiation": 5
+    },
+    "total": 97,
+    "evidence": {
+      "positioning": "明確聚焦會員回購與媒體預算，十年行銷歷程及商品數據合作連貫。",
+      "achievements": "會員隨機實驗有樣本、期間、区間及分工，媒體成本有口徑與混雜限制，預算決策另有六個月紀錄。",
+      "fit": "會員、CRM、付費媒體、實驗、預算与跨團隊協作均有證據，清楚區分實驗與非實驗歸因。",
+      "structure": "實驗、取捨、預算行動與方法依序呈現且基本欄位完整，末段JD重述稍冗。",
+      "wording": "清楚指出折扣變化、品類分層及非全部歸因素材，責任與統計口徑精確。",
+      "differentiation": "隨機驗證、分層歸因與邊際轉換成本決策結合，形成可信的成長方法。"
+    },
+    "issues": [
+      "媒體成本與會員結果的系統資料來源可列明。",
+      "職務對應段可改為更精簡的證據索引。"
+    ],
+    "confidence": 0.94
+  },
+  {
+    "id": "G18",
+    "scores": {
+      "positioning": 14,
+      "achievements": 10,
+      "fit": 18,
+      "structure": 13,
+      "wording": 8,
+      "differentiation": 3
+    },
+    "total": 66,
+    "evidence": {
+      "positioning": "總部及門市招募、案量與薪酬權限明確，十年人資進程清晰。",
+      "achievements": "面試校準、漏斗看板與流程上線有交付，未保留前後成效。",
+      "fit": "招募範圍、主管合作、漏斗與面試有描述，雇主品牌及一致品質衡量缺案例。",
+      "structure": "基本資料、年月與分節完整，但摘要和現職首條重複。",
+      "wording": "區分負責與協助且主動說明數據缺失，『一項流程改善』欠具體。",
+      "differentiation": "月度面試官校準、漏斗看板及結案復盤提供具體方法。"
+    },
+    "issues": [
+      "缺具體招募結果。",
+      "雇主品牌與效率品質衡量缺工作證據。",
+      "摘要與現職內容重複。"
+    ],
+    "confidence": 0.92
+  },
+  {
+    "id": "G24",
+    "scores": {
+      "positioning": 14,
+      "achievements": 11,
+      "fit": 20,
+      "structure": 14,
+      "wording": 7,
+      "differentiation": 4
+    },
+    "total": 70,
+    "evidence": {
+      "positioning": "會員回購、季度媒體預算與合作團隊清楚，十年行銷職涯連貫。",
+      "achievements": "8,000會員隨機分組與訊息差別是具體實驗行動，但指標改善沒有結果值、期間及貢獻。",
+      "fit": "CRM、實驗、預算管理與歸因文件有工作描述，但付費媒體案例及實際歸因判讀不足。",
+      "structure": "摘要到現職、前職及學歷技能完整，實驗行動優先列示。",
+      "wording": "隨機分組設計清楚，惟『相關指標』『相關部門』及『完成交付』模糊。",
+      "differentiation": "以沉睡會員分組實驗配合登錄、歸因口徑及預算紀錄呈現具體方法。"
+    },
+    "issues": [
+      "實驗沒有具體結果與衡量期間。",
+      "付費媒體及歸因判讀缺實際案例。",
+      "跨部門交付貢獻描述泛化。"
+    ],
+    "confidence": 0.92
+  },
+  {
+    "id": "G39",
+    "scores": {
+      "positioning": 15,
+      "achievements": 28,
+      "fit": 25,
+      "structure": 14,
+      "wording": 9,
+      "differentiation": 5
+    },
+    "total": 96,
+    "evidence": {
+      "positioning": "會員回購、媒體預算及合作範圍清楚，十年行銷進程對應資深目標。",
+      "achievements": "隨機實驗有樣本、週期及區間，媒體結果有歸因窗口與折扣限制，預算決策有六個月紀錄。",
+      "fit": "會員CRM、媒體、實驗、預算及商品數據協作均有工作證據，並區分因果與同期變化。",
+      "structure": "先列實驗與媒體成果、再列預算規則，欄位完整，末段JD重述較冗。",
+      "wording": "精確說明分工與歸因限制，個別重複句點是輕微文字瑕疵。",
+      "differentiation": "隨機分組、品類分層與邊際轉換成本預算規則形成明確專業模式。"
+    },
+    "issues": [
+      "結果的原始資料系統來源可補明。",
+      "末段JD重述與重複句點可精簡修正。"
+    ],
+    "confidence": 0.94
+  },
+  {
+    "id": "G28",
+    "scores": {
+      "positioning": 15,
+      "achievements": 23,
+      "fit": 21,
+      "structure": 14,
+      "wording": 8,
+      "differentiation": 4
+    },
+    "total": 85,
+    "evidence": {
+      "positioning": "總部及門市招募責任、案量、權限與十年人資歷程清楚。",
+      "achievements": "35至27天有ATS日期、年度與前後案件數及分工，題庫評分表交付未呈現結果。",
+      "fit": "漏斗、面試與主管合作有案例，但雇主品牌及品質衡量未有工作證據。",
+      "structure": "先成果再交付方法，聯絡、年月、學歷技能完整易讀。",
+      "wording": "清楚區分流程追蹤與錄用，『完成預定交付』較泛且有重複句點。",
+      "differentiation": "職類漏斗、行為錨定評分與校準復盤提供具体招募方法。"
+    },
+    "issues": [
+      "題庫與評分表未展示品質結果。",
+      "雇主品牌缺案例。",
+      "可補前後案件的職類可比性。"
+    ],
+    "confidence": 0.92
+  },
+  {
+    "id": "G21",
+    "scores": {
+      "positioning": 14,
+      "achievements": 11,
+      "fit": 20,
+      "structure": 14,
+      "wording": 7,
+      "differentiation": 4
+    },
+    "total": 70,
+    "evidence": {
+      "positioning": "企业採購SaaS、180付費企業及協作邊界清晰，十年產品歷程連貫。",
+      "achievements": "18家訪談、事件分析、權限規則及UAT庫是具體交付，但改善指標未交代明確結果。",
+      "fit": "研究、分析、Roadmap排序、API及交付有工作內容，策略取捨和結果衡量不足。",
+      "structure": "具體研究行动先列，工作年月、學歷及技能完整且易找。",
+      "wording": "產品行動具體，惟『相關指標』『相關部門』『完成交付』仍模糊。",
+      "differentiation": "將訪談與事件資料轉為狀態權限規則，配合API例外及UAT，是可辨識方法。"
+    },
+    "issues": [
+      "改善成效未列明指標與期間。",
+      "缺實際策略取捨案例。",
+      "跨部門交付未分清具體貢獻。"
+    ],
+    "confidence": 0.92
+  },
+  {
+    "id": "G42",
+    "scores": {
+      "positioning": 15,
+      "achievements": 28,
+      "fit": 25,
+      "structure": 14,
+      "wording": 9,
+      "differentiation": 5
+    },
+    "total": 96,
+    "evidence": {
+      "positioning": "製造財務目標、三事業部與料號責任明確，十年分析進程和權限清楚。",
+      "achievements": "MAPE有期間、實際成本與同料號口徑，情境有決策採用，報表時效連續六個月但未列其紀錄來源。",
+      "fit": "預算、滾動預測、成本差異、管理報表及情境模型都有具體案例與跨部門影響。",
+      "structure": "成果、決策取捨及報表協作有序，基本資訊完整，末段重複JD稍長。",
+      "wording": "精確指出模型、關帳與最終決策分工，對比指標口徑清楚。",
+      "differentiation": "成本模型、產品組合敏感度、科目映射與版本覆核构成可信財務模式。"
+    },
+    "issues": [
+      "報表時效來源及前後計時口徑可補明。",
+      "職務對應段可縮短。"
+    ],
+    "confidence": 0.94
+  },
+  {
+    "id": "G37",
+    "scores": {
+      "positioning": 15,
+      "achievements": 28,
+      "fit": 25,
+      "structure": 14,
+      "wording": 9,
+      "differentiation": 5
+    },
+    "total": 96,
+    "evidence": {
+      "positioning": "三事業部預算預測責任與十年財務職涯聚焦，報告對象及簽核權限明確。",
+      "achievements": "成本MAPE可比口徑、情境採用及六個月報表縮時提供多項成果，報表紀錄來源仍未具體說明。",
+      "fit": "完整呈現預算、成本差異、情境、管理報表及會計與事業部協作案例。",
+      "structure": "現職成果優先、歷程與技能分節完整，末段重述JD增加冗文。",
+      "wording": "本人模型、會計關帳及主管決策責任明確，少量重複句點可修。",
+      "differentiation": "以成本因子、情境敏感度、映射自動取數與覆核機制形成明確方法。"
+    },
+    "issues": [
+      "報表準備時間的資料來源與計時口徑可補強。",
+      "末段重述及重複句點可修整。"
+    ],
+    "confidence": 0.94
+  },
+  {
+    "id": "G45",
+    "scores": {
+      "positioning": 15,
+      "achievements": 27,
+      "fit": 25,
+      "structure": 14,
+      "wording": 9,
+      "differentiation": 5
+    },
+    "total": 95,
+    "evidence": {
+      "positioning": "十年供應鏈歷程、180SKU兩倉與跨部門權限清楚，聚焦資深規劃目標。",
+      "achievements": "庫存天數、缺貨率與預測MAPE皆有結果，ERP、固定SKU與分工有交代，但MAPE年月與來源未完整。",
+      "fit": "預測、補貨、庫存、S&OP及供需協作皆有案例，高波動SKU決策明確說明服務取捨。",
+      "structure": "成果、決策取捨與協作依序可讀，年月欄位完整但末段重述JD。",
+      "wording": "本人模型、業務活動假設及採購供應責任分明，指標與決策措辭清楚。",
+      "differentiation": "ABC、例外安全庫存、促銷事件與供應偏差追蹤形成完整規劃模式。"
+    },
+    "issues": [
+      "促銷預測MAPE缺日曆期間與資料來源。",
+      "職務對應段可精簡為證據索引。"
+    ],
+    "confidence": 0.93
+  },
+  {
+    "id": "G41",
+    "scores": {
+      "positioning": 15,
+      "achievements": 29,
+      "fit": 25,
+      "structure": 14,
+      "wording": 10,
+      "differentiation": 5
+    },
+    "total": 98,
+    "evidence": {
+      "positioning": "企業採購SaaS、客戶及協作邊界清楚，十年產品進程聚焦且連貫。",
+      "achievements": "流程完成率、API切換及啟用時間有對象期間，事件看板與客群差異限制明確，少數紀錄來源未詳。",
+      "fit": "研究、Roadmap排序、數據分析、跨部門驗收、API與遷移取捨都有工作證據。",
+      "structure": "核心成果先列且現職條列易找，基本年月完整，末段JD重述稍冗。",
+      "wording": "明確區分研究驗收與開發，使用『已確認』事故及客群差異限制避免過度歸因。",
+      "differentiation": "狀態權限設計、轉換層遷移、導入檢核與UAT連結成具體專業模式。"
+    },
+    "issues": [
+      "API事故及啟用時間的紀錄來源可補明。",
+      "末段JD重述可精簡。"
+    ],
+    "confidence": 0.94
+  },
+  {
+    "id": "G11",
+    "scores": {
+      "positioning": 10,
+      "achievements": 7,
+      "fit": 12,
+      "structure": 12,
+      "wording": 5,
+      "differentiation": 2
+    },
+    "total": 48,
+    "evidence": {
+      "positioning": "有資深產品目標與產品經理前職，但現職資深專員的產品範圍不明。",
+      "achievements": "前職有兩項ERP串接交付，現職只列報表與追蹤，沒有具體結果。",
+      "fit": "客戶訪談與ERP串接對應研究及整合，其餘策略、排序與分析主要為技能列舉。",
+      "structure": "聯絡、倒序年月、學歷與技能齊備，但現職內容重列技能。",
+      "wording": "『相關工作』『內外部單位』『交辦事項』使現職描述多數抽象。",
+      "differentiation": "企業軟體與ERP串接提供特定場景，但沒有獨特方法。"
+    },
+    "issues": [
+      "現職產品责任與範圍不清。",
+      "缺具體成果。",
+      "策略、排序與數據分析缺案例。"
+    ],
+    "confidence": 0.93
+  },
+  {
+    "id": "G48",
+    "scores": {
+      "positioning": 15,
+      "achievements": 28,
+      "fit": 23,
+      "structure": 14,
+      "wording": 9,
+      "differentiation": 5
+    },
+    "total": 94,
+    "evidence": {
+      "positioning": "總部門市招募範圍、年度案量與十年職涯清晰，政策權限明确。",
+      "achievements": "招募效率、評分完整率與留任有樣本，ATS來源及績效、季節因果限制明確，但部分年月來源仍未列。",
+      "fit": "漏斗、面試、主管合作及效率品質均有證據，雇主品牌只有JD重述。",
+      "structure": "成果、風險、協作與交付標籤清晰，摘要及末段重述較長。",
+      "wording": "將留任列觀察結果並保留季節因素，但『所有數字均標示來源』對留任紀錄仍欠具體。",
+      "differentiation": "職類漏斗、行為錨定、校準與留任觀察結合成可信招募方法。"
+    },
+    "issues": [
+      "評分抽查及留任紀錄的年月與來源可補明。",
+      "雇主品牌缺工作案例。",
+      "摘要與JD重述可精簡。"
+    ],
+    "confidence": 0.93
+  },
+  {
+    "id": "G26",
+    "scores": {
+      "positioning": 15,
+      "achievements": 21,
+      "fit": 23,
+      "structure": 14,
+      "wording": 8,
+      "differentiation": 4
+    },
+    "total": 85,
+    "evidence": {
+      "positioning": "企業採購SaaS、客戶及跨團隊範圍清楚，十年產品歷程連貫。",
+      "achievements": "半年120客戶完成率改善與六個月API轉換層有具體成果交付，但來源、可比定義與貢獻未說明。",
+      "fit": "研究、事件分析、Roadmap、API及協作有案例，遷移取捨的代價與責任界線不足。",
+      "structure": "現職成果先列且工作、學歷年月與技能完整，便於掃讀。",
+      "wording": "狀態權限與遷移方案清楚，『完成預定交付』較泛且成果歸功未細分。",
+      "differentiation": "客戶研究轉成流程規則並採漸進API遷移，呈現具體方法與取捨。"
+    },
+    "issues": [
+      "成果缺資料來源、事件口徑及責任分工。",
+      "API方案未说明取捨代價與實際切換結果。"
+    ],
+    "confidence": 0.92
+  },
+  {
+    "id": "G15",
+    "scores": {
+      "positioning": 10,
+      "achievements": 6,
+      "fit": 11,
+      "structure": 12,
+      "wording": 5,
+      "differentiation": 2
+    },
+    "total": 46,
+    "evidence": {
+      "positioning": "供應鏈目標與前職補貨規劃歷程清楚，現職資深專員範圍未具體化。",
+      "achievements": "報表、追蹤及日常補貨屬行動，未有改善交付或結果。",
+      "fit": "前職補貨、庫存報表與交期追蹤相關，預測、S&OP與庫存取捨主要停留在列舉。",
+      "structure": "聯絡、年月、學歷及技能完整，但工作首條再列技能使證據不突出。",
+      "wording": "『相關工作』『內外部單位』『主管交辦』多為抽象敘述。",
+      "differentiation": "消費品、供應商交期及SAP提供有限的特定背景。"
+    },
+    "issues": [
+      "缺具體成果。",
+      "預測、S&OP及服務庫存取捨缺案例。",
+      "現職責任範圍模糊。"
+    ],
+    "confidence": 0.93
+  },
+  {
+    "id": "G05",
+    "scores": {
+      "positioning": 2,
+      "achievements": 3,
+      "fit": 1,
+      "structure": 6,
+      "wording": 2,
+      "differentiation": 1
+    },
+    "total": 15,
+    "evidence": {
+      "positioning": "只稱辦公室工作與希望發展，無供應鏈目標、年月或可辨識歷程。",
+      "achievements": "大幅提升效率及滿意度只是宣稱，無行動、對象或衡量證據。",
+      "fit": "Office、溝通與管理未能證明需求預測、補貨、庫存或S&OP職責。",
+      "structure": "有聯絡及基本分節，但公司泛稱且缺年月與學歷等基本資料。",
+      "wording": "『各種事情』『深受肯定』『抗壓性高』等空泛語句主導全文。",
+      "differentiation": "僅呈現通用溝通與管理特質，無特定領域或方法。"
+    },
+    "issues": [
+      "無法重建職涯與目標。",
+      "成果只有抽象宣稱。",
+      "沒有供應鏈核心工作證據。"
+    ],
+    "confidence": 0.96
+  },
+  {
+    "id": "G43",
+    "scores": {
+      "positioning": 15,
+      "achievements": 28,
+      "fit": 23,
+      "structure": 14,
+      "wording": 10,
+      "differentiation": 5
+    },
+    "total": 95,
+    "evidence": {
+      "positioning": "總部與門市招募、案量和權限清楚，十年人資進程符合資深目標。",
+      "achievements": "招募時效、評分完整率及90天留任有樣本與部分來源，主動交代績效與季節限制，後兩項明確年月仍缺。",
+      "fit": "漏斗、面試、主管合作與效率品質衡量有案例，但雇主品牌未有工作證據。",
+      "structure": "核心成果先列，取捨與協作易找，基本欄位齊全，JD重述略冗。",
+      "wording": "明確區分流程與錄用決策，把跨季留任視為觀察結果且不宣稱單獨提升績效。",
+      "differentiation": "以職類漏斗、行為錨定、校準與保留混雜因素的留任觀察形成專業方法。"
+    },
+    "issues": [
+      "評分與留任結果缺具體年月及資料來源。",
+      "雇主品牌未提供案例。",
+      "末段JD重述可精簡。"
+    ],
+    "confidence": 0.93
+  },
+  {
+    "id": "G34",
+    "scores": {
+      "positioning": 15,
+      "achievements": 27,
+      "fit": 24,
+      "structure": 14,
+      "wording": 9,
+      "differentiation": 5
+    },
+    "total": 94,
+    "evidence": {
+      "positioning": "會員回購、媒體預算與十年行銷進程清晰，合作及分析責任有界定。",
+      "achievements": "隨機實驗有樣本、八週結果、信賴區間及分工，媒體成本有期間口徑與分析責任但缺其他變因说明。",
+      "fit": "CRM、媒體、實驗與預算都有工作證據及歸因窗口，非實驗結果的因果限制尚未具體分析。",
+      "structure": "成果、方法與職涯分節完整且易找，末段JD全文重述較長。",
+      "wording": "明確分清假設預算分析與數據覆核，也區分最後決策及實作責任。",
+      "differentiation": "隨機實驗結合歸因視窗、排除品牌字及預算紀錄構成可信成長方法。"
+    },
+    "issues": [
+      "媒體成本變動未說明同期因素或因果限制。",
+      "結果資料來源可具體列明。",
+      "職務對應段可縮短。"
+    ],
+    "confidence": 0.93
+  },
+  {
+    "id": "G36",
+    "scores": {
+      "positioning": 15,
+      "achievements": 27,
+      "fit": 25,
+      "structure": 14,
+      "wording": 9,
+      "differentiation": 5
+    },
+    "total": 95,
+    "evidence": {
+      "positioning": "企業採購SaaS、客戶及協作邊界清晰，十年產品歷程連貫。",
+      "achievements": "流程完成率有同事件看板、期間及分工，API切換与啟用時效有結果，但後者母體可比性與來源未說明。",
+      "fit": "研究、Roadmap排序、事件分析、跨部門交付及API取捨均有具體工作證據。",
+      "structure": "現職核心成果優先，經歷年月與欄位齊全，末段JD重述較冗。",
+      "wording": "研究驗收與工程開發分工明確，事故限定為已確認且說明不單獨歸功。",
+      "differentiation": "狀態權限、漸進API遷移、導入檢核與UAT組成具體產品工作模式。"
+    },
+    "issues": [
+      "啟用時間比較缺客群可比性與來源說明。",
+      "API切換及事故紀錄來源可補明。",
+      "職務對應段可精簡。"
+    ],
+    "confidence": 0.93
+  },
+  {
+    "id": "G03",
+    "scores": {
+      "positioning": 2,
+      "achievements": 3,
+      "fit": 1,
+      "structure": 6,
+      "wording": 2,
+      "differentiation": 1
+    },
+    "total": 15,
+    "evidence": {
+      "positioning": "未列招募目標或年月，辦公室工作與主管泛稱無法構成清楚職涯。",
+      "achievements": "『大幅提升效率及滿意度』沒有具體行動、對象或結果證據。",
+      "fit": "通用溝通與Office未提供招募、漏斗、面試或雇主品牌的相關經驗。",
+      "structure": "聯絡及簡單分節存在，但公司、年月、學歷等基本資訊缺乏。",
+      "wording": "『各種事情』『深受肯定』『學習快』等空泛敘述佔主要篇幅。",
+      "differentiation": "只有通用個人特質，無專業場景或方法。"
+    },
+    "issues": [
+      "缺可重建的職涯與目標。",
+      "成果僅空泛宣稱。",
+      "沒有招募核心職責證據。"
+    ],
+    "confidence": 0.96
+  },
+  {
+    "id": "G49",
+    "scores": {
+      "positioning": 15,
+      "achievements": 28,
+      "fit": 25,
+      "structure": 14,
+      "wording": 9,
+      "differentiation": 5
+    },
+    "total": 96,
+    "evidence": {
+      "positioning": "會員回購、媒體預算、合作範圍及十年行銷進程聚焦且清楚。",
+      "achievements": "隨機會員結果、媒體成本與預算決策具期間對象和分工，主動交代折扣混雜，但原始資料來源未具名。",
+      "fit": "CRM、付費媒體、實驗、預算與商品數據協作有工作證據，歸因及因果限制清楚。",
+      "structure": "核心成果、風險及交付分類易查，摘要與末段技能JD重複較多。",
+      "wording": "責任分工及非完全歸因明確，但『所有數字均標示資料來源』超過正文具體程度。",
+      "differentiation": "隨機驗證、品類分層、邊際轉換成本與例外核准形成具體成長決策模式。"
+    },
+    "issues": [
+      "會員與媒體結果的原始資料來源可列明。",
+      "摘要及末段JD重述可精簡。"
+    ],
+    "confidence": 0.93
+  },
+  {
+    "id": "G04",
+    "scores": {
+      "positioning": 2,
+      "achievements": 3,
+      "fit": 1,
+      "structure": 6,
+      "wording": 2,
+      "differentiation": 1
+    },
+    "total": 15,
+    "evidence": {
+      "positioning": "只有辦公室與主管泛稱，沒有行銷目標、工作年月或可辨識職涯。",
+      "achievements": "效率及滿意度大幅提升缺具體行動、對象、衡量或責任。",
+      "fit": "Office、AI與通用溝通無法證明CRM、付費媒體、實驗或預算工作。",
+      "structure": "姓名聯絡與簡單分節可讀，缺公司識別、年月及學歷等基本資訊。",
+      "wording": "『處理各種事情』『深受主管肯定』『抗壓性高』等空泛用語主導。",
+      "differentiation": "僅學習、溝通及管理等通用特質，沒有特定專業方法。"
+    },
+    "issues": [
+      "缺職涯年月及目標。",
+      "成果無可辨識證據。",
+      "未對應成長行銷核心工作。"
+    ],
+    "confidence": 0.96
+  },
+  {
+    "id": "G01",
+    "scores": {
+      "positioning": 2,
+      "achievements": 3,
+      "fit": 1,
+      "structure": 6,
+      "wording": 2,
+      "differentiation": 1
+    },
+    "total": 15,
+    "evidence": {
+      "positioning": "無產品目標與年月，『某公司主管』及辦公室工作无法界定職涯。",
+      "achievements": "宣稱帶領團隊及提升效率，沒有具體交付、衡量或責任範圍。",
+      "fit": "通用電腦、AI及溝通未展示SaaS、研究、Roadmap、分析或API經驗。",
+      "structure": "有聯絡和基本分節，但缺足以重建經歷的公司、年月及學歷資料。",
+      "wording": "『各種事情』『大幅提升』『深受肯定』等抽象和誇大語句過多。",
+      "differentiation": "只有通用學習溝通特質，無產品場景或獨特方法。"
+    },
+    "issues": [
+      "職涯與目標無法重建。",
+      "成果為無佐證宣稱。",
+      "缺產品核心職責證據。"
+    ],
+    "confidence": 0.96
+  },
+  {
+    "id": "G27",
+    "scores": {
+      "positioning": 15,
+      "achievements": 23,
+      "fit": 23,
+      "structure": 14,
+      "wording": 8,
+      "differentiation": 4
+    },
+    "total": 87,
+    "evidence": {
+      "positioning": "三事業部、240料號與十年財務進程清楚，主管報告及採購權限明確。",
+      "achievements": "成本MAPE有年月、同料號、實際成本及分工，三種情境是具體交付但未說明採用結果。",
+      "fit": "預算預測、成本差異及情境模型有案例，跨部門決策影響尚未呈現。",
+      "structure": "現職成果先列，倒序工作年月、學歷與技能完整且易掃讀。",
+      "wording": "模型與關帳責任分清，『完成預定交付』仍泛，重複句點可修。",
+      "differentiation": "材料工時匯率模型結合情境敏感度、版本控管及覆核，呈現具體財務方法。"
+    },
+    "issues": [
+      "情境模型未说明採用或決策影響。",
+      "管理報表實際案例可補強。",
+      "泛稱交付與重複句點可修整。"
+    ],
+    "confidence": 0.92
+  }
+]

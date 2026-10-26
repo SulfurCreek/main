@@ -1,0 +1,1323 @@
+{
+  "metrics": {
+    "spearman_total_vs_target": 0.9767392840022592,
+    "kendall_total_vs_level": 0.9194813573501421,
+    "mae_total": 9.42,
+    "bias_total": 8.62,
+    "max_abs_error": 24,
+    "within_expected_band_count": 12,
+    "adjacent_level_means_strictly_increasing": false,
+    "cross_level_pairs_2plus": 900,
+    "strict_inversions": 4,
+    "ties": 6,
+    "strict_inversion_rate": 0.0044444444444444444,
+    "median_within_level_role_spread": 3.0,
+    "max_within_level_role_spread": 8,
+    "dimension_metrics": {
+      "positioning": {
+        "mae": 2.6,
+        "bias": 2.4,
+        "max_abs_error": 6
+      },
+      "achievements": {
+        "mae": 2.38,
+        "bias": 0.38,
+        "max_abs_error": 9
+      },
+      "fit": {
+        "mae": 3.74,
+        "bias": 3.26,
+        "max_abs_error": 8
+      },
+      "structure": {
+        "mae": 2.3,
+        "bias": 2.1,
+        "max_abs_error": 5
+      },
+      "wording": {
+        "mae": 0.58,
+        "bias": 0.18,
+        "max_abs_error": 2
+      },
+      "differentiation": {
+        "mae": 0.3,
+        "bias": 0.3,
+        "max_abs_error": 1
+      }
+    }
+  },
+  "threshold_results": {
+    "spearman_total_vs_target": true,
+    "kendall_total_vs_level": true,
+    "adjacent_level_mean_monotonic": false,
+    "cross_level_inversions": true,
+    "within_expected_band": false,
+    "mae_total": false,
+    "role_bias_median_spread": true,
+    "role_bias_max_spread": true
+  },
+  "level_stats": [
+    {
+      "level": 1,
+      "label": "不可用",
+      "target": 15,
+      "mean": 15,
+      "min": 15,
+      "max": 15,
+      "spread": 0,
+      "scores": [
+        15,
+        15,
+        15,
+        15,
+        15
+      ]
+    },
+    {
+      "level": 2,
+      "label": "很差",
+      "target": 25,
+      "mean": 33,
+      "min": 33,
+      "max": 33,
+      "spread": 0,
+      "scores": [
+        33,
+        33,
+        33,
+        33,
+        33
+      ]
+    },
+    {
+      "level": 3,
+      "label": "差",
+      "target": 37,
+      "mean": 46.2,
+      "min": 45,
+      "max": 48,
+      "spread": 3,
+      "scores": [
+        48,
+        46,
+        45,
+        46,
+        46
+      ]
+    },
+    {
+      "level": 4,
+      "label": "低於平均",
+      "target": 47,
+      "mean": 65.6,
+      "min": 65,
+      "max": 66,
+      "spread": 1,
+      "scores": [
+        65,
+        65,
+        66,
+        66,
+        66
+      ]
+    },
+    {
+      "level": 5,
+      "label": "普通",
+      "target": 59,
+      "mean": 68.4,
+      "min": 66,
+      "max": 70,
+      "spread": 4,
+      "scores": [
+        70,
+        66,
+        67,
+        70,
+        69
+      ]
+    },
+    {
+      "level": 6,
+      "label": "合格",
+      "target": 69,
+      "mean": 87.4,
+      "min": 85,
+      "max": 93,
+      "spread": 8,
+      "scores": [
+        85,
+        87,
+        85,
+        93,
+        87
+      ]
+    },
+    {
+      "level": 7,
+      "label": "良好",
+      "target": 77,
+      "mean": 89.4,
+      "min": 86,
+      "max": 94,
+      "spread": 8,
+      "scores": [
+        89,
+        89,
+        86,
+        94,
+        89
+      ]
+    },
+    {
+      "level": 8,
+      "label": "很強",
+      "target": 85,
+      "mean": 95,
+      "min": 93,
+      "max": 96,
+      "spread": 3,
+      "scores": [
+        95,
+        96,
+        93,
+        96,
+        95
+      ]
+    },
+    {
+      "level": 9,
+      "label": "優秀",
+      "target": 92,
+      "mean": 96.2,
+      "min": 95,
+      "max": 98,
+      "spread": 3,
+      "scores": [
+        98,
+        96,
+        95,
+        97,
+        95
+      ]
+    },
+    {
+      "level": 10,
+      "label": "近乎完美",
+      "target": 100,
+      "mean": 96,
+      "min": 94,
+      "max": 97,
+      "spread": 3,
+      "scores": [
+        97,
+        97,
+        94,
+        96,
+        96
+      ]
+    }
+  ],
+  "rows": [
+    {
+      "id": "G01",
+      "role_code": "PM",
+      "role": "資深產品經理",
+      "level": 1,
+      "label": "不可用",
+      "target_scores": {
+        "positioning": 3,
+        "achievements": 2,
+        "fit": 3,
+        "structure": 3,
+        "wording": 3,
+        "differentiation": 1
+      },
+      "target_total": 15,
+      "acceptable_total_min": 11,
+      "acceptable_total_max": 19,
+      "actual_total": 15,
+      "error": 0,
+      "abs_error": 0,
+      "in_band": true
+    },
+    {
+      "id": "G02",
+      "role_code": "FA",
+      "role": "資深財務分析師",
+      "level": 1,
+      "label": "不可用",
+      "target_scores": {
+        "positioning": 3,
+        "achievements": 2,
+        "fit": 3,
+        "structure": 3,
+        "wording": 3,
+        "differentiation": 1
+      },
+      "target_total": 15,
+      "acceptable_total_min": 11,
+      "acceptable_total_max": 19,
+      "actual_total": 15,
+      "error": 0,
+      "abs_error": 0,
+      "in_band": true
+    },
+    {
+      "id": "G03",
+      "role_code": "HR",
+      "role": "資深人才招募夥伴",
+      "level": 1,
+      "label": "不可用",
+      "target_scores": {
+        "positioning": 3,
+        "achievements": 2,
+        "fit": 3,
+        "structure": 3,
+        "wording": 3,
+        "differentiation": 1
+      },
+      "target_total": 15,
+      "acceptable_total_min": 11,
+      "acceptable_total_max": 19,
+      "actual_total": 15,
+      "error": 0,
+      "abs_error": 0,
+      "in_band": true
+    },
+    {
+      "id": "G04",
+      "role_code": "MK",
+      "role": "資深成長行銷經理",
+      "level": 1,
+      "label": "不可用",
+      "target_scores": {
+        "positioning": 3,
+        "achievements": 2,
+        "fit": 3,
+        "structure": 3,
+        "wording": 3,
+        "differentiation": 1
+      },
+      "target_total": 15,
+      "acceptable_total_min": 11,
+      "acceptable_total_max": 19,
+      "actual_total": 15,
+      "error": 0,
+      "abs_error": 0,
+      "in_band": true
+    },
+    {
+      "id": "G05",
+      "role_code": "SC",
+      "role": "資深供應鏈規劃師",
+      "level": 1,
+      "label": "不可用",
+      "target_scores": {
+        "positioning": 3,
+        "achievements": 2,
+        "fit": 3,
+        "structure": 3,
+        "wording": 3,
+        "differentiation": 1
+      },
+      "target_total": 15,
+      "acceptable_total_min": 11,
+      "acceptable_total_max": 19,
+      "actual_total": 15,
+      "error": 0,
+      "abs_error": 0,
+      "in_band": true
+    },
+    {
+      "id": "G06",
+      "role_code": "PM",
+      "role": "資深產品經理",
+      "level": 2,
+      "label": "很差",
+      "target_scores": {
+        "positioning": 5,
+        "achievements": 5,
+        "fit": 5,
+        "structure": 5,
+        "wording": 4,
+        "differentiation": 1
+      },
+      "target_total": 25,
+      "acceptable_total_min": 21,
+      "acceptable_total_max": 29,
+      "actual_total": 33,
+      "error": 8,
+      "abs_error": 8,
+      "in_band": false
+    },
+    {
+      "id": "G07",
+      "role_code": "FA",
+      "role": "資深財務分析師",
+      "level": 2,
+      "label": "很差",
+      "target_scores": {
+        "positioning": 5,
+        "achievements": 5,
+        "fit": 5,
+        "structure": 5,
+        "wording": 4,
+        "differentiation": 1
+      },
+      "target_total": 25,
+      "acceptable_total_min": 21,
+      "acceptable_total_max": 29,
+      "actual_total": 33,
+      "error": 8,
+      "abs_error": 8,
+      "in_band": false
+    },
+    {
+      "id": "G08",
+      "role_code": "HR",
+      "role": "資深人才招募夥伴",
+      "level": 2,
+      "label": "很差",
+      "target_scores": {
+        "positioning": 5,
+        "achievements": 5,
+        "fit": 5,
+        "structure": 5,
+        "wording": 4,
+        "differentiation": 1
+      },
+      "target_total": 25,
+      "acceptable_total_min": 21,
+      "acceptable_total_max": 29,
+      "actual_total": 33,
+      "error": 8,
+      "abs_error": 8,
+      "in_band": false
+    },
+    {
+      "id": "G09",
+      "role_code": "MK",
+      "role": "資深成長行銷經理",
+      "level": 2,
+      "label": "很差",
+      "target_scores": {
+        "positioning": 5,
+        "achievements": 5,
+        "fit": 5,
+        "structure": 5,
+        "wording": 4,
+        "differentiation": 1
+      },
+      "target_total": 25,
+      "acceptable_total_min": 21,
+      "acceptable_total_max": 29,
+      "actual_total": 33,
+      "error": 8,
+      "abs_error": 8,
+      "in_band": false
+    },
+    {
+      "id": "G10",
+      "role_code": "SC",
+      "role": "資深供應鏈規劃師",
+      "level": 2,
+      "label": "很差",
+      "target_scores": {
+        "positioning": 5,
+        "achievements": 5,
+        "fit": 5,
+        "structure": 5,
+        "wording": 4,
+        "differentiation": 1
+      },
+      "target_total": 25,
+      "acceptable_total_min": 21,
+      "acceptable_total_max": 29,
+      "actual_total": 33,
+      "error": 8,
+      "abs_error": 8,
+      "in_band": false
+    },
+    {
+      "id": "G11",
+      "role_code": "PM",
+      "role": "資深產品經理",
+      "level": 3,
+      "label": "差",
+      "target_scores": {
+        "positioning": 7,
+        "achievements": 8,
+        "fit": 8,
+        "structure": 7,
+        "wording": 5,
+        "differentiation": 2
+      },
+      "target_total": 37,
+      "acceptable_total_min": 33,
+      "acceptable_total_max": 41,
+      "actual_total": 48,
+      "error": 11,
+      "abs_error": 11,
+      "in_band": false
+    },
+    {
+      "id": "G12",
+      "role_code": "FA",
+      "role": "資深財務分析師",
+      "level": 3,
+      "label": "差",
+      "target_scores": {
+        "positioning": 7,
+        "achievements": 8,
+        "fit": 8,
+        "structure": 7,
+        "wording": 5,
+        "differentiation": 2
+      },
+      "target_total": 37,
+      "acceptable_total_min": 33,
+      "acceptable_total_max": 41,
+      "actual_total": 46,
+      "error": 9,
+      "abs_error": 9,
+      "in_band": false
+    },
+    {
+      "id": "G13",
+      "role_code": "HR",
+      "role": "資深人才招募夥伴",
+      "level": 3,
+      "label": "差",
+      "target_scores": {
+        "positioning": 7,
+        "achievements": 8,
+        "fit": 8,
+        "structure": 7,
+        "wording": 5,
+        "differentiation": 2
+      },
+      "target_total": 37,
+      "acceptable_total_min": 33,
+      "acceptable_total_max": 41,
+      "actual_total": 45,
+      "error": 8,
+      "abs_error": 8,
+      "in_band": false
+    },
+    {
+      "id": "G14",
+      "role_code": "MK",
+      "role": "資深成長行銷經理",
+      "level": 3,
+      "label": "差",
+      "target_scores": {
+        "positioning": 7,
+        "achievements": 8,
+        "fit": 8,
+        "structure": 7,
+        "wording": 5,
+        "differentiation": 2
+      },
+      "target_total": 37,
+      "acceptable_total_min": 33,
+      "acceptable_total_max": 41,
+      "actual_total": 46,
+      "error": 9,
+      "abs_error": 9,
+      "in_band": false
+    },
+    {
+      "id": "G15",
+      "role_code": "SC",
+      "role": "資深供應鏈規劃師",
+      "level": 3,
+      "label": "差",
+      "target_scores": {
+        "positioning": 7,
+        "achievements": 8,
+        "fit": 8,
+        "structure": 7,
+        "wording": 5,
+        "differentiation": 2
+      },
+      "target_total": 37,
+      "acceptable_total_min": 33,
+      "acceptable_total_max": 41,
+      "actual_total": 46,
+      "error": 9,
+      "abs_error": 9,
+      "in_band": false
+    },
+    {
+      "id": "G16",
+      "role_code": "PM",
+      "role": "資深產品經理",
+      "level": 4,
+      "label": "低於平均",
+      "target_scores": {
+        "positioning": 8,
+        "achievements": 11,
+        "fit": 10,
+        "structure": 9,
+        "wording": 6,
+        "differentiation": 3
+      },
+      "target_total": 47,
+      "acceptable_total_min": 43,
+      "acceptable_total_max": 51,
+      "actual_total": 65,
+      "error": 18,
+      "abs_error": 18,
+      "in_band": false
+    },
+    {
+      "id": "G17",
+      "role_code": "FA",
+      "role": "資深財務分析師",
+      "level": 4,
+      "label": "低於平均",
+      "target_scores": {
+        "positioning": 8,
+        "achievements": 11,
+        "fit": 10,
+        "structure": 9,
+        "wording": 6,
+        "differentiation": 3
+      },
+      "target_total": 47,
+      "acceptable_total_min": 43,
+      "acceptable_total_max": 51,
+      "actual_total": 65,
+      "error": 18,
+      "abs_error": 18,
+      "in_band": false
+    },
+    {
+      "id": "G18",
+      "role_code": "HR",
+      "role": "資深人才招募夥伴",
+      "level": 4,
+      "label": "低於平均",
+      "target_scores": {
+        "positioning": 8,
+        "achievements": 11,
+        "fit": 10,
+        "structure": 9,
+        "wording": 6,
+        "differentiation": 3
+      },
+      "target_total": 47,
+      "acceptable_total_min": 43,
+      "acceptable_total_max": 51,
+      "actual_total": 66,
+      "error": 19,
+      "abs_error": 19,
+      "in_band": false
+    },
+    {
+      "id": "G19",
+      "role_code": "MK",
+      "role": "資深成長行銷經理",
+      "level": 4,
+      "label": "低於平均",
+      "target_scores": {
+        "positioning": 8,
+        "achievements": 11,
+        "fit": 10,
+        "structure": 9,
+        "wording": 6,
+        "differentiation": 3
+      },
+      "target_total": 47,
+      "acceptable_total_min": 43,
+      "acceptable_total_max": 51,
+      "actual_total": 66,
+      "error": 19,
+      "abs_error": 19,
+      "in_band": false
+    },
+    {
+      "id": "G20",
+      "role_code": "SC",
+      "role": "資深供應鏈規劃師",
+      "level": 4,
+      "label": "低於平均",
+      "target_scores": {
+        "positioning": 8,
+        "achievements": 11,
+        "fit": 10,
+        "structure": 9,
+        "wording": 6,
+        "differentiation": 3
+      },
+      "target_total": 47,
+      "acceptable_total_min": 43,
+      "acceptable_total_max": 51,
+      "actual_total": 66,
+      "error": 19,
+      "abs_error": 19,
+      "in_band": false
+    },
+    {
+      "id": "G21",
+      "role_code": "PM",
+      "role": "資深產品經理",
+      "level": 5,
+      "label": "普通",
+      "target_scores": {
+        "positioning": 10,
+        "achievements": 15,
+        "fit": 13,
+        "structure": 11,
+        "wording": 7,
+        "differentiation": 3
+      },
+      "target_total": 59,
+      "acceptable_total_min": 55,
+      "acceptable_total_max": 63,
+      "actual_total": 70,
+      "error": 11,
+      "abs_error": 11,
+      "in_band": false
+    },
+    {
+      "id": "G22",
+      "role_code": "FA",
+      "role": "資深財務分析師",
+      "level": 5,
+      "label": "普通",
+      "target_scores": {
+        "positioning": 10,
+        "achievements": 15,
+        "fit": 13,
+        "structure": 11,
+        "wording": 7,
+        "differentiation": 3
+      },
+      "target_total": 59,
+      "acceptable_total_min": 55,
+      "acceptable_total_max": 63,
+      "actual_total": 66,
+      "error": 7,
+      "abs_error": 7,
+      "in_band": false
+    },
+    {
+      "id": "G23",
+      "role_code": "HR",
+      "role": "資深人才招募夥伴",
+      "level": 5,
+      "label": "普通",
+      "target_scores": {
+        "positioning": 10,
+        "achievements": 15,
+        "fit": 13,
+        "structure": 11,
+        "wording": 7,
+        "differentiation": 3
+      },
+      "target_total": 59,
+      "acceptable_total_min": 55,
+      "acceptable_total_max": 63,
+      "actual_total": 67,
+      "error": 8,
+      "abs_error": 8,
+      "in_band": false
+    },
+    {
+      "id": "G24",
+      "role_code": "MK",
+      "role": "資深成長行銷經理",
+      "level": 5,
+      "label": "普通",
+      "target_scores": {
+        "positioning": 10,
+        "achievements": 15,
+        "fit": 13,
+        "structure": 11,
+        "wording": 7,
+        "differentiation": 3
+      },
+      "target_total": 59,
+      "acceptable_total_min": 55,
+      "acceptable_total_max": 63,
+      "actual_total": 70,
+      "error": 11,
+      "abs_error": 11,
+      "in_band": false
+    },
+    {
+      "id": "G25",
+      "role_code": "SC",
+      "role": "資深供應鏈規劃師",
+      "level": 5,
+      "label": "普通",
+      "target_scores": {
+        "positioning": 10,
+        "achievements": 15,
+        "fit": 13,
+        "structure": 11,
+        "wording": 7,
+        "differentiation": 3
+      },
+      "target_total": 59,
+      "acceptable_total_min": 55,
+      "acceptable_total_max": 63,
+      "actual_total": 69,
+      "error": 10,
+      "abs_error": 10,
+      "in_band": false
+    },
+    {
+      "id": "G26",
+      "role_code": "PM",
+      "role": "資深產品經理",
+      "level": 6,
+      "label": "合格",
+      "target_scores": {
+        "positioning": 11,
+        "achievements": 18,
+        "fit": 16,
+        "structure": 12,
+        "wording": 8,
+        "differentiation": 4
+      },
+      "target_total": 69,
+      "acceptable_total_min": 65,
+      "acceptable_total_max": 73,
+      "actual_total": 85,
+      "error": 16,
+      "abs_error": 16,
+      "in_band": false
+    },
+    {
+      "id": "G27",
+      "role_code": "FA",
+      "role": "資深財務分析師",
+      "level": 6,
+      "label": "合格",
+      "target_scores": {
+        "positioning": 11,
+        "achievements": 18,
+        "fit": 16,
+        "structure": 12,
+        "wording": 8,
+        "differentiation": 4
+      },
+      "target_total": 69,
+      "acceptable_total_min": 65,
+      "acceptable_total_max": 73,
+      "actual_total": 87,
+      "error": 18,
+      "abs_error": 18,
+      "in_band": false
+    },
+    {
+      "id": "G28",
+      "role_code": "HR",
+      "role": "資深人才招募夥伴",
+      "level": 6,
+      "label": "合格",
+      "target_scores": {
+        "positioning": 11,
+        "achievements": 18,
+        "fit": 16,
+        "structure": 12,
+        "wording": 8,
+        "differentiation": 4
+      },
+      "target_total": 69,
+      "acceptable_total_min": 65,
+      "acceptable_total_max": 73,
+      "actual_total": 85,
+      "error": 16,
+      "abs_error": 16,
+      "in_band": false
+    },
+    {
+      "id": "G29",
+      "role_code": "MK",
+      "role": "資深成長行銷經理",
+      "level": 6,
+      "label": "合格",
+      "target_scores": {
+        "positioning": 11,
+        "achievements": 18,
+        "fit": 16,
+        "structure": 12,
+        "wording": 8,
+        "differentiation": 4
+      },
+      "target_total": 69,
+      "acceptable_total_min": 65,
+      "acceptable_total_max": 73,
+      "actual_total": 93,
+      "error": 24,
+      "abs_error": 24,
+      "in_band": false
+    },
+    {
+      "id": "G30",
+      "role_code": "SC",
+      "role": "資深供應鏈規劃師",
+      "level": 6,
+      "label": "合格",
+      "target_scores": {
+        "positioning": 11,
+        "achievements": 18,
+        "fit": 16,
+        "structure": 12,
+        "wording": 8,
+        "differentiation": 4
+      },
+      "target_total": 69,
+      "acceptable_total_min": 65,
+      "acceptable_total_max": 73,
+      "actual_total": 87,
+      "error": 18,
+      "abs_error": 18,
+      "in_band": false
+    },
+    {
+      "id": "G31",
+      "role_code": "PM",
+      "role": "資深產品經理",
+      "level": 7,
+      "label": "良好",
+      "target_scores": {
+        "positioning": 12,
+        "achievements": 21,
+        "fit": 19,
+        "structure": 13,
+        "wording": 8,
+        "differentiation": 4
+      },
+      "target_total": 77,
+      "acceptable_total_min": 73,
+      "acceptable_total_max": 81,
+      "actual_total": 89,
+      "error": 12,
+      "abs_error": 12,
+      "in_band": false
+    },
+    {
+      "id": "G32",
+      "role_code": "FA",
+      "role": "資深財務分析師",
+      "level": 7,
+      "label": "良好",
+      "target_scores": {
+        "positioning": 12,
+        "achievements": 21,
+        "fit": 19,
+        "structure": 13,
+        "wording": 8,
+        "differentiation": 4
+      },
+      "target_total": 77,
+      "acceptable_total_min": 73,
+      "acceptable_total_max": 81,
+      "actual_total": 89,
+      "error": 12,
+      "abs_error": 12,
+      "in_band": false
+    },
+    {
+      "id": "G33",
+      "role_code": "HR",
+      "role": "資深人才招募夥伴",
+      "level": 7,
+      "label": "良好",
+      "target_scores": {
+        "positioning": 12,
+        "achievements": 21,
+        "fit": 19,
+        "structure": 13,
+        "wording": 8,
+        "differentiation": 4
+      },
+      "target_total": 77,
+      "acceptable_total_min": 73,
+      "acceptable_total_max": 81,
+      "actual_total": 86,
+      "error": 9,
+      "abs_error": 9,
+      "in_band": false
+    },
+    {
+      "id": "G34",
+      "role_code": "MK",
+      "role": "資深成長行銷經理",
+      "level": 7,
+      "label": "良好",
+      "target_scores": {
+        "positioning": 12,
+        "achievements": 21,
+        "fit": 19,
+        "structure": 13,
+        "wording": 8,
+        "differentiation": 4
+      },
+      "target_total": 77,
+      "acceptable_total_min": 73,
+      "acceptable_total_max": 81,
+      "actual_total": 94,
+      "error": 17,
+      "abs_error": 17,
+      "in_band": false
+    },
+    {
+      "id": "G35",
+      "role_code": "SC",
+      "role": "資深供應鏈規劃師",
+      "level": 7,
+      "label": "良好",
+      "target_scores": {
+        "positioning": 12,
+        "achievements": 21,
+        "fit": 19,
+        "structure": 13,
+        "wording": 8,
+        "differentiation": 4
+      },
+      "target_total": 77,
+      "acceptable_total_min": 73,
+      "acceptable_total_max": 81,
+      "actual_total": 89,
+      "error": 12,
+      "abs_error": 12,
+      "in_band": false
+    },
+    {
+      "id": "G36",
+      "role_code": "PM",
+      "role": "資深產品經理",
+      "level": 8,
+      "label": "很強",
+      "target_scores": {
+        "positioning": 13,
+        "achievements": 24,
+        "fit": 21,
+        "structure": 14,
+        "wording": 9,
+        "differentiation": 4
+      },
+      "target_total": 85,
+      "acceptable_total_min": 81,
+      "acceptable_total_max": 89,
+      "actual_total": 95,
+      "error": 10,
+      "abs_error": 10,
+      "in_band": false
+    },
+    {
+      "id": "G37",
+      "role_code": "FA",
+      "role": "資深財務分析師",
+      "level": 8,
+      "label": "很強",
+      "target_scores": {
+        "positioning": 13,
+        "achievements": 24,
+        "fit": 21,
+        "structure": 14,
+        "wording": 9,
+        "differentiation": 4
+      },
+      "target_total": 85,
+      "acceptable_total_min": 81,
+      "acceptable_total_max": 89,
+      "actual_total": 96,
+      "error": 11,
+      "abs_error": 11,
+      "in_band": false
+    },
+    {
+      "id": "G38",
+      "role_code": "HR",
+      "role": "資深人才招募夥伴",
+      "level": 8,
+      "label": "很強",
+      "target_scores": {
+        "positioning": 13,
+        "achievements": 24,
+        "fit": 21,
+        "structure": 14,
+        "wording": 9,
+        "differentiation": 4
+      },
+      "target_total": 85,
+      "acceptable_total_min": 81,
+      "acceptable_total_max": 89,
+      "actual_total": 93,
+      "error": 8,
+      "abs_error": 8,
+      "in_band": false
+    },
+    {
+      "id": "G39",
+      "role_code": "MK",
+      "role": "資深成長行銷經理",
+      "level": 8,
+      "label": "很強",
+      "target_scores": {
+        "positioning": 13,
+        "achievements": 24,
+        "fit": 21,
+        "structure": 14,
+        "wording": 9,
+        "differentiation": 4
+      },
+      "target_total": 85,
+      "acceptable_total_min": 81,
+      "acceptable_total_max": 89,
+      "actual_total": 96,
+      "error": 11,
+      "abs_error": 11,
+      "in_band": false
+    },
+    {
+      "id": "G40",
+      "role_code": "SC",
+      "role": "資深供應鏈規劃師",
+      "level": 8,
+      "label": "很強",
+      "target_scores": {
+        "positioning": 13,
+        "achievements": 24,
+        "fit": 21,
+        "structure": 14,
+        "wording": 9,
+        "differentiation": 4
+      },
+      "target_total": 85,
+      "acceptable_total_min": 81,
+      "acceptable_total_max": 89,
+      "actual_total": 95,
+      "error": 10,
+      "abs_error": 10,
+      "in_band": false
+    },
+    {
+      "id": "G41",
+      "role_code": "PM",
+      "role": "資深產品經理",
+      "level": 9,
+      "label": "優秀",
+      "target_scores": {
+        "positioning": 14,
+        "achievements": 27,
+        "fit": 23,
+        "structure": 14,
+        "wording": 9,
+        "differentiation": 5
+      },
+      "target_total": 92,
+      "acceptable_total_min": 88,
+      "acceptable_total_max": 96,
+      "actual_total": 98,
+      "error": 6,
+      "abs_error": 6,
+      "in_band": false
+    },
+    {
+      "id": "G42",
+      "role_code": "FA",
+      "role": "資深財務分析師",
+      "level": 9,
+      "label": "優秀",
+      "target_scores": {
+        "positioning": 14,
+        "achievements": 27,
+        "fit": 23,
+        "structure": 14,
+        "wording": 9,
+        "differentiation": 5
+      },
+      "target_total": 92,
+      "acceptable_total_min": 88,
+      "acceptable_total_max": 96,
+      "actual_total": 96,
+      "error": 4,
+      "abs_error": 4,
+      "in_band": true
+    },
+    {
+      "id": "G43",
+      "role_code": "HR",
+      "role": "資深人才招募夥伴",
+      "level": 9,
+      "label": "優秀",
+      "target_scores": {
+        "positioning": 14,
+        "achievements": 27,
+        "fit": 23,
+        "structure": 14,
+        "wording": 9,
+        "differentiation": 5
+      },
+      "target_total": 92,
+      "acceptable_total_min": 88,
+      "acceptable_total_max": 96,
+      "actual_total": 95,
+      "error": 3,
+      "abs_error": 3,
+      "in_band": true
+    },
+    {
+      "id": "G44",
+      "role_code": "MK",
+      "role": "資深成長行銷經理",
+      "level": 9,
+      "label": "優秀",
+      "target_scores": {
+        "positioning": 14,
+        "achievements": 27,
+        "fit": 23,
+        "structure": 14,
+        "wording": 9,
+        "differentiation": 5
+      },
+      "target_total": 92,
+      "acceptable_total_min": 88,
+      "acceptable_total_max": 96,
+      "actual_total": 97,
+      "error": 5,
+      "abs_error": 5,
+      "in_band": false
+    },
+    {
+      "id": "G45",
+      "role_code": "SC",
+      "role": "資深供應鏈規劃師",
+      "level": 9,
+      "label": "優秀",
+      "target_scores": {
+        "positioning": 14,
+        "achievements": 27,
+        "fit": 23,
+        "structure": 14,
+        "wording": 9,
+        "differentiation": 5
+      },
+      "target_total": 92,
+      "acceptable_total_min": 88,
+      "acceptable_total_max": 96,
+      "actual_total": 95,
+      "error": 3,
+      "abs_error": 3,
+      "in_band": true
+    },
+    {
+      "id": "G46",
+      "role_code": "PM",
+      "role": "資深產品經理",
+      "level": 10,
+      "label": "近乎完美",
+      "target_scores": {
+        "positioning": 15,
+        "achievements": 30,
+        "fit": 25,
+        "structure": 15,
+        "wording": 10,
+        "differentiation": 5
+      },
+      "target_total": 100,
+      "acceptable_total_min": 96,
+      "acceptable_total_max": 100,
+      "actual_total": 97,
+      "error": -3,
+      "abs_error": 3,
+      "in_band": true
+    },
+    {
+      "id": "G47",
+      "role_code": "FA",
+      "role": "資深財務分析師",
+      "level": 10,
+      "label": "近乎完美",
+      "target_scores": {
+        "positioning": 15,
+        "achievements": 30,
+        "fit": 25,
+        "structure": 15,
+        "wording": 10,
+        "differentiation": 5
+      },
+      "target_total": 100,
+      "acceptable_total_min": 96,
+      "acceptable_total_max": 100,
+      "actual_total": 97,
+      "error": -3,
+      "abs_error": 3,
+      "in_band": true
+    },
+    {
+      "id": "G48",
+      "role_code": "HR",
+      "role": "資深人才招募夥伴",
+      "level": 10,
+      "label": "近乎完美",
+      "target_scores": {
+        "positioning": 15,
+        "achievements": 30,
+        "fit": 25,
+        "structure": 15,
+        "wording": 10,
+        "differentiation": 5
+      },
+      "target_total": 100,
+      "acceptable_total_min": 96,
+      "acceptable_total_max": 100,
+      "actual_total": 94,
+      "error": -6,
+      "abs_error": 6,
+      "in_band": false
+    },
+    {
+      "id": "G49",
+      "role_code": "MK",
+      "role": "資深成長行銷經理",
+      "level": 10,
+      "label": "近乎完美",
+      "target_scores": {
+        "positioning": 15,
+        "achievements": 30,
+        "fit": 25,
+        "structure": 15,
+        "wording": 10,
+        "differentiation": 5
+      },
+      "target_total": 100,
+      "acceptable_total_min": 96,
+      "acceptable_total_max": 100,
+      "actual_total": 96,
+      "error": -4,
+      "abs_error": 4,
+      "in_band": true
+    },
+    {
+      "id": "G50",
+      "role_code": "SC",
+      "role": "資深供應鏈規劃師",
+      "level": 10,
+      "label": "近乎完美",
+      "target_scores": {
+        "positioning": 15,
+        "achievements": 30,
+        "fit": 25,
+        "structure": 15,
+        "wording": 10,
+        "differentiation": 5
+      },
+      "target_total": 100,
+      "acceptable_total_min": 96,
+      "acceptable_total_max": 100,
+      "actual_total": 96,
+      "error": -4,
+      "abs_error": 4,
+      "in_band": true
+    }
+  ]
+}

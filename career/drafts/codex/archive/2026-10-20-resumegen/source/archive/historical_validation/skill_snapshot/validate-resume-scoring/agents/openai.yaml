@@ -1,0 +1,13 @@
+interface:
+  display_name: 履歷評分驗證
+  short_description: 校準履歷評分方法，執行盲評隔離、誤差分析與可信度檢查
+  default_prompt: 請使用 $validate-resume-scoring 建立或稽核履歷評分方法，並清楚區分內部校準、PDF/ATS測試與真實招聘效度。
+  icon_small: assets/icon.svg
+  icon_large: assets/icon.svg
+policy:
+  products:
+  - chatgpt
+  - codex
+  - api
+  - atlas
+  allow_implicit_invocation: true

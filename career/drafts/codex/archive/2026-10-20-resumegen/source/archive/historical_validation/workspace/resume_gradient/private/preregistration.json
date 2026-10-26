@@ -1,0 +1,20 @@
+{
+  "frozen_before_independent_scoring": true,
+  "design": "5職類 × 10品質等級 = 50份；每個等級都有5個不同職類。主模型產生，獨立模型不可讀private。",
+  "primary_metrics": {
+    "spearman_total_vs_target": ">=0.95",
+    "kendall_total_vs_level": ">=0.85",
+    "adjacent_level_mean_monotonic": "10級平均分嚴格遞增",
+    "cross_level_inversions": "相差2級以上的成對倒置率<=5%",
+    "within_expected_band": ">=40/50位於預設±4分區間",
+    "mae_total": "<=4.0",
+    "role_bias_within_level": "同級五職類最大分差中位數<=5，任一級最大分差<=10"
+  },
+  "secondary_checks": [
+    "最低與最高級不可顛倒",
+    "檢查低級術語或自我形容是否被錯誤加分",
+    "檢查頂級因主動寫限制而被不當扣分",
+    "逐維MAE與系統性高估/低估"
+  ],
+  "interpretation": "這是由同一規則建構的內部校準集，答案是設計目標而非真人真值。通過代表評分器能復原設計梯度，不代表可預測面試或工作表現。"
+}

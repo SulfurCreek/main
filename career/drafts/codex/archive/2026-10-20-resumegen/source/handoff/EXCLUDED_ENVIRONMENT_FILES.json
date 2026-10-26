@@ -1,0 +1,170 @@
+[
+  {
+    "source_path": "aboutme_upload_helpers/__pycache__/library_file_transfer.cpython-312.pyc",
+    "reason": "Python bytecode cache"
+  },
+  {
+    "source_path": "aboutme_upload_helpers/__pycache__/library_hosted_apps.cpython-312.pyc",
+    "reason": "Python bytecode cache"
+  },
+  {
+    "source_path": "aboutme_upload_helpers/library_file_transfer.py",
+    "reason": "Environment file-transfer or skill-audit helper; no project source content"
+  },
+  {
+    "source_path": "aboutme_upload_helpers/library_hosted_apps.py",
+    "reason": "Environment file-transfer or skill-audit helper; no project source content"
+  },
+  {
+    "source_path": "aboutme_upload_helpers/library_upload.py",
+    "reason": "Environment file-transfer or skill-audit helper; no project source content"
+  },
+  {
+    "source_path": "handoff_upload_helpers_1533/__pycache__/library_file_transfer.cpython-312.pyc",
+    "reason": "Python bytecode cache"
+  },
+  {
+    "source_path": "handoff_upload_helpers_1533/__pycache__/library_hosted_apps.cpython-312.pyc",
+    "reason": "Python bytecode cache"
+  },
+  {
+    "source_path": "handoff_upload_helpers_1533/library_file_transfer.py",
+    "reason": "Environment file-transfer or skill-audit helper; no project source content"
+  },
+  {
+    "source_path": "handoff_upload_helpers_1533/library_hosted_apps.py",
+    "reason": "Environment file-transfer or skill-audit helper; no project source content"
+  },
+  {
+    "source_path": "handoff_upload_helpers_1533/library_upload.py",
+    "reason": "Environment file-transfer or skill-audit helper; no project source content"
+  },
+  {
+    "source_path": "library_helper104/library_file_transfer.py",
+    "reason": "Environment file-transfer or skill-audit helper; no project source content"
+  },
+  {
+    "source_path": "memory_audit_helpers/library_file_transfer.py",
+    "reason": "Environment file-transfer or skill-audit helper; no project source content"
+  },
+  {
+    "source_path": "memory_audit_helpers/quick_validate.py",
+    "reason": "Environment file-transfer or skill-audit helper; no project source content"
+  },
+  {
+    "source_path": "resume_calibration/__pycache__/analyze.cpython-312.pyc",
+    "reason": "Python bytecode cache"
+  },
+  {
+    "source_path": "resume_calibration/__pycache__/generate.cpython-312.pyc",
+    "reason": "Python bytecode cache"
+  },
+  {
+    "source_path": "resume_calibration/helper/__pycache__/library_file_transfer.cpython-312.pyc",
+    "reason": "Python bytecode cache"
+  },
+  {
+    "source_path": "resume_calibration/helper/__pycache__/library_hosted_apps.cpython-312.pyc",
+    "reason": "Python bytecode cache"
+  },
+  {
+    "source_path": "resume_calibration/helper/__pycache__/library_upload.cpython-312.pyc",
+    "reason": "Python bytecode cache"
+  },
+  {
+    "source_path": "resume_calibration/helper/archive_replace.json",
+    "reason": "Environment file-transfer or skill-audit helper; no project source content"
+  },
+  {
+    "source_path": "resume_calibration/helper/library_file_transfer.py",
+    "reason": "Environment file-transfer or skill-audit helper; no project source content"
+  },
+  {
+    "source_path": "resume_calibration/helper/library_hosted_apps.py",
+    "reason": "Environment file-transfer or skill-audit helper; no project source content"
+  },
+  {
+    "source_path": "resume_calibration/helper/library_upload.py",
+    "reason": "Environment file-transfer or skill-audit helper; no project source content"
+  },
+  {
+    "source_path": "resume_calibration/helper/new_upload_request.json",
+    "reason": "Environment file-transfer or skill-audit helper; no project source content"
+  },
+  {
+    "source_path": "resume_calibration/helper/resume_review_upload.json",
+    "reason": "Environment file-transfer or skill-audit helper; no project source content"
+  },
+  {
+    "source_path": "resume_calibration/helper/upload_request.json",
+    "reason": "Environment file-transfer or skill-audit helper; no project source content"
+  },
+  {
+    "source_path": "rewrite-helper/library_file_transfer.py",
+    "reason": "Environment file-transfer or skill-audit helper; no project source content"
+  },
+  {
+    "source_path": "tmp/bio-library-helper/library_file_transfer.py",
+    "reason": "Environment file-transfer or skill-audit helper; no project source content"
+  },
+  {
+    "source_path": "tmp/bullet-library-helper/library_file_transfer.py",
+    "reason": "Environment file-transfer or skill-audit helper; no project source content"
+  },
+  {
+    "source_path": "tmp/hr50-helper/library_file_transfer.py",
+    "reason": "Environment file-transfer or skill-audit helper; no project source content"
+  },
+  {
+    "source_path": "tmp/scoring-v4/library_file_transfer.py",
+    "reason": "Environment file-transfer helper"
+  },
+  {
+    "source_path": "tmp/v9-library-helper/library_file_transfer.py",
+    "reason": "Environment file-transfer or skill-audit helper; no project source content"
+  },
+  {
+    "source_path": "tmp/v91-full-helper/library_file_transfer.py",
+    "reason": "Environment file-transfer or skill-audit helper; no project source content"
+  },
+  {
+    "source_path": "tmp/v91-library-helper/library_file_transfer.py",
+    "reason": "Environment file-transfer or skill-audit helper; no project source content"
+  },
+  {
+    "source_path": "tmp/v93-helper/library_file_transfer.py",
+    "reason": "Environment file-transfer or skill-audit helper; no project source content"
+  },
+  {
+    "source_path": "tmp/v94/library_file_transfer.py",
+    "reason": "Environment file-transfer helper"
+  },
+  {
+    "source_path": "v101-helper/library_file_transfer.py",
+    "reason": "Environment file-transfer or skill-audit helper; no project source content"
+  },
+  {
+    "source_path": "v1010-helpers/library_file_transfer.py",
+    "reason": "Environment file-transfer or skill-audit helper; no project source content"
+  },
+  {
+    "source_path": "v103-helper/library_file_transfer.py",
+    "reason": "Environment file-transfer or skill-audit helper; no project source content"
+  },
+  {
+    "source_path": "v109-helpers/library_file_transfer.py",
+    "reason": "Environment file-transfer or skill-audit helper; no project source content"
+  },
+  {
+    "source_path": "v42-work/library_file_transfer.py",
+    "reason": "Environment file-transfer helper"
+  },
+  {
+    "source_path": "v43-helper/library_file_transfer.py",
+    "reason": "Environment file-transfer or skill-audit helper; no project source content"
+  },
+  {
+    "source_path": "v95-report-helper/library_file_transfer.py",
+    "reason": "Environment file-transfer or skill-audit helper; no project source content"
+  }
+]

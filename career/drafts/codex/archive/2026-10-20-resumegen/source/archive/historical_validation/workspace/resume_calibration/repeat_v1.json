@@ -1,0 +1,278 @@
+[
+  {
+    "id": "R34",
+    "scores": {
+      "positioning": 8,
+      "achievements": 5,
+      "fit": 8,
+      "structure": 14,
+      "wording": 6,
+      "ats": 8,
+      "differentiation": 1
+    },
+    "total": 50,
+    "evidence": {
+      "positioning": "客服、客戶成功專員到資深經理方向明確，專長未具體化。",
+      "achievements": "改善效率與同事肯定沒有客戶導入或續約結果。",
+      "fit": "CRM、採用及續約清單未有使用案例。",
+      "structure": "三段年月無重疊，標準章節便於檢索。",
+      "wording": "相关工作及主管交辦事項過於泛化。",
+      "ats": "CRM與標準文字欄位可見，但PDF/ATS未驗證。",
+      "differentiation": "沒有客戶規模或獨有服務方法。"
+    },
+    "issues": [
+      "客戶經營範圍、獨立責任及成果不足。"
+    ],
+    "ats_status": "僅純文字暫估；無PDF原檔及ATS解析器，未驗證PDF/ATS相容性。",
+    "confidence": "medium"
+  },
+  {
+    "id": "R18",
+    "scores": {
+      "positioning": 13,
+      "achievements": 22,
+      "fit": 18,
+      "structure": 10,
+      "wording": 9,
+      "ats": 8,
+      "differentiation": 4
+    },
+    "total": 84,
+    "evidence": {
+      "positioning": "三事業部成本與預算分析定位清楚，任期關係有疑義。",
+      "achievements": "240料號模型誤差18%降9%，報表5降3天有核對基準。",
+      "fit": "模型、預算情境與會計協作支持專業要求。",
+      "structure": "乙至2024/09和丙2022/10起重疊兩年未說明。",
+      "wording": "本人模型與會計帳務確認分工具體。",
+      "ats": "Excel及Power BI文字易讀，PDF/ATS未實測。",
+      "differentiation": "製造料號成本模型及原料匯率情境具領域特色。"
+    },
+    "issues": [
+      "兩年任職重疊待釐清。",
+      "早期經歷與工具實作較簡略。"
+    ],
+    "ats_status": "僅純文字暫估；無PDF原檔及ATS解析器，未驗證PDF/ATS相容性。",
+    "confidence": "medium"
+  },
+  {
+    "id": "R50",
+    "scores": {
+      "positioning": 8,
+      "achievements": 5,
+      "fit": 8,
+      "structure": 14,
+      "wording": 6,
+      "ats": 8,
+      "differentiation": 1
+    },
+    "total": 50,
+    "evidence": {
+      "positioning": "十年消費品供應鏈路徑可見，摘要沒有專業範圍。",
+      "achievements": "改善效率及專案支援無規劃成果例子。",
+      "fit": "預測、SAP與S&OP只是技能詞，未描述使用情境。",
+      "structure": "完整月份連貫且各區塊清楚。",
+      "wording": "能處理多項任務及相關工作缺具體資訊。",
+      "ats": "S&OP、SAP以文字呈現，未驗PDF/ATS解析。",
+      "differentiation": "沒有庫存規模或規劃方法顯示個人優勢。"
+    },
+    "issues": [
+      "缺獨立規劃責任與供需成果。"
+    ],
+    "ats_status": "僅純文字暫估；無PDF原檔及ATS解析器，未驗證PDF/ATS相容性。",
+    "confidence": "medium"
+  },
+  {
+    "id": "R07",
+    "scores": {
+      "positioning": 7,
+      "achievements": 4,
+      "fit": 7,
+      "structure": 13,
+      "wording": 3,
+      "ats": 8,
+      "differentiation": 1
+    },
+    "total": 43,
+    "evidence": {
+      "positioning": "零售人資職涯可辨，組織轉型摘要沒有專業焦點。",
+      "achievements": "兩個內部專案有基本產出線索，績效突破無結果。",
+      "fit": "招募、ATS及訓練僅清單，治理詞未提供人資案例。",
+      "structure": "標題年月清楚，抽象條列增加理解成本。",
+      "wording": "賦能、價值鏈及飛輪無具體行為對象。",
+      "ats": "人資關鍵詞為純文字，無PDF/ATS實測依據。",
+      "differentiation": "策略思維與卓越協作沒有具體優勢證據。"
+    },
+    "issues": [
+      "人資方法、責任範圍及成果均欠實例。",
+      "抽象術語過密。"
+    ],
+    "ats_status": "僅純文字暫估；無PDF原檔及ATS解析器，未驗證PDF/ATS相容性。",
+    "confidence": "medium"
+  },
+  {
+    "id": "R40",
+    "scores": {
+      "positioning": 14,
+      "achievements": 22,
+      "fit": 18,
+      "structure": 14,
+      "wording": 9,
+      "ats": 8,
+      "differentiation": 4
+    },
+    "total": 89,
+    "evidence": {
+      "positioning": "180SKU、兩倉庫與近四年規劃範圍清楚。",
+      "achievements": "庫存68降54天及缺貨降低有ERP來源，MAPE有前後比較。",
+      "fit": "安全庫存、促銷預測和供需會議契合工作。",
+      "structure": "職涯年月連續，近期成果優先條列。",
+      "wording": "本人預測模型與業務資訊的責任區分清楚。",
+      "ats": "SAP與S&OP文字清晰，無PDF/ATS解析測試。",
+      "differentiation": "庫存與服務水準兼顧且有預測方法形成特色。"
+    },
+    "issues": [
+      "促銷前後可比性與SAP工具運用可補充。",
+      "早期職務內容較空泛。"
+    ],
+    "ats_status": "僅純文字暫估；無PDF原檔及ATS解析器，未驗證PDF/ATS相容性。",
+    "confidence": "medium"
+  },
+  {
+    "id": "R23",
+    "scores": {
+      "positioning": 13,
+      "achievements": 22,
+      "fit": 18,
+      "structure": 14,
+      "wording": 9,
+      "ats": 8,
+      "differentiation": 4
+    },
+    "total": 88,
+    "evidence": {
+      "positioning": "回購、付費媒體及300萬元季預算界定專業方向。",
+      "achievements": "8000會員隨機實驗和媒體成本改善有範圍及口徑。",
+      "fit": "A/B、分群、投放及預算例子明確，GA4細節少。",
+      "structure": "年月連贯、分段清楚，最新三項工作容易理解。",
+      "wording": "承認促銷干擾且區分本人策略預算責任。",
+      "ats": "GA4與CRM等詞可讀，PDF/ATS未驗證。",
+      "differentiation": "會員實驗結合媒體投資判斷有方法特色。"
+    },
+    "issues": [
+      "未提供實驗不確定性，早期經歷概括。"
+    ],
+    "ats_status": "僅純文字暫估；無PDF原檔及ATS解析器，未驗證PDF/ATS相容性。",
+    "confidence": "medium"
+  },
+  {
+    "id": "R01",
+    "scores": {
+      "positioning": 13,
+      "achievements": 21,
+      "fit": 19,
+      "structure": 10,
+      "wording": 9,
+      "ats": 8,
+      "differentiation": 4
+    },
+    "total": 84,
+    "evidence": {
+      "positioning": "三專案、12人協調及1800万元定義工作規模。",
+      "achievements": "46需求、兩案準時與缺陷12降5有成果及分工。",
+      "fit": "風險、UAT、需求與里程碑皆直接對應目標。",
+      "structure": "乙任職至2024/09與丙自2022/10重疊，時間線欠交代。",
+      "wording": "說明延遲三週原因及工程師修復，語氣精確。",
+      "ats": "UAT及標準章節易讀，無PDF/ATS實測。",
+      "differentiation": "企業導入風險與驗收改善構成專業辨識度。"
+    },
+    "issues": [
+      "任職重疊兩年未說明。",
+      "早期經歷缺具體專案。"
+    ],
+    "ats_status": "僅純文字暫估；無PDF原檔及ATS解析器，未驗證PDF/ATS相容性。",
+    "confidence": "medium"
+  },
+  {
+    "id": "R45",
+    "scores": {
+      "positioning": 14,
+      "achievements": 21,
+      "fit": 19,
+      "structure": 14,
+      "wording": 9,
+      "ats": 8,
+      "differentiation": 4
+    },
+    "total": 89,
+    "evidence": {
+      "positioning": "近四年企業系統導入與1800萬元規模清楚。",
+      "achievements": "兩案如期、一案延遲與重大缺陷改善提供完整成果敘述。",
+      "fit": "排程、風險、變更及驗收實例匹配目標。",
+      "structure": "年月無重疊，最新工作重點與技能分段清晰。",
+      "wording": "如實界定本人協調與工程修復責任。",
+      "ats": "專案關鍵詞和標準欄位可讀，ATS/PDF未實測。",
+      "differentiation": "需求驗收及上線風險管理有實際方法。"
+    },
+    "issues": [
+      "早期經歷概括，預算追蹤未列結果。"
+    ],
+    "ats_status": "僅純文字暫估；無PDF原檔及ATS解析器，未驗證PDF/ATS相容性。",
+    "confidence": "medium"
+  },
+  {
+    "id": "R12",
+    "scores": {
+      "positioning": 13,
+      "achievements": 22,
+      "fit": 18,
+      "structure": 10,
+      "wording": 9,
+      "ats": 8,
+      "differentiation": 4
+    },
+    "total": 84,
+    "evidence": {
+      "positioning": "35企業客戶與設備銷售範圍清晰，兩段在職期間交疊。",
+      "achievements": "簽約4800萬元、120%目標及商機週期改善具體。",
+      "fit": "B2B、CRM、談判及工程協作有例，預測方法未展開。",
+      "structure": "乙2024/09結束與丙2022/10開始重疊未解釋。",
+      "wording": "區分簽約金額和認列營收，有準確商務語氣。",
+      "ats": "CRM與B2B文字清楚，未測PDF或ATS。",
+      "differentiation": "工業設備銷售及商務技術分工具領域特色。"
+    },
+    "issues": [
+      "兩年任職重疊待說明。",
+      "商機前後條件與預測方法未交代。"
+    ],
+    "ats_status": "僅純文字暫估；無PDF原檔及ATS解析器，未驗證PDF/ATS相容性。",
+    "confidence": "medium"
+  },
+  {
+    "id": "R29",
+    "scores": {
+      "positioning": 7,
+      "achievements": 3,
+      "fit": 7,
+      "structure": 13,
+      "wording": 3,
+      "ats": 8,
+      "differentiation": 1
+    },
+    "total": 42,
+    "evidence": {
+      "positioning": "十年電子商務行銷路徑可辨，專業摘要過於抽象。",
+      "achievements": "顯著績效突破沒有活動、渠道或轉換結果。",
+      "fit": "GA4、A/B測試及投放技能沒有實例。",
+      "structure": "日期和段落有秩序，空泛句降低資訊效率。",
+      "wording": "賦能及成長飛輪不能指出實際行銷行動。",
+      "ats": "行銷關鍵詞與標準欄位可讀，PDF/ATS未驗證。",
+      "differentiation": "沒有方法、客群或產業洞察形成優勢。"
+    },
+    "issues": [
+      "缺行銷責任範圍和成果。",
+      "術語堆疊遮蔽實際工作。"
+    ],
+    "ats_status": "僅純文字暫估；無PDF原檔及ATS解析器，未驗證PDF/ATS相容性。",
+    "confidence": "medium"
+  }
+]
