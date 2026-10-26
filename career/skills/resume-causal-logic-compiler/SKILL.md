@@ -23,12 +23,25 @@ description: 專治履歷「概念偷跑（未定義先引用）」與「因果�
    5. **跨欄去重**：同一組成果數字不在全篇重複三次；工作經歷與專案成就（獨立卡片）可並列，自傳只寫判斷與做法（2026-10-24 本人選 B）。
    6. **事實不足就提問**：library 不足以寫出「為什麼有價值／解決什麼困難」時，不硬湊，依 Clarification Gate 向本人提問。
 
-## Execution Workflow
+## Execution Workflow（2026-10-26 重構：提取事實 → 建立個人形象 → 檢查；本人指定）
 每次修改 `career/01_claude_stage/causal_draft.md` 時，必須先在內部完成：
-1. **Phase 1 (Entity Dictionary)**：盤點本次涉及的專有名詞、外部白話定義與首次解鎖位置。
-2. **Phase 2 (Topological Sort)**：檢查依賴順序，若前面的點依賴了後面才定義的系統，強制重排順序或將定義前移。
-3. **Phase 3 (Verification Gate)**：確認無未知黑話、無 `**粗體開頭：**`、且已正確標註 `<!-- [STATUS: NEEDS_POLISH] [LOCK_ENTITIES: ...] -->` 或 `<!-- [STATUS: LOCKED] -->`。
-4. **Phase 4 (Self-Evolving Gatekeeper，2026-10-24 本人新增)**：
+
+1. **Phase 1 — 事實提取與實體字典（Fact Extraction & Entity Dictionary）**：從 `facts-*.md`、`profile.md` 提取真實事件、限制、數據；盤點專有名詞的外部白話定義與首次解鎖位置，檢查拓撲順序（禁止前向引用，前面依賴後面定義者強制重排或前移定義）。嚴守 No Detail Dumping。
+2. **Phase 2 — 建立個人形象與 Credibility 升維（Personal Brand & Credibility Framing）★**：動筆寫每個列點或段落前，先把事實對位到下列四大支柱之一，寫出「這件事證明本人哪種專業信譽」，不只記敘任務：
+
+   | 支柱 | 定位 | library 依據 | 代表素材 |
+   | --- | --- | --- | --- |
+   | 1｜從混亂中建立可運作規則的破局者 | 無文件、無競品、分類發散時，釐清底層邏輯並建立跨單位可執行的規則 | `profile.md` §8「改規則前先把事實查清楚」「把一方的語言翻成另一方做得出來的規則」；`about-me.md` §四 1–2 | 1111 逆向還原帳號權限與商業模式規則；KOOL 無競品雙邊媒合；15 張類別代碼表跨單位合併收斂 |
+   | 2｜守護營收、續約與實收的商業 PM | 把維護與改版錨定在商業價值 | `about-me.md` §三、§五〈尚凡產品的重要性〉；facts-1111 結案比例商業目的 | 52%→79% 為維護付費企業滿意度與續約基礎；主力高營收產品下架後承接用戶與營收；定價實驗與網頁付款以對照與費率試算保護實收 |
+   | 3｜讓業務與跨部門買單的可靠樞紐 | 決定能向各方交代、轉換代價不丟給使用者 | `profile.md` §8「決定要能向各方交代」「系統改變的代價不該丟給使用者」 | 兩線搶資源先取得業務單位背書；建立產品團隊在業務單位的交付可信度；分階段替換、上線前客服封測；帶領直屬企劃、指導同仁用 AI |
+   | 4｜AI 產品落地與人機協作治理者 | 呈現產品判斷，不只列功能或工具 | `about-me.md` §四〈AI Agent 與 human in the loop〉；facts-1111〈AI 功能品質把關〉 | 定義問題、勞動法規合規驗收、企業確認後才刊登的人工把關、依實際選用資料調整規則 |
+
+   **護欄**：支柱是**框架，不是要塞進正文的口號**——不得出現「破局者」「Credibility」「治理者」等自我標籤；不得突破 `about-me.md` §四／§五 的「邊界」欄（例：不寫「沒有我就無法上線」、DAU 不歸個人、不寫毛利等 library 無紀錄的指標）；不違反 decisions §24 披露、§43／R16 概念詞（例：「分類治理」不入文）、No Detail Dumping 與責任詞規則。字數只能持平或變短。
+
+   **鎖定詞瘦身**：`LOCK_ENTITIES` 只鎖 ①硬數據與日期期間 ②核心產品／系統專有名詞 ③代表四大支柱的關鍵價值詞（例：`商業模式規則`、`業務單位背書`、`付費企業`、`續約基礎`、`交付可信度`）。不鎖連接詞、工具名清單、瑣碎步驟，留給 Codex 重組句法。
+
+3. **Phase 3 — 因果與字數護欄（Verification Gate）**：確認無未知黑話、無 `**粗體開頭：**`、標記正確（`NEEDS_POLISH`＋`LEAD`＋`LOCK_ENTITIES`，或 `LOCKED`）；主幹敘事淨字數 ≤165（Juicy 雙次承接 ≤190）；跑 `python3 career/scripts/verify_polish.py` 上游 0 違規。
+4. **Phase 4（Self-Evolving Gatekeeper，2026-10-24 本人新增)**：
    - **三聯同步鐵律**：每當本人在對話中抓出任何事實偏差、日常流水帳寫法（Chore）、被動語態或下游幻覺詞時，嚴禁只修改單點草稿交差，必須同步完成三件事：
      1. **事實層**：更新 `career/library/`（`facts-*.md`／`decisions.md`／`superseded.md`）。
      2. **規則層**：將通用原則補充至 `resume-causal-logic-compiler/SKILL.md`（若涉及下游語氣，同步列出供 Codex 更新 `voice_style_guide.md`）。

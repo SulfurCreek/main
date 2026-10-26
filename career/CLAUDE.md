@@ -3,13 +3,28 @@
 
 你是履歷管線的「上游事實編譯器」與「最終成品守門員」。
 
+## 0. 四階段黃金工作流（2026-10-26 起，本人指定）
+
+| 階段 | 負責 | 產出 | 盲測 |
+| --- | --- | --- | --- |
+| Stage 1 提取事實 | Claude | 實體字典、拓撲順序（compiler skill Phase 1） | — |
+| Stage 2 建立個人形象 | Claude | `causal_draft.md`：每點對位四大 Credibility 支柱、鎖定詞瘦身（compiler skill Phase 2–3） | **Claude 端盲測**（見下） |
+| Stage 3 潤飾 | Codex（`codex/resume-writer`） | `final_resume.md` | **Codex 端盲測**：前 20 字吸睛度、背景 ≤1/3、戰功句型、104 視覺重音，Codex 自己抓自己改 |
+| Stage 4 驗收與發布 | Claude | `verify_polish.py`、104 md、PDF 驗收 | 收回 104 md 時再跑一次 Claude 端盲測 |
+
+**Claude 端盲測（Credibility & Personal Brand Blind Test）**：
+- **時機**：①Stage 2 完成、交給 Codex 前（對 `causal_draft.md` 去註解純文字）②Stage 4 收回 `final_resume.md`／104 md 時。
+- **做法**：派獨立子代理（`Agent`，`model: opus`、`effort: low`），讀 `.claude/skills/resume-review-panel/kit/credibility-blind-prompt.md`，**不讀 `library/`**，以用人主管（Product Director）視角檢視：個人形象是否具備 Senior PM／PO 的 Credibility（商業目的、破局難度、跨部門威信、決策取捨）？哪一點還像 SA／執行企劃流水帳？
+- **自治修正**：依第 2 節第 9 點 A／B／C 分流；A 類由主代理從 `library/`（含 `profile.md` §8、`about-me.md`）提煉商業價值或決策脈絡，當場重編 `causal_draft.md`，守淨字數、No Detail Dumping、§45 免追問清單。報告存 `career/review-panel/runs/<日期>-credibility-<版本>/report.md`。
+- Stage 4 的 Coach 盲審（第 3 節第 4 點）保留，兩者可擇一或並行；同一份文字不重複跑。
+
 ## 1. 真實路徑映射 (Path Mapping)
 請直接讀取 `career/library/`（對應邏輯上的 `00_library`，詳見 `career/library/README.md`）：
 - **入口與狀態**：先讀 `career/library/INDEX.md`、`decisions.md`、`superseded.md`（絕對禁止引用 superseded 內的過時數據）。
 - **唯一事實庫**：`career/library/facts-1111.md`、`facts-prior.md`、`profile.md`。
 - **選材與思維對齊**：`career/library/about-me.md`。
 
-## 2. Stage 1：上游因果草稿編譯 (輸出至 `career/01_claude_stage/causal_draft.md`)
+## 2. Stage 1–2：提取事實與建立個人形象 (輸出至 `career/01_claude_stage/causal_draft.md`)
 當收到新增或修改內容的指令時：
 1. 載入 `career/skills/resume-causal-logic-compiler/SKILL.md` 規則。
 2. 嚴格執行「禁止前向引用」與「首次提及必定義」，確保每一點具備獨立可讀性。
@@ -47,7 +62,7 @@
      2. 💼 已攔截並轉為面試口頭準備的項目（免改履歷）
      3. ❓ 唯一需要本人拍板或補充新事實的問題（無則寫「無，已全數自治處理完畢」）
 
-## 3. Stage 3：下游成品驗收與發布 (輸出至 `career/drafts/<版本>/`)
+## 3. Stage 4：下游成品驗收與發布（Stage 3 為 Codex 潤飾） (輸出至 `career/drafts/<版本>/`)
 當 Codex 完成潤飾後，執行驗收與排版發布：
 1. **跨分支唯讀拉取**：使用 `git fetch origin codex/resume-writer` 並透過 `git show origin/codex/resume-writer:career/02_codex_stage/final_resume.md` 讀取 Codex 成品。
 2. **執行驗證腳本**：執行 `python3 career/scripts/verify_polish.py` 檢查漏修率、`LOCK_ENTITIES` 完整性、禁用詞、流水帳／幻覺詞與未清括號；產出 104 md 後加跑 `--verify-104 career/drafts/<版本>/104-<版本>.md`。
