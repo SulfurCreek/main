@@ -9,10 +9,12 @@
 讀取本入口、voice_style_guide.md 與現有 final_resume.md，並以以下指令取得上游。明確更新遠端追蹤參照，避免只更新 FETCH_HEAD 而讀到舊物件：
 
 ```sh
-git fetch origin refs/heads/claude/happy-lamport-ljis8c:refs/remotes/origin/claude/happy-lamport-ljis8c && git show origin/claude/happy-lamport-ljis8c:career/01_claude_stage/causal_draft.md
+git fetch origin refs/heads/claude/happy-lamport-ljis8c:refs/remotes/origin/claude/happy-lamport-ljis8c && git rev-parse --verify origin/claude/happy-lamport-ljis8c^{commit} && git show origin/claude/happy-lamport-ljis8c:career/01_claude_stage/causal_draft.md
 ```
 
-嚴禁 git diff、額外狀態查詢、歷史搜尋或讀取 Claude 的 `career/library/*` 與 `SKILL.md`。上游負責事實與邏輯，Codex 不重新查核。
+保留上述指令輸出的完整上游 commit SHA，作為本輪來源與驗證基準；取得來源失敗即停止，不以本地舊稿替代。以下驗證所需的來源存在性與 SHA 核對屬本流程必要檢查。
+
+嚴禁 git diff、無關的額外狀態查詢、歷史搜尋或讀取 Claude 的 `career/library/*` 與 `SKILL.md`。上游負責事實與邏輯，Codex 不重新查核。
 
 ### Step 2：初稿與事實邊界
 
@@ -41,18 +43,30 @@ LOCK_ENTITIES 的詞與數字完整保留；LOCKED 及其他未授權內容原�
 
 ### Step 4：驗證與交付
 
-完成自審與 Step 4.5 全文朗讀檢查後執行：
+完成自審與 Step 4.5 全文朗讀檢查後，在 repo 根目錄以 Bash 執行以下指令。先將 `source_commit` 的佔位文字換成本輪 Step 1 輸出的完整 40 位 SHA。這只檢查來源、執行既有上游驗證器，不新增腳本或修改驗證規則。
 
-```sh
-git show origin/claude/happy-lamport-ljis8c:career/scripts/verify_polish.py | python3 - --local-codex
+```bash
+source_commit='填入本輪 Step 1 的完整 40 位 SHA'
+set -o pipefail
+test "$(git rev-parse --show-toplevel)" = "$PWD" &&
+test "$(git branch --show-current)" = 'codex/resume-writer' &&
+test "$(git rev-parse --verify origin/claude/happy-lamport-ljis8c^{commit})" = "$source_commit" &&
+git cat-file -e "$source_commit:career/01_claude_stage/causal_draft.md" &&
+test -s career/02_codex_stage/final_resume.md &&
+git show "$source_commit:career/scripts/verify_polish.py" | python3 - --local-codex
 ```
 
-錯誤為 0 後提交並推送 codex/resume-writer（本人當輪要求暫不推送時除外）。若有可在授權範圍內修復的錯誤，直接修復後重驗；不得修改驗證程式、上游或製造假輸入。無法自行修復者如實回報，不宣稱通過。非阻擋提示須經閱讀判斷，不為清除責任提示而換成更強動詞。回覆只列實際 Before → After 修正、驗證結果與提交；必要時最後列「🔒 上游鎖定微調建議（Optional）」。
+來源 SHA 不符、上游草稿／驗證器缺失、本地成品為空或命令失敗時，不得宣稱通過或提交推送。來源已變更時重新執行 Step 1，重新審視受影響區塊後驗證；不改用舊來源湊通過。必須確認整條命令 exit code 為 0，且驗證器確實回報預期的非零區塊數；不能只看到 PASSED 字樣就判定通過。
+
+驗證器目前只涵蓋部分標記與詞彙檢查。全文審讀時另確認標記外無新增正文、章節與公司標題相同、區塊狀態轉換正確、LOCKED 原文及父子縮排保留、所有數字與限定詞不變（不限 LOCK_ENTITIES）。不以腳本通過代替上述檢查，也不宣稱已驗證 104 轉換、PDF 或 ATS。相似度門檻沿用上游現行 0.99，不另設 0.88 或固定改寫比例。
+
+必要來源檢查與驗證皆成功、全文審讀完成且錯誤為 0 後提交並推送 codex/resume-writer（本人當輪要求暫不推送時除外）。若有可在授權範圍內修復的錯誤，直接修復後重驗；不得修改驗證程式、上游或製造假輸入。無法自行修復者如實回報，不宣稱通過。非阻擋提示須經閱讀判斷，不為清除責任提示而換成更強動詞。履歷潤飾交付依下方七大模組格式，列實際 Before → After 修正、來源 SHA、驗證結果與提交；必要時最後列「🔒 上游鎖定微調建議（Optional）」。
 
 ## 邊界與舊規則失效
 
-每次交付必附「全篇 7 大模組獵頭重構檢查表（Module 1–7 Audit Summary）」：逐模組列本輪實際檢視與修改重點，區分已改、檢視後保留及受鎖定限制項；附驗證結果、commit hash 與成品連結。此格式取代舊版只列少數 Before／After 的交付方式，不要求另建檢查腳本或報告檔。
+每次履歷潤飾交付必附「全篇 7 大模組獵頭重構檢查表（Module 1–7 Audit Summary）」：逐模組列本輪實際檢視與修改重點，區分已改、檢視後保留及受鎖定限制項；附驗證結果、commit hash 與成品連結。此格式取代舊版只列少數 Before／After 的交付方式，不要求另建檢查腳本或報告檔。
 
+- 單獨進行規則維護或健檢時，只回報實際改動、檢查結果與提交，不虛構履歷七大模組審讀或重跑未修改成品的潤飾驗證。
 - 只在 `career/` 範圍工作；例行潤飾只寫 `career/02_codex_stage/final_resume.md`。本人另外要求規則維護時，限自己的 `career/drafts/codex/` 與 `career/02_codex_stage/`。
 - 不刪除或重新命名既有檔案，不覆蓋 Claude 工作稿，不推 main、不 force push；自己的分支為 `codex/resume-writer`。不將內容貼到外部服務。
 - 廢除建立 `.scratch/`、`prepare.py`、`check_polish_structure.py`、`check_workflow.py` 及其他臨時檔／輔助腳本的要求；既有檔案不再是流程的一部分。

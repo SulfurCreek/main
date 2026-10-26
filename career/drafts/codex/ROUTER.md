@@ -1,14 +1,20 @@
 # Codex Resume Writer 路由
 
-2026-10-22 本人指定：操作只依 [AGENTS.md](AGENTS.md) 的 Strict 3-Step Workflow。每次履歷潤飾最多 2 次 Shell 指令，不增加前置讀取或收尾步驟。
+現行操作唯一入口為 [AGENTS.md](AGENTS.md) 的 4-Step Autonomous Headhunter Loop，包含驗證前的 Step 4.5 全文朗讀。舊 Strict 3-Step、兩次 Shell 上限、只驗一次即停及完工後等待語氣選擇均已失效。
 
-| 用途 | 唯一路徑 |
+| 用途 | 路徑與規則 |
 | --- | --- |
-| 上游輸入 | `career/01_claude_stage/causal_draft.md`，以 AGENTS 的唯一讀取指令取得 |
-| 本地語氣參考 | `career/02_codex_stage/voice_style_guide.md` |
-| 唯一潤飾產出 | `career/02_codex_stage/final_resume.md` |
-| 唯一驗證 | `python3 career/scripts/verify_polish.py --local-codex`，一次 |
+| 上游輸入 | `origin/claude/happy-lamport-ljis8c:career/01_claude_stage/causal_draft.md`；依 AGENTS Step 1 同步並記錄完整來源 SHA |
+| 本地語氣參考 | [voice_style_guide.md](../../02_codex_stage/voice_style_guide.md)，配合 AGENTS 的現行規則 |
+| 例行唯一潤飾產出 | [final_resume.md](../../02_codex_stage/final_resume.md) |
+| 驗證 | 依 AGENTS Step 4 的來源檢查與 Bash 指令執行既有上游 verifier；必要修復後可重驗 |
+| 規則維護 | 本人授權時限 `career/drafts/codex/` 與 `career/02_codex_stage/` |
+| Claude／共用資產 | `career/library/`、`career/01_claude_stage/`、`career/scripts/`、main 及 repo 共用檔案不由本流程修改 |
 
-直接用檔案編輯工具改 NEEDS_POLISH，保留鎖定內容與父子層級，改完標記為 POLISHED。驗證通過即結束，不更新路由、索引、語氣指南、wiki 或交接檔。
+每輪重新審視上游全部 NEEDS_POLISH；成品已標 POLISHED 仍需審讀，適切文字可保留。修改範圍依本人當輪授權，LOCKED、事實、數字、限定與父子縮排保留。視覺參數依語氣指南 §11，獵頭自審與全文朗讀依 §§12–14 及 AGENTS。
 
-不讀 library 或 SKILL.md，不執行 git diff，不建立臨時檔或文字處理腳本，不執行額外 workflow／結構檢查。歷史索引、wiki、腳本與舊交接紀錄均不再提供例行操作要求。
+來源或驗證失敗不能以舊稿替代，也不能宣稱通過。既有 verifier 通過只代表已執行的檢查通過，不代表獨立事實驗證、104 轉換、PDF 或 ATS 通過；其漏檢項依 AGENTS Step 4 納入全文審讀。
+
+履歷潤飾交付依 AGENTS 的七大模組摘要，附來源 SHA、實際驗證結果、commit 與成品連結。規則維護只回報本輪實際改動與檢查。
+
+不讀 Claude library 或 SKILL.md，不執行無關 diff，不新增臨時檔或輔助檢查腳本。歷史索引、wiki、技能與退役腳本僅供存檔，不構成現行流程要求。
