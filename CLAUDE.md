@@ -13,13 +13,15 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 | 涉及 HackMD API 呼叫（建立／讀取／更新／刪除 note 或 folder） | `wiki/hackmd_rules.md` |
 | 撰寫/修改 1111 規格書、需要求才系統業務代碼（`showfield`／`confirmed`／`oStatus` 等）、需先確認求才 vs 求職專案、**引用後端 API 契約（欄位／前端判斷／已讀未讀等）**、**任何 E.1 聯絡人才／信件即時通整併相關需求** | `wiki/recruitment_system_rules.md`（API 契約見 §3；**E.1／信件即時通整併素材與 inference 規則見 §6**，實體檔在 `notes/`、`notes/api/`） |
 | 截圖存檔＋標註（Figma MCP 截圖、使用者上傳圖、badge／紅框／編號、存進 repo 供 HackMD 引用） | 用 `Skill` 載入 `photo`（`wiki/figma_rules.md` 已收斂為指標）。**繪製（紅框／badge／組合流程圖）只歸「規格文件html示意圖助手」session**，其他 session 只做搬 R2＋限寬嵌入 |
-| TCode 代碼表 Excel（`TCode_Export`、證照／工作技能／職務／福利代碼表的比對、異動清單、公告） | 用 `Skill` 載入 `tcode-excel-ops` |
+| TCode 代碼表 Excel（`TCode_Export`、證照／工作技能／職務／福利代碼表的比對、異動清單、**異動公告**——含職務分類專案的 DutyNM/PT/ST/HL 公告） | 用 `Skill` 載入 `tcode-excel-ops`（公告判定規則在其 `references/bulletinboard-rules.md`） |
 | 需要**覆蓋改寫截圖裡既有文字**、維護舊版「截圖標號＝章節編號」規格書、或把整段說明輸出成單一 PNG | 用 `Skill` 載入 `png`（`photo` 的舊版備用流程，一般標註任務仍優先用 `photo`） |
 | 需要產生 Figma 元件的完整文件（anatomy／design tokens／variants／a11y，非 1111 專屬） | 用 `Skill` 載入 `generate-component-doc-figma` |
 | 手繪風 lo-fi wireframe／線框圖草稿；線框圖上線到 Cloudflare 網站（`wireframe-site/`） | 用 `Skill` 載入 `lofi-wireframer`（上線規則見其 `references/publish-to-site.md`） |
 | 1111 切版改版（mock↔正式偏離稽核、CSS 對照表）或前端修改工程單 | 用 `Skill` 載入 `frontend-slicing-1111`（改版稽核）／`frontend-change-ticket-1111`（工程單內文強制格式，兩者衝突時後者優先） |
 | 分析 API 文件產測試矩陣、或依矩陣產生並執行 pytest | 用 `Skill` 載入 `api`（文件→矩陣）／`auto-test`（矩陣→腳本→報告，需先跑過 `api`） |
 | 撰寫/修改個人履歷、CV、作品集 | 用 `Skill` 載入 `resume-craft`（依賴的 `career/` 職能框架 wiki 已於 2026-08-31 併入本 repo，開箱即用）。**審查履歷（模擬人資／主管、同儕比較）用 `resume-review-panel`**（素材只在個人線分支，結果不取代真人回饋） |
+| 產生 104 特化版履歷 md（Quill HTML、逐欄位）／針對指定職缺寫 104 自我推薦信 | 用 `Skill` 載入 `104resume`／`104coverletter`（個人線自有；找檔案先看個人線分支 `career/ROUTER.md`） |
+| 履歷「概念偷跑／因果斷裂」編譯：Stage 1 把事實編成 `career/01_claude_stage/causal_draft.md`（STATUS／LOCK_ENTITIES 標記），Stage 3 以 `career/scripts/verify_polish.py` 驗收 Codex 成品 | 用 `Skill` 載入 `resume-causal-logic-compiler`（個人線自有；管線規則見 `wiki/personal_line_collab.md` §7） |
 | 產生／填寫／驗證 104 履歷、撰寫中文履歷或自傳語氣（Cake Resume 另案，不得套用 104 規格） | 用 `Skill` 載入 `resume-craft`；104 先讀 `career/104/README.md`（在個人線分支 `claude/happy-lamport-ljis8c`，欄位規格 `fields-spec.md`），中文語氣依 `resume-craft/references/tw-voice.md` |
 | 把作品集（`career/portfolio/*.md`）渲染成靜態網站、部署 GitHub／Cloudflare Pages（作品集網站、靜態網站、portfolio site） | 用 `Skill` 載入 `portfolio-site`（只管渲染；內容由 `resume-craft` 管，輸出在使用者自己的作品集 repo，不進本 repo） |
 | 撰寫 QA 測試案例（只寫 happy path）、把規格書轉成可勾選的驗收案例表 | 用 `Skill` 載入 `qa-happy-path-cases` |
@@ -80,7 +82,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
    - **例外：個人成長／履歷 session**（`claude/happy-lamport-ljis8c`，側欄「Career Move」）
      是**唯讀**角色——全 repo 可讀（產出就是它的職能證據來源），但**只能寫 `career/`**。
      它要改 `career/` 以外的任何東西，一律寫進 `career/_requests-to-main.md` 請主幹施作，不自己動手。
-     **例外中的例外（2026-10-08 使用者裁示）**：個人線自有 skill `resume-craft`／`resume-review-panel`／`portfolio-site` 跟 1111 主線無關，**擁有權歸個人線分支**——Career Move 自己改、自己推到該分支；main 上的副本由 Repo Steward 從分支單向同步（`git checkout origin/claude/happy-lamport-ljis8c -- <三個目錄>`），main 不直接改這三個目錄。
+     **例外中的例外（2026-10-08 使用者裁示）**：個人線自有 skill `resume-craft`／`resume-review-panel`／`portfolio-site`／`104coverletter`／`104resume`／`resume-causal-logic-compiler` 跟 1111 主線無關，**擁有權歸個人線分支**——Career Move 自己改、自己推到該分支；main 上的副本由 Repo Steward 從分支單向同步（`git checkout origin/claude/happy-lamport-ljis8c -- <六個目錄>`），main 不直接改這六個目錄。
      完整規則見 `career/CLAUDE.md`〈硬規則一〉；護欄見 `scripts/guard_career_scope.sh`（只在該分支生效的 PreToolUse hook）。
      **事實來源**：使用者提供過的資料一律收在該分支 `career/library/`（現行事實、裁定、已推翻說法、待確認），寫履歷前先讀。
    - **例外：線框圖助手**（側欄「Wireframe helper v2」）可直接推 `main`，但**只能寫 `wireframe-site/<slug>/**` 與 `wireframe-site/index.html` 的 `PAGES` 區**；上線前須使用者核可並去識別化（網址公開）。規則見 `lofi-wireframer/references/publish-to-site.md`。
