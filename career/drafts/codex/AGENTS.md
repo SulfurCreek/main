@@ -16,11 +16,15 @@ git fetch origin refs/heads/claude/happy-lamport-ljis8c:refs/remotes/origin/clau
 
 ### Step 2：初稿與事實邊界
 
+永久預設採 Default Full-Sweep Protocol：以上游 NEEDS_POLISH 判定全部可改區塊，成品已標 POLISHED 不代表可以略過。每次重新逐一審視全部可改區塊，並直接修正表達問題；不只同步本輪新增文字。數量依實際上游計算，目前為 41 區塊、8 個 LOCKED、33 個可改區塊，不硬填 34。本人當輪明確限制修改範圍時，仍全文審讀，但只在授權範圍修改。
+
 參考分支內既有的 `career/02_codex_stage/voice_style_guide.md`，直接以檔案編輯工具修改 `career/02_codex_stage/final_resume.md` 的 NEEDS_POLISH 句子，完成後將標記改為 POLISHED。禁止用 Shell 讀寫文字；嚴禁撰寫任何 Python 文字處理腳本。
 
 LOCK_ENTITIES 的詞與數字完整保留；LOCKED 及其他未授權內容原樣保留。保留定義順序、因果、責任、限定及父子縮排；子項不重複上層背景，上層不另加成果。採主動、直接的句子，不反覆補「由我」，不升級責任，不強求改寫比例。
 
 ### Step 3：獵頭自審與自治重寫
+
+每次依序完成七大模組：個人簡介 → 1111 經歷 → 尚凡經歷 → SweetRing 經歷 → 六項專長 → 自傳七段 → 四項專案與求職條件。逐點套用 voice_style_guide.md §13 的四大戰功轉譯公式及前 20 字檢查，發現平鋪直敘、背景過長、工具搶焦點或碎句時，當場重構並校正 G／B／BT，不得列出問題後停工。各模組檢驗重點與歸因界線詳見該節。
 
 依 voice_style_guide.md §§12–13，以 Senior PM／B2B PO 招募閱讀視角逐點檢查功績、前 15～20 字、節奏、視覺重音。審視全部可改區塊，不將指定範圍的編輯限制誤當成全文審讀範圍。不機械套用固定區塊數，以當輪上游標記為準。
 
@@ -37,6 +41,8 @@ git show origin/claude/happy-lamport-ljis8c:career/scripts/verify_polish.py | py
 錯誤為 0 後提交並推送 codex/resume-writer（本人當輪要求暫不推送時除外）。若有可在授權範圍內修復的錯誤，直接修復後重驗；不得修改驗證程式、上游或製造假輸入。無法自行修復者如實回報，不宣稱通過。非阻擋提示須經閱讀判斷，不為清除責任提示而換成更強動詞。回覆只列實際 Before → After 修正、驗證結果與提交；必要時最後列「🔒 上游鎖定微調建議（Optional）」。
 
 ## 邊界與舊規則失效
+
+每次交付必附「全篇 7 大模組獵頭重構檢查表（Module 1–7 Audit Summary）」：逐模組列本輪實際檢視與修改重點，區分已改、檢視後保留及受鎖定限制項；附驗證結果、commit hash 與成品連結。此格式取代舊版只列少數 Before／After 的交付方式，不要求另建檢查腳本或報告檔。
 
 - 只在 `career/` 範圍工作；例行潤飾只寫 `career/02_codex_stage/final_resume.md`。本人另外要求規則維護時，限自己的 `career/drafts/codex/` 與 `career/02_codex_stage/`。
 - 不刪除或重新命名既有檔案，不覆蓋 Claude 工作稿，不推 main、不 force push；自己的分支為 `codex/resume-writer`。不將內容貼到外部服務。
