@@ -32,7 +32,7 @@
    - 本次變動段落：`<!-- [STATUS: NEEDS_POLISH] [LEAD: RESULT|ACTION|CONTEXT] [LOCK_ENTITIES: 核心名詞A, 數據B] -->`（LEAD 規則見 skill 規則 4）
    - 未變動段落：`<!-- [STATUS: LOCKED] -->`
 4. **責任界線與父子縮排鎖定**：
-   - 高強度責任動詞（`主導、架構、扛下、開發、實作、重構、確立、制定`）必須在草稿階段嚴格依 `library/` 確認後寫出（例如「主導」僅限 `library/` 確認的 Juicy、JustDating 重新上架兩件事可用），下游 Codex 禁止自行升級責任。
+   - 高強度責任動詞（`主導、架構、扛下、開發、實作、重構、確立、制定`）必須在草稿階段嚴格依 `library/` 確認後寫出；2026-10-26 起依 library 主責紀錄擴大白名單，逐點以 `[AMPLIFY: 主導]` 標記授權（白名單見 decisions §51、compiler skill〈Pursuing Voice〉），未授權的區塊下游 Codex 仍禁止自行升級責任。
    - 若有父子縮排結構，子項不重複上層背景，上層不另加成果。
 5. **缺漏與疑問主動提問（Clarification Gate：禁止腦補硬湊）**：
    - 當使用者要求新增或修改履歷內容，或你在套用 `LEAD`（RESULT / ACTION / CONTEXT）發現某一點**缺乏前因背景（導致讀者看不懂數字意義）、責任歸屬不明、或與 `library/` 既有紀錄衝突**時，**嚴禁自行腦補或硬湊生硬句子**。

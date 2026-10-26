@@ -107,11 +107,13 @@ def parse_tagged_blocks(md_text: str):
             attrs = {m.group("key"): m.group("val").strip() for m in ATTR_PATTERN.finditer(tag_match.group("attrs") or "")}
             raw_entities = attrs.get("LOCK_ENTITIES")
             entities = [e.strip() for e in re.split(r"[,，]", raw_entities) if e.strip()] if raw_entities else []
+            amplify = [v.strip() for v in re.split(r"[,，|]", attrs.get("AMPLIFY", "")) if v.strip()]  # 上游授權的強勢責任詞（2026-10-26）
             visual = {k: [v.strip() for v in attrs[k].split("|") if v.strip()] for k in VISUAL_KEYS if k in attrs}
             active_block = {
                 "line_no": idx + 1,
                 "status": status,
                 "entities": entities,
+                "amplify": amplify,
                 "visual": visual,
                 "section": current_section,
                 "lines": []
@@ -211,7 +213,7 @@ def run_verification(draft_text: str, final_text: str):
 
             for pat in OVERCLAIM_PATTERNS:
                 fm = re.search(pat, f_item["text"])
-                if fm and not re.search(pat, d_item["text"]):
+                if fm and not re.search(pat, d_item["text"]) and fm.group(0) not in d_item.get("amplify", []):
                     errors.append(f"[責任升級] {loc} 成品出現「{fm.group(0)}」，上游草稿同一區塊沒有。")
 
             hit_resp = [t for t in RESPONSIBILITY_WARN_TOKENS if t in f_item["text"]]
