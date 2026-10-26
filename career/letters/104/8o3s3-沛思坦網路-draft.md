@@ -1,70 +1,65 @@
 <!--
-104 自我推薦信草稿（2026-10-21 v3：本人選 A；採 Codex 重寫稿＋公司鉤子）｜j-8o3s3 沛思坦網路【北士科】Product Manager｜分級：一般｜2026-10-21 Career Move
-給潤飾者：
-1. 只改語感與順暢度；不改公司名、職缺名、數字、日期、條列點數；不新增事實或對公司的觀察。
-2. 純文字（104 企業端只保留換行，**不要用 ** 粗體或 Markdown**）；條列用「‧」。方案 A：中文約 100 字＋英文約 120–150 words；方案 B：250–350 字。
-   英文條列請潤飾成自然的商務英文，動詞具體、不加形容詞（strategic、passionate、detail-oriented 一律不用）。
-3. 禁用：AI 套話（深感契合、願景高度契合、在瀏覽貴公司職缺後）、乞求句、軟性形容詞、主導開發、Jira／英文文件能力的暗示。
-4. 回傳整封；改了什麼列在檔末。
+104 自我推薦信上游草稿 r2（2026-10-26 依四階段工作流重寫：Stage 2 個人形象＋Pursuing Voice＋No Detail Dumping）｜j-8o3s3 沛思坦網路【北士科】Product Manager｜分級：一般｜Career Move
+前版：r1（2026-10-21，Codex 958cb2a 潤飾，定稿 8o3s3-沛思坦網路.md）已由本稿取代。
+給潤飾者（Codex）：
+1. 只改語感與節奏；不改公司名、職缺名、數字、日期、限定詞、條列點數；不新增事實或對公司的觀察。
+2. 純文字（不要粗體、Markdown）；條列用「‧」。方案 A：中文約 100 字＋英文 120–150 words；方案 B：全中文 250–350 字。
+3. 語氣：pursuing／proactive，每點先講張力或成果，強動詞輪替，不重複同一個動詞；英文依 career/style/voice-en.md。
+4. 「主導／led」只能用在：職缺工作說明生成與 AI 推薦人才、Juicy 與 JustDating 承接、定價實驗設計、KOOL 變現機制（decisions §51）。公司簡介生成寫「帶領企劃」。
+5. 禁用：AI 套話、乞求句、軟性形容詞（strategic、passionate、detail-oriented）、Jira／A/B test／LLM prompt 設計的暗示、免責小尾巴、破局者／治理者等自我標籤。
+6. 回傳整封；改了什麼列在檔末。
 -->
 
 # 正文（方案 A：中文破題＋英文條列，建議採用）
 
 ```text
 您好：
-應徵貴司【北士科】Product Manager。我有近 10 年產品經理經驗，目前擔任人力銀行企業端招募系統 Product Owner，做過 AI 功能規劃與既有系統改版。以下是三項相關經驗：
+應徵貴司【北士科】Product Manager。我有近 10 年產品經理經驗，現任人力銀行企業端招募系統 Product Owner，負責約 6 萬家付費企業使用的系統改版，並主導生成式 AI 功能上線。以下是三項相關經驗：
 
-‧ I worked with the data science team on three AI features that are now live: company profile generation, job description generation, and AI talent recommendations. My role was to define the use cases and acceptance criteria.
-‧ For a task involving 100+ job-category codes, I introduced an AI Agent to check completed mappings and add category information found using a lower-cost model. My colleagues reviewed the results alongside confidence levels and made the final decisions. We discussed and resolved the remaining exceptions together.
-‧ When planning the new recruitment system, we had to keep the existing back office and database. I used hands-on testing and internal interviews to work out undocumented permission and billing rules, then turned them into workflows and specifications for phased releases.
+‧ To lower the barrier for employers posting jobs, I led the launch of AI job description generation and AI talent recommendations. I set acceptance criteria that kept generated content compliant with labor law, required employers to confirm AI content before publishing, and tuned recommendation rules based on what clients actually selected.
+‧ The recruitment system's account permissions and business rules had no documentation, yet the overhaul had to keep the existing back office and database. I reconstructed the rules through hands-on testing and internal interviews and turned them into specs for phased releases. Of 840 client requests on accounts, login, company data and contacts, 743 (88%) are now resolved.
+‧ With no direct competitor to learn from, I interviewed merchants' marketing teams to understand how they found influencers, then designed KOOL's two-sided matching flow. The platform grew to about 16,000 influencer profiles and over 80,000 applications in six months.
 
-貴司也服務人才招募平臺，與我目前的工作直接相關。完整經歷在履歷中，謝謝您的閱讀。
+貴司也服務人才招募平臺，我希望把招募系統與生成式 AI 功能的經驗帶進這個職位。完整經歷在履歷中，謝謝您的閱讀。
 
 聶崑淮
 ```
 
-# 方案 B：全中文（備選）
+# 正文（方案 B：全中文備選）
 
 ```text
 您好：
-應徵貴司【北士科】Product Manager。我有近 10 年產品經理經驗，現任人力銀行企業端招募系統 Product Owner。
+應徵貴司【北士科】Product Manager。我有近 10 年產品經理經驗，現任人力銀行企業端招募系統 Product Owner，負責約 6 萬家付費企業使用的系統改版，並主導生成式 AI 功能上線。
 
-‧生成式內容：與資料科學團隊定義公司簡介生成、職缺工作說明生成及 AI 推薦人才的使用情境與驗收標準，三項功能已上線。日常也以 AI Agent 協作規格與資料整理，由我定義規則並覆核結果。
-‧企業資料與權限：新版須沿用既有後台與資料庫，我以實測及內部訪談釐清權限與計費規則；另規劃部門、分店共同招募的群組功能與舊資料轉換規則。
-‧從訪談到流程：規劃網紅媒合平台時，先訪談商家的行銷單位，再以流程圖定義雙方的角色與操作，規劃並上線付費機制。
+‧ 為降低企業刊登門檻，主導職缺工作說明生成與 AI 推薦人才上線；制定勞動法規合規的驗收標準，AI 內容經企業確認才刊登，並依客戶實際選用結果調整推薦規則。
+‧ 帳號權限與商業模式規則沒有文件，改版又須沿用既有後台與資料庫；我以實測與內部訪談逆向還原規則、分階段上線，相關的 840 件企業建議已完成 743 件（88%）。
+‧ 網紅媒合平台 KOOL 沒有直接競品可參考，我訪談商家的行銷單位、設計雙邊媒合流程，平台累積約 1.6 萬份網紅檔案、半年 8 萬多次合作報名。
 
-過去也曾以全英文會議與外籍實習生、海外金流商溝通。完整經歷與自傳在履歷中，期待有機會進一步說明。
+貴司也服務人才招募平臺，希望把這些經驗帶進這個職位。謝謝您的閱讀。
 
-聶崑淮 敬上
+聶崑淮
 ```
 
 # 對位表
 
-| 段落 | JD 需求 | library 出處 |
-| :-- | :-- | :-- |
-| 破題 | 5 年以上 PM；CMS／HRIS 產品 | profile §1（近 10 年）；facts-1111 §1；履歷 v11.1 1111 段首 |
-| ‧ 生成式內容／Generative content | 職責 4 content generation workflows；加分 HR Tech／生成式 AI、automated content generation | facts-1111（三項 AI 功能上線）；about-me〈四〉AI Agent＋human in the loop |
-| ‧ AI workflow with human review | 加分 2：LLM／automated content pipelines；職責 4 優化流程 | facts-1111 §2026-10-20 指導同仁（上百筆代碼對照、較便宜模型搜尋、信心程度、人工判斷例外）；about-me〈四〉帶人 |
-| ‧ 企業資料與權限（方案 B）／From undocumented rules to specs（方案 A） | 職責 2、4（PRD、流程；employee data processes） | facts-1111（新版求才系統；about-me〈二〉〈三〉缺文件的是權限／計費規則） |
-| ‧ 從訪談到流程 | 職責 1 使用者訪談、2 流程 | facts-prior（KOOL 商家訪談、Miro 流程、VIP／點數上線） |
-| 結尾鉤子「貴司也服務人才招募平臺」 | 公司 | jd/full/8o3s3.md〈公司資料 A〉104 公司頁原文 |
-| 結尾英文句（方案 B） | 必要 5 中英文溝通 | facts-prior（外籍實習生全英文會議、歐洲金流商英文視訊） |
+| 點 | JD 需求 | 四大支柱 | library 出處 |
+| --- | --- | --- | --- |
+| 破題 | 5 年以上 PM；HR Tech；生成式 AI | ②③ | profile；facts-1111（約 6 萬家、Product Owner）；decisions §51（主導白名單） |
+| 1 | 生成式 AI 產品、LegalTech（法規合規）、資料導向 | ④② | facts-1111〈AI 功能品質把關〉第 338 行；decisions §46、§51；R17 |
+| 2 | 撰寫 PRD、流程、拆解複雜問題、跨部門 | ①③ | about-me §三〈加入 1111〉；facts-1111 第 222、234 行（840／743）；decisions §52（不寫免責尾巴） |
+| 3 | 使用者訪談挖掘需求、0 到 1 | ① | about-me §四（KOOL 商家行銷單位訪談）；facts-prior（1.6 萬、8 萬多次、半年） |
 
 # 刻意不寫
 
-（另一份 AI 建議範本中的 [X]% 效率、feature adoption、Jira sprints、A/B testing in this role、「Senior Product Manager」職稱、電話與 Email：**一律不採用**——無 library 依據或職缺名不符）
+| 缺口或素材 | 處理 |
+| --- | --- |
+| Jira、Notion | 不提、不暗示（R11） |
+| A/B 測試 | 不寫；定價實驗是分期對照，不是 A/B，面試可說明 |
+| LLM prompt 設計 | 不暗示具備；AI Agent 協作留面試 |
+| 前版的 100+ 職務類別對照、較便宜模型 | 移除（decisions §50 No Detail Dumping） |
+| 「billing rules」 | 改「business rules」（2026-10-25 計費規則→商業模式規則） |
+| 北美律所、LegalTech 客戶 | 未證實，不寫 |
 
+# 字數
 
-| 缺口 | 處理 |
-| :-- | :-- |
-| 必要「熟悉 Jira」 | 本人從未使用 Jira（library/profile）；不提、不暗示 |
-| 必要「中英文文件撰寫」 | 只寫英文會議溝通；沒有英文文件案例，不寫「撰寫英文文件」 |
-| 追蹤 KPI、上線後採用率 | library 無採用數據；不寫成效 |
-| 前後端技術背景、LLM prompt 設計 | 只有基本 HTML／CSS 與 AI Agent 協作；不擴寫 |
-| 北士科地點 | 本人可接受台北市；不另提 |
-| 沛思坦商業模式（LegalTech、北美律所、KPO） | 其他 AI 推測、未查證，且非本人觀察；不寫 |
-
-# 檢查
-
-- 字數（去換行）：344（2026-10-21 依完整 JD 改寫）
-- 公司名「沛思坦網路」、職缺名「【北士科】Product Manager」對照 `review-panel/jd/routing.tsv` 一致（正文用「貴司」，不寫公司全名以免寫錯）。
+方案 A 中文約 118 字、英文約 150 words；方案 B 約 353 字（不含空白，含標點）。行數約 13–15 行（參考）。

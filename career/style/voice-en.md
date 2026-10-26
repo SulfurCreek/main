@@ -19,6 +19,7 @@
 | 還原沒有文件的規則 | worked out / recovered undocumented rules through hands-on testing and internal interviews | reverse-engineered the codebase |
 | 導入 AI Agent 給同仁使用、同仁做最後判斷 | introduced an AI Agent; my colleagues made the final decisions | automated the whole process, eliminated manual work |
 | 帶 2 名直屬企劃 | managed two product planners | led a large team |
+| 主導職缺工作說明生成與 AI 推薦人才上線（decisions §51 白名單）；制定合規驗收標準 | led the launch of; set acceptance criteria | built the AI model, developed the algorithm |
 | 主導 Juicy 推出（上線與導流期間 DAU） | led the launch of; during launch and promotion | single-handedly grew, drove X% revenue |
 
 ## 3. 固定譯法
