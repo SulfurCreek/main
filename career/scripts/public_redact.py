@@ -36,22 +36,28 @@ REPLACE = [
 FORBIDDEN = ["1111", "全球華人", "求才", "招募管理", "冒用", "6 萬家", "15 張"]
 
 
-def main():
-    src, out = sys.argv[1:3]
-    t = open(src, encoding="utf-8").read()
+def redact(t):
+    """Return a redacted copy or fail before any output is published."""
     # 刪除帳號冒用整條（含其狀態註解）
     t, n = re.subn(r"<!-- \[STATUS:[^\n]*-->\n- [^\n]*冒用[^\n]*\n", "", t)
-    assert n == 1, f"冒用條數 {n}"
+    if n != 1:
+        raise ValueError(f"冒用條數 {n}，預期恰為 1")
     for a, b in REPLACE:
         t = t.replace(a, b)
     body = re.sub(r"<!--.*?-->", "", t, flags=re.S)
     left = [k for k in FORBIDDEN if k in body or k in t]
     if left:
-        print("❌ 公開版仍含：" + "、".join(left))
-        sys.exit(1)
+        raise ValueError("公開版仍含：" + "、".join(left))
+    return t
+
+
+def main():
+    src, out = sys.argv[1:3]
+    t = redact(open(src, encoding="utf-8").read())
     open(out, "w", encoding="utf-8").write(t)
     print(f"✅ 公開版來源 {out}；{len(REPLACE)} 組替換＋刪除冒用條，禁用字串皆 0 筆")
 
 
 if __name__ == "__main__":
     main()
+

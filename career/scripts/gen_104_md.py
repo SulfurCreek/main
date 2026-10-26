@@ -7,10 +7,14 @@
 
 用法：python3 gen_104_md.py <final_resume.md> <輸出 104.md> <版本> <來源說明>
 """
+import argparse
+import html
 import json
+import os
 import pathlib
 import re
 import sys
+import tempfile
 
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
 import verify_polish as vp  # noqa: E402
@@ -23,29 +27,8 @@ GAP = '<p><br></p>'  # 模組大標上下留白（Quill 空行）
 PLAIN_SECTIONS = {"個人簡介", "專長", "求職條件（工作內容）"}  # 104 純文字欄位，不套重音
 
 # ---- 結構設定（非內文，不經 Codex） ----
-LAYOUT = {
-    "target_block": "layout",
-    "action": "update_theme",
-    "requires_confirmation": True,
-    "theme_suggestion": "chronological",
-    "skill_display": "SkillThemeCard",
-    "accent_color": "#566876",
-    "notes": "Senior PM／PO 定位：經歷時序式、專長卡片式、名片主題用沉穩商務色（煙燻冷藍）。版型變更須本人確認後才套用。",
-}
-LF = ["companyName", "jobName", "duration", "workArea", "management"]
-ET = [["製作規格說明書", "Prototype", "Systems Analysis", "專案溝通╱整合管理", "生成式AI", "推薦系統", "工作任務╱業績項目分配", "客訴案件處理"],
-      ["市場調查企劃與執行", "產品策略", "產品營運", "數據分析", "專案時間╱進度控管", "Electronic Payment", "iOS", "Android"],
-      ["專案溝通╱整合管理", "數據分析", "Electronic Payment", "Android"], []]
-ST = [["Claude", "生成式AI", "AI"], ["製作規格說明書", "Prototype", "功能測試(function test)", "專案規劃執行╱範圍管理"],
-      ["Systems Analysis", "UML", "系統整合分析"],
-      ["Figma", "Axure RP", "Wireframe", "Prototype", "使用者介面設計", "使用者體驗設計", "iOS", "Android"],
-      ["專案溝通╱整合管理", "專案時間╱進度控管", "Scrum", "決策能力"],
-      ["產品策略", "產品營運", "數據分析", "Electronic Payment", "iOS", "Android"]]
-MG = ['**有管理責任，1~5 人**（直屬 2 名產品企劃）', '**無管理責任**', '**無管理責任**', '**無管理責任**']
-IMG = ['images/project1_justdating_juicy.png', 'images/project2_kool.png',
-       'images/project3_1111_recruit.png', 'images/project4_1111_recruit.png']
-PDATE = ['2020/01 – 2020/06｜isInProgress：否', '2018/05 – 2022/03｜isInProgress：否',
-         '2024/12 – ｜isInProgress：**是**', '2025/03 – 2025/09｜isInProgress：否（104 只收年月）']
+# Metadata is reviewed once in the verifier and used by the renderer unchanged.
+LAYOUT, LF, ET, ST, MG, IMG, PDATE = (vp.LAYOUT, vp.LF, vp.ET, vp.ST, vp.MG, vp.IMG, vp.PDATE)
 
 
 def bold_first(text, term):
@@ -78,9 +61,9 @@ class Decorator:
     """一個區塊的視覺重音：G、B 每個字串只套一次（跨段落），BT 每段落各套一次。"""
 
     def __init__(self, visual):
-        self.g = list(visual.get("G", []))
-        self.b = list(visual.get("B", []))
-        self.bt = list(visual.get("BT", []))
+        self.g = [html.escape(t, quote=False) for t in visual.get("G", [])]
+        self.b = [html.escape(t, quote=False) for t in visual.get("B", [])]
+        self.bt = [html.escape(t, quote=False) for t in visual.get("BT", [])]
 
     def __call__(self, text):
         for lst, tpl in ((self.g, GS), (self.b, BS)):
@@ -112,6 +95,8 @@ def build_visual_map(src):
 
 def sec(src, title):
     m = re.search(r"^### " + re.escape(title) + r"\n(.*?)(?=^### |\Z)", src, re.S | re.M)
+    if not m:
+        raise ValueError("找不到符合管線格式的來源章節：" + title)
     return m.group(1)
 
 
@@ -122,7 +107,8 @@ def clean(t):
 def deco(vmap, line):
     t = body_key(line)
     d = vmap.get(t)
-    return d(t) if d else t
+    escaped = html.escape(t, quote=False)
+    return d(escaped) if d else escaped
 
 
 def exp_html(lines, vmap):
@@ -136,7 +122,7 @@ def exp_html(lines, vmap):
                 ul = False
             if out and out[-1] != GAP:
                 out.append(GAP)
-            out.append(HEAD.format(raw))
+            out.append(HEAD.format(html.escape(raw, quote=False)))
             out.append(GAP)
             continue
         t = deco(vmap, l)
@@ -161,10 +147,42 @@ def d(o):
 
 
 def main():
-    src_path, out_path, ver, origin = sys.argv[1:5]
-    public = "--public" in sys.argv[5:]
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("source")
+    parser.add_argument("output")
+    parser.add_argument("version")
+    parser.add_argument("origin")
+    parser.add_argument("--public", action="store_true", help="驗收原始定稿後去識別並產生公開版")
+    parser.add_argument("--draft", help="明確指定上游草稿快照；未指定則讀本地管線草稿")
+    args = parser.parse_args()
+    src_path, out_path, ver, origin = args.source, args.output, args.version, args.origin
+    public = args.public
+    if pathlib.Path(src_path).resolve() == pathlib.Path(out_path).resolve():
+        raise ValueError("輸出不可覆蓋來源定稿")
     imgs = [IMG[0], IMG[1], None, None] if public else IMG
     src = pathlib.Path(src_path).read_text(encoding="utf-8")
+    draft = (pathlib.Path(args.draft).read_text(encoding="utf-8") if args.draft else
+             vp.load_file_content(vp.DRAFT_REL_PATH, vp.CLAUDE_BRANCH, prefer_local=True))
+    if public:
+        from public_redact import redact
+        # Accept the established pre-redacted input only if it exactly matches the
+        # current remote final; never validate a public derivative against itself.
+        if "公司名暫不公開" in src:
+            original = vp.load_file_content(vp.FINAL_REL_PATH, vp.CODEX_BRANCH)
+            if redact(original) != src:
+                raise ValueError("公開版來源與指定遠端定稿的去識別結果不同")
+        else:
+            original = src
+    else:
+        original = src
+    errors, warnings = vp.run_verification(draft, original)
+    if errors:
+        raise ValueError("潤飾驗證失敗：\n" + "\n".join(errors))
+    for warning in warnings:
+        print("⚠️ " + warning, file=sys.stderr)
+    if public:
+        src = redact(original)
+    vp.expected_104_fields(src, public)  # Reject unsupported source structure before rendering.
     vmap, missing = build_visual_map(src)
     if missing:
         print("⚠️ 以下區塊沒有視覺重音標註（不加底色／粗體）：" + "、".join(missing), file=sys.stderr)
@@ -172,7 +190,7 @@ def main():
     exp = sec(src, "工作經歷")
     heads = re.findall(r"^#### (.*)$", exp, re.M)
     parts = re.split(r"^#### .*$", exp, flags=re.M)[1:]
-    exps = [exp_html(clean(p), vmap) if i < 3 else "<p>" + body_key(clean(p)[0]) + "</p>" for i, p in enumerate(parts)]
+    exps = [exp_html(clean(p), vmap) if i < 3 else "<p>" + html.escape(body_key(clean(p)[0]), quote=False) + "</p>" for i, p in enumerate(parts)]
     skills = [body_key(l) for l in clean(sec(src, "專長"))]
     bio = [deco(vmap, p) for p in clean(sec(src, "自傳"))]
     praw = sec(src, "專案成就")
@@ -185,7 +203,7 @@ def main():
     job = "\n".join(clean(sec(src, "求職條件（工作內容）")))
 
     o = ["<!--markdownlint-disable MD013 MD033-->", "",
-         f"# 104 特化版｜{ver}｜**可填表**（verify_polish.py 通過）", "",
+         f"# 104 特化版｜{ver}｜草稿（驗證中）", "",
          f"> 來源：{origin}。",
          "> 排版依 `career/104/styling-directive-guide.md` v2.3.0：子項為獨立 `<li style=\"margin-left: 1em;\">`、模組大標上下 `<p><br></p>` 留白（產出即定版，下游零加工原樣貼入）、"
          "金黃＝成果數字、晴藍＋粗體＝核心產品／系統、粗體＝專案／系統／產品／buzzword。**底色與粗體依 Codex 在定稿註解標的 [G]／[B]／[BT]**；內文逐字取自定稿，只加容器。",
@@ -206,7 +224,7 @@ def main():
     o += ["---", "", "## 3. 專長（6 筆，順序與標題鎖定；desc 純文字）", ""]
     for i, s in enumerate(skills):
         n, desc = s.split("：", 1)
-        o += [f"### 3.{i+1} {n}", "", d({"target_block": "skill", "index": i, "action": "replace_all", "mode": "plain_text", "name": n, "tags": ST[i]}),
+        o += [f"### 3.{i+1} {n}", "", d({"target_block": "skill", "index": i, "action": "replace_all", "mode": "plain_text", "name": n, "tags": vp.skill_tags(i, desc)}),
               "", "```text", desc, "```", ""]
     o += ["---", "", "## 4. 自傳", "", d({"target_block": "bio", "action": "replace_field", "field": "chi", "mode": "quill_html"}), "",
           "```html", "\n<p><br></p>\n".join(f"<p>{p}</p>" for p in bio), "```", "", "---", "", "## 5. 專案成就", ""]
@@ -224,14 +242,35 @@ def main():
           "", "```text", job, "```", ""]
     if public:
         o = [x.replace("5.3→project3_1111_recruit.png、5.4→project4_1111_recruit.png", "5.3、5.4 公開版不放圖片") for x in o]
-    pathlib.Path(out_path).write_text("\n".join(o) + "\n", encoding="utf-8")
-
-    errs = vp.verify_104_markdown(out_path, src)
-    if errs:
-        print("❌ 產出驗證失敗：\n" + "\n".join(errs))
-        sys.exit(1)
+    # Validate a same-directory temporary candidate; publish atomically only after
+    # both source/final and field-level checks succeed. A previous good output is
+    # preserved on failure; this run never writes a false success marker.
+    destination = pathlib.Path(out_path)
+    destination.parent.mkdir(parents=True, exist_ok=True)
+    temporary = None
+    try:
+        with tempfile.NamedTemporaryFile(mode="w", encoding="utf-8", dir=destination.parent,
+                                         prefix=".104-", suffix=".md", delete=False) as handle:
+            temporary = pathlib.Path(handle.name)
+            handle.write("\n".join(o) + "\n")
+        errs = vp.verify_104_markdown(str(temporary), src, public)
+        if errs:
+            raise ValueError("產出驗證失敗：\n" + "\n".join(errs))
+        candidate = temporary.read_text(encoding="utf-8").replace(
+            f"# 104 特化版｜{ver}｜草稿（驗證中）",
+            f"# 104 特化版｜{ver}｜**可填表**（verify_polish.py 與 104 欄位驗證通過）", 1)
+        temporary.write_text(candidate, encoding="utf-8")
+        os.replace(temporary, destination)
+    finally:
+        if temporary is not None:
+            temporary.unlink(missing_ok=True)
     print(f"✅ 產出 {out_path}；--verify-104 通過")
 
 
 if __name__ == "__main__":
-    main()
+    try:
+        main()
+    except (OSError, ValueError, IndexError) as exc:
+        print(f"❌ {exc}", file=sys.stderr)
+        sys.exit(1)
+
