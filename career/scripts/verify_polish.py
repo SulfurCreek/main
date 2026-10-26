@@ -33,7 +33,9 @@ CHORE_AND_HALLUCINATION_TOKENS = [
     "報表無付費數據",       # 內部備註誤留正文
     "刊案", "RBAC",
     "簡單舊案", "較易處理的舊案", "不再自動覆蓋", "安排代碼交工程更新", "擔任統一窗口", "業務票選",
-    "新增、修改", "合併與刪除",  # 分類治理寫成 CRUD 流水帳（2026-10-26）
+    "新增、修改", "合併與刪除",
+    "非功能上線比例", "不等同功能上線比例", "不予採納", "已有類似功能", "目的是",  # 免責小尾巴（2026-10-26）
+    "破局者", "治理者", "先行者", "Credibility", "毛利",  # 框架自嗨詞、無紀錄財務詞（2026-10-26）  # 分類治理寫成 CRUD 流水帳（2026-10-26）
     "Account Takeover", "權限模型", "舊系統遷移", "分類治理", "雙邊市場",  # 本人不懂的概念詞（2026-10-25）  # No Detail Dumping（2026-10-25 本人指定）                  # 內部行話，對外讀不懂（2026-10-24 本人）
 ]
 
@@ -52,7 +54,9 @@ OVERCLAIM_PATTERNS = [
 UNRESOLVED_BRACKET_PATTERN = re.compile(r"〔[^〕]*(?:待補|待確認|待本人|確認)[^〕]*〕")
 LAZY_SIMILARITY_THRESHOLD = 0.99
 BULLET_LENGTH_CAP = 165  # 工作經歷單一列點「主幹敘事淨字數」上限：剝除括號內統計期間後計算（2026-10-25 本人修訂，原 145 含括號）
-BULLET_LENGTH_CAP_JUICY = 190  # 含 Juicy 的兩次下架承接合併點放寬
+BULLET_LENGTH_CAP_JUICY = 190
+PAREN_LENGTH_CAP = 35  # 單一括號內中文字上限；產品英文名、日期、數字與符號不計（2026-10-26）
+PAREN_CJK = re.compile(r"[\u4e00-\u9fff]")  # 含 Juicy 的兩次下架承接合併點放寬
 PAREN_PATTERN = re.compile(r"（[^（）]*）|\([^()]*\)")
 WORK_SECTION_PATTERN = re.compile(r"｜.*(?:迄今|\d{4}/\d{2})")
 
@@ -165,6 +169,13 @@ def run_verification(draft_text: str, final_text: str):
             "請確認每個區塊上方皆保留 <!-- [STATUS: POLISHED/LOCKED] --> 標記！"
         )
 
+    for label, blocks in (("上游草稿", draft_blocks), ("下游成品", final_blocks)):
+        for bi, b in enumerate(blocks):
+            for m in PAREN_PATTERN.finditer(b["text"]):
+                n = len(PAREN_CJK.findall(m.group(0)[1:-1]))
+                if n > PAREN_LENGTH_CAP:
+                    errors.append(f"[括號塞爆/免責違規] 區塊 #{bi+1} ({b['section']}) {label}單一括號內達 {n} 字（只計中文字；上限 {PAREN_LENGTH_CAP} 字），嚴禁在括號內塞入內部報表定義或免責備註！")
+
     for bi, n, label, cap in bullet_length_violations(draft_blocks, "上游草稿") + bullet_length_violations(final_blocks, "下游成品"):
         src = draft_blocks if label == "上游草稿" else final_blocks
         errors.append(f"[篇幅膨脹違規] 區塊 #{bi+1} ({src[bi]['section']}) {label}單點主幹敘事淨字數達 {n} 字（不含括號；上限 {cap} 字），請刪除內部作業細節與規格瑣事，僅保留核心產品判斷與功績！")
@@ -262,7 +273,7 @@ def verify_104_markdown(md_104_path: str, final_text: str):
     if re.search(r"<li>\s*<strong>[^<]+[：:]\s*</strong>", text):
         errs.append("[104 格式違規] <li> 開頭使用了禁止的 <strong>標題：</strong> 分類前綴！")
     if re.search(r"<li>\s*</?ul>", text) or re.search(r"<li[^>]*>[^<]*<ul>", text):
-        errs.append("[104 Quill 縮排違規] 偵測到巢狀 <ul>，請改用扁平 <li class=\"ql-indent-1\">！")
+        errs.append("[104 Quill 縮排違規] 偵測到巢狀 <ul>，請改用扁平 <li style=\"margin-left: 1em;\">！")
     if "ql-indent" in "".join(re.findall(r"```html\n(.*?)```", text, re.S)):
         errs.append("[104 縮排違規] 104 不支援 ql-indent，子項請用 <li style=\"margin-left: 1em;\">（v2.3.0）！")
     if re.search(r"<li[^>]*>\s*</li>", text):
