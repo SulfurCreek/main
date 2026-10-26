@@ -242,7 +242,7 @@ def verify_104_markdown(md_104_path: str, final_text: str):
 
     # 內文一致性：定稿每一句都必須原樣出現在 104.md 的 code block（剝除 HTML 後）
     blocks = re.findall(r"```(?:html|text)\n(.*?)```", text, re.S)
-    plain = html.unescape(re.sub(r"<[^>]+>", "", "".join(blocks))).replace("\n", "").replace("　　・", "")
+    plain = html.unescape(re.sub(r"<[^>]+>", "", "".join(blocks))).replace("\n", "")
     section = ""
     for raw in re.sub(r"<!--.*?-->", "", final_text, flags=re.S).splitlines():
         s = raw.strip()
@@ -261,7 +261,7 @@ def verify_104_markdown(md_104_path: str, final_text: str):
     if re.search(r"<li>\s*</?ul>", text) or re.search(r"<li[^>]*>[^<]*<ul>", text):
         errs.append("[104 Quill 縮排違規] 偵測到巢狀 <ul>，請改用扁平 <li class=\"ql-indent-1\">！")
     if "ql-indent" in "".join(re.findall(r"```html\n(.*?)```", text, re.S)):
-        errs.append("[104 縮排違規] 104 不支援 ql-indent，子項請併入母項 <li> 並以 <br>　　・ 呈現！")
+        errs.append("[104 縮排違規] 104 不支援 ql-indent，子項請用 <li style=\"margin-left: 1em;\">（v2.3.0）！")
     if re.search(r"<li[^>]*>\s*</li>", text):
         errs.append("[104 空圓點違規] 偵測到空白的 <li></li>！")
     return errs

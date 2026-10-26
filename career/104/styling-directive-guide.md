@@ -6,7 +6,7 @@
 
 # 104 人力銀行全欄位格式設定與自動化指令指南 (104 Field Styling & Directive Guide)
 
-> **版本**：2.2.0（2026-10-24 Career Move 同步：子項併入母項、視覺重音由定稿註解指定）  
+> **版本**：2.3.0（2026-10-26：禁止填表端硬編碼內文、純文字斷言、子項獨立 li 縮排與大標留白由產生器一次到位）｜2.2.0（2026-10-24：視覺重音由定稿註解指定）  
 > **適用平台**：104 會員中心履歷編輯器 (`https://pda.104.com.tw/profile/edit?vno={vno}`)  
 > **核心用途**：提供給內容封裝 AI（Claude Code Stage 3）與瀏覽器執行 Agent（Antigravity + Gemini Flash），定義 104 履歷每一欄位的資料型態、Quill 富文本 HTML 排版語法、官方標籤白名單驗證，以及**在產出 `104.md` 時嵌入機器可讀指令的標準語法**。
 
@@ -17,6 +17,8 @@
 0. **定稿文字絕對鎖定原則（Zero Text Mutation — 最重要！）**：
    - 轉為 `104.md` 與填入 104 網頁時，內文必須 **100% 逐字沿用 `career/02_codex_stage/final_resume.md` 已通過 `verify_polish.py` 驗收的定稿文字**！
    - **只准套用 HTML 視覺容器（如 `<blockquote>`、`<ul><li>`、`<span style="background-color:...">`），嚴禁增刪、改寫、摘要任何一個字，且絕對禁止在 `<li>` 開頭自行加上 `<strong>標題：</strong>` 分類前綴！**
+   - **禁止填表端硬編碼內文（2026-10-26 起，v2.3.0）**：瀏覽器執行 Agent（Antigravity／Gemini Flash）**不得**在任何填表腳本中寫死內文字串，也不得自行把 HTML 轉成其他格式（例如自己加縮排、加空行）。一律以程式**動態讀取** `104-<版本>.md` 各區塊 code block 的原文，原樣貼入。
+   - **寫入前後純文字斷言**：每個欄位寫入後必須執行 `plain_text_from_dom == plain_text_from_md`，不相等就停止、不得儲存，並回報該欄位與差異。兩者的計算方式見 §五第 5 點。
 1. **履歷真實性與白名單標籤原則（Zero Hallucination & Strict Whitelist）**：
    - 所有填寫進經歷標籤 (`experience.skill`) 或專長卡片 (`skill.skills[].tag`) 的標籤，**必須同時滿足：(A) 在求職者定稿內文中有明確佐證，且 (B) 存在於 104 官方標籤白名單（擅長工具 768 項、工作技能 1,328 項）**。
    - **嚴禁為了湊滿數量而塞入定稿未提及的工具**（例如：定稿中未使用 `JIRA`、`Tableau`、`SimilarWeb`、`Google Tag Manager`、`Xmind`、`Git`，**絕對禁止**填入標籤！僅能使用定稿有依據之工具如 `Figma`、`Axure RP`、`Wireframe`、`Trello`、`UML`、`Claude` 等）。
@@ -64,7 +66,7 @@
 | :--- | :--- | :--- |
 | **職位範疇（第一點）** | `<blockquote>職位範疇：負責人力銀行企業端招募系統...</blockquote>` | 將各職位的第一點「職位範疇」放入 `<blockquote>` 引言框中，文字一字不改。 |
 | **一般經歷列點** | `<ul><li>原稿句子一字不改。</li></ul>` | **嚴禁**在 `<li>` 開頭無中生有加上 `<strong>標題：</strong>`！ |
-| **父子縮排子項目** | `<li>母項句子<br>　　・子項句子一<br>　　・子項句子二</li>` | **重要**：104 的 CSS 不支援 `.ql-indent`，獨立 `<li>` 在 PDF 會全部掛實心圓點。子項一律**併入母項 `<li>`**，以 `<br>　　・`（兩個全形空白＋全形中點）換行呈現；**不使用 `ql-indent-1`、不包巢狀 `<ul>`**。 |
+| **父子縮排子項目** | `<li>母項句子</li><li style="margin-left: 1em;">子項句子一</li><li style="margin-left: 1em;">子項句子二</li>`（v2.3.0；舊版 `<br>　　・` 停用） | **重要**：104 的 CSS 不支援 `.ql-indent`，獨立 `<li>` 在 PDF 會全部掛實心圓點。子項一律**併入母項 `<li>`**，以 `<br>　　・`（兩個全形空白＋全形中點）換行呈現；**不使用 `ql-indent-1`、不包巢狀 `<ul>`**。 |
 | **關鍵數據螢光筆 (金黃)** | `<span style="background-color: #fbf3db;">743 件（88%）</span>` | 僅包裹原稿已存在的**核心量化數據或指標變化**，不改動文字。 |
 | **核心產品/功能標記 (晴藍)**| `<span style="background-color: #deebf1;">新版求才系統</span>` | 僅包裹原稿已存在的**核心產品名或關鍵模組名**，每點最多 1 處，避免畫面花俏。 |
 | **自傳段落** | `<p>原稿自然段文字...</p><p><br></p>` | 自傳每段以 `<p>` 包裹，段落間可用 `<p><br></p>` 維持呼吸感。 |
@@ -78,7 +80,8 @@
 <ul>
   <li>主責企業端招募系統的需求分析、流程與原型設計、規格撰寫，與 QA 制定驗收案例並與工程團隊協作，完成<span style="background-color: #fbf3db;">約 50 項主要功能上線（2023/12–2026/03）</span>。</li>
   <li>接手企業端招募系統改版（<span style="background-color: #deebf1;">新版求才系統</span>），在須沿用既有業務後台與資料庫的限制下，以實測與內部訪談還原缺乏文件的權限及計費規則，整理成新版流程與規格，與工程團隊分階段完成帳號登入、企業資料等功能改版；帳號、登入、公司資料、聯絡人相關的 <span style="background-color: #fbf3db;">840 件廠商建議已完成 743 件（88%）</span>。</li>
-  <li>回應企業客戶多年反映、懸而未決的商業需求（企業端招募系統），規劃兩個方案：<br>　　・（子項一，見定稿）<br>　　・（子項二，見定稿）</li>
+  <li>回應企業客戶多年反映、懸而未決的商業需求（企業端招募系統），規劃兩個方案：</li>
+  <li style="margin-left: 1em;">（子項一，見定稿）<br>　　・（子項二，見定稿）</li>
 </ul>
 ```
 
@@ -105,14 +108,22 @@
 
 ## 五、排版避坑與 Flash 執行防呆清單（必讀）
 
-1. **嚴禁留下空的清單項 (`<li></li>` 或 `<p></p>` 空標籤)**：
+1. **嚴禁留下空的清單項 (`<li></li>` 或 `<p></p>` 空標籤)**（例外：產生器放在模組大標上下的 `<p><br></p>` 是 Quill 標準空行，必須保留）：
    - 104 Quill 編輯器遇到空白的 `<li>` 會在前台渲染出孤立的黑色圓點。
 2. **純文字欄位嚴禁填入 HTML 標籤**：
    - `skill.skills[i].desc`（專長說明）、`info.trait`（個人特色）、`jobCondition.preferJobContent` 為**純文字欄位**，嚴禁放入 `<p>`、`<strong>` 或 `<span>`，否則前台會直接印出 HTML 原始碼！
 3. **禁止巢狀 `<ul><ul>`**：
-   - 子項目一律併入母項 `<li>`，以 `<br>　　・` 呈現；不使用 `ql-indent-1`。
+   - 子項目為**獨立的** `<li style="margin-left: 1em;">`，緊接在母項 `<li>` 之後、同一個 `<ul>` 內；不使用 `ql-indent-1`、不用 `<br>　　・`（v2.3.0）。
+   - 模組大標（`<p><span class="ql-size-large"…>`）上下各一個 `<p><br></p>`。**以上兩者都由產生器在 `104.md` 一次到位，下游原樣貼入、不得二次加工。**
 4. **嚴禁自行捏造標籤或改動定稿文字**：
    - 執行 Agent（Flash）的工作是**「精準搬運工」**，直接讀取區塊內的 HTML / 純文字貼入對應欄位，不得自行增刪字句或填入未經授權之標籤。
+
+5. **純文字斷言的計算方式（v2.3.0）**：
+   - `plain_text_from_md`：取該欄 code block 原文 → 去掉所有 HTML 標籤 → HTML 實體解碼 → 移除所有空白（含全形空白與換行）。
+   - `plain_text_from_dom`：寫入後讀回 104 編輯器該欄的 `innerText` → 移除所有空白。
+   - 參考 JS：`const norm = t => t.replace(/\s|\u3000/g, "");`；`const fromMd = norm(new DOMParser().parseFromString(mdHtml, "text/html").body.textContent);`；`const fromDom = norm(editor.innerText);`；`if (fromMd !== fromDom) throw new Error("內文不一致，停止儲存");`
+   - 純文字欄位（專長說明、個人特色、求職條件）直接以 code block 原文比對。
+6. **禁止自寫轉換腳本**：不得為了調整縮排、空行、底色而自行撰寫轉換程式或字串替換；格式不對時回報 Claude 修產生器，不要在下游修。
 
 ---
 

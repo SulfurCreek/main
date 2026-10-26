@@ -18,7 +18,8 @@ import verify_polish as vp  # noqa: E402
 GS = '<span style="background-color: #fbf3db;">{}</span>'
 BS = '<strong><span style="background-color: #deebf1;">{}</span></strong>'
 HEAD = '<p><span class="ql-size-large" style="color: #00afb8;"><strong>{}</strong></span></p>'
-CHILD = '<br>　　・'
+CHILD = '<li style="margin-left: 1em;">{}</li>'  # 子項＝獨立 li＋左縮排（v2.3.0，104 實測可渲染）
+GAP = '<p><br></p>'  # 模組大標上下留白（Quill 空行）
 PLAIN_SECTIONS = {"個人簡介", "專長", "求職條件（工作內容）"}  # 104 純文字欄位，不套重音
 
 # ---- 結構設定（非內文，不經 Codex） ----
@@ -133,7 +134,10 @@ def exp_html(lines, vmap):
             if ul:
                 out.append("</ul>")
                 ul = False
+            if out and out[-1] != GAP:
+                out.append(GAP)
             out.append(HEAD.format(raw))
+            out.append(GAP)
             continue
         t = deco(vmap, l)
         if first:
@@ -141,7 +145,7 @@ def exp_html(lines, vmap):
             first = False
             continue
         if child:
-            out[-1] = out[-1][:-5] + f"{CHILD}{t}</li>"
+            out.append(CHILD.format(t))
             continue
         if not ul:
             out.append("<ul>")
@@ -183,7 +187,7 @@ def main():
     o = ["<!--markdownlint-disable MD013 MD033-->", "",
          f"# 104 特化版｜{ver}｜**可填表**（verify_polish.py 通過）", "",
          f"> 來源：{origin}。",
-         "> 排版依 `career/104/styling-directive-guide.md` v2.2.0：子項併入母項（`<br>　　・`，不用 `ql-indent-1`）、模組大標、"
+         "> 排版依 `career/104/styling-directive-guide.md` v2.3.0：子項為獨立 `<li style=\"margin-left: 1em;\">`、模組大標上下 `<p><br></p>` 留白（產出即定版，下游零加工原樣貼入）、"
          "金黃＝成果數字、晴藍＋粗體＝核心產品／系統、粗體＝專案／系統／產品／buzzword。**底色與粗體依 Codex 在定稿註解標的 [G]／[B]／[BT]**；內文逐字取自定稿，只加容器。",
          "> **專案圖片**：本檔與 `images/` 資料夾一起打包；每個專案的 directive 以 `image` 指定相對路徑：5.1→project1_justdating_juicy.png、5.2→project2_kool.png、5.3→project3_1111_recruit.png、5.4→project4_1111_recruit.png。",
          "> 標籤只用 `career/104/tool_categories.md`／`skill_categories.md` 清單內名稱，找不到就略過。", "", "---", "",
