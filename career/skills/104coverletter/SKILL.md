@@ -14,7 +14,7 @@ description: 針對指定的 104 職缺產生「104 自我推薦信」草稿（2
 
 | 項目 | 來源 |
 | :-- | :-- |
-| 職缺 | 本人給的職缺代碼或名稱 → `career/review-panel/jd/routing.tsv` 找 code、公司、職稱；JD 原文：`career/targets/jobs.md`（必要時 `review-panel/jd/full/<code>.md`、`light-cards.md`） |
+| 職缺 | 本人給的職缺代碼或名稱 → `career/review-panel/jd/routing.tsv` 找 code、公司、職稱；JD 原文：`career/targets/jobs.md`（必要時 `review-panel/jd/full/<code>.md`、`career/review-panel/jd/light-cards.md`） |
 | 該職缺的驗證結果 | `review-panel/runs/` 最新一輪對該 code 的 `apply_hook`、`top_gap`、F 層 doubts（可用來選要打的亮點與要避開的缺口） |
 | 事實 | `career/library/`（先 `INDEX.md`、`decisions.md`、`superseded.md`、`about-me.md`）；現行履歷 `drafts/<版本>/resume-<版本>.md` |
 | 分級 | 本人指定「主力」或「一般」；沒說就當一般 |

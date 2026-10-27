@@ -11,8 +11,8 @@
 
 | 角色 | 可寫 | 唯讀 |
 | :-- | :-- | :-- |
-| Career Move（Claude，分支 `claude/happy-lamport-ljis8c`） | `career/` 全部（**除** `drafts/codex/`）＋自有 skill | repo 其他 |
-| Resume Writer（Codex，分支 `codex/resume-writer`） | 只有 `career/drafts/codex/` | `career/` 其餘全部 |
+| Career Move（Claude，分支 `claude/happy-lamport-ljis8c`） | `career/` 全部（**除** `02_codex_stage/`、`drafts/codex/`、`site/`）＋自有 skill（resume-craft、resume-review-panel、portfolio-site、104coverletter、104resume、resume-causal-logic-compiler） | repo 其他 |
+| Resume Writer（Codex，分支 `codex/resume-writer`） | `career/02_codex_stage/`（`final_resume.md`、`voice_style_guide.md`）與 `career/drafts/codex/` | `career/` 其餘全部 |
 
 ## 2. 我要做什麼 → 讀哪裡（最小集合）
 

@@ -15,7 +15,7 @@
 | 需求單一窗口，對接 16 個利害關係單位（高層到第一線客服） | — | `wiki/resume-extract.md`、F09 |
 | 每週至少一次以簡報向全國客服、業務、主管說明新功能；簡報固定附 FAQ（借鑑 Amazon PR/FAQ 課程概念） | — | 2026-10-05 使用者補充｜`wiki/evidence-briefings.md`、F09 |
 | Kick-off 簡報內嵌 Axure RP 互動原型，先讓客服與工程看過流程再封測 | 嵌入內容讀不到，以口述為準 | 2026-10-05 使用者確認｜F01 |
-| 專案管理：Kanban 看板推進瀑布式開發；艾森豪矩陣排先後；主持 Daily Stand-up 與 Retrospective | **不是正式 Scrum**，不寫 Scrum；站會／回顧頻率〔待補〕 | 2026-10-05 使用者確認｜F08、`wiki/pm-vocabulary-map.md` #21 |
+| 專案管理：Kanban 看板推進瀑布式開發；艾森豪矩陣排先後；主持 Daily Stand-up 與 Retrospective | 現行非正式 Scrum；**Scrum 歷史經驗見 §13（2022–2023 完整流程）**；站會／回顧頻率〔待補〕 | 2026-10-05 使用者確認｜F08、`wiki/pm-vocabulary-map.md` #21 |
 | 優先級制度定到 P0–P5，實際只用到 P3 → 履歷寫 P0–P3 | — | 2026-10-05 使用者確認｜F08 |
 
 | 個人標準交付流程：User Journey Map、User Story、Use Case、SA、Flowchart／Sequence Diagram、Wireframe、與 UI/UX 協作、Prototype（Axure RP）、Stakeholder 匯報、Spec 文件、與工程跑專案追時程、與 QA 協作（由規格推導驗收案例）、上線計畫、完整交付 | 產出物可對外寫；份數〔待補〕 | **早已記錄於** `competency-framework.md`（User Story → Wireframe → 規格 → 交接）、F01、F02、F05、`wiki/resume-extract.md`、`104/resume-104.md` 專長；2026-10-08 使用者重申完整順序。library 重建時漏收 |
@@ -86,7 +86,7 @@
 | 產品類型：C2C 暢銷榜交友 App、訂閱制短影音社交 App、B2C 網紅媒合 App | 暢銷榜是規模脈絡（decisions §4），不寫成個人成果 | 同上 |
 | 對接 16 個需求單位，含工程、行銷、業務 | — | 同上 |
 | 交付鏈（使用者排序）：釐清需求 → 完整系統分析 → 業務流程及畫面設計 → 規格書撰寫與 Prototype 設計 → 測試與 QA → 上線計畫規劃 | 履歷描述交付鏈時照此順序 | 同上 |
-| 開發方式：瀑布開發、Kanban、Daily stand-up 混合式 | 不寫 Scrum（superseded） | 同上 |
+| 開發方式：瀑布開發、Kanban、Daily stand-up 混合式 | 現行方式；Scrum 依 §13 寫「2022–2023 入職初期完整 Scrum（一週一個 Sprint）」，不寫成現行流程 | 同上 |
 | 近期把工作流移轉到 AI Agent（Claude Code 協作流程） | — | 同上 |
 
 ## 8. 2026-10-12 使用者補充（回答 ChatGPT v8 審查缺口）
