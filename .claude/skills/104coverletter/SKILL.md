@@ -50,6 +50,8 @@ description: 針對指定的 104 職缺產生「104 自我推薦信」草稿（2
 
 ## 2.9 強制門檻
 
+**推薦信驗收工具（2026-10-27 起必跑）**：草稿交 Codex 前、定稿登錄前，各跑一次 `python3 career/scripts/verify_letter.py <檔案> --job "<職缺名>"`，0 違規才可交出。檢查：產品名首次提及必定義（JustDating、Juicy、Peach、KOOL、SweetRing、CodaPay；新產品名請補進 `ENTITY_DEFS`）、禁用詞與過度自信結尾、職缺名逐字。
+
 先過 `career/skills/resume-causal-logic-compiler/SKILL.md` §1 編譯規則與 §2.3 披露檢查（推薦信只挑 2–3 點）。
 
 ## 3. 寫法規則

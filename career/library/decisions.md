@@ -388,3 +388,9 @@ v9.7 = v9.6 ＋ 使用者自寫自傳與各段 summary（16→10 個單位、業
 
 - 沛思坦結尾「…經驗可以直接投入這個職位」太直接、顯得自大。結尾改「期待能將…經驗帶進／運用在…」。
 - pursuing voice 只用在破題與條列；結尾不寫「可以直接投入」「完全符合」，也不寫乞求句。已同步 104coverletter §3、盲測提示；奧丁丁結尾同步調整。
+
+## 57. 2026-10-27 推薦信首次提及必定義（本人抓到 Peach／JustDating 未定義）
+
+- 根因：上游草稿就未定義（Claude 的錯），Codex 照寫；104coverletter §2.9 雖要求過 compiler 規則，但沒有工具攔截，盲測也沒檢查這點。
+- 修正：新增 `career/scripts/verify_letter.py`（產品名首次提及必定義、禁用詞、職缺名），6 項回歸測試；104coverletter 規定交 Codex 前與定稿前必跑；盲測提示加「首次提及必定義」。
+- 奧丁丁定稿補定義：CodaPay（Southeast Asian payment provider）、Peach（subscription content app）、JustDating（flagship dating app）。

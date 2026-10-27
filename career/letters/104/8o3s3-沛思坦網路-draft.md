@@ -20,7 +20,7 @@
 ‧ Of 840 client requests on accounts, login, company data and contacts, 743 (88%) were resolved. Account permissions and business rules were undocumented, and the overhaul had to keep the existing back office and database, so I reconstructed the rules through hands-on product testing and internal interviews and turned them into specs for phased releases.
 ‧ With no direct competitor to benchmark against, I interviewed businesses' marketing teams on how they sourced influencers, then designed the two-sided matching flow for KOOL, an influencer marketplace. It grew to about 16,000 influencer profiles, with more than 80,000 collaboration applications in six months.
 
-貴司也服務人才招募平臺，我的招募系統與生成式 AI 上線經驗可以直接投入這個職位。謝謝您的閱讀。
+貴司也服務人才招募平臺，期待能將招募系統與生成式 AI 功能的經驗帶進這個職位。謝謝您的閱讀。
 
 聶崑淮
 ```
@@ -35,7 +35,7 @@
 ‧ 帳號權限與商業模式規則沒有文件，改版又須沿用既有後台與資料庫；我以實測與內部訪談逆向還原規則、分階段上線，相關的 840 件企業建議已完成 743 件（88%）。
 ‧ KOOL 網紅媒合平台沒有競品可參考，我訪談商家行銷單位、設計雙邊媒合流程，平台累積約 1.6 萬份網紅檔案、半年 8 萬多次合作報名。
 
-貴司也服務人才招募平臺，我的招募系統與生成式 AI 經驗可直接投入這個職位。謝謝您的閱讀。
+貴司也服務人才招募平臺，期待能將招募系統與生成式 AI 功能的經驗帶進這個職位。謝謝您的閱讀。
 
 聶崑淮
 ```

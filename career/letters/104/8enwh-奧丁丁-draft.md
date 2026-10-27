@@ -15,11 +15,11 @@
 您好：
 應徵貴司【R&D】OwlPay支付 - Product Manager。我規劃過東南亞多國第三方支付與網頁付款，並以英文與海外金流夥伴協作；有近 10 年產品經理經驗，現任人力銀行企業端招募系統 Product Owner。以下是三項相關經驗：
 
-‧ I launched 8 payment channels across Indonesia and Thailand by bringing in CodaPay, covering carrier billing, ATM, e-wallets, convenience stores and bank transfer. I compared fees and settlement terms for each channel, estimated net revenue, and proposed 7-, 30- and 90-day plans.
-‧ Web payment grew from 24% to over 80% of Peach's revenue (Nov 2020–Sep 2021) after I planned its shift from in-app purchases and drove the local payment integration. For JustDating outside Taiwan, I was the liaison between our engineers and CodaPay's Singapore team, and discussed a partnership with a European payment provider over English video calls.
+‧ I launched 8 payment channels across Indonesia and Thailand by bringing in CodaPay, a Southeast Asian payment provider, covering carrier billing, ATM, e-wallets, convenience stores and bank transfer. I compared fees and settlement terms for each channel, estimated net revenue, and proposed 7-, 30- and 90-day plans.
+‧ Web payment grew from 24% to over 80% of revenue at Peach, a subscription content app, (Nov 2020–Sep 2021) after I planned its shift from in-app purchases and drove the local payment integration. For JustDating, our flagship dating app, outside Taiwan, I was the liaison between our engineers and CodaPay's Singapore team, and discussed a partnership with a European payment provider over English video calls.
 ‧ I set labor-law compliance criteria for our AI features and required employer confirmation before content goes live. I also turn client feedback into product decisions: 743 of 840 related client requests (88%) were resolved.
 
-我在多國付款管道上線、費率試算、英文跨國協作與合規規則設計上的經驗，可以投入貴司 OwlPay 的跨境支付產品。謝謝您的閱讀。
+期待能將多國付款管道上線、費率試算、英文跨國協作與合規規則設計的經驗，運用在貴司 OwlPay 的跨境支付產品。謝謝您的閱讀。
 
 聶崑淮
 ```
@@ -30,11 +30,11 @@
 您好：
 應徵貴司【R&D】OwlPay支付 - Product Manager。我規劃過東南亞多國第三方支付與網頁付款，並以英文與海外金流夥伴協作；有近 10 年產品經理經驗，現任人力銀行企業端招募系統 Product Owner。
 
-‧ 導入 CodaPay，開通印尼、泰國 2 國共 8 種付款管道，依各管道費用與撥款條件試算實收，提出 7／30／90 天方案。
-‧ 規劃 Peach 從 App 內購轉向網頁付款，網頁付款營收占比由 24% 升至 80% 以上（2020/11–2021/09）；擔任 JustDating 與 CodaPay 新加坡團隊的串接窗口，並以英文視訊與歐洲金流商洽談。
+‧ 導入東南亞第三方支付 CodaPay，開通印尼、泰國 2 國共 8 種付款管道，依各管道費用與撥款條件試算實收，提出 7／30／90 天方案。
+‧ 規劃訂閱制內容 App Peach 從 App 內購轉向網頁付款，網頁付款營收占比由 24% 升至 80% 以上（2020/11–2021/09）；擔任主力交友 App JustDating 與 CodaPay 新加坡團隊的串接窗口，並以英文視訊與歐洲金流商洽談。
 ‧ 為 AI 功能制定勞動法規合規驗收標準，內容經企業確認才刊登；把客戶回饋轉成產品決策，相關的 840 件企業建議已完成 743 件（88%）。
 
-我在多國付款管道上線、費率試算、英文跨國協作與合規規則設計上的經驗，可以投入貴司 OwlPay 的跨境支付產品。謝謝您的閱讀。
+期待能將多國付款管道上線、費率試算、英文跨國協作與合規規則設計的經驗，運用在貴司 OwlPay 的跨境支付產品。謝謝您的閱讀。
 
 聶崑淮
 ```
