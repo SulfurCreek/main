@@ -24,7 +24,7 @@
 ‧ Peach's web payment revenue share rose from 24% to over 80% (2020/11–2021/09). I planned the shift from in-app purchases and coordinated local payment integration. For JustDating outside Taiwan, I served as liaison with CodaPay's Singapore engineers. I also discussed a partnership with a European payment provider over video calls in English.
 ‧ I set labor-law compliance acceptance criteria for AI features, with employer confirmation required before publication. Separately, I translated employer feedback into product decisions; 743 of 840 employer suggestions (88%) were completed.
 
-這些付款管道上線、費率試算、跨國協作與合規規則設計的經驗，可用於貴司 OwlPay 的跨境支付產品。謝謝您的閱讀。
+期待能將付款管道上線、費率試算、跨國協作與合規規則設計的經驗，運用在貴司 OwlPay 的跨境支付產品。謝謝您的閱讀。
 
 聶崑淮
 ```
