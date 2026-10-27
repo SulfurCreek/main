@@ -17,7 +17,7 @@
 ‧ Peach's web payment revenue share rose from 24% to over 80% (2020/11–2021/09). I planned the shift from in-app purchases and coordinated local payment integration. For JustDating outside Taiwan, I served as liaison with CodaPay's Singapore engineers. I also discussed a partnership with a European payment provider over video calls in English.
 ‧ I set labor-law compliance acceptance criteria for AI features, with employer confirmation required before publication. Separately, I translated employer feedback into product decisions; 743 of 840 employer suggestions (88%) were completed.
 
-這些付款管道上線、費率試算、跨國協作與合規規則設計的經驗，可用於貴司 OwlPay 的跨境支付產品。謝謝您的閱讀。
+貴司 OwlPay 的跨境支付工作，與我的海外支付規劃及協作經驗相關。期待與團隊進一步交流，分享實務經驗。謝謝您的閱讀。
 
 聶崑淮
 ```
@@ -32,7 +32,7 @@
 ‧ 規劃 Peach由內購轉網頁付款，網頁付款營收占比由 24% 升至 80% 以上（2020/11–2021/09）；擔任 JustDating 與 CodaPay 新加坡團隊串接窗口，並以英文視訊與歐洲金流商討論合作。
 ‧ 制定 AI 功能的勞動法規合規驗收標準，內容經企業確認才刊登。另將客戶回饋轉為產品決策，840 件企業建議中已完成 743 件（88%）。
 
-期待將支付規劃與合規經驗用於 OwlPay。謝謝。
+期待與 OwlPay 團隊交流支付規劃經驗。謝謝。
 聶崑淮
 ```
 
@@ -51,8 +51,10 @@
 
 | 方案 | 字數 | 原始行數／非空行 |
 | --- | --- | --- |
-| A | 英文條列 125 words；整封 926 字元 | 10／7 |
-| B | 整封 337 字元（含標點，低於 350） | 9／7 |
+| A | 英文條列 125 words；整封 929 字元 | 10／7 |
+| B | 整封 336 字元（含標點，低於 350） | 9／7 |
+
+2026-10-27 結尾巡檢：A「可用於」改為期待交流實務經驗，B 改為與 OwlPay 團隊交流支付規劃經驗；不預判適任度。其餘正文不動。
 
 兩案各三個「‧」條列，正文無粗體或 HTML；職缺名逐字核對。數據、期間、付款管道、訂閱天數及責任界線完成核對；禁用詞檢查通過。沒有使用履歷專用 verify_polish.py 冒充信件驗證。
 
