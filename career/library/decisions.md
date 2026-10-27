@@ -394,3 +394,9 @@ v9.7 = v9.6 ＋ 使用者自寫自傳與各段 summary（16→10 個單位、業
 - 根因：上游草稿就未定義（Claude 的錯），Codex 照寫；104coverletter §2.9 雖要求過 compiler 規則，但沒有工具攔截，盲測也沒檢查這點。
 - 修正：新增 `career/scripts/verify_letter.py`（產品名首次提及必定義、禁用詞、職缺名），6 項回歸測試；104coverletter 規定交 Codex 前與定稿前必跑；盲測提示加「首次提及必定義」。
 - 奧丁丁定稿補定義：CodaPay（Southeast Asian payment provider）、Peach（subscription content app）、JustDating（flagship dating app）。
+
+## 58. 2026-10-27 奧丁丁推薦信 r2 與 verify_letter 升級（本人指正）
+
+- 「新加坡」團隊不對外（雖見 facts-prior 第 19 行，本人裁定對外只寫台灣以外市場／海外工程串接窗口）；國籍照舊不寫。
+- 一個列點只講一件事，不用 Separately／另外 硬湊；OwlPay 版：①CodaPay 東南亞收款＋JustDating 海外串接 ②Peach 網頁付款＋歐洲金流商 ③招募系統翻新（約 6 萬家、還原商業模式規則、743／840）＋新裝置 OTP（MFA）。
+- verify_letter.py：攔截 Separately／另外／此外、Singapore／新加坡／Russian／俄羅斯、可用於／可直接投入；新增 `--all` 全掃 letters/ 與 applications/；測試 9 項。

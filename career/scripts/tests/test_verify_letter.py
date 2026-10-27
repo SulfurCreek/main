@@ -28,5 +28,16 @@ class LetterTests(unittest.TestCase):
         self.assertTrue(vl.check("應徵貴司產品經理。", job="【北士科】Product Manager"))
 
 
+class LetterTests2(unittest.TestCase):
+    def test_separately_flagged(self):
+        self.assertTrue(any("Separately" in e for e in vl.check("I set criteria. Separately, I fixed bugs.")))
+
+    def test_unapproved_city_flagged(self):
+        self.assertTrue(any("Singapore" in e for e in vl.check("I worked with CodaPay, a payment provider, in Singapore.")))
+
+    def test_old_closing_flagged(self):
+        self.assertTrue(any("可用於" in e for e in vl.check("這些經驗可用於貴司產品。")))
+
+
 if __name__ == "__main__":
     unittest.main()

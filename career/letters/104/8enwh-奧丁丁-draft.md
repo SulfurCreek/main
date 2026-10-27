@@ -13,13 +13,13 @@
 
 ```text
 您好：
-應徵貴司【R&D】OwlPay支付 - Product Manager。我規劃過東南亞多國第三方支付與網頁付款，並以英文與海外金流夥伴協作；有近 10 年產品經理經驗，現任人力銀行企業端招募系統 Product Owner。以下是三項相關經驗：
+應徵貴司【R&D】OwlPay支付 - Product Manager。我規劃過東南亞第三方支付與網頁付款，也以英文與海外金流夥伴協作。近 10 年產品經理經驗，現任人力銀行企業端招募系統 Product Owner，以下是三項相關經驗：
 
-‧ I launched 8 payment channels across Indonesia and Thailand by bringing in CodaPay, a Southeast Asian payment provider, covering carrier billing, ATM, e-wallets, convenience stores and bank transfer. I compared fees and settlement terms for each channel, estimated net revenue, and proposed 7-, 30- and 90-day plans.
-‧ Web payment grew from 24% to over 80% of revenue at Peach, a subscription content app, (Nov 2020–Sep 2021) after I planned its shift from in-app purchases and drove the local payment integration. For JustDating, our flagship dating app, outside Taiwan, I was the liaison between our engineers and CodaPay's Singapore team, and discussed a partnership with a European payment provider over English video calls.
-‧ I set labor-law compliance criteria for our AI features and required employer confirmation before content goes live. I also turn client feedback into product decisions: 743 of 840 related client requests (88%) were resolved.
+‧ I brought in CodaPay, a Southeast Asian payment provider, and launched 8 payment channels across Indonesia and Thailand. I compared fees and settlement terms, estimated net revenue, and proposed 7-, 30- and 90-day subscription plans. I later served as engineering liaison with CodaPay for JustDating, our flagship dating app, in markets outside Taiwan.
+‧ At Peach, a subscription content app, I planned the shift from in-app purchases to web payments, which grew from 24% to over 80% of revenue (2020/11–2021/09). I also held partnership discussions in English with a European payment provider.
+‧ I took over the overhaul of a recruitment system serving about 60,000 paying employers and reconstructed undocumented account permissions and business rules; 743 of 840 related client requests (88%) have been resolved. I also planned new-device OTP verification (MFA) to strengthen account security.
 
-期待能將多國付款管道上線、費率試算、英文跨國協作與合規規則設計的經驗，運用在貴司 OwlPay 的跨境支付產品。謝謝您的閱讀。
+期待能將付款管道上線、費率試算、商業規則梳理與帳號安全的經驗，運用在貴司 OwlPay 的跨境支付產品。謝謝您的閱讀。
 
 聶崑淮
 ```
@@ -28,13 +28,13 @@
 
 ```text
 您好：
-應徵貴司【R&D】OwlPay支付 - Product Manager。我規劃過東南亞多國第三方支付與網頁付款，並以英文與海外金流夥伴協作；有近 10 年產品經理經驗，現任人力銀行企業端招募系統 Product Owner。
+應徵貴司【R&D】OwlPay支付 - Product Manager。我規劃過東南亞第三方支付與網頁付款；近 10 年產品經理經驗，現任人力銀行企業端招募系統 Product Owner。
 
-‧ 導入東南亞第三方支付 CodaPay，開通印尼、泰國 2 國共 8 種付款管道，依各管道費用與撥款條件試算實收，提出 7／30／90 天方案。
-‧ 規劃訂閱制內容 App Peach 從 App 內購轉向網頁付款，網頁付款營收占比由 24% 升至 80% 以上（2020/11–2021/09）；擔任主力交友 App JustDating 與 CodaPay 新加坡團隊的串接窗口，並以英文視訊與歐洲金流商洽談。
-‧ 為 AI 功能制定勞動法規合規驗收標準，內容經企業確認才刊登；把客戶回饋轉成產品決策，相關的 840 件企業建議已完成 743 件（88%）。
+‧ 導入東南亞第三方支付 CodaPay，開通印尼、泰國 2 國 8 種付款管道，試算實收後提出 7／30／90 天訂閱方案；之後擔任主力交友 App JustDating 海外 CodaPay 串接窗口。
+‧ 規劃訂閱制內容 App Peach 轉向網頁付款，網頁付款營收占比由 24% 升至 80% 以上（2020/11–2021/09）；並以英文與歐洲金流商洽談合作。
+‧ 接手服務約 6 萬家付費企業的招募系統翻新，還原缺乏文件的帳號權限與商業模式規則，相關 840 件企業建議已完成 743 件（88%）；並規劃新裝置登入 OTP 驗證（MFA）。
 
-期待能將多國付款管道上線、費率試算、英文跨國協作與合規規則設計的經驗，運用在貴司 OwlPay 的跨境支付產品。謝謝您的閱讀。
+期待能將付款管道、費率試算、商業規則與帳號安全的經驗，運用在貴司 OwlPay 的跨境支付產品。謝謝您的閱讀。
 
 聶崑淮
 ```

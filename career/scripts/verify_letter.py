@@ -3,6 +3,7 @@
 
 用法：python3 career/scripts/verify_letter.py <推薦信.md> [--job "<職缺名>"]
 檔內每個 ```text 區塊視為一封（方案 A／B），逐封檢查。
+全掃：python3 career/scripts/verify_letter.py --all（掃 career/letters/ 與 career/applications/ 下所有含 ```text 的 .md）
 """
 import re
 import sys
@@ -18,7 +19,11 @@ ENTITY_DEFS = {
 }
 BANNED = ["深感契合", "願景高度契合", "在瀏覽貴公司職缺後", "懇請", "積極進取", "抗壓性強",
           "strategic", "passionate", "detail-oriented", "Spearheaded", "proven track record",
-          "I am writing", "excited", "thrilled", "1111", "敬上", "可以直接投入", "完全符合"]
+          "I am writing", "excited", "thrilled", "1111", "敬上", "可以直接投入", "可直接投入", "可用於", "完全符合",
+          # 單點硬湊兩件事（2026-10-27）
+          "Separately,", "Separately ", "另外，", "此外，",
+          # 未核准對外的城市／國籍（facts-prior：國籍不放履歷；新加坡團隊本人裁定不對外）
+          "Singapore", "新加坡", "Russian", "俄羅斯"]
 SENT = re.compile(r"[^。！？.!?\n]*")
 
 
@@ -48,6 +53,19 @@ def main():
     if not args:
         print(__doc__)
         sys.exit(2)
+    if args[0] == "--all":
+        import pathlib
+        root = pathlib.Path(__file__).resolve().parents[1]
+        files = sorted(p for d in ("letters", "applications") for p in (root / d).rglob("*.md") if "```text" in p.read_text(encoding="utf-8"))
+        total = 0
+        for f in files:
+            bodies = [b.split("```")[0] for b in f.read_text(encoding="utf-8").split("```text")[1:]]
+            for k, b in enumerate(bodies, 1):
+                for e in check(b):
+                    print(f"❌ {f.relative_to(root)} 第 {k} 封：{e}")
+                    total += 1
+        print(f"掃描 {len(files)} 檔；" + ("✅ 0 違規" if not total else f"❌ 共 {total} 項違規"))
+        sys.exit(1 if total else 0)
     job = None
     if "--job" in args:
         job = args[args.index("--job") + 1]
