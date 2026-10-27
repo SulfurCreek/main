@@ -1,0 +1,210 @@
+name: Hourly 104 Data Sync from R2
+
+on:
+  schedule:
+    - cron: "17 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate-and-sync:
+    name: 1. 唯讀收件匣驗證與同步
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    outputs:
+      base_commit_sha: ${{ steps.prepare-data-base.outputs.base_sha }}
+      has_changes: ${{ steps.check-diff.outputs.changed }}
+    steps:
+      - name: Checkout default branch
+        uses: actions/checkout@v4
+        with:
+          ref: claude/claude-md-docs-BmaVo
+          fetch-depth: 0
+
+      - name: Prepare data branch state and lock SHA
+        id: prepare-data-base
+        run: |
+          set -euo pipefail
+
+          rm -rf career/targets/104
+          mkdir -p career/targets/104
+          REMOTE_OUT=$(git ls-remote --heads origin automation/104-data)
+
+          if [ -n "$REMOTE_OUT" ]; then
+            echo "遠端存在 automation/104-data 分支，執行同步..."
+            git fetch origin automation/104-data:remotes/origin/automation/104-data
+            DATA_SHA=$(git rev-parse remotes/origin/automation/104-data)
+            
+            if git rev-parse "$DATA_SHA:career/targets/104" >/dev/null 2>&1; then
+              git checkout "$DATA_SHA" -- career/targets/104/
+            else
+              echo "資料分支尚未包含 career/targets/104 目錄，初始化新目錄。"
+              mkdir -p career/targets/104
+            fi
+
+            echo "base_sha=$DATA_SHA" >> "$GITHUB_OUTPUT"
+            echo "鎖定資料分支基底 Commit SHA: $DATA_SHA"
+          else
+            echo "遠端尚未建立 automation/104-data 分支，以預設分支 HEAD 作為基底..."
+            DEFAULT_SHA=$(git rev-parse HEAD)
+            mkdir -p career/targets/104
+            echo "base_sha=$DEFAULT_SHA" >> "$GITHUB_OUTPUT"
+            echo "鎖定初始 Commit SHA: $DEFAULT_SHA"
+          fi
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install boto3
+
+      - name: Run Full Acceptance Self-Tests
+        run: python scripts/sync_104_data.py --self-test
+
+      - name: Run R2 Inbox Sync
+        env:
+          R2_ENDPOINT_URL: ${{ secrets.R2_ENDPOINT_URL }}
+          R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+          R2_BUCKET_NAME: ${{ secrets.R2_BUCKET_NAME }}
+        run: python scripts/sync_104_data.py
+
+      # 確定性 3 檔案 Hash 比對
+      - name: Evaluate Data Changes against Base SHA
+        id: check-diff
+        run: |
+          set -euo pipefail
+          BASE_SHA="${{ steps.prepare-data-base.outputs.base_sha }}"
+          TARGET_FILES=(
+            "career/targets/104/jobs.json"
+            "career/targets/104/companies.json"
+            "career/targets/104/sync-state.json"
+          )
+
+          HAS_DIFF="false"
+
+          echo "開始比對目標檔案與 Base SHA ($BASE_SHA)..."
+
+          for file in "${TARGET_FILES[@]}"; do
+            if [ -f "$file" ]; then
+              LOCAL_HASH=$(git hash-object "$file")
+            else
+              LOCAL_HASH=""
+            fi
+
+            if git rev-parse --verify "$BASE_SHA:$file" >/dev/null 2>&1; then
+              BASE_HASH=$(git rev-parse "$BASE_SHA:$file")
+            else
+              BASE_HASH=""
+            fi
+
+            echo "[$file]"
+            echo "  - Base Commit Hash : ${BASE_HASH:-'(不存在)'}"
+            echo "  - Local Workspace   : ${LOCAL_HASH:-'(不存在)'}"
+
+            if [ "$LOCAL_HASH" != "$BASE_HASH" ]; then
+              echo "  -> 偵測到實質差異！"
+              HAS_DIFF="true"
+            else
+              echo "  -> 兩者一致 (無變更)"
+            fi
+          done
+
+          if [ "$HAS_DIFF" = "true" ]; then
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+            echo "結論：偵測到實質資料變動，將觸發 Job 2。"
+          else
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            echo "結論：無任何檔案變更，Job 2 不會啟動。"
+          fi
+
+      - name: Upload Clean Data Artifact
+        if: steps.check-diff.outputs.changed == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: synced-104-data
+          path: |
+            career/targets/104/jobs.json
+            career/targets/104/companies.json
+            career/targets/104/sync-state.json
+          if-no-files-found: error
+          retention-days: 1
+
+  commit-and-push:
+    name: 2. 白名單審計與並發安全提交
+    needs: validate-and-sync
+    if: needs.validate-and-sync.outputs.has_changes == 'true'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout exact Base SHA
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ needs.validate-and-sync.outputs.base_commit_sha }}
+          fetch-depth: 0
+
+      - name: Align branch pointer
+        run: |
+          git checkout -B automation/104-data
+
+      - name: Download Clean Data Artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: synced-104-data
+          path: career/targets/104/
+
+      - name: Strict Whitelist & Boundary Audit
+        run: |
+          set -euo pipefail
+
+          if [ -L "career" ] || [ -L "career/targets" ] || [ -L "career/targets/104" ]; then
+            echo "嚴重安全違規：目標目錄結構包含 Symbolic Link！" >&2
+            exit 1
+          fi
+          if find career/targets/104 -type l | grep -q .; then
+            echo "嚴重安全違規：career/targets/104 內存在 Symbolic Link！" >&2
+            exit 1
+          fi
+
+          STATUS_LINES=$(git status --porcelain -uall)
+          if [ -z "$STATUS_LINES" ]; then
+            echo "無任何實質檔案變更，正常結束。"
+            exit 0
+          fi
+
+          echo "待審核變更清單："
+          echo "$STATUS_LINES"
+
+          while IFS= read -r line; do
+            [ -z "$line" ] && continue
+            FILE_PATH="${line:3}"
+            case "$FILE_PATH" in
+              "career/targets/104/jobs.json"|"career/targets/104/companies.json"|"career/targets/104/sync-state.json")
+                echo "[WHITELIST_OK] $FILE_PATH"
+                ;;
+              *)
+                echo "[UNAUTHORIZED_DIFF] 拒絕未授權的檔案更動: $FILE_PATH" >&2
+                exit 1
+                ;;
+            esac
+          done <<< "$STATUS_LINES"
+
+      - name: Commit and Push (Concurrency-Safe)
+        run: |
+          set -euo pipefail
+          if [ -z "$(git status --porcelain -uall)" ]; then
+            echo "無變更，跳過 commit。"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add career/targets/104/jobs.json career/targets/104/companies.json career/targets/104/sync-state.json
+          git commit -m "chore(104-sync): update 104 data from R2 inbox [skip ci]"
+          
+          git push origin automation/104-data
