@@ -13,11 +13,11 @@
 您好：
 應徵貴司【R&D】OwlPay支付 - Product Manager。我規劃過東南亞第三方支付與網頁付款，也以英文與海外金流夥伴協作。近 10 年產品經理經驗，現任人力銀行企業端招募系統 Product Owner，以下是三項相關經驗：
 
-‧ I brought in CodaPay to launch 8 payment channels in 2 countries, Indonesia and Thailand. These included carrier billing, ATM, e-wallets, convenience stores and bank transfers. I compared fees and settlement terms, estimated net revenue, and proposed 7-, 30- and 90-day subscription plans.
-‧ Peach's web payment revenue share rose from 24% to over 80% (2020/11–2021/09). I planned the shift from in-app purchases and coordinated local payment integration. For JustDating outside Taiwan, I served as liaison with CodaPay's Singapore engineers. I also discussed a partnership with a European payment provider over video calls in English.
-‧ I set labor-law compliance acceptance criteria for AI features, with employer confirmation required before publication. Separately, I translated employer feedback into product decisions; 743 of 840 employer suggestions (88%) were completed.
+‧ I brought in CodaPay, a Southeast Asian payment provider, to launch 8 payment channels in 2 countries: Indonesia and Thailand. Channels included carrier billing, ATM, e-wallets, convenience stores and bank transfers. I compared fees and settlement terms, estimated net revenue, and proposed 7-, 30- and 90-day subscription plans.
+‧ For Peach, a subscription content app, web payments rose from 24% to over 80% of revenue (2020/11–2021/09). I planned the shift from in-app purchases and coordinated local payment integration. For JustDating, our flagship dating app, I served as liaison with CodaPay's Singapore engineers for payments outside Taiwan. I also discussed a partnership with a European payment provider in English video calls.
+‧ I set labor-law compliance acceptance criteria for AI features, requiring employer confirmation before publication. Separately, I translated employer feedback into product decisions; 743 of 840 employer suggestions (88%) were completed.
 
-貴司 OwlPay 的跨境支付工作，與我的海外支付規劃及協作經驗相關。期待與團隊進一步交流，分享實務經驗。謝謝您的閱讀。
+貴司 OwlPay 的跨境支付工作，與我過去的海外支付規劃及協作經驗相關。期待與團隊進一步交流，分享付款管道上線、費率試算與合規規則設計的實務經驗。謝謝您的閱讀。
 
 聶崑淮
 ```
@@ -44,6 +44,7 @@
 - 英文保留付款管道類型、費用／撥款條件與方案天數；補明 2 countries，數量與中文版一致。
 - 英文將 AI 合規與企業建議案件分開，避免把 743／840 誤接成 AI 成果。中文版同樣使用兩個分句。
 - B 壓縮重複破題與結尾，保留三點、職缺全名、期間、數據及跨國協作內容。
+- 2026-10-27 本人補充後修訂 A：首次介紹 CodaPay、Peach、JustDating；將 outside Taiwan 接到付款範圍，避免多重插入語。保留 liaison 責任與 discussed a partnership，不寫談成；結尾改為具體分享經驗的交流邀請。B 不動。
 
 ## 字數與檢查
 
@@ -51,7 +52,7 @@
 
 | 方案 | 字數 | 原始行數／非空行 |
 | --- | --- | --- |
-| A | 英文條列 125 words；整封 929 字元 | 10／7 |
+| A | 英文條列 139 words；整封 1034 字元 | 10／7 |
 | B | 整封 336 字元（含標點，低於 350） | 9／7 |
 
 2026-10-27 結尾巡檢：A「可用於」改為期待交流實務經驗，B 改為與 OwlPay 團隊交流支付規劃經驗；不預判適任度。其餘正文不動。
@@ -61,6 +62,8 @@
 ## 獨立成品盲審與處置
 
 子代理 owlpay_blind 僅取得 A／B 正文作招募閱讀，不讀歷史與改稿理由；不代表獨立事實查證。
+
+以下為前輪盲審紀錄。本輪產品介紹與結尾修訂由主代理審讀並重驗字數、三點格式及責任用詞，未另執行第二輪子代理盲審。
 
 - ✅ 天數所指不清：補「訂閱方案／subscription plans」。依同一上游提交 causal_draft.md 的 SweetRing 支付點確認，沒有新增方案事實。
 - 🔒 不採刪除天數：本人明定保留 7／30／90 天，改為補定義。
