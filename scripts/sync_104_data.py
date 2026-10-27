@@ -5,11 +5,16 @@ import json
 import re
 import copy
 from datetime import datetime, timezone
+from urllib.parse import urlparse
 
-R2_ENDPOINT_URL = os.environ.get("R2_ENDPOINT_URL")
-R2_ACCESS_KEY_ID = os.environ.get("R2_ACCESS_KEY_ID")
-R2_SECRET_ACCESS_KEY = os.environ.get("R2_SECRET_ACCESS_KEY")
-R2_BUCKET_NAME = os.environ.get("R2_BUCKET_NAME", "job-seeking-sync")
+R2_ENDPOINT_URL = os.environ.get("R2_ENDPOINT_URL", "").strip()
+R2_ACCESS_KEY_ID = os.environ.get("R2_ACCESS_KEY_ID", "").strip()
+R2_SECRET_ACCESS_KEY = os.environ.get("R2_SECRET_ACCESS_KEY", "").strip()
+R2_BUCKET_NAME = os.environ.get("R2_BUCKET_NAME", "").strip()
+
+if R2_ENDPOINT_URL:
+    parsed = urlparse(R2_ENDPOINT_URL)
+    R2_ENDPOINT_URL = f"{parsed.scheme}://{parsed.netloc}" if parsed.scheme == "https" and parsed.netloc and parsed.hostname and not parsed.username and not parsed.password else ""
 
 TARGET_DIR = "career/targets/104"
 JOBS_FILE = os.path.join(TARGET_DIR, "jobs.json")
