@@ -8,11 +8,11 @@
 您好：
 應徵貴司【R&D】OwlPay支付 - Product Manager。我規劃過東南亞第三方支付與網頁付款，也以英文與海外金流夥伴協作。近 10 年產品經理經驗，現任人力銀行企業端招募系統 Product Owner，以下是三項相關經驗：
 
-‧ I brought in CodaPay, a Southeast Asian payment provider, and launched 8 payment channels across Indonesia and Thailand. I compared fees and settlement terms, estimated net revenue, and proposed 7-, 30- and 90-day subscription plans. I later served as engineering liaison with CodaPay for JustDating, our flagship dating app, in markets outside Taiwan.
-‧ At Peach, a subscription content app, I planned the shift from in-app purchases to web payments, which grew from 24% to over 80% of revenue (2020/11–2021/09). I also held partnership discussions in English with a European payment provider.
-‧ I took over the overhaul of a recruitment system serving about 60,000 paying employers and reconstructed undocumented account permissions and business rules; 743 of 840 related client requests (88%) have been resolved. I also planned new-device OTP verification (MFA) to strengthen account security.
+‧ I brought in CodaPay, a Southeast Asian payment provider, to launch 8 payment channels in 2 countries: Indonesia and Thailand. I compared fees and settlement terms, estimated net revenue, and proposed 7-, 30- and 90-day subscription plans. For JustDating, our flagship dating app, I served as engineering liaison with CodaPay for payments outside Taiwan.
+‧ For Peach, a subscription content app, I planned the shift from in-app purchases to web payments. Web payments' share of revenue rose from 24% to over 80% (2020/11–2021/09). I also discussed a partnership with a European payment provider in English.
+‧ I took over the overhaul of a recruitment system serving about 60,000 paying employers and worked out its undocumented account permission logic and business rules. Of 840 related client requests, 743 (88%) have been resolved. I also planned new-device OTP verification (MFA) to strengthen account security.
 
-期待能將付款管道上線、費率試算、商業規則梳理與帳號安全的經驗，運用在貴司 OwlPay 的跨境支付產品。謝謝您的閱讀。
+貴司 OwlPay 的跨境支付工作，與我的海外支付規劃經驗相關。期待與團隊進一步交流，分享付款管道上線、費率試算、商業規則梳理與帳號安全的實務經驗。謝謝您的閱讀。
 
 聶崑淮
 ```
