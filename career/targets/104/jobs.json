@@ -1,0 +1,13 @@
+{
+  "jobs": {
+    "test_job_001": {
+      "company_id": "test_comp_001",
+      "description": "這是一筆連線驗證測試資料",
+      "fetched_at": "2026-10-27T05:07:32.015364Z",
+      "job_id": "test_job_001",
+      "location": "台北市",
+      "title": "測試產品經理",
+      "url": "https://www.104.com.tw/job/test_job_001"
+    }
+  }
+}
