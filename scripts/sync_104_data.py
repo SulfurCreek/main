@@ -11,6 +11,8 @@ def _clean_env(key: str) -> str:
     value = os.environ.get(key, "").strip()
     if len(value) >= 2 and value[0] == value[-1] and value[0] in ("\"", "'"):
         value = value[1:-1].strip()
+    if "\n" in value or "\r" in value:
+        raise ValueError(f"環境變數 {key} 含有內部換行，請修正設定")
     return value
 
 
