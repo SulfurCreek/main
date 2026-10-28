@@ -10,19 +10,22 @@ from urllib.parse import urlparse
 def _clean_env(key: str) -> str:
     raw = os.environ.get(key, "")
     if not raw:
-        print(f"[DIAGNOSTIC] {key}: EMPTY")
+        print(f"[DIAGNOSTIC] {key}: EMPTY", flush=True)
         return ""
-    raw_lines = raw.splitlines()
-    valid_lines = [
-        line.strip().strip("'\"")
-        for line in raw_lines
-        if line.strip() and not line.strip().startswith("#")
-    ]
-    cleaned = valid_lines[0] if valid_lines else ""
-    if "=" in cleaned and cleaned.split("=", 1)[0].strip() == key:
-        cleaned = cleaned.split("=", 1)[1].strip().strip("'\"")
+
+    raw_lines = [line.strip() for line in raw.splitlines() if line.strip()]
+    target_line = raw_lines[-1] if raw_lines else ""
+    if key in ("R2_ACCESS_KEY_ID", "R2_SECRET_ACCESS_KEY"):
+        m = re.search(r"([a-fA-F0-9]{32,64}|[A-Za-z0-9_-]{32,64})\s*$", target_line)
+        cleaned = m.group(1) if m else (target_line.split()[-1].strip("'\"") if target_line.split() else "")
+    elif key == "R2_ENDPOINT_URL":
+        m = re.search(r"(https?://[^\s'\"<>]+)", target_line)
+        cleaned = m.group(1) if m else target_line.strip("'\"")
+    else:
+        cleaned = re.split(r"[:=]\s*", target_line)[-1].strip("'\"")
+
     line_lengths = [len(line) for line in raw_lines]
-    print(f"[DIAGNOSTIC] {key} -> 總長度: {len(raw)}, 行數: {len(raw_lines)}, 各行長度: {line_lengths}, 清洗後長度: {len(cleaned)}")
+    print(f"[DIAGNOSTIC] {key} -> 總長度: {len(raw)}, 行數: {len(raw_lines)}, 各行長度: {line_lengths}, 清洗後長度: {len(cleaned)}", flush=True)
     return cleaned
 
 
