@@ -7,13 +7,20 @@ import copy
 from datetime import datetime, timezone
 from urllib.parse import urlparse
 
-R2_ENDPOINT_URL = os.environ.get("R2_ENDPOINT_URL", "").strip()
-R2_ACCESS_KEY_ID = os.environ.get("R2_ACCESS_KEY_ID", "").strip()
-R2_SECRET_ACCESS_KEY = os.environ.get("R2_SECRET_ACCESS_KEY", "").strip()
-R2_BUCKET_NAME = os.environ.get("R2_BUCKET_NAME", "").strip()
+def _clean_env(key: str) -> str:
+    value = os.environ.get(key, "").strip()
+    if len(value) >= 2 and value[0] == value[-1] and value[0] in ("\"", "'"):
+        value = value[1:-1].strip()
+    return value
+
+
+R2_ENDPOINT_URL = _clean_env("R2_ENDPOINT_URL")
+R2_ACCESS_KEY_ID = _clean_env("R2_ACCESS_KEY_ID")
+R2_SECRET_ACCESS_KEY = _clean_env("R2_SECRET_ACCESS_KEY")
+R2_BUCKET_NAME = _clean_env("R2_BUCKET_NAME")
 
 if R2_ENDPOINT_URL:
-    parsed = urlparse(R2_ENDPOINT_URL)
+    parsed = urlparse(R2_ENDPOINT_URL if "://" in R2_ENDPOINT_URL else "https://" + R2_ENDPOINT_URL)
     R2_ENDPOINT_URL = f"{parsed.scheme}://{parsed.netloc}" if parsed.scheme == "https" and parsed.netloc and parsed.hostname and not parsed.username and not parsed.password else ""
 
 TARGET_DIR = "career/targets/104"
