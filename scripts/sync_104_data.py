@@ -17,7 +17,7 @@ def _clean_env(key: str) -> str:
 R2_ENDPOINT_URL = _clean_env("R2_ENDPOINT_URL")
 R2_ACCESS_KEY_ID = _clean_env("R2_ACCESS_KEY_ID")
 R2_SECRET_ACCESS_KEY = _clean_env("R2_SECRET_ACCESS_KEY")
-R2_BUCKET_NAME = _clean_env("R2_BUCKET_NAME")
+R2_BUCKET_NAME = "job-seeking-sync"
 
 if R2_ENDPOINT_URL:
     parsed = urlparse(R2_ENDPOINT_URL if "://" in R2_ENDPOINT_URL else "https://" + R2_ENDPOINT_URL)
