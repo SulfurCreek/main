@@ -8,12 +8,22 @@ from datetime import datetime, timezone
 from urllib.parse import urlparse
 
 def _clean_env(key: str) -> str:
-    value = os.environ.get(key, "").strip()
-    if len(value) >= 2 and value[0] == value[-1] and value[0] in ("\"", "'"):
-        value = value[1:-1].strip()
-    if "\n" in value or "\r" in value:
-        raise ValueError(f"環境變數 {key} 含有內部換行，請修正設定")
-    return value
+    raw = os.environ.get(key, "")
+    if not raw:
+        print(f"[DIAGNOSTIC] {key}: EMPTY")
+        return ""
+    raw_lines = raw.splitlines()
+    valid_lines = [
+        line.strip().strip("'\"")
+        for line in raw_lines
+        if line.strip() and not line.strip().startswith("#")
+    ]
+    cleaned = valid_lines[0] if valid_lines else ""
+    if "=" in cleaned and cleaned.split("=", 1)[0].strip() == key:
+        cleaned = cleaned.split("=", 1)[1].strip().strip("'\"")
+    line_lengths = [len(line) for line in raw_lines]
+    print(f"[DIAGNOSTIC] {key} -> 總長度: {len(raw)}, 行數: {len(raw_lines)}, 各行長度: {line_lengths}, 清洗後長度: {len(cleaned)}")
+    return cleaned
 
 
 R2_ENDPOINT_URL = _clean_env("R2_ENDPOINT_URL")
