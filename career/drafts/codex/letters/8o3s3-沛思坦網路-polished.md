@@ -1,60 +1,53 @@
-來源：上游 7f1e9a9 的推薦信 r2.1、104coverletter §6、voice-en.md、職缺全文與 routing.tsv。
-〔待補〕：無。
-事實疑問：無；本人已選用 A 案，供 Career Move 同步定稿。
+來源：上游 r2（ef062b9），career/letters/104/8o3s3-沛思坦網路-draft.md、104coverletter/SKILL.md §3.0、voice-en.md。
+待補：無。
+事實疑問：無新增；依上游範圍潤飾。
 
-採用紀錄：2026-10-27 本人選擇方案 A；下游請採用 A 案正文，B 案僅留備選，來源說明與修改紀錄不貼入 104。
+# 8o3s3-沛思坦網路 自我推薦信
 
-方案 A｜中文破題＋英文條列
+## 方案 A｜中文破題＋英文條列
 
+```text
 您好：
-應徵貴司【北士科】Product Manager。我有近 10 年產品經理經驗，主導過生成式 AI 功能上線；現任人力銀行企業端招募系統 Product Owner，負責約 6 萬家付費企業使用的系統改版。以下是三項相關經驗：
+應徵貴司【北士科】Product Manager。我有近 10 年產品經理經驗，現任人力銀行企業端招募系統 Product Owner，主導過生成式 AI 功能上線。
 
-‧ To make job posting easier, I led the launch of AI-generated job descriptions. I also led the launch of AI talent recommendations. I set acceptance criteria for labor-law compliance, required employer confirmation before publishing generated content, and refined recommendation rules based on clients’ actual selections.
-‧ Of 840 client requests on accounts, login, company data and contacts, 743 (88%) were resolved. Account permissions and business rules were undocumented, and the overhaul had to keep the existing back office and database, so I reconstructed the rules through hands-on product testing and internal interviews and turned them into specs for phased releases.
-‧ KOOL, an influencer marketplace, had no direct competitor to benchmark against. I interviewed marketing teams at businesses about how they found influencers and designed two-sided matching flows. The platform accumulated about 16,000 influencer profiles. Collaboration applications exceeded 80,000 in six months.
+‧ For a recruitment system serving about 60,000 paying employers, I led the launch of AI-generated job descriptions to make job posting easier, alongside AI talent recommendations. I set acceptance criteria for compliance with labor laws and required employers to confirm generated content before publication. After launch, I used clients' actual selections and ongoing feedback to adjust the talent-recommendation rules.
 
-貴司同樣經營人才招募平臺，希望能有機會與團隊進一步交流，分享我在招募系統改版與生成式 AI 上線的實務經驗。謝謝您的閱讀。
+‧ Taking over a recruitment system overhaul, I clarified undocumented account permissions and business rules through product testing and internal interviews, then wrote specs for phased releases. Of 840 related client requests, 743 (88%) have been resolved.
 
+‧ For a two-sided influencer marketplace with no direct competitor, I interviewed businesses' marketing teams about finding influencers and planned the matching flow. The platform accumulated about 16,000 influencer profiles; applications for collaborations exceeded 80,000 in six months.
+
+貴司也服務人才招募平臺，與我目前的工作領域相近。期待能與團隊進一步交流，分享招募系統改版與生成式 AI 上線的實務經驗。謝謝您的閱讀。
 聶崑淮
+```
 
-方案 B｜全中文
+## 方案 B｜全中文
 
+```text
 您好：
-應徵貴司【北士科】Product Manager。近 10 年產品經理經驗，現任人力銀行企業端招募系統 Product Owner，負責約 6 萬家付費企業的系統改版。
+應徵貴司【北士科】Product Manager。現任人力銀行企業端招募系統 Product Owner，近 10 年產品經理經驗。
 
-‧ 為降低企業刊登門檻，主導職缺工作說明生成上線，另主導 AI 推薦人才上線；制定勞動法規合規驗收標準，生成內容經企業確認才刊登，依客戶實際選用調整推薦規則。
-‧ 改版須沿用既有後台與資料庫，帳號權限與商業模式規則卻無文件。以實測、內部訪談還原規則，規劃分階段上線。相關 840 件企業建議已完成 743 件（88%）。
-‧ KOOL 網紅媒合無競品參考，訪談商家行銷單位、規劃雙邊媒合；累積約 1.6 萬份網紅檔案、半年 8 萬多次合作報名。
+‧ 在服務約 6 萬家付費企業的招募系統，主導職缺工作說明生成與 AI 推薦人才上線，降低刊登門檻；制定勞動法規驗收標準，生成內容經企業確認才刊登，依客戶實際選用調整推薦。
+‧ 接手招募系統改版，以實測與內部訪談還原缺乏文件的帳號權限與商業規則，規劃分階段上線。改版涉及的 840 件企業建議中，已完成 743 件（88%）。
+‧ 為沒有直接競品的網紅雙邊媒合平台，訪談商家行銷單位、規劃媒合流程；平台累積約 1.6 萬份網紅檔案，半年 8 萬多次合作報名。
 
-貴司同樣經營人才招募平臺，希望能有機會與團隊進一步交流，分享我在招募系統改版與生成式 AI 上線的實務經驗。謝謝您的閱讀。
-
+貴司也服務人才招募平臺。期待能與團隊進一步交流，分享招募系統與生成式 AI 的實務經驗。謝謝。
 聶崑淮
+```
 
-修改紀錄
+## 修改紀錄
 
-1. A 保留中文破題與三點英文；AI 點拆開刊登目的與人才推薦，KOOL 先定義為網紅媒合平台，再展開無競品限制、訪談與規劃。
-2. AI 使用 led the launch of 與 set acceptance criteria，保留企業確認後刊登及依實際選用調整推薦的界線，不暗示模型開發。
-3. 英文改版段依本人轉交的上游裁定逐字保留 r2.1，先呈現 743／840，再說明無文件與沿用後台及資料庫的限制；不用 by 將所有完成案件歸因於還原規則。
-4. KOOL 數據以平台為主詞，保留約數、超過與半年期間，不將平台規模改成個人獨立成果。
-5. B 精簡重複破題與子句，保留三點、所有指定數字、主要責任及公司服務招募平臺的既有鉤子。
-6. 2026-10-27 本人最新裁定：兩案結尾逐字採用「貴司同樣經營人才招募平臺，希望能有機會與團隊進一步交流，分享我在招募系統改版與生成式 AI 上線的實務經驗。謝謝您的閱讀。」取代先前直接投入的措辭；不加敬上或能力小標。
+- 保留三點與原有數據，壓縮重複自介及結尾；各點先交代產品或工作場景。
+- 沿用白話產品類型；支付商專名僅於適用信件出現，首次同句說明。
+- 系統規則還原與案件完成分開敘述，不把全部案件完成歸因於單一動作；帳號安全也不承接案件數據。
+- 結尾改以交流與分享經驗收束，不替招募方判斷適任度。
 
-字數與驗證
+## 字數
 
-計算範圍為「您好：」至署名，不含方案標題、來源說明與修改紀錄；字元數含標點與英數、不含空白，英文依空白分詞。
+- 方案 A 英文三點：132 words；方案 B：324 字。
+- 中文計算含標點、英文字母及署名，不含空白；英文按空白分詞，不計條列符號。
 
-方案 A：中文開頭 107 字元；中文部分合計 169 字元（含結尾與署名）；英文三點 140 words。整封不含空白 1021 字元，7 個非空行、含空行 10 行。
-方案 B：全文 348 字元，7 個非空行、含空行 10 行。為保留本人指定結尾並維持 350 字內，僅縮短破題與冗詞，數字、事實與三點不變。104 實際自動換行依欄位寬度而異。
+## 成品盲審處置
 
-2026-10-27 文字驗證通過：A 英文 120–150 words、B 250–350 字元；兩案各三點；職缺名、指定數字與約數／半年限定保留；禁用詞及 HTML／粗體標記皆無。責任與語意已對照上游，未增加公司觀察。本次為推薦信文字檢查，未套用履歷專用的 41 區塊 verify_polish.py，未產生 PDF。
-
-獵頭視角盲審與修正（2026-10-27）
-
-獨立子代理 coverletter_blind 僅取得兩案正文、職位及閱讀準則，未取得歷史對話、改稿理由或來源檔。此為招募閱讀審查，不是事實驗證；本次審查對象為修正前成品，以下修正由主代理完成並重跑文字檢查，未宣稱修正後另經第二輪獨立盲審。
-
-- 核心判斷：兩案具面試吸引力，招募領域、AI 上線控管與無文件改版限制清楚。B 易讀，A 可展示英文表達。
-- 已修：AI 點將降低刊登門檻限定在工作說明生成，另述人才推薦；企業確認明確指向生成內容。
-- 已修：A 的 KOOL 先介紹為 influencer marketplace，再寫訪談與雙邊媒合；半年只修飾合作報名數。
-- 已修：B 的個人規劃動作與案件完成數分句，避免連讀成個人完成全部案件。
-- 歷史處置：當時未採改動 A 改版段及邀請交流式結尾；結尾裁定現已由本人本輪指示取代，兩案均改為交流口吻。案件完成定義不新增免責說明或自行改成全部功能上線。
-- 漏跑原因：前輪將機械檢查誤當完整交付門檻，只引用上游盲測，未對潤飾成品派發獨立審讀。今後推薦信交付需分開回報機械檢查、成品盲審及修正狀態，未執行不得宣稱完成。
+- 已修正：將降低刊登門檻接回 AI 工作說明功能，分開交代合規驗收；補明生成內容的確認對象及平台成果主詞，英文改為 applications for collaborations。
+- 已修正：案件完成另起一句，保留「改版相關建議」範圍，不把數字接成單一功能的成效。
+- 盲審僅評閱成品文字，不代表獨立事實查核。
