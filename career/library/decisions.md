@@ -414,3 +414,10 @@ v9.7 = v9.6 ＋ 使用者自寫自傳與各段 summary（16→10 個單位、業
 - 英文：不用 `Backed by N client requests` 開頭、不把核心痛點丟在句尾 `, which leave…`；改「痛點破題→To address N client requests…」（style/voice-en.md §6）。
 - verify_letter：新增攔截 貴司／我司／敝司／工作方向相近／經驗相關／Backed by／, which leave；`--all` 同時略過「不投遞」職缺。
 - Yahoo 91fp9 本人 2026-10-29 已投遞，不回頭改；綠界 95whq 定稿與上游草稿已把「貴司」改「貴公司」並刪空洞結尾。
+
+## §61 LINE Career Profile 填表口徑（本人 2026-10-29 確認）
+
+- CSU Sacramento：`type_of_degree` 填 `"21"`，`degree_status` 填 `"2559"`（交換／肄業）。
+- 英文公司名：`Sunfun Info Co., Ltd.`、`Sweet Tech Ltd.`，聘僱型態皆 `"1194"`；台灣新蛋職稱 `Translation Intern`、型態 `"1195"`。
+- 語言只填 English（`1174`）、Mandarin（`33`）；無台語、日語紀錄，不補。
+- 驗收：`scripts/verify_line_profile.py`；上游草稿 `01_claude_stage/line-profile-draft.md`。
