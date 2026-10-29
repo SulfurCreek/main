@@ -92,7 +92,7 @@ Codex 依 §§12–14 自治精煉上游標記 NEEDS_POLISH 的表達、語序�
 
 ## 5. 英文參數（上游有英文才使用）
 
-- 平實商務英文，第一人稱 I，短句，一句一事，約 25 words 內；美式拼字。
+- 平實商務英文，短句，一句一事，約 25 words 內；美式拼字。主詞依體裁分流：推薦信使用第一人稱 `I`；英文履歷列點採 Implied First-Person，省略 `I`，不把推薦信句法直接套入履歷。
 - 固定譯法沿 `career/style/voice-en.md`：job-category codes、acceptance criteria、phased releases、confidence levels。LOCK_ENTITIES 的英文拼法優先，不能順手改成同義詞。
 - AI 使用情境與驗收：defined the use cases and acceptance criteria；新版規劃：planned。不得改為 built／developed the model、led the architecture 或 reverse-engineered the codebase。
 - 同仁最後判斷的責任不得省掉；不改成 automated the whole process 或 eliminated manual work。
@@ -105,6 +105,15 @@ Codex 依 §§12–14 自治精煉上游標記 NEEDS_POLISH 的表達、語序�
 - 同時包含核心痛點、需求件數與產品方案時，採兩句獨立短句：「痛點原因與結果 → 需求規模與方案」。先以 `Because...` 交代使用者問題，不把痛點塞進句尾 `, which leave...` 關係子句，再以分號補開發狀態。
 - 例：`Because employers and job seekers currently message each other across two overlapping tools, interview invitations often get scattered. To address 199 client requests accumulated since 2021, I planned a unified messaging flow that is now in development.`
 - 範例只示範句型，不提供其他信件的事實；件數、起始時間、規劃責任及開發狀態均依當輪草稿。不得把 planned 升級為 led，或把待解決痛點寫成已改善的結果。
+
+### 履歷體裁與成品純淨（同步 voice-en.md §8，f45bdf8）
+
+1. **省略主詞**：英文履歷列點（LINE、LinkedIn、英文 CV）直接以責任範圍內的過去式動詞，或精煉場景／原因／時間子句接過去式動詞開頭；在職範疇可保留自然現在式。正文獨立詞 `I` 預設 0 次、全篇最多 3 次；推薦信仍用 `I` 與完整短句。不得為使用強動詞升級責任。
+2. **句首多樣性**：同公司區塊不得連續兩點以同一首字開頭；全篇 `- For ` 開頭最多 2 點。交替使用符合語意的動詞及 When、After、With、Because、To 等子句；不能只換首字而留下模板或概念偷跑。
+3. **不抄規則備註**：譯法說明不進正文；前文已說明兩套工具時，直接寫 `199 client requests`，不附加重複的工具整合解釋括號。規則範例僅放可直接入文的文字；統計口徑、必要限定與開發狀態仍須保留。
+4. **成品純淨**：可填表檔不附 Editing Notes、English Self-Review 或其他修改紀錄章節。修改摘要與自審結果寫在對話回覆，或本人需要的 `career/drafts/codex/` 交接檔；directive JSON 與指定結構原樣保留。
+
+以上規則優先於舊版一律第一人稱及檔末附修改紀錄的要求。交付前通讀全部列點，確認商業目的、系統影響範圍、分母、時序與責任沒有因精簡遺失，再執行當輪上游 verify_line_profile.py，0 違規才交付。
 
 ## 6. 逐區塊操作協議
 
