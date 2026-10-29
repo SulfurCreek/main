@@ -18,6 +18,8 @@ description: >
 本 skill 是證據庫的下游：`career/library/`（**使用者確認過的現行事實與裁定，衝突時最優先**）→ `career/competency-framework.md`（wiki 入口）＋ `career/wiki/` 分頁存「證據」，
 本 skill 是「把證據變成履歷的方法」。
 
+> **PDF 版型（2026-10-13）**：給人看的 PDF 一律用雙欄版型（`references/pdf-layout.md`、`scripts/render_twocol.py`）；上傳 ATS／求職網站另附單欄版。
+
 ## 🔁 標準工作流程（9 步，2026-10-08 使用者裁定、2026-10-09 修訂）
 
 做履歷、自傳、求職信素材一律走這九步，不跳步、不只拿上一版刪修。詳細產出、出口條件、回退規則見 [`references/workflow.md`](references/workflow.md)（中間產物放 `career/drafts/<版本>/`）。
@@ -53,10 +55,14 @@ description: >
 | 去 AI 感、ATS 格式、CAR 盤問（交付前必做）| [`references/anti-ai-ats.md`](references/anti-ai-ats.md)：掃禁用詞與破折號、空泛條目先停下來問 Context／Action／Result，問不到不補數字 |
 | **寫自傳、轉職動機、「為什麼想離開」**（先 essay 再潤飾）| [`references/autobiography.md`](references/autobiography.md)＋版面 `assets/template-tw-zh.md`〈自傳〉 | `career/library/profile.md` §7、`career/style/leaving-reason-source.md` |
 | 撰寫中文履歷／自傳／專案說明（語氣與誇大護欄）| [`references/tw-voice.md`](references/tw-voice.md) | 數字與事實只取自 `wiki/` |
-| 產生／填寫／驗證 **104 履歷** | 先讀 `career/104/README.md`（`fields-spec.md` 欄位規格、`resume-104.md` 內容、現行版見 README 標示（以 README 為準，不要寫死版本號））；**Cake Resume 另案，不得套用 104 的欄位規格與字數上限**；語氣依 [`references/tw-voice.md`](references/tw-voice.md) | 這些檔案在個人線分支 `claude/happy-lamport-ljis8c` 的 `career/104/` |
+| **寫任何對外中文履歷文字前（強制）** | `career/skills/resume-causal-logic-compiler/SKILL.md` 編譯規則＋披露檢查（Claude 上游角色） | 未通過不得標定稿 |
+| 產生／填寫／驗證 **104 履歷** | 先讀 `career/104/README.md`（`fields-spec.md` 欄位規格、`resume-104.md` 內容、現行版見 README 標示（以 README 為準，不要寫死版本號））；**Cake Resume 另案，不得套用 104 的欄位規格與字數上限**；語氣依 [`references/tw-voice.md`](references/tw-voice.md)；**104 特化版依 `career/skills/104resume/SKILL.md`；104 自我推薦信依 `career/skills/104coverletter/SKILL.md`** | 這些檔案在個人線分支 `claude/happy-lamport-ljis8c` 的 `career/104/` |
 | 求職信：中文自我推薦信（英文 cover letter 走 career-ops `cover` 模式）| [`references/cover-letters.md`](references/cover-letters.md) ＋ 範本 [`assets/cover-letter-tw-zh.md`](assets/cover-letter-tw-zh.md) | `letters/story-bank.md`（數字唯一來源）；成品存 `letters/archive/` ＋ `letters/log.md` 加一列 |
 | 目標公司價值觀對映（Amazon LP 等）| [`references/portfolio.md`](references/portfolio.md) | — |
 | 高顏值可列印版（HTML／LaTeX）| [`references/visual-output.md`](references/visual-output.md) | 已定稿的內容版履歷 |
+| **找事實／裁定**（動筆前） | `career/library/INDEX.md`（依任務列出最小讀取集合，別整包讀 library） | — |
+| **轉 PDF** | 雙欄（給人看）`scripts/render_twocol.py`＋`scripts/mkpdf.js`；單欄（ATS）`scripts/render_onecol.py`＋`scripts/mkpdf.js`；版型見 [`references/pdf-layout.md`](references/pdf-layout.md) | — |
+| **驗證履歷** | 改走 skill `resume-review-panel`（一鍵 `build_run.py`）；索引 `career/wiki/skills-index.md` | — |
 | 填學歷／證照 | 本檔結構與順序 | `wiki/education-certifications.md` |
 
 ---
@@ -89,12 +95,16 @@ description: >
 
 ## 履歷結構與順序
 
+> **人物參考（2026-10-19）**：編輯自傳、職涯定位、各段工作介紹前，先讀 `career/library/about-me.md`（動機、工作方式、誤讀修正）＋本人指定履歷；該檔只供編輯，不附給驗證者。
+>
+> **閱讀順序鐵則（2026-10-19 使用者裁定，`career/library/decisions.md` §16）**：依人類閱讀順序（左→右、上→下；雙欄依實際動線）逐段檢查。專案、產品、議題、專有名詞**第一次出現就要帶脈絡**，不可在前文沒出現時突然指涉（「該專案」「兩次」「前述」）。每份草稿與給潤飾者的說明都要寫明這條。
+
 資深者用**混合式（hybrid）＝ 技能摘要在前 ＋ 反時序工作經歷**最佳；**純功能式（functional）是地雷**（ATS 與招募者都不信任）。
 
 | # | 英文 ATS | 繁中在地 | 備註 |
 | :-- | :--- | :--- | :--- |
 | 1 | Contact + Headline | 姓名 + 一句定位 + 聯絡方式〔＋照片視情況〕| ATS 版去照片/個資 |
-| 2 | Professional Summary（2–3 行）| 專業摘要 | **用摘要、不要 Objective**；含 2–3 個 JD 關鍵字 |
+| 2 | Professional Summary（3–5 行）| 專業摘要 | **用摘要、不要 Objective**；年資＋經手產品／Domain＋核心方法＋最具代表性的量化成就；不寫性格形容詞；含 2–3 個 JD 關鍵字 |
 | 3 | Core Competencies（5–7 叢集）| 核心職能 | 叢集 + 證據點 |
 | 4 | Professional Experience（反時序）| 工作經歷（反時序）| 每段 3–6 條量化 bullet |
 | 5 | Education & Certifications | 學歷／證照 | 年資 10+ 可移到經歷之後 |

@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
-"""6 秒 F 型掃描模擬（resume-review-panel 驗證機制 v3.1，項目 3）。
+"""截斷文字可見性壓力測試（規準 v4；舊名「6 秒 F 型初篩」）。
+
+⚠️ 10 字／24 字／1,400 字都是**內部代理規則**，不是真實視線或第一屏；真人限時初篩須由真人看實際版面。
+--view-only 的輸出只交給「第一個獨立請求」（只附職缺，不附全文或其他版本），結果先存檔，之後不得被全文改寫。
+下方結構檢查只作版面提醒，不換算內容分數。以下為 v3.1 原說明：
 
 依 career/style/hr-6-second-source.md：招募者初篩 6–10 秒，視線走 F／E 型、集中在左緣，
 先找「最近職稱、目前公司、起訖日期」。本腳本做兩件事：
@@ -128,9 +132,9 @@ def main():
     bullets = [l.strip()[2:] for l in lines[start:end] if l.strip().startswith('- ')]
     first = [l.strip() for l in lines if l.strip()][:a.top]
 
-    print('## F 型視野（交給初篩模型的版本）\n')
+    print('## 截斷文字（可見性壓力測試用；內部代理規則，非真實視線）\n')
     print('```text\n' + '\n'.join(view) + '\n```\n')
-    print('## 結構檢查\n')
+    print('## 版面提醒（不轉分數；以實際排版另驗）\n')
     print('| 項目 | 結果 | 說明 |')
     print('| :--- | :-: | :--- |')
     t_top = has_any(' '.join(first), TITLE_WORDS)
