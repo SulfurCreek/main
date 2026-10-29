@@ -12,7 +12,7 @@
 | 推薦信上游草稿 | `letters/104/8enwh-奧丁丁-draft.md`；Codex 潤飾 `codex/resume-writer:career/drafts/codex/letters/8enwh-奧丁丁-polished.md`（23ca8f0）；盲測 `review-panel/runs/2026-10-27-credibility-letter-8enwh/` |
 | 搭配履歷版本 | 104 v12.19（Codex 855a6a0） |
 | 已知缺口 | 加密錢包、區塊鏈、FinTech 業界資歷、Jira／Confluence（信中不提） |
-| 投遞狀態 | 〔待填：應徵日期、結果〕 |
+| 投遞狀態 | **不投遞**（本人 2026-10-29 決定只投綠界與 Yahoo） |
 
 ## 推薦信正文（貼入 104 的版本）
 
