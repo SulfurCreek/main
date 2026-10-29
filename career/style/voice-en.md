@@ -50,3 +50,12 @@
 2. 數字、數量、日期與中文版一致。
 3. 動詞沒有超出 §2 的範圍。
 4. 大聲念一遍：像本人在面試裡會說的話。
+
+## 6. 痛點破題、禁尾巴子句（本人 2026-10-29，推薦信與履歷共用）
+
+- **不用 `Backed by N client requests` 開頭**：客戶的需求、建議或抱怨是「待解決的問題」，不是贊助或背書。用 `To address N client requests accumulated since 2021, …` 或 `In response to …`。
+- **核心商業痛點不得塞在句尾關係子句**（No Trailing Pain Clauses）：
+  - ❌ `Backed by 199 client requests since 2021, I am planning to merge the two overlapping tools employers and job seekers use to message each other, which leave interview invitations scattered; the work is now in development.`（最重要的痛點「面試邀約散落」被丟在 `, which leave…`，結構鬆散、力道全失）
+  - ✅ **真實痛點破題 → 需求規模與核心方案**：`Because employers and job seekers currently message each other across two overlapping tools, interview invitations often get scattered. To address 199 client requests accumulated since 2021, I planned a unified messaging flow that is now in development.`
+- 英文條列仍受 §2 責任動詞對照與「一點一事」約束；`planned`（規劃）不得升級成 `led`（除 decisions §51 白名單）。
+

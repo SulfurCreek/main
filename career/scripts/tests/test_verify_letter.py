@@ -64,5 +64,22 @@ class LetterTests3(unittest.TestCase):
         self.assertFalse(vl.warn("CodaPay, a payment provider", payment=True))
 
 
+class LetterTests4(unittest.TestCase):
+    def test_wrong_honorific_flagged(self):
+        for w in ("貴司", "我司", "敝司"):
+            self.assertTrue(any(w in e for e in vl.check(f"應徵{w}職缺。")))
+
+    def test_hollow_hook_flagged(self):
+        self.assertTrue(any("工作方向相近" in e for e in vl.check("貴公司的工作，與我目前的工作方向相近。")))
+
+    def test_backed_by_and_trailing_which_flagged(self):
+        self.assertTrue(any("Backed by" in e for e in vl.check("Backed by 199 client requests, I planned a flow.")))
+        self.assertTrue(any("which leave" in e for e in vl.check("I merged tools, which leave invitations scattered.")))
+
+    def test_good_english_passes(self):
+        ok = "Because employers and job seekers message across two overlapping tools, interview invitations get scattered."
+        self.assertFalse(any("Backed" in e or "which" in e for e in vl.check(ok)))
+
+
 if __name__ == "__main__":
     unittest.main()

@@ -24,6 +24,9 @@ BANNED = ["深感契合", "願景高度契合", "在瀏覽貴公司職缺後", "
           "Separately", "另外，", "此外，",
           # 自大結尾與囉嗦詞（2026-10-29 七大鐵律）
           "直接解決", "立即解決", "在工程資源有限下", "帳號、登入、公司資料與聯絡人相關",
+          # 稱謂與空洞結尾、中式英文倒裝（2026-10-29）
+          "貴司", "我司", "敝司", "工作方向相近", "經驗相關",
+          "Backed by", ", which leave",
           # 未核准對外的城市／國籍（facts-prior：國籍不放履歷；新加坡團隊本人裁定不對外）
           "Singapore", "新加坡", "Russian", "俄羅斯"]
 SENT = re.compile(r"[^。！？.!?\n]*")
@@ -77,13 +80,13 @@ def check(body, job=None):
 
 
 def submitted_codes(root):
-    """applications/INDEX.md 中「應徵狀態」含「已投遞／已應徵」的職缺代碼（已送出的信不再回頭改）。"""
+    """applications/INDEX.md 中「應徵狀態」含「已投遞／已應徵／不投遞」的職缺代碼（已送出或不投的信不再掃描）。"""
     idx = root / "applications" / "INDEX.md"
     out = set()
     if idx.exists():
         for line in idx.read_text(encoding="utf-8").splitlines():
             m = re.match(r"\|\s*\[([0-9a-z]+)\]", line)
-            if m and ("已投遞" in line or "已應徵" in line):
+            if m and ("已投遞" in line or "已應徵" in line or "不投遞" in line):
                 out.add(m.group(1))
     return out
 
