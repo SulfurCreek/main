@@ -59,3 +59,11 @@
   - ✅ **真實痛點破題 → 需求規模與核心方案**：`Because employers and job seekers currently message each other across two overlapping tools, interview invitations often get scattered. To address 199 client requests accumulated since 2021, I planned a unified messaging flow that is now in development.`
 - 英文條列仍受 §2 責任動詞對照與「一點一事」約束；`planned`（規劃）不得升級成 `led`（除 decisions §51 白名單）。
 
+
+## 7. 中翻英反降維與反直譯鐵律（Anti-Chinglish & No Credibility Stripping；本人 2026-10-29，LINE profile 抓出）
+
+1. **不撞工程保留字**：中文「合併建議」（客戶要求整併兩套工具）一律譯 `client requests (to consolidate the tools)`，禁用 `merge request(s)`（GitLab 程式碼合併請求，面試官會誤解）。同類先問：此英文詞在軟體業是否另有專有意義。
+2. **專業帶人與法規用語**：直屬企劃＝`direct-report product planners`（禁 `my planners`、`guided … through`）；`labor-law compliance acceptance criteria` 不可漏 `compliance`；同句不混用名詞 `price cut` 與動詞 `cut it 65%`，改 `reduced it by 65%`。
+3. **時序不得為省字改寫**：KOOL 2018/05 是專案啟動，英文寫 `After the project kicked off in 2018/05, … launch`，不寫 `launched in 2018/05`；借鏡 Airbnb、以 Miro 繪製流程不可刪。
+4. **英文同享「首次提及必定義」**：不寫空泛的 `a group function`；必須交代解決的限制（原僅有全公司與個人兩種資料範圍）與用途（定義帳號、職缺、履歷存取規則與舊資料轉換，讓大型企業按部門或分店共同招募）。
+5. **中文版 Stage 2 的商業目的、系統影響範圍、統計分母口徑，英文版 100% 保留**，不得因壓縮字數刪除（verify_line_profile.py 以必備錨點檢查）。

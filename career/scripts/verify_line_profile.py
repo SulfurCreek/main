@@ -18,8 +18,15 @@ FIELDS = {
     "languages": ["language", "written", "spoken", "reading", "listening"],
 }
 BANNED = ["strategic", "passionate", "detail-oriented", "leverage", "robust", "seamlessly", "delve", "Spearheaded",
-          "Backed by", ", which leave", "proven track record", "cutting-edge", "Present", "Singapore", "Russia", "1111 Job Bank"]
+          "Backed by", ", which leave", "merge request", "my planners", "guided my planners", "guided direct-report planners through",
+          "launched in 2018/05", "launched in 2018-05", "planned a group function for large employers", "proven track record", "cutting-edge", "Present", "Singapore", "Russia", "1111 Job Bank"]
 BANNED_BULLET_ONLY = BANNED[:-1]
+
+ANCHORS = {
+    "2.1": ["sales buy-in", "department or branch", "lower the barrier", "candidate matching", "compliance",
+            "actual selections", "shared foundation", "renewal", "credibility", "at least 30 days"],
+    "2.2": ["Airbnb", "Miro", "kicked off in 2018", "Led the design"],
+}
 DATE = re.compile(r"^\d{4}-(0[1-9]|1[0-2])$")
 D = re.compile(r"<!-- @line-directive\s*(\{.*?\})\s*-->", re.S)
 
@@ -72,6 +79,17 @@ def main(path):
                     errs.append(f"第 {i} 行含禁用詞「{w}」")
             if re.search(r"[一-鿿]", line):
                 errs.append(f"第 {i} 行 Bullet 含中文")
+    # 商業價值錨點：避免中翻英降維（voice-en §7）
+    for num, words in ANCHORS.items():
+        m = re.search(r"^### %s\b.*?(?=^### |^---|\Z)" % re.escape(num), t, re.M | re.S)
+        body = m.group(0).lower() if m else ""
+        for w in words:
+            if w.lower() not in body:
+                errs.append(f"區塊 {num} 缺少必備錨點「{w}」（Credibility Stripping）")
+    for m in D.finditer(t):
+        a = json.loads(m.group(1)).get("fields", {}).get("address")
+        if a and (a.endswith(".") or "St. Beitou" in a):
+            errs.append(f"address 標點錯誤：{a!r}")
     for blk in ("basic", "work_experience", "education", "languages"):
         if blk not in {json.loads(m.group(1)).get("target_block") for m in D.finditer(t)}:
             errs.append(f"缺少區塊 {blk}")

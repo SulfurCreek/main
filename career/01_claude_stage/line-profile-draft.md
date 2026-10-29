@@ -24,7 +24,7 @@ LINE Career Profile 上游草稿 r1（2026-10-29）｜來源：104 v12.19 + libr
     "current_position_title": "Product Owner",
     "current_employer": "1111 Job Bank (Global Chinese Co., Ltd.)",
     "country": "215",
-    "address": "3F, No. 14, Lane 98, Huaide St. Beitou District.",
+    "address": "3F, No. 14, Lane 98, Huaide St., Beitou District",
     "city": "Taipei"
   }
 }
@@ -53,14 +53,14 @@ LINE Career Profile 上游草稿 r1（2026-10-29）｜來源：104 v12.19 + libr
 -->
 
 <!-- [STATUS: NEEDS_POLISH] -->
-- Product Owner of the employer-side recruitment system, which serves about 60,000 active paying employers (2026 Q3); manage two direct-report product planners and coordinate engineering, design, sales and customer service.
-- Overhaul and day-to-day iterations competed for the same development resources. I led requirements analysis and specification planning, aligned stakeholders, and got sales buy-in before delivery; about 70 major features were live by 2026 Q3.
-- Took over an overhaul with no documentation of account permissions or business rules. Recovered the rules through hands-on testing and internal interviews, then replaced legacy functions in phased releases on top of the existing back office and database; 743 of 840 related client requests (88%) are resolved.
-- To address 199 merge requests accumulated since 2021, planned a unified messaging flow so employers and job seekers no longer split interview invitations across two overlapping tools (in development). Planned a group function for large employers, answering 55 client requests since 2020/12.
-- After more than ten employer accounts were hijacked in 2026/03–04, worked with engineering and customer service to scope the impact, then planned new-device OTP login verification (MFA) and an unlock flow; no similar customer reports through 2026/10.
-- Led the launch of AI-generated job descriptions (2024/10) and AI talent recommendations (2025/11), and guided my planners through company-profile generation (2026/06). Set labor-law acceptance criteria; employers confirm generated content before publishing.
-- Consolidated cross-team changes to 15 job, certification, skill and benefit category tables, and guided colleagues in using an AI Agent to map hundreds of job categories.
-- Raised the share of client proposals closed within 30 days from 52% to 79% (2024/11–2025/10 vs. 2025/11–2026/09/20).
+- Product Owner of the employer-side recruitment system serving about 60,000 active paying employers (2026 Q3), covering job posting, applicant management and candidate outreach; manage two direct-report product planners and coordinate engineering, design, sales and customer service.
+- With ongoing service iterations and a full system overhaul competing for the same engineering resources, I led requirements analysis and specification planning, aligned stakeholders, and secured sales buy-in before delivery, shipping about 70 major features by 2026 Q3.
+- Took over the employer-side recruitment system overhaul when account permissions and business rules had no documentation; reconstructed the rules through hands-on testing and internal interviews, then replaced legacy functions in phased releases while keeping the existing back office, database and live service running, resolving 743 of 840 related client requests (88%).
+- Because employers and job seekers messaged each other across two overlapping tools that left interview invitations scattered, I planned a unified messaging flow addressing 199 client requests (to consolidate the tools) accumulated since 2021 (in development). To address 55 client requests since 2020/12, planned a group recruitment feature, defining access rules across accounts, job posts and resumes plus legacy data migration, so large employers can recruit by department or branch beyond the original company-wide or individual scope.
+- After more than ten employer accounts were hijacked in 2026/03–04, coordinated engineering and customer service to scope the impact, then planned and launched new-device OTP login verification (MFA) and an account-unlock flow, with no similar account-takeover incidents reported through customer service through 2026/10.
+- To lower the barrier to job posting and improve candidate matching, led the launch of AI-generated job descriptions (2024/10) and AI talent recommendations (2025/11), and guided direct-report planners to launch company-profile generation (2026/06). Set labor-law compliance acceptance criteria requiring employer confirmation before publishing, and refined recommendation rules based on employers' actual selections and feedback.
+- The 15 category code tables for job roles, certifications, skills and benefits are the shared foundation for job posting, resume creation, search filtering and matching across the platform. To resolve category fragmentation as the business expanded, consolidated cross-team category changes starting 2026/04, using an AI Agent to organize mapping and delivery records and guiding colleagues to map hundreds of job categories with AI.
+- Raised the 30-day closure rate of enterprise client proposals from 52% to 79% (2024/11–2025/10 vs. 2025/11–2026/09/20, for proposals open at least 30 days). To protect paying employers' satisfaction and renewal base, prioritized client proposals, handled key cases directly and assigned cases to direct-report planners, building the product team's delivery credibility with the sales organization.
 
 ### 2.2 Product Manager｜Sunfun Info Co., Ltd.｜2018-01 – 2022-03
 
@@ -81,11 +81,11 @@ LINE Career Profile 上游草稿 r1（2026-10-29）｜來源：104 v12.19 + libr
 -->
 
 <!-- [STATUS: NEEDS_POLISH] -->
-- Managed the company's top-grossing subscription dating app JustDating (per public company information, long ranked No. 1 in Taiwan's dating category), the subscription content app Peach and the influencer-matching platform KOOL; planned user flows and subscription and payment mechanisms with engineering, design, marketing and overseas payment teams.
-- When the App Store removed JustDating, led the launch of Juicy on the same backend; after Juicy was removed, led the relaunch of JustDating. Male daily active users rose from about 3,200 to 12,500 in 6 weeks (2020/01–02) and from about 1,500 to 12,000 in 12 weeks (2020/04–06), measured over launch and promotion periods.
-- Planned KOOL from zero with no direct competitor to reference: interviewed merchants' marketing teams about finding influencers on Instagram, then mapped listing, invitation, sign-up and messaging flows; launched in 2018/05 with about 16,000 influencer profiles and over 80,000 campaign sign-ups in six months. Led the monetization design (VIP subscription, points paywall, featured exposure).
-- Designed the Malaysia iOS pricing experiment with unchanged-price Android as the control (2021/05–08, 21 days per phase): the price cut raised iOS non-renewal revenue 5% (Android fell 18%), and restoring the original price cut it 65% versus the original-price phase. The company owner chose the lower price based on the results.
-- Raised Peach's web-payment share of revenue from 24% to over 80% (2020/11–2021/09) by planning the move from in-app purchases to web payments and completing a Taiwan payment-provider integration. Held partnership discussions in English with a European payment provider.
+- Managed the company's flagship, top-grossing subscription dating app JustDating (per public company information, long ranked No. 1 on Taiwan's dating top-grossing chart), the subscription content app Peach and the influencer-matching platform KOOL; planned user flows, subscriptions and payment mechanisms with engineering, design, marketing and overseas payment teams, including English video partnership talks with a European payment provider.
+- When the App Store removed JustDating, led the launch of Juicy on the same backend to retain existing users and revenue; after Juicy was removed, led the relaunch of JustDating. Male daily active users (DAU) rose from about 3,200 to 12,500 in 6 weeks (2020/01–02) and from about 1,500 to 12,000 in 12 weeks (2020/04–06), reflecting overall product performance during launch and marketing traffic-routing periods.
+- Planned KOOL from zero to one with no direct competitor to benchmark against: interviewed merchants' marketing teams on how they found influencers on Instagram, adapted listing and matching mechanics from Airbnb and dating apps, and mapped invitation, application and messaging flows in Miro. After the project kicked off in 2018/05, coordinated product, design and engineering to launch across iOS, Android and web, accumulating about 16,000 influencer profiles and over 80,000 campaign applications in six months. Led the monetization rollout covering VIP subscriptions, a points paywall and featured exposure.
+- Led the design of the Malaysia iOS pricing experiment using unchanged-price Android as the control group across original, discounted and restored-price phases (2021/05–08, 21 days each): the price cut raised iOS non-renewal revenue by 5% (while Android fell 18%), and restoring the original price reduced it by 65% versus the original-price phase. The company owner adopted the lower price based on the experiment results.
+- Raised web payments' share of revenue for the subscription content app Peach from 24% to over 80% (2020/11–2021/09) by planning the move from in-app purchases to web payments and completing a Taiwan payment-provider integration.
 
 ### 2.3 Associate Product Manager｜Sweet Tech Ltd.｜2016-06 – 2018-01
 
