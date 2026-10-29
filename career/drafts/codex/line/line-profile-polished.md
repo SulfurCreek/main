@@ -1,0 +1,225 @@
+<!--markdownlint-disable MD013 MD033-->
+<!--
+LINE Career Profile 上游草稿 r1（2026-10-29）｜來源：104 v12.19 + library｜Career Move
+給潤飾者（Codex）：
+1. 只潤飾每個區塊下方的英文 Bullet Points 語感（依 career/style/voice-en.md）；<!-- @line-directive --> JSON 一個字都不要動。
+2. 不改公司名、職稱、日期、數字、限定詞、Enum 代碼；不新增事實；責任詞不升級（led 僅限 decisions §51 白名單：70 項功能規劃、職缺工作說明生成與 AI 推薦人才、Juicy 推出與 JustDating 重新上架、馬來西亞定價實驗設計、KOOL 多元變現）。
+3. 純英文；每個 Bullet 痛點／場景先行，不用 Backed by、句尾 , which leave…；禁用 strategic、passionate、detail-oriented、leverage、robust、seamlessly。
+4. 日期一律 YYYY-MM；在職 end_date 為空字串。
+5. 回傳整份 line-profile.md；修改紀錄寫檔末。
+驗收：python3 career/scripts/verify_line_profile.py <檔>
+-->
+
+# LINE Career Profile 特化版｜可填表
+
+## 1. Basic & Contact Information
+
+<!-- @line-directive
+{
+  "target_block": "basic",
+  "action": "replace_all",
+  "fields": {
+    "email": "kunhuainie@gmail.com",
+    "mobile_phone": "886-978-802-871",
+    "current_position_title": "Product Owner",
+    "current_employer": "1111 Job Bank (Global Chinese Co., Ltd.)",
+    "country": "215",
+    "address": "3F, No. 14, Lane 98, Huaide St., Beitou District",
+    "city": "Taipei"
+  }
+}
+-->
+
+---
+
+## 2. Work Experience (Dataset 155)
+
+### 2.1 Product Owner｜1111 Job Bank (Global Chinese Co., Ltd.)｜2022-08 – Present
+
+<!-- @line-directive
+{
+  "target_block": "work_experience",
+  "index": 0,
+  "action": "replace_row",
+  "fields": {
+    "company": "1111 Job Bank (Global Chinese Co., Ltd.)",
+    "position_title": "Product Owner",
+    "employment_type": "1194",
+    "location": "Taipei City",
+    "start_date": "2022-08",
+    "end_date": ""
+  }
+}
+-->
+
+<!-- [STATUS: POLISHED] -->
+- As Product Owner of an employer-side recruitment system serving about 60,000 active paying employers (2026 Q3), I cover job posting, applicant management and candidate outreach. I manage two direct-report product planners and coordinate engineering, design, sales and customer service.
+- Ongoing service iterations and a full system overhaul competed for the same engineering resources. I led requirements analysis and specification planning, aligned stakeholders and secured sales buy-in before delivery, shipping about 70 major features by 2026 Q3.
+- The employer-side recruitment system overhaul had to proceed without documentation of account permissions or business rules. I recovered the rules through hands-on testing and internal interviews, then coordinated phased replacement of legacy functions while keeping the existing back office, database and live service running. Of 840 related client requests, 743 (88%) were resolved.
+- Because employers and job seekers used two overlapping messaging tools, interview invitations were scattered. To address 199 client requests (to consolidate the tools) accumulated since 2021, I planned a unified messaging flow (in development). The system also limited data access to company-wide or individual scope. In response to 55 client requests since 2020/12, I planned a group recruitment feature so large employers could recruit by department or branch. I defined access rules across accounts, job posts and resumes, along with legacy data migration.
+- After more than ten employer accounts were hijacked in 2026/03–04, I coordinated engineering and customer service to determine the impact. I planned and launched new-device OTP login verification (MFA) and an account-unlock flow. No similar account-takeover incidents were reported through customer service through 2026/10.
+- To lower the barrier to job posting and improve candidate matching, I led the launch of AI-generated job descriptions (2024/10) and AI talent recommendations (2025/11). I guided direct-report product planners in launching company-profile generation (2026/06). I set labor-law compliance acceptance criteria requiring employer confirmation before publishing, and refined recommendation rules using employers' actual selections and feedback.
+- The 15 category code tables for job roles, certifications, skills and benefits form the shared foundation for job posting, resume creation, search filtering and matching across the platform. As business growth fragmented these categories, I consolidated cross-team category changes starting 2026/04. I used an AI Agent to organize mapping and delivery records, and guided colleagues in mapping hundreds of job categories with AI.
+- For enterprise client proposals, the 30-day closure rate rose from 52% to 79% (2024/11–2025/10 vs. 2025/11–2026/09/20, for proposals submitted at least 30 days earlier). To protect paying employers' satisfaction and renewal base, I prioritized client proposals, handled key cases directly and assigned cases to direct-report product planners. This built the product team's delivery credibility with the sales organization.
+
+### 2.2 Product Manager｜Sunfun Info Co., Ltd.｜2018-01 – 2022-03
+
+<!-- @line-directive
+{
+  "target_block": "work_experience",
+  "index": 1,
+  "action": "replace_row",
+  "fields": {
+    "company": "Sunfun Info Co., Ltd.",
+    "position_title": "Product Manager",
+    "employment_type": "1194",
+    "location": "Taipei City",
+    "start_date": "2018-01",
+    "end_date": "2022-03"
+  }
+}
+-->
+
+<!-- [STATUS: POLISHED] -->
+- I managed JustDating, the company's flagship, top-grossing subscription dating app (per public company information, long ranked No. 1 on Taiwan's dating top-grossing chart). My scope also covered Peach, a subscription content app, and KOOL, an influencer-matching platform. I planned user flows, subscriptions and payment mechanisms with engineering, design, marketing and overseas payment teams, including partnership talks with a European payment provider over video in English.
+- When the App Store removed JustDating, I led the launch of Juicy on the same backend to retain existing users and revenue. After Juicy was removed, I led the relaunch of JustDating. Male daily active users (DAU) rose from about 3,200 to 12,500 in 6 weeks (2020/01–02) and from about 1,500 to 12,000 in 12 weeks (2020/04–06). These figures reflect overall product performance during launch and marketing traffic-routing periods.
+- With no direct competitor to benchmark against, I planned KOOL from zero to one by interviewing merchants' marketing teams about finding influencers on Instagram. I adapted listing and matching mechanics from Airbnb and dating apps, and mapped invitation, application and messaging flows in Miro. After the project kicked off in 2018/05, I coordinated product, design and engineering to launch across iOS, Android and web. The platform accumulated about 16,000 influencer profiles and over 80,000 campaign applications in six months. I led the monetization rollout covering VIP subscriptions, a points paywall and featured exposure.
+- For the Malaysia iOS pricing experiment, I led the design of original, discounted and restored-price phases (2021/05–08, 21 days each), using unchanged-price Android as the control group. The price cut raised iOS non-renewal revenue by 5% (while Android fell 18%). Restoring the original price reduced iOS non-renewal revenue by 65% versus the original-price phase. The company owner adopted the lower price based on the experiment results.
+- For Peach, a subscription content app, I planned the move from in-app purchases to web payments and coordinated completion of an integration with a payment provider in Taiwan. Web payments' share of revenue rose from 24% to over 80% (2020/11–2021/09).
+
+### 2.3 Associate Product Manager｜Sweet Tech Ltd.｜2016-06 – 2018-01
+
+<!-- @line-directive
+{
+  "target_block": "work_experience",
+  "index": 2,
+  "action": "replace_row",
+  "fields": {
+    "company": "Sweet Tech Ltd.",
+    "position_title": "Associate Product Manager",
+    "employment_type": "1194",
+    "location": "Taipei City",
+    "start_date": "2016-06",
+    "end_date": "2018-01"
+  }
+}
+-->
+
+<!-- [STATUS: POLISHED] -->
+- For SweetRing, a dating app in 7 markets (US, Mexico, Brazil, Indonesia, Malaysia, Japan, Korea), I handled product maintenance and improvements, including its question-and-answer feature. I also took part in localization and payment planning.
+- For localization across the 7 markets, I translated the app's Chinese UI text into English as the base version. I then worked with up to about 10 foreign interns to translate it into local languages and run local fan pages, coordinating in English-only meetings.
+- For payments in Indonesia and Thailand, I brought in CodaPay, a Southeast Asian payment provider, and opened 8 payment channels (carrier billing, ATM, e-wallets, convenience stores, bank transfer). I compared fees and settlement terms, estimated net revenue, and proposed 7-, 30- and 90-day subscription plans. I also coordinated delivery of the Android top-up page.
+
+### 2.4 Translation Intern (Part-time)｜Newegg Taiwan｜2014-08 – 2015-01
+
+<!-- @line-directive
+{
+  "target_block": "work_experience",
+  "index": 3,
+  "action": "replace_row",
+  "fields": {
+    "company": "Newegg Taiwan",
+    "position_title": "Translation Intern",
+    "employment_type": "1195",
+    "location": "Taipei City",
+    "start_date": "2014-08",
+    "end_date": "2015-01"
+  }
+}
+-->
+
+<!-- [STATUS: POLISHED] -->
+- For Newegg.com product listings, I translated product information from English into Chinese and proofread the translations.
+
+---
+
+## 3. Education History (Dataset 157)
+
+### 3.1 Tamkang University｜International Business｜2010-09 – 2014-06
+
+<!-- @line-directive
+{
+  "target_block": "education",
+  "index": 0,
+  "action": "replace_row",
+  "fields": {
+    "degree_name": "International Business",
+    "type_of_degree": "21",
+    "degree_status": "1172",
+    "university": "Tamkang University",
+    "start_date": "2010-09",
+    "end_date": "2014-06"
+  }
+}
+-->
+
+### 3.2 California State University, Sacramento｜Business (Exchange Program)｜2011-01 – 2012-06
+
+<!-- @line-directive
+{
+  "target_block": "education",
+  "index": 1,
+  "action": "replace_row",
+  "fields": {
+    "degree_name": "Business (Exchange Program)",
+    "type_of_degree": "21",
+    "degree_status": "2559",
+    "university": "California State University, Sacramento",
+    "start_date": "2011-01",
+    "end_date": "2012-06"
+  }
+}
+-->
+
+---
+
+## 4. Languages (Dataset 257)
+
+### 4.1 English
+
+<!-- @line-directive
+{
+  "target_block": "languages",
+  "index": 0,
+  "action": "replace_row",
+  "fields": {
+    "language": "10",
+    "written": "1174",
+    "spoken": "1174",
+    "reading": "1174",
+    "listening": "1174"
+  }
+}
+-->
+
+### 4.2 Mandarin
+
+<!-- @line-directive
+{
+  "target_block": "languages",
+  "index": 1,
+  "action": "replace_row",
+  "fields": {
+    "language": "14",
+    "written": "33",
+    "spoken": "33",
+    "reading": "33",
+    "listening": "33"
+  }
+}
+-->
+
+## Editing Notes
+
+Source: 29c1160, career/01_claude_stage/line-profile-draft.md; English rules: career/style/voice-en.md, including section 7.
+
+1. Reviewed all 17 bullets across four roles. Kept business purposes, platform scope, statistics, dates, qualifications and event order; split dense bullets into complete sentences instead of deleting information.
+2. Preserved all ten directive comments and their JSON verbatim, along with all non-bullet source structure. Only STATUS values were changed; these editing notes were appended.
+3. Defined the original company-wide and individual data scopes before introducing group recruitment. Retained account, job-post and resume access rules and legacy data migration.
+4. Kept AI business goals, compliance criteria, employer confirmation and feedback; retained platform-wide category-table uses, renewal purpose and sales delivery credibility.
+5. Preserved KOOL's project kickoff in 2018/05, followed by cross-platform launch, as well as Instagram, Airbnb and Miro. Preserved experiment phases and controls, launch/promotion attribution and the company owner's pricing decision.
+6. Clarified the 30-day denominator as proposals submitted at least 30 days earlier, consistent with the user's previously confirmed full-30-day eligibility rule; it does not mean proposals remained unresolved for 30 days.
+
+## English Self-Review
+
+Reviewed each opening for a clear product, constraint or business purpose, then reread all bullets for natural rhythm. Replaced action chains with complete sentences in the group-recruitment, KOOL and payment sections. Kept planning and coordination distinct from software implementation. Rechecked all numeric values, dates and qualifications against the source, and confirmed that all ten directive comments and all non-bullet source structure match exactly, excluding STATUS values. This was an editorial self-review, not an independent factual audit.
