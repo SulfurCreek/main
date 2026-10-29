@@ -2,7 +2,7 @@
 
 # 交接 / Session Handoff — career session
 
-> **現役**：`session_017u5Po6SGpjD3iLBZ2VL2HH`，側欄「**Career Move**」（2026-09-29 接手；v1 `session_018VJFZiuZYfnPhMppvaGFcR`、v2 `session_01PKC4scvp58BuQxq5JKMHPw` 皆已 ARCHIVED）。分支 `claude/happy-lamport-ljis8c`。
+> **現役**：`session_01GZd3jsmQ814E2p3FSgvJWR`，側欄「**Career Move V2**」（2026-10-29 接手）。前任 `session_017u5Po6SGpjD3iLBZ2VL2HH`（Career Move）因環境 setup script 失敗（certutil 匯入代理 CA，exit 255）無法啟動，**已停用**，非內容問題；更早的 v1 `session_018VJFZiuZYfnPhMppvaGFcR`、v2 `session_01PKC4scvp58BuQxq5JKMHPw` 皆已 ARCHIVED。分支 `claude/happy-lamport-ljis8c`。
 > **2026-10-08 Repo Steward 健檢重建**：新增 [`library/`](library/README.md)（使用者提供資料庫）、修正矛盾檔、104 舊版歸檔、自有 skill 擁有權移交本 session。
 > **開工順序**：[`library/README.md`](library/README.md) → 本檔 → [`CLAUDE.md`](CLAUDE.md)（硬規則一、二）→ [`competency-framework.md`](competency-framework.md)（wiki 入口）。其餘依任務按需讀取。
 
