@@ -7,19 +7,20 @@
 4. 「主導／led」只能用在 AI 功能（decisions §51）；訊息整合只寫規劃與「開發中」，不寫預計日期、不寫成效。
 5. 禁用：AI 套話、乞求句、strategic、passionate、detail-oriented、proactive；不暗示 SQL、Adobe Campaign、LangChain／n8n、MarTech 業界資歷、Machine Learning 經驗；一點只講一件事，不用 Separately／另外 硬湊；產品名第一次出現要交代是什麼；不寫新加坡、國籍。
 6. 交件前跑 `python3 career/scripts/verify_letter.py <檔> --job "[R78] (Sr.)Product Manager 產品經理"`，0 違規。
+r2（2026-10-29）：依七大鐵律重寫——每點場景主詞開頭、結尾改交流式、訊息整合點補「管道斷裂」場景
 -->
 
 # 正文（方案 A：中文破題＋英文條列，建議採用）
 
 ```text
 您好：
-應徵貴司 [R78] (Sr.)Product Manager 產品經理。我有近 10 年產品經理經驗，現任人力銀行企業端招募系統 Product Owner，並以 AI Agent 協作日常的規格撰寫與資料分析。以下是三項相關經驗：
+應徵貴司 [R78] (Sr.)Product Manager 產品經理。我有近 10 年產品經理經驗，現任人力銀行企業端招募系統 Product Owner，日常以 AI Agent 協作規格撰寫與資料分析。以下是三項相關經驗：
 
-‧ I work with AI agents such as Antigravity and Claude Code on specs and data analysis. I define the problem, rules and verification requirements, the agent checks the data and flags its confidence, and a person makes the final call. I turned this practice into a reusable skill and taught a colleague to use it on large volumes of data.
-‧ I led the launch of AI-generated job descriptions and AI talent recommendations in our recruitment system, working with the data science team on use cases and acceptance criteria. Employers confirm AI content before publishing, and we adjust recommendation rules based on what clients actually select.
-‧ Employers and job seekers were messaging through two overlapping tools. I am planning to merge them into one flow, responding to 199 client requests accumulated since 2021; the work is in development.
+‧ To make AI part of daily product work, I use AI agents (Antigravity, Claude Code) for specs and data analysis: I define the problem, rules and verification requirements, the agent checks the data and flags its confidence, and a person decides. I turned this practice into a reusable skill and taught a colleague to use it on large volumes of data.
+‧ In a recruitment system serving about 60,000 paying employers, I led the launch of AI-generated job descriptions and AI talent recommendations, working with the data science team on use cases and acceptance criteria. Employers confirm AI content before publishing, and we adjust recommendation rules based on what clients actually select.
+‧ Employers and job seekers messaged each other through two overlapping tools, leaving the channel for inviting interviews fragmented. I am planning to merge them into one flow, responding to 199 client requests accumulated since 2021; the work is in development.
 
-期待能將 AI Agent 工作流與訊息平台規劃的經驗，運用在貴司的產品團隊。謝謝您的閱讀。
+貴司的訊息平台與 AI 自動化工作，與我目前的工作方向相近。期待能與團隊進一步交流，分享 AI Agent 工作流與訊息整合的實務經驗。謝謝您的閱讀。
 
 聶崑淮
 ```
@@ -28,13 +29,13 @@
 
 ```text
 您好：
-應徵貴司 [R78] (Sr.)Product Manager 產品經理。我有近 10 年產品經理經驗，現任人力銀行企業端招募系統 Product Owner，並以 AI Agent 協作日常的規格撰寫與資料分析。
+應徵貴司 [R78] (Sr.)Product Manager 產品經理。我有近 10 年產品經理經驗，現任人力銀行企業端招募系統 Product Owner，日常以 AI Agent 協作規格撰寫與資料分析。
 
-‧ 以 Antigravity、Claude Code 等 AI Agent 協作：我先定義問題、規則與驗證要求，由 AI 檢查資料並標示把握程度，最後由人判斷；並將做法整理成 skill，教同仁用它處理大量資料。
-‧ 主導企業端招募系統的職缺工作說明生成與 AI 推薦人才上線，與資料科學團隊定義使用情境與驗收標準；AI 內容經企業確認才刊登，並依客戶實際選用調整推薦規則。
-‧ 企業與求職者的訊息分散在兩套功能重複的工具，我正規劃整合為一條流程，回應 2021 年起累積的 199 件客戶建議；目前開發中。
+‧ 為讓 AI 融入日常產品工作，以 Antigravity、Claude Code 等 AI Agent 協作規格與資料分析：我先定義問題、規則與驗證要求，由 AI 檢查資料並標示把握程度，最後由人判斷；並將做法整理成 skill，教同仁用它處理大量資料。
+‧ 在服務約 6 萬家付費企業的招募系統，主導職缺工作說明生成與 AI 推薦人才上線，與資料科學團隊定義使用情境與驗收標準；AI 內容經企業確認才刊登，並依客戶實際選用調整推薦規則。
+‧ 企業與求職者的訊息分散在兩套功能重複的工具，邀約面試的管道因此斷裂；我正規劃整合為一條流程，回應 2021 年起累積的 199 件客戶建議，目前開發中。
 
-期待能將 AI Agent 工作流與訊息平台規劃的經驗，運用在貴司的產品團隊。謝謝您的閱讀。
+貴司的訊息平台與 AI 自動化工作，與我目前的工作方向相近。期待能與團隊進一步交流，分享 AI Agent 工作流與訊息整合的實務經驗。謝謝您的閱讀。
 
 聶崑淮
 ```
@@ -62,4 +63,4 @@
 
 # 字數
 
-方案 A 中文約 94 字、英文約 137 words；方案 B 379 字（含標點、不含空白）；verify_letter 0 違規。
+方案 A 中文約 115 字、英文約 151 words；方案 B 445 字（含標點、不含空白）；verify_letter 0 違規（2026-10-29 七大鐵律）。

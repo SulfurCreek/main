@@ -12,7 +12,7 @@
 | 推薦信上游草稿 | `letters/104/7ytz4-樂天銀行-draft.md`；Codex 潤飾 `codex/resume-writer:career/drafts/codex/letters/7ytz4-樂天銀行-polished.md`（611e40f）；盲測 `review-panel/runs/2026-10-28-credibility-letter-7ytz4/` |
 | 搭配履歷版本 | 104 v12.19（Codex 855a6a0） |
 | 已知缺口 | PMP／專案管理證照、程式開發經驗、金融業資歷、帶領 Scrum（信中不提） |
-| 投遞狀態 | 〔待填：應徵日期、結果〕 |
+| 投遞狀態 | **已投遞**（本人 2026-10-29 說明：2026-10-28 已送出；不再依新鐵律修改） |
 
 ## 推薦信正文（貼入 104 的版本）
 

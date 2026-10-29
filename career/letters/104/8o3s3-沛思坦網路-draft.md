@@ -8,19 +8,20 @@
 4. 「主導／led」只能用在：職缺工作說明生成與 AI 推薦人才、Juicy 與 JustDating 承接、定價實驗設計、KOOL 變現機制（decisions §51）。公司簡介生成寫「帶領企劃」。
 5. 禁用：AI 套話、乞求句、軟性形容詞（strategic、passionate、detail-oriented）、Jira／A/B test／LLM prompt 設計的暗示、免責小尾巴、破局者／治理者等自我標籤。
 6. 回傳整封；改了什麼列在檔末。
+r2（2026-10-29）：依七大鐵律重寫——KOOL 改白話、每點場景主詞開頭、結尾改交流式
 -->
 
 # 正文（方案 A：中文破題＋英文條列，建議採用）
 
 ```text
 您好：
-應徵貴司【北士科】Product Manager。我有近 10 年產品經理經驗，主導過生成式 AI 功能上線；現任人力銀行企業端招募系統 Product Owner，負責約 6 萬家付費企業使用的系統改版。以下是三項相關經驗：
+應徵貴司【北士科】Product Manager。我有近 10 年產品經理經驗，現任人力銀行企業端招募系統 Product Owner，主導過生成式 AI 功能上線。以下是三項相關經驗：
 
-‧ I led the launch of AI-generated job descriptions and AI talent recommendations to make job posting easier for employers. I defined acceptance criteria to keep AI output compliant with labor law, made employer confirmation a required step before publishing, and adjusted recommendation rules based on what clients actually selected.
-‧ Of 840 client requests on accounts, login, company data and contacts, 743 (88%) were resolved. Account permissions and business rules were undocumented, and the overhaul had to keep the existing back office and database, so I reconstructed the rules through hands-on product testing and internal interviews and turned them into specs for phased releases.
-‧ With no direct competitor to benchmark against, I interviewed businesses' marketing teams on how they sourced influencers, then designed the two-sided matching flow for KOOL, an influencer marketplace. It grew to about 16,000 influencer profiles, with more than 80,000 collaboration applications in six months.
+‧ In a recruitment system serving about 60,000 paying employers, I led the launch of AI-generated job descriptions and AI talent recommendations to make job posting easier. I set labor-law compliance acceptance criteria, required employer confirmation before publishing, and adjusted recommendation rules based on what clients actually selected.
+‧ Taking over the overhaul of a recruitment system with no documentation, I reconstructed its account permissions and business rules through hands-on product testing and internal interviews, then turned them into specs for phased releases; 743 of 840 related client requests (88%) have been resolved.
+‧ While building a two-sided influencer marketplace with no direct competitor, I interviewed businesses' marketing teams about how they found influencers and designed the matching flow. The platform accumulated about 16,000 influencer profiles, and collaboration applications exceeded 80,000 in six months.
 
-貴司也服務人才招募平臺，期待能將招募系統與生成式 AI 功能的經驗帶進這個職位。謝謝您的閱讀。
+貴司也服務人才招募平臺，與我目前的工作領域相近。期待能與團隊進一步交流，分享招募系統與生成式 AI 功能的實務經驗。謝謝您的閱讀。
 
 聶崑淮
 ```
@@ -29,13 +30,13 @@
 
 ```text
 您好：
-應徵貴司【北士科】Product Manager。我有近 10 年產品經理經驗，主導過生成式 AI 功能上線；現任人力銀行企業端招募系統 Product Owner，負責服務約 6 萬家付費企業的系統改版。
+應徵貴司【北士科】Product Manager。我有近 10 年產品經理經驗，現任人力銀行企業端招募系統 Product Owner，主導過生成式 AI 功能上線。
 
-‧ 為降低企業刊登門檻，主導職缺工作說明生成與 AI 推薦人才上線；制定勞動法規合規的驗收標準，AI 內容經企業確認才刊登，並依客戶實際選用調整推薦規則。
-‧ 帳號權限與商業模式規則沒有文件，改版又須沿用既有後台與資料庫；我以實測與內部訪談逆向還原規則、分階段上線，相關的 840 件企業建議已完成 743 件（88%）。
-‧ KOOL 網紅媒合平台沒有競品可參考，我訪談商家行銷單位、設計雙邊媒合流程，平台累積約 1.6 萬份網紅檔案、半年 8 萬多次合作報名。
+‧ 在服務約 6 萬家付費企業的招募系統，為降低企業刊登門檻而主導職缺工作說明生成與 AI 推薦人才上線；制定勞動法規合規驗收標準，AI 內容經企業確認才刊登，並依客戶實際選用調整推薦規則。
+‧ 接手無文件留存的舊系統翻新，以實測與內部訪談還原帳號權限與商業模式規則，轉成分階段上線的規格；對應的 840 件企業建議已完成 743 件（88%）。
+‧ 為沒有直接競品的網紅雙邊媒合平台，訪談商家行銷單位、規劃媒合流程；平台累積約 1.6 萬份網紅檔案，半年 8 萬多次合作報名。
 
-貴司也服務人才招募平臺，期待能將招募系統與生成式 AI 功能的經驗帶進這個職位。謝謝您的閱讀。
+貴司也服務人才招募平臺，與我目前的工作領域相近。期待能與團隊進一步交流，分享招募系統與生成式 AI 功能的實務經驗。謝謝您的閱讀。
 
 聶崑淮
 ```
@@ -62,4 +63,4 @@
 
 # 字數
 
-方案 A 中文約 111 字、英文約 147 words；方案 B 約 358 字（不含空白，含標點）。行數約 13–15 行（參考）。
+方案 A 中文約 110 字、英文約 131 words；方案 B 366 字（含標點、不含空白）；verify_letter 0 違規（2026-10-29 七大鐵律）。

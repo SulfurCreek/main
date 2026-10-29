@@ -3,7 +3,7 @@
 
 用法：python3 career/scripts/verify_letter.py <推薦信.md> [--job "<職缺名>"]
 檔內每個 ```text 區塊視為一封（方案 A／B），逐封檢查。
-全掃：python3 career/scripts/verify_letter.py --all（掃 career/letters/ 與 career/applications/ 下所有含 ```text 的 .md）
+全掃：python3 career/scripts/verify_letter.py --all（略過 archive/ 與 INDEX 標「已投遞」的職缺）；--payment 允許 CodaPay 專名（掃 career/letters/ 與 career/applications/ 下所有含 ```text 的 .md）
 """
 import re
 import sys
@@ -21,10 +21,33 @@ BANNED = ["深感契合", "願景高度契合", "在瀏覽貴公司職缺後", "
           "strategic", "passionate", "detail-oriented", "Spearheaded", "proven track record",
           "I am writing", "excited", "thrilled", "1111", "敬上", "可以直接投入", "可直接投入", "可用於", "完全符合",
           # 單點硬湊兩件事（2026-10-27）
-          "Separately,", "Separately ", "另外，", "此外，",
+          "Separately", "另外，", "此外，",
+          # 自大結尾與囉嗦詞（2026-10-29 七大鐵律）
+          "直接解決", "立即解決", "在工程資源有限下", "帳號、登入、公司資料與聯絡人相關",
           # 未核准對外的城市／國籍（facts-prior：國籍不放履歷；新加坡團隊本人裁定不對外）
           "Singapore", "新加坡", "Russian", "俄羅斯"]
 SENT = re.compile(r"[^。！？.!?\n]*")
+BULLET_LABEL = re.compile(r"^[‧•\-]\s*[^，。；：:\n]{2,12}[：:]", re.M)  # 列點冒號小標
+BULLET_HEADLESS = re.compile(r"^[‧•\-]\s*(截至 ?20|帳號權限)", re.M)  # 無頭斷句開頭
+# 內部產品代號：預設不寫專名，改白話（警告）；CodaPay 在支付／FinTech 職缺可用（--payment）
+OBSCURE_NAMES = ["Peach", "JustDating", "Juicy", "KOOL", "SweetRing"]
+
+
+def check_closing(body):
+    """結尾段須謙和：含「期待」（鐵律 7）。"""
+    paras = [p.strip() for p in re.split(r"\n\s*\n", body.strip()) if p.strip()]
+    if len(paras) < 2:
+        return []
+    closing = paras[-2] if paras[-1].replace(" ", "") == "聶崑淮" else paras[-1]
+    if "期待" not in closing:
+        return [f"[結尾不謙和] 結尾段須以「期待能…」收束：{closing[:40]}"]
+    return []
+
+
+def warn(body, payment=False):
+    """預設不寫內部產品專名（鐵律 1）；有出現時提醒改白話。"""
+    names = OBSCURE_NAMES + ([] if payment else ["CodaPay"])
+    return [f"[預設不寫專名] 「{n}」建議改白話產品型態（有加分理由才保留）" for n in names if n in body]
 
 
 def check(body, job=None):
@@ -43,9 +66,26 @@ def check(body, job=None):
     for w in BANNED:
         if w in body:
             errs.append(f"[禁用詞] {w}")
+    for m in BULLET_LABEL.finditer(body):
+        errs.append(f"[列點冒號小標] 列點開頭不得加「能力標籤：」：{m.group(0).strip()}")
+    for m in BULLET_HEADLESS.finditer(body):
+        errs.append(f"[無頭斷句開頭] 每點開頭要自帶場景主詞，不可以「{m.group(1)}」裸奔")
+    errs += check_closing(body)
     if job and job not in body:
         errs.append(f"[職缺名不符] 找不到「{job}」")
     return errs
+
+
+def submitted_codes(root):
+    """applications/INDEX.md 中「應徵狀態」含「已投遞／已應徵」的職缺代碼（已送出的信不再回頭改）。"""
+    idx = root / "applications" / "INDEX.md"
+    out = set()
+    if idx.exists():
+        for line in idx.read_text(encoding="utf-8").splitlines():
+            m = re.match(r"\|\s*\[([0-9a-z]+)\]", line)
+            if m and ("已投遞" in line or "已應徵" in line):
+                out.add(m.group(1))
+    return out
 
 
 def main():
@@ -56,7 +96,16 @@ def main():
     if args[0] == "--all":
         import pathlib
         root = pathlib.Path(__file__).resolve().parents[1]
-        files = sorted(p for d in ("letters", "applications") for p in (root / d).rglob("*.md") if "```text" in p.read_text(encoding="utf-8"))
+        submitted = submitted_codes(root)
+        files = []
+        for d in ("letters", "applications"):
+            for p in sorted((root / d).rglob("*.md")):
+                if "archive" in p.parts or "```text" not in p.read_text(encoding="utf-8"):
+                    continue
+                if any(p.name.startswith(c) for c in submitted):
+                    print(f"略過已投遞：{p.relative_to(root)}")
+                    continue
+                files.append(p)
         total = 0
         for f in files:
             bodies = [b.split("```")[0] for b in f.read_text(encoding="utf-8").split("```text")[1:]]
@@ -66,6 +115,7 @@ def main():
                     total += 1
         print(f"掃描 {len(files)} 檔；" + ("✅ 0 違規" if not total else f"❌ 共 {total} 項違規"))
         sys.exit(1 if total else 0)
+    payment = "--payment" in args
     job = None
     if "--job" in args:
         job = args[args.index("--job") + 1]
@@ -77,6 +127,8 @@ def main():
     bad = 0
     for k, b in enumerate(bodies, 1):
         errs = check(b, job)
+        for w in warn(b, payment):
+            print(f"⚠️ 第 {k} 封：{w}")
         for e in errs:
             print(f"❌ 第 {k} 封：{e}")
         bad += len(errs)
