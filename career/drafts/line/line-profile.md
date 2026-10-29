@@ -1,16 +1,4 @@
 <!--markdownlint-disable MD013 MD033-->
-<!--
-LINE Career Profile 上游草稿 r3（2026-10-29）｜來源：104 v12.19 + library｜Career Move
-給潤飾者（Codex）：
-1. 只潤飾每個區塊下方的英文 Bullet Points 語感（依 career/style/voice-en.md）；<!-- @line-directive --> JSON 一個字都不要動。
-2. 不改公司名、職稱、日期、數字、限定詞、Enum 代碼；不新增事實；責任詞不升級（led 僅限 decisions §51 白名單：70 項功能規劃、職缺工作說明生成與 AI 推薦人才、Juicy 推出與 JustDating 重新上架、馬來西亞定價實驗設計、KOOL 多元變現）。
-3. 純英文；每個 Bullet 痛點／場景先行，不用 Backed by、句尾 , which leave…；禁用 strategic、passionate、detail-oriented、leverage、robust、seamlessly。
-4. 日期一律 YYYY-MM；在職 end_date 為空字串。
-5. 回傳整份 line-profile.md；修改紀錄寫於對話回覆，勿寫入本檔（不得有 Editing Notes／Self-Review 章節）。
-6. 英文履歷列點省略主詞 I（全篇 ≤3）；同區塊不連續同字開頭；`For ` 開頭 ≤2 點；不抄規則備註括號（voice-en §8）。
-驗收：python3 career/scripts/verify_line_profile.py <檔>
--->
-
 # LINE Career Profile 特化版｜可填表
 
 ## 1. Basic & Contact Information
