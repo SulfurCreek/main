@@ -300,6 +300,17 @@ Codex 依區塊的語氣與 §9 LEAD 重心，在 final_resume.md 的同一行 S
 - 🔒 違反事實／本人明文裁定而不採納：僅限意見要求新增未確認事實或數據，或違反本人已記錄的明確裁定；逐項標明所違反的事實／裁定及位置，不以泛稱「曾確認」代替。
 - ⛔ 受上游 LOCKED／LOCK_ENTITIES 阻擋：先修完可改部分；被鎖死的語病或重複，必須附「📋 建議貼給 Claude 的上游解鎖／微調指令」，含來源版本、區塊編號與標題、原句、替換句、需解除或調整的鎖定詞、不得改動的事實。不得只報告問題。
 
+
+#### 盲審駁回紅線與跨代理終審（2026-10-30）
+
+下列建議必須歸為「🔒 不採納」，不能以子代理意見覆蓋本人裁定：
+
+- **紅線 A：禁止數字前置造成狀態式斷頭開場**。不採用僅寫「About 70 major features were live by 2026 Q3.」的成果首句；須保留本人動作，例如「Led requirements analysis and specification planning to ship about 70 major features by 2026 Q3 while…」。此為履歷行動主體要求，不將有文法主詞的狀態句誤稱為文法上的無主詞句。
+- **紅線 B：首次定義先於驗收規則**。先交代 AI-generated job descriptions、AI talent recommendations 等功能及上線，再說明該功能的 labor-law compliance acceptance criteria；不得將未定義對象的驗收規則前置。
+- **紅線 C：限定統攝，不複製長句**。同一條列包含兩次服務承接時，以一句共同限定統攝上線、行銷導流與產品整體表現；不得把相同長限定逐字複製兩次。兩組 DAU 仍須明確對應產品與期間，不改成個人單獨成果。
+
+完成一輪獨立子代理盲審、處置、驗證與推送後，由上游 Claude 主代理依 decisions.md 與跨輪次裁定擔任 Final Arbiter。Codex 提供原始意見與處置，不宣稱代替 Claude 完成終審；下一輪不得僅因新盲審偏好而反轉已裁定寫法。只有新增事實、本人新指示或明確規則衝突才提出具體上游調整建議。
+
 ### 執行與交付
 
 Step 1 同步來源與規則 → Step 2 初稿 → Step 3 四項自審、直接改寫與重讀 → Step 4 驗證、提交與推送。驗證出錯先自主修復；需要修復時可重驗，避免無變更重跑。保留全部狀態標記與父子層級，LOCKED 逐字不動。腳本通過後不再擴大無關工作。履歷潤飾完工依固定七大模組格式回報具體 Before Self-Critique → After Auto-Refine、來源 SHA、驗證結果、commit hash 與成品連結；單獨規則維護依 AGENTS 回報實際改動；不以修改數量冒充品質。

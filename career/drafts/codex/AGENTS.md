@@ -55,6 +55,17 @@ PDF、推薦信與 Markdown 的驗收或盲審，同樣適用 Step 3 的自治�
 
 跨欄去重可壓縮同一案例的重複解釋、調整語序與段落重心，但保留事實、責任、必要限定及鎖定詞；刪除整個案例、改變人物定位或段數則先交上游具體提案。子代理只提供審查意見，由主代理負責處置及改稿；腳本通過不等於意見已處理完。本人指定獨立子代理盲審時，不能以內部重讀代替。未重新匯出 PDF 時，只能宣稱 Markdown 已修正。
 
+
+#### 盲審駁回紅線與跨代理終審（2026-10-30）
+
+下列建議必須歸為「🔒 不採納」，不能以子代理意見覆蓋本人裁定：
+
+- **紅線 A：禁止數字前置造成狀態式斷頭開場**。不採用僅寫「About 70 major features were live by 2026 Q3.」的成果首句；須保留本人動作，例如「Led requirements analysis and specification planning to ship about 70 major features by 2026 Q3 while…」。此為履歷行動主體要求，不將有文法主詞的狀態句誤稱為文法上的無主詞句。
+- **紅線 B：首次定義先於驗收規則**。先交代 AI-generated job descriptions、AI talent recommendations 等功能及上線，再說明該功能的 labor-law compliance acceptance criteria；不得將未定義對象的驗收規則前置。
+- **紅線 C：限定統攝，不複製長句**。同一條列包含兩次服務承接時，以一句共同限定統攝上線、行銷導流與產品整體表現；不得把相同長限定逐字複製兩次。兩組 DAU 仍須明確對應產品與期間，不改成個人單獨成果。
+
+完成一輪獨立子代理盲審、處置、驗證與推送後，由上游 Claude 主代理依 decisions.md 與跨輪次裁定擔任 Final Arbiter。Codex 提供原始意見與處置，不宣稱代替 Claude 完成終審；下一輪不得僅因新盲審偏好而反轉已裁定寫法。只有新增事實、本人新指示或明確規則衝突才提出具體上游調整建議。
+
 #### 全篇母語朗讀與去 AI 拼裝腔檢查（Full-Text Read-Aloud Gate）
 
 完成上述自審與意見處置後，將整份 final_resume.md 當作同一篇文章從頭讀到尾，不以逐格檢查或腳本通過代替全文閱讀。
