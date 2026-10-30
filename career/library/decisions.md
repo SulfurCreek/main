@@ -421,3 +421,8 @@ v9.7 = v9.6 ＋ 使用者自寫自傳與各段 summary（16→10 個單位、業
 - 英文公司名：`Sunfun Info Co., Ltd.`、`Sweet Tech Ltd.`，聘僱型態皆 `"1194"`；台灣新蛋職稱 `Translation Intern`、型態 `"1195"`。
 - 語言只填 English（`1174`）、Mandarin（`33`）；無台語、日語紀錄，不補。
 - 驗收：`scripts/verify_line_profile.py`；上游草稿 `01_claude_stage/line-profile-draft.md`。
+
+## 58. 2026-10-30 OTP 流程責任詞與技能標籤口徑（本人）
+
+- OTP 新裝置驗證的**使用者體驗流程由本人設計**，並與技術端確認限制與風險；`Designed` 可用於流程，技術實作仍不寫。LINE profile 已用 `Designed and launched new-device OTP login verification (MFA) and an account-unlock flow`。
+- 技能標籤沿用 §44、§55，無新增：Scrum 可留標籤但內文標明 2022–2023 歷史經驗；UML 保留；工具名在 104 標準標籤保留；Jira／Confluence、SQL、DFD 不列技能（`verify_polish.py` 的 `FORBIDDEN_104_TAGS` 已攔 Jira／SQL）。
