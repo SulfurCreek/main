@@ -87,3 +87,16 @@ description: >
 執行：產提示（見 `runs/2026-10-13-v4/raw/prompt-example-A.md`）→ 子代理各寫 JSON → `scripts/schema_v4.py validate`／`aggregate`。所有報告標 human_calibration: not_performed，不得寫「已證明優於同級」「真人會更喜歡」。
 
 > 舊 v3 流程（驗證機制 v3、素材表、1–5 步流程、禁止、可靠度）已移到 `references-legacy-v3.md`。禁止事項不變：不改使用者履歷、不編造數字或經歷、不把 persona 說成真人、不拿同儕內容填補。
+
+## ⚖️ 盲審終審裁決權與防搖擺鐵律（Final Arbiter & Anti-Oscillation Gate，2026-10-30 本人指定）
+
+成因：盲測子代理沒有跨輪記憶，第 N 輪叫 Codex 把 A 移到句首，第 N+1 輪又嫌 A 在句首，造成乒乓搖擺（實例：LINE profile 第 2、3 輪對「合規驗收」與「70 項功能」的方向相反）。
+
+1. **誰定奪**：子代理只有**建議權**，無強制改稿權；**Claude 主代理是跨輪次終審者**（只有主代理掌握 `career/library/decisions.md`、事實庫與歷輪盲審紀錄）。
+2. **一律判不採納（Reject）、不退回 Codex 的四類意見**：
+   1. **跨輪搖擺**：建議把語序改回上一輪盲審建議的反方向。
+   2. **概念偷跑／違反首次定義**：把合規驗收或結果數字搬到第一句，讓讀者還沒看到「推出什麼、做了什麼實驗」就先看到驗收細節或被動數字（例：`About 70 major features were live`）。
+   3. **違反 `decisions.md` 責任邊界或強制限定詞**：建議刪 `(in development)`、`took part in`、DAU 歸因限定、分母口徑、來源標註等。
+   4. **純主觀同義語序微調**：已有 Senior 高度，只是換句話說。
+3. **收斂停機（Convergence Stop Gate）**：成品（104 履歷、推薦信、LINE Profile）在 Codex 完成 1 輪盲審並通過 `verify_*.py` 0 違規後，Claude 端只做 **4 項客觀硬傷檢查**：①事實／限定詞錯漏 ②同段內明顯重複造句 ③概念偷跑（未定義先引用）④首句無主詞被動句，或全篇單一動詞超標。修畢即宣告 **FINAL LOCKED**，**不得進入第 3 輪以上盲測**；使用者另行要求才重開。
+4. **紀錄**：每輪把採納／不採納與理由寫進該輪 `report` 旁的說明，供下一輪主代理查核，避免重複判斷。
