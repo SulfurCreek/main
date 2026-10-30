@@ -1,0 +1,802 @@
+[
+  {
+    "case_id": "S3-001",
+    "band": "1",
+    "query": "我要找住在台北市有3年左右工作經驗的行銷企劃",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S3-002",
+    "band": "1",
+    "query": "新北市 5年經驗 前端工程師",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S3-003",
+    "band": "1",
+    "query": "台中市 1年以上經驗的會計助理",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S3-004",
+    "band": "1",
+    "query": "高雄市 資深Python後端工程師",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S3-005",
+    "band": "1",
+    "query": "桃園市 2年經驗 人資專員",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S3-006",
+    "band": "1",
+    "query": "新竹 半導體製程工程師 3年以上",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S3-007",
+    "band": "1",
+    "query": "台南市 業務代表 年資不拘",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S3-008",
+    "band": "1",
+    "query": "可遠端工作的全端工程師 熟React與Node",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S3-009",
+    "band": "1",
+    "query": "台北市內湖 產品經理 5年經驗",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S3-010",
+    "band": "1",
+    "query": "新北板橋 平面設計師 2年經驗",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S3-011",
+    "band": "1",
+    "query": "台中西屯 日文業務 3年經驗",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S3-012",
+    "band": "1",
+    "query": "高雄前鎮 品保工程師 5年",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S3-013",
+    "band": "1",
+    "query": "桃園中壢 倉儲物流管理 2年",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S3-014",
+    "band": "1",
+    "query": "找台北市的財務分析師，四大事務所背景",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S3-015",
+    "band": "1",
+    "query": "新竹竹北 韌體工程師 C語言 3年",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S3-016",
+    "band": "1",
+    "query": "台南科學園區 設備工程師 輪班可",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S3-017",
+    "band": "1",
+    "query": "嘉義市 門市店長 3年零售經驗",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S3-018",
+    "band": "1",
+    "query": "基隆 報關人員 1年經驗",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S3-019",
+    "band": "1",
+    "query": "宜蘭 飯店櫃檯接待 2年經驗",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S3-020",
+    "band": "1",
+    "query": "花蓮 護理師 醫院病房經驗",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S3-021",
+    "band": "2",
+    "query": "台北市行銷企劃，要會GA4、Meta廣告投放，3年經驗",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S3-022",
+    "band": "2",
+    "query": "新北市前端工程師，熟Vue3與TypeScript，有大型專案經驗",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S3-023",
+    "band": "2",
+    "query": "台中會計，熟鼎新ERP與營所稅申報",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S3-024",
+    "band": "2",
+    "query": "高雄後端工程師，Golang與PostgreSQL，5年經驗",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S3-025",
+    "band": "2",
+    "query": "桃園人資，熟招募與薪酬設計，具乙級就業服務技術士",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S3-026",
+    "band": "2",
+    "query": "新竹製程整合工程師，有DRAM經驗，碩士以上",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S3-027",
+    "band": "2",
+    "query": "台南業務，有工具機外銷經驗，英文流利",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S3-028",
+    "band": "2",
+    "query": "遠端DevOps工程師，熟AWS與Terraform",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S3-029",
+    "band": "2",
+    "query": "台北產品經理，有B2B SaaS經驗，會寫PRD與跑Scrum",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S3-030",
+    "band": "2",
+    "query": "板橋UI設計師，作品集需含App設計，熟Figma",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S3-031",
+    "band": "2",
+    "query": "台中日文翻譯，N1，有製造業口譯經驗",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S3-032",
+    "band": "2",
+    "query": "高雄品保，熟ISO 9001與8D report",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S3-033",
+    "band": "2",
+    "query": "中壢供應鏈管理，會SAP MM模組",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S3-034",
+    "band": "2",
+    "query": "台北財務經理，CPA，具IPO經驗",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S3-035",
+    "band": "2",
+    "query": "竹北嵌入式工程師，熟RTOS與藍牙協定",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S3-036",
+    "band": "2",
+    "query": "南科薄膜設備工程師，會PM保養與troubleshooting",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S3-037",
+    "band": "2",
+    "query": "嘉義店長，會排班、庫存與損益管理",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S3-038",
+    "band": "2",
+    "query": "基隆報關，熟空運進出口與關務系統",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S3-039",
+    "band": "2",
+    "query": "宜蘭飯店接待，英日文口說流利",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S3-040",
+    "band": "2",
+    "query": "花蓮急診護理師，具ACLS證照",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S3-041",
+    "band": "3",
+    "query": "幫我找一個會做報表又細心的助理",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S3-042",
+    "band": "3",
+    "query": "想找可以馬上上班的作業員",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S3-043",
+    "band": "3",
+    "query": "找個文案寫得動人的年輕人",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S3-044",
+    "band": "3",
+    "query": "我們缺一個什麼都能做的行政",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S3-045",
+    "band": "3",
+    "query": "老闆想要一個很會簡報的人",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S3-046",
+    "band": "3",
+    "query": "找設計師，風格要日系清新那種",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S3-047",
+    "band": "3",
+    "query": "需要一位工程師，會寫程式就好",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S3-048",
+    "band": "3",
+    "query": "想找業務，臉皮厚一點的",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S3-049",
+    "band": "3",
+    "query": "幫忙找個會修電腦的",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S3-050",
+    "band": "3",
+    "query": "找一個懂小紅書跟抖音的行銷",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S3-051",
+    "band": "3",
+    "query": "缺人！餐廳外場，能吃苦",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S3-052",
+    "band": "3",
+    "query": "想要找像張忠謀那樣的人才",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S3-053",
+    "band": "3",
+    "query": "找個會聊天的客服",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S3-054",
+    "band": "3",
+    "query": "需要倉庫的人，要能搬貨",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S3-055",
+    "band": "3",
+    "query": "幫我找貓咪咖啡廳的店員",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S3-056",
+    "band": "3",
+    "query": "找會開挖土機的師傅",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S3-057",
+    "band": "3",
+    "query": "想找懂命理又會行銷的企劃",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S3-058",
+    "band": "3",
+    "query": "誰能幫我把網站弄快一點，找這種人",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S3-059",
+    "band": "3",
+    "query": "找可以陪老闆跑工地的特助",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S3-060",
+    "band": "3",
+    "query": "找個會做便當的阿姨",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S3-061",
+    "band": "4",
+    "query": "找30歲以下的行銷企劃，台北市",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S3-062",
+    "band": "4",
+    "query": "台中門市人員，限女性",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S3-063",
+    "band": "4",
+    "query": "高雄倉管，需要男生",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S3-064",
+    "band": "4",
+    "query": "找25到35歲的軟體工程師",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S3-065",
+    "band": "4",
+    "query": "新竹作業員，40歲以下",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S3-066",
+    "band": "4",
+    "query": "桃園客服，女生優先",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S3-067",
+    "band": "4",
+    "query": "台北業務，年輕人優先，底薪加獎金",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S3-068",
+    "band": "4",
+    "query": "找50歲以下的貨車司機",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S3-069",
+    "band": "4",
+    "query": "台南餐飲內場，男性佳",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S3-070",
+    "band": "4",
+    "query": "找35歲以下未婚的空服備取人選",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S3-071",
+    "band": "4",
+    "query": "新北美編，女生，會插畫",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S3-072",
+    "band": "4",
+    "query": "高雄保全，退伍軍人，50歲內",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S3-073",
+    "band": "4",
+    "query": "找年輕貌美的展場接待",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S3-074",
+    "band": "4",
+    "query": "台中會計，已婚穩定者佳",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S3-075",
+    "band": "4",
+    "query": "竹科測試工程師，男性可配合大夜",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S3-076",
+    "band": "4",
+    "query": "找二度就業的媽媽當電訪員",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S3-077",
+    "band": "4",
+    "query": "台北健身教練，體格好，男",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S3-078",
+    "band": "4",
+    "query": "外送站長，35歲以下有管理經驗",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S3-079",
+    "band": "4",
+    "query": "高雄美容師，限女性有丙級證照",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S3-080",
+    "band": "4",
+    "query": "找原住民同仁",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S3-081",
+    "band": "5",
+    "query": "廠商表示要找30歲以下會Python的男生",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S3-082",
+    "band": "5",
+    "query": "客戶指定：台北市、女性、行政助理、未婚",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S3-083",
+    "band": "5",
+    "query": "廠商說想要25到40歲有電商經驗的行銷，最好單身",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S3-084",
+    "band": "5",
+    "query": "客戶要求找40歲以下男性工程師，要能加班",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S3-085",
+    "band": "5",
+    "query": "廠商表示需要年輕女生做直播小編",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S3-086",
+    "band": "5",
+    "query": "客戶指定台中35歲以下男性業務，自備汽車",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S3-087",
+    "band": "5",
+    "query": "廠商希望找沒有家庭負擔的專案經理，30出頭",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S3-088",
+    "band": "5",
+    "query": "客戶說要找退伍不久的年輕人當儲備幹部",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S3-089",
+    "band": "5",
+    "query": "廠商表示要找外型好的女生站櫃，25歲上下",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S3-090",
+    "band": "5",
+    "query": "客戶指定竹科輪班技術員，男性，45歲以下",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S3-091",
+    "band": "5",
+    "query": "廠商想找台南在地、30到45歲、會CNC銑床的師傅",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S3-092",
+    "band": "5",
+    "query": "客戶要求高雄業務主管，男性，十年經驗，50歲以內",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S3-093",
+    "band": "5",
+    "query": "廠商表示行政要找女生，會做帳，年齡不要太大",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S3-094",
+    "band": "5",
+    "query": "客戶指定找二度就業婦女做包裝，日班",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S3-095",
+    "band": "5",
+    "query": "廠商說找幼教老師，女生，有耐心，30歲以下",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S3-096",
+    "band": "5",
+    "query": "客戶要求找型男主廚，義式餐廳，40歲內",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S3-097",
+    "band": "5",
+    "query": "廠商表示找長照照服員，女性，中高齡可",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S3-098",
+    "band": "5",
+    "query": "客戶指定找生產線組長，男性，需管過20人，35到50歲",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S3-099",
+    "band": "5",
+    "query": "廠商想找會台語的在地業務，40歲上下，高雄",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S3-100",
+    "band": "5",
+    "query": "廠商表示想要找住在高雄市區有cnc經驗20到40歲的人才",
+    "expected": {
+      "http_status": 200
+    }
+  }
+]

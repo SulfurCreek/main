@@ -1,0 +1,62 @@
+{
+  "scenario": "S2",
+  "total": 100,
+  "status_distribution": {
+    "200": 100
+  },
+  "unexpected": [],
+  "schema_violations": [],
+  "band_stats": {
+    "A": {
+      "n": 15,
+      "avg_result_count": 114.47,
+      "avg_delta_vs_baseline": 4.93,
+      "text_passthrough_rate": 1.0,
+      "zero_result_cases": []
+    },
+    "B": {
+      "n": 15,
+      "avg_result_count": 136.4,
+      "avg_delta_vs_baseline": 16.0,
+      "text_passthrough_rate": 1.0,
+      "zero_result_cases": []
+    },
+    "C": {
+      "n": 15,
+      "avg_result_count": 111.0,
+      "avg_delta_vs_baseline": 2.07,
+      "text_passthrough_rate": 1.0,
+      "zero_result_cases": []
+    },
+    "D": {
+      "n": 15,
+      "avg_result_count": 102.33,
+      "avg_delta_vs_baseline": -0.87,
+      "text_passthrough_rate": 1.0,
+      "zero_result_cases": []
+    },
+    "E": {
+      "n": 15,
+      "avg_result_count": 90.33,
+      "avg_delta_vs_baseline": -0.13,
+      "text_passthrough_rate": 1.0,
+      "zero_result_cases": []
+    },
+    "F": {
+      "n": 15,
+      "avg_result_count": 55.6,
+      "avg_delta_vs_baseline": -0.4,
+      "text_passthrough_rate": 1.0,
+      "zero_result_cases": []
+    },
+    "G": {
+      "n": 10,
+      "avg_result_count": 85.9,
+      "avg_delta_vs_baseline": -0.4,
+      "text_passthrough_rate": 1.0,
+      "zero_result_cases": []
+    }
+  },
+  "zero_result_cases": [],
+  "exceptions": []
+}

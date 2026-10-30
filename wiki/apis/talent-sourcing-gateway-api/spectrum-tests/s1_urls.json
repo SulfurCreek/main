@@ -1,0 +1,417 @@
+{
+  "note": "S1 情境用：100 個 104 職缺內頁 URL，全部經 Talent Sourcing API 於 2026-07-20 回 200 確認存活（source.type=104）。S2 與此一對一配對。",
+  "verified_date": "2026-07-20",
+  "count": 100,
+  "cases": [
+    {
+      "case_id": "S1-001",
+      "url": "https://www.104.com.tw/job/8xgno"
+    },
+    {
+      "case_id": "S1-002",
+      "url": "https://www.104.com.tw/job/8m6cd"
+    },
+    {
+      "case_id": "S1-003",
+      "url": "https://www.104.com.tw/job/5nkre"
+    },
+    {
+      "case_id": "S1-004",
+      "url": "https://www.104.com.tw/job/7ye2h"
+    },
+    {
+      "case_id": "S1-005",
+      "url": "https://www.104.com.tw/job/7dblm"
+    },
+    {
+      "case_id": "S1-006",
+      "url": "https://www.104.com.tw/job/7jgvy"
+    },
+    {
+      "case_id": "S1-007",
+      "url": "https://www.104.com.tw/job/8ylll"
+    },
+    {
+      "case_id": "S1-008",
+      "url": "https://www.104.com.tw/job/92w7j"
+    },
+    {
+      "case_id": "S1-009",
+      "url": "https://www.104.com.tw/job/807yr"
+    },
+    {
+      "case_id": "S1-010",
+      "url": "https://www.104.com.tw/job/90bgk"
+    },
+    {
+      "case_id": "S1-011",
+      "url": "https://www.104.com.tw/job/90xxw"
+    },
+    {
+      "case_id": "S1-012",
+      "url": "https://www.104.com.tw/job/6ulyh"
+    },
+    {
+      "case_id": "S1-013",
+      "url": "https://www.104.com.tw/job/877xe"
+    },
+    {
+      "case_id": "S1-014",
+      "url": "https://www.104.com.tw/job/92e7u"
+    },
+    {
+      "case_id": "S1-015",
+      "url": "https://www.104.com.tw/job/93mcj"
+    },
+    {
+      "case_id": "S1-016",
+      "url": "https://www.104.com.tw/job/93mc7"
+    },
+    {
+      "case_id": "S1-017",
+      "url": "https://www.104.com.tw/job/92o18"
+    },
+    {
+      "case_id": "S1-018",
+      "url": "https://www.104.com.tw/job/7doqc"
+    },
+    {
+      "case_id": "S1-019",
+      "url": "https://www.104.com.tw/job/7aa0p"
+    },
+    {
+      "case_id": "S1-020",
+      "url": "https://www.104.com.tw/job/3rgrw"
+    },
+    {
+      "case_id": "S1-021",
+      "url": "https://www.104.com.tw/job/6sify"
+    },
+    {
+      "case_id": "S1-022",
+      "url": "https://www.104.com.tw/job/93f5r"
+    },
+    {
+      "case_id": "S1-023",
+      "url": "https://www.104.com.tw/job/7iedp"
+    },
+    {
+      "case_id": "S1-024",
+      "url": "https://www.104.com.tw/job/8zys9"
+    },
+    {
+      "case_id": "S1-025",
+      "url": "https://www.104.com.tw/job/7pmfn"
+    },
+    {
+      "case_id": "S1-026",
+      "url": "https://www.104.com.tw/job/93qqr"
+    },
+    {
+      "case_id": "S1-027",
+      "url": "https://www.104.com.tw/job/92uzj"
+    },
+    {
+      "case_id": "S1-028",
+      "url": "https://www.104.com.tw/job/73uco"
+    },
+    {
+      "case_id": "S1-029",
+      "url": "https://www.104.com.tw/job/5kmaa"
+    },
+    {
+      "case_id": "S1-030",
+      "url": "https://www.104.com.tw/job/92qak"
+    },
+    {
+      "case_id": "S1-031",
+      "url": "https://www.104.com.tw/job/5hlnw"
+    },
+    {
+      "case_id": "S1-032",
+      "url": "https://www.104.com.tw/job/8tgsf"
+    },
+    {
+      "case_id": "S1-033",
+      "url": "https://www.104.com.tw/job/93cca"
+    },
+    {
+      "case_id": "S1-034",
+      "url": "https://www.104.com.tw/job/8wwtx"
+    },
+    {
+      "case_id": "S1-035",
+      "url": "https://www.104.com.tw/job/919ci"
+    },
+    {
+      "case_id": "S1-036",
+      "url": "https://www.104.com.tw/job/8x7ac"
+    },
+    {
+      "case_id": "S1-037",
+      "url": "https://www.104.com.tw/job/7mtn7"
+    },
+    {
+      "case_id": "S1-038",
+      "url": "https://www.104.com.tw/job/8fjd1"
+    },
+    {
+      "case_id": "S1-039",
+      "url": "https://www.104.com.tw/job/90ox9"
+    },
+    {
+      "case_id": "S1-040",
+      "url": "https://www.104.com.tw/job/7nlh3"
+    },
+    {
+      "case_id": "S1-041",
+      "url": "https://www.104.com.tw/job/72fjj"
+    },
+    {
+      "case_id": "S1-042",
+      "url": "https://www.104.com.tw/job/6wbuk"
+    },
+    {
+      "case_id": "S1-043",
+      "url": "https://www.104.com.tw/job/7nebo"
+    },
+    {
+      "case_id": "S1-044",
+      "url": "https://www.104.com.tw/job/6tdmb"
+    },
+    {
+      "case_id": "S1-045",
+      "url": "https://www.104.com.tw/job/83lxg"
+    },
+    {
+      "case_id": "S1-046",
+      "url": "https://www.104.com.tw/job/7j1ly"
+    },
+    {
+      "case_id": "S1-047",
+      "url": "https://www.104.com.tw/job/303a2"
+    },
+    {
+      "case_id": "S1-048",
+      "url": "https://www.104.com.tw/job/8fse7"
+    },
+    {
+      "case_id": "S1-049",
+      "url": "https://www.104.com.tw/job/7ecvj"
+    },
+    {
+      "case_id": "S1-050",
+      "url": "https://www.104.com.tw/job/5u3w1"
+    },
+    {
+      "case_id": "S1-051",
+      "url": "https://www.104.com.tw/job/6ujq0"
+    },
+    {
+      "case_id": "S1-052",
+      "url": "https://www.104.com.tw/job/2ic3a"
+    },
+    {
+      "case_id": "S1-053",
+      "url": "https://www.104.com.tw/job/5fe03"
+    },
+    {
+      "case_id": "S1-054",
+      "url": "https://www.104.com.tw/job/6lirv"
+    },
+    {
+      "case_id": "S1-055",
+      "url": "https://www.104.com.tw/job/6a7xx"
+    },
+    {
+      "case_id": "S1-056",
+      "url": "https://www.104.com.tw/job/3llrh"
+    },
+    {
+      "case_id": "S1-057",
+      "url": "https://www.104.com.tw/job/8wkd0"
+    },
+    {
+      "case_id": "S1-058",
+      "url": "https://www.104.com.tw/job/5uun1"
+    },
+    {
+      "case_id": "S1-059",
+      "url": "https://www.104.com.tw/job/7z0w3"
+    },
+    {
+      "case_id": "S1-060",
+      "url": "https://www.104.com.tw/job/7nvln"
+    },
+    {
+      "case_id": "S1-061",
+      "url": "https://www.104.com.tw/job/72ed6"
+    },
+    {
+      "case_id": "S1-062",
+      "url": "https://www.104.com.tw/job/7e4nl"
+    },
+    {
+      "case_id": "S1-063",
+      "url": "https://www.104.com.tw/job/6z7b5"
+    },
+    {
+      "case_id": "S1-064",
+      "url": "https://www.104.com.tw/job/2rfka"
+    },
+    {
+      "case_id": "S1-065",
+      "url": "https://www.104.com.tw/job/5qyj6"
+    },
+    {
+      "case_id": "S1-066",
+      "url": "https://www.104.com.tw/job/8nrz8"
+    },
+    {
+      "case_id": "S1-067",
+      "url": "https://www.104.com.tw/job/53o9g"
+    },
+    {
+      "case_id": "S1-068",
+      "url": "https://www.104.com.tw/job/6x2i5"
+    },
+    {
+      "case_id": "S1-069",
+      "url": "https://www.104.com.tw/job/72tch"
+    },
+    {
+      "case_id": "S1-070",
+      "url": "https://www.104.com.tw/job/2jtm7"
+    },
+    {
+      "case_id": "S1-071",
+      "url": "https://www.104.com.tw/job/5lkrp"
+    },
+    {
+      "case_id": "S1-072",
+      "url": "https://www.104.com.tw/job/6xbeq"
+    },
+    {
+      "case_id": "S1-073",
+      "url": "https://www.104.com.tw/job/5ob0l"
+    },
+    {
+      "case_id": "S1-074",
+      "url": "https://www.104.com.tw/job/7zha0"
+    },
+    {
+      "case_id": "S1-075",
+      "url": "https://www.104.com.tw/job/semd"
+    },
+    {
+      "case_id": "S1-076",
+      "url": "https://www.104.com.tw/job/87jgn"
+    },
+    {
+      "case_id": "S1-077",
+      "url": "https://www.104.com.tw/job/8y76j"
+    },
+    {
+      "case_id": "S1-078",
+      "url": "https://www.104.com.tw/job/6yya0"
+    },
+    {
+      "case_id": "S1-079",
+      "url": "https://www.104.com.tw/job/7y0mb"
+    },
+    {
+      "case_id": "S1-080",
+      "url": "https://www.104.com.tw/job/6fpnp"
+    },
+    {
+      "case_id": "S1-081",
+      "url": "https://www.104.com.tw/job/7d97o"
+    },
+    {
+      "case_id": "S1-082",
+      "url": "https://www.104.com.tw/job/58j8o"
+    },
+    {
+      "case_id": "S1-083",
+      "url": "https://www.104.com.tw/job/5ff1k"
+    },
+    {
+      "case_id": "S1-084",
+      "url": "https://www.104.com.tw/job/4cphs"
+    },
+    {
+      "case_id": "S1-085",
+      "url": "https://www.104.com.tw/job/86mim"
+    },
+    {
+      "case_id": "S1-086",
+      "url": "https://www.104.com.tw/job/3xj7u"
+    },
+    {
+      "case_id": "S1-087",
+      "url": "https://www.104.com.tw/job/8ivcu"
+    },
+    {
+      "case_id": "S1-088",
+      "url": "https://www.104.com.tw/job/6o8h3"
+    },
+    {
+      "case_id": "S1-089",
+      "url": "https://www.104.com.tw/job/8rz6v"
+    },
+    {
+      "case_id": "S1-090",
+      "url": "https://www.104.com.tw/job/8roh7"
+    },
+    {
+      "case_id": "S1-091",
+      "url": "https://www.104.com.tw/job/8plj3"
+    },
+    {
+      "case_id": "S1-092",
+      "url": "https://www.104.com.tw/job/7l2fw"
+    },
+    {
+      "case_id": "S1-093",
+      "url": "https://www.104.com.tw/job/727nh"
+    },
+    {
+      "case_id": "S1-094",
+      "url": "https://www.104.com.tw/job/74ccl"
+    },
+    {
+      "case_id": "S1-095",
+      "url": "https://www.104.com.tw/job/8mxii"
+    },
+    {
+      "case_id": "S1-096",
+      "url": "https://www.104.com.tw/job/7amih"
+    },
+    {
+      "case_id": "S1-097",
+      "url": "https://www.104.com.tw/job/74f9t"
+    },
+    {
+      "case_id": "S1-098",
+      "url": "https://www.104.com.tw/job/34k0g"
+    },
+    {
+      "case_id": "S1-099",
+      "url": "https://www.104.com.tw/job/7h1ne"
+    },
+    {
+      "case_id": "S1-100",
+      "url": "https://www.104.com.tw/job/56d45"
+    }
+  ],
+  "backup": [
+    "https://www.104.com.tw/job/7by3e",
+    "https://www.104.com.tw/job/2ikp8",
+    "https://www.104.com.tw/job/761sa"
+  ],
+  "dead_excluded": [
+    "https://www.104.com.tw/job/4mehs",
+    "https://www.104.com.tw/job/87w6k",
+    "https://www.104.com.tw/job/6nymf"
+  ]
+}

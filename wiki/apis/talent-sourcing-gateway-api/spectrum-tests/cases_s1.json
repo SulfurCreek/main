@@ -1,0 +1,802 @@
+[
+  {
+    "case_id": "S1-001",
+    "band": "url",
+    "query": "https://www.104.com.tw/job/8xgno",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S1-002",
+    "band": "url",
+    "query": "https://www.104.com.tw/job/8m6cd",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S1-003",
+    "band": "url",
+    "query": "https://www.104.com.tw/job/5nkre",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S1-004",
+    "band": "url",
+    "query": "https://www.104.com.tw/job/7ye2h",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S1-005",
+    "band": "url",
+    "query": "https://www.104.com.tw/job/7dblm",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S1-006",
+    "band": "url",
+    "query": "https://www.104.com.tw/job/7jgvy",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S1-007",
+    "band": "url",
+    "query": "https://www.104.com.tw/job/8ylll",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S1-008",
+    "band": "url",
+    "query": "https://www.104.com.tw/job/92w7j",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S1-009",
+    "band": "url",
+    "query": "https://www.104.com.tw/job/807yr",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S1-010",
+    "band": "url",
+    "query": "https://www.104.com.tw/job/90bgk",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S1-011",
+    "band": "url",
+    "query": "https://www.104.com.tw/job/90xxw",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S1-012",
+    "band": "url",
+    "query": "https://www.104.com.tw/job/6ulyh",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S1-013",
+    "band": "url",
+    "query": "https://www.104.com.tw/job/877xe",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S1-014",
+    "band": "url",
+    "query": "https://www.104.com.tw/job/92e7u",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S1-015",
+    "band": "url",
+    "query": "https://www.104.com.tw/job/93mcj",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S1-016",
+    "band": "url",
+    "query": "https://www.104.com.tw/job/93mc7",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S1-017",
+    "band": "url",
+    "query": "https://www.104.com.tw/job/92o18",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S1-018",
+    "band": "url",
+    "query": "https://www.104.com.tw/job/7doqc",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S1-019",
+    "band": "url",
+    "query": "https://www.104.com.tw/job/7aa0p",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S1-020",
+    "band": "url",
+    "query": "https://www.104.com.tw/job/3rgrw",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S1-021",
+    "band": "url",
+    "query": "https://www.104.com.tw/job/6sify",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S1-022",
+    "band": "url",
+    "query": "https://www.104.com.tw/job/93f5r",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S1-023",
+    "band": "url",
+    "query": "https://www.104.com.tw/job/7iedp",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S1-024",
+    "band": "url",
+    "query": "https://www.104.com.tw/job/8zys9",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S1-025",
+    "band": "url",
+    "query": "https://www.104.com.tw/job/7pmfn",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S1-026",
+    "band": "url",
+    "query": "https://www.104.com.tw/job/93qqr",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S1-027",
+    "band": "url",
+    "query": "https://www.104.com.tw/job/92uzj",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S1-028",
+    "band": "url",
+    "query": "https://www.104.com.tw/job/73uco",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S1-029",
+    "band": "url",
+    "query": "https://www.104.com.tw/job/5kmaa",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S1-030",
+    "band": "url",
+    "query": "https://www.104.com.tw/job/92qak",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S1-031",
+    "band": "url",
+    "query": "https://www.104.com.tw/job/5hlnw",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S1-032",
+    "band": "url",
+    "query": "https://www.104.com.tw/job/8tgsf",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S1-033",
+    "band": "url",
+    "query": "https://www.104.com.tw/job/93cca",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S1-034",
+    "band": "url",
+    "query": "https://www.104.com.tw/job/8wwtx",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S1-035",
+    "band": "url",
+    "query": "https://www.104.com.tw/job/919ci",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S1-036",
+    "band": "url",
+    "query": "https://www.104.com.tw/job/8x7ac",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S1-037",
+    "band": "url",
+    "query": "https://www.104.com.tw/job/7mtn7",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S1-038",
+    "band": "url",
+    "query": "https://www.104.com.tw/job/8fjd1",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S1-039",
+    "band": "url",
+    "query": "https://www.104.com.tw/job/90ox9",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S1-040",
+    "band": "url",
+    "query": "https://www.104.com.tw/job/7nlh3",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S1-041",
+    "band": "url",
+    "query": "https://www.104.com.tw/job/72fjj",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S1-042",
+    "band": "url",
+    "query": "https://www.104.com.tw/job/6wbuk",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S1-043",
+    "band": "url",
+    "query": "https://www.104.com.tw/job/7nebo",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S1-044",
+    "band": "url",
+    "query": "https://www.104.com.tw/job/6tdmb",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S1-045",
+    "band": "url",
+    "query": "https://www.104.com.tw/job/83lxg",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S1-046",
+    "band": "url",
+    "query": "https://www.104.com.tw/job/7j1ly",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S1-047",
+    "band": "url",
+    "query": "https://www.104.com.tw/job/303a2",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S1-048",
+    "band": "url",
+    "query": "https://www.104.com.tw/job/8fse7",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S1-049",
+    "band": "url",
+    "query": "https://www.104.com.tw/job/7ecvj",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S1-050",
+    "band": "url",
+    "query": "https://www.104.com.tw/job/5u3w1",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S1-051",
+    "band": "url",
+    "query": "https://www.104.com.tw/job/6ujq0",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S1-052",
+    "band": "url",
+    "query": "https://www.104.com.tw/job/2ic3a",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S1-053",
+    "band": "url",
+    "query": "https://www.104.com.tw/job/5fe03",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S1-054",
+    "band": "url",
+    "query": "https://www.104.com.tw/job/6lirv",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S1-055",
+    "band": "url",
+    "query": "https://www.104.com.tw/job/6a7xx",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S1-056",
+    "band": "url",
+    "query": "https://www.104.com.tw/job/3llrh",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S1-057",
+    "band": "url",
+    "query": "https://www.104.com.tw/job/8wkd0",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S1-058",
+    "band": "url",
+    "query": "https://www.104.com.tw/job/5uun1",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S1-059",
+    "band": "url",
+    "query": "https://www.104.com.tw/job/7z0w3",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S1-060",
+    "band": "url",
+    "query": "https://www.104.com.tw/job/7nvln",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S1-061",
+    "band": "url",
+    "query": "https://www.104.com.tw/job/72ed6",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S1-062",
+    "band": "url",
+    "query": "https://www.104.com.tw/job/7e4nl",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S1-063",
+    "band": "url",
+    "query": "https://www.104.com.tw/job/6z7b5",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S1-064",
+    "band": "url",
+    "query": "https://www.104.com.tw/job/2rfka",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S1-065",
+    "band": "url",
+    "query": "https://www.104.com.tw/job/5qyj6",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S1-066",
+    "band": "url",
+    "query": "https://www.104.com.tw/job/8nrz8",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S1-067",
+    "band": "url",
+    "query": "https://www.104.com.tw/job/53o9g",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S1-068",
+    "band": "url",
+    "query": "https://www.104.com.tw/job/6x2i5",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S1-069",
+    "band": "url",
+    "query": "https://www.104.com.tw/job/72tch",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S1-070",
+    "band": "url",
+    "query": "https://www.104.com.tw/job/2jtm7",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S1-071",
+    "band": "url",
+    "query": "https://www.104.com.tw/job/5lkrp",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S1-072",
+    "band": "url",
+    "query": "https://www.104.com.tw/job/6xbeq",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S1-073",
+    "band": "url",
+    "query": "https://www.104.com.tw/job/5ob0l",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S1-074",
+    "band": "url",
+    "query": "https://www.104.com.tw/job/7zha0",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S1-075",
+    "band": "url",
+    "query": "https://www.104.com.tw/job/semd",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S1-076",
+    "band": "url",
+    "query": "https://www.104.com.tw/job/87jgn",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S1-077",
+    "band": "url",
+    "query": "https://www.104.com.tw/job/8y76j",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S1-078",
+    "band": "url",
+    "query": "https://www.104.com.tw/job/6yya0",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S1-079",
+    "band": "url",
+    "query": "https://www.104.com.tw/job/7y0mb",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S1-080",
+    "band": "url",
+    "query": "https://www.104.com.tw/job/6fpnp",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S1-081",
+    "band": "url",
+    "query": "https://www.104.com.tw/job/7d97o",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S1-082",
+    "band": "url",
+    "query": "https://www.104.com.tw/job/58j8o",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S1-083",
+    "band": "url",
+    "query": "https://www.104.com.tw/job/5ff1k",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S1-084",
+    "band": "url",
+    "query": "https://www.104.com.tw/job/4cphs",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S1-085",
+    "band": "url",
+    "query": "https://www.104.com.tw/job/86mim",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S1-086",
+    "band": "url",
+    "query": "https://www.104.com.tw/job/3xj7u",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S1-087",
+    "band": "url",
+    "query": "https://www.104.com.tw/job/8ivcu",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S1-088",
+    "band": "url",
+    "query": "https://www.104.com.tw/job/6o8h3",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S1-089",
+    "band": "url",
+    "query": "https://www.104.com.tw/job/8rz6v",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S1-090",
+    "band": "url",
+    "query": "https://www.104.com.tw/job/8roh7",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S1-091",
+    "band": "url",
+    "query": "https://www.104.com.tw/job/8plj3",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S1-092",
+    "band": "url",
+    "query": "https://www.104.com.tw/job/7l2fw",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S1-093",
+    "band": "url",
+    "query": "https://www.104.com.tw/job/727nh",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S1-094",
+    "band": "url",
+    "query": "https://www.104.com.tw/job/74ccl",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S1-095",
+    "band": "url",
+    "query": "https://www.104.com.tw/job/8mxii",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S1-096",
+    "band": "url",
+    "query": "https://www.104.com.tw/job/7amih",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S1-097",
+    "band": "url",
+    "query": "https://www.104.com.tw/job/74f9t",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S1-098",
+    "band": "url",
+    "query": "https://www.104.com.tw/job/34k0g",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S1-099",
+    "band": "url",
+    "query": "https://www.104.com.tw/job/7h1ne",
+    "expected": {
+      "http_status": 200
+    }
+  },
+  {
+    "case_id": "S1-100",
+    "band": "url",
+    "query": "https://www.104.com.tw/job/56d45",
+    "expected": {
+      "http_status": 200
+    }
+  }
+]

@@ -1,0 +1,1537 @@
+openapi: 3.1.0
+info:
+  title: TalentSearch API
+  version: 2.0.0
+  description: 將文字分析為 1111 UI 範本，再以確定性方式編譯成用於人才搜尋的完整範本。
+paths:
+  /health:
+    get:
+      summary: 健康狀態
+      operationId: health
+      responses:
+        '200':
+          description: 成功回應
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HealthResponse'
+        '403':
+          description: 來源 IP 不在允許清單內。
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /v2/analyze:
+    post:
+      summary: 分析人才搜尋條件
+      operationId: analyze_v2
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AnalyzeRequest'
+            examples:
+              text:
+                value:
+                  query: 熟悉 Python 與 AWS 的後端工程師
+                  client_id: crm-service
+              104_url:
+                value:
+                  query: https://www.104.com.tw/job/8siqc
+                  client_id: crm-service
+              1111_url:
+                value:
+                  query: https://www.1111.com.tw/job/123456
+                  client_id: crm-service
+              url_text:
+                value:
+                  query: https://www.104.com.tw/job/8siqc 需要 AWS 經驗
+                  client_id: crm-service
+      responses:
+        '200':
+          description: 成功回應
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AnalyzeResponse'
+        '400':
+          description: 錯誤請求
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '403':
+          description: 共用 API 金鑰無效，或來源 IP 不在允許清單內。
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: 找不到資源
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '502':
+          description: 錯誤閘道
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '504':
+          description: 閘道逾時
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      security:
+      - ApiKeyAuth: []
+  /v2/search:
+    post:
+      summary: 使用完整 UI 範本進行搜尋
+      operationId: search_v2
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SearchRequest'
+      responses:
+        '200':
+          description: 成功回應
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchResponse'
+        '400':
+          description: 錯誤請求
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '403':
+          description: 共用 API 金鑰無效，或來源 IP 不在允許清單內。
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: 找不到資源
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '502':
+          description: 錯誤閘道
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '504':
+          description: 閘道逾時
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      security:
+      - ApiKeyAuth: []
+components:
+  schemas:
+    AnalyzeRequest:
+      additionalProperties: false
+      description: 傳給 `/v2/analyze` 的分析請求，包含待解析的人才搜尋文字或職缺網址，以及用於追蹤的呼叫端識別字。
+      examples:
+      - query: 熟悉 Python 與 AWS 的後端工程師
+        client_id: crm-service
+      properties:
+        query:
+          description: 待分析的搜尋需求，可為文字、支援的職缺網址，或網址加補充文字；長度須為 1 至 20,000 字元。
+          maxLength: 20000
+          minLength: 1
+          title: Query
+          type: string
+        client_id:
+          description: 必填的呼叫端識別字，保留供稽核、追蹤及未來速率限制使用；目前不作為授權依據。
+          maxLength: 64
+          minLength: 1
+          pattern: ^[A-Za-z0-9._-]+$
+          title: Client Id
+          type: string
+      required:
+      - query
+      - client_id
+      title: AnalyzeRequest
+      type: object
+    AnalyzeResponse:
+      additionalProperties: false
+      description: '`/v2/analyze` 的成功回應，包含可供 `/v2/search` 使用的完整搜尋範本，以及此次分析的追蹤與診斷中繼資料。'
+      properties:
+        search_template:
+          description: 分析所得的完整 101 欄位搜尋結構，可原樣放入 `/v2/search` 的 `SearchRequest.search_template`。
+          $ref: '#/components/schemas/SearchTemplate'
+        metadata:
+          description: 此次分析的請求追蹤、輸入模式、實際查詢文字與自然語言解析診斷。
+          $ref: '#/components/schemas/AnalyzeMetadata'
+      required:
+      - search_template
+      - metadata
+      title: AnalyzeResponse
+      type: object
+    SearchRequest:
+      additionalProperties: false
+      description: 傳給 `/v2/search` 的搜尋請求，結合呼叫端識別字與通常由 `/v2/analyze` 產生的完整搜尋範本。
+      properties:
+        client_id:
+          description: 呼叫端識別字，用於稽核與請求追蹤，不作為授權依據。
+          maxLength: 64
+          minLength: 1
+          pattern: ^[A-Za-z0-9._-]+$
+          title: Client Id
+          type: string
+        search_template:
+          description: 完整 101 欄位搜尋範本，通常直接使用 `/v2/analyze` 回傳的 `search_template`，不可省略其中欄位。
+          $ref: '#/components/schemas/SearchTemplate'
+      required:
+      - client_id
+      - search_template
+      title: SearchRequest
+      type: object
+    SearchResponse:
+      additionalProperties: false
+      description: '`/v2/search` 的成功回應，包含依 `rank` 表示順序的推薦結果，以及查詢建議與排序診斷中繼資料。'
+      examples:
+      - recommendations:
+        - talentNo: '67890'
+          resumeGuid: 550e8400-e29b-41d4-a716-446655440000
+          rank: 1
+          recommendation_reason: 具備 Python 與 AWS 後端開發經驗。
+        metadata:
+          request_id: 18da32d6-6450-4ef3-91d0-81e7780b15ba
+          client_id: crm-service
+          suggestion:
+            status: generated
+            suggested_query: 熟悉 Python、AWS 與 API 設計的後端工程師
+            reason: 補充 API 設計條件可縮小搜尋範圍。
+            missing_information: []
+          ranking:
+            strategy: solr_rank
+            fallback_used: false
+      properties:
+        recommendations:
+          description: 依 `rank` 表示順序的人才推薦，最多 5 筆；沒有符合條件的結果時為空陣列。
+          items:
+            $ref: '#/components/schemas/RecommendationItem'
+          maxItems: 5
+          title: Recommendations
+          type: array
+        metadata:
+          description: 此次搜尋的請求追蹤、查詢建議與排序診斷資訊。
+          $ref: '#/components/schemas/SearchMetadata'
+      required:
+      - recommendations
+      - metadata
+      title: SearchResponse
+      type: object
+    RecommendationItem:
+      additionalProperties: false
+      description: '`/v2/search` 回傳的一筆人才推薦，包含人才與履歷識別字、從 1 起算的排序名次，以及可為 `null` 的推薦理由。'
+      examples:
+      - talentNo: '67890'
+        resumeGuid: 550e8400-e29b-41d4-a716-446655440000
+        rank: 1
+        recommendation_reason: 具備 Python 與 AWS 後端開發經驗。
+      properties:
+        talentNo:
+          description: 非空的人才識別字，用於辨識推薦結果所對應的人才。
+          minLength: 1
+          title: Talentno
+          type: string
+        resumeGuid:
+          description: 非空的履歷識別字，用於辨識此推薦項目所對應的履歷。
+          minLength: 1
+          title: Resumeguid
+          type: string
+        rank:
+          description: 推薦結果的排序名次，從 1 起算；數字越小表示排序越前。
+          minimum: 1
+          title: Rank
+          type: integer
+        recommendation_reason:
+          description: 說明此人才符合搜尋條件的可讀理由；無可提供的理由時為 `null`，但欄位仍會存在。
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Recommendation Reason
+      required:
+      - talentNo
+      - resumeGuid
+      - rank
+      - recommendation_reason
+      title: RecommendationItem
+      type: object
+    SearchTemplate:
+      additionalProperties: false
+      description: 'PR #1 合併的完整 101 欄位傳輸結構。
+
+
+        即使值為 ``null`` 或空 list，每個欄位仍須存在於 JSON 中。
+
+        此設計刻意將 API 完整性與前端表單的必填規則分開。'
+      properties:
+        ai_query:
+          description: AI 檢索原文，承載職缺網址、職缺文字或徵才條件；與一般關鍵字搜尋擇一使用，字串不可超過 20,000 字元。
+          maxLength: 20000
+          title: Ai Query
+          type: string
+        corp_position:
+          description: 工作經歷關鍵字；與 expduty1 至 expduty6 的工作經歷職務類別擇一使用，null 表示未指定。
+          anyOf:
+          - maxLength: 500
+            type: string
+          - type: 'null'
+          title: Corp Position
+        expdutyAnd:
+          description: 多組工作經歷條件的組合方式；'1' 表示各組皆須同時符合，null 表示不啟用此限制。
+          anyOf:
+          - const: '1'
+            type: string
+          - type: 'null'
+          title: Expdutyand
+        position0:
+          description: 理想職務關鍵字；與 exp2duty 理想職務類別擇一使用，null 表示未指定。
+          anyOf:
+          - maxLength: 500
+            type: string
+          - type: 'null'
+          title: Position0
+        exp2duty:
+          description: 理想職務類別的 tCodeDutyNM 代碼陣列，最多 10 項；空陣列或 null 表示未選取。
+          anyOf:
+          - items:
+              maxLength: 12
+              minLength: 1
+              pattern: ^\d+$
+              type: string
+            maxItems: 10
+            type: array
+          - type: 'null'
+          title: Exp2Duty
+        exp2dutyCht:
+          description: exp2duty 各代碼的繁中顯示文字陣列，順序與 exp2duty 對應，不作為搜尋代碼；空陣列或 null 表示未選取。
+          anyOf:
+          - items:
+              maxLength: 500
+              type: string
+            maxItems: 10
+            type: array
+          - type: 'null'
+          title: Exp2Dutycht
+        school:
+          description: 就學狀況；'1' 表示非在學者，null 表示不拘。
+          anyOf:
+          - const: '1'
+            type: string
+          - type: 'null'
+          title: School
+        useGradeupDate:
+          description: 畢業年度區間，使用「起始西元年,結束西元年」格式；'0,0' 表示不拘，null 表示未指定。
+          anyOf:
+          - maxLength: 500
+            type: string
+          - type: 'null'
+          title: Usegradeupdate
+        corp_tradeVal:
+          description: 曾任產業的 tCodeTrade 代碼陣列，最多 10 項；空陣列或 null 表示未選取。
+          anyOf:
+          - items:
+              maxLength: 12
+              minLength: 1
+              pattern: ^\d+$
+              type: string
+            maxItems: 10
+            type: array
+          - type: 'null'
+          title: Corp Tradeval
+        corp_tradeValCht:
+          description: corp_tradeVal 各代碼的繁中顯示文字陣列，順序與 corp_tradeVal 對應，不作為搜尋代碼；空陣列或 null 表示未選取。
+          anyOf:
+          - items:
+              maxLength: 500
+              type: string
+            maxItems: 10
+            type: array
+          - type: 'null'
+          title: Corp Tradevalcht
+        CorpStaff:
+          description: 管理經驗代碼；-1=不拘、0=0 人、1=10 人以內、2=11 至 20 人、3=21 至 50 人、4=51 至 100 人、5=101 人以上、6=未定，null 表示未指定。
+          anyOf:
+          - enum:
+            - '-1'
+            - '0'
+            - '1'
+            - '2'
+            - '3'
+            - '4'
+            - '5'
+            - '6'
+            type: string
+          - type: 'null'
+          title: Corpstaff
+        skill:
+          description: 電腦專長的 tCodeCompSkill 代碼陣列，最多 10 項；由 skillItem 決定條件組合，空陣列或 null 表示未選取。
+          anyOf:
+          - items:
+              maxLength: 12
+              minLength: 1
+              pattern: ^\d+$
+              type: string
+            maxItems: 10
+            type: array
+          - type: 'null'
+          title: Skill
+        skillCht:
+          description: skill 各代碼的繁中顯示文字陣列，順序與 skill 對應，不作為搜尋代碼；空陣列或 null 表示未選取。
+          anyOf:
+          - items:
+              maxLength: 500
+              type: string
+            maxItems: 10
+            type: array
+          - type: 'null'
+          title: Skillcht
+        skillItem:
+          description: 電腦專長條件的組合邏輯；And 表示全部符合，Or 表示任一符合，null 表示未指定。
+          anyOf:
+          - enum:
+            - And
+            - Or
+            type: string
+          - type: 'null'
+          title: Skillitem
+        certify:
+          description: 專業證照的 tCodeCertify 代碼陣列，最多 10 項；由 certifyItem 決定條件組合，空陣列或 null 表示未選取。
+          anyOf:
+          - items:
+              maxLength: 12
+              minLength: 1
+              pattern: ^\d+$
+              type: string
+            maxItems: 10
+            type: array
+          - type: 'null'
+          title: Certify
+        certifyCht:
+          description: certify 各代碼的繁中顯示文字陣列，順序與 certify 對應，不作為搜尋代碼；空陣列或 null 表示未選取。
+          anyOf:
+          - items:
+              maxLength: 500
+              type: string
+            maxItems: 10
+            type: array
+          - type: 'null'
+          title: Certifycht
+        certifyItem:
+          description: 專業證照條件的組合邏輯；And 表示全部符合，Or 表示任一符合，null 表示未指定。
+          anyOf:
+          - enum:
+            - And
+            - Or
+            type: string
+          - type: 'null'
+          title: Certifyitem
+        lang0:
+          description: 外語能力的語言代碼陣列；0=不拘、1=英文、2=中文、3=日文，其他值依語言代碼表，最多 10 項；空陣列或 null 表示未選取。
+          anyOf:
+          - items:
+              maxLength: 12
+              minLength: 1
+              pattern: ^\d+$
+              type: string
+            maxItems: 10
+            type: array
+          - type: 'null'
+          title: Lang0
+        lang_des01:
+          description: 外語聽力程度；0=不拘、1=不懂、2=略通、3=中等、4=精通，並與 lang0 配對；null 表示未指定。
+          anyOf:
+          - enum:
+            - '0'
+            - '1'
+            - '2'
+            - '3'
+            - '4'
+            type: string
+          - type: 'null'
+          title: Lang Des01
+        lang_des02:
+          description: 外語口說程度；0=不拘、1=不懂、2=略通、3=中等、4=精通，並與 lang0 配對；null 表示未指定。
+          anyOf:
+          - enum:
+            - '0'
+            - '1'
+            - '2'
+            - '3'
+            - '4'
+            type: string
+          - type: 'null'
+          title: Lang Des02
+        lang_des03:
+          description: 外語閱讀程度；0=不拘、1=不懂、2=略通、3=中等、4=精通，並與 lang0 配對；null 表示未指定。
+          anyOf:
+          - enum:
+            - '0'
+            - '1'
+            - '2'
+            - '3'
+            - '4'
+            type: string
+          - type: 'null'
+          title: Lang Des03
+        lang_des04:
+          description: 外語書寫程度；0=不拘、1=不懂、2=略通、3=中等、4=精通，並與 lang0 配對；null 表示未指定。
+          anyOf:
+          - enum:
+            - '0'
+            - '1'
+            - '2'
+            - '3'
+            - '4'
+            type: string
+          - type: 'null'
+          title: Lang Des04
+        lan0Rule:
+          description: 外語能力條件的組合邏輯；And 表示全部符合，Or 表示任一符合，null 表示未指定。
+          anyOf:
+          - enum:
+            - And
+            - Or
+            type: string
+          - type: 'null'
+          title: Lan0Rule
+        language1:
+          description: 方言能力的語言代碼陣列；0=不拘、1=台語、2=客語、3=粵語、4=上海話、5=原住民語，最多 10 項；空陣列或 null 表示未選取。
+          anyOf:
+          - items:
+              maxLength: 12
+              minLength: 1
+              pattern: ^\d+$
+              type: string
+            maxItems: 10
+            type: array
+          - type: 'null'
+          title: Language1
+        lang_des11:
+          description: 方言程度；0=不拘、1=略通、2=中等、3=精通，並與 language1 配對；null 表示未指定。
+          anyOf:
+          - enum:
+            - '0'
+            - '1'
+            - '2'
+            - '3'
+            type: string
+          - type: 'null'
+          title: Lang Des11
+        lan1Rule:
+          description: 方言能力條件的組合邏輯；And 表示全部符合，Or 表示任一符合，null 表示未指定。
+          anyOf:
+          - enum:
+            - And
+            - Or
+            type: string
+          - type: 'null'
+          title: Lan1Rule
+        carLisence:
+          description: 需持有駕照的代碼陣列，與 car 使用相同車種代碼，最多 10 項；空陣列或 null 表示未選取。
+          anyOf:
+          - items:
+              maxLength: 12
+              minLength: 1
+              pattern: ^\d+$
+              type: string
+            maxItems: 10
+            type: array
+          - type: 'null'
+          title: Carlisence
+        car:
+          description: 需有車輛的代碼陣列，與 carLisence 使用相同車種代碼，最多 10 項；空陣列或 null 表示未選取。
+          anyOf:
+          - items:
+              maxLength: 12
+              minLength: 1
+              pattern: ^\d+$
+              type: string
+            maxItems: 10
+            type: array
+          - type: 'null'
+          title: Car
+        carLisenceRule:
+          description: 駕照與車輛條件的組合邏輯；And 表示全部符合，Or 表示任一符合，null 表示未指定。
+          anyOf:
+          - enum:
+            - And
+            - Or
+            type: string
+          - type: 'null'
+          title: Carlisencerule
+        character:
+          description: 求職者身分類別代碼陣列，可複選；0=不拘且與其他身分互斥，其他代碼依身分類別表，最多 10 項；空陣列或 null 表示未選取。
+          anyOf:
+          - items:
+              maxLength: 12
+              minLength: 1
+              pattern: ^\d+$
+              type: string
+            maxItems: 10
+            type: array
+          - type: 'null'
+          title: Character
+        disabledType0:
+          description: 身障條件第 1 組的類別代碼，與同組 disabledLevel0 配對；null 表示未指定。
+          anyOf:
+          - maxLength: 12
+            minLength: 1
+            pattern: ^\d+$
+            type: string
+          - type: 'null'
+          title: Disabledtype0
+        disabledType1:
+          description: 身障條件第 2 組的類別代碼，與同組 disabledLevel1 配對；null 表示未指定。
+          anyOf:
+          - maxLength: 12
+            minLength: 1
+            pattern: ^\d+$
+            type: string
+          - type: 'null'
+          title: Disabledtype1
+        disabledType2:
+          description: 身障條件第 3 組的類別代碼，與同組 disabledLevel2 配對；null 表示未指定。
+          anyOf:
+          - maxLength: 12
+            minLength: 1
+            pattern: ^\d+$
+            type: string
+          - type: 'null'
+          title: Disabledtype2
+        disabledLevel0:
+          description: 身障條件第 1 組的等級；00=不拘、01=輕度、02=中度、03=重度、04=極重度，與同組 disabledType0 配對；null 表示未指定。
+          anyOf:
+          - enum:
+            - '00'
+            - '01'
+            - '02'
+            - '03'
+            - '04'
+            type: string
+          - type: 'null'
+          title: Disabledlevel0
+        disabledLevel1:
+          description: 身障條件第 2 組的等級；00=不拘、01=輕度、02=中度、03=重度、04=極重度，與同組 disabledType1 配對；null 表示未指定。
+          anyOf:
+          - enum:
+            - '00'
+            - '01'
+            - '02'
+            - '03'
+            - '04'
+            type: string
+          - type: 'null'
+          title: Disabledlevel1
+        disabledLevel2:
+          description: 身障條件第 3 組的等級；00=不拘、01=輕度、02=中度、03=重度、04=極重度，與同組 disabledType2 配對；null 表示未指定。
+          anyOf:
+          - enum:
+            - '00'
+            - '01'
+            - '02'
+            - '03'
+            - '04'
+            type: string
+          - type: 'null'
+          title: Disabledlevel2
+        disabledAids:
+          description: 是否要求持有身心障礙證明；'1' 表示需要，null 表示不限制。
+          anyOf:
+          - const: '1'
+            type: string
+          - type: 'null'
+          title: Disabledaids
+        mnd:
+          description: 研發替代役職務條件；'2' 表示啟用，null 表示不限制。
+          anyOf:
+          - const: '2'
+            type: string
+          - type: 'null'
+          title: Mnd
+        sex:
+          description: 性別限制；0=不拘、1=男性、2=女性，null 表示未指定。
+          anyOf:
+          - enum:
+            - '0'
+            - '1'
+            - '2'
+            type: string
+          - type: 'null'
+          title: Sex
+        marriage:
+          description: 婚姻狀況；0=不拘、1=單身、2=已婚，null 表示未指定。
+          anyOf:
+          - enum:
+            - '0'
+            - '1'
+            - '2'
+            type: string
+          - type: 'null'
+          title: Marriage
+        nationality:
+          description: 國籍限制；0=不拘、1=本國人士、2=外籍人士，null 表示未指定。
+          anyOf:
+          - enum:
+            - '0'
+            - '1'
+            - '2'
+            type: string
+          - type: 'null'
+          title: Nationality
+        tNationality:
+          description: 國籍身分的 tCodeNation 代碼陣列，最多 10 項；空陣列或 null 表示未選取。
+          anyOf:
+          - items:
+              maxLength: 12
+              minLength: 1
+              pattern: ^\d+$
+              type: string
+            maxItems: 10
+            type: array
+          - type: 'null'
+          title: Tnationality
+        tNationalityCht:
+          description: tNationality 各代碼的繁中顯示文字陣列，順序與 tNationality 對應，不作為搜尋代碼；空陣列或 null 表示未選取。
+          anyOf:
+          - items:
+              maxLength: 500
+              type: string
+            maxItems: 10
+            type: array
+          - type: 'null'
+          title: Tnationalitycht
+        studyAbroad:
+          description: 留學國家的 tCodeNation 代碼陣列，最多 10 項；空陣列或 null 表示未選取。
+          anyOf:
+          - items:
+              maxLength: 12
+              minLength: 1
+              pattern: ^\d+$
+              type: string
+            maxItems: 10
+            type: array
+          - type: 'null'
+          title: Studyabroad
+        studyAbroadCht:
+          description: studyAbroad 各代碼的繁中顯示文字陣列，順序與 studyAbroad 對應，不作為搜尋代碼；空陣列或 null 表示未選取。
+          anyOf:
+          - items:
+              maxLength: 500
+              type: string
+            maxItems: 10
+            type: array
+          - type: 'null'
+          title: Studyabroadcht
+        worktime:
+          description: 上班時段代碼陣列，可複選；1=日班、64=中班、2=晚班、4=大夜班、8=假日班、16=輪班、512=彈性上下班，最多 10 項；空陣列或 null 表示未選取。
+          anyOf:
+          - items:
+              maxLength: 12
+              minLength: 1
+              pattern: ^\d+$
+              type: string
+            maxItems: 10
+            type: array
+          - type: 'null'
+          title: Worktime
+        Vacation:
+          description: 休假類型代碼陣列，可複選；1=週休二日、4=排休、8=輪休、16=固定休六日，最多 10 項；空陣列或 null 表示未選取。
+          anyOf:
+          - items:
+              maxLength: 12
+              minLength: 1
+              pattern: ^\d+$
+              type: string
+            maxItems: 10
+            type: array
+          - type: 'null'
+          title: Vacation
+        ExpireList:
+          description: 可上班日代碼；-1=不拘、0=隨時、3=3 天內、14=2 週內、30=1 個月內、90=3 個月內，null 表示未指定。
+          anyOf:
+          - enum:
+            - '-1'
+            - '0'
+            - '3'
+            - '14'
+            - '30'
+            - '90'
+            type: string
+          - type: 'null'
+          title: Expirelist
+        Trade:
+          description: 理想行業的 tCodeTrade 代碼陣列，最多 10 項；空陣列或 null 表示未選取。
+          anyOf:
+          - items:
+              maxLength: 12
+              minLength: 1
+              pattern: ^\d+$
+              type: string
+            maxItems: 10
+            type: array
+          - type: 'null'
+          title: Trade
+        TradeCht:
+          description: Trade 各代碼的繁中顯示文字陣列，順序與 Trade 對應，不作為搜尋代碼；空陣列或 null 表示未選取。
+          anyOf:
+          - items:
+              maxLength: 500
+              type: string
+            maxItems: 10
+            type: array
+          - type: 'null'
+          title: Tradecht
+        onjob:
+          description: 在職狀況；0=未在職、1=在職中，null 表示不拘。
+          anyOf:
+          - enum:
+            - '0'
+            - '1'
+            type: string
+          - type: 'null'
+          title: Onjob
+        keyinC:
+          description: 中文打字速度門檻，以每分鐘字數的字串表示，產品選項為 0 至 150 且每級增加 10；null 表示未指定。
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Keyinc
+        keyinE:
+          description: 英文打字速度門檻，以每分鐘字數的字串表示，產品選項為 0 至 150 且每級增加 10；null 表示未指定。
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Keyine
+        military:
+          description: 兵役狀況代碼陣列，可複選；0=不拘、1=免役、2=未役、4=待役、8=役畢、16=屆退伍，最多 10 項；空陣列或 null 表示未選取。
+          anyOf:
+          - items:
+              maxLength: 12
+              minLength: 1
+              pattern: ^\d+$
+              type: string
+            maxItems: 10
+            type: array
+          - type: 'null'
+          title: Military
+        extraSrhUpload:
+          description: 履歷照片完整度；1=有照片、2=不拘，null 表示未指定。
+          anyOf:
+          - enum:
+            - '1'
+            - '2'
+            type: string
+          - type: 'null'
+          title: Extrasrhupload
+        extraSrhMemoir:
+          description: 履歷自傳完整度；1=有自傳、2=不拘，null 表示未指定。
+          anyOf:
+          - enum:
+            - '1'
+            - '2'
+            type: string
+          - type: 'null'
+          title: Extrasrhmemoir
+        extraSrhTest:
+          description: 履歷測評完整度；1=有九大職能星測評、2=不拘，null 表示未指定。
+          anyOf:
+          - enum:
+            - '1'
+            - '2'
+            type: string
+          - type: 'null'
+          title: Extrasrhtest
+        start_day:
+          description: 履歷更新時間的起始日期，使用西元年/月/日，與 close_day 組成起訖區間；null 表示未指定。
+          anyOf:
+          - maxLength: 500
+            type: string
+          - type: 'null'
+          title: Start Day
+        close_day:
+          description: 履歷更新時間的結束日期，使用西元年/月/日，與 start_day 組成起訖區間；null 表示未指定。
+          anyOf:
+          - maxLength: 500
+            type: string
+          - type: 'null'
+          title: Close Day
+        startol_day:
+          description: 求職者最後上線時間的起始日期，使用西元年/月/日，與 closeol_day 組成起訖區間；null 表示未指定。
+          anyOf:
+          - maxLength: 500
+            type: string
+          - type: 'null'
+          title: Startol Day
+        closeol_day:
+          description: 求職者最後上線時間的結束日期，使用西元年/月/日，與 startol_day 組成起訖區間；null 表示未指定。
+          anyOf:
+          - maxLength: 500
+            type: string
+          - type: 'null'
+          title: Closeol Day
+        Days:
+          description: 日期篩選類型；1=不拘、2=使用 start_day 與 close_day 的履歷更新區間、3=使用 startol_day 與 closeol_day 的最後上線區間，null 表示未指定。
+          anyOf:
+          - enum:
+            - '1'
+            - '2'
+            - '3'
+            type: string
+          - type: 'null'
+          title: Days
+        corp_organ:
+          description: 全文檢索關鍵字，用於搜尋學經歷、專長、電腦證照、自傳與理想職稱。
+          maxLength: 500
+          title: Corp Organ
+          type: string
+        dutyVal:
+          description: 職務類別的 tCodeDutyNM 代碼陣列，最多 10 項；此非 nullable 欄位以空陣列表示未選取。
+          items:
+            maxLength: 12
+            minLength: 1
+            pattern: ^\d+$
+            type: string
+          maxItems: 10
+          title: Dutyval
+          type: array
+        dutyValCht:
+          description: dutyVal 各代碼的繁中顯示文字陣列，順序與 dutyVal 對應，不作為搜尋代碼；空陣列或 null 表示未選取。
+          anyOf:
+          - items:
+              maxLength: 500
+              type: string
+            maxItems: 10
+            type: array
+          - type: 'null'
+          title: Dutyvalcht
+        cityVal:
+          description: 工作地點的 tCodeCity 代碼陣列，最多 10 項；此非 nullable 欄位以空陣列表示未選取。
+          items:
+            maxLength: 12
+            minLength: 1
+            pattern: ^\d+$
+            type: string
+          maxItems: 10
+          title: Cityval
+          type: array
+        cityValCht:
+          description: cityVal 各代碼的繁中顯示文字陣列，順序與 cityVal 對應，不作為搜尋代碼；空陣列或 null 表示未選取。
+          anyOf:
+          - items:
+              maxLength: 500
+              type: string
+            maxItems: 10
+            type: array
+          - type: 'null'
+          title: Cityvalcht
+        liveVal:
+          description: 居住地點的 tCodeCity 代碼陣列，最多 10 項；此非 nullable 欄位以空陣列表示未選取。
+          items:
+            maxLength: 12
+            minLength: 1
+            pattern: ^\d+$
+            type: string
+          maxItems: 10
+          title: Liveval
+          type: array
+        liveValCht:
+          description: liveVal 各代碼的繁中顯示文字陣列，順序與 liveVal 對應，不作為搜尋代碼；空陣列或 null 表示未選取。
+          anyOf:
+          - items:
+              maxLength: 500
+              type: string
+            maxItems: 10
+            type: array
+          - type: 'null'
+          title: Livevalcht
+        majorVal:
+          description: 科系類別的 tCodeMajor 代碼陣列，最多 10 項；此非 nullable 欄位以空陣列表示未選取。
+          items:
+            maxLength: 12
+            minLength: 1
+            pattern: ^\d+$
+            type: string
+          maxItems: 10
+          title: Majorval
+          type: array
+        majorValCht:
+          description: majorVal 各代碼的繁中顯示文字陣列，順序與 majorVal 對應，不作為搜尋代碼；空陣列或 null 表示未選取。
+          anyOf:
+          - items:
+              maxLength: 500
+              type: string
+            maxItems: 10
+            type: array
+          - type: 'null'
+          title: Majorvalcht
+        grade:
+          description: 最高學歷代碼；0=不拘、1=國小或國中、2=高中職、3=專科、4=大學、5=碩士、6=博士。
+          enum:
+          - '0'
+          - '1'
+          - '2'
+          - '3'
+          - '4'
+          - '5'
+          - '6'
+          title: Grade
+          type: string
+        designateGrade:
+          description: 學歷限定方式；0=以上、1=以上畢業、2=限定此學歷、3=限定此學歷畢業、4=以下。
+          enum:
+          - '0'
+          - '1'
+          - '2'
+          - '3'
+          - '4'
+          title: Designategrade
+          type: string
+        age0:
+          description: 起始年齡，以數字字串表示；0=不拘，產品選項為 16 至 80 歲，並與 age1 組成範圍。
+          title: Age0
+          type: string
+        age1:
+          description: 結束年齡，以數字字串表示；99=不拘，產品選項為 16 至 80 歲，並與 age0 組成範圍。
+          title: Age1
+          type: string
+        experience:
+          description: 總工作年資代碼字串；0=不拘、1=無工作經驗、2=0 至 1 年，依序至 31=29 至 30 年、32=30 年以上；null 表示未指定。
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Experience
+        experienceRestrict:
+          description: 總工作年資的限定方式；up=以上、down=以下、res=限定，搭配 experience 使用；null 表示未指定。
+          anyOf:
+          - enum:
+            - up
+            - down
+            - res
+            type: string
+          - type: 'null'
+          title: Experiencerestrict
+        expduty1:
+          description: 工作經歷條件第 1 組的 tCodeDutyNM 職務類別代碼，與同組 expduty1Cht、expyear1、expRestrict1 配對；null 表示未指定。
+          anyOf:
+          - maxLength: 12
+            minLength: 1
+            pattern: ^\d+$
+            type: string
+          - type: 'null'
+          title: Expduty1
+        expduty1Cht:
+          description: 工作經歷條件第 1 組 expduty1 的繁中顯示文字，與 expduty1 對應且不作為搜尋代碼；null 表示未指定。
+          anyOf:
+          - maxLength: 500
+            type: string
+          - type: 'null'
+          title: Expduty1Cht
+        expyear1:
+          description: 工作經歷條件第 1 組的年資代碼字串；0=不拘、1=半年、2=1 年，依序至 31=30 年，與同組 expduty1 配對；null 表示未指定。
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Expyear1
+        expRestrict1:
+          description: 工作經歷條件第 1 組的年資限定；0=以上、1=以下、2=限定，與同組 expduty1、expyear1 配對；null 表示未指定。
+          anyOf:
+          - enum:
+            - '0'
+            - '1'
+            - '2'
+            type: string
+          - type: 'null'
+          title: Exprestrict1
+        expduty2:
+          description: 工作經歷條件第 2 組的 tCodeDutyNM 職務類別代碼，與同組 expduty2Cht、expyear2、expRestrict2 配對；null 表示未指定。
+          anyOf:
+          - maxLength: 12
+            minLength: 1
+            pattern: ^\d+$
+            type: string
+          - type: 'null'
+          title: Expduty2
+        expduty2Cht:
+          description: 工作經歷條件第 2 組 expduty2 的繁中顯示文字，與 expduty2 對應且不作為搜尋代碼；null 表示未指定。
+          anyOf:
+          - maxLength: 500
+            type: string
+          - type: 'null'
+          title: Expduty2Cht
+        expyear2:
+          description: 工作經歷條件第 2 組的年資代碼字串；0=不拘、1=半年、2=1 年，依序至 31=30 年，與同組 expduty2 配對；null 表示未指定。
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Expyear2
+        expRestrict2:
+          description: 工作經歷條件第 2 組的年資限定；0=以上、1=以下、2=限定，與同組 expduty2、expyear2 配對；null 表示未指定。
+          anyOf:
+          - enum:
+            - '0'
+            - '1'
+            - '2'
+            type: string
+          - type: 'null'
+          title: Exprestrict2
+        expduty3:
+          description: 工作經歷條件第 3 組的 tCodeDutyNM 職務類別代碼，與同組 expduty3Cht、expyear3、expRestrict3 配對；null 表示未指定。
+          anyOf:
+          - maxLength: 12
+            minLength: 1
+            pattern: ^\d+$
+            type: string
+          - type: 'null'
+          title: Expduty3
+        expduty3Cht:
+          description: 工作經歷條件第 3 組 expduty3 的繁中顯示文字，與 expduty3 對應且不作為搜尋代碼；null 表示未指定。
+          anyOf:
+          - maxLength: 500
+            type: string
+          - type: 'null'
+          title: Expduty3Cht
+        expyear3:
+          description: 工作經歷條件第 3 組的年資代碼字串；0=不拘、1=半年、2=1 年，依序至 31=30 年，與同組 expduty3 配對；null 表示未指定。
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Expyear3
+        expRestrict3:
+          description: 工作經歷條件第 3 組的年資限定；0=以上、1=以下、2=限定，與同組 expduty3、expyear3 配對；null 表示未指定。
+          anyOf:
+          - enum:
+            - '0'
+            - '1'
+            - '2'
+            type: string
+          - type: 'null'
+          title: Exprestrict3
+        expduty4:
+          description: 工作經歷條件第 4 組的 tCodeDutyNM 職務類別代碼，與同組 expduty4Cht、expyear4、expRestrict4 配對；null 表示未指定。
+          anyOf:
+          - maxLength: 12
+            minLength: 1
+            pattern: ^\d+$
+            type: string
+          - type: 'null'
+          title: Expduty4
+        expduty4Cht:
+          description: 工作經歷條件第 4 組 expduty4 的繁中顯示文字，與 expduty4 對應且不作為搜尋代碼；null 表示未指定。
+          anyOf:
+          - maxLength: 500
+            type: string
+          - type: 'null'
+          title: Expduty4Cht
+        expyear4:
+          description: 工作經歷條件第 4 組的年資代碼字串；0=不拘、1=半年、2=1 年，依序至 31=30 年，與同組 expduty4 配對；null 表示未指定。
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Expyear4
+        expRestrict4:
+          description: 工作經歷條件第 4 組的年資限定；0=以上、1=以下、2=限定，與同組 expduty4、expyear4 配對；null 表示未指定。
+          anyOf:
+          - enum:
+            - '0'
+            - '1'
+            - '2'
+            type: string
+          - type: 'null'
+          title: Exprestrict4
+        expduty5:
+          description: 工作經歷條件第 5 組的 tCodeDutyNM 職務類別代碼，與同組 expduty5Cht、expyear5、expRestrict5 配對；null 表示未指定。
+          anyOf:
+          - maxLength: 12
+            minLength: 1
+            pattern: ^\d+$
+            type: string
+          - type: 'null'
+          title: Expduty5
+        expduty5Cht:
+          description: 工作經歷條件第 5 組 expduty5 的繁中顯示文字，與 expduty5 對應且不作為搜尋代碼；null 表示未指定。
+          anyOf:
+          - maxLength: 500
+            type: string
+          - type: 'null'
+          title: Expduty5Cht
+        expyear5:
+          description: 工作經歷條件第 5 組的年資代碼字串；0=不拘、1=半年、2=1 年，依序至 31=30 年，與同組 expduty5 配對；null 表示未指定。
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Expyear5
+        expRestrict5:
+          description: 工作經歷條件第 5 組的年資限定；0=以上、1=以下、2=限定，與同組 expduty5、expyear5 配對；null 表示未指定。
+          anyOf:
+          - enum:
+            - '0'
+            - '1'
+            - '2'
+            type: string
+          - type: 'null'
+          title: Exprestrict5
+        expduty6:
+          description: 工作經歷條件第 6 組的 tCodeDutyNM 職務類別代碼，與同組 expduty6Cht、expyear6、expRestrict6 配對；null 表示未指定。
+          anyOf:
+          - maxLength: 12
+            minLength: 1
+            pattern: ^\d+$
+            type: string
+          - type: 'null'
+          title: Expduty6
+        expduty6Cht:
+          description: 工作經歷條件第 6 組 expduty6 的繁中顯示文字，與 expduty6 對應且不作為搜尋代碼；null 表示未指定。
+          anyOf:
+          - maxLength: 500
+            type: string
+          - type: 'null'
+          title: Expduty6Cht
+        expyear6:
+          description: 工作經歷條件第 6 組的年資代碼字串；0=不拘、1=半年、2=1 年，依序至 31=30 年，與同組 expduty6 配對；null 表示未指定。
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Expyear6
+        expRestrict6:
+          description: 工作經歷條件第 6 組的年資限定；0=以上、1=以下、2=限定，與同組 expduty6、expyear6 配對；null 表示未指定。
+          anyOf:
+          - enum:
+            - '0'
+            - '1'
+            - '2'
+            type: string
+          - type: 'null'
+          title: Exprestrict6
+      required:
+      - ai_query
+      - corp_position
+      - expdutyAnd
+      - position0
+      - exp2duty
+      - exp2dutyCht
+      - school
+      - useGradeupDate
+      - corp_tradeVal
+      - corp_tradeValCht
+      - CorpStaff
+      - skill
+      - skillCht
+      - skillItem
+      - certify
+      - certifyCht
+      - certifyItem
+      - lang0
+      - lang_des01
+      - lang_des02
+      - lang_des03
+      - lang_des04
+      - lan0Rule
+      - language1
+      - lang_des11
+      - lan1Rule
+      - carLisence
+      - car
+      - carLisenceRule
+      - character
+      - disabledType0
+      - disabledType1
+      - disabledType2
+      - disabledLevel0
+      - disabledLevel1
+      - disabledLevel2
+      - disabledAids
+      - mnd
+      - sex
+      - marriage
+      - nationality
+      - tNationality
+      - tNationalityCht
+      - studyAbroad
+      - studyAbroadCht
+      - worktime
+      - Vacation
+      - ExpireList
+      - Trade
+      - TradeCht
+      - onjob
+      - keyinC
+      - keyinE
+      - military
+      - extraSrhUpload
+      - extraSrhMemoir
+      - extraSrhTest
+      - start_day
+      - close_day
+      - startol_day
+      - closeol_day
+      - Days
+      - corp_organ
+      - dutyVal
+      - dutyValCht
+      - cityVal
+      - cityValCht
+      - liveVal
+      - liveValCht
+      - majorVal
+      - majorValCht
+      - grade
+      - designateGrade
+      - age0
+      - age1
+      - experience
+      - experienceRestrict
+      - expduty1
+      - expduty1Cht
+      - expyear1
+      - expRestrict1
+      - expduty2
+      - expduty2Cht
+      - expyear2
+      - expRestrict2
+      - expduty3
+      - expduty3Cht
+      - expyear3
+      - expRestrict3
+      - expduty4
+      - expduty4Cht
+      - expyear4
+      - expRestrict4
+      - expduty5
+      - expduty5Cht
+      - expyear5
+      - expRestrict5
+      - expduty6
+      - expduty6Cht
+      - expyear6
+      - expRestrict6
+      title: SearchTemplate
+      type: object
+    AnalyzeMetadata:
+      additionalProperties: false
+      description: '`/v2/analyze` 回應的追蹤與自然語言解析中繼資料，用來辨識請求、實際輸入模式及解析診斷。'
+      properties:
+        request_id:
+          description: 此次分析請求的非空追蹤識別字，可用於對照日誌與錯誤回應。
+          minLength: 1
+          title: Request Id
+          type: string
+        client_id:
+          description: 原分析請求提供的呼叫端識別字，用於稽核與追蹤，不作為授權依據。
+          maxLength: 64
+          minLength: 1
+          pattern: ^[A-Za-z0-9._-]+$
+          title: Client Id
+          type: string
+        input_mode:
+          description: 實際採用的輸入模式：`text` 為純文字、`url` 為職缺網址、`url_text` 為網址加補充文字。
+          enum:
+          - text
+          - url
+          - url_text
+          title: Input Mode
+          type: string
+        query_used:
+          description: 分析流程實際使用的查詢文字；可能是原始文字，或由支援的職缺網址擷取並整理後的內容。
+          title: Query Used
+          type: string
+        nlq:
+          description: 自然語言解析的狀態，以及已套用、忽略或仍缺少的條件診斷。
+          $ref: '#/components/schemas/NLQDiagnostics'
+      required:
+      - request_id
+      - client_id
+      - input_mode
+      - query_used
+      - nlq
+      title: AnalyzeMetadata
+      type: object
+    SearchMetadata:
+      additionalProperties: false
+      description: '`/v2/search` 回應的追蹤與搜尋診斷中繼資料，包含查詢建議及排序策略資訊。'
+      properties:
+        request_id:
+          description: 此次搜尋請求的非空追蹤識別字，可用於對照日誌與錯誤回應。
+          minLength: 1
+          title: Request Id
+          type: string
+        client_id:
+          description: 原搜尋請求提供的呼叫端識別字，用於稽核與追蹤，不作為授權依據。
+          maxLength: 64
+          minLength: 1
+          pattern: ^[A-Za-z0-9._-]+$
+          title: Client Id
+          type: string
+        suggestion:
+          description: 查詢建議的狀態、建議文字、原因及缺漏資訊診斷。
+          $ref: '#/components/schemas/QuerySuggestion'
+        ranking:
+          description: 此次搜尋使用的排序策略及是否採用備援排序。
+          $ref: '#/components/schemas/RankingDiagnostics'
+      required:
+      - request_id
+      - client_id
+      - suggestion
+      - ranking
+      title: SearchMetadata
+      type: object
+    NLQDiagnostics:
+      additionalProperties: false
+      description: '`/v2/analyze` 的自然語言解析診斷；除 `status` 外的陣列皆為選填，僅在回應提供時解釋解析結果。'
+      properties:
+        status:
+          description: 解析狀態：`parsed` 表示成功解析、`partial` 表示僅解析部分條件、`fallback` 表示改用詞彙式備援處理。
+          enum:
+          - parsed
+          - partial
+          - fallback
+          title: Status
+          type: string
+        applied_filters:
+          description: 回應有提供時，列出成功套用的條件；空陣列表示沒有可列出的已套用條件。
+          items:
+            type: string
+          title: Applied Filters
+          type: array
+        ignored_filters:
+          description: 回應有提供時，列出未採用的條件；空陣列表示沒有可列出的忽略條件。
+          items:
+            type: string
+          title: Ignored Filters
+          type: array
+        missing_information:
+          description: 回應有提供時，列出完成解析仍缺少的資訊；空陣列表示沒有可列出的缺漏資訊。
+          items:
+            type: string
+          title: Missing Information
+          type: array
+      required:
+      - status
+      title: NLQDiagnostics
+      type: object
+    QuerySuggestion:
+      additionalProperties: false
+      description: '`/v2/search` 中繼資料的查詢建議診斷，說明是否需要且能否產生補充查詢，以及仍缺少的資訊。'
+      properties:
+        status:
+          description: 建議狀態：`not_needed` 表示不需要建議、`generated` 表示已產生建議、`unavailable` 表示目前無法提供建議。
+          enum:
+          - not_needed
+          - generated
+          - unavailable
+          title: Status
+          type: string
+        suggested_query:
+          description: 產生的建議查詢文字；沒有產生建議時為 `null`，且此選填欄位也可能不提供。
+          anyOf:
+          - type: string
+          - type: 'null'
+          default: null
+          title: Suggested Query
+        reason:
+          description: 建議狀態或建議內容的可讀原因；沒有可說明原因時為 `null`，且此選填欄位也可能不提供。
+          anyOf:
+          - type: string
+          - type: 'null'
+          default: null
+          title: Reason
+        missing_information:
+          description: 產生更精確查詢仍缺少的資訊；空陣列表示沒有可列出的缺漏資訊，且此選填欄位可能不提供。
+          items:
+            type: string
+          title: Missing Information
+          type: array
+      required:
+      - status
+      title: QuerySuggestion
+      type: object
+    RankingDiagnostics:
+      additionalProperties: false
+      description: '`/v2/search` 中繼資料的排序診斷，指出此次結果採用的排序策略及是否啟用備援排序。'
+      properties:
+        strategy:
+          description: 此次搜尋採用的排序策略識別字或名稱；可依實際執行策略而異。
+          title: Strategy
+          type: string
+        fallback_used:
+          description: 是否因主要排序不可用或不適用而使用備援排序；`true` 表示已使用，`false` 表示未使用。
+          title: Fallback Used
+          type: boolean
+      required:
+      - strategy
+      - fallback_used
+      title: RankingDiagnostics
+      type: object
+    HealthResponse:
+      additionalProperties: false
+      description: '`GET /health` 的健康檢查成功回應，表示 API 可正常回應健康探測。'
+      examples:
+      - status: ok
+      properties:
+        status:
+          description: 固定為 `ok`，表示健康檢查成功。
+          const: ok
+          default: ok
+          title: Status
+          type: string
+      title: HealthResponse
+      type: object
+    ErrorResponse:
+      additionalProperties: false
+      description: 各 API 錯誤狀態共用的回應封套，將錯誤代碼、訊息與請求追蹤識別字收納於 `error`。
+      examples:
+      - error:
+          code: INVALID_QUERY
+          message: 查詢格式不正確
+          request_id: 18da32d6-6450-4ef3-91d0-81e7780b15ba
+      properties:
+        error:
+          description: 此次失敗的機器可讀代碼、可讀訊息及請求追蹤識別字。
+          $ref: '#/components/schemas/ErrorDetail'
+      required:
+      - error
+      title: ErrorResponse
+      type: object
+    ErrorDetail:
+      additionalProperties: false
+      description: 統一錯誤回應中的詳細內容，提供機器可讀代碼、使用者可讀訊息及請求追蹤識別字。
+      properties:
+        code:
+          description: 機器可讀的錯誤代碼字串；實際值依發生的錯誤情境而定。
+          title: Code
+          type: string
+        message:
+          description: 說明錯誤原因的可讀訊息。
+          title: Message
+          type: string
+        request_id:
+          description: 發生錯誤之請求的非空追蹤識別字，可用於對照日誌。
+          minLength: 1
+          title: Request Id
+          type: string
+      required:
+      - code
+      - message
+      - request_id
+      title: ErrorDetail
+      type: object
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: x-api-key
+      description: 使用一組共用 API Gateway 金鑰。client_id 是稽核上下文，不是授權選擇器。
