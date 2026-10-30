@@ -11,7 +11,8 @@
 | 需求 | 用什麼 |
 | :--- | :--- |
 | 英文 cover letter | career-ops 的 `cover` 模式（`modes/cover.md`：JD gate、公司研究、語氣校準）；素材取自 `story-bank.md`，優先於 `cv.md`。本 skill 不重做 |
-| 中文自我推薦信（推薦函、應徵信） | 本檔＋範本 |
+| **104／平台應徵欄位的自我推薦信（150–300 字微型版）** | `career/skills/104coverletter/SKILL.md` |
+| 中文自我推薦信（A4 完整書信：Email、官網上傳） | 本檔＋範本 |
 
 ## 中文自我推薦信規格
 

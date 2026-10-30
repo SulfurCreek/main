@@ -1,12 +1,14 @@
 #!/usr/bin/env python3
-"""履歷機械掃描：可重複、不靠 LLM 判斷的指標。
+"""履歷機械掃描（v3 舊工具，v4 起單份模式不再輸出 score）：可重複、不靠 LLM 判斷的指標。
 用法：python3 scan.py <履歷.md>            # 單份
       python3 scan.py --pool <candidates 目錄>  # 對 50 份同儕池算分並檢查與品質分級的相關
 """
 import re, sys, glob, os
 
 BUZZ = ['賦能','驅動','顯著','無縫','指數級','戰略性','卓越','締造','擘劃','結果導向','充滿熱情','熱情積極',
-        '高效','端到端','全生命週期','創新解決方案','數據驅動','跨職能','生態系','高可用','低延遲','成功交付']
+        '高效','端到端','全生命週期','創新解決方案','數據驅動','跨職能','生態系','高可用','低延遲','成功交付',
+        '致力於','深入探討','扮演關鍵角色','成功實現了','無縫接軌','編織出','應用程式接口','項目','優化了運作',
+        'Delve','Tapestry','Navigated','Seamlessly','Testament to','Transformative','Spearheaded']
 JARGON = ['API','HMAC','SSOT','MECE','狀態機','契約','Timebox','Kanban','Waterfall','Cohort','p=','重放','限流',
           'PR/FAQ','UAT','RBAC','OAuth','Webhook','冪等','Kafka','MQTT','Kubernetes','gRPC','WebSocket','RAG','微服務','DevOps','CI/CD']
 SOFT = ['訪談','傾聽','說服','對齊','投票','致歉','道歉','帶','一對一','實習生','陪','回饋','客服','法務','稽核',
@@ -24,6 +26,7 @@ def metrics(text):
         baseline_ratio=round(baseline/n,2),
         duty_ratio=round(sum(1 for l in lines if DUTY.match(l.strip()))/n,2),
         buzz=sum(text.count(w) for w in BUZZ),
+        dash=text.count('—'),
         jargon=sum(text.count(w) for w in JARGON),
         soft=sum(text.count(w) for w in SOFT),
         chars=len(text),
@@ -63,4 +66,5 @@ def pool(d):
 if __name__=='__main__':
     if sys.argv[1]=='--pool': pool(sys.argv[2])
     else:
-        for k,v in metrics(open(sys.argv[1]).read()).items(): print(f'{k}: {v}')
+        for k,v in metrics(open(sys.argv[1]).read()).items():
+            if k != 'score': print(f'{k}: {v}')  # v4：不輸出總分（舊 v3 分數已廢，見 SKILL.md）
