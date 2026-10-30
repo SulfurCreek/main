@@ -9,3 +9,4 @@
 | 2026-10-27 | 奧丁丁（歐簿客科技） | 【R&D】OwlPay支付 - Product Manager（8enwh） | ZH＋EN（104 推薦信） | [`104/8enwh-奧丁丁.md`](104/8enwh-奧丁丁.md)（r1.1 方案 A；關聯 `../applications/8enwh.md`） | 〔待填〕 |
 | 2026-10-28 | 樂天國際商業銀行 | 專案管理(PM)_資訊部（7ytz4） | ZH（104 推薦信） | [`104/7ytz4-樂天銀行.md`](104/7ytz4-樂天銀行.md)（關聯 `../applications/7ytz4.md`） | 〔待填〕 |
 | 2026-10-29 | SHOPLINE（商線科技） | 【TPD0404】Product Manager (Checkout)（962f7） | ZH＋EN（104 推薦信） | [`104/962f7-SHOPLINE.md`](104/962f7-SHOPLINE.md)（方案 A，Codex 54b4387；關聯 `../applications/962f7.md`） | 〔待填〕 |
+| 2026-10-30 | 約會吧（新加坡商台灣分公司） | 【全新招募】[PP] 營運與系統專案經理 Operations & Systems PM（95swc） | ZH（104 推薦信） | [`104/95swc-約會吧.md`](104/95swc-約會吧.md)（Codex a300bea；關聯 `../applications/95swc.md`） | 〔待填〕 |
