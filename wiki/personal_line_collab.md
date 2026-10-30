@@ -1,6 +1,6 @@
 # 個人線協作規則：Career Move × 作品集網站助手 × Resume Writer
 
-> 適用兩個 session：**Career Move**（`session_017u5Po6SGpjD3iLBZ2VL2HH`，管內容）與 **作品集網站助手**（`session_01X5B4jtorqQNpioe46ePnFs`，管渲染）。
+> 適用兩個 session：**Career Move V2**（`session_01GZd3jsmQ814E2p3FSgvJWR`，2026-10-29 接手前任 `session_017u5Po6SGpjD3iLBZ2VL2HH`，管內容）與 **作品集網站助手**（`session_01X5B4jtorqQNpioe46ePnFs`，管渲染）。
 > 2026-10-20 起新增第三方 **Resume Writer**（OpenAI Codex session，不是 Claude Code，**沒有 session_id**，不受 `guard_career_scope.sh` 約束，只靠指示約束）：文字編輯者，讀 `career/` 的事實把履歷與求職文件寫順。詳見本檔 §7。
 > 共用分支 `claude/happy-lamport-ljis8c`（Resume Writer 用自己的分支，見 §7）。本檔只有 Repo Steward 能改。2026-10-05 起生效。
 
