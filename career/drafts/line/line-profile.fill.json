@@ -1,0 +1,161 @@
+{
+  "source": "career/drafts/line/line-profile.md",
+  "source_sha256": "e574c1d3db51615f0333a8c2a01ea42e865074b6b1bf435d2281170f7d3b5f18",
+  "steps": [
+    {
+      "step": 1,
+      "target_block": "basic",
+      "action": "replace_all",
+      "index": null,
+      "fields": {
+        "email": "kunhuainie@gmail.com",
+        "mobile_phone": "886-978-802-871",
+        "current_position_title": "Product Owner",
+        "current_employer": "1111 Job Bank (Global Chinese Co., Ltd.)",
+        "country": "215",
+        "address": "3F, No. 14, Lane 98, Huaide St., Beitou District",
+        "city": "Taipei"
+      }
+    },
+    {
+      "step": 2,
+      "target_block": "work_experience",
+      "action": "replace_row",
+      "index": 0,
+      "fields": {
+        "company": "1111 Job Bank (Global Chinese Co., Ltd.)",
+        "position_title": "Product Owner",
+        "employment_type": "1194",
+        "location": "Taipei City",
+        "start_date": "2022-08",
+        "end_date": ""
+      },
+      "description_bullets": [
+        "Product Owner of an employer-side recruitment system serving about 60,000 active paying employers (2026 Q3), covering job posting, applicant management and candidate outreach. Manage two direct-report product planners and coordinate engineering, design, sales and customer service.",
+        "Led requirements analysis and specification planning to ship about 70 major features by 2026 Q3 while ongoing service iterations and a full system overhaul competed for the same engineering resources; aligned stakeholders and secured sales buy-in before delivery.",
+        "Recovered undocumented account permissions and business rules for the employer-side recruitment system overhaul; 743 of 840 related client requests (88%) were resolved during the overhaul. Used hands-on testing and internal interviews, then coordinated phased replacement of legacy functions while keeping the existing back office, database and live service running.",
+        "Planned a unified messaging flow to address 199 client requests accumulated since 2021 (in development), consolidating two overlapping tools that scattered interview invitations between employers and job seekers.",
+        "In response to 55 client requests since 2020/12, planned group recruitment by department or branch. Defined access rules across accounts, job posts and resumes and defined legacy data migration rules, extending the original company-wide or individual-account data access.",
+        "Coordinated engineering and customer service to determine the impact of more than ten employer accounts hijacked in 2026/03–04. Designed and launched new-device OTP login verification (MFA) and an account-unlock flow. No similar account-takeover incidents were reported to customer service through 2026/10.",
+        "To lower the barrier to job posting and improve candidate matching, led the launch of AI-generated job descriptions (2024/10) and AI talent recommendations (2025/11), and guided direct-report product planners in launching company-profile generation (2026/06). Set labor-law compliance acceptance criteria requiring employer confirmation before publishing, and refined recommendation rules using employers' actual selections and feedback.",
+        "Consolidated cross-team changes to 15 category code tables starting 2026/04 to keep categories consistent across job posting, resume creation, search filtering and matching. These tables cover job roles, certifications, skills and benefits and form the platform's shared foundation; consolidation addressed fragmentation as the business expanded. Used an AI Agent to organize mappings and handoff records, and guided colleagues in using AI to map hundreds of job categories.",
+        "Raised the 30-day case closure rate for enterprise clients' product issues and suggestions from 52% to 79% (2024/11–2025/10 vs. 2025/11–2026/09/20, for cases submitted at least 30 days earlier). To support paying employers' satisfaction and renewals, prioritized client cases, handled key cases directly and assigned others to direct-report product planners, building the product team's delivery credibility with sales."
+      ],
+      "description_text": "• Product Owner of an employer-side recruitment system serving about 60,000 active paying employers (2026 Q3), covering job posting, applicant management and candidate outreach. Manage two direct-report product planners and coordinate engineering, design, sales and customer service.\n• Led requirements analysis and specification planning to ship about 70 major features by 2026 Q3 while ongoing service iterations and a full system overhaul competed for the same engineering resources; aligned stakeholders and secured sales buy-in before delivery.\n• Recovered undocumented account permissions and business rules for the employer-side recruitment system overhaul; 743 of 840 related client requests (88%) were resolved during the overhaul. Used hands-on testing and internal interviews, then coordinated phased replacement of legacy functions while keeping the existing back office, database and live service running.\n• Planned a unified messaging flow to address 199 client requests accumulated since 2021 (in development), consolidating two overlapping tools that scattered interview invitations between employers and job seekers.\n• In response to 55 client requests since 2020/12, planned group recruitment by department or branch. Defined access rules across accounts, job posts and resumes and defined legacy data migration rules, extending the original company-wide or individual-account data access.\n• Coordinated engineering and customer service to determine the impact of more than ten employer accounts hijacked in 2026/03–04. Designed and launched new-device OTP login verification (MFA) and an account-unlock flow. No similar account-takeover incidents were reported to customer service through 2026/10.\n• To lower the barrier to job posting and improve candidate matching, led the launch of AI-generated job descriptions (2024/10) and AI talent recommendations (2025/11), and guided direct-report product planners in launching company-profile generation (2026/06). Set labor-law compliance acceptance criteria requiring employer confirmation before publishing, and refined recommendation rules using employers' actual selections and feedback.\n• Consolidated cross-team changes to 15 category code tables starting 2026/04 to keep categories consistent across job posting, resume creation, search filtering and matching. These tables cover job roles, certifications, skills and benefits and form the platform's shared foundation; consolidation addressed fragmentation as the business expanded. Used an AI Agent to organize mappings and handoff records, and guided colleagues in using AI to map hundreds of job categories.\n• Raised the 30-day case closure rate for enterprise clients' product issues and suggestions from 52% to 79% (2024/11–2025/10 vs. 2025/11–2026/09/20, for cases submitted at least 30 days earlier). To support paying employers' satisfaction and renewals, prioritized client cases, handled key cases directly and assigned others to direct-report product planners, building the product team's delivery credibility with sales."
+    },
+    {
+      "step": 3,
+      "target_block": "work_experience",
+      "action": "replace_row",
+      "index": 1,
+      "fields": {
+        "company": "Sunfun Info Co., Ltd.",
+        "position_title": "Product Manager",
+        "employment_type": "1194",
+        "location": "Taipei City",
+        "start_date": "2018-01",
+        "end_date": "2022-03"
+      },
+      "description_bullets": [
+        "Managed JustDating, the company's flagship and highest-grossing subscription dating app. According to public company information, it had long ranked No. 1 on Taiwan's dating app revenue chart. Also managed Peach, a subscription content app, and KOOL, an influencer-matching platform. Planned user flows, subscriptions and payment mechanisms with engineering, design, marketing and overseas payment teams. Held partnership discussions with a European payment provider in English over video calls.",
+        "When the App Store removed JustDating, led Juicy's launch on the same backend to retain existing users and revenue; after Juicy was removed, led JustDating's relaunch. Across both launch and marketing campaigns directing users to the app, male daily active users (DAU) rose from about 3,200 to 12,500 in 6 weeks (2020/01–02) and from about 1,500 to 12,000 in 12 weeks (2020/04–06), reflecting overall product performance.",
+        "With no direct competitor to benchmark against, planned KOOL from zero to one by interviewing merchants' marketing teams about finding influencers on Instagram. Adapted listing and matching mechanics from Airbnb and dating apps, and mapped invitation, application and messaging flows in Miro. After the project kicked off in 2018/05, coordinated product, design and engineering to launch across iOS, Android and web. The platform accumulated about 16,000 influencer profiles and over 80,000 campaign applications in six months. Led the monetization rollout covering VIP subscriptions, a points paywall and featured exposure.",
+        "Led the design of the Malaysia iOS pricing experiment across original, discounted and restored-price phases (2021/05–08, 21 days each), using Android as the control group, with its price unchanged. The price cut raised iOS revenue excluding renewals by 5% (while Android fell 18%). Restoring the original price reduced iOS revenue excluding renewals by 65% versus the original-price phase. The company owner adopted the lower price based on the experiment results.",
+        "Raised web payments' share of revenue for Peach, a subscription content app, from 24% to over 80% (2020/11–2021/09) by planning the shift from in-app purchases to web payments and coordinating integration with a payment provider in Taiwan."
+      ],
+      "description_text": "• Managed JustDating, the company's flagship and highest-grossing subscription dating app. According to public company information, it had long ranked No. 1 on Taiwan's dating app revenue chart. Also managed Peach, a subscription content app, and KOOL, an influencer-matching platform. Planned user flows, subscriptions and payment mechanisms with engineering, design, marketing and overseas payment teams. Held partnership discussions with a European payment provider in English over video calls.\n• When the App Store removed JustDating, led Juicy's launch on the same backend to retain existing users and revenue; after Juicy was removed, led JustDating's relaunch. Across both launch and marketing campaigns directing users to the app, male daily active users (DAU) rose from about 3,200 to 12,500 in 6 weeks (2020/01–02) and from about 1,500 to 12,000 in 12 weeks (2020/04–06), reflecting overall product performance.\n• With no direct competitor to benchmark against, planned KOOL from zero to one by interviewing merchants' marketing teams about finding influencers on Instagram. Adapted listing and matching mechanics from Airbnb and dating apps, and mapped invitation, application and messaging flows in Miro. After the project kicked off in 2018/05, coordinated product, design and engineering to launch across iOS, Android and web. The platform accumulated about 16,000 influencer profiles and over 80,000 campaign applications in six months. Led the monetization rollout covering VIP subscriptions, a points paywall and featured exposure.\n• Led the design of the Malaysia iOS pricing experiment across original, discounted and restored-price phases (2021/05–08, 21 days each), using Android as the control group, with its price unchanged. The price cut raised iOS revenue excluding renewals by 5% (while Android fell 18%). Restoring the original price reduced iOS revenue excluding renewals by 65% versus the original-price phase. The company owner adopted the lower price based on the experiment results.\n• Raised web payments' share of revenue for Peach, a subscription content app, from 24% to over 80% (2020/11–2021/09) by planning the shift from in-app purchases to web payments and coordinating integration with a payment provider in Taiwan."
+    },
+    {
+      "step": 4,
+      "target_block": "work_experience",
+      "action": "replace_row",
+      "index": 2,
+      "fields": {
+        "company": "Sweet Tech Ltd.",
+        "position_title": "Associate Product Manager",
+        "employment_type": "1194",
+        "location": "Taipei City",
+        "start_date": "2016-06",
+        "end_date": "2018-01"
+      },
+      "description_bullets": [
+        "Maintained and improved SweetRing, a dating app operating across 7 markets (US, Mexico, Brazil, Indonesia, Malaysia, Japan, Korea), including its question-and-answer feature. Also took part in localization and payment planning.",
+        "Coordinated localization across the 7 markets, translating the app's Chinese UI text into English as the shared baseline. Then worked with up to about 10 foreign interns in English-only meetings to translate it into local languages and run local fan pages.",
+        "Expanded payment options in Indonesia and Thailand by bringing in CodaPay, a Southeast Asian payment provider, and opening 8 payment channels (carrier billing, ATM, e-wallets, convenience stores, bank transfer). Compared fees and settlement terms, estimated net revenue, proposed 7-, 30- and 90-day subscription plans, and coordinated delivery of the Android top-up page."
+      ],
+      "description_text": "• Maintained and improved SweetRing, a dating app operating across 7 markets (US, Mexico, Brazil, Indonesia, Malaysia, Japan, Korea), including its question-and-answer feature. Also took part in localization and payment planning.\n• Coordinated localization across the 7 markets, translating the app's Chinese UI text into English as the shared baseline. Then worked with up to about 10 foreign interns in English-only meetings to translate it into local languages and run local fan pages.\n• Expanded payment options in Indonesia and Thailand by bringing in CodaPay, a Southeast Asian payment provider, and opening 8 payment channels (carrier billing, ATM, e-wallets, convenience stores, bank transfer). Compared fees and settlement terms, estimated net revenue, proposed 7-, 30- and 90-day subscription plans, and coordinated delivery of the Android top-up page."
+    },
+    {
+      "step": 5,
+      "target_block": "work_experience",
+      "action": "replace_row",
+      "index": 3,
+      "fields": {
+        "company": "Newegg Taiwan",
+        "position_title": "Translation Intern",
+        "employment_type": "1195",
+        "location": "Taipei City",
+        "start_date": "2014-08",
+        "end_date": "2015-01"
+      },
+      "description_bullets": [
+        "Translated and proofread English-to-Chinese product listings for Newegg.com."
+      ],
+      "description_text": "• Translated and proofread English-to-Chinese product listings for Newegg.com."
+    },
+    {
+      "step": 6,
+      "target_block": "education",
+      "action": "replace_row",
+      "index": 0,
+      "fields": {
+        "degree_name": "International Business",
+        "type_of_degree": "21",
+        "degree_status": "1172",
+        "university": "Tamkang University",
+        "start_date": "2010-09",
+        "end_date": "2014-06"
+      }
+    },
+    {
+      "step": 7,
+      "target_block": "education",
+      "action": "replace_row",
+      "index": 1,
+      "fields": {
+        "degree_name": "Business (Exchange Program)",
+        "type_of_degree": "21",
+        "degree_status": "2559",
+        "university": "California State University, Sacramento",
+        "start_date": "2011-01",
+        "end_date": "2012-06"
+      }
+    },
+    {
+      "step": 8,
+      "target_block": "languages",
+      "action": "replace_row",
+      "index": 0,
+      "fields": {
+        "language": "10",
+        "written": "1174",
+        "spoken": "1174",
+        "reading": "1174",
+        "listening": "1174"
+      }
+    },
+    {
+      "step": 9,
+      "target_block": "languages",
+      "action": "replace_row",
+      "index": 1,
+      "fields": {
+        "language": "14",
+        "written": "33",
+        "spoken": "33",
+        "reading": "33",
+        "listening": "33"
+      }
+    }
+  ]
+}
