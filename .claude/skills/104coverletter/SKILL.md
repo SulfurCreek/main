@@ -101,10 +101,12 @@ description: 針對指定的 104 職缺產生「104 自我推薦信」草稿（2
 
 ## 6. 潤飾者是 Resume Writer（Codex）時
 
-- 讀草稿：`git show origin/claude/happy-lamport-ljis8c:career/letters/104/<code>-<公司>-draft.md`；依草稿檔頭規則與本檔 §2–§3 潤飾。
-- **讀職缺與公司**：`career/review-panel/jd/full/<code>.md`（JD 全文或重點）、`career/review-panel/jd/routing.tsv`（公司、職稱、年資）、必要時 `career/targets/jobs.md`、`targets/companies.md`。只用來對齊語意與用詞；**不新增對公司的觀察**，JD 檔中標「未查證」的公司推測不得使用。
-- 寫到：`career/drafts/codex/letters/<code>-<公司>-polished.md`（整封＋檔末〈修改紀錄〉＋字數／行數）；推 `codex/resume-writer`。
-- 不改：公司名、職缺名、數字、日期、限定詞、條列點數；不新增事實或對公司的觀察。事實疑問寫 `drafts/codex/QUESTIONS.md`。
-- 交付後告訴本人檔名；Career Move 依 §5 核對、定稿，並登錄 `career/applications/<code>.md`。
-- 有多個方案時，潤飾稿須寫明本人選用哪一案；Career Move 只把選用案正文寫入定稿與 applications 檔。
+> 與 `career/CAREER_START_HERE.md` §3 一致：Codex **不讀** library、applications、SKILL.md；上游草稿（指定 SHA）與其內嵌的鎖定內容是唯一事實基準。
 
+- **Claude 編譯上游**：由 Claude 讀本 skill、完整 JD、library 與選用履歷，把 Codex 需要的規則（字數、結尾鐵律、禁用詞、`voice-en.md` 要點）、職缺名與公司名、JD 對位用語、必須保留的事實／數字／限定詞，全部**寫進草稿檔頭與正文註解**（`LOCK_ENTITIES`／`LOCKED`）。JD 不另交給 Codex 讀；需要 Codex 對齊的用語由 Claude 摘入草稿。
+- **交接指定完整 SHA**：Codex 讀 `git show <完整 SHA>:career/letters/104/<code>-<公司>-draft.md`（分支 `claude/happy-lamport-ljis8c`），不用「最新」；更換基底須記錄新 SHA 與原因。
+- 寫到：`career/drafts/codex/letters/<code>-<公司>-polished.md`（整封＋檔末〈修改紀錄〉＋字數／行數＋盲審原始挑刺與三分類處置表）；推 `codex/resume-writer`。
+- 不改：公司名、職缺名、數字、日期、限定詞、條列點數；不新增事實或對公司的觀察。事實疑問或碰到鎖定內容時寫 `drafts/codex/QUESTIONS.md`，並附可複製的上游替換指令。
+- 交付後告訴本人檔名與 commit；Career Move 依 §5 核對、跑 `verify_letter.py`（Exit 0）、定稿，並登錄 `career/applications/<code>.md`。
+- 有多個方案時，潤飾稿須寫明本人選用哪一案；Career Move 只把選用案正文寫入定稿與 applications 檔。
+- 盲審依入口 §6：只給完整成品（去註解）＋目標 JD，Prompt 內剝除 HTML 註解，不在 repo 新增暫存檔。
