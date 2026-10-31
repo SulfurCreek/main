@@ -13,6 +13,19 @@ LINE Career Profile 上游草稿 r3（2026-10-29）｜來源：104 v12.19 + libr
 
 # LINE Career Profile 特化版｜可填表
 
+## 0. Professional Summary & Skills（僅供 PDF／ATS 上傳，不進表單、不屬任何 directive）
+
+<!-- [STATUS: NEEDS_POLISH] [LOCK_ENTITIES: nearly 10 years, Product Owner, B2B recruitment, subscription apps, AI agents, human-in-the-loop, Claude Code, Antigravity] -->
+- Product Owner with nearly 10 years of product management experience across a B2B recruitment platform and subscription consumer apps, covering requirements, specifications, pricing and payments, localization and cross-team delivery. Works with AI agents (Claude Code, Antigravity) on specifications and data analysis, with people reviewing and deciding the results.
+
+<!-- [STATUS: NEEDS_POLISH] [LOCK_ENTITIES: PRD, User Story, Use Case, UAT, Axure RP, Figma, Claude Code, Antigravity, Kanban] -->
+- Product planning and delivery: PRD, User Story, Use Case, process and sequence diagrams, prototypes, UAT
+- Design and AI tools: Axure RP, Figma, Claude Code, Antigravity
+- Working methods: Kanban, requirements analysis, stakeholder alignment, pricing experiments, payment integration planning
+- Languages: English, Mandarin
+
+---
+
 ## 1. Basic & Contact Information
 
 <!-- @line-directive
