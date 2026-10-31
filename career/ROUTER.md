@@ -36,6 +36,7 @@
 | Codex 內容編輯協作與交付 | Resume Writer 指令：`drafts/codex/AGENTS.md` | 接手核對 `drafts/codex/2026-10-20-conversation-reconciliation.md`、`drafts/codex/QUESTIONS.md` |
 | 產生 104 特化版履歷 md | [`skills/104resume/SKILL.md`](skills/104resume/SKILL.md) | `104/content-spec-quill.md` |
 | LINE Career Profile 填表（Antigravity） | [`drafts/line/line-fill-playbook.md`](drafts/line/line-fill-playbook.md) | `drafts/line/line-profile.md`（定稿）、`line-profile.fill.json`（`scripts/gen_line_pack.py` 產生）、`scripts/verify_line_profile.py` |
+| LINE Resume（針對官網 /jobs/3106/、/jobs/2782/ 的特化版；通用版為 line-profile.md） | `01_claude_stage/line-resume-draft.md`（上游）→ Codex → `drafts/line/line-resume.md`（定稿，待產） | `scripts/verify_line_profile.py`、decisions §59 |
 | 寫 104 自我推薦信（指定職缺） | [`skills/104coverletter/SKILL.md`](skills/104coverletter/SKILL.md) | `104/cover-letter-research.md`、`letters/104/` |
 | 潤飾 104 特化版草稿（Codex） | [`codex-skills/polish-104/SKILL.md`](codex-skills/polish-104/SKILL.md) | `drafts/v11/104-v11.md` |
 | 職能證據（F1–F15） | [`competency-framework.md`](competency-framework.md) → `wiki/F*.md`、`wiki/evidence-*.md` | — |
