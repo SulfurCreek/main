@@ -7,6 +7,10 @@ from pathlib import Path
 src = Path(sys.argv[1] if len(sys.argv) > 1 else "career/drafts/line/line-profile.fill.json")
 out = Path(sys.argv[2] if len(sys.argv) > 2 else "career/drafts/line/line-profile.html")
 steps = json.loads(src.read_text(encoding="utf-8"))["steps"]
+md = Path(sys.argv[3] if len(sys.argv) > 3 else "career/drafts/line/line-profile.md").read_text(encoding="utf-8")
+sec0 = md[md.index("## 0."):md.index("## 1.")]
+extra = [l[2:].strip() for l in sec0.splitlines() if l.startswith("- ")]
+summary, skills = extra[0], extra[1:]
 e = html.escape
 basic = next(s for s in steps if s["target_block"] == "basic")["fields"]
 work = [s for s in steps if s["target_block"] == "work_experience"]
@@ -27,7 +31,9 @@ ul{{margin:4px 0 0;padding-left:18px}} li{{margin:0 0 2px}}
 </style></head><body>
 <h1>Kun Huai Nie</h1><div class="t">{e(basic['current_position_title'])}</div>
 <div class="c">{e(basic['email'])} · {e(basic['mobile_phone'])} · {e(basic['city'])}, Taiwan</div>
-<h2>Work Experience</h2>"""]
+<h2>Professional Summary</h2><p style="margin:0">{e(summary)}</p>
+<h2>Skills</h2><ul>"""
+    + "".join(f"<li>{e(x)}</li>" for x in skills) + """</ul><h2>Work Experience</h2>"""]
 for s in work:
     f = s["fields"]
     h.append(f'<div class="j"><div class="jh">{e(f["position_title"])} · <span class="co">{e(f["company"])}</span></div>'
@@ -39,6 +45,6 @@ for s in edu:
     f = s["fields"]
     note = f" ({STAT[f['degree_status']]})" if f["degree_status"] in STAT and "Exchange" not in f["degree_name"] else ""
     h.append(f'<div class="j"><div class="jh">{e(f["university"])}</div><div>{e(f["degree_name"])}{note}</div><div class="d">{span(f)}</div></div>')
-h.append("<h2>Languages</h2><div>English · Mandarin</div></body></html>")
+h.append("</body></html>")
 out.write_text("\n".join(h), encoding="utf-8")
 print("✅", out)
