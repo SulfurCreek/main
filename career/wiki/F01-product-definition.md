@@ -18,6 +18,10 @@ than a downstream documenter.*
   user story／wireframe 展開（見 `tree.md` 求才系統與公司頁範圍）。
 - **資深度訊號 / Seniority signal**：擁有「定義權」——決定要做什麼、為什麼做，是 PM 角色的核心，而非 BA／文件職。
 
+- **原型工具證據 / Prototype evidence（2026-10-05 使用者確認）**：1111 的 Kick-off 簡報內嵌 **Axure RP 互動原型**
+  （簡報本身讀不到嵌入內容，以使用者口述為準）；原型用於向客服、業務與工程說明新功能流程。
+  1111 之前（尚凡）已用 Figma、Axure 做 wireframe／prototype。履歷寫「Axure RP 製作互動原型」，不寫原型數量。
+
 ---
 
 **相關分頁 / Related**：[F2 功能規格與系統思維](F02-spec-systems-thinking.md) ・ [F10 業務邏輯梳理](F10-business-logic.md) ・ [旗艦專案 E.1](flagship-e1.md) ・ [履歷可用摘要](resume-extract.md)

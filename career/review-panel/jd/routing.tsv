@@ -1,0 +1,68 @@
+code	no	old_id	tier	batch	cluster	company	title	exp	note
+8kebd	12		F	-	AI	台鋼新零售	AI Product Manager / Technical PM 產品經理(電商/餐飲Saas)	3年以上	新增；AI-first TPM，Claude Code 工作流；錨點
+91sgi	16	jd03	F	-	支付	拍付國際資訊	產品經理 (Pi錢包)	5年以上	核心面板；支付＋會員＋API
+82slf	22	jd09	F	-	B2B SaaS	微拓科技	產品經理 Product Manager	3年以上	核心面板；MarTech SaaS
+8o3s3	24	jd11	F	-	B2B SaaS	沛思坦網路	【北士科】Product Manager	5年以上	核心面板；HRIS/CMS，英文
+94le0	27	jd14	F	-	消費成長	台灣大哥大	D441 MyVideo影音產品Growth PM(可遠端工作)	3年以上	核心面板；訂閱成長；錨點
+950oe	33	jd20	F	-	B2B SaaS	Gogolook	Senior Product Manager (Anti-Scam BU/2B)	5年以上	核心面板；資深 2B，英文；錨點
+8bymx	43	jd30	F	-	B2B SaaS	悠勢科技	資深產品經理｜Senior Product Manager	3年以上	核心面板；權限／例外情境／AI 原型
+92io8	44	jd31	F	-	B2B SaaS	人易科技	資深產品經理【擴編】	3年以上	核心面板；客戶訪談＋API；錨點
+94n8b	45	jd32	F	-	B2B SaaS	104人力銀行	產品專案經理(內部系統) ★預計2027年中搬遷至松山站共構大樓★	3年以上	核心面板；同業內部系統
+8dbp3	47	jd34	F	-	B2B SaaS	91APP	［UPD］SaaS 產品經理 / Product Owner (Commerce Cloud, G11N, OMO)	5年以上	核心面板；零售 SaaS PO
+8ocje	48	jd36	F	-	支付	全支付電子支付	全支付- Product Manager (內部系統、串接)	2年以上	核心面板；內部系統＋API 規格；錨點
+94fod	52	jd40	F	-	B2B SaaS	QuickClick快一點	【PMC】軟體產品經理 ( Product Manager / Technical Program Manager)	5年以上	核心面板；PM＋TPM
+95jyg	55	jd43	F	-	消費成長	LINE Taiwan	Product Manager (Messenger & OA Products)	5年以上	核心面板；帳號安全／防詐，英文
+93qa8	56	jd44	F	-	消費成長	新加坡商科科科技台灣分公司	[Music] Senior Product Planner	3年以上	核心面板；音樂串流訂閱，英文
+8692h	06		L	LA	支付	拍付國際資訊	產品經理(支付連)	3年以上	
+95whq	10		L	LA	支付	綠界科技	產品企劃PM (專員-襄理/組長)	2年以上	
+8enwh	23		L	LA	支付	奧丁丁集團英屬開曼群島商台灣子公	【R&D】OwlPay支付 - Product Manager	不拘	英文＋加密錢包
+91ddn	26		L	LA	支付	台灣大哥大	數據服務與金流PM	不拘	Junior 職缺，看是否過度資深
+8s2o0	36		L	LA	支付	台灣大哥大	D637 金流產品營運PM	2年以上	偏金流營運／BD
+7996v	39	jd26	L	LA	支付	全支付電子支付	全支付- Product Manager (專案執行)	2年以上	與 8ocje 同公司同型，降為輕量
+94bt1	40		L	LA	支付	遠傳電信	C0631 行動支付產品PM	3年以上	偏 BD，英文商務
+8f25l	50		L	LA	支付	新加坡商蝦皮娛樂電商台灣分公司	Product Manager 產品管理師  / Product Management 產品管理部	1年以上	英文，區域團隊
+8sxlq	53		L	LA	支付	LINE Pay	Product Planner	3年以上	5 年以上，英文
+96qu1	03		L	LB	B2B SaaS	關貿網路	產品策略經理	5年以上	政府／資料交換
+91fp9	09		L	LB	B2B SaaS	Yahoo	[R78] (Sr.)Product Manager 產品經理	8年以上	8 年以上，MarTech＋AI 工具
+86svk	20		L	LB	B2B SaaS	三竹資訊	軟體產品經理 - 雲端事業群 | CoLine	2年以上	企業即時通訊
+948j4	46		L	LB	B2B SaaS	Eunodata	產品經理 Product Manager	不拘	半導體 AI 軟體
+7ig7x	51		L	LB	B2B SaaS	新加坡商蝦皮娛樂電商台灣分公司	Product Manager 產品經理／蝦皮店到店	不拘	物流營運系統
+8ick4	57		L	LB	B2B SaaS	新加坡商蝦皮娛樂電商台灣分公司	Shopee - B2C System Product Manager 產品經理	不拘	B2C 系統／FRF／UAT
+8x7oe	58		L	LB	B2B SaaS	新加坡商蝦皮娛樂電商台灣分公司	Product Manager  (Product Solution) 產品管理師 / Product Management 產品管理部	不拘	In-house／No Code
+95mvt	59	jd47	L	LB	B2B SaaS	悠勢科技	產品經理｜Product Manager	3年以上	與 8bymx 同公司同型，降為輕量
+94roa	60		L	LB	B2B SaaS	SHOPLINE Technol	【TPD0402】Product Manager	2年以上	電商 SaaS，英文
+8bt4g	01		L	LC	消費成長	浪LIVE	技術研發中心 - Mid - Sr. 產品經理	3年以上	直播社交
+8qxbv	02		L	LC	消費成長	55688集團	【運力數位整合部】軟體產品經理	2年以上	0-1 App＋API＋AI 工具
+95zyw	07		L	LC	消費成長	玩美移動	Saas Product Manager	1年以上	Web SaaS，英文
+7dijs	08		L	LC	消費成長	玩美移動	APP Product Manager 產品經理	2年以上	B2C App，英文
+94h37	11		L	LC	消費成長	口袋證券	行銷產品經理（Marketing Product Manager）	3年以上	行銷產品／點數會員
+94lbz	28		L	LC	消費成長	台灣大哥大	D440 MyVideo 影音產品PM(可遠端工作)	3年以上	要求串流影音經驗
+95q7h	34		L	LC	消費成長	買即可全球電商	產品經理	2年以上	跨境電商小公司
+7ppuh	42		L	LC	消費成長	口袋證券	軟體產品經理	1年以上	1–3 年，可能過度資深
+95asb	54		L	LC	消費成長	LINE Taiwan	Global TODAY_Product Manager	5年以上	內容平台，英文
+75rkw	61		L	LC	消費成長	和泰聯網	【yoxi】APP產品經理	2年以上	App＋異業串接
+6i88h	04		L	LD	專案型	關貿網路	專案經理	5年以上	PMP／帶團隊／Java
+844j7	14		L	LD	專案型	海棠設計	軟體專案經理（Technical PM）	3年以上	接案 TPM
+8p4ix	17		L	LD	專案型	Klook客路	Project Manager (API)	不拘	API 專案，70% 營運
+5ya5p	18		L	LD	專案型	三竹資訊	金融服務事業群 - 證券產品經理	2年以上	證券
+8geon	19		L	LD	專案型	三竹資訊	金融服務事業群-PM	2年以上	證券，需軟體開發經驗
+5jvck	21		L	LD	專案型	三竹資訊	APP應用事業群 - Project Manager	3年以上	金融 App 專案
+8v53h	29		L	LD	專案型	台灣大哥大	虛擬資產交易所產品PM	8年以上	8 年以上，Web3
+7wq7q	37		L	LD	專案型	台灣大哥大	D597 產品專案PM	3年以上	電信數位產品
+91bo9	49		L	LD	專案型	易遊網旅行社	F09T-產品經理(Product Manager/PM)	3年以上	OTA，GA／SQL
+8qd7h	62		L	LD	專案型	和泰聯網	【去趣】旅遊應用程式 產品經理 PM	4年以上	旅遊 App，含測試
+8yxgd	13		L	LE	AI	中租控股	【數金】數位產品專案規劃 PM (數位專案/AI應用/流程優化)	2年以上	內部數位專案
+8n92e	25		L	LE	AI	Taiwan AI Labs	Program Manager_FedGPT	3年以上	AI 產品 Program
+96686	31		L	LE	AI	台灣大哥大	I210 AI專案PM(可遠端工作)	3年以上	AI 專案／PMO
+9667l	32		L	LE	AI	台灣大哥大	I210 AI資安PM(可遠端工作)	3年以上	AI 資安
+8zacy	38		L	LE	AI	台灣大哥大	I110 AI 產品經理(可遠端工作)	不拘	早期職涯 AI PM
+94j0t	41		L	LE	AI	裕隆集團移動服務事業	《數位轉型》專案經理(Project Manager)	3年以上	n8n／CDP 實作
+8qos1	05		X	-	非 PM	遊戲橘子數位科技	專案管理_26072	2年以上	專案助理型行政＋需熱愛遊戲
+92d3h	15		X	-	非 PM	奧丁丁集團英屬開曼群島商台灣子公	【OwlPay】營運管理師 Sales & Operations Executive	不拘	客服與對帳營運
+81x5r	30		X	-	非 PM	台灣大哥大	D464 行動裝置周邊配件產品PM(可遠端上班)	1年以上	配件採購與進銷存
+6k2q4	35		X	-	非 PM	台灣大哥大	D467 用戶行為分析人員 (可遠端工作)	2年以上	資料分析師
+81bhg	63		X	-	非 PM	iRent	iRent營運企劃（產品經理） (企劃部)	1年以上	營運企劃，薪資帶 40–55k 與年資差距大
+7ytz4	-	-	L	-	金融 IT 專案管理	樂天國際商業銀行	專案管理(PM)_資訊部	5年以上	2026-10-28 新增；JD 見 jd/full/7ytz4.md
+95whq	-	-	L	-	支付	綠界科技	產品企劃PM (專員-襄理/組長)	2年以上	2026-10-29 新增；金流物流電子發票；JD 見 jd/full/95whq.md
+91fp9	-	-	F	-	AI／MarTech	Yahoo（香港商雅虎資訊）	[R78] (Sr.)Product Manager 產品經理	8年以上	2026-10-29 新增；MarTech 訊息平台＋AI Agent；JD 見 jd/full/91fp9.md
+962f7		L	LA	支付	SHOPLINE（商線科技）	【TPD0404】Product Manager (Checkout)	3年以上	英文＋中文；結帳／電商 SaaS；對帳經驗缺口

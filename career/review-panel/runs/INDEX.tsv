@@ -1,0 +1,30 @@
+run	date	resume	rubric	reviewer	scope	result	path
+2026-10-09	10-09	v5.2/v7.1/v7.2	ats-search	script	3 JD 關鍵字命中	ATS 搜尋命中表	runs/2026-10-09/report.md
+2026-10-09-v73	10-09	v7.2 vs v7.3	v3.1	Sonnet	盲審5輪	平手,v7.3 名次略前	runs/2026-10-09-v73/report.md
+2026-10-12-v74	10-12	v7.3 vs v7.4	v3.1	Opus	盲審5輪	v7.3 5/5 勝	runs/2026-10-12-v74/report.md
+2026-10-12-v75	10-12	v7.3 vs v7.5	v3.1	Sonnet	盲審5輪	v7.3 略前	runs/2026-10-12-v75/report.md
+2026-10-12-v77	10-12	v7.5 vs v7.7	v3.2	Sonnet	盲審5輪	v7.7 5/5 勝	runs/2026-10-12-v77/report.md
+2026-10-12-v8	10-12	v7.7 vs v8	v3.2	Sonnet	盲審5輪	分數打平,v7.7 3/5	runs/2026-10-12-v8/report.md
+2026-10-12-v8b	10-12	v7.7 vs v8(四段自傳)	v3.2	Sonnet	盲審5輪	同上	runs/2026-10-12-v8b/report.md
+2026-10-12-v81	10-12	v8 vs v8.1	v3.2	Sonnet	盲審5輪	v8.1 4/5 勝	runs/2026-10-12-v81/report.md
+2026-10-13-v91	10-13	v9.1 vs v8.1	v3.2	Opus	盲審5輪	v8.1 名次前	runs/2026-10-13-v91/report.md
+2026-10-13-v92	10-13	v9.2 vs v8.1	v3.2	Opus	盲審5輪	v8.1 名次前	runs/2026-10-13-v92/report.md
+2026-10-13-v93	10-13	v9.3 vs v8.1	v3.2	Opus	盲審5輪	v8.1 名次前	runs/2026-10-13-v93/report.md
+2026-10-13-v94	10-13	v9.4 vs v8.1	v3.2	Opus	盲審5輪	v8.1 名次前	runs/2026-10-13-v94/report.md
+2026-10-13-v4	10-13	v9.4 vs v8.1c	v4.0	Opus	Gogolook 單JD 5輪	平手 皆面試	runs/2026-10-13-v4/report.md
+2026-10-13-v4.1	10-13	v9.4 vs v8.1c	v4.1	Opus	同上	平手	runs/2026-10-13-v4.1/report.md
+2026-10-14-v4.2	10-14	v9.4 vs v8.1c	v4.2	Opus	同上	平手 v8.1c 直接比較3:1	runs/2026-10-14-v4.2/report.md
+2026-10-14-external-chatgpt	10-14	8.1 vs 9.4	v4.2	ChatGPT	Gogolook 單JD	9.4 略佔上風	runs/2026-10-14-external-chatgpt/report-chatgpt.md
+2026-10-14-external-gemini	10-14	8.1 vs 9.4	v4.2	Gemini	Gogolook 單JD	9.4 略佔上風	runs/2026-10-14-external-gemini/report-gemini-4-argon.md
+2026-10-14-multi-a15	10-14	v9.4 vs v9.5	v4.2	Claude(Sonnet審)	15 JD	皆15/15面試 B偏好v9.5 15:0	runs/2026-10-14-multi-a15/report.md
+2026-10-15-multi-a15-opus	10-15	v9.5 vs v9.6	v4.2	Opus	15 JD	皆15/15面試 B偏好v9.6	runs/2026-10-15-multi-a15-opus/report.md
+2026-10-15-external-chatgpt-15jd	10-15	K9.4 vs M9.6	v4.2	ChatGPT	15 JD	M勝15 面試14+先釐清1	runs/2026-10-15-external-chatgpt-15jd/report-chatgpt.md
+2026-10-15-external-gemini-15jd-v9.6	10-15	K9.4 vs M9.6	v4.2	Gemini	15 JD	M勝15 Level8-9	runs/2026-10-15-external-gemini-15jd-v9.6/report-gemini.md
+2026-10-16-v9.7-a15-opus	10-16	v9.7	v4.2	Opus	15 JD 單版本	面15 L7x11 L8x4	runs/2026-10-16-v9.7-a15-opus/report.md
+2026-10-16-v9.7-consolidated	10-16	v9.7	v4.2	Opus+ChatGPT+Gemini	15 JD x3	統整	runs/2026-10-16-v9.7-consolidated/CONSOLIDATED.md
+2026-10-16-v10-a15-opus	10-16	v10	v4.2	Opus	15 JD 單版本	面15 L7x9 L8x6	runs/2026-10-16-v10-a15-opus/report.md
+2026-10-16-v10-consolidated	10-16	v10	v4.2	三家	15 JD x3	44/45面試	runs/2026-10-16-v10-consolidated/CONSOLIDATED.md
+2026-10-17-v10.2-a15-opus	10-17	v10.2	v4.2	Opus	15 JD 單版本	面15 L7x11 L8x4	runs/2026-10-17-v10.2-a15-opus/report.md
+2026-10-17-v10.2-consolidated	10-17	v10.2	v4.2	三家	15 JD x3	41/45面試 Gemini先釐清4	runs/2026-10-17-v10.2-consolidated/CONSOLIDATED.md
+2026-10-17-v10.3-a15-opus	10-17	v10.3	v4.2+質疑	Opus	15 JD 單版本	面15 L7x10 L8x5	runs/2026-10-17-v10.3-a15-opus/report.md
+2026-10-18-v10.3-consolidated	10-18	v10.3	v4.2+質疑	三家	15 JD x3	43/45面試 首見L9	runs/2026-10-18-v10.3-consolidated/CONSOLIDATED.md

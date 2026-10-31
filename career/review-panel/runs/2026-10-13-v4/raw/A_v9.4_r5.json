@@ -1,0 +1,53 @@
+{"rubric_version":"4.0","resume_id":"anonymous_02","job_id":"gogolook_950oe","job_input":"summary","model_id":"claude-opus-5-5","run_id":"A_5","human_calibrated":false,
+"requirements":[
+{"id":"R01","text":"5-8年以上B2B/B2G產品管理或專案管理經驗","type":"required","status":"partial","evidence":["Product Owner／PM｜1111 全球華人｜2022/08 - 迄今","企業端招募系統全模組與求職端公司頁","近 10 年 PM 經驗，經手 6 款產品，涵蓋訂閱制社交 App、網紅媒合及企業招募系統。","訂閱制 B2C App 與雙邊媒合平台。"],"blocks_interview":false,"reason":"PM 總年資約 10 年符合年資門檻，但明確屬 B2B 的經歷為 1111 企業端約 4 年 2 個月；尚凡、思維特以 B2C 為主，網紅媒合平台的企業端比重未寫。不是不符合，而是 B2B 年資是否達 5 年需面試確認。"},
+{"id":"R02","text":"接近母語等級英語口說與書寫","type":"required","status":"partial","evidence":["英文 TOEIC 980、TOEFL iBT 93","並與 CodaPay 新加坡技術團隊協調串接。","與最多約 10 位外國實習生協作，在無直屬管理關係下分派翻譯與粉專經營任務。","Newegg.com 商品資訊英翻中與校對。"],"blocks_interview":false,"reason":"有測驗分數與跨國協作線索，但未說明英文是否為工作語言、是否以英文撰寫 PRD 或面對海外客戶；口說等級需面試直接驗證。"},
+{"id":"R03","text":"優異的溝通與關係人管理能力","type":"required","status":"supported","evidence":["現任 1111 招募系統 Product Owner，對接 16 個需求單位，依使用者旅程與工單問題排定優先級。","統籌影響評估、範圍與時程、驗證流程及客服說明","工程、設計、QA、資料科學、客服、業務、法務與稽核協作"],"blocks_interview":false,"reason":"多需求單位排序與事件應變中的跨部門統籌有具體案例；直接對外部企業客戶／BD 的溝通較少描述。"},
+{"id":"R04","text":"扎實的產品管理基礎（需求分析、PRD撰寫、路線圖與待辦清單管理、時程與風險控管）","type":"required","status":"supported","evidence":["釐清需求與系統分析後，以 Use Case、Wireframe 定義業務流程與畫面，整理為 PRD 與 Axure Prototype；與 QA 制定 UAT 驗收案例、排定上線計畫。","另於 2026/01–06 上線 111 項 Roadmap 細項。","三階段推進招募系統改版。","全國客服封測後，第一階段於 2025/10 離峰切換上線，停機約 1.5 小時。"],"blocks_interview":false,"reason":"PRD→原型→UAT→上線流程完整，含分階段上線與風險控管的具體案例，直接對應 JD 的 PRD→設計→實作→測試→發布。"},
+{"id":"R05","text":"強烈的數據敏感度（能獨立使用SQL/BI/試算表查詢分析）","type":"required","status":"partial","evidence":["研究與數據：使用者訪談與問卷、競品實測、GA4、世代分析、對照組實驗、Excel","比對 2026/04/30、07/07 名冊快照，該群年化留存 81.2%，同期全站 74.2%；為觀察差異，非因果。","以 Android 售價不變作對照"],"blocks_interview":false,"reason":"有對照實驗設計與留存比較，且能自行標注非因果，顯示數據判讀能力；但未提及 SQL 或 BI 工具，也未說明資料是否由本人自行查詢。"},
+{"id":"R06","text":"熟悉AI工具與工作流整合（如Claude、串接Jira、Confluence等自動化工具）","type":"required","status":"partial","evidence":["AI 協作：Claude Code 多分支流程與共用 skill 庫，用於規格撰寫、資料整理與分析","運用 Claude Code 協作。"],"blocks_interview":false,"reason":"Claude 使用與工作流建置有直接描述；未提及與 Jira／Confluence 等工具的串接，也沒有說明帶來的效率變化。"},
+{"id":"R07","text":"對防詐與風險偵測有真正熱情","type":"required","status":"partial","evidence":["登入安全盤點源於 2026/04 十多家廠商帳號遭冒用。統籌影響評估、範圍與時程、驗證流程及客服說明，與工程協作於 2026/04/17 上線簽章驗證。"],"blocks_interview":false,"reason":"有一次帳號冒用應變經驗，但履歷與自傳沒有表達對防詐領域的動機；熱情屬面試判斷項目，不因未寫而扣分。"},
+{"id":"R08","text":"具防詐、資安、風險管理或信任類產品經驗","type":"preferred","status":"partial","evidence":["登入安全盤點源於 2026/04 十多家廠商帳號遭冒用。","上線簽章驗證。"],"blocks_interview":false,"reason":"屬事件驅動的安全功能，非長期防詐／風險偵測產品經驗。"},
+{"id":"R09","text":"曾服務企業客戶或政府機關，尤其海外市場（東南亞、日本、韓國等）","type":"preferred","status":"partial","evidence":["全站活躍付費廠商約 6.6 萬家（2026/04/30，系統規模）。","SweetRing 在地化涵蓋美國、墨西哥、巴西、印尼、馬來西亞、日本、韓國 7 個市場","定價實驗…（馬來西亞，2021/05–08，各期 21 天）"],"blocks_interview":false,"reason":"企業客戶在台灣市場；海外市場經驗屬 B2C 在地化與定價，兩者未在同一經歷中重疊。"},
+{"id":"R10","text":"技術背景或曾與RD/AI團隊密切合作","type":"preferred","status":"supported","evidence":["AI 功能已上線公司簡介生成、職缺工作說明生成及推薦人才。與資料科學團隊合作，定義使用情境與驗收標準，依客服測試回饋調整推薦規則。","與工程團隊密切協作，每日上版調整。","AWS Certified Cloud Practitioner（2023/12）"],"blocks_interview":false,"reason":"與資料科學團隊合作定義 AI 功能驗收標準，直接對應 JD 與 AI 團隊共同交付的要求。"},
+{"id":"R11","text":"具Agile/Scrum與Jira專案管理經驗","type":"preferred","status":"partial","evidence":["以 Kanban 推進瀑布式開發","Kanban 搭配瀑布式開發、Daily stand-up 與回顧、分階段上線","Notion、Trello"],"blocks_interview":false,"reason":"有 Kanban 與 stand-up 實務，未提 Scrum 或 Jira。"},
+{"id":"R12","text":"具產品定價、報價或成本利潤分析經驗","type":"preferred","status":"supported","evidence":["定價實驗採原價、iOS 降價、還原原價三階段，以 Android 售價不變作對照","依抽成、稅、手續費及撥款週期做實收試算，提出 7／30／90 天訂閱方案與加贈內容。"],"blocks_interview":false,"reason":"定價實驗與實收試算具體，但屬 B2C 訂閱定價，非企業報價。"},
+{"id":"R13","text":"50%產品開發——直接向各市場客戶與BD團隊收集需求，判斷優先序與可行性","type":"context","status":"partial","evidence":["對接 16 個需求單位，依使用者旅程與工單問題排定優先級。","廠商抱怨工單中，最大宗是溝通管道中斷，我便將信件與即時通整合排在其他新功能之前，目前專案仍在開發中。"],"blocks_interview":false,"reason":"需求來源以內部單位與工單為主，未描述直接訪談企業客戶或與 BD 共同處理客戶需求。"}
+],
+"dimensions":[
+{"id":"positioning","rating":"足夠","evidence":["資深產品經理｜Senior Product Manager","近 10 年 PM 經驗，經手 6 款產品，涵蓋訂閱制社交 App、網紅媒合及企業招募系統。"],"missing":["未說明為何轉向防詐／B2B SaaS 領域","B2B 與 B2C 年資未分開陳述"],"issue_ids":["I01"]},
+{"id":"role_evidence","rating":"足夠","evidence":["約 50 項大項功能上線（2023/12–2026/03，依上線時間軸列計），由我主責規劃","登入安全盤點源於 2026/04 十多家廠商帳號遭冒用。","與資料科學團隊合作，定義使用情境與驗收標準"],"missing":["SQL／BI 自行查詢證據","直接面對企業客戶／BD 的需求收集","Jira／Confluence 工具串接"],"issue_ids":["I02","I03","I04"]},
+{"id":"decision_depth","rating":"強","evidence":["盤點出上千組重複 E-mail，選擇首次登入引導確認、不強迫修改","依結果全面調降售價。","如果直接要求修改，部分廠商可能在改版當天無法登入。"],"missing":["信件即時通整合排序時放棄了哪些項目"],"issue_ids":[]},
+{"id":"outcome_quality","rating":"足夠","evidence":["需求平均處理週期由 100.4 天降至 30.9 天（2026 Q1 至 Q2，2025/11 清完積案後的穩態比較）。","該群年化留存 81.2%，同期全站 74.2%；為觀察差異，非因果。","Peach 網頁付款占營收由 24% 至 80% 以上（2020/11–2021/09）。"],"missing":["簽章驗證成效依『目前掌握的情況』，未說明監測方式","Peach 占比變化中本人規劃與外部因素的歸因","1111 功能上線後的使用者行為或營收成效"],"issue_ids":["I05","I06"]},
+{"id":"ownership","rating":"足夠","evidence":["由我主責規劃，與工程團隊密切協作","正式職稱產品企劃主任，團隊 3 名企劃，直接向組織副總匯報。","正式職稱專案經理"],"missing":["3 名企劃團隊中本人與成員的分工"],"issue_ids":[]},
+{"id":"readability","rating":"足夠","evidence":["每條經歷附時間區間與基準日","為觀察差異，非因果。"],"missing":["部分條目數字與限定語密集，掃讀時需較多時間"],"issue_ids":["I07"]}
+],
+"results":[
+{"quote":"全站活躍付費廠商約 6.6 萬家（2026/04/30，系統規模）。","kinds":["context"]},
+{"quote":"約 50 項大項功能上線（2023/12–2026/03，依上線時間軸列計），由我主責規劃","kinds":["output"]},
+{"quote":"另於 2026/01–06 上線 111 項 Roadmap 細項。","kinds":["output"]},
+{"quote":"選擇首次登入引導確認、不強迫修改；全國客服封測後，第一階段於 2025/10 離峰切換上線，停機約 1.5 小時。","kinds":["decision","output"]},
+{"quote":"與工程協作於 2026/04/17 上線簽章驗證。依目前掌握的情況，上線後至 2026/10 未再出現同類帳號冒用。","kinds":["output","outcome"]},
+{"quote":"需求平均處理週期由 100.4 天降至 30.9 天（2026 Q1 至 Q2，2025/11 清完積案後的穩態比較）。","kinds":["outcome"]},
+{"quote":"2026 年截至 09/29，完成 1,726／1,857 張需求與問題單，約 93%。","kinds":["output"]},
+{"quote":"比對 2026/04/30、07/07 名冊快照，該群年化留存 81.2%，同期全站 74.2%；為觀察差異，非因果。","kinds":["context"]},
+{"quote":"降價期 iOS 非續訂營收較基準期增 5%，Android 減 18%，相對變化約多 28%；還原原價後 iOS 較基準期減 65%，依結果全面調降售價。","kinds":["outcome","decision"]},
+{"quote":"Peach 網頁付款占營收由 24% 至 80% 以上（2020/11–2021/09）。","kinds":["outcome"]},
+{"quote":"上線後 6 週男性 DAU 約 3,200 至 1.25 萬（2020/01–02），為產品上線與行銷導流期間的整體表現。","kinds":["context"]},
+{"quote":"我便將信件與即時通整合排在其他新功能之前，目前專案仍在開發中。","kinds":["decision","in_progress"]}
+],
+"issues":[
+{"id":"I01","category":"requirement","severity":"interview_follow_up","claim":"Product Owner／PM｜1111 全球華人｜2022/08 - 迄今","reason":"JD 必備 5-8 年 B2B/B2G 經驗；明確 B2B 年資約 4 年 2 個月，前段經歷以 B2C 為主。影響是否完全符合必要條件，但非證據顯示不符。","suggestion":"面試確認網紅媒合平台等經歷中的企業端比重與 B2B 合計年資。"},
+{"id":"I02","category":"requirement","severity":"interview_follow_up","claim":"英文 TOEIC 980、TOEFL iBT 93","reason":"必備接近母語英語；分數高但缺工作中以英文溝通、撰寫文件的描述。","suggestion":"面試以英文進行部分對談，或請候選人說明與 CodaPay 新加坡團隊的溝通方式。"},
+{"id":"I03","category":"requirement","severity":"interview_follow_up","claim":"研究與數據：使用者訪談與問卷、競品實測、GA4、世代分析、對照組實驗、Excel","reason":"必備能獨立用 SQL/BI 查詢；履歷未提 SQL 或 BI，無法判斷是自行查詢還是取用他人資料。","suggestion":"追問留存比較與處理週期數據的取得方式。"},
+{"id":"I04","category":"requirement","severity":"interview_follow_up","claim":"對接 16 個需求單位，依使用者旅程與工單問題排定優先級。","reason":"JD 50% 工作為直接向各市場客戶與 BD 收集需求；履歷需求來源以內部單位與工單為主。","suggestion":"追問是否直接與企業客戶或業務端共同訪談、提案。"},
+{"id":"I05","category":"measurement","severity":"interview_follow_up","claim":"依目前掌握的情況，上線後至 2026/10 未再出現同類帳號冒用。","reason":"成效依本人掌握情況陳述，未說明監測紀錄或判定方式；內部一致不等於已查證。","suggestion":"追問以何種紀錄或通報機制確認未再發生。"},
+{"id":"I06","category":"measurement","severity":"interview_follow_up","claim":"Peach 網頁付款占營收由 24% 至 80% 以上（2020/11–2021/09）。","reason":"占比變化可能受平台政策、價格或行銷影響，本人規劃的貢獻未區分。","suggestion":"追問占比轉移的主要驅動與是否有對照。"},
+{"id":"I07","category":"readability","severity":"editorial","claim":"需求管線觸及 1,279 家活躍付費廠商，約占全站 66,150 家的 1.9%（全站基準日 2026/04/30）。比對 2026/04/30、07/07 名冊快照，該群年化留存 81.2%，同期全站 74.2%；為觀察差異，非因果。","reason":"限定語與數字並列，嚴謹但掃讀負擔較高；且此條為觀察差異，對招聘判斷貢獻有限。","suggestion":"可縮短或移至面試補充。"}
+],
+"decision":{"recommendation":"interview","evidence":["PRD→原型→UAT→上線流程與分階段上線決策有具體案例，直接對應 JD 的 PRD 與交付管理職責","帳號冒用應變與簽章驗證、與資料科學團隊合作 AI 功能，對應防詐與 RD/AI 協作","定價實驗與實收試算對應加分條件中的定價經驗"],"blocking_unknowns":[]},
+"seniority":{"delivery":"強","po_coordination":"強","direction_resources":"待補"},
+"strengths":["交付流程完整且可追溯：從系統分析、PRD、Axure 原型到 UAT 與上線計畫，並有 50 項大項功能與分階段改版、1.5 小時停機切換的具體交付紀錄。","取捨判斷清楚：重複 E-mail 選擇引導確認而非強迫修改、依對照實驗結果調降售價，說明了考量的使用者與商業風險。","衡量態度嚴謹：處理週期比較標注穩態區間、留存比較自行標注非因果，降低過度歸因的疑慮。"],
+"interview_questions":["1111 之前的經歷中，哪些工作直接服務企業客戶？B2B 相關經驗合計多久？","請用英文說明一次與 CodaPay 新加坡團隊協調串接的過程，以及你如何撰寫或溝通技術需求。","處理週期與留存比較的數據，是你自行用 SQL／BI 查詢，還是由其他團隊提供？用了哪些工具？","帳號冒用事件中，簽章驗證方案是如何選定的？上線後以什麼紀錄確認未再發生同類冒用？","你是否曾直接拜訪或訪談企業客戶、與業務共同收集需求？請舉一例說明如何判斷優先序與可行性。","Claude Code 多分支流程與 skill 庫實際解決了什麼問題？是否串接過 Jira、Confluence 等工具？","信件與即時通整合排在其他新功能之前，被延後的是哪些項目？你如何說服需求單位接受？","你為什麼想投入防詐領域？對 Whoscall 的 B2B／B2G 產品有什麼觀察？"],
+"spectrum":{"level":7,"uncertainty_levels":1,"basis":"多個案例足以支持面試，交付與取捨描述具體、衡量有限定語；但 B2B 年資、英語工作實證、SQL/BI 自行查詢與直接面對客戶／BD 的證據不足，尚未達 8 級的高度對應。"},
+"tests":{"pdf_extraction":"not_tested","ats_import":"not_tested","ai_provenance":"indeterminate_from_text_alone"}}

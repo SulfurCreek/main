@@ -1,13 +1,17 @@
 <!--markdownlint-disable MD033-->
 <!--markdownlint-disable MD013-->
 <!--
-作品集 CASE STUDY 範本 / Portfolio case-study template (PM / Product)
+作品集 CASE STUDY 範本・國際／英文版 / Portfolio case-study template — international / English (PM / Product)
+適用：外商、英文投遞、策略型角色。台灣本土／新創／執行導向用 [`portfolio-case-study-tw.md`](portfolio-case-study-tw.md)；兩版共用同一批事實與數字。
+去識別化規則見 ../references/portfolio.md；沒有數據標〔待補數據〕，不編造。
 長度：400–800 字/words。3–5 篇即可（深度 > 數量）。
 用真實素材（wireframe / PRD 摘錄 / 數據圖），但⚠️ 勿放機密 1111 資料——去識別化，或用個人專案。
 至少放一個誠實的「失敗實驗 / 學習」——比「完美」更可信。
 -->
 
 # [Case Study 標題：產品/功能 + 一句結果]
+
+> **Executive Summary（TL;DR，最多 2 句）**：[問題 → 我的行動 → 商業影響。例：Onboarding 第一步流失 60%；我重新設計流程並主導實驗，流失降到 38%，預估年增 $X 營收。]
 <!-- 例：「求才職缺健檢：把 7 步規格流程壓到 6 週交付，94% 準時」 -->
 
 **角色 / Role**：[你的職責，如 主導 PM] ｜ **時間 / Timeline**：[YYYY/MM–MM] ｜ **團隊 / Team**：[規模，如 PM 1 + 工程 5 + 設計 2]
@@ -17,6 +21,9 @@
 ## 1. 問題 / 背景　Problem & Context
 
 [1–2 段。使用者是誰、痛點是什麼、為何重要。**附量化現況與 benchmark**。]
+
+- **假設 / Hypothesis**：[「如果我們 ___，那麼 ___ 會改善，因為 ___」。寫成可被驗證或推翻的句子。]
+- **為何對業務有策略重要性 / Why it matters strategically**：[連結到營收、留存、成本或市場位置；說明不做的代價。]
 <!-- 例：新使用者 onboarding 第一步流失 60%，業界基準 40%；根因：流程 7 步、行動端摩擦過高。 -->
 
 ## 2. 研究與洞察　Research & Insight
@@ -32,6 +39,7 @@
 
 - 素材 / Artifacts：[低保真 wireframe、PRD 摘錄、假設、實驗設計]
 - 取捨 / Trade-offs：[做了 A 而非 B，原因是…]
+- 優先級依據 / Prioritization：[如 RICE 分數（Reach × Impact × Confidence ÷ Effort）、為趕 MVP 砍掉哪些範圍與理由、哪些留到下一版]
 
 ## 4. 結果與學習　Results & Learnings
 

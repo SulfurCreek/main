@@ -114,6 +114,21 @@ Top/Bottom N 表 + ≤3 條白話結論；全表放附錄連結
 白話命名、案例節制、方法與限制放最後）全部照搬；本節只補**HTML 特有**的流程與踩坑經驗。
 範例產出：`data/未讀履歷統計/提醒信成效分析報告.html`（與其 `analysis/` pipeline）。
 
+**視覺規格先行**：動手寫 CSS 前，先照 `references/設計描述五層面.md` 把字體／級距／留白／
+配色／動態五個層面各寫成一句可量化的規格（「好看」「有質感」這種主觀詞不是規格）——參照最多
+選 3 個、分工不同（定調性／定版型／定互動），並標明借用哪一層；一次只調整一個變項。
+
+**版面設計卡關時**，先看 `references/html-templates/README.md`——裡面有 77 個從
+`nexu-io/html-anything`（Apache-2.0）匯入的版面參考，挑一個場景相近的（`data-report`／
+`dashboard`／`finance-report`／`exec-briefing-memo` 等）看它的區塊配置與 grid/flex 排法，
+把看到的轉成五層面的描述句再實作；版型庫不夠用時，五層面文件裡還列了 6 個公開設計資料庫
+（Awwwards／SiteInspire／Mobbin 等）與各自適合查什麼。
+**但一定要照下面第5點把外部 CDN 全部拔掉重寫，不能直接複製它的 `example.html`**。
+
+**要做到得獎水準時**（使用者要求 Awwwards／Webby／FWA 等級，或要「反覆自我檢查直到滿意」），照
+`references/award-grade-checklist.md` 跑審查迴圈：v0 截圖先寫出不到標準的具體理由，每輪截 1440 亮／暗、
+390、互動後的狀態，逐條消掉之後才發布；改動記進專案的 `MERIT.md`，能重用的原則回寫該清單。
+
 ### 標準流程
 
 1. **原始資料留在磁碟，不進 context**：依 `wiki/master_prompt.md` 的「Excel/CSV 漸進式分析」
@@ -140,7 +155,8 @@ Top/Bottom N 表 + ≤3 條白話結論；全表放附錄連結
    - `page.on('pageerror'/'console')` 監聽有沒有 JS 錯誤
 5. **自包含（self-contained）鐵律**：CSP 情境下無法載外部 CDN/字型/圖片。CSS 用
    `<style>` 內嵌、圖表用純 SVG＋vanilla JS（不依賴 D3/Chart.js 等外部庫）、`prefers-color-scheme`
-   做預設＋`:root[data-theme]` 做手動切換覆蓋（雙向都要贏）。
+   做預設＋`:root[data-theme]` 做手動切換覆蓋（雙向都要贏）。唯一例外是 Google Fonts，
+   只能當漸進增強：每個字體都要有系統字體 fallback，離線開檔仍完整可讀（見 `award-grade-checklist.md` §4）。
 6. **Pipeline 要能重跑，不是一次性產物**：拆成 `stepN_xxx.py`（分析）與
    `stepM_build_report.py`（注入模板出圖），加一份 `README.md` 寫清楚輸入資料目錄結構、
    執行指令、已知資料落差／清洗規則。驗證方式：重跑一次比對輸出是否 byte-identical。

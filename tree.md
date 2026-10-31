@@ -1,258 +1,16 @@
 # 1111-jobdocs 文件總覽
 
-- 文件總數：**307** 份
-- 來源：HackMD **Folder API**（`folder-order` 顯示排列 ＋ `parentFolderId` 結構欄位），2026-06-07 即時擷取
-
-> 本樹依 HackMD 團隊**實際資料夾結構**產生（不再用命名推測）。
-> HackMD 以 **folder-order（拖曳排列）** 決定 UI 顯示巢狀；當它與底層 `parentFolderId` 不一致時，以 folder-order（＝你在 HackMD 看到的排列）為準。
-> ⚠️ 注意：部分求職端資料夾（`1. 首頁`、`2. 搜尋頁`、`3. 公司頁`、`4. 職缺頁`、`A 主網`、`D 求職 AI 產品`）在工作區實際位於**最上層**，並未收納於「求職系統」資料夾下。
+- 文件總數：**377** 份
+- 來源：HackMD 團隊文件列表 API（`GET /teams/1111-jobdocs/notes`，含每份文件的 `folderPaths`），2026-09-24 即時擷取
+- 排序：資料夾與文件皆依**名稱字母/筆畫排序**，不是 HackMD UI 拖曳顯示順序（folder-order）——上次版本用 folder-order，這次為求「工程師逐份掃過」方便查找改用字母排序；若需要還原成 UI 顯示順序，要另外呼叫 `folder-order` API 重建。
+- 用途：工程師逐份掃描比對商業邏輯，每份文件皆附可點擊 HackMD URL。
 
 ---
 
-- 📁 **求才系統**
-  - [七言絕句](https://hackmd.io/@1111-jobdocs/H11GKtTxfe)
-  - [招募系統規格文件目錄](https://hackmd.io/@1111-jobdocs/rkGFjjlPWe)
-  - 📁 **A. 首頁**
-    - 📁 **A.1 Topbar**
-      - [A.1 topbar](https://hackmd.io/@1111-jobdocs/Hym116n3-x)
-      - [A.1.3 公告](https://hackmd.io/@1111-jobdocs/HkTiVy7Z-e)
-      - [A.1.4&A.1.5 公告&通知](https://hackmd.io/@1111-jobdocs/SJsQkWsWbg)
-      - [A.1.6 帳號資訊選單](https://hackmd.io/@1111-jobdocs/ryik5PAZWl)
-    - 📁 **登入流程**
-      - [toast](https://hackmd.io/@1111-jobdocs/rk0aZy0aZg)
-      - [登入功能](https://hackmd.io/@1111-jobdocs/rych3fo0bl)
-      - [登入特殊狀態與Alert](https://hackmd.io/@1111-jobdocs/HJb5FnCGZg)
-    - 📁 **首頁區塊**
-      - [A.2 首頁快訊 & A.3刊登狀態](https://hackmd.io/@1111-jobdocs/Bye3E5tl-g)
-      - [A.4 近期修改職缺](https://hackmd.io/@1111-jobdocs/HJIK-sUGbe)
-      - [A.10 人才秒搜](https://hackmd.io/@1111-jobdocs/BkIIbQYfWe)
-  - 📁 **B. 公司**
-    - 📁 **B.1 公司資料修改**
-      - [B.1 公司資料修改與進度條](https://hackmd.io/@1111-jobdocs/S1jhD6RRbe)
-      - [公司資料預覽](https://hackmd.io/@1111-jobdocs/H1ZbConBbl)
-      - [公司資料＞確定送出按鈕](https://hackmd.io/@1111-jobdocs/HkSJkuy8bx)
-      - 📁 **編輯分頁**
-        - [B.1.1 基本資料](https://hackmd.io/@1111-jobdocs/ryUoKHCG-e)
-        - [B.1.2 公司形象](https://hackmd.io/@1111-jobdocs/SJhAVOy8Wg)
-        - [B.1.3 工作環境](https://hackmd.io/@1111-jobdocs/Sy6vKV4FZx)
-        - [B.1.4 產品服務](https://hackmd.io/@1111-jobdocs/Hk7HExLUWx)
-        - [B.1.5 福利制度](https://hackmd.io/@1111-jobdocs/HJvhE8BFWe)
-        - [B.1.6 更多介紹](https://hackmd.io/@1111-jobdocs/BJEWK648bx)
-        - [B.1.7 面試須知上傳](https://hackmd.io/@1111-jobdocs/S1HPE5EU-e)
-        - [B.1.8 變更版型](https://hackmd.io/@1111-jobdocs/ByA4t_-cZg)
-    - 📁 **1.2.4 群組設定(現版)**
-      - [1.2.4 群組設定](https://hackmd.io/@1111-jobdocs/S1G_8GQbZe)
-    - 📁 **B.2 帳號設定**
-      - [B.2 帳號設定](https://hackmd.io/@1111-jobdocs/SkfafU2WZg)
-      - [B.2.1 基本資料](https://hackmd.io/@1111-jobdocs/BytSsxD8be)
-      - [B.2.1&B.2.2&B.2.3 新增帳號/修改個人帳號/修改他人帳號](https://hackmd.io/@1111-jobdocs/Bk1uH5fXbx)
-      - [B.2.2 通知設定](https://hackmd.io/@1111-jobdocs/BJGdoePUWl)
-      - [B.2.3 權限設定](https://hackmd.io/@1111-jobdocs/SyKtjeP8We)
-    - 📁 **B.3 聯絡人設定**
-      - [B.3 聯絡人設定](https://hackmd.io/@1111-jobdocs/SkdiYvsnZe)
-    - 📁 **B.4 刊登設定**
-      - [2.2.1 排程開關權Modal](https://hackmd.io/@1111-jobdocs/By5Eo8NvZx)
-      - [2.2.2 暫停刊登Modal](https://hackmd.io/@1111-jobdocs/SJ0mjWHvZx)
-      - [(現版)1.2.3 開關天數設定](https://hackmd.io/@1111-jobdocs/Bkw7pIVLbx)
-      - [B.4 刊登設定](https://hackmd.io/@1111-jobdocs/ryEY3vBZbl)
-    - 📁 **B.5 公司頁QR Code**
-      - [公司頁QR Code](https://hackmd.io/@1111-jobdocs/SkztPlKsbx)
-  - 📁 **C. 職缺**
-    - 📁 **2.0 職缺內頁**
-      - [2.0 職缺內頁 > 職缺內容](https://hackmd.io/@1111-jobdocs/BJ7Yob8W-g)
-      - [2.0 職缺內頁＞應徵方式](https://hackmd.io/@1111-jobdocs/Sy_fXBBfWx)
-      - [2.0 職缺內頁＞職缺設定](https://hackmd.io/@1111-jobdocs/SJEiSjRzbl)
-      - [2.0 送出職缺後彈窗與職缺審核](https://hackmd.io/@1111-jobdocs/rJhe4yBNWe)
-      - [提案：職缺資料＞工作時間與班別優化](https://hackmd.io/@1111-jobdocs/S1xTdMKV-l)
-      - [職缺預覽頁](https://hackmd.io/@1111-jobdocs/S1OfrDqiWl)
-    - 📁 **2.1 職缺總覽**
-      - [2.1 職缺總覽](https://hackmd.io/@1111-jobdocs/HJvxSmNMWe)
-      - [職缺列印](https://hackmd.io/@1111-jobdocs/B1pOwHZQ-e)
-      - 📁 **多筆修改**
-        - [多筆修改：工作時間](https://hackmd.io/@1111-jobdocs/HkHIwU8Y-x)
-        - [職缺列表多筆操作](https://hackmd.io/@1111-jobdocs/rJvOFkwFbl)
-      - 📁 **應徵過濾**
-        - [應徵過濾](https://hackmd.io/@1111-jobdocs/r1AirkvF-x)
-    - 📁 **2.2 新增職缺**
-      - [新增職缺](https://hackmd.io/@1111-jobdocs/S1SfBeXxfe)
-      - [職缺健檢提案](https://hackmd.io/@1111-jobdocs/Hk_KPwz3Zl)
-      - [職缺匯入提案](https://hackmd.io/@1111-jobdocs/BJATOLPwbx)
-      - [職缺審核導入AI提案](https://hackmd.io/@1111-jobdocs/B1bkIvMhZx)
-      - [複製職缺](https://hackmd.io/@1111-jobdocs/HJW-MWp4Wg)
-    - 📁 **2.3 職缺排序**
-      - [2.3 現版職缺排序](https://hackmd.io/@1111-jobdocs/B1Srfpi7bg)
-    - 📁 **2.4 職缺移轉**
-      - [2.4 職缺移轉](https://hackmd.io/@1111-jobdocs/rJ5KsWEG-e)
-    - 📁 **2.7 職缺廣告排程**
-      - [2.7 職缺廣告排程](https://hackmd.io/@1111-jobdocs/Sy7bgNuzZg)
-  - 📁 **D. 人才**
-    - 📁 **3.0 履歷共用頁面**
-      - [3.0 履歷列印頁](https://hackmd.io/@1111-jobdocs/H18Vo3zyMx)
-      - [3.0 履歷詳細頁](https://hackmd.io/@1111-jobdocs/HyYq_GgXWl)
-    - 📁 **3.1 履歷**
-      - 📁 **3.1.1 主動應徵**
-        - 📁 **主動應徵履歷列表**
-          - [3.1.1 主動應徵履歷列表](https://hackmd.io/@1111-jobdocs/ry9S7kjuWe)
-          - [3.1.1 主動應徵職缺選單](https://hackmd.io/@1111-jobdocs/S1I24H-lzl)
-        - 📁 **主動應徵履歷卡片**
-          - [3.1.1 主動應徵履歷卡片](https://hackmd.io/@1111-jobdocs/Byy7rOTM-x)
-      - 📁 **3.1.2 追蹤名單**
-        - [追蹤名單權限](https://hackmd.io/@1111-jobdocs/B19dalQ-Zx)
-      - 📁 **3.1.4 來訪人才**
-        - [3.1.4 來訪名單](https://hackmd.io/@1111-jobdocs/rkMnZsqu-g)
-        - [現版人才來訪拉皮更新](https://hackmd.io/@1111-jobdocs/SJ5oUbXv-g)
-      - 📁 **關注名單**
-        - [關注名單](https://hackmd.io/@1111-jobdocs/rygtdmRNZl)
-      - 📁 **Proposal**
-        - [關注名單](https://hackmd.io/@1111-jobdocs/B1jNIrMBZl)
-      - 📁 **3.1.8 封鎖名單**
-        - [3.1.8 封鎖名單](https://hackmd.io/@1111-jobdocs/rkkn5BZQ-g)
-    - 📁 **3.2 搜尋**
-      - 📁 **3.2.0 搜尋結果共用頁面**
-        - [3.2 搜尋列表（現版需求）](https://hackmd.io/@1111-jobdocs/SkyLndUmWe)
-        - [3.2.0 搜尋結果頁（改版畫面）](https://hackmd.io/@1111-jobdocs/BkCVW1nXbg)
-        - [搜尋人才卡片（改版畫面）](https://hackmd.io/@1111-jobdocs/SyvesCVEbg)
-      - 📁 **3.2.1 配對名單搜尋**
-        - [3.2.1 配對條件設定](https://hackmd.io/@1111-jobdocs/Bk06kDtf-l)
-      - 📁 **3.2.3 進階搜尋**
-        - [3.2.3 進階搜尋](https://hackmd.io/@1111-jobdocs/Syn7AN87Wl)
-      - 📁 **3.2.4 大專人才搜尋**
-        - [3.2.4 大專人才搜尋](https://hackmd.io/@1111-jobdocs/SJleDiy9bl)
-      - 📁 **3.2.6 AI推薦人才名單**
-        - [3.2.6 AI推薦人才名單](https://hackmd.io/@1111-jobdocs/r1TBqJjeGx)
-  - 📁 **E. 聯繫**
-    - [（無標題）](https://hackmd.io/@1111-jobdocs/By6LOzxbMe)
-    - 📁 **4.1 信件訊息**
-      - [信件列表 規格文件](https://hackmd.io/@1111-jobdocs/rJkyKgeGWl)
-      - [信件對話 規格文件](https://hackmd.io/@1111-jobdocs/r1ghrPxP-x)
-      - [信件訊息頁（ResumePoolNoticeMail）前端視覺調整需求](https://hackmd.io/@1111-jobdocs/S1cYFSFfzx)
-    - 📁 **E.2.1 信件範本**
-      - [E.2.1 信件範本](https://hackmd.io/@1111-jobdocs/HyDIQwJUWg)
-    - 📁 **E.2.2 簡訊範本**
-      - [簡訊範本](https://hackmd.io/@1111-jobdocs/BJt1Rj59Ze)
-    - 📁 **4.0 信件通知Lightbox**
-      - [4.0 發信通知 Lightbox 規格文件](https://hackmd.io/@1111-jobdocs/r1qJb-uXbx)
-      - [檢查規則](https://hackmd.io/@1111-jobdocs/S1XwSUPBZg)
-  - 📁 **5. 紀錄**
-    - 📁 **5.1 帳號邀約紀錄**
-      - [5.1 帳號邀約紀錄](https://hackmd.io/@1111-jobdocs/rJ5Bp4RE-g)
-    - 📁 **5.3 帳號使用紀錄**
-      - [5.3 帳號使用紀錄＞購買紀錄](https://hackmd.io/@1111-jobdocs/S1-Wt68M-e)
-    - 📁 **5.6 紀錄統計查詢**
-      - [5.6 數據統計查詢](https://hackmd.io/@1111-jobdocs/SJeZiGSMbx)
-  - 📁 **6. 服務**
-    - [6.8 滿意度調查](https://hackmd.io/@1111-jobdocs/S1fR49Fg-l)
-    - [A.7.1 文件下載](https://hackmd.io/@1111-jobdocs/Sk5kyX6ubx)
-  - 📁 **7. 購買**
-    - [7.1 線上續約](https://hackmd.io/@1111-jobdocs/ByKdpLaWZe)
-    - [7.2 購買優先排序](https://hackmd.io/@1111-jobdocs/HJzsieKfWe)
-    - [H.3 合約上傳](https://hackmd.io/@1111-jobdocs/HJD1Eu0c-e)
-  - 📁 **8. Floating Component**
-    - 📁 **即時通**
-      - [即時通面板](https://hackmd.io/@1111-jobdocs/SJsYLtmr-g)
-    - 📁 **智能客服**
-      - [求才智能客服](https://hackmd.io/@1111-jobdocs/Hy95Qz7g-e)
-  - 📁 **9. 系統Mail**
-    - [VIP 續約感謝信](https://hackmd.io/@1111-jobdocs/Syo5pb-sbl)
-    - [信用卡繳款通知信](https://hackmd.io/@1111-jobdocs/BJ2GChM1Mx)
-    - [廠商回流 E-mail 短解](https://hackmd.io/@1111-jobdocs/SystNGUZWx)
-    - [登入系統通知信](https://hackmd.io/@1111-jobdocs/HkZrBvaubg)
-    - [職缺確認信](https://hackmd.io/@1111-jobdocs/BktAq_Szbl)
-    - [裝置驗證信](https://hackmd.io/@1111-jobdocs/B1fzI8G2We)
-    - [配對信](https://hackmd.io/@1111-jobdocs/ryisuzlZzg)
-  - 📁 **11. 功能說明頁**
-    - [帳號設定改版 功能說明頁](https://hackmd.io/@1111-jobdocs/rynOybVWZx)
-    - [智能客服 功能說明頁](https://hackmd.io/@1111-jobdocs/SJtErv_lZl)
-  - 📁 **J. 登入流程與登入前**
-    - 📁 **招募系統登入前**
-      - [J.1.7 雙重驗證 規格文件](https://hackmd.io/@1111-jobdocs/ryqrsG2lWg)
-      - [J.1.9 忘記密碼規格文件](https://hackmd.io/@1111-jobdocs/HJT3dH_vWg)
-      - [J.1.9 忘記帳號規格文件](https://hackmd.io/@1111-jobdocs/SJNKOS_D-g)
-      - [傳真刊登](https://hackmd.io/@1111-jobdocs/SkpgK_GYWl)
-      - [招募系統登入前頁](https://hackmd.io/@1111-jobdocs/r11ad8Okfe)
-      - 📁 **Archived**
-        - [[Archived]  J.1.9 忘記帳號 / 密碼](https://hackmd.io/@1111-jobdocs/rJq63CJEZl)
-      - 📁 **J.0.3 人才試搜**
-        - [人才試搜列表](https://hackmd.io/@1111-jobdocs/Sk4CnTjgMg)
-        - [人才試搜履歷資料](https://hackmd.io/@1111-jobdocs/Hyt5LqcyMl)
-  - 📁 **M. Modal&Lightbox**
-    - [備註 Lightbox](https://hackmd.io/@1111-jobdocs/rkX_P2qqZl)
-    - [列印履歷 lightbox](https://hackmd.io/@1111-jobdocs/SJMq3nfkGe)
-    - [帳號選擇 Modal](https://hackmd.io/@1111-jobdocs/S13ZYP9jbg)
-    - [新增封鎖Lightbox](https://hackmd.io/@1111-jobdocs/H1guSxywZe)
-    - [無權限Alert Modal](https://hackmd.io/@1111-jobdocs/ryACpaCAWe)
-    - [現版職缺選擇 Lightbox](https://hackmd.io/@1111-jobdocs/BkxSWZuGWx)
-    - [簡訊通知 Lightbox](https://hackmd.io/@1111-jobdocs/BkXGV4BW-e)
-    - [記錄管理 Lightbox](https://hackmd.io/@1111-jobdocs/Sk4AvcZ-We)
-    - [轉寄履歷Lightbox](https://hackmd.io/@1111-jobdocs/ByoEYp2a-g)
-    - [追蹤人才Lightbox](https://hackmd.io/@1111-jobdocs/r1V8b3ZDWg)
-    - [通訊錄 Lightbox](https://hackmd.io/@1111-jobdocs/B1iOzIB9-e)
-  - 📁 **客服後台**
-    - [不顯示：外籍人士需求](https://hackmd.io/@1111-jobdocs/S1ZG37NG-x)
-    - [客服後台上傳文件及流程](https://hackmd.io/@1111-jobdocs/rkHmZ8iobx)
-    - [頁面編碼．文件名稱(頁面或component名稱)](https://hackmd.io/@1111-jobdocs/ryugZ32nWe)
-- 📁 **求職系統**
-  - [1.4 手機信箱驗證流程](https://hackmd.io/@1111-jobdocs/SJyzqFjple)
-  - [1. 健診前置階段](https://hackmd.io/@1111-jobdocs/S1Pisq3Tee)
-  - [3.0 建診結果階段](https://hackmd.io/@1111-jobdocs/H17zT3hTle)
-  - [3.0 診斷結果階段](https://hackmd.io/@1111-jobdocs/Hy6MIS96gx)
-  - [3.1 Loading Modal](https://hackmd.io/@1111-jobdocs/SkGQ8S9pgg)
-  - [3.2 健診報告頁](https://hackmd.io/@1111-jobdocs/rJo_vQcTel)
-  - [3.3 健診失敗 Modal](https://hackmd.io/@1111-jobdocs/SyYa4BsTll)
-  - [4.2 健診記錄內頁](https://hackmd.io/@1111-jobdocs/r1LxgJ66el)
-  - [4.診斷紀錄目錄](https://hackmd.io/@1111-jobdocs/HJRJmPsTex)
-  - [功能埋點](https://hackmd.io/@1111-jobdocs/S13K9SkLZx)
-  - [文件目錄](https://hackmd.io/@1111-jobdocs/rk_sYeG8gl)
-  - [求職主網 Agent 清單](https://hackmd.io/@1111-jobdocs/SJBn5sJXZe)
-  - [立即上工](https://hackmd.io/@1111-jobdocs/SyxAwTIsge)
-  - 📁 **1111簡介頁**
-    - [企業快訊頁](https://hackmd.io/@1111-jobdocs/Bk9t1XJaWg)
-    - [創新與榮耀頁](https://hackmd.io/@1111-jobdocs/SJjs1XkaZe)
-    - [目錄](https://hackmd.io/@1111-jobdocs/H135JDyp-g)
-    - 📁 **首頁**
-      - [1. Header/Banner/Footer](https://hackmd.io/@1111-jobdocs/ryvZLU1TZg)
-      - [2. Tab Bar](https://hackmd.io/@1111-jobdocs/SJ1sLLJpZl)
-      - [3. 卡片欄位](https://hackmd.io/@1111-jobdocs/SJ--v8kpWl)
-      - [4. About Us](https://hackmd.io/@1111-jobdocs/ryN4wUy6-e)
-      - [5. 我們的願景](https://hackmd.io/@1111-jobdocs/rkJrw81abg)
-      - [6. 評價](https://hackmd.io/@1111-jobdocs/HyDtDL1Tbl)
-      - [7. 地點介紹](https://hackmd.io/@1111-jobdocs/ByQ9DLJaWg)
-      - [8. 導向區塊](https://hackmd.io/@1111-jobdocs/r1Jow8kp-g)
-      - [9. 服務證號](https://hackmd.io/@1111-jobdocs/r1njPL16-x)
-      - [首頁(關於1111頁)](https://hackmd.io/@1111-jobdocs/By2w1Xkpbg)
-  - 📁 **C 通訊功能**
-    - [12.0 聯絡公司](https://hackmd.io/@1111-jobdocs/Bklht7YjWe)
-    - [12.1 頁面路徑（Breadcrumb）](https://hackmd.io/@1111-jobdocs/HkCEWEKjWl)
-    - [12.2 頁面標題 & 分類 Tab](https://hackmd.io/@1111-jobdocs/SJRvpNtsZe)
-    - [12.3 訊息列表區](https://hackmd.io/@1111-jobdocs/B1aA5HFsZx)
-    - [12.4 對話內容區](https://hackmd.io/@1111-jobdocs/ByTfsBKsZl)
-    - [12. 聯絡公司目錄](https://hackmd.io/@1111-jobdocs/SJVkhuq9bx)
-    - [image](https://hackmd.io/@1111-jobdocs/B1B-qVcobe)
-    - [無標題](https://hackmd.io/@1111-jobdocs/B1z6PGXZzl)
-    - [聯絡公司（即時通）_ 通話記錄資訊](https://hackmd.io/@1111-jobdocs/B1aITQQBWl)
-  - 📁 **Demo**
-    - [2026/02/06 首頁更版](https://hackmd.io/@1111-jobdocs/HJlCV1aMvWe)
-  - 📁 **E 系統信**
-    - [職缺配對信：A/B test 分流、埋點機制](https://hackmd.io/@1111-jobdocs/Hy8l-Pvjbg)
-    - [職缺配對信：新版信頁面固定連結](https://hackmd.io/@1111-jobdocs/SJv1uW0nbe)
-    - 📁 **功能觸發信件**
-      - [工程（寄送面試報告 Email）](https://hackmd.io/@1111-jobdocs/SyHQVAi7Ze)
-    - 📁 **系統通知信**
-      - [系統信總表](https://hackmd.io/@1111-jobdocs/HyVGrHzsbl)
-  - 📁 **F 資訊頁**
-    - [網站指引主頁](https://hackmd.io/@1111-jobdocs/H1oQxOBRbx)
-    - [網站指引搜尋頁](https://hackmd.io/@1111-jobdocs/HyyKO_HCWx)
-  - 📁 **上線計劃**
-    - [上線計劃：求職首頁](https://hackmd.io/@1111-jobdocs/B1YNcuL7bg)
-  - 📁 **求職 QA**
-    - [F6.0 求職 QA 首頁](https://hackmd.io/@1111-jobdocs/BJr4Thq_Wg)
-    - [F6.1 求職 QA 搜尋頁](https://hackmd.io/@1111-jobdocs/rJpylyodWl)
-  - 📁 **競品分析**
-    - [競品分析：各求職平台網站指引](https://hackmd.io/@1111-jobdocs/S1I9oqiiZe)
-    - [競品分析：各求職平台網站指引](https://hackmd.io/@1111-jobdocs/rJ866TwFZl)
-    - [競品分析：求職會員未滿18歲身分驗證](https://hackmd.io/@1111-jobdocs/SJ7t_LIt-e)
-    - [競品分析：職缺配對信](https://hackmd.io/@1111-jobdocs/H1D9TSaKZe)
 - 📁 **1. 首頁**
+  - 📁 **AI 個人化推薦**
+    - [首頁「AI 推薦職缺」即時化 — 前後端交辦](https://hackmd.io/@1111-jobdocs/B1Ns2KFrze)
+  - [1. 首頁目錄](https://hackmd.io/@1111-jobdocs/Bk4ou5JPWl)
   - [1.0 首頁：廣告版位資訊](https://hackmd.io/@1111-jobdocs/rkQ_aPB9ee)
   - [1.0 首頁：新版介紹彈窗](https://hackmd.io/@1111-jobdocs/SyAtsPw7bx)
   - [1.0 首頁：新版特色介紹](https://hackmd.io/@1111-jobdocs/ryhLPtwX-l)
@@ -260,24 +18,57 @@
   - [1.11 求職系統形象推廣區塊](https://hackmd.io/@1111-jobdocs/HyQ5YdQsZl)
   - [1.12 APP 推廣區塊](https://hackmd.io/@1111-jobdocs/HkmERDXsbl)
   - [1.13 首頁 popup banner](https://hackmd.io/@1111-jobdocs/BJdl59fsbx)
-  - [1. 首頁目錄](https://hackmd.io/@1111-jobdocs/Bk4ou5JPWl)
+  - [AI 身分類別【探索工作】邏輯](https://hackmd.io/@1111-jobdocs/BycfmBuSMe)
   - [各版位上稿後台](https://hackmd.io/@1111-jobdocs/rJ3ec0v7bl)
+  - [數據埋點：首頁](https://hackmd.io/@1111-jobdocs/H1B3gj9Qfx)
+  - [數據埋點：首頁【五大身分熱門關鍵字】、【五大身分推薦專區】點擊數埋點](https://hackmd.io/@1111-jobdocs/ByJe82KWGl)
+  - [職缺適合／不適合](https://hackmd.io/@1111-jobdocs/S1iY533EMg)
+  - [首頁廣告版位資訊調整](https://hackmd.io/@1111-jobdocs/HkE3VxNmze)
+  - [首頁數據埋點](https://hackmd.io/@1111-jobdocs/Sy7C41Uezl)
   - [首頁熱門關鍵字](https://hackmd.io/@1111-jobdocs/SJXmooMxZx)
+- 📁 **1.2.4 群組設定(現版)**
+  - [1.2.4 群組設定](https://hackmd.io/@1111-jobdocs/S1G_8GQbZe)
+- 📁 **11. 功能說明頁**
+  - [帳號設定改版 功能說明頁](https://hackmd.io/@1111-jobdocs/rynOybVWZx)
+  - [智能客服 功能說明頁](https://hackmd.io/@1111-jobdocs/SJtErv_lZl)
 - 📁 **2. 搜尋頁**
-  - [（無標題）](https://hackmd.io/@1111-jobdocs/ryc7AXypbx)
-  - [立即上工](https://hackmd.io/@1111-jobdocs/rySufos5gl)
-  - [立即上工](https://hackmd.io/@1111-jobdocs/HkS2_wddlx)
   - 📁 **2. 4 找實習搜尋頁**
     - [找實習搜尋頁](https://hackmd.io/@1111-jobdocs/Sky_vXj2Zx)
+  - [福利選單](https://hackmd.io/@1111-jobdocs/ryc7AXypbx)
+  - [立即上工](https://hackmd.io/@1111-jobdocs/rySufos5gl)
+  - [立即上工](https://hackmd.io/@1111-jobdocs/HkS2_wddlx)
+- 📁 **2.0 職缺內頁**
+  - [2.0 職缺內頁](https://hackmd.io/@1111-jobdocs/B1p54YozMe)
+  - [2.0 職缺內頁 > 職缺內容](https://hackmd.io/@1111-jobdocs/BJ7Yob8W-g)
+  - [2.0 職缺內頁＞應徵方式](https://hackmd.io/@1111-jobdocs/Sy_fXBBfWx)
+  - [2.0 職缺內頁＞職缺設定](https://hackmd.io/@1111-jobdocs/SJEiSjRzbl)
+  - [2.0 送出職缺後彈窗與職缺審核](https://hackmd.io/@1111-jobdocs/rJhe4yBNWe)
+  - [提案：職缺資料＞工作時間與班別優化](https://hackmd.io/@1111-jobdocs/S1xTdMKV-l)
+  - [職缺健檢提案](https://hackmd.io/@1111-jobdocs/Hk_KPwz3Zl)
+  - [職缺預覽頁](https://hackmd.io/@1111-jobdocs/S1OfrDqiWl)
 - 📁 **3. 公司頁**
-  - [3.2 公司資料](https://hackmd.io/@1111-jobdocs/rk6ljhzw-e)
+  - [3. 公司頁目錄](https://hackmd.io/@1111-jobdocs/By3yF5yPbg)
+  - [3.1 Anchorbar 跑馬燈](https://hackmd.io/@1111-jobdocs/SyoJ7u8bMx)
+  - [3.10 其他資訊](https://hackmd.io/@1111-jobdocs/H1SOmdLWMx)
+  - [3.11 工作機會](https://hackmd.io/@1111-jobdocs/ryLumdUWGg)
   - [3.12 相似公司](https://hackmd.io/@1111-jobdocs/r15zqPApgl)
   - [3.13 推薦職缺](https://hackmd.io/@1111-jobdocs/BJ1qeiyPZx)
   - [3.14 品牌行銷子頁](https://hackmd.io/@1111-jobdocs/S1EJPm1wbe)
-  - [3. 公司頁目錄](https://hackmd.io/@1111-jobdocs/By3yF5yPbg)
-  - [客服後台顯示控制代碼表](https://hackmd.io/@1111-jobdocs/SJmryulP-e)
+  - [3.2 公司資料](https://hackmd.io/@1111-jobdocs/rk6ljhzw-e)
+  - [3.3 公司簡介](https://hackmd.io/@1111-jobdocs/r1ay7dIZzg)
+  - [3.4 公司環境](https://hackmd.io/@1111-jobdocs/HJazmuLWGl)
+  - [3.5 產品服務](https://hackmd.io/@1111-jobdocs/r1VAGmuLZGx)
+  - [3.6 公司福利](https://hackmd.io/@1111-jobdocs/HkkXXdUWfl)
+  - [3.7 更多介紹](https://hackmd.io/@1111-jobdocs/rJb_7_8bMx)
+  - [3.8 公司影音](https://hackmd.io/@1111-jobdocs/Hk7OX_IWfg)
+  - [3.9 旗下公司／代理品牌](https://hackmd.io/@1111-jobdocs/By4uQuUbfx)
 - 📁 **4. 職缺頁**
+  - [4. 職缺頁目錄](https://hackmd.io/@1111-jobdocs/BkoIbDePWg)
   - [4.1 Anchor bar](https://hackmd.io/@1111-jobdocs/SkWhsyj_-x)
+  - [4.10 應徵活動](https://hackmd.io/@1111-jobdocs/rkZJcXndWg)
+  - [4.11 推薦職缺](https://hackmd.io/@1111-jobdocs/Bkny9mnOWe)
+  - [4.12 瀏覽紀錄](https://hackmd.io/@1111-jobdocs/SJhl97nd-x)
+  - [4.13 競爭力分析](https://hackmd.io/@1111-jobdocs/Bk86h8Z5Wl)
   - [4.2 職缺摘要](https://hackmd.io/@1111-jobdocs/BySJGgiO-e)
   - [4.3 Tab bar](https://hackmd.io/@1111-jobdocs/SkCDGeid-g)
   - [4.4 工作內容](https://hackmd.io/@1111-jobdocs/HyNpfli_-e)
@@ -286,84 +77,96 @@
   - [4.7 福利資訊](https://hackmd.io/@1111-jobdocs/SJSp8M2ubx)
   - [4.8 聯絡資訊](https://hackmd.io/@1111-jobdocs/HJxkTG2d-l)
   - [4.9 更多](https://hackmd.io/@1111-jobdocs/r1VTtXndbg)
-  - [4.10 應徵活動](https://hackmd.io/@1111-jobdocs/rkZJcXndWg)
-  - [4.11 推薦職缺](https://hackmd.io/@1111-jobdocs/Bkny9mnOWe)
-  - [4.12 瀏覽紀錄](https://hackmd.io/@1111-jobdocs/SJhl97nd-x)
-  - [4.13 競爭力分析](https://hackmd.io/@1111-jobdocs/Bk86h8Z5Wl)
-  - [4. 職缺頁目錄](https://hackmd.io/@1111-jobdocs/BkoIbDePWg)
   - [工作時段](https://hackmd.io/@1111-jobdocs/BkFfAeGVZl)
   - [承攬制](https://hackmd.io/@1111-jobdocs/rkSpQbO5ll)
   - [立即上工](https://hackmd.io/@1111-jobdocs/SkDOK3xE-e)
   - [競爭力分析（維尼）](https://hackmd.io/@1111-jobdocs/Byo-eK85We)
-- 📁 **5. 登入 & 註冊頁**
-  - 📁 **5-1. 註冊頁**
-    - [註冊頁＿推薦職缺頁](https://hackmd.io/@1111-jobdocs/H1kXJRQ6xl)
-    - [身分證必填、保留性別資料與不公開選項](https://hackmd.io/@1111-jobdocs/ByHR7nl8We)
-    - [非台灣籍：新增「證照效期」欄位](https://hackmd.io/@1111-jobdocs/BkNCx_gPZx)
-  - 📁 **5-2. 登入頁**
-    - [臨時登入頁](https://hackmd.io/@1111-jobdocs/rJnKCSF2xl)
-  - 📁 **5-3. 忘記密碼頁**
-    - [忘記密碼頁](https://hackmd.io/@1111-jobdocs/SkxPxIG2ex)
-  - 📁 **5-4. 刪除帳號頁**
+- 📁 **9. 系統Mail**
+  - [VIP 續約感謝信](https://hackmd.io/@1111-jobdocs/Syo5pb-sbl)
+  - [人才配對信](https://hackmd.io/@1111-jobdocs/Hka1IFeUfx)
+  - [企業通知信件](https://hackmd.io/@1111-jobdocs/HkKTVkw_fl)
+  - [信用卡繳款通知信](https://hackmd.io/@1111-jobdocs/BJ2GChM1Mx)
+  - [凌晨配對信](https://hackmd.io/@1111-jobdocs/ryisuzlZzg)
+  - [廠商回流 E-mail 短解](https://hackmd.io/@1111-jobdocs/SystNGUZWx)
+  - [新增／修改帳號信](https://hackmd.io/@1111-jobdocs/Bkw6AsHwMg)
+  - [登入系統通知信](https://hackmd.io/@1111-jobdocs/HkZrBvaubg)
+  - [職缺審核信](https://hackmd.io/@1111-jobdocs/Hyj6_7X8fl)
+  - [職缺確認信](https://hackmd.io/@1111-jobdocs/BktAq_Szbl)
+  - [裝置驗證信](https://hackmd.io/@1111-jobdocs/B1fzI8G2We)
 - 📁 **A 主網**
-  - [四大頁：「電話分機欄位」顯示邏輯調整](https://hackmd.io/@1111-jobdocs/HJUK0OgPbg)
   - 📁 **0. 共用元件**
-    - 📁 **0.0 共用元件_PRD**
     - 📁 **0.1 Header**
       - [Header](https://hackmd.io/@1111-jobdocs/BkI6Kpy3le)
     - 📁 **0.2 Footer**
       - [0.2 Footer：規格文件](https://hackmd.io/@1111-jobdocs/S11FjCDMZl)
-    - 📁 **0.3 Tcode 選單**
+    - [0.4 NPS](https://hackmd.io/@1111-jobdocs/SkTB4REFMl)
   - 📁 **6. 主投頁**
     - [主投頁_應徵提醒 modal](https://hackmd.io/@1111-jobdocs/S1Cdygoxbe)
-- 📁 **B 會員中心**
-  - [刪除帳號說明](https://hackmd.io/@1111-jobdocs/BJzBx4tqWg)
-  - [手持裝置導航邏輯](https://hackmd.io/@1111-jobdocs/ByweOnj7bl)
-  - [會員中心新舊版本過渡](https://hackmd.io/@1111-jobdocs/H17mG5XUgx)
-  - [會員資料頁：調整未成年資料上傳流程](https://hackmd.io/@1111-jobdocs/HJIJO_k6Wx)
-  - [關注公司](https://hackmd.io/@1111-jobdocs/Sy0YkJ0pWe)
-  - 📁 **履歷**
-    - [個人進修](https://hackmd.io/@1111-jobdocs/ByhsB7G8lx)
-    - [履歷各狀態規則](https://hackmd.io/@1111-jobdocs/BJiJxYFtxx)
-    - [履歷欄位名稱更名調整](https://hackmd.io/@1111-jobdocs/ByQswQnuWl)
-    - [履歷預覽](https://hackmd.io/@1111-jobdocs/r1bBKgz8xe)
-    - [工作總年資下拉選單](https://hackmd.io/@1111-jobdocs/rknWpXVbbx)
-    - [新版履歷編輯](https://hackmd.io/@1111-jobdocs/rJCk0XLvgx)
-    - [新版履歷編輯欄位](https://hackmd.io/@1111-jobdocs/HyCW4Ihdee)
-    - [求職偏好－工作性質欄位相關改動](https://hackmd.io/@1111-jobdocs/ry23WBcEWe)
-  - 📁 **我的主頁**
-    - [全覽](https://hackmd.io/@1111-jobdocs/SylRjjtPeg)
-    - [公告](https://hackmd.io/@1111-jobdocs/rkvX2KLXWg)
-    - [目錄](https://hackmd.io/@1111-jobdocs/BJWa9YLXWl)
-    - 📁 **Content**
-      - [履歷進度卡片](https://hackmd.io/@1111-jobdocs/rknW_GKmbe)
-      - [應徵紀錄](https://hackmd.io/@1111-jobdocs/rJKIRwsQ-x)
-      - [推薦紀錄](https://hackmd.io/@1111-jobdocs/H1m-uOo7Zx)
-      - [求職紀錄](https://hackmd.io/@1111-jobdocs/r1DoGfKQWx)
-      - [理想工作](https://hackmd.io/@1111-jobdocs/Sk5ghokN-g)
-    - 📁 **Sidebar**
-      - [側邊選單](https://hackmd.io/@1111-jobdocs/rkRoiRombg)
-      - [履歷照片功能](https://hackmd.io/@1111-jobdocs/Hys82Y8XZe)
-      - [會員資訊](https://hackmd.io/@1111-jobdocs/r1g4HkFmZg)
-      - [職缺配對訂閱提醒](https://hackmd.io/@1111-jobdocs/ByOzc9kEWl)
-  - 📁 **短期任務**
-    - [2025Q3 立即上工Modal](https://hackmd.io/@1111-jobdocs/r1y2XAy3ll)
-    - [駕照選擇Modal](https://hackmd.io/@1111-jobdocs/rkvch1SUge)
+  - [出生日期輸入元件規格文件](https://hackmd.io/@1111-jobdocs/BkXbnNU4ze)
+  - [四大頁：「電話分機欄位」顯示邏輯調整](https://hackmd.io/@1111-jobdocs/HJUK0OgPbg)
+  - [搜尋頁、公司頁：職缺卡片福利 tag 補回「寵物日」](https://hackmd.io/@1111-jobdocs/HyukUnYZMe)
+  - [職缺頁：「工作時段」欄位串接與顯示調整](https://hackmd.io/@1111-jobdocs/ByPykpFWGg)
+- 📁 **B. 公司**
+  - 📁 **B.1 公司資料修改**
+    - 📁 **編輯分頁**
+      - [B.1.1 基本資料](https://hackmd.io/@1111-jobdocs/ryUoKHCG-e)
+      - [B.1.2 公司形象](https://hackmd.io/@1111-jobdocs/SJhAVOy8Wg)
+      - [B.1.3 官方連結](https://hackmd.io/@1111-jobdocs/SkztPlKsbx)
+      - [B.1.4 工作環境](https://hackmd.io/@1111-jobdocs/Sy6vKV4FZx)
+      - [B.1.5 產品服務](https://hackmd.io/@1111-jobdocs/Hk7HExLUWx)
+      - [B.1.6 福利制度](https://hackmd.io/@1111-jobdocs/HJvhE8BFWe)
+      - [B.1.7 更多介紹](https://hackmd.io/@1111-jobdocs/BJEWK648bx)
+      - [B.1.8 面試須知上傳](https://hackmd.io/@1111-jobdocs/S1HPE5EU-e)
+      - [B.1.9 變更版型](https://hackmd.io/@1111-jobdocs/ByA4t_-cZg)
+    - [B.1 公司資料修改與進度條](https://hackmd.io/@1111-jobdocs/S1jhD6RRbe)
+    - [公司資料預覽](https://hackmd.io/@1111-jobdocs/H1ZbConBbl)
+    - [公司資料＞確定送出按鈕](https://hackmd.io/@1111-jobdocs/HkSJkuy8bx)
+  - 📁 **B.3 聯絡人設定**
+    - [B.3 聯絡人設定](https://hackmd.io/@1111-jobdocs/SkdiYvsnZe)
+- 📁 **B.2 帳號設定**
+  - [B.2 帳號設定](https://hackmd.io/@1111-jobdocs/SkfafU2WZg)
+  - [B.2.1 基本資料](https://hackmd.io/@1111-jobdocs/%E5%9F%BA%E6%9C%AC%E8%B3%87%E6%96%99)
+  - [B.2.1&B.2.2&B.2.3 新增帳號/修改個人帳號/修改他人帳號](https://hackmd.io/@1111-jobdocs/Bk1uH5fXbx)
+  - [B.2.2 通知設定](https://hackmd.io/@1111-jobdocs/BJGdoePUWl)
+  - [B.2.3 權限設定](https://hackmd.io/@1111-jobdocs/SyKtjeP8We)
+  - [新增帳號Modal](https://hackmd.io/@1111-jobdocs/rkciNnFHMg)
+- 📁 **B.4 刊登設定**
+  - [(現版)1.2.3 開關天數設定](https://hackmd.io/@1111-jobdocs/Bkw7pIVLbx)
+  - [2.2.1 排程開關權Modal](https://hackmd.io/@1111-jobdocs/By5Eo8NvZx)
+  - [2.2.2 暫停刊登Modal](https://hackmd.io/@1111-jobdocs/SJ0mjWHvZx)
+  - [B.4 刊登設定](https://hackmd.io/@1111-jobdocs/ryEY3vBZbl)
+- 📁 **C. 職缺**
+  - 📁 **2.1 職缺總覽**
+    - 📁 **多筆修改**
+      - [多筆修改：工作時間](https://hackmd.io/@1111-jobdocs/HkHIwU8Y-x)
+      - [職缺列表多筆操作](https://hackmd.io/@1111-jobdocs/rJvOFkwFbl)
+    - 📁 **應徵過濾**
+      - [應徵過濾](https://hackmd.io/@1111-jobdocs/r1AirkvF-x)
+    - [2.1 職缺總覽](https://hackmd.io/@1111-jobdocs/HJvxSmNMWe)
+    - [職缺列印](https://hackmd.io/@1111-jobdocs/B1pOwHZQ-e)
+  - 📁 **2.2 新增職缺**
+    - [2.2 新增職缺](https://hackmd.io/@1111-jobdocs/S1SfBeXxfe)
+    - [匯入職缺](https://hackmd.io/@1111-jobdocs/Bk854rrtGe)
+    - [職缺匯入提案](https://hackmd.io/@1111-jobdocs/BJATOLPwbx)
+    - [職缺審核導入AI提案](https://hackmd.io/@1111-jobdocs/B1bkIvMhZx)
+    - [複製職缺](https://hackmd.io/@1111-jobdocs/HJW-MWp4Wg)
+  - 📁 **2.3 職缺排序**
+    - [2.3 現版職缺排序](https://hackmd.io/@1111-jobdocs/B1Srfpi7bg)
+  - 📁 **2.4 職缺移轉**
+    - [2.4 職缺移轉](https://hackmd.io/@1111-jobdocs/rJ5KsWEG-e)
+  - 📁 **2.7 職缺廣告排程**
+    - [2.7 職缺廣告排程](https://hackmd.io/@1111-jobdocs/Sy7bgNuzZg)
 - 📁 **D 求職 AI 產品**
-  - [AI 模擬面試](https://hackmd.io/@1111-jobdocs/rJs9KK7B-e)
-  - [個人化推薦（首頁、EDM）](https://hackmd.io/@1111-jobdocs/H1Xoj2J3ee)
   - 📁 **AI 小精靈**
-    - [（無標題）](https://hackmd.io/@1111-jobdocs/SJY3cB18-l)
+    - [](https://hackmd.io/@1111-jobdocs/SJY3cB18-l)
     - [2026 AI 小精靈 語音功能 BUG 整理](https://hackmd.io/@1111-jobdocs/ryok7qxD-g)
     - [AI 小精靈側邊固定懸浮彈窗：資科介面與按鈕功能重疊](https://hackmd.io/@1111-jobdocs/S1RFUSkLWg)
     - [AI 小精靈行銷頁：語音輸入狀態](https://hackmd.io/@1111-jobdocs/H11Xd8GN-e)
-    - [AI 小精靈：語音輸入狀態](https://hackmd.io/@1111-jobdocs/r1oW9rz4Zx)
+    - [AI 小精靈：語音輸入狀態 ](https://hackmd.io/@1111-jobdocs/r1oW9rz4Zx)
     - [新增 Next Question Button](https://hackmd.io/@1111-jobdocs/SkEh9HZiee)
     - [新增 Share, Information Button](https://hackmd.io/@1111-jobdocs/Skq-K4Wsxx)
-    - [首頁：AI 小精靈找工作：語音輸入狀態](https://hackmd.io/@1111-jobdocs/rJAylLfEbx)
+    - [首頁：AI 小精靈找工作：語音輸入狀態 ](https://hackmd.io/@1111-jobdocs/rJAylLfEbx)
   - 📁 **AI 履歷健檢**
-    - [（無標題）](https://hackmd.io/@1111-jobdocs/BkBWjHfQbg)
-    - [目錄](https://hackmd.io/@1111-jobdocs/SyB8pPZoxx)
     - 📁 **AI相關**
       - [自傳分析方向](https://hackmd.io/@1111-jobdocs/Bk0qVM8Clx)
     - 📁 **會員中心**
@@ -373,9 +176,9 @@
       - 📁 **2. 診斷結果（履歷編輯頁）**
         - [2.1 成功狀態](https://hackmd.io/@1111-jobdocs/SJI0hTi3ge)
     - 📁 **活動專區**
+      - [2. 健診執行階段](https://hackmd.io/@1111-jobdocs/rk_o6Hbiel)
       - [2.1 手機信箱驗證](https://hackmd.io/@1111-jobdocs/SJfpI-93xg)
       - [2.2 次數已滿頁](https://hackmd.io/@1111-jobdocs/BJEFmDRsgl)
-      - [2. 健診執行階段](https://hackmd.io/@1111-jobdocs/rk_o6Hbiel)
       - [3.1 Lodaing頁](https://hackmd.io/@1111-jobdocs/HyTq8DCjll)
       - [3.2 診斷報告頁](https://hackmd.io/@1111-jobdocs/HkGxrvbjlg)
       - [3.2.1 UI區塊說明](https://hackmd.io/@1111-jobdocs/SyFpoPbsge)
@@ -385,6 +188,8 @@
     - 📁 **活動專區2.0**
       - [1.1 選擇履歷－1111履歷](https://hackmd.io/@1111-jobdocs/H1zZCwfXWe)
       - [1.2 選擇履歷-上傳檔案](https://hackmd.io/@1111-jobdocs/B1TXiHG7bl)
+    - [](https://hackmd.io/@1111-jobdocs/BkBWjHfQbg)
+    - [目錄](https://hackmd.io/@1111-jobdocs/SyB8pPZoxx)
   - 📁 **AI 最適配**
     - [AI 最適配](https://hackmd.io/@1111-jobdocs/rkgixCAJZe)
     - [image](https://hackmd.io/@1111-jobdocs/H1TS1XTfbg)
@@ -402,10 +207,57 @@
     - [Beta版 功能頁規格文件](https://hackmd.io/@1111-jobdocs/BJ-9cczWZg)
   - 📁 **PDF 履歷匯入**
     - [無標題](https://hackmd.io/@1111-jobdocs/rJijdu0zZx)
+  - [AI 模擬面試](https://hackmd.io/@1111-jobdocs/rJs9KK7B-e)
+  - [個人化推薦（首頁、EDM）](https://hackmd.io/@1111-jobdocs/H1Xoj2J3ee)
+- 📁 **E. 聯繫**
+  - 📁 ** E.2.2 簡訊範本**
+    - [簡訊範本](https://hackmd.io/@1111-jobdocs/BJt1Rj59Ze)
+  - 📁 **4.0 通知Lightbox**
+    - [4.0 信件通知 Lightbox 檢查規則](https://hackmd.io/@1111-jobdocs/S1XwSUPBZg)
+    - [4.0 通知 Lightbox](https://hackmd.io/@1111-jobdocs/r1qJb-uXbx)
+    - [4.0.1 信件預覽Lightbox](https://hackmd.io/@1111-jobdocs/H1OpoEs7fe)
+  - 📁 **4.1 信件訊息**
+    - 📁 **E.2.1 信件範本**
+      - [E.2.1 信件範本](https://hackmd.io/@1111-jobdocs/HyDIQwJUWg)
+    - [4.1 信件列表 規格文件](https://hackmd.io/@1111-jobdocs/rJkyKgeGWl)
+    - [信件對話 規格文件](https://hackmd.io/@1111-jobdocs/r1ghrPxP-x)
+    - [信件訊息頁（ResumePoolNoticeMail）前端視覺調整需求](https://hackmd.io/@1111-jobdocs/S1cYFSFfzx)
+  - 📁 **4.3 面試行事曆**
+    - [4.3 面試行事曆](https://hackmd.io/@1111-jobdocs/HydajKbPfl)
+- 📁 **M. Modal&Lightbox**
+  - [備註 Lightbox](https://hackmd.io/@1111-jobdocs/rkX_P2qqZl)
+  - [列印履歷 lightbox](https://hackmd.io/@1111-jobdocs/SJMq3nfkGe)
+  - [失約回報 Lightbox](https://hackmd.io/@1111-jobdocs/Sy70gCPKGe)
+  - [帳號選擇 Modal](https://hackmd.io/@1111-jobdocs/S13ZYP9jbg)
+  - [新增封鎖Lightbox](https://hackmd.io/@1111-jobdocs/H1guSxywZe)
+  - [無權限Alert Modal  ](https://hackmd.io/@1111-jobdocs/ryACpaCAWe)
+  - [現版職缺選擇 Lightbox](https://hackmd.io/@1111-jobdocs/BkxSWZuGWx)
+  - [範本Lightbox](https://hackmd.io/@1111-jobdocs/SJ8KDMo8fl)
+  - [簡訊通知 Lightbox](https://hackmd.io/@1111-jobdocs/BkXGV4BW-e)
+  - [群組選擇Modal](https://hackmd.io/@1111-jobdocs/ByhoS3trGg)
+  - [職缺選單 Modal](https://hackmd.io/@1111-jobdocs/r1jXRIzqGg)
+  - [記錄管理 Lightbox](https://hackmd.io/@1111-jobdocs/Sk4AvcZ-We)
+  - [轉寄履歷Lightbox與轉寄履歷](https://hackmd.io/@1111-jobdocs/ByoEYp2a-g)
+  - [追蹤人才Lightbox](https://hackmd.io/@1111-jobdocs/r1V8b3ZDWg)
+  - [通訊錄 Lightbox](https://hackmd.io/@1111-jobdocs/B1iOzIB9-e)
+- 📁 **sitemap**
+  - [sitemap：主頁](https://hackmd.io/@1111-jobdocs/H1oQxOBRbx)
+  - [sitemap：搜尋結果頁](https://hackmd.io/@1111-jobdocs/HyyKO_HCWx)
 - 📁 **信件即時通合併專案**
-  - [即時通、信件通知（企業通知）合併](https://hackmd.io/@1111-jobdocs/SJJY3isYZe)
   - 📁 **求才規格文件**
     - [E.1 聯絡人才](https://hackmd.io/@1111-jobdocs/BJ0R8ocgGl)
+    - [mailNotice-platform-comefrom-sql 1.md](https://hackmd.io/@1111-jobdocs/rk-QWt0Yfg)
+    - [聯絡人才：第2.5階段內容](https://hackmd.io/@1111-jobdocs/Hk3SOQrFfg)
+    - [聯絡人才：第二階段內容](https://hackmd.io/@1111-jobdocs/ry_GPNuZze)
+  - 📁 **求職規格文件**
+    - [求職規格文件](https://hackmd.io/@1111-jobdocs/Hyy1WEXVGe)
+  - [1111 vs 104｜廠商權限、職缺開關、履歷開關可否發訊判斷](https://hackmd.io/@1111-jobdocs/SkKwqvUFfg)
+  - [[REF] 信件即時通整併－API 與代碼對照庫](https://hackmd.io/@1111-jobdocs/Hk87bluGMg)
+  - [企業通知與即時通合併 Phrase 1 測試文件](https://hackmd.io/@1111-jobdocs/HyEvtWMLGe)
+  - [即時通、信件通知（企業通知）合併](https://hackmd.io/@1111-jobdocs/SJJY3isYZe)
+  - [求才求職各階段開發內容](https://hackmd.io/@1111-jobdocs/r1eNVEfmMx)
+  - [求職：信件通知與即時通合併交付內容](https://hackmd.io/@1111-jobdocs/SknUQhPfGx)
+  - [訊息樣式](https://hackmd.io/@1111-jobdocs/BJmM2cDGfl)
 - 📁 **凱文交接文件**
   - [AI 履歷&職缺打標](https://hackmd.io/@1111-jobdocs/HksxnMJeZl)
   - [AI 模擬面試](https://hackmd.io/@1111-jobdocs/rkeCPWkxbl)
@@ -414,6 +266,7 @@
   - [熱門搜尋關鍵字](https://hackmd.io/@1111-jobdocs/rJw88X1eWe)
   - [綠領人才資訊平台合作案](https://hackmd.io/@1111-jobdocs/S18Tw7ylbl)
 - 📁 **專區**
+  - [履歷編輯頁（活動行銷版本）文件](https://hackmd.io/@1111-jobdocs/SyOJToIefg)
 - 📁 **廣告合作頁**
   - [全站廣告版位資訊](https://hackmd.io/@1111-jobdocs/S1fzHjoQbg)
   - [廣告合作頁重構](https://hackmd.io/@1111-jobdocs/rycGmyUn-x)
@@ -421,17 +274,180 @@
   - [求才、求職組同步會議 2026.03.25](https://hackmd.io/@1111-jobdocs/HJONcXvvWx)
   - [求才、求職組同步會議 2026.04.08](https://hackmd.io/@1111-jobdocs/Sk8KaX73Wl)
   - [求才、求職組同步會議 2026.04.15](https://hackmd.io/@1111-jobdocs/H16gz9ihWl)
+  - [求才、求職組同步會議 2026.06.10](https://hackmd.io/@1111-jobdocs/SJulN5SZfg)
+- 📁 **求才系統**
+  - 📁 **5. 紀錄**
+    - 📁 **5.1 帳號邀約紀錄**
+      - [5.1 帳號邀約紀錄](https://hackmd.io/@1111-jobdocs/rJ5Bp4RE-g)
+    - 📁 **5.3 帳號使用紀錄**
+      - [5.3 帳號使用紀錄＞購買紀錄](https://hackmd.io/@1111-jobdocs/S1-Wt68M-e)
+    - 📁 **5.6 紀錄統計查詢**
+      - [5.6 數據統計查詢](https://hackmd.io/@1111-jobdocs/SJeZiGSMbx)
+    - [5.5 人才點數查詢](https://hackmd.io/@1111-jobdocs/S13Zy8rKze)
+  - 📁 **6. 服務**
+    - [6.8 滿意度調查](https://hackmd.io/@1111-jobdocs/S1fR49Fg-l)
+    - [A.7.1 文件下載](https://hackmd.io/@1111-jobdocs/Sk5kyX6ubx)
+  - 📁 **7. 購買**
+    - [7.1 線上續約](https://hackmd.io/@1111-jobdocs/ByKdpLaWZe)
+    - [7.2 購買優先排序](https://hackmd.io/@1111-jobdocs/HJzsieKfWe)
+    - [H.3 合約上傳](https://hackmd.io/@1111-jobdocs/HJD1Eu0c-e)
+  - 📁 **8. Floating Component**
+    - 📁 **即時通**
+      - [即時通面板](https://hackmd.io/@1111-jobdocs/SJsYLtmr-g)
+    - 📁 **智能客服**
+      - [求才智能客服](https://hackmd.io/@1111-jobdocs/Hy95Qz7g-e)
+  - 📁 **A. 首頁**
+    - 📁 **A.1 Topbar**
+      - [A.1 topbar](https://hackmd.io/@1111-jobdocs/Hym116n3-x)
+      - [A.1.3 公告](https://hackmd.io/@1111-jobdocs/HkTiVy7Z-e)
+      - [A.1.4&A.1.5 公告&通知](https://hackmd.io/@1111-jobdocs/SJsQkWsWbg)
+      - [A.1.6 帳號資訊選單](https://hackmd.io/@1111-jobdocs/ryik5PAZWl)
+      - [A.1.7 異常狀態列](https://hackmd.io/@1111-jobdocs/SkJEsXNWMx)
+    - 📁 **登入流程**
+      - [toast](https://hackmd.io/@1111-jobdocs/rk0aZy0aZg)
+      - [登入功能](https://hackmd.io/@1111-jobdocs/rych3fo0bl)
+      - [登入特殊狀態與Alert](https://hackmd.io/@1111-jobdocs/HJb5FnCGZg)
+    - 📁 **首頁區塊**
+      - [A.10 人才秒搜](https://hackmd.io/@1111-jobdocs/BkIIbQYfWe)
+      - [A.2 首頁快訊 & A.3刊登狀態](https://hackmd.io/@1111-jobdocs/Bye3E5tl-g)
+      - [A.4 近期修改職缺](https://hackmd.io/@1111-jobdocs/HJIK-sUGbe)
+      - [A.5 面試行事曆](https://hackmd.io/@1111-jobdocs/B1MejWhvGl)
+  - 📁 **D. 人才**
+    - 📁 **3.0 履歷共用頁面**
+      - [3.0 履歷列印頁](https://hackmd.io/@1111-jobdocs/H18Vo3zyMx)
+      - [3.0 履歷詳細頁](https://hackmd.io/@1111-jobdocs/HyYq_GgXWl)
+    - 📁 **3.1 履歷**
+      - 📁 **3.1.1 主動應徵**
+        - 📁 **主動應徵履歷列表**
+          - [3.1.1 主動應徵履歷列表](https://hackmd.io/@1111-jobdocs/ry9S7kjuWe)
+          - [3.1.1 主動應徵職缺選單](https://hackmd.io/@1111-jobdocs/S1I24H-lzl)
+        - 📁 **主動應徵履歷卡片**
+          - [3.1.1 主動應徵履歷卡片](https://hackmd.io/@1111-jobdocs/rJPXuwBxzg)
+          - [3.1.1 主動應徵履歷卡片](https://hackmd.io/@1111-jobdocs/Byy7rOTM-x)
+      - 📁 **3.1.2 追蹤名單**
+        - [追蹤名單權限](https://hackmd.io/@1111-jobdocs/B19dalQ-Zx)
+      - 📁 **3.1.4 來訪人才**
+        - [3.1.4 來訪名單](https://hackmd.io/@1111-jobdocs/rkMnZsqu-g)
+        - [現版人才來訪拉皮更新](https://hackmd.io/@1111-jobdocs/SJ5oUbXv-g)
+      - 📁 **3.1.5 備註名單**
+        - [3.1.5 備註名單](https://hackmd.io/@1111-jobdocs/rk8RQxMXzg)
+      - 📁 **3.1.8 封鎖名單**
+        - [3.1.8 封鎖名單](https://hackmd.io/@1111-jobdocs/rkkn5BZQ-g)
+      - 📁 **Proposal**
+        - [關注名單](https://hackmd.io/@1111-jobdocs/B1jNIrMBZl)
+    - 📁 **3.2 搜尋**
+      - 📁 **3.2.0 搜尋結果共用頁面**
+        - [3.2 搜尋結果頁（現版）](https://hackmd.io/@1111-jobdocs/SkyLndUmWe)
+        - [3.2.0 搜尋結果頁（改版畫面）](https://hackmd.io/@1111-jobdocs/BkCVW1nXbg)
+        - [搜尋人才卡片（改版畫面）](https://hackmd.io/@1111-jobdocs/SyvesCVEbg)
+      - 📁 **3.2.1 至 3.2.4 設定搜尋條件功能**
+        - [3.2.1 配對條件設定](https://hackmd.io/@1111-jobdocs/Bk06kDtf-l)
+        - [3.2.2 簡易搜尋](https://hackmd.io/@1111-jobdocs/BkMNTH_Pfe)
+        - [3.2.3 進階搜尋](https://hackmd.io/@1111-jobdocs/Syn7AN87Wl)
+        - [3.2.4 大專人才搜尋](https://hackmd.io/@1111-jobdocs/SJleDiy9bl)
+      - 📁 **3.2.6 AI推薦人才名單**
+        - [3.2.6 AI推薦人才名單](https://hackmd.io/@1111-jobdocs/r1TBqJjeGx)
+      - 📁 **關注名單**
+        - [關注名單](https://hackmd.io/@1111-jobdocs/rygtdmRNZl)
+  - 📁 **J. 登入流程與登入前**
+    - 📁 **招募系統登入前**
+      - 📁 **Archived**
+        - [[Archived]  J.1.9 忘記帳號 / 密碼](https://hackmd.io/@1111-jobdocs/rJq63CJEZl)
+      - 📁 **J.0.3 人才試搜**
+        - [人才試搜列表](https://hackmd.io/@1111-jobdocs/Sk4CnTjgMg)
+        - [人才試搜履歷資料](https://hackmd.io/@1111-jobdocs/Hyt5LqcyMl)
+      - [J.1.7 雙重驗證 規格文件](https://hackmd.io/@1111-jobdocs/ryqrsG2lWg)
+      - [J.1.9 忘記密碼規格文件](https://hackmd.io/@1111-jobdocs/HJT3dH_vWg)
+      - [J.1.9 忘記帳號規格文件](https://hackmd.io/@1111-jobdocs/SJNKOS_D-g)
+      - [傳真刊登](https://hackmd.io/@1111-jobdocs/SkpgK_GYWl)
+      - [招募系統登入前頁](https://hackmd.io/@1111-jobdocs/r11ad8Okfe)
+      - [聯絡我們](https://hackmd.io/@1111-jobdocs/HJqwacQNGl)
+  - 📁 **客服系統**
+    - [不顯示：外籍人士需求](https://hackmd.io/@1111-jobdocs/S1ZG37NG-x)
+    - [人才推薦](https://hackmd.io/@1111-jobdocs/Bkubmqn4Gg)
+    - [客服後台上傳文件及流程](https://hackmd.io/@1111-jobdocs/rkHmZ8iobx)
+    - [客服後台顯示控制代碼表](https://hackmd.io/@1111-jobdocs/SJmryulP-e)
+    - [廠商瀏覽器驗證](https://hackmd.io/@1111-jobdocs/ryugZ32nWe)
+    - [聯絡我們 清單列表](https://hackmd.io/@1111-jobdocs/HJFV_qgIMx)
+  - [Sitemap](https://hackmd.io/@1111-jobdocs/rkGFjjlPWe)
+  - [[REF] 系統代碼表](https://hackmd.io/@1111-jobdocs/B1j3sN-bzx)
+  - [[REF] 職缺資料欄位表與代碼表](https://hackmd.io/@1111-jobdocs/ryjSpM-tzg)
+  - [七言絕句](https://hackmd.io/@1111-jobdocs/H11GKtTxfe)
 - 📁 **求職求才API**
   - [廠商活躍度API](https://hackmd.io/@1111-jobdocs/HJrTXODBWe)
+- 📁 **求職系統**
+  - 📁 **1111簡介頁**
+    - 📁 **首頁**
+      - [1. Header/Banner/Footer](https://hackmd.io/@1111-jobdocs/ryvZLU1TZg)
+      - [2. Tab Bar](https://hackmd.io/@1111-jobdocs/SJ1sLLJpZl)
+      - [3. 卡片欄位](https://hackmd.io/@1111-jobdocs/SJ--v8kpWl)
+      - [4. About Us](https://hackmd.io/@1111-jobdocs/ryN4wUy6-e)
+      - [5. 我們的願景](https://hackmd.io/@1111-jobdocs/rkJrw81abg)
+      - [6. 評價](https://hackmd.io/@1111-jobdocs/HyDtDL1Tbl)
+      - [7. 地點介紹](https://hackmd.io/@1111-jobdocs/ByQ9DLJaWg)
+      - [8. 導向區塊](https://hackmd.io/@1111-jobdocs/r1Jow8kp-g)
+      - [9. 服務證號](https://hackmd.io/@1111-jobdocs/r1njPL16-x)
+      - [首頁(關於1111頁)](https://hackmd.io/@1111-jobdocs/By2w1Xkpbg)
+    - [企業快訊頁](https://hackmd.io/@1111-jobdocs/Bk9t1XJaWg)
+    - [創新與榮耀頁](https://hackmd.io/@1111-jobdocs/SJjs1XkaZe)
+    - [目錄](https://hackmd.io/@1111-jobdocs/H135JDyp-g)
+  - 📁 **C 通訊功能**
+    - [12. 聯絡公司目錄](https://hackmd.io/@1111-jobdocs/SJVkhuq9bx)
+    - [12. 聯絡公司：功能流程圖](https://hackmd.io/@1111-jobdocs/B1z6PGXZzl)
+    - [12.0 聯絡公司](https://hackmd.io/@1111-jobdocs/Bklht7YjWe)
+    - [12.2 頁面標題 & 分類 Tab](https://hackmd.io/@1111-jobdocs/SJRvpNtsZe)
+    - [12.3 訊息列表區](https://hackmd.io/@1111-jobdocs/B1aA5HFsZx)
+    - [12.4 對話內容區](https://hackmd.io/@1111-jobdocs/ByTfsBKsZl)
+    - [image](https://hackmd.io/@1111-jobdocs/B1B-qVcobe)
+    - [~~12.1 頁面路徑（Breadcrumb）~~](https://hackmd.io/@1111-jobdocs/HkCEWEKjWl)
+    - [企業通知卡片切換機制、收回規則](https://hackmd.io/@1111-jobdocs/H1miKwNVMg)
+    - [企業通知訊息規則（含膠囊訊息、橘 bar）](https://hackmd.io/@1111-jobdocs/SJ_7b43EMg)
+    - [系統訊息](https://hackmd.io/@1111-jobdocs/rkxS_2_7fe)
+    - [聯絡公司（即時通）_ 通話記錄資訊](https://hackmd.io/@1111-jobdocs/B1aITQQBWl)
+  - 📁 **Demo **
+    - [2026/02/06 首頁更版](https://hackmd.io/@1111-jobdocs/HJlCV1aMvWe)
+  - 📁 **E 系統信**
+    - 📁 **功能觸發信件**
+      - [工程（寄送面試報告 Email）](https://hackmd.io/@1111-jobdocs/SyHQVAi7Ze)
+      - [求職者回覆通知信](https://hackmd.io/@1111-jobdocs/SJ8UiU2UMe)
+      - [求職者通知信](https://hackmd.io/@1111-jobdocs/SJS6_pbEGg)
+    - 📁 **系統通知信**
+      - [系統信總表](https://hackmd.io/@1111-jobdocs/HyVGrHzsbl)
+    - [職缺配對信：A/B test 分流、埋點機制](https://hackmd.io/@1111-jobdocs/Hy8l-Pvjbg)
+    - [職缺配對信：新版信頁面固定連結](https://hackmd.io/@1111-jobdocs/SJv1uW0nbe)
+  - 📁 **上線計劃**
+    - [上線計劃：求職首頁](https://hackmd.io/@1111-jobdocs/B1YNcuL7bg)
+  - 📁 **求職 QA**
+    - [F6.0 求職 QA 首頁](https://hackmd.io/@1111-jobdocs/BJr4Thq_Wg)
+    - [F6.1 求職 QA 搜尋頁](https://hackmd.io/@1111-jobdocs/rJpylyodWl)
+  - 📁 **競品分析**
+    - [競品分析：各求職平台網站指引](https://hackmd.io/@1111-jobdocs/S1I9oqiiZe)
+    - [競品分析：各求職平台網站指引](https://hackmd.io/@1111-jobdocs/rJ866TwFZl)
+    - [競品分析：求職會員未滿18歲身分驗證](https://hackmd.io/@1111-jobdocs/SJ7t_LIt-e)
+    - [競品分析：職缺配對信](https://hackmd.io/@1111-jobdocs/H1D9TSaKZe)
+  - [1. 健診前置階段](https://hackmd.io/@1111-jobdocs/S1Pisq3Tee)
+  - [1.10 文章版位](https://hackmd.io/@1111-jobdocs/HyJakYQsZl)
+  - [1.4 手機信箱驗證流程](https://hackmd.io/@1111-jobdocs/SJyzqFjple)
+  - [3.0 建診結果階段](https://hackmd.io/@1111-jobdocs/H17zT3hTle)
+  - [3.0 診斷結果階段](https://hackmd.io/@1111-jobdocs/Hy6MIS96gx)
+  - [3.1 Loading Modal](https://hackmd.io/@1111-jobdocs/SkGQ8S9pgg)
+  - [3.2 健診報告頁](https://hackmd.io/@1111-jobdocs/rJo_vQcTel)
+  - [3.3 健診失敗 Modal](https://hackmd.io/@1111-jobdocs/SyYa4BsTll)
+  - [4.2 健診記錄內頁](https://hackmd.io/@1111-jobdocs/r1LxgJ66el)
+  - [4.診斷紀錄目錄](https://hackmd.io/@1111-jobdocs/HJRJmPsTex)
+  - [AI 照片審核功能資訊](https://hackmd.io/@1111-jobdocs/rk6Wfq3Efx)
+  - [功能埋點](https://hackmd.io/@1111-jobdocs/S13K9SkLZx)
+  - [文件目錄](https://hackmd.io/@1111-jobdocs/rk_sYeG8gl)
+  - [會員中心重構](https://hackmd.io/@1111-jobdocs/BJTt8lLa-g)
+  - [楊工作交接整理](https://hackmd.io/@1111-jobdocs/r1xkoGNlMg)
+  - [求職主網 Agent 清單](https://hackmd.io/@1111-jobdocs/SJBn5sJXZe)
+  - [立即上工](https://hackmd.io/@1111-jobdocs/SyxAwTIsge)
+  - [首頁：Q3 優化項目與排程](https://hackmd.io/@1111-jobdocs/ryhEbrZmzg)
 
-## 未分類（無所屬資料夾）
+## 未分類（無資料夾）
 
-- [1.10 文章版位](https://hackmd.io/@1111-jobdocs/HyJakYQsZl)
-- [3.1.1 主動應徵履歷卡片](https://hackmd.io/@1111-jobdocs/rJPXuwBxzg)
-- [[REF] 求才系統権限代碼表](https://hackmd.io/@1111-jobdocs/B1j3sN-bzx)
-- [{功能編號} {功能名稱}](https://hackmd.io/@1111-jobdocs/ryv0JuH0-e)
-- [履歷編輯頁（活動行銷版本）文件](https://hackmd.io/@1111-jobdocs/SyOJToIefg)
-- [會員中心重構](https://hackmd.io/@1111-jobdocs/BJTt8lLa-g)
-- [楊工作交接整理](https://hackmd.io/@1111-jobdocs/r1xkoGNlMg)
+- [](https://hackmd.io/@1111-jobdocs/ryGEnmqtfg)
+- [](https://hackmd.io/@1111-jobdocs/BJVDznY8Ml)
+- [履歷：會員履歷復育活動導流與抽獎資格判斷機制](https://hackmd.io/@1111-jobdocs/rknTCmiIGx)
+- [無標題](https://hackmd.io/@1111-jobdocs/r179EpPYMg)
 - [產品企劃工作準則](https://hackmd.io/@1111-jobdocs/BJ7F4wteMe)
-- [首頁數據埋點](https://hackmd.io/@1111-jobdocs/Sy7C41Uezl)

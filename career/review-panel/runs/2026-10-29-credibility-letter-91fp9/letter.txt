@@ -1,0 +1,22 @@
+您好：
+應徵貴司 [R78] (Sr.)Product Manager 產品經理。我有近 10 年產品經理經驗，現任人力銀行企業端招募系統 Product Owner，以 AI Agent 協助撰寫規格與分析資料。
+
+‧ In daily product work, I use AI agents (Antigravity, Claude Code) for specs and analysis. I define problems, rules and checks; agents examine data and flag confidence levels, with people making the final judgments. I documented this workflow as a reusable skill and taught a colleague to apply it to large volumes of data.
+
+‧ For a recruitment system serving about 60,000 paying employers, I led the launch of AI features for generating job descriptions and recommending candidates, defining use cases and acceptance criteria with data scientists. Employers confirm generated content before publication; client selections inform recommendation updates.
+
+‧ Employers and job seekers use two overlapping messaging tools, fragmenting interview invitations. I am planning a unified messaging flow in response to 199 client requests accumulated since 2021. It is still in development.
+
+貴司的訊息平台與 AI 自動化工作，與我目前的工作方向相近。期待能與團隊進一步交流，分享 AI Agent 工作流與訊息整合的實務經驗。謝謝您的閱讀。
+聶崑淮
+
+=== 下一方案 ===
+您好：
+應徵貴司 [R78] (Sr.)Product Manager 產品經理。現任人力銀行企業端招募系統 Product Owner，近 10 年產品經理經驗。
+
+‧ 以 Antigravity、Claude Code 等 AI Agent 撰寫規格、分析資料：先定義問題、規則及驗證要求，AI 檢查資料、標示把握程度，由人判斷；將流程整理成 skill，教同仁處理大量資料。
+‧ 在服務約 6 萬家付費企業的招募系統，主導職缺工作說明生成與 AI 推薦人才上線，與資料科學團隊定義情境及驗收標準；生成內容經企業確認才刊登，依客戶實際選用調整推薦。
+‧ 企業與求職者使用兩套重複工具傳訊息，邀約面試的管道分散；正規劃整合流程，回應 2021 年起累積的 199 件建議，目前開發中。
+
+期待能與團隊進一步交流，分享 AI 工作流與訊息整合的實務經驗。謝謝。
+聶崑淮
