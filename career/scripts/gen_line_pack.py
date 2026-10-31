@@ -23,6 +23,6 @@ for i, m in enumerate(ms):
         st["description_text"] = "\n".join("• " + b for b in bullets)
     steps.append(st)
 out = {"source": str(src), "source_sha256": hashlib.sha256(text.encode()).hexdigest(), "steps": steps}
-dst = src.with_name("line-profile.fill.json")
+dst = src.with_name(src.stem + ".fill.json")
 dst.write_text(json.dumps(out, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 print(f"✅ {dst}：{len(steps)} 步，sha256 {out['source_sha256'][:12]}")
