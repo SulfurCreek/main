@@ -1,9 +1,10 @@
 # Codex Resume Writer 路由
 
-現行操作唯一入口為 [AGENTS.md](AGENTS.md) 的 4-Step Autonomous Headhunter Loop，包含驗證前的 Step 4.5 全文朗讀。舊 Strict 3-Step、兩次 Shell 上限、只驗一次即停及完工後等待語氣選擇均已失效。
+現行操作唯一入口為 [AGENTS.md](AGENTS.md) 的 4-Step Autonomous Headhunter Loop，順序依 AGENTS「正式入口對齊」節：全文自審、驗證 Exit 0、隔離盲審、改稿後重驗及全文閱讀。舊 Strict 3-Step、兩次 Shell 上限、只驗一次即停及完工後等待語氣選擇均已失效。
 
 | 用途 | 路徑與規則 |
 | --- | --- |
+| 正式入口（唯讀例外） | `origin/claude/happy-lamport-ljis8c:career/CAREER_START_HERE.md`；只開放本檔，不開放受限來源 |
 | 上游輸入 | `origin/claude/happy-lamport-ljis8c:career/01_claude_stage/causal_draft.md`；依 AGENTS Step 1 同步並記錄完整來源 SHA |
 | 本地語氣參考 | [voice_style_guide.md](../../02_codex_stage/voice_style_guide.md)，配合 AGENTS 的現行規則 |
 | 例行唯一潤飾產出 | [final_resume.md](../../02_codex_stage/final_resume.md) |
@@ -17,4 +18,4 @@
 
 履歷潤飾交付依 AGENTS 的七大模組摘要，附來源 SHA、實際驗證結果、commit 與成品連結。規則維護只回報本輪實際改動與檢查。
 
-不讀 Claude library 或 SKILL.md，不執行無關 diff，不新增臨時檔或輔助檢查腳本。歷史索引、wiki、技能與退役腳本僅供存檔，不構成現行流程要求。
+不讀 Claude library、applications 或 SKILL.md，不執行無關 diff，不新增臨時檔或輔助檢查腳本。歷史索引、wiki、技能與退役腳本僅供存檔，不構成現行流程要求。
