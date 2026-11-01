@@ -438,3 +438,9 @@ v9.7 = v9.6 ＋ 使用者自寫自傳與各段 summary（16→10 個單位、業
 - Skills 標題大小寫統一，工具類別標為 `Design & Agentic AI Tools`。
 - 15 張代碼表一點：本人確認可直接檢視底層資料欄位並做欄位級對照，英文用 `Audited and consolidated 15 shared category code tables … underlying data fields … field-level mappings`；驗證器錨點由 `shared foundation` 改為 `shared category code tables`／`underlying data fields`。
 - 直屬企劃一律用 `direct reports`；交辦用 `delegated`（取代 `assigned`）。
+
+## 62. 2026-11-01 英文履歷職級感、資料深度與反贅字（本人，LINE Resume 審核）
+
+- 規則寫入 `style/voice-en.md` §9、compiler SKILL；驗證器 `verify_line_profile.py` 新增禁用字串（`workflow with human review`、`Consolidated categories across teams`、`guided product planners`、`assigned others to product planners`）、2.1 必備錨點（`underlying data fields`、`field-level mappings`、`direct reports`、`delegated`）與工具名類別詞檢查。
+- 本人確認：可直接檢視 15 張代碼表底層資料欄位並做欄位級對照；`~60,000` 付費雇主只留在 1111 首點，Summary 不重複（取代 §60 第一項）。
+- Summary 句尾：`within a human-in-the-loop workflow, retaining ownership of final product decisions`；Skills 用 Title Case 與 `&`。

@@ -76,3 +76,14 @@
 2. **句首多樣性（Anti-Anaphora）**：同一公司區塊內不得連續兩點以同一個首字開頭；全篇 `- For ` 開頭的列點 ≤ 2 點。成因：為湊「場景先行」無腦套 `For X, …` 模板。場景先行可改用 `With…`、`After…`、`When…`、`Because…`、`To…`、`In response to…` 或直接動詞開頭。
 3. **規則備註不入正文**：本檔或 skill 裡括號內的譯法說明（如舊版 §7.1 的 `(to consolidate the tools)`）是給編輯看的語意提示，**不得連括號照抄**。前文已交代背景，後句直接寫 `199 client requests`；同一句不堆兩個說明性括號。**寫規則時，範例譯文只寫可直接入文的最終文字，語意說明放括號外的中文敘述。**
 4. **成品檔純淨**：可填表的 `line-profile.md` 只含標題、directive、Bullet；不得出現 `## Editing Notes`、`## English Self-Review` 等非履歷章節。修改紀錄與自審寫在對話回覆（或 Codex 的交接檔 `drafts/codex/` 內），不寫進成品。
+
+## 9. 外商 Senior PM 職級感、資料深度與反贅字（本人 2026-11-01，LINE Resume 審核抓出 4 病灶；verify_line_profile.py 自動攔截）
+
+病因：為湊齊 `LOCK_ENTITIES` 疊同義詞；為換動詞讓首句概念偷跑且把資料檢視力寫成行政整理；為省字刪掉從屬關係使管理職級降維；Skills 欄位排版沒有慣例。
+
+1. **管理職級稱謂（People Management Register）**：不用 `subordinates`。首點定義 `two direct-report product planners` 後，後續提到指導或分派一律用 `guided direct reports`、`delegated [tasks] to direct reports`；禁止簡寫成平級的 `guided product planners`／`assigned others to product planners`。
+2. **資料欄位深度（Data-Literate PM Framing）**：描述代碼表、分類或跨系統整合時，禁止首句裸奔 `Consolidated categories …`（概念偷跑）。首句須完整帶出對象與範圍，如 `Audited and consolidated 15 shared category code tables (job roles, certifications, skills and benefits)`，並用 `govern the underlying data fields`、`structure field-level mappings` 表達可直接檢視底層欄位。僅限本人確認具備此能力的項目（decisions §62）。
+3. **反同義疊字（Anti-Tautology）**：已寫 `within a human-in-the-loop workflow` 就不再接 `with human review`；後句改 `retaining ownership of final product decisions`。鎖定詞不能成為疊字的理由，鎖定詞的同義說明要刪、不要疊。
+4. **Skills 排版**：項目一律 Title Case（`Requirements Analysis, PRD, User Story, Use Case, Process & Sequence Diagrams, Prototyping, UAT`）；分類標籤用 `&`（`Design & Agentic AI Tools: …`）。
+5. **工具名可讀性**：`Claude Code`、`Antigravity` 前方須有 `AI agents` 或 `Agentic AI Tools` 類別詞。
+6. **數字不重複**：同一數字（如約 60,000 付費雇主）只留在一處；Summary 寫定位與方法，數字留在經歷（本人 2026-11-01 裁定）。

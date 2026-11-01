@@ -18,7 +18,7 @@ LINE Resume 上游草稿 r1（2026-10-31）｜針對 LINE Taiwan Product Manager
 ## 0. Professional Summary & Skills（僅供 PDF／ATS 上傳，不進表單、不屬任何 directive）
 
 <!-- [STATUS: NEEDS_POLISH] [LOCK_ENTITIES: account security, messaging, nearly 10 years, Product Owner, B2B recruitment, subscription apps, AI agents, human-in-the-loop, Claude Code, Antigravity] -->
-- Product Owner with nearly 10 years of product management experience spanning B2B recruitment platforms (serving ~60,000 paying employers) and consumer subscription apps, specializing in account security, messaging, pricing, payments and localization. Turn undocumented legacy logic and complex business requirements into actionable specifications and coordinate cross-team delivery. Apply AI agents (Claude Code, Antigravity) to specification writing and data analysis within a human-in-the-loop workflow, retaining ownership of final product decisions.
+- Product Owner with nearly 10 years of product management experience spanning B2B recruitment platforms and consumer subscription apps, specializing in account security, messaging, pricing, payments and localization. Turn undocumented legacy logic and complex business requirements into actionable specifications and coordinate cross-team delivery. Apply AI agents (Claude Code, Antigravity) to specification writing and data analysis within a human-in-the-loop workflow, retaining ownership of final product decisions.
 
 <!-- [STATUS: LOCKED] [LOCK_ENTITIES: PRD, User Story, Use Case, UAT, Axure RP, Figma, Claude Code, Antigravity, Kanban] -->
 - Requirements & Validation: Requirements Analysis, PRD, User Story, Use Case, Process & Sequence Diagrams, Prototyping, UAT

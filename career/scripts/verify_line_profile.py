@@ -19,12 +19,12 @@ FIELDS = {
 }
 BANNED = ["strategic", "passionate", "detail-oriented", "leverage", "robust", "seamlessly", "delve", "Spearheaded",
           "Backed by", ", which leave", "merge request", "my planners", "guided my planners", "guided direct-report planners through",
-          "launched in 2018/05", "launched in 2018-05", "planned a group function for large employers", "proven track record", "cutting-edge", "(to consolidate", "Present", "Singapore", "Russia", "1111 Job Bank"]
+          "launched in 2018/05", "launched in 2018-05", "planned a group function for large employers", "proven track record", "cutting-edge", "(to consolidate", "workflow with human review", "Consolidated categories across teams", "guided product planners", "guided the product planners", "assigned others to product planners", "assigned others to the planners", "Present", "Singapore", "Russia", "1111 Job Bank"]
 BANNED_BULLET_ONLY = BANNED[:-1]
 
 ANCHORS = {
     "2.1": ["sales buy-in", "department or branch", "lower the barrier", "candidate matching", "compliance",
-            "actual selections", "shared category code tables", "underlying data fields", "renewal", "credibility", "at least 30 days"],
+            "actual selections", "shared category code tables", "underlying data fields", "field-level mappings", "direct reports", "delegated", "renewal", "credibility", "at least 30 days"],
     "2.2": ["Airbnb", "Miro", "kicked off in 2018", "Led the design"],
 }
 DATE = re.compile(r"^\d{4}-(0[1-9]|1[0-2])$")
@@ -103,6 +103,12 @@ def main(path):
         errs.append(f"[AI 句首模板違規] 偵測到過多或連續重複的句首詞（For 開頭 {for_cnt} 點，上限 2；同區塊連續同字開頭={repeat}），請打散句首結構！")
     if sum(1 for l in bullets if l.count("(") >= 2 and re.search(r"\((?:to|in) [a-z]", l)) :
         errs.append("[規則備註括號] Bullet 內有解釋性括號堆疊，請改寫成正文")
+    # AI 工具名前必帶類別詞（voice-en §9）
+    for m in re.finditer(r"Antigravity", t):
+        ctx = t[max(0, m.start() - 100):m.start()]
+        if not re.search(r"AI agents|Agentic AI|AI Agent", ctx, re.I):
+            errs.append("[工具名無類別詞] Claude Code／Antigravity 前方須有 AI agents 或 Agentic AI Tools 類別詞（voice-en §9）")
+            break
     # 商業價值錨點：避免中翻英降維（voice-en §7）
     for num, words in ANCHORS.items():
         m = re.search(r"^### %s\b.*?(?=^### |^---|\Z)" % re.escape(num), t, re.M | re.S)
