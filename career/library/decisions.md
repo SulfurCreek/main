@@ -456,3 +456,9 @@ v9.7 = v9.6 ＋ 使用者自寫自傳與各段 summary（16→10 個單位、業
 
 - `743 of 840 related client requests (88%) were resolved during the overhaul` 維持 `resolved`、`during the overhaul`，不改成 `were completed`。
 - LINE 兩個職缺（官網 /jobs/3106/、/jobs/2782/）本人尚未投遞，不登錄為已投遞；約會吧（95swc）已投遞，維持 `applications/95swc.md`。
+
+## 65. 2026-11-01 LINE Resume 先包含自傳；profile 表單只填 Summary（本人）
+
+- LINE Resume（PDF）新增 `## 0b. Personal Statement`，英文版取自 104 v12.19 自傳（本人已確認的中文自傳），僅 PDF／ATS 用；不進表單。日韓外商是否需要自傳查無一致答案（搜尋 2026-11-01），先包含，投遞前看職缺頁要求再決定留或拿掉。
+- Profile 表單只填 Summary；工作列點只在 resume（PDF）。`gen_line_pack.py` 產 `<stem>.fill.json`（表單）與 `<stem>.resume.json`（PDF，含列點、Skills、Personal Statement）。
+- 定價實驗箭頭改為 `original price, then discounted price, then original price`（Codex 45bf976）。

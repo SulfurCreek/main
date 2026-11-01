@@ -12,6 +12,23 @@
 - Delivery & Commercial Methods: Kanban, Stakeholder Alignment, Pricing Experiments, Payment Integration Planning
 - Languages: English, Mandarin
 
+## 0b. Personal Statement（僅供 PDF／ATS 上傳，不進表單、不屬任何 directive；來源：104 v12.19 自傳，本人 2026-11-01 指定先包含）
+
+<!-- [STATUS: NEEDS_POLISH] [LOCK_ENTITIES: KOOL, JustDating, Juicy, App Store, shared recruitment, Antigravity, Claude Code, AI agents, human-in-the-loop] -->
+Across dating and subscription apps, an influencer-matching platform and an employer recruitment system, I keep returning to two questions: can users achieve what they came for, and does the product help the company keep running? I like shaping products from ideas that have not yet taken form, and I want teams to understand the judgment behind a plan, not only the list of features.
+
+KOOL, an influencer-matching platform, confirmed the work I enjoy most: starting from what merchants and influencers each need, and turning scattered ideas into an experience that works for both sides. Invitations, applications and messaging are more than a feature list; one side's actions have to connect to the other side's needs.
+
+When JustDating and then Juicy were removed from the App Store, I faced the pressure of carrying existing users and revenue forward. Shipping the product was not enough; I also had to coordinate App Store communication and marketing traffic to keep the service running. Those two experiences taught me to plan with the dependencies between teams in view, so that launch and traffic routing are part of the product plan.
+
+I joined 1111 to take part in overhauling a whole recruitment system. When I took over the employer-side recruitment system overhaul in late 2024, I first established what the new design could rely on: account permissions and business-model rules had no documentation, so I derived them from actual operation and checked them with engineering, operations and audit. Once the relationship between existing data and operations was clear, I could plan the login and company-data changes so that the new design connected to the service still running.
+
+Moving from influencer matching to employer recruitment, I extended the question of how two sides find each other to how members of the same organization work together. The shared recruitment feature had to consider accounts, job posts and resumes together, so that large employers could recruit by department or branch. I anticipate exceptions in advance so users spend less time stopping to figure things out.
+
+Today I use AI agents such as Antigravity and Claude Code for specifications and data analysis: I define the problem, rules and verification requirements, then guide the AI to check and add information with a confidence level, and people judge the results and exceptions. When I teach colleagues to work with AI, I start from where they are stuck and show them how to guide the AI and check its output, so they can judge for themselves and we discuss only the few exceptions. What I want to pass on is a way of working: let the tool help, and keep human judgment.
+
+Next, I want to combine my experience in subscriptions, pricing and enterprise workflows to take part in requirement trade-offs under a business direction, staying involved from planning through launch. I also care whether a product, after delivery, actually improves the user experience and brings business value.
+
 ---
 
 ## 1. Basic & Contact Information
@@ -85,7 +102,7 @@
 
 <!-- [STATUS: POLISHED] -->
 - Managed JustDating, the company's flagship and highest-grossing subscription dating app. According to public company information, JustDating long held the No. 1 position on Taiwan's dating app revenue chart. Also managed Peach, a subscription content app, and KOOL, an influencer-matching platform. Planned user flows, subscriptions and payment mechanisms with engineering, design, marketing and overseas payment teams, and held partnership discussions with a European payment provider in English over video calls.
-- Led the design of a three-phase Malaysia iOS pricing experiment (original price → discounted price → original price; 2021/05–08, 21 days each), with Android held at an unchanged price as the control group. In the discount phase, iOS revenue excluding renewals rose 5% versus the original-price phase, while Android fell 18%. After the original price was restored, iOS revenue excluding renewals fell 65% versus the original-price phase. The company owner adopted the lower price based on the experiment results.
+- Led the design of a three-phase Malaysia iOS pricing experiment (original price, then discounted price, then original price; 2021/05–08, 21 days each), with Android held at an unchanged price as the control group. In the discount phase, iOS revenue excluding renewals rose 5% versus the original-price phase, while Android fell 18%. After the original price was restored, iOS revenue excluding renewals fell 65% versus the original-price phase. The company owner adopted the lower price based on the experiment results.
 - Raised web payments' share of revenue for the subscription content app Peach from 24% to over 80% (2020/11–2021/09) by planning the shift from in-app purchases to web payments and coordinating integration with a payment provider in Taiwan.
 - With no direct competitor to benchmark against, planned KOOL from zero to one, starting with interviews with merchants' marketing teams about how they found influencers on Instagram. Adapted listing and matching mechanics from Airbnb and dating apps, and mapped invitation, application and messaging flows in Miro. After the project kicked off in 2018/05, coordinated product, design and engineering to launch across iOS, Android and web. The platform accumulated about 16,000 influencer profiles and over 80,000 campaign applications in six months. Led the monetization rollout covering VIP subscriptions, a points paywall and featured exposure.
 - When the App Store removed JustDating, led the launch of Juicy, a replacement app on the same backend, to retain existing users and revenue. After Juicy was removed, led JustDating's relaunch. Across both launches and their accompanying marketing campaigns directing users to the apps, male daily active users (DAU) rose from about 3,200 to 12,500 over 6 weeks for Juicy (2020/01–02) and from about 1,500 to 12,000 over 12 weeks for JustDating (2020/04–06), reflecting overall product performance.

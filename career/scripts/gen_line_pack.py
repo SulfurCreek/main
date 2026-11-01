@@ -12,6 +12,12 @@ if subprocess.run([sys.executable, "career/scripts/verify_line_profile.py", str(
 text = src.read_text(encoding="utf-8")
 D = re.compile(r"<!-- @line-directive\s*(\{.*?\})\s*-->", re.S)
 sec0 = text[text.index("## 0."):text.index("## 1.")]
+ps = []
+if "## 0b." in sec0:
+    b = sec0[sec0.index("## 0b."):]
+    b = b.split("---")[0]
+    ps = [x.strip() for x in re.sub(r"<!--.*?-->", "", b.split("\n", 1)[1], flags=re.S).split("\n\n") if x.strip()]
+    sec0 = sec0[:sec0.index("## 0b.")]
 sec0_lines = [l[2:].strip() for l in sec0.splitlines() if l.startswith("- ")]
 summary, skills = sec0_lines[0], sec0_lines[1:]
 steps, pos = [], 0
@@ -28,7 +34,7 @@ for i, m in enumerate(ms):
         st["description_text"] = "\n".join("• " + b for b in bullets)
     steps.append(st)
 sha = hashlib.sha256(text.encode()).hexdigest()
-resume = {"source": str(src), "source_sha256": sha, "summary": summary, "skills": skills, "steps": steps}
+resume = {"source": str(src), "source_sha256": sha, "summary": summary, "skills": skills, "personal_statement": ps, "steps": steps}
 form_steps = [{k: v for k, v in s.items() if k not in ("description_bullets", "description_text")} for s in steps]
 form = {"source": str(src), "source_sha256": sha, "summary_text": summary, "steps": form_steps}
 dst = src.with_name(src.stem + ".fill.json")

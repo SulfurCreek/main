@@ -8,6 +8,7 @@ src = Path(sys.argv[1] if len(sys.argv) > 1 else "career/drafts/line/line-profil
 out = Path(sys.argv[2] if len(sys.argv) > 2 else "career/drafts/line/line-profile.html")
 _d = json.loads(src.read_text(encoding="utf-8"))
 steps, summary, skills = _d["steps"], _d["summary"], _d["skills"]
+pstat = _d.get("personal_statement", [])
 e = html.escape
 basic = next(s for s in steps if s["target_block"] == "basic")["fields"]
 work = [s for s in steps if s["target_block"] == "work_experience"]
@@ -42,6 +43,8 @@ for s in edu:
     f = s["fields"]
     note = f" ({STAT[f['degree_status']]})" if f["degree_status"] in STAT and "Exchange" not in f["degree_name"] else ""
     h.append(f'<div class="j"><div class="jh">{e(f["university"])}</div><div>{e(f["degree_name"])}{note}</div><div class="d">{span(f)}</div></div>')
+if pstat:
+    h.append("<h2>Personal Statement</h2>" + "".join(f"<p style=\"margin:0 0 6px\">{e(x)}</p>" for x in pstat))
 h.append("</body></html>")
 out.write_text("\n".join(h), encoding="utf-8")
 print("✅", out)
