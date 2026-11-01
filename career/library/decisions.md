@@ -451,3 +451,8 @@ v9.7 = v9.6 ＋ 使用者自寫自傳與各段 summary（16→10 個單位、業
 - 代碼表：保留 `Audited and consolidated 15 shared category code tables`，改用 `reviewing the underlying data fields` 與 `structuring field-level mappings`；不再用 `govern the underlying data fields`（避免暗示資料治理權責）。驗證器新增該字串禁用。
 - 840／743 件：維持 `related client requests`，未找到更短且準確的限定（facts-1111 第 222–223、377 行：四模組建議、建議案件完成比例，不等於功能上線比例；「帳號、登入、公司資料、聯絡人」分類不入正文）。
 - Codex 的通用版 `line-profile-summary-polished.md` 以舊上游為基底，未含 Claude 先前定稿修正，不整份採用；僅同步上述改法與摘要、shared recruitment、公開排名句。
+
+## 64. 2026-11-01 840／743 維持 resolved；LINE 職缺尚未投遞（本人）
+
+- `743 of 840 related client requests (88%) were resolved during the overhaul` 維持 `resolved`、`during the overhaul`，不改成 `were completed`。
+- LINE 兩個職缺（官網 /jobs/3106/、/jobs/2782/）本人尚未投遞，不登錄為已投遞；約會吧（95swc）已投遞，維持 `applications/95swc.md`。
