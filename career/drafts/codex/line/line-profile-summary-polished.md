@@ -16,12 +16,12 @@ LINE Career Profile 上游草稿 r3（2026-10-29）｜來源：104 v12.19 + libr
 ## 0. Professional Summary & Skills（僅供 PDF／ATS 上傳，不進表單、不屬任何 directive）
 
 <!-- [STATUS: POLISHED] [LOCK_ENTITIES: nearly 10 years, Product Owner, B2B recruitment, subscription apps, AI agents, human-in-the-loop, Claude Code, Antigravity] -->
-- Product Owner with nearly 10 years of product management experience spanning B2B recruitment and consumer subscription apps. Translate business requirements into specifications and coordinate cross-team delivery, with experience in pricing, payments and localization. Apply AI agents (Claude Code, Antigravity) to specification writing and data analysis within a human-in-the-loop workflow, with human review and final decisions.
+- Product Owner with nearly 10 years of product management experience spanning B2B recruitment and consumer subscription apps. Translate business requirements into specifications and coordinate cross-team delivery, with experience in pricing, payments and localization. Apply AI agents (Claude Code, Antigravity) to specification writing and data analysis within a human-in-the-loop workflow, retaining ownership of final product decisions.
 
 <!-- [STATUS: POLISHED] [LOCK_ENTITIES: PRD, User Story, Use Case, UAT, Axure RP, Figma, Claude Code, Antigravity, Kanban] -->
-- Requirements and validation: requirements analysis, PRD, User Story, Use Case, process and sequence diagrams, prototypes, UAT
-- Design and AI tools: Axure RP, Figma, Claude Code, Antigravity
-- Delivery and commercial methods: Kanban, stakeholder alignment, pricing experiments, payment integration planning
+- Requirements & Validation: Requirements Analysis, PRD, User Story, Use Case, Process & Sequence Diagrams, Prototyping, UAT
+- Design & Agentic AI Tools: Axure RP, Figma, Claude Code, Antigravity
+- Delivery & Commercial Methods: Kanban, Stakeholder Alignment, Pricing Experiments, Payment Integration Planning
 - Languages: English, Mandarin
 
 ---
@@ -72,9 +72,9 @@ LINE Career Profile 上游草稿 r3（2026-10-29）｜來源：104 v12.19 + libr
 - Took over the employer-side recruitment system overhaul when account permissions and business rules had no documentation; reconstructed the rules through hands-on testing and internal interviews, then replaced legacy functions in phased releases while keeping the existing back office, database and live service running, resolving 743 of 840 related client requests (88%).
 - Because employers and job seekers messaged each other across two overlapping tools that left interview invitations scattered, planned a unified messaging flow, now in development, addressing 199 client requests accumulated since 2021. In response to 55 client requests since 2020/12, planned a group recruitment feature, defining access rules across accounts, job posts and resumes plus legacy data migration, so large employers can recruit by department or branch beyond the original company-wide or individual scope.
 - After more than ten employer accounts were hijacked in 2026/03–04, coordinated engineering and customer service to scope the impact, then planned and launched new-device OTP login verification (MFA) and an account-unlock flow, with no similar account-takeover incidents reported through customer service through 2026/10.
-- To lower the barrier to job posting and improve candidate matching, led the launch of AI-generated job descriptions (2024/10) and AI talent recommendations (2025/11), and guided direct-report planners to launch company-profile generation (2026/06). Set labor-law compliance acceptance criteria requiring employer confirmation before publishing, and refined recommendation rules based on employers' actual selections and feedback.
-- The 15 category code tables for job roles, certifications, skills and benefits are the shared foundation for job posting, resume creation, search filtering and matching across the platform. To resolve category fragmentation as the business expanded, consolidated cross-team category changes starting 2026/04, using an AI Agent to organize mapping and delivery records and guiding colleagues to map hundreds of job categories with AI.
-- Raised the 30-day closure rate of enterprise client proposals from 52% to 79% (2024/11–2025/10 vs. 2025/11–2026/09/20, for proposals open at least 30 days). To protect paying employers' satisfaction and renewal base, prioritized client proposals, handled key cases directly and assigned cases to direct-report planners, building the product team's delivery credibility with the sales organization.
+- To lower the barrier to job posting and improve candidate matching, led the launch of AI-generated job descriptions (2024/10) and AI talent recommendations (2025/11), and guided direct reports to launch company-profile generation (2026/06). Set labor-law compliance acceptance criteria requiring employer confirmation before publishing, and refined recommendation rules based on employers' actual selections and feedback.
+- Audited and consolidated 15 shared category code tables (job roles, certifications, skills and benefits) starting 2026/04 to govern the underlying data fields used in job posting, resume creation, search filtering and matching across the platform. Addressed fragmentation as the business expanded. Used an AI agent to structure field-level mappings and organize handoff records, and guided colleagues in using AI to map hundreds of job categories.
+- Raised the 30-day closure rate of enterprise client proposals from 52% to 79% (2024/11–2025/10 vs. 2025/11–2026/09/20, for proposals open at least 30 days). To protect paying employers' satisfaction and renewal base, prioritized client proposals, handled key cases directly and delegated others to direct reports, building the product team's delivery credibility with the sales organization.
 
 ### 2.2 Product Manager｜Sunfun Info Co., Ltd.｜2018-01 – 2022-03
 

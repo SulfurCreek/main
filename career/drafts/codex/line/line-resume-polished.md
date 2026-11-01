@@ -4,12 +4,12 @@
 ## 0. Professional Summary & Skills（僅供 PDF／ATS 上傳，不進表單、不屬任何 directive）
 
 <!-- [STATUS: POLISHED] [LOCK_ENTITIES: account security, messaging, nearly 10 years, Product Owner, B2B recruitment, subscription apps, AI agents, human-in-the-loop, Claude Code, Antigravity] -->
-- Product Owner with nearly 10 years of product management experience spanning B2B recruitment and consumer subscription apps, with experience in account security, messaging, pricing, payments and localization. Turn business requirements into specifications and coordinate cross-team delivery. Apply AI agents (Claude Code, Antigravity) to specification writing and data analysis within a human-in-the-loop workflow with human review and final decisions.
+- Product Owner with nearly 10 years of product management experience spanning B2B recruitment and consumer subscription apps, with experience in account security, messaging, pricing, payments and localization. Turn business requirements into specifications and coordinate cross-team delivery. Apply AI agents (Claude Code, Antigravity) to specification writing and data analysis within a human-in-the-loop workflow, retaining ownership of final product decisions.
 
 <!-- [STATUS: LOCKED] [LOCK_ENTITIES: PRD, User Story, Use Case, UAT, Axure RP, Figma, Claude Code, Antigravity, Kanban] -->
-- Requirements and validation: requirements analysis, PRD, User Story, Use Case, process and sequence diagrams, prototypes, UAT
-- Design and AI tools: Axure RP, Figma, Claude Code, Antigravity
-- Delivery and commercial methods: Kanban, stakeholder alignment, pricing experiments, payment integration planning
+- Requirements & Validation: Requirements Analysis, PRD, User Story, Use Case, Process & Sequence Diagrams, Prototyping, UAT
+- Design & Agentic AI Tools: Axure RP, Figma, Claude Code, Antigravity
+- Delivery & Commercial Methods: Kanban, Stakeholder Alignment, Pricing Experiments, Payment Integration Planning
 - Languages: English, Mandarin
 
 ---
@@ -58,12 +58,12 @@
 - Product Owner of an employer-side recruitment system serving about 60,000 active paying employers (2026 Q3), covering job posting, applicant management and candidate outreach. Manage two direct-report product planners and coordinate engineering, design, sales and customer service.
 - Coordinated the response with engineering and customer service after more than ten employer recruitment accounts were hijacked in 2026/03–04. Designed and launched new-device OTP login verification (MFA) and an account-unlock flow. No similar account-takeover incidents were reported to customer service through 2026/10.
 - Planned a unified messaging flow for employers and job seekers to address 199 client requests accumulated since 2021. The work consolidates two overlapping tools that scattered interview invitations and is now in development.
-- To lower the barrier to job posting and improve candidate matching, led the launch of AI-generated job descriptions (2024/10) and AI talent recommendations (2025/11), and guided product planners in launching company-profile generation (2026/06). Set labor-law compliance acceptance criteria and required employer confirmation of generated content before publishing. Refined recommendation rules using employers' actual selections and feedback.
+- To lower the barrier to job posting and improve candidate matching, led the launch of AI-generated job descriptions (2024/10) and AI talent recommendations (2025/11), and guided direct reports in launching company-profile generation (2026/06). Set labor-law compliance acceptance criteria and required employer confirmation of generated content before publishing. Refined recommendation rules using employers' actual selections and feedback.
 - Led requirements analysis and specification planning to ship about 70 major features by 2026 Q3 while ongoing service iterations and a full system overhaul competed for the same engineering resources; aligned stakeholders and secured sales buy-in before delivery.
 - Recovered the logic behind undocumented account permissions and business rules for the employer-side recruitment system overhaul; 743 of 840 related client requests (88%) were resolved during the overhaul. Used hands-on testing and internal interviews, then coordinated phased replacement of legacy functions while keeping the existing back office, database and live service running.
 - In response to 55 client requests since 2020/12, planned a group recruitment feature for employers to recruit by department or branch. Defined access rules across accounts, job posts and resumes, along with legacy data migration rules, extending the original company-wide or individual-account data access.
-- Raised the 30-day case closure rate for enterprise clients' product issues and suggestions from 52% to 79% (2024/11–2025/10 vs. 2025/11–2026/09/20, for cases submitted at least 30 days earlier). To support paying employers' satisfaction and renewals, prioritized client cases, handled key cases directly and assigned others to product planners, building the product team's delivery credibility with sales.
-- Consolidated categories across teams starting 2026/04 to address fragmentation as the business expanded. The 15 category code tables cover job roles, certifications, skills and benefits, providing the shared foundation for consistent job posting, resume creation, search filtering and matching across the platform. Used an AI Agent to organize mappings and handoff records, and guided colleagues in using AI to map hundreds of job categories.
+- Raised the 30-day case closure rate for enterprise clients' product issues and suggestions from 52% to 79% (2024/11–2025/10 vs. 2025/11–2026/09/20, for cases submitted at least 30 days earlier). To support paying employers' satisfaction and renewals, prioritized client cases, handled key cases directly and delegated others to direct reports, building the product team's delivery credibility with sales.
+- Audited and consolidated 15 shared category code tables (job roles, certifications, skills and benefits) starting 2026/04 to govern the underlying data fields used in job posting, resume creation, search filtering and matching across the platform. Addressed fragmentation as the business expanded. Used an AI agent to structure field-level mappings and organize handoff records, and guided colleagues in using AI to map hundreds of job categories.
 
 ### 2.2 Product Manager｜Sunfun Info Co., Ltd.｜2018-01 – 2022-03
 

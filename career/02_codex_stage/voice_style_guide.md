@@ -117,6 +117,13 @@ Codex 依 §§12–14 自治精煉上游標記 NEEDS_POLISH 的表達、語序�
 
 以上規則優先於舊版一律第一人稱及檔末附修改紀錄的要求。交付前通讀全部列點，確認商業目的、系統影響範圍、分母、時序與責任沒有因精簡遺失，再執行當輪上游 verify_line_profile.py，0 違規才交付。
 
+### 資料深度、管理稱謂與 Skills 格式（2026-11-02；同步 voice-en §9）
+
+1. **先定義資料對象**：類別表首句使用 `Audited and consolidated 15 shared category code tables (job roles, certifications, skills and benefits)`，不得以尚未定義的 `Consolidated categories across teams` 開頭。保留 `govern the underlying data fields` 與 `structure field-level mappings`，只套用本人已授權的資料檢視與對照工作，不延伸成工程實作。
+2. **管理關係明確**：首點定義 `two direct-report product planners` 後，後文使用 `guided direct reports`、`delegated others to direct reports`。不刪成平級的 product planners，不用 subordinates；同仁若非直屬，不自行改稱 direct reports。
+3. **避免同義重複**：`within a human-in-the-loop workflow` 接 `retaining ownership of final product decisions`，不再追加 with human review。工具名須有通用類別詞：`AI agents (Claude Code, Antigravity)`，或分類標題 `Design & Agentic AI Tools:`。
+4. **Skills Title Case**：技能項目與分類標籤統一 Title Case；縮寫及品牌拼法照原文。例如 `Requirements Analysis, PRD, User Story, Use Case, Process & Sequence Diagrams, Prototyping, UAT`。分類標籤使用 &。此格式授權優先於歷史 Skills 的大小寫鎖定，不改技能事實。
+
 ## 6. 逐區塊操作協議
 
 **Default Full-Sweep Protocol（2026-10-26 本人指定，永久預設）**：本段優先於下方歷史操作限制。每次同步後，將上游全部 NEEDS_POLISH 區塊重新視為待獵頭審視狀態，禁止因成品已標 POLISHED 而跳過。依 §13 七大模組逐一檢視，當場修改可解決的問題，保留 LOCKED、鎖定詞及事實責任。以實際上游數量為準（目前 41 區塊中 33 個可改、8 個 LOCKED）；不能為湊「34」更動鎖定區塊。本人當輪限定修改範圍時，全文審讀仍執行，改稿依當輪授權。檢視後已適切的文字可保留，但須如實回報，不以無意義換字冒充重構。
