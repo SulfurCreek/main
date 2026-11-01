@@ -4,13 +4,10 @@
 import html, json, sys
 from pathlib import Path
 
-src = Path(sys.argv[1] if len(sys.argv) > 1 else "career/drafts/line/line-profile.fill.json")
+src = Path(sys.argv[1] if len(sys.argv) > 1 else "career/drafts/line/line-profile.resume.json")
 out = Path(sys.argv[2] if len(sys.argv) > 2 else "career/drafts/line/line-profile.html")
-steps = json.loads(src.read_text(encoding="utf-8"))["steps"]
-md = Path(sys.argv[3] if len(sys.argv) > 3 else "career/drafts/line/line-profile.md").read_text(encoding="utf-8")
-sec0 = md[md.index("## 0."):md.index("## 1.")]
-extra = [l[2:].strip() for l in sec0.splitlines() if l.startswith("- ")]
-summary, skills = extra[0], extra[1:]
+_d = json.loads(src.read_text(encoding="utf-8"))
+steps, summary, skills = _d["steps"], _d["summary"], _d["skills"]
 e = html.escape
 basic = next(s for s in steps if s["target_block"] == "basic")["fields"]
 work = [s for s in steps if s["target_block"] == "work_experience"]
