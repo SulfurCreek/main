@@ -81,8 +81,8 @@
 
 病因：為湊齊 `LOCK_ENTITIES` 疊同義詞；為換動詞讓首句概念偷跑且把資料檢視力寫成行政整理；為省字刪掉從屬關係使管理職級降維；Skills 欄位排版沒有慣例。
 
-1. **管理職級稱謂（People Management Register）**：不用 `subordinates`。首點定義 `two direct-report product planners` 後，後續提到指導或分派一律用 `guided direct reports`、`delegated [tasks] to direct reports`；禁止簡寫成平級的 `guided product planners`／`assigned others to product planners`。
-2. **資料欄位深度（Data-Literate PM Framing）**：描述代碼表、分類或跨系統整合時，禁止首句裸奔 `Consolidated categories …`（概念偷跑）。首句須完整帶出對象與範圍，如 `Audited and consolidated 15 shared category code tables (job roles, certifications, skills and benefits)`，並用 `govern the underlying data fields`、`structure field-level mappings` 表達可直接檢視底層欄位。僅限本人確認具備此能力的項目（decisions §62）。
+1. **管理職級稱謂（People Management Register）**：不用 `subordinates`。首點定義 `two direct-report product planners` 後，（2026-11-01 本人採用的首點寫法：`Manage two product planners as direct reports.`，不改成平級、不擴大管理人數）後續提到指導或分派一律用 `guided direct reports`、`delegated [tasks] to direct reports`；禁止簡寫成平級的 `guided product planners`／`assigned others to product planners`。
+2. **資料欄位深度（Data-Literate PM Framing）**：描述代碼表、分類或跨系統整合時，禁止首句裸奔 `Consolidated categories …`（概念偷跑）。首句須完整帶出對象與範圍，如 `Audited and consolidated 15 shared category code tables (job roles, certifications, skills and benefits)`，並用 `reviewing the underlying data fields`、`structuring field-level mappings` 表達可直接檢視底層欄位；**不用 `govern the underlying data fields`**（暗示超出實際工作的資料治理權責，本人 2026-11-01 取消）。僅限本人確認具備此能力的項目（decisions §62）。
 3. **反同義疊字（Anti-Tautology）**：已寫 `within a human-in-the-loop workflow` 就不再接 `with human review`；後句改 `retaining ownership of final product decisions`。鎖定詞不能成為疊字的理由，鎖定詞的同義說明要刪、不要疊。
 4. **Skills 排版**：項目一律 Title Case（`Requirements Analysis, PRD, User Story, Use Case, Process & Sequence Diagrams, Prototyping, UAT`）；分類標籤用 `&`（`Design & Agentic AI Tools: …`）。
 5. **工具名可讀性**：`Claude Code`、`Antigravity` 前方須有 `AI agents` 或 `Agentic AI Tools` 類別詞。

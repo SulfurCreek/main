@@ -444,3 +444,10 @@ v9.7 = v9.6 ＋ 使用者自寫自傳與各段 summary（16→10 個單位、業
 - 規則寫入 `style/voice-en.md` §9、compiler SKILL；驗證器 `verify_line_profile.py` 新增禁用字串（`workflow with human review`、`Consolidated categories across teams`、`guided product planners`、`assigned others to product planners`）、2.1 必備錨點（`underlying data fields`、`field-level mappings`、`direct reports`、`delegated`）與工具名類別詞檢查。
 - 本人確認：可直接檢視 15 張代碼表底層資料欄位並做欄位級對照；`~60,000` 付費雇主只留在 1111 首點，Summary 不重複（取代 §60 第一項）。
 - Summary 句尾：`within a human-in-the-loop workflow, retaining ownership of final product decisions`；Skills 用 Title Case 與 `&`。
+
+## 63. 2026-11-01 採用 Codex 5c94c3a 兩項英文改法（本人）
+
+- 1111 首點：`Manage two product planners as direct reports.`（取代 `two direct-report product planners`）；後文維持 `guided direct reports`／`delegated … to direct reports`，不擴大管理人數。
+- 代碼表：保留 `Audited and consolidated 15 shared category code tables`，改用 `reviewing the underlying data fields` 與 `structuring field-level mappings`；不再用 `govern the underlying data fields`（避免暗示資料治理權責）。驗證器新增該字串禁用。
+- 840／743 件：維持 `related client requests`，未找到更短且準確的限定（facts-1111 第 222–223、377 行：四模組建議、建議案件完成比例，不等於功能上線比例；「帳號、登入、公司資料、聯絡人」分類不入正文）。
+- Codex 的通用版 `line-profile-summary-polished.md` 以舊上游為基底，未含 Claude 先前定稿修正，不整份採用；僅同步上述改法與摘要、shared recruitment、公開排名句。

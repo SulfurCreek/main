@@ -19,7 +19,7 @@ FIELDS = {
 }
 BANNED = ["strategic", "passionate", "detail-oriented", "leverage", "robust", "seamlessly", "delve", "Spearheaded",
           "Backed by", ", which leave", "merge request", "my planners", "guided my planners", "guided direct-report planners through",
-          "launched in 2018/05", "launched in 2018-05", "planned a group function for large employers", "proven track record", "cutting-edge", "(to consolidate", "workflow with human review", "Consolidated categories across teams", "guided product planners", "guided the product planners", "assigned others to product planners", "assigned others to the planners", "Present", "Singapore", "Russia", "1111 Job Bank"]
+          "launched in 2018/05", "launched in 2018-05", "planned a group function for large employers", "proven track record", "cutting-edge", "(to consolidate", "govern the underlying data fields", "workflow with human review", "Consolidated categories across teams", "guided product planners", "guided the product planners", "assigned others to product planners", "assigned others to the planners", "Present", "Singapore", "Russia", "1111 Job Bank"]
 BANNED_BULLET_ONLY = BANNED[:-1]
 
 ANCHORS = {
