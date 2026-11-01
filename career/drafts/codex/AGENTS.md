@@ -56,7 +56,7 @@ git rev-parse --verify origin/claude/happy-lamport-ljis8c^{commit}
 2. 直接用檔案編輯工具改稿，完成後將授權的 NEEDS_POLISH 改為 POLISHED。LOCKED 逐字保留，LOCK_ENTITIES、數字、日期、公司、職稱、Enum、必要限定、因果及責任完整保留。本人新授權優先，不能以舊鎖定拒絕本輪明確要求。
 3. 首次定義先於功能細節與驗收；保留父子縮排，子項不重複共同背景，上層不另加獨立成果。不為改寫比例或前 20 字吸睛而硬倒裝。
 4. 中文完整履歷按七大模組審視：簡介 → 1111 → 尚凡 → SweetRing → 專長 → 自傳 → 專案與求職條件。英文履歷與推薦信依實際欄位審視，不捏造不存在的模組。
-5. 依 voice_style_guide.md §§12–14 檢查限制、行動與成效是否相連、背景是否過長、工具是否搶焦點、跨欄是否重述。前 15～20 字須辨識產品、核心動作或張力；不把目的當已實現成果，不升級規劃為工程實作。
+5. 依 voice_style_guide.md §§9–10 檢查限制、行動與成效是否相連、背景是否過長、工具是否搶焦點、跨欄是否重述。前 15～20 字須辨識產品、核心動作或張力；不把目的當已實現成果，不升級規劃為工程實作。
 6. 推薦信依指南 §2：每點獨立場景、白話產品類型、一點一主線、貴公司、核心課題結尾；不寫空泛契合或預判適任度。
 7. 初稿與全文自審後，跑對應 Gatekeeper 預檢，修至 Exit 0 才派盲審。不修改共用驗證程式、不製造假輸入。
 
@@ -66,7 +66,7 @@ git rev-parse --verify origin/claude/happy-lamport-ljis8c^{commit}
 
 - 每輪中文／英文履歷、推薦信及 PDF／Markdown 驗收均須獨立子代理盲審，包含同步與微調。自審、腳本通過與前輪盲審不能替代。本人明確只審不改或取消盲審時依當輪指示。
 - 使用不繼承歷史的子代理。派發 Prompt 直接提供剝除內部 HTML 註解的完整對外候選文字，以及獲准的目標 JD（如有）；不新增暫存檔，不提供含內部註解的原始路徑。
-- 子代理禁止讀上游、library、內部規則、voice-en、鎖定清單、修改理由或另一側意見；只讀、不共寫。重做盲審須新隔離代理，同一代理複查只能稱非盲複查。
+- 子代理必須同時從 Senior 職級與管理／資料深度、陌生人首讀定義、前20字商業價值與 So What、母語自然度與反模板四維度提出具體意見；不以職級包裝增加權責。子代理禁止讀上游、library、內部規則、voice-en、鎖定清單、修改理由或另一側意見；只讀、不共寫。重做盲審須新隔離代理，同一代理複查只能稱非盲複查。
 - 隔離失敗或工具不可用時，如實說明盲審未完成，不能以內部重讀冒稱已執行。
 - 角色必須是對產品背景陌生的外部 Senior PM／B2B PO Hiring Manager 或科技業獵頭閱讀視角，不能縮成英文校對。檢查：首次理解、商業價值、職級與責任可信度、面試可解釋性、語感篇幅及跨欄重複。提供具體原句、問題與修法，不新增事實、不評分、不為湊數編問題。
 - 主代理收到意見後必須逐項處置並實際改稿。交付必附原始挑刺摘要、代理名稱與實際隔離範圍、三分類表及 Before → After；未備妥證據即未完成 Step 3，不得進入提交推送。
@@ -87,7 +87,7 @@ git rev-parse --verify origin/claude/happy-lamport-ljis8c^{commit}
 2. **狀態式成果斷頭開場**：不以「About 70 major features were live by 2026 Q3.」取代本人行動；採「Led requirements analysis and specification planning to ship…」。這是履歷行動主體要求，不將有文法主詞的狀態句誤稱為文法上無主詞。
 3. **概念偷跑**：不得先講未定義 AI 功能的驗收、未介紹實驗就講降價成果、未定義分類表就裸寫 Consolidated categories across teams。
 4. **長限定複製**：Juicy／JustDating 兩次承接以一句共同限定統攝上線與行銷導流，不重複貼相同長句；仍明確對應各產品、DAU 與期間。
-5. **刪限定或降維已確認責任**：不刪 in development、分母與 DAU 歸因。首點定義 two direct-report product planners，後文用 guided direct reports／delegated … to direct reports；不改成平級同仁。本人授權的分類表保留 Audited and consolidated 15 shared category code tables、govern the underlying data fields、structure field-level mappings；不能把資料深度降成行政整理，也不超出授權項目套用。
+5. **刪限定或降維已確認責任**：不刪 in development、分母與 DAU 歸因。首點使用本人採用的 Manage two product planners as direct reports.，後文用 guided direct reports／delegated … to direct reports；不改成平級同仁。本人授權的分類表保留 Audited and consolidated 15 shared category code tables、reviewing the underlying data fields、structuring field-level mappings；不能把資料深度降成行政整理，也不超出授權項目套用。
 6. **純主觀同義替換**：已清楚、無具體語病或理解風險，只為審稿者偏好換詞。不把所有自然度建議一概列為主觀。
 
 命中紅線時對該爭議執行 Convergence Stop，列依據後停止往返；不能因此放行其他未解問題。明確 Blocker 包含事實／數字／限定錯漏、首次未定義、同段重複造句、無動作主體開場或適用驗證器違規。
