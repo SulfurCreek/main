@@ -24,7 +24,7 @@ BANNED_BULLET_ONLY = BANNED[:-1]
 
 ANCHORS = {
     "2.1": ["sales buy-in", "department or branch", "lower the barrier", "candidate matching", "compliance",
-            "actual selections", "shared foundation", "renewal", "credibility", "at least 30 days"],
+            "actual selections", "shared category code tables", "underlying data fields", "renewal", "credibility", "at least 30 days"],
     "2.2": ["Airbnb", "Miro", "kicked off in 2018", "Led the design"],
 }
 DATE = re.compile(r"^\d{4}-(0[1-9]|1[0-2])$")

@@ -431,3 +431,10 @@ v9.7 = v9.6 ＋ 使用者自寫自傳與各段 summary（16→10 個單位、業
 
 - 針對 LINE Taiwan Product Manager (Messenger & OA Products)（官網 /jobs/3106/）與 LINE Pay Product Planner（官網 /jobs/2782/）另出「LINE Resume」特化版，與通用版 `drafts/line/line-profile.md` 區分。
 - 本輪只重排與強調（帳號安全、訊息、AI 與合規、定價實驗、支付優先），不新增事實、不改 directive。上游：`01_claude_stage/line-resume-draft.md`。
+
+## 60. 2026-11-01 LINE Resume 最後定稿修正（本人審核）
+
+- Summary 句尾改為 `retaining ownership of final product decisions`；Summary 加入 `(serving ~60,000 paying employers)` 與 `specializing in`（本人指定，雖與 1111 首點數字重複，依本人裁定保留）。
+- Skills 標題大小寫統一，工具類別標為 `Design & Agentic AI Tools`。
+- 15 張代碼表一點：本人確認可直接檢視底層資料欄位並做欄位級對照，英文用 `Audited and consolidated 15 shared category code tables … underlying data fields … field-level mappings`；驗證器錨點由 `shared foundation` 改為 `shared category code tables`／`underlying data fields`。
+- 直屬企劃一律用 `direct reports`；交辦用 `delegated`（取代 `assigned`）。
