@@ -104,8 +104,9 @@ def main(path):
     if sum(1 for l in bullets if l.count("(") >= 2 and re.search(r"\((?:to|in) [a-z]", l)) :
         errs.append("[規則備註括號] Bullet 內有解釋性括號堆疊，請改寫成正文")
     # AI 工具名前必帶類別詞（voice-en §9）
-    for m in re.finditer(r"Antigravity", t):
-        ctx = t[max(0, m.start() - 100):m.start()]
+    body = "\n".join(l for l in t.splitlines() if not l.lstrip().startswith("<!--"))
+    for m in re.finditer(r"Antigravity", body):
+        ctx = body[max(0, m.start() - 100):m.start()]
         if not re.search(r"AI agents|Agentic AI|AI Agent", ctx, re.I):
             errs.append("[工具名無類別詞] Claude Code／Antigravity 前方須有 AI agents 或 Agentic AI Tools 類別詞（voice-en §9）")
             break
