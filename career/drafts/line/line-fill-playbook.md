@@ -2,13 +2,13 @@
 
 # LINE Career Profile 填表指令（給 Antigravity）｜版本 r4 FINAL LOCKED
 
-> 打包內容（同一資料夾）：`line-profile.md`（定稿，人讀）、`line-profile.fill.json`（機器讀，**填表唯一內文來源**）、本檔（操作規則）。
-> 產生方式：`python3 career/scripts/gen_line_pack.py`（先跑 `verify_line_profile.py` 0 違規才會產出）。內文改動一律回上游重走管線，**不在填表端改**。
+> 打包內容（同一資料夾）：**LINE 申請一律用 LINE Resume 版**：`line-resume.md`（定稿，人讀）、`line-resume.fill.json`（機器讀，**填表唯一內文來源**）、`line-resume.pdf`（ATS 上傳用，含 Summary & Skills）、本檔。通用版 `line-profile.*` 只在使用者明說時才用。（操作規則）。
+> 產生方式：`python3 career/scripts/gen_line_pack.py career/drafts/line/line-resume.md`（先跑 `verify_line_profile.py` 0 違規才會產出）。內文改動一律回上游重走管線，**不在填表端改**。
 > 個資檔，不外流：不得貼到任何公開位置、不得上傳 HackMD。
 
 ## 一、最高鐵律（違反即中止）
 
-1. **Zero Text Mutation**：所有欄位內文只取自 `line-profile.fill.json`，逐字填入。**禁止**在腳本內硬編碼任何履歷文字、改寫、摘要、補字、翻譯、調整標點或換行。
+1. **Zero Text Mutation**：所有欄位內文只取自 `line-resume.fill.json`，逐字填入。**禁止**在腳本內硬編碼任何履歷文字、改寫、摘要、補字、翻譯、調整標點或換行。
 2. **寫入前後純文字斷言**：每個文字欄位寫入後，讀回 DOM 的純文字，必須等於 JSON 對應字串（去除首尾空白後逐字相同）。不相等就停止、不要儲存，回報步驟編號、欄位與差異。
 3. **不碰送出**：絕對不按「Submit／送出／投遞／Apply／Finish」。每個區塊填完只按該區塊的「Save／儲存」，且按下前先停下來列出填了什麼，等使用者說「OK 儲存」。最後一步「整份送出」由使用者自己按。
 4. **不碰登入與帳號**：不改密碼、通知、帳號設定，不上傳履歷檔或附件，不填 JSON 以外的任何欄位（例如薪資期望、國籍、性別、身分證、生日、社群連結、推薦人）——表單要求必填但 JSON 沒有時，**停下來問使用者**，不要猜。
@@ -19,9 +19,16 @@
 ## 二、開工前檢查（步驟 0）
 
 1. 使用者提供：LINE 表單網址、是否已登入。**沒有網址就不要自己搜尋或猜網址**。
-2. 讀 `line-profile.fill.json`，確認 `steps` 共 9 步，記下 `source_sha256`（回報時附上）。
+2. 讀 `line-resume.fill.json`，確認 `steps` 共 9 步，記下 `source_sha256`（回報時附上）。
 3. 開啟表單，確認頁面有這幾個區塊：Basic & Contact Information、Work Experience（Dataset 155）、Education History（Dataset 157）、Languages（Dataset 257）。缺任何區塊就停下來回報。
 4. 列出表單上每個必填欄位，與 JSON 欄位對照；有對不上的，統一列給使用者，**不要邊填邊問**。
+
+## 二之一、內容限制（2026-11-01 英文母語審視補充）
+
+- 表單內文必須是純文字：`description_text` 的 `• `、英文月份、`–`（en dash）可原樣貼入；若表單欄位拒收或亂碼，**停下來回報字元與欄位**，不要自行換成 `-` 或其他符號（Zero Text Mutation）。
+- 由上游維持 ASCII 友善：避免 `→` 這類箭頭符號；若 JSON 出現，回報給 Claude 轉 Codex 改寫。
+- Summary & Skills 不進表單，只在 PDF；表單不要填這兩塊。
+- 英文內容一律保持英文，不自動翻譯、不改標點、不改大小寫。
 
 ## 三、步驟（依 `steps[].step` 順序，一次一步）
 
@@ -63,7 +70,7 @@
 ## 六、給使用者的啟動指令（貼給 Antigravity）
 
 ```text
-請先讀同資料夾的 line-fill-playbook.md 與 line-profile.fill.json，照 playbook 填 LINE Career Profile。
+請先讀同資料夾的 line-fill-playbook.md 與 line-resume.fill.json，照 playbook 填 LINE Career Profile。
 表單網址：<貼上網址>
 我已登入。每個區塊填完先讓我確認再按 Save，全程不要按最後送出。
 遇到 playbook 第五節任何停止條件，立刻停下來回報。
