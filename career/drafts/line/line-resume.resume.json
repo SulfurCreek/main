@@ -1,6 +1,6 @@
 {
   "source": "career/drafts/line/line-resume.md",
-  "source_sha256": "a4dc7ccc1b32a59a63fafafb0b5b75faa642174cba286485cfeeb9191da0dd16",
+  "source_sha256": "97993718f88c20479baed2c18baad09e724697a0076adc79672aac7c77a28281",
   "summary": "Product Owner with nearly 10 years of product management experience spanning B2B recruitment and consumer subscription apps, with experience in account security, messaging, pricing, payments and localization. Manage direct reports and align stakeholder priorities, translating business requirements into specifications and coordinating cross-team delivery. Use AI agents (Claude Code, Antigravity) for specification writing and data analysis within a human-in-the-loop workflow, retaining ownership of final product decisions.",
   "skills": [
     "Requirements & Validation: Requirements Analysis, PRD, User Story, Use Case, Process & Sequence Diagrams, Prototyping, UAT",
@@ -10,12 +10,8 @@
   ],
   "personal_statement": [
     "Across consumer apps, influencer matching and employer recruitment, I ask whether users can accomplish their goals and whether the product supports the business. I enjoy shaping ideas into products and explaining the reasoning behind a plan.",
-    "Planning KOOL, an influencer-matching platform, reinforced that interest. I started from what merchants and influencers each needed and connected the invitation, application and messaging flows between them.",
     "When JustDating and then Juicy were removed from the App Store, continuity meant more than shipping a replacement. I coordinated communications with the App Store and worked with marketing to retain users and revenue. This taught me to account for dependencies between teams when planning launches.",
-    "I joined 1111 to work on a recruitment system overhaul. With account permissions and business rules undocumented, I examined how the system operated and checked my findings with engineering, operations and audit. Understanding how data supported daily operations helped me plan changes while keeping the existing service running.",
-    "Planning the shared recruitment feature extended my focus from matching two sides to helping colleagues work together. I considered accounts, job posts and resumes together so employers could recruit by department or branch, anticipating exceptions to reduce confusion.",
-    "I use AI agents, including Antigravity and Claude Code, for specifications and data analysis. I define problems, rules and checks, then guide the tools to review information, fill gaps and flag confidence levels. With colleagues, I start where they are stuck and teach them to guide AI and check outputs. This human-in-the-loop approach leaves them to judge results, with the few exceptions discussed together.",
-    "Next, I want to apply my experience in subscriptions, pricing and enterprise workflows to decisions that balance user needs and business goals. I want to stay involved through launch and understand whether those decisions improve the user experience and deliver business value."
+    "I use AI agents for specifications and data analysis. I define problems, rules and checks, then guide the tools to review information, fill gaps and flag confidence levels. With colleagues, I start where they are stuck and teach them to guide AI and check outputs, so they judge the results and we discuss the few exceptions together. Next, I want to apply my experience in subscriptions, pricing and enterprise workflows to decisions that balance user needs and business goals, and to stay involved through launch to see whether they improve the user experience and deliver business value."
   ],
   "steps": [
     {

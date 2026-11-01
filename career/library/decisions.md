@@ -462,3 +462,8 @@ v9.7 = v9.6 ＋ 使用者自寫自傳與各段 summary（16→10 個單位、業
 - LINE Resume（PDF）新增 `## 0b. Personal Statement`，英文版取自 104 v12.19 自傳（本人已確認的中文自傳），僅 PDF／ATS 用；不進表單。日韓外商是否需要自傳查無一致答案（搜尋 2026-11-01），先包含，投遞前看職缺頁要求再決定留或拿掉。
 - Profile 表單只填 Summary；工作列點只在 resume（PDF）。`gen_line_pack.py` 產 `<stem>.fill.json`（表單）與 `<stem>.resume.json`（PDF，含列點、Skills、Personal Statement）。
 - 定價實驗箭頭改為 `original price, then discounted price, then original price`（Codex 45bf976）。
+
+## 66. 2026-11-01 Personal Statement 縮為三段（跨欄去重，Claude 選材）
+
+- 純英文母語審查與 3106 JD 審查一致指出：自傳的 KOOL、1111 改版、共享招募三段與經歷列點重複，AI 工具名在 Summary、Skills、自傳重複三次。依入口 §5 跨欄去重，保留：開場視角、App Store 依賴關係、AI 與下一步（合併）；刪 KOOL、1111 改版、共享招募三段；自傳不再重列工具名與成果數字。
+- 不新增事實（未加「為何轉向帳號安全」之類動機，library 無紀錄）。
