@@ -87,3 +87,10 @@
 4. **Skills 排版**：項目一律 Title Case（`Requirements Analysis, PRD, User Story, Use Case, Process & Sequence Diagrams, Prototyping, UAT`）；分類標籤用 `&`（`Design & Agentic AI Tools: …`）。
 5. **工具名可讀性**：`Claude Code`、`Antigravity` 前方須有 `AI agents` 或 `Agentic AI Tools` 類別詞。
 6. **數字不重複**：同一數字（如約 60,000 付費雇主）只留在一處；Summary 寫定位與方法，數字留在經歷（本人 2026-11-01 裁定）。
+
+## 10. 英文成品須經「純英文母語審查」（本人 2026-11-01 質疑審稿仍用中文語境）
+
+1. 英文履歷定稿前，除 JD 對照盲審外，另派一個**全英文 prompt、母語 hiring manager 角色、輸出英文**的審查者，只審英文自然度（不審職涯事實）。報告存 `review-panel/runs/<日期>-english-<版本>/`；不在 repo 新增暫存檔。
+2. 處置原則：**限定詞與事實保留，措辭可改**。不得用中文裁定擋掉純措辭問題；也不得用措辭改寫帶入因果或責任升級（例：`were resolved during the overhaul` 本人裁定維持，不改成 `resolving … along the way`）。
+3. 常見翻譯腔：斜線日期放在句中（`in 2026/03–04` → `In March–April 2026`）、`Recovered the logic behind`（→ `Reverse-engineered`）、名詞串、句中塞長從句後用分號、被動無主詞句尾（`No similar … were reported`）。
+4. 範例日期欄位（括號內統計期間）可維持 `YYYY/MM`；句中敘述優先用英文月份。
