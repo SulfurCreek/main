@@ -14,12 +14,12 @@
 
 ## 0b. Personal Statement（僅供 PDF／ATS 上傳，不進表單、不屬任何 directive；來源：104 v12.19 自傳，本人 2026-11-01 指定先包含；2026-11-01 盲審後依跨欄去重由 7 段縮為 3 段）
 
-<!-- [STATUS: NEEDS_POLISH] [LOCK_ENTITIES: JustDating, Juicy, App Store, AI agents] -->
-Across consumer apps, influencer matching and employer recruitment, I ask whether users can accomplish their goals and whether the product supports the business. I enjoy shaping ideas into products and explaining the reasoning behind a plan.
+<!-- [STATUS: POLISHED] [LOCK_ENTITIES: JustDating, Juicy, App Store, AI agents] -->
+Across consumer apps, influencer matching and employer recruitment, I return to the same questions: can people do what they came to do, and does the product support the business? I enjoy turning ideas into products and helping a team understand the reasoning behind a plan.
 
-When JustDating and then Juicy were removed from the App Store, continuity meant more than shipping a replacement. I coordinated communications with the App Store and worked with marketing to retain users and revenue. This taught me to account for dependencies between teams when planning launches.
+When JustDating and then Juicy were removed from the App Store, keeping the service running meant more than releasing a replacement. I coordinated communications with the App Store and worked with marketing to retain users and revenue. The experience taught me to plan launches around the ways teams depend on one another.
 
-I use AI agents for specifications and data analysis. I define problems, rules and checks, then guide the tools to review information, fill gaps and flag confidence levels. With colleagues, I start where they are stuck and teach them to guide AI and check outputs, so they judge the results and we discuss the few exceptions together. Next, I want to apply my experience in subscriptions, pricing and enterprise workflows to decisions that balance user needs and business goals, and to stay involved through launch to see whether they improve the user experience and deliver business value.
+I use AI agents to help write specifications and analyze data. I define the problem, rules and checks, then guide the tools to review information, fill gaps and indicate confidence. When colleagues get stuck, I show them how to guide AI and check its output. My colleagues make their own judgments, and we work through the few exceptions together. Looking ahead, I want to apply my experience in subscriptions, pricing and enterprise workflows to product decisions that balance user needs and business goals. I want to stay involved through launch and see whether those decisions improve the user experience and deliver business value.
 
 ---
 

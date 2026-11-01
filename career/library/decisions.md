@@ -467,3 +467,8 @@ v9.7 = v9.6 ＋ 使用者自寫自傳與各段 summary（16→10 個單位、業
 
 - 純英文母語審查與 3106 JD 審查一致指出：自傳的 KOOL、1111 改版、共享招募三段與經歷列點重複，AI 工具名在 Summary、Skills、自傳重複三次。依入口 §5 跨欄去重，保留：開場視角、App Store 依賴關係、AI 與下一步（合併）；刪 KOOL、1111 改版、共享招募三段；自傳不再重列工具名與成果數字。
 - 不新增事實（未加「為何轉向帳號安全」之類動機，library 無紀錄）。
+
+## 67. 2026-11-01 LINE Resume 定稿（Codex d0b5494）；Skills 不加 User Interviews（本人）
+
+- Personal Statement 三段、200 字，採 Codex d0b5494；Skills 維持現狀，不加 `User Interviews`。
+- LINE profile 表單只填 Summary；列點與自傳只在 PDF。
