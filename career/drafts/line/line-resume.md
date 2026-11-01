@@ -14,20 +14,20 @@
 
 ## 0b. Personal Statement（僅供 PDF／ATS 上傳，不進表單、不屬任何 directive；來源：104 v12.19 自傳，本人 2026-11-01 指定先包含）
 
-<!-- [STATUS: NEEDS_POLISH] [LOCK_ENTITIES: KOOL, JustDating, Juicy, App Store, shared recruitment, Antigravity, Claude Code, AI agents, human-in-the-loop] -->
-Across dating and subscription apps, an influencer-matching platform and an employer recruitment system, I keep returning to two questions: can users achieve what they came for, and does the product help the company keep running? I like shaping products from ideas that have not yet taken form, and I want teams to understand the judgment behind a plan, not only the list of features.
+<!-- [STATUS: POLISHED] [LOCK_ENTITIES: KOOL, JustDating, Juicy, App Store, shared recruitment, Antigravity, Claude Code, AI agents, human-in-the-loop] -->
+Across consumer apps, influencer matching and employer recruitment, I ask whether users can accomplish their goals and whether the product supports the business. I enjoy shaping ideas into products and explaining the reasoning behind a plan.
 
-KOOL, an influencer-matching platform, confirmed the work I enjoy most: starting from what merchants and influencers each need, and turning scattered ideas into an experience that works for both sides. Invitations, applications and messaging are more than a feature list; one side's actions have to connect to the other side's needs.
+Planning KOOL, an influencer-matching platform, reinforced that interest. I started from what merchants and influencers each needed and connected the invitation, application and messaging flows between them.
 
-When JustDating and then Juicy were removed from the App Store, I faced the pressure of carrying existing users and revenue forward. Shipping the product was not enough; I also had to coordinate App Store communication and marketing traffic to keep the service running. Those two experiences taught me to plan with the dependencies between teams in view, so that launch and traffic routing are part of the product plan.
+When JustDating and then Juicy were removed from the App Store, continuity meant more than shipping a replacement. I coordinated communications with the App Store and worked with marketing to retain users and revenue. This taught me to account for dependencies between teams when planning launches.
 
-I joined 1111 to take part in overhauling a whole recruitment system. When I took over the employer-side recruitment system overhaul in late 2024, I first established what the new design could rely on: account permissions and business-model rules had no documentation, so I derived them from actual operation and checked them with engineering, operations and audit. Once the relationship between existing data and operations was clear, I could plan the login and company-data changes so that the new design connected to the service still running.
+I joined 1111 to work on a recruitment system overhaul. With account permissions and business rules undocumented, I examined how the system operated and checked my findings with engineering, operations and audit. Understanding how data supported daily operations helped me plan changes while keeping the existing service running.
 
-Moving from influencer matching to employer recruitment, I extended the question of how two sides find each other to how members of the same organization work together. The shared recruitment feature had to consider accounts, job posts and resumes together, so that large employers could recruit by department or branch. I anticipate exceptions in advance so users spend less time stopping to figure things out.
+Planning the shared recruitment feature extended my focus from matching two sides to helping colleagues work together. I considered accounts, job posts and resumes together so employers could recruit by department or branch, anticipating exceptions to reduce confusion.
 
-Today I use AI agents such as Antigravity and Claude Code for specifications and data analysis: I define the problem, rules and verification requirements, then guide the AI to check and add information with a confidence level, and people judge the results and exceptions. When I teach colleagues to work with AI, I start from where they are stuck and show them how to guide the AI and check its output, so they can judge for themselves and we discuss only the few exceptions. What I want to pass on is a way of working: let the tool help, and keep human judgment.
+I use AI agents, including Antigravity and Claude Code, for specifications and data analysis. I define problems, rules and checks, then guide the tools to review information, fill gaps and flag confidence levels. With colleagues, I start where they are stuck and teach them to guide AI and check outputs. This human-in-the-loop approach leaves them to judge results, with the few exceptions discussed together.
 
-Next, I want to combine my experience in subscriptions, pricing and enterprise workflows to take part in requirement trade-offs under a business direction, staying involved from planning through launch. I also care whether a product, after delivery, actually improves the user experience and brings business value.
+Next, I want to apply my experience in subscriptions, pricing and enterprise workflows to decisions that balance user needs and business goals. I want to stay involved through launch and understand whether those decisions improve the user experience and deliver business value.
 
 ---
 
