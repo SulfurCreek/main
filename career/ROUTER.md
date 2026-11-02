@@ -21,6 +21,7 @@
 | **任何對外文字動筆前（強制）** | [`skills/resume-causal-logic-compiler/SKILL.md`](skills/resume-causal-logic-compiler/SKILL.md) §2.3 披露與跨欄位檢查 | — |
 | **任何動筆前** | [`library/INDEX.md`](library/INDEX.md) → [`library/decisions.md`](library/decisions.md) §1–§4 | [`library/superseded.md`](library/superseded.md)（改舊稿、審稿） |
 | 查「某個事實現在怎麼說」 | [`library/fact-snapshot-2026-10-13.md`](library/fact-snapshot-2026-10-13.md) | [`library/facts-1111.md`](library/facts-1111.md)、[`library/facts-prior.md`](library/facts-prior.md)、[`library/profile.md`](library/profile.md) |
+| **先判斷輸出語言（中英分流，互不套用）** | [`style/README.md`](style/README.md) | `skills/resume-causal-logic-compiler/SKILL.md`〈語言路由〉 |
 | 寫／潤英文（履歷、推薦信英文條列） | [`style/voice-en.md`](style/voice-en.md) | `style/anti-ai-ats.md` |
 | 寫／潤中文履歷 | 現行稿（§3）＋ [`style/resume-voice-zh.md`](style/resume-voice-zh.md) ＋ [`library/decisions.md`](library/decisions.md) | [`style/anti-ai-ats.md`](style/anti-ai-ats.md) |
 | 寫自傳、轉職動機 | [`library/about-me.md`](library/about-me.md)（**編輯參考，不可給驗證者**）＋ [`library/profile.md`](library/profile.md) §7 | `.claude/skills/resume-craft/references/autobiography.md` |

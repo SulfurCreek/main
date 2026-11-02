@@ -4,6 +4,17 @@ description: 專治履歷「概念偷跑（未定義先引用）」與「因果�
 ---
 # Resume Causal Logic Compiler
 
+## 語言路由（2026-11-02，本人指定：中英文履歷維度差很多，指令與工具互不影響）
+
+事實層與編譯核心（本檔「Core Compiler Rules」「Execution Workflow」、library、Final Arbiter）**中英共用**；**語氣層分流**：
+
+| 輸出語言 | 語氣與編譯護欄 | 語氣規範 | 驗證工具 |
+| :-- | :-- | :-- | :-- |
+| 中文（104 履歷、自傳、中文推薦信） | `references/zh-voice-guardrails.md` | `career/style/resume-voice-zh.md` | `scripts/verify_polish.py`、`scripts/verify_letter.py`（中文信） |
+| 英文（LINE Resume／LinkedIn／英文 CV／英文條列） | `references/en-voice-guardrails.md` | `career/style/voice-en.md` | `scripts/verify_line_profile.py`、`scripts/verify_line_pdf.py`、`scripts/build_line_pdf.py` |
+
+規則：**不互相套用**。中文的「建立／救回」計數、前 20 字、主導白名單、紅字與 Quill 排版屬中文；英文的 `I` 上限、`direct reports`、日期格式、2 頁上限、Title Case 屬英文。混合文件（例：中文推薦信含英文條列）中文段落走 zh、英文條列走 en。橋接規則只有一條：英文版必須完整保留對應中文版的商業目的、影響範圍與口徑（見 en 護欄〈跨語言一致性〉）。
+
 ## Core Compiler Rules (嚴格編譯規則)
 1. **禁止前向引用 (No Forward Referencing)**：撰寫第 N 個 Bullet Point 時，絕對禁止直接使用第 N+1 個（或更後面）才會首次定義的系統名稱、專案代號或業務背景。
 2. **首次提及必定義 (Define on First Use)**：任何內部專有名詞或系統在「第一次出現」時，必須附帶完整的上下文錨點（是什麼系統、服務什麼量級的受眾、解決什麼痛點）。
@@ -71,38 +82,15 @@ description: 專治履歷「概念偷跑（未定義先引用）」與「因果�
 
 本 skill 與 `resume-review-panel` 串成閉環：盲審 → 查 `library/` → A 類直接重編本草稿 → `verify_polish.py` 上游 0 違規 → 出 Codex 指令。A 類重編的硬護欄：事實只取自 library；只能變短或持平（淨字數 ≤165，Juicy ≤190）；不寫 PRD 細則（No Detail Dumping）；不推翻 decisions 本人裁定；LOCKED 段解鎖須附前後對照。B 類歸面試口袋案例，C 類（library 無紀錄）才提問。回報格式見 `career/CLAUDE.md` Stage 1 第 9 點。
 
-## Pursuing Voice（2026-10-26，本人指定：主動、進取，可適度強化）
+## Pursuing Voice（中文專屬，內容已移至 `references/zh-voice-guardrails.md`；章節名保留以免既有引用失效）
 
-放開的是「怎麼說」，不是「說了什麼」。
+## Anti-Over-Disclaimer（中文專屬，內容已移至 `references/zh-voice-guardrails.md`；章節名保留以免既有引用失效）
 
-- **強勢責任詞白名單（`[AMPLIFY: 主導]` 授權）**：只在 library 記為本人主責／主導／本人決定的事項標記，Codex 才可用「主導、推動、拍板」等詞，`verify_polish.py` 依標記放行。現行白名單（decisions §51）：Juicy 推出與 JustDating 重新上架、馬來西亞定價實驗設計、職缺工作說明生成與 AI 推薦人才、1111 約 70 項主要功能的需求與規格規劃、KOOL 多元變現機制。**不在白名單**：Peach（舊「並列主導」已推翻）、公司簡介生成（派給企劃，寫「帶領」）、技術選型與實作。
-- **語氣**：結果或張力先行；每點至少一個強動詞（扭轉、打通、救回、建立、帶動、推動）；口徑與限定收進括號或移到專案欄，主句只留戰功。
-- **可以適度強化的框架**：把已記錄的事件說得有份量，例如「主力營收產品下架危機中，兩度救回用戶與營收」（library：兩次順利承接用戶與營收）。
-- **紅線不變**：不編數字或成效；DAU 等成長不歸個人（括號保留「上線與導流期間」）；不寫無法查證的排名或「唯一」；§24 披露規則；§43 概念詞；鎖定段逐字、淨字數上限、No Detail Dumping 照舊。
+## 前 20 字張力（中文專屬，內容已移至 `references/zh-voice-guardrails.md`；章節名保留以免既有引用失效）
 
-## Anti-Over-Disclaimer 與強制改寫閉環（2026-10-26，本人指定）
+## 跨語言一致性護欄（英文專屬，內容已移至 `references/en-voice-guardrails.md`；章節名保留以免既有引用失效）
 
-- **免責小尾巴不入正文**：量詞已能說清楚的（例：「840 件建議中完成 743 件」），不再補「非功能上線比例」；結案定義（含不予採納、已有類似功能）只留面試口述。`verify_polish.py` 攔截這類詞，單一括號只計中文字 ≤35 字。
-- **`[AMPLIFY]` 可授權任何強責任詞**：盲測指出動詞太溫吞、且 library 支持更明確的責任（例：制定驗收標準、主責功能），上游在該區塊標 `[AMPLIFY: 主導, 制定]` 等，Codex 才可使用；未授權仍會被擋。
-- **升維詞必須鎖定**：Stage 2 或盲測後補進的商業痛點、戰功詞（例：「溝通管道」「降低企業刊登門檻」），當場加入 `LOCK_ENTITIES`，避免下游 Codex 潤飾時刪回平淡句。
-- **No-Op Prevention**：主代理收到盲測報告，凡「把痛點／戰功往前拉」「刪除冗餘限定詞」且有 library 依據的建議，100% 當場寫入 `causal_draft.md` 並鎖定關鍵詞；不得只出報告不改稿，也不得越改越保守。仍受鎖定段逐字、淨字數上限、No Detail Dumping 與 decisions 本人裁定約束。
+## 英文履歷職級感（英文專屬，內容已移至 `references/en-voice-guardrails.md`；章節名保留以免既有引用失效）
 
-## 前 20 字張力的但書與口癖上限（2026-10-26，本人指定）
+## 英文履歷結構（英文專屬，內容已移至 `references/en-voice-guardrails.md`；章節名保留以免既有引用失效）
 
-- **「前 20 字見張力」不得違反「首次提及必定義」與「中文主詞完整」**：涉及實驗對照（如馬來西亞定價實驗）或特定系統表單（如 15 張類別代碼表）時，第一句必須先交代主詞或實驗設計，再給結果。嚴禁還沒講實驗就寫「降價期較原價期…」，或還沒講代碼表就寫「分類隨業務擴張…」。`[LEAD: CONTEXT]` 的點不可硬把未定義的期間或無主詞子句剪到第一句。
-- **全篇口癖上限**（`verify_polish.py` 硬性攔截）：「建立」≤5 次、「救回」≤1 次（只留工作經歷危機承接亮點；簡介、自傳、專案寫「承接既有用戶與營收」）。另攔截硬湊贅詞：共同招募的方式、安全的驗證機制、建立網頁付款管道。強動詞要輪替（讓…能…、打通、規劃、推動、帶動），不重複同一個。
-
-
-## 跨語言一致性護欄（2026-10-29，本人：LINE profile 英文稿被降維）
-
-編譯任何英文版履歷（LINE、LinkedIn、英文 CV、推薦信英文條列）時，**必須 100% 保留中文版 Stage 2 的四大支柱商業目的（Why）、系統影響範圍（Stakes）與統計分母口徑**，嚴禁因語言轉換或壓縮字數刪除。逐點對照中文版：句首目的、句尾客戶回饋調整、共同基礎定位、分母口徑、時序（啟動≠上線）缺一不可。另避免中文直譯撞上工程術語（merge request 等），細則見 `style/voice-en.md` §7；驗證層：`scripts/verify_line_profile.py` 的黑名單與必備錨點。
-
-
-## 英文履歷職級感與反贅字護欄（2026-11-01，本人：LINE Resume 審核）
-
-編譯任何英文履歷（LINE、LinkedIn、英文 CV）時，另須遵守 `style/voice-en.md` §9：直屬部屬一律 `direct reports`／`delegated … to direct reports`；代碼表類首句須定義對象，不得裸寫 `categories`；`human-in-the-loop` 不與 `human review` 疊用；Skills 用 Title Case 與 `&`；`Claude Code`、`Antigravity` 前須帶 `AI agents`／`Agentic AI Tools`；同一數字只留在一處。驗證層：`scripts/verify_line_profile.py`。
-
-
-## 英文履歷結構、日期與 PDF 護欄（2026-11-02，本人第二次抓出同類問題）
-
-編譯任何外商英文履歷時（見 `style/voice-en.md` §11–§12）：不放 Personal Statement，PDF ≤2 頁；姓名 `Kun Huai Nieh`；禁 `Reverse-engineer(ed)`；起訖日期 `YYYY-MM – YYYY-MM`，內文日期用 `YYYY/MM`，不以日期開頭。驗證層：`scripts/verify_line_profile.py`（原稿）與 `scripts/verify_line_pdf.py`（PDF 成品）。

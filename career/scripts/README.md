@@ -46,3 +46,12 @@ python3 career/scripts/verify_polish.py --verify-104 <104公開輸出.md> --publ
 - 其他現有標籤沿用核可映射，不因官方分類清單有該名稱就新增個人能力；Jira、SQL 等已否決工具仍攔截。
 
 此次同步 main 後已確認 `resume-craft`、`resume-review-panel` 的所有 blob 與個人線一致；後續以個人線為準，由 Repo Steward 同步 main，不在本流程推 main。
+
+## 語言分流（2026-11-02）
+
+| 語言 | 工具 |
+| :-- | :-- |
+| 中文（104 履歷、自傳） | `verify_polish.py`、`gen_104_md.py`、`verify_letter.py`（中文推薦信）、`public_redact.py` |
+| 英文（LINE Resume／通用版） | `verify_line_profile.py`、`verify_line_pdf.py`、`build_line_pdf.py`、`gen_line_pack.py`、`gen_line_pdf.py` |
+
+兩邊工具互不呼叫、規則不共用；共用的只有 `library/` 事實與 `CAREER_START_HERE.md` 的 Gatekeeper／盲審流程。

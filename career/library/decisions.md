@@ -498,3 +498,9 @@ v9.7 = v9.6 ＋ 使用者自寫自傳與各段 summary（16→10 個單位、業
 ## 72. 2026-11-02 英文履歷工具化補充（本人要求）
 
 - `voice-en.md` §13：Summary 與列點數字不重複、Skills Title Case、列點不用箭頭、`Analyzed and mapped` 與 `743 of 840 related client requests` 設為必備錨點、PDF 一鍵產出 `build_line_pdf.py`（自動縮字級至 2 頁、驗證 PDF）。
+
+## 73. 2026-11-02 中英文履歷語氣上游工具拆分與路由（本人）
+
+- 本人指定：中英文履歷維度差很多，指令與工具互不影響。
+- 作法：新增 `style/README.md`（路由）；compiler SKILL 加〈語言路由〉，中文專屬三節移至 `references/zh-voice-guardrails.md`、英文專屬三節移至 `references/en-voice-guardrails.md`（原章節名留 stub，既有引用不失效）；`voice-en.md`、`resume-voice-zh.md` 加語言範圍聲明；`scripts/README.md`、`ROUTER.md`、`career/CLAUDE.md` 加路由。驗證腳本本來就分開（`verify_polish.py`＝中文，`verify_line_profile.py`／`verify_line_pdf.py`＝英文），未改邏輯。
+- 唯一橋接：英文版保留對應中文版的商業目的、影響範圍與口徑。

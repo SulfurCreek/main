@@ -2,6 +2,8 @@
 
 # 英文寫作語氣規範（履歷、104 推薦信英文條列、cover letter）
 
+> **語言範圍：僅英文輸出（LINE Resume／LinkedIn／英文 CV／英文條列）**。另一語言的規則不套用到本檔所管的輸出；路由見 `career/style/README.md`。
+
 > 2026-10-21 建立（本人同意）。Claude 與 Codex 共用。事實與責任範圍仍以 `library/` 為準；本檔只管英文怎麼寫。
 
 ## 1. 語域

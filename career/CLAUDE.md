@@ -195,6 +195,8 @@ it is a shared company space and the leak would be irreversible.*
 
 ## 工具分工 / Tooling
 
+- **語氣規則與驗證工具依輸出語言分流（2026-11-02）**：先讀 `style/README.md`；中文走 `resume-voice-zh.md`＋`verify_polish.py`，英文走 `voice-en.md`＋`verify_line_profile.py`／`verify_line_pdf.py`；兩邊規則不互相套用。
+
 - 履歷／CV／LinkedIn／作品集／職能盤點 → **`resume-craft`** skill
 - 1111 規格書 → **`spec-doc-1111`** skill（**不要**套用到 `career/`，這裡不是規格書：
   沒有 User Story／Use Case 區塊、初始化、權限代碼表、版控表那一套）
