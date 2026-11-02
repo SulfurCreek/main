@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""104 推薦信驗收：首次提及必定義、禁用詞、職缺名（2026-10-27 起；本人抓到 Peach／JustDating 未定義）。
+"""104 推薦信驗收：首次提及必定義、禁用詞、職缺名、結構與長度（2026-10-27 起；2026-11-02 P0／P1 契約修訂）。
 
 用法：python3 career/scripts/verify_letter.py <推薦信.md> [--job "<職缺名>"]
 檔內每個 ```text 區塊視為一封（方案 A／B），逐封檢查。
@@ -92,6 +92,71 @@ def warn(body, payment=False):
     return [f"[預設不寫專名] 「{n}」建議改白話產品型態（有加分理由才保留）" for n in names if n in body]
 
 
+def is_zh(body):
+    """文件類型：中文字數超過英文字母數視為中文信（中文規則只套中文信）。"""
+    return len(re.findall(r"[一-鿿]", body)) > len(re.findall(r"[A-Za-z]", body))
+
+
+def char_count(body):
+    """長度契約：正文（```text 區塊內）去除所有空白後的字元數，含標點、英數與署名。"""
+    return len(re.sub(r"\s", "", body))
+
+
+def extract_bodies(text):
+    """共用正文抽取器：回傳 (bodies, errors)。缺 fence、未閉合、空正文、只有稱謂／署名一律報錯。"""
+    bodies, errs, pos, k = [], [], 0, 0
+    while True:
+        i = text.find("```text", pos)
+        if i < 0:
+            break
+        k += 1
+        start = text.find("\n", i)
+        j = text.find("```", start + 1) if start >= 0 else -1
+        if start < 0 or j < 0:
+            errs.append(f"第 {k} 封：[fence 未閉合] ```text 區塊沒有結束的 ```")
+            break
+        body = text[start + 1:j]
+        core = re.sub(r"您好[：:，,]?|聶崑淮|Kun Huai Nieh|\s", "", body)
+        if not core:
+            errs.append(f"第 {k} 封：[空正文] text 區塊沒有內容或只有稱謂／署名")
+        else:
+            bodies.append(body)
+        pos = j + 3
+    if k == 0:
+        errs.append("[缺正文] 找不到 ```text 推薦信區塊")
+    return bodies, errs
+
+
+def check_structure(body):
+    """中文信結構與長度：三個條列、250–350 字（>350 只警告，由 Codex 壓縮）。回傳 (errors, warnings)。"""
+    if not is_zh(body):
+        return [], []
+    errs, warns = [], []
+    n_bullets = len(re.findall(r"^‧", body, re.M))
+    if n_bullets != 3:
+        errs.append(f"[條列數] 中文推薦信須 3 個條列，目前 {n_bullets} 個")
+    n = char_count(body)
+    if n < 250:
+        errs.append(f"[字數不足] {n} 字，中文推薦信須 250–350 字（不含空白）")
+    elif n > 350:
+        warns.append(f"[字數超標] {n} 字，超過 350 字上限，交 Codex 壓縮")
+    return errs, warns
+
+
+def banned_hits(body):
+    """禁用詞：英文詞不分大小寫並加字母邊界，中文詞照字面比對。"""
+    hits = []
+    for w in BANNED:
+        if re.search(r"[A-Za-z]", w):
+            pre = r"(?<![A-Za-z])" if w[0].isalpha() else ""
+            post = r"(?![A-Za-z])" if w[-1].isalpha() else ""
+            if re.search(pre + re.escape(w) + post, body, re.I):
+                hits.append(w)
+        elif w in body:
+            hits.append(w)
+    return hits
+
+
 def check(body, job=None, ctx=""):
     errs = []
     for name, defs in ENTITY_DEFS.items():
@@ -105,83 +170,135 @@ def check(body, job=None, ctx=""):
         sent = body[start:end]
         if not any(d.lower() in sent.lower() for d in defs):
             errs.append(f"[首次提及未定義] 「{name}」第一次出現的句子沒有交代它是什麼（需含：{'／'.join(defs[:3])}）：{sent.strip()[:60]}")
-    for w in BANNED:
-        if w in body:
-            errs.append(f"[禁用詞] {w}")
+    for w in banned_hits(body):
+        errs.append(f"[禁用詞] {w}")
     for m in BULLET_LABEL.finditer(body):
         errs.append(f"[列點冒號小標] 列點開頭不得加「能力標籤：」：{m.group(0).strip()}")
     for m in BULLET_HEADLESS.finditer(body):
         errs.append(f"[無頭斷句開頭] 每點開頭要自帶場景主詞，不可以「{m.group(1)}」裸奔")
-    errs += check_closing(body)
-    errs += check_title(body)
+    if is_zh(body):  # 中文專屬規則不套英文信
+        errs += check_closing(body)
+        errs += check_title(body)
+        errs += check_prior(body)
     errs += check_domain(body, job, ctx)
-    errs += check_prior(body)
     if job and job not in body:
         errs.append(f"[職缺名不符] 找不到「{job}」")
     return errs
 
 
+def header_context(text):
+    """草稿檔頭契約：｜j-<code> <公司>｜<對外職稱>｜分級。回傳 (code, company, job) 或 None。"""
+    m = re.search(r"｜j-(\w+) ([^｜]*)｜([^｜]*)｜分級", text)
+    return (m.group(1), m.group(2).strip(), m.group(3).strip()) if m else None
+
+
 def submitted_codes(root):
-    """applications/INDEX.md 中「應徵狀態」含「已投遞／已應徵／不投遞」的職缺代碼（已送出或不投的信不再掃描）。"""
+    """applications/INDEX.md 中「應徵狀態」含「已投遞／已應徵／不投遞／已面試」的職缺代碼（不再掃描）。"""
     idx = root / "applications" / "INDEX.md"
     out = set()
     if idx.exists():
         for line in idx.read_text(encoding="utf-8").splitlines():
             m = re.match(r"\|\s*\[([0-9a-z]+)\]", line)
-            if m and ("已投遞" in line or "已應徵" in line or "不投遞" in line):
+            if m and any(w in line for w in ("已投遞", "已應徵", "不投遞", "已面試")):
                 out.add(m.group(1))
     return out
 
 
-def main():
-    args = sys.argv[1:]
-    if not args:
-        print(__doc__)
-        sys.exit(2)
-    if args[0] == "--all":
-        import pathlib
-        root = pathlib.Path(__file__).resolve().parents[1]
-        submitted = submitted_codes(root)
-        files = []
-        for d in ("letters", "applications"):
-            for p in sorted((root / d).rglob("*.md")):
-                if "archive" in p.parts or "```text" not in p.read_text(encoding="utf-8"):
-                    continue
-                if any(p.name.startswith(c) for c in submitted):
-                    print(f"略過已投遞：{p.relative_to(root)}")
-                    continue
-                files.append(p)
-        total = 0
-        for f in files:
-            bodies = [b.split("```")[0] for b in f.read_text(encoding="utf-8").split("```text")[1:]]
-            for k, b in enumerate(bodies, 1):
-                for e in check(b):
-                    print(f"❌ {f.relative_to(root)} 第 {k} 封：{e}")
-                    total += 1
-        print(f"掃描 {len(files)} 檔；" + ("✅ 0 違規" if not total else f"❌ 共 {total} 項違規"))
-        sys.exit(1 if total else 0)
-    payment = "--payment" in args
-    job = None
-    if "--job" in args:
-        job = args[args.index("--job") + 1]
-    text = open(args[0], encoding="utf-8").read()
-    hm = re.search(r"｜j-\w+ ([^｜]*)｜([^｜]*)｜", text)
-    ctx = (args[args.index("--company") + 1] if "--company" in args else "") + " " + (hm.group(1) if hm else "")
-    bodies = [b.split("```")[0] for b in text.split("```text")[1:]]
-    if not bodies:
-        print("❌ 找不到 ```text 推薦信區塊")
-        sys.exit(1)
-    bad = 0
+def verify_text(text, job=None, ctx="", payment=False, label=""):
+    """單封與批次共用：抽取→結構→內容。回傳 (n_bodies, errors, warnings)。"""
+    bodies, errs = extract_bodies(text)
+    errs = [f"{label}{e}" for e in errs]
+    warns = []
     for k, b in enumerate(bodies, 1):
-        errs = check(b, job, ctx)
-        for w in warn(b, payment):
-            print(f"⚠️ 第 {k} 封：{w}")
+        e2, w2 = check_structure(b)
+        e2 += check(b, job, ctx)
+        w2 += warn(b, payment)
+        errs += [f"{label}第 {k} 封：{e}" for e in e2]
+        warns += [f"{label}第 {k} 封：{w}" for w in w2]
+    return len(bodies), errs, warns
+
+
+def run_all(root, payment=False):
+    submitted = submitted_codes(root)
+    files, skipped = [], []
+    for d in ("letters", "applications"):
+        for p in sorted((root / d).rglob("*.md")):
+            if "archive" in p.parts or "```text" not in p.read_text(encoding="utf-8"):
+                continue
+            code = re.match(r"([0-9a-z]{5})(?:-|\.md$)", p.name)
+            if code and code.group(1) in submitted:
+                skipped.append((p, "已投遞／不投遞／已面試"))
+                continue
+            files.append(p)
+    total_err, verified, no_ctx = 0, 0, []
+    for f in files:
+        text = f.read_text(encoding="utf-8")
+        ctxh = header_context(text)
+        if not ctxh:  # 成品沒有檔頭：找同代碼草稿的檔頭
+            m = re.match(r"([0-9a-z]{5})(?:-|\.md$)", f.name)
+            drafts = sorted(f.parent.glob(f"{m.group(1)}-*-draft.md")) if m else []
+            ctxh = header_context(drafts[0].read_text(encoding="utf-8")) if drafts else None
+        job, ctx = (ctxh[2], ctxh[1]) if ctxh else (None, "")
+        if not ctxh:
+            no_ctx.append(f.relative_to(root))
+        n, errs, warns = verify_text(text, job, ctx, payment, f"{f.relative_to(root)} ")
+        verified += n
+        for w in warns:
+            print(f"⚠️ {w}")
         for e in errs:
-            print(f"❌ 第 {k} 封：{e}")
-        bad += len(errs)
-    print("✅ 推薦信驗收通過" if not bad else f"❌ 共 {bad} 項違規")
-    sys.exit(1 if bad else 0)
+            print(f"❌ {e}")
+        total_err += len(errs)
+    for p, why in skipped:
+        print(f"略過（{why}）：{p.relative_to(root)}")
+    for p in no_ctx:
+        print(f"⚠️ 未完成對位驗證（缺職缺／公司上下文，只做通用檢查）：{p}")
+    print(f"掃描 {len(files)} 檔、驗證 {verified} 封、略過 {len(skipped)} 檔、缺上下文 {len(no_ctx)} 檔")
+    if verified == 0:
+        print("❌ 未驗證任何信件，不得視為通過")
+        return 1
+    print("✅ 0 違規" if not total_err else f"❌ 共 {total_err} 項違規")
+    return 1 if total_err else 0
+
+
+def main(argv=None):
+    import argparse
+    import pathlib
+    ap = argparse.ArgumentParser(description="104 推薦信驗收")
+    ap.add_argument("file", nargs="?", help="推薦信 md 檔")
+    ap.add_argument("--all", action="store_true", help="掃描 career/letters 與 applications")
+    ap.add_argument("--job", help="職缺對外名稱（淨化後）；未給時讀草稿檔頭")
+    ap.add_argument("--company", default="", help="公司名稱或產業，用於領域錯配與 AI 結尾檢查")
+    ap.add_argument("--payment", action="store_true", help="允許 CodaPay 專名")
+    try:
+        a = ap.parse_args(argv)
+    except SystemExit:
+        return 2
+    if a.all:
+        return run_all(pathlib.Path(__file__).resolve().parents[1], a.payment)
+    if not a.file:
+        ap.print_usage()
+        return 2
+    try:
+        text = open(a.file, encoding="utf-8").read()
+    except OSError as e:
+        print(f"❌ 無法讀取檔案：{e}")
+        return 2
+    ctxh = header_context(text)
+    job = a.job or (ctxh[2] if ctxh else None)
+    ctx = f"{a.company} {ctxh[1] if ctxh else ''}".strip()
+    if not job and not ctx:
+        print("⚠️ 未完成對位驗證：缺職缺名與公司（請給 --job、--company，或使用含檔頭的草稿）")
+    n, errs, warns = verify_text(text, job, ctx, a.payment)
+    for w in warns:
+        print(f"⚠️ {w}")
+    for e in errs:
+        print(f"❌ {e}")
+    if n == 0 and not errs:
+        print("❌ 未驗證任何信件")
+        return 1
+    print("✅ 推薦信驗收通過" if not errs else f"❌ 共 {len(errs)} 項違規")
+    return 1 if errs else 0
 
 
 if __name__ == "__main__":
-    main()
+    sys.exit(main())

@@ -83,3 +83,52 @@ class LetterTests4(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class ContractTests(unittest.TestCase):
+    """2026-11-02 P0／P1：正文抽取、結構與長度契約、英文禁詞大小寫。"""
+
+    @staticmethod
+    def zh_letter(n):
+        head = "您好：\n應徵貴公司產品經理。我有近 10 年產品經理經驗。\n\n"
+        bullets = "‧ 規劃功能甲。\n\n‧ 規劃功能乙。\n\n‧ 規劃功能丙。\n\n"
+        tail = "跨部門專案推進，正是我持續處理的課題。期待有機會與貴公司團隊進一步交流。\n\n聶崑淮\n"
+        base = vl.char_count(head + bullets + tail)
+        return head + bullets.replace("甲", "甲" + "字" * (n - base)) + tail
+
+    def test_empty_fence_fails(self):
+        self.assertEqual(vl.verify_text("```text\n```\n")[0], 0)
+        self.assertTrue(vl.verify_text("```text\n```\n")[1])
+
+    def test_greeting_only_fails(self):
+        self.assertTrue(vl.verify_text("```text\n您好：\n\n聶崑淮\n```\n")[1])
+
+    def test_unclosed_fence_fails(self):
+        self.assertTrue(any("未閉合" in e for e in vl.verify_text("```text\n您好：\n內容")[1]))
+
+    def test_missing_fence_fails(self):
+        self.assertTrue(any("缺正文" in e for e in vl.verify_text("沒有區塊")[1]))
+
+    def test_length_boundaries(self):
+        for n, err, wrn in ((249, True, False), (250, False, False), (350, False, False), (351, False, True)):
+            b = self.zh_letter(n)
+            self.assertEqual(vl.char_count(b), n)
+            e, w = vl.check_structure(b)
+            self.assertEqual(bool(e), err, (n, e))
+            self.assertEqual(bool(w), wrn, (n, w))
+
+    def test_bullet_count(self):
+        b = self.zh_letter(300).replace("‧ 規劃功能丙。\n\n", "")
+        self.assertTrue(any("條列數" in e for e in vl.check_structure(b)[0]))
+
+    def test_spearheaded_case_insensitive(self):
+        for w in ("Spearheaded", "spearheaded", "SPEARHEADED"):
+            self.assertTrue(any("Spearheaded" in e for e in vl.check(f"I {w} the launch.")), w)
+        self.assertFalse(vl.check("I spearhead nothing here."))
+
+    def test_english_letter_skips_zh_closing(self):
+        body = "Dear team,\n\nI led a launch.\n\nI look forward to talking.\n\nKun Huai Nieh"
+        self.assertFalse(any("結尾" in e for e in vl.check(body)))
+
+    def test_cli_bad_args(self):
+        self.assertEqual(vl.main([]), 2)

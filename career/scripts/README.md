@@ -55,3 +55,29 @@ python3 career/scripts/verify_polish.py --verify-104 <104公開輸出.md> --publ
 | 英文（LINE Resume／通用版） | `verify_line_profile.py`、`verify_line_pdf.py`、`build_line_pdf.py`、`gen_line_pack.py`、`gen_line_pdf.py` |
 
 兩邊工具互不呼叫、規則不共用；共用的只有 `library/` 事實與 `CAREER_START_HERE.md` 的 Gatekeeper／盲審流程。
+
+## 104 推薦信批次：產生與驗收契約（2026-11-02 P0／P1）
+
+```bash
+# 產生（寫檔前先驗證；同名檔預設跳過；>350 字只警告）
+python3 career/scripts/gen_cover_drafts.py <jobs.json> <companies.json> <codes.txt> --outdir <DIR> [--overwrite]
+# 真實資料整合測試（固定 automation/104-data 快照 SHA）
+python3 career/scripts/gen_cover_drafts.py --self-test [--snapshot <SHA>]
+# 單封驗收（未給 --job／--company 時讀草稿檔頭；缺上下文會標「未完成對位驗證」）
+python3 career/scripts/verify_letter.py <檔> --job "<對外職稱>" --company "<公司>"
+# 全掃（逐檔帶上下文；略過已投遞／不投遞／已面試；驗證 0 封時 Exit 1）
+python3 career/scripts/verify_letter.py --all
+# 離線回歸測試（合成資料，只寫暫存目錄）
+python3 -m unittest discover -s career/scripts/tests -p "test_*.py"
+```
+
+| 契約 | 內容 |
+| :-- | :-- |
+| 正文 | 共用 `extract_bodies()`：缺 fence、未閉合、空正文、只有稱謂／署名一律失敗 |
+| 長度 | 中文信 ```text 區塊去空白字元數；<250 失敗、>350 警告（交 Codex 壓縮）；英文信不套中文長度與結尾規則 |
+| 結構 | 中文信 3 個條列 |
+| 禁詞 | 英文詞不分大小寫、加字母邊界；中文照字面 |
+| 職稱 | 檔頭同時記職缺原名、job_id 與對外職稱；`--job` 用對外職稱 |
+| 寫檔 | 硬性失敗不寫；同名檔不覆蓋（`--overwrite` 才覆蓋）；逐封回報成功／略過／失敗 |
+
+已知限制：程式只能比對數字、限定詞與字面規則，不能證明語意歸因與選材適配；這兩項仍由主代理人工查核與盲審判斷。`--all` 會同時掃草稿與成品，報告分別列出檔名。
