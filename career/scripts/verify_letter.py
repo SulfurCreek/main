@@ -17,7 +17,7 @@ ENTITY_DEFS = {
     "SweetRing": ["dating app", "交友 App", "交友"],
     "CodaPay": ["payment provider", "payment service", "第三方支付", "支付服務", "金流"],
 }
-BANNED = ["深感契合", "願景高度契合", "在瀏覽貴公司職缺後", "懇請", "積極進取", "抗壓性強",
+BANNED = ["同仁整理上百筆職務分類", "同仁對照上百筆職務類別", "同仁對照上百筆職務分類", "深感契合", "願景高度契合", "在瀏覽貴公司職缺後", "懇請", "積極進取", "抗壓性強",
           "strategic", "passionate", "detail-oriented", "Spearheaded", "proven track record",
           "I am writing", "excited", "thrilled", "1111", "敬上", "可以直接投入", "可直接投入", "可用於", "完全符合",
           # 單點硬湊兩件事（2026-10-27）

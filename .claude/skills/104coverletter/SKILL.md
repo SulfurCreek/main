@@ -110,3 +110,11 @@ description: 針對指定的 104 職缺產生「104 自我推薦信」草稿（2
 - 交付後告訴本人檔名與 commit；Career Move 依 §5 核對、跑 `verify_letter.py`（Exit 0）、定稿，並登錄 `career/applications/<code>.md`。
 - 有多個方案時，潤飾稿須寫明本人選用哪一案；Career Move 只把選用案正文寫入定稿與 applications 檔。
 - 盲審依入口 §6：只給完整成品（去註解）＋目標 JD，Prompt 內剝除 HTML 註解，不在 repo 新增暫存檔。
+
+
+## 8. AI 工作流故事（A）寫法鐵則（2026-11-02 本人確認）
+
+- 必以本人為主詞：日常以 AI Agent 協作撰寫規格與分析資料，由本人定義問題、規則與驗證要求，Agent 標示信心程度後人工覆核；並整理為可重用 Skill，**指導同仁**完成上百筆職務分類對照（支線，只作實證，對外不得寫成主線成果）。
+- 禁止以「同仁整理／對照上百筆職務…」開頭（`verify_letter.py` 攔截）。
+- 批次產生器 `gen_cover_drafts.py` 的固定故事句必須與已投遞最佳版本一致，且在 `facts-1111.md` 有對應條目。
+- A（AI 工作流）與 T（代碼表整理）同封不並用；有 A 時開頭不再寫「日常以 AI Agent…」。
