@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 import argparse
 from collections import Counter
+import fact_lock
 import difflib
 import html
 from html.parser import HTMLParser
@@ -209,6 +210,8 @@ def parse_tagged_blocks(md_text: str):
                 "entities": entities,
                 "amplify": amplify,
                 "visual": visual,
+                "lock_facts": fact_lock.parse_lock_facts(attrs.get("LOCK_FACTS")),  # 上游編譯的鎖定事實（2026-11-02）
+                "keep": attrs.get("KEEP", "").strip(),  # 下游保留原句的理由
                 "section": current_section,
                 "lines": [],
                 "raw_lines": []
@@ -311,6 +314,10 @@ def run_verification(draft_text: str, final_text: str):
             errors.append(f"[父子結構] {loc} 列點數量、符號或縮排改變")
         if numeric_values(d_item["text"]) != numeric_values(f_item["text"]):
             errors.append(f"[數字異動] {loc} 數字或出現次數與上游不同")
+        if d_item["status"] != "LOCKED":
+            ferrs, manual = fact_lock.compare_block(d_item["text"], f_item["text"], d_item["lock_facts"])
+            errors += [f"{e.split(']')[0]}] {loc}{e.split(']', 1)[1]}" for e in ferrs if not e.startswith("[數字單位異動]") or numeric_values(d_item["text"]) == numeric_values(f_item["text"])]
+            warnings += [f"[人工查核] {loc} {m}" for m in manual]
 
         # 檢查上游或下游是否殘留未解決的〔待確認/待補〕括號
         for label, txt in [("上游草稿", d_item["text"]), ("下游成品", f_item["text"])]:
@@ -326,9 +333,13 @@ def run_verification(draft_text: str, final_text: str):
             continue
 
         if d_item["status"] == "NEEDS_POLISH":
-            sim = difflib.SequenceMatcher(None, d_item["text"], f_item["text"]).ratio()
-            if sim >= LAZY_SIMILARITY_THRESHOLD:
-                errors.append(f"[漏修/偷懶攔截] {loc} 標記為 NEEDS_POLISH，但原句照抄 (相似度 {sim:.0%})！")
+            # 2026-11-02：全文審讀後，適切文字可保留。只有「逐字照抄且未說明理由」才算漏處理；
+            # 成品標 [KEEP: 理由] 即視為審讀後保留，列入人工查核，不以改寫比例判定。
+            same = re.sub(r"\s+", "", d_item["text"]) == re.sub(r"\s+", "", f_item["text"])
+            if same and not f_item.get("keep"):
+                errors.append(f"[漏處理] {loc} 標記為 NEEDS_POLISH，成品逐字照抄且未標 [KEEP: 保留理由]（適切文字可保留，但須說明）")
+            elif same:
+                warnings.append(f"[保留原句] {loc} 下游保留理由：{f_item['keep']}（主代理確認）")
 
         for key, vals in f_item.get("visual", {}).items():
             for v in vals:

@@ -1,7 +1,15 @@
 #!/usr/bin/env python3
-"""驗收 LINE Career Profile（line-profile.md）：directive JSON、Enum 白名單、日期、英文、Bullet 禁用詞。
-用法：python3 career/scripts/verify_line_profile.py <檔>"""
+"""驗收 LINE 英文履歷／Profile（line-resume.md、line-profile.md）。
+
+用法：python3 career/scripts/verify_line_profile.py <檔> [--for verify|pack|pdf] [--upstream <上游 md>]
+- 格式契約與解析由 line_md.py 共用（產生器同一份），用途不支援的格式在這裡就拒絕。
+- 語氣與錨點只檢查對外正文（HTML 註解剔除）。
+- 事實保存：給 --upstream 才核對數字＋單位、限定詞、完成狀態與 LOCK_ENTITIES；沒給就明確標示「未核對」。
+  固定英文措辭存在≠事實完整或語意正確；責任與因果仍需主代理人工查核。"""
 import json, re, sys
+sys.path.insert(0, __import__("os").path.dirname(__import__("os").path.abspath(__file__)))
+import fact_lock  # noqa: E402
+import line_md  # noqa: E402
 
 ENUM = {
     "employment_type": {"1194", "1195"},
@@ -31,24 +39,46 @@ DATE = re.compile(r"^\d{4}-(0[1-9]|1[0-2])$")
 D = re.compile(r"<!-- @line-directive\s*(\{.*?\})\s*-->", re.S)
 
 
-def main(path):
-    t = open(path, encoding="utf-8").read()
-    errs = []
+def upstream_check(doc, up_path):
+    """與指定上游逐區塊核對：Summary、每個 directive 的列點。回傳 (errors, manual)。"""
+    up_text = __import__("pathlib").Path(up_path).read_text(encoding="utf-8")
+    up = line_md.parse(up_text)
+    errs, manual = [], []
+    pairs = []
+    if up["summary"] is not None:
+        pairs.append(("Summary", up["summary"], doc["summary"] or ""))
+    ud, dd = up["directives"], doc["directives"]
+    if len(ud) != len(dd):
+        errs.append(f"[來源對帳] directive 數量與上游不同：上游 {len(ud)}、成品 {len(dd)}")
+    for i, (a, b) in enumerate(zip(ud, dd)):
+        name = f"{a['d'].get('target_block')}#{a['d'].get('index', 0)}"
+        if a["d"].get("fields") != b["d"].get("fields"):
+            errs.append(f"[來源對帳] {name} 表單欄位與上游不同")
+        if len(a["bullets"]) != len(b["bullets"]):
+            errs.append(f"[來源對帳] {name} 列點數 {len(b['bullets'])}，上游 {len(a['bullets'])}")
+        pairs.append((name, "\n".join(a["bullets"]), "\n".join(b["bullets"])))
+    for name, u, d in pairs:
+        e, m = fact_lock.compare_block(u, d)
+        errs += [f"{x} @ {name}" for x in e]
+        manual += [f"{name}：{x}" for x in m]
+    for ent in re.findall(r"\[LOCK_ENTITIES:\s*([^\]]*)\]", up_text):
+        for w in [x.strip() for x in ent.split(",") if x.strip()]:
+            if w not in line_md.visible(__import__("pathlib").Path(doc["_path"]).read_text(encoding="utf-8")):
+                errs.append(f"[鎖定詞遺失] 上游 LOCK_ENTITIES「{w}」不在成品對外正文")
+    return errs, manual
+
+
+def main(path, purpose="verify", upstream=None):
+    t = __import__("pathlib").Path(path).read_text(encoding="utf-8")
+    doc = line_md.parse(t)
+    doc["_path"] = path
+    errs = line_md.validate(doc, purpose)
     seen = {}
-    for m in D.finditer(t):
-        try:
-            d = json.loads(m.group(1))
-        except Exception as e:
-            errs.append(f"JSON 解析失敗：{e}")
+    for item in doc["directives"]:
+        d = item["d"]
+        if not isinstance(d, dict) or d.get("target_block") not in FIELDS or not isinstance(d.get("fields"), dict):
             continue
         b, f = d.get("target_block"), d.get("fields", {})
-        if b not in FIELDS:
-            errs.append(f"未知 target_block：{b}")
-            continue
-        if set(f) != set(FIELDS[b]):
-            errs.append(f"{b} 欄位不符：多 {sorted(set(f)-set(FIELDS[b]))} 缺 {sorted(set(FIELDS[b])-set(f))}")
-        if b != "basic":
-            seen.setdefault(b, []).append(d.get("index"))
         for k, v in f.items():
             if not isinstance(v, str):
                 errs.append(f"{b}.{k} 必須為字串")
@@ -64,9 +94,8 @@ def main(path):
                 errs.append(f"{b}.{k} 含非英文字元：{v!r}")
         if b == "work_experience" and f.get("end_date") not in ("",) and f.get("end_date", "") < f.get("start_date", ""):
             errs.append(f"work_experience index {d.get('index')} 結束早於開始")
-    for b, idx in seen.items():
-        if idx != list(range(len(idx))):
-            errs.append(f"{b} index 非 0..N 連號：{idx}")
+    t = line_md.visible(t) + "\n" + "\n".join(  # 以下語氣與錨點只看對外正文；directive 另以 doc 檢查
+        f"<!-- @line-directive {json.dumps(i['d'], ensure_ascii=False)} -->" for i in doc["directives"] if isinstance(i["d"], dict))
     # 在職者 end_date 必為空：標題含 Present 的區塊
     for h in re.finditer(r"^### [^\n]*Present[^\n]*\n+<!-- @line-directive\s*(\{.*?\})\s*-->", t, re.M | re.S):
         if json.loads(h.group(1))["fields"].get("end_date") != "":
@@ -159,14 +188,45 @@ def main(path):
     for blk in ("basic", "work_experience", "education", "languages"):
         if blk not in {json.loads(m.group(1)).get("target_block") for m in D.finditer(t)}:
             errs.append(f"缺少區塊 {blk}")
+    manual = []
+    if upstream:
+        try:
+            ue, manual = upstream_check(doc, upstream)
+            errs += ue
+        except OSError as e:
+            errs.append(f"[來源對帳] 無法讀取上游：{e}")
+    print(f"格式：{doc['format']}；用途：{purpose}")
     if errs:
-        print("❌ LINE profile 驗收失敗")
+        print("❌ LINE 驗收失敗")
         for e in errs:
             print(" -", e)
         return 1
-    print("✅ LINE profile 驗收通過")
+    print("✅ 格式與語氣規則通過")
+    if upstream:
+        print(f"✅ 事實保存：已與上游 {upstream} 核對數字＋單位、限定詞、完成狀態、LOCK_ENTITIES")
+        for m in manual[:20]:
+            print(" 🔎 人工查核：", m)
+    else:
+        print("⚠️ 事實保存：未核對（未提供 --upstream）；格式通過不代表事實完整")
     return 0
 
 
+def cli(argv=None):
+    import argparse
+    ap = argparse.ArgumentParser()
+    ap.add_argument("file")
+    ap.add_argument("--for", dest="purpose", default="verify", choices=sorted(line_md.PURPOSES))
+    ap.add_argument("--upstream")
+    try:
+        a = ap.parse_args(argv)
+    except SystemExit:
+        return 2
+    try:
+        return main(a.file, a.purpose, a.upstream)
+    except OSError as e:
+        print(f"❌ 無法讀取：{e}")
+        return 2
+
+
 if __name__ == "__main__":
-    sys.exit(main(sys.argv[1]))
+    sys.exit(cli())

@@ -81,3 +81,42 @@ python3 -m unittest discover -s career/scripts/tests -p "test_*.py"
 | 寫檔 | 硬性失敗不寫；同名檔不覆蓋（`--overwrite` 才覆蓋）；逐封回報成功／略過／失敗 |
 
 已知限制：程式只能比對數字、限定詞與字面規則，不能證明語意歸因與選材適配；這兩項仍由主代理人工查核與盲審判斷。`--all` 會同時掃草稿與成品，報告分別列出檔名。
+
+## 履歷工具鏈契約（2026-11-02 修訂）
+
+### 英文 LINE：支援格式與路由
+
+| 格式 | 判定方式 | verify | pack（fill／resume JSON） | pdf |
+| :-- | :-- | :-- | :-- | :-- |
+| resume | 有「Professional Summary」二級標題（不限編號）＋ directive | ✅ | ✅ | ✅ |
+| profile | 沒有 Summary，只有 directive＋列點（例：Codex `line-profile-polished.md`） | ✅ | ❌ 前置拒絕 | ❌ 前置拒絕 |
+
+```bash
+python3 career/scripts/verify_line_profile.py <md> [--for verify|pack|pdf] [--upstream <上游 md>]
+python3 career/scripts/gen_line_pack.py <resume 格式 md>
+python3 career/scripts/build_line_pdf.py <md> <out.pdf> [--upstream <上游 md>]
+python3 career/scripts/verify_line_pdf.py <pdf> --json <resume.json> [--html <html>]
+```
+
+- 解析共用 `line_md.py`：必要欄位非空、directive 型別、允許 action（basic＝replace_all，其餘＝replace_row）、重複鍵、區塊數量、index 連號。
+- 語氣與錨點只看對外正文（HTML 註解剔除）。
+- 來源串接：md →（source_sha256）→ resume.json（payload_sha256）→ HTML `<meta>` → PDF。renderer 重算兩個雜湊，不符即拒絕。
+- PDF 內容對帳：Summary、Skills、職稱、公司、列點、學歷逐項出現、順序一致、次數相同，圓點數＝來源數。沒給 `--json` 時 Exit 1。
+- 發布：HTML／PDF 先寫暫存，驗收通過才替換；JSON 原子寫入，驗收失敗不寫。自動縮字只控頁數，閱讀品質需人工視覺驗收。
+
+### 事實保存（中英共用 `fact_lock.py`）
+
+| 程式拒絕 | 人工查核（只回報） |
+| :-- | :-- |
+| 數字＋單位 multiset 改變（88% → 88 件） | 責任歸屬與因果是否改寫 |
+| 上游 `[LOCK_FACTS: 對象=數值; …]` 對象與數值不在同句或被對調 | 比較組語意 |
+| 開發中／規劃中被刪或改成已上線 | 限定詞換位置後的語意 |
+| 限定詞（約、近、逾、至少、以上、團隊完成、協助、參與、限定口徑；about、nearly、more than…）次數減少 | |
+
+- 中文：`verify_polish.py` 逐區塊比對；上游用 `[LOCK_FACTS: …]` 編譯必要對象與數值。
+- 英文：`verify_line_profile.py --upstream`；沒給上游時明確標「未核對」。
+- `NEEDS_POLISH`：取消 0.99 相似度一刀切。只有「逐字照抄且未標 `[KEEP: 保留理由]`」才算漏處理；標了 KEEP 即視為審讀後保留，列入主代理確認。
+
+### 四種狀態不得混稱
+
+格式通過（verify）≠ 事實保存（`--upstream`／`verify_polish`）≠ 語氣審查（盲審）≠ PDF 視覺驗收（人工看版面）。
