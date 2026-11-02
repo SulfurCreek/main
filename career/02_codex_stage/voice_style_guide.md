@@ -2,16 +2,30 @@
 
 基底：c0c429e1fcff36365054db2b5c7b598a0e6f7d73 的 career/style/README.md。操作、權限、事實鎖定與交付流程依 [AGENTS.md](../drafts/codex/AGENTS.md)。
 
-| 輸出 | 唯一語氣閱讀範圍 | 潤飾工具 |
+| 輸出 | 唯一語氣閱讀範圍 | 驗證入口與支援界線 |
 | --- | --- | --- |
-| 中文履歷、自傳、中文推薦信 | 只讀「中文潤飾」章節 | verify_polish.py；中文推薦信 verify_letter.py |
-| 英文 Resume、LINE、LinkedIn、英文推薦信或條列 | 只讀「英文潤飾」章節 | LINE履歷格式用 verify_line_profile.py；其他英文文件依上游明確語言與文件類型入口 |
-| 中英混合文件 | 中文段落只套中文章節；英文段落只套英文章節 | 各段明確標定語言及類型，再依上游路由驗收整份文件 |
+| 中文履歷／自傳 | 只讀中文潤飾章節 | verify_polish.py，先核對指定工具commit支援的格式與參數。 |
+| 中文推薦信 | 只讀中文潤飾章節 | verify_letter.py，只用該版本支援的中文信件入口；職缺名依指定草稿。 |
+| 英文LINE Resume／Profile | 只讀英文潤飾章節 | verify_line_profile.py僅限已確認支援的LINE文件格式；不代表生成器相容。 |
+| 其他英文Resume／CV／LinkedIn／推薦信／獨立條列 | 只讀英文潤飾章節 | 待Claude指定支援格式與實際入口；不得套用LINE驗證器，也不得宣稱完整驗收。 |
+| 中英混合文件 | 各段按輸出語言分流 | 各段與整份文件的語言／類型路由均須明確；入口未支援時逐項標示，不以單段通過代表整份通過。 |
+| 轉換／PDF | 依現行分工交Claude | 記錄實際產物、執行者及驗收者；未執行或未驗證就明示。 |
 
 兩章不互相引用，也不把另一語言的口癖、句型、責任動詞白名單或排版套過來。事實與鎖定的共用護欄由 AGENTS 管理。
 **唯一語氣橋接**：英文完整保留對應中文的商業目的、系統影響範圍與統計口徑；若翻譯需要資訊而授權草稿不足，交上游補明，不讀受限事實庫、不自行推測。
 
-尚未實作的 verify_voice_zh.py／verify_voice_en.py 不當成已存在工具。拆分由上游維護，現階段沿用指定 SHA 的既有 Gatekeeper；若工具錯套語言，明示衝突並交上游，不改驗證器。
+尚未實作或未收到新工具commit的語氣工具，不當作已存在、已修復或已驗收。Claude維護驗證器及輸入／輸出契約，Codex不修改上游工具。
+
+### 操作與驗收的共通界線
+
+這裡只規定執行證據，不把兩個語言的文體規範混用；具體操作依AGENTS.md。
+- 完整閱讀指定SHA上游及完整候選，不只讀diff或鎖定字串。數字相同不等於事實相同，逐項核對數字、對象、單位、百分比／件數、約數、期間、分母、比較組、責任、歸因、限定及開發中／已上線等完成狀態。
+- 可改的跨欄重複、語序及不同欄位用途直接處理。刪整個案例、改職缺定位或事實不明交Claude；鎖定阻擋則附上游SHA、區塊、原句、替換句與需調整鎖定詞。
+- 不因相似度而任意換詞，不為固定英文錨點、舊格式解析或字串命中塞回不自然句子或重複資訊。合理文字遭誤攔時回報工具／契約問題，不改驗證器、不偽造輸入，也不宣稱通過。
+- 交付四項獨立紀錄：腳本名稱／固定版本／實際參數／Exit Code；完整成品表達及跨欄審查；對指定上游的語意事實核對；轉換或PDF是否實際執行及由誰驗收。一項通過不能擴張成其他項通過。
+- 已知漏檢風險包括中文數值不變卻更換對象／單位／狀態，英文空文字欄位、非法action或註解錨點被接受，驗證後仍無法輸入生成器，以及僅姓名／占位文字的PDF表面通過。Exit 0不是上述問題已排除的證明。
+- 收到Claude指定新工具commit後，先核對支援格式、schema、參數、來源及生成契約，再在獲准範圍回歸。殘餘漏檢／誤攔以最小合成案例交回：版本、入口、合成輸入、預期與實際結果、Exit Code及影響；不把合成數據當本人事實。
+- 純規則維護只回報規則差異、路由、工具限制與待Claude事項。未指定新工具commit／成品時，不讀改履歷湊測試，不虛報內容審查、成品盲審或PDF驗收。
 
 ## 中文潤飾
 
@@ -63,12 +77,12 @@
 
 ### 中文自審與隔離盲審提示
 
-獨立只讀子代理只收去註解的完整中文成品及獲准JD，不收內部規則或事實庫；提示與回覆用中文。實際派發可用：
+乾淨、不繼承歷史的只讀子代理，只收完整對外中文候選正文及獲准JD；不收上游、內部規則、事實庫、鎖定清單或另一側意見。非對外註解在派發Prompt時移除，不在repo新增盲審暫存檔；提示與回覆用中文。實際派發可用：
 
 > 以台灣科技業資深PM／B2B PO招聘閱讀視角，閱讀下列完整中文成品。檢查責任與職級是否可信、陌生人能否理解場景、商業目的與成果是否清楚、中文自然度及跨欄重複。指出具體原句、理解風險與可改措辭，不新增事實、不評分、不為湊數捏造問題。不使用工具讀取其他檔案；只依提供的成品與JD。請以中文回覆並說明實際讀取範圍。
 
-主代理逐項修正可改表達；不採納須有來源或本人裁定，鎖定阻擋附上游替換指令。完整中文履歷回報七大模組的實際變更；推薦信依實際欄位。不得用英文首詞、日期或I次數規則審中文。
-驗收用 verify_polish.py；中文信使用 verify_letter.py 的實際介面。先預檢Exit 0、隔離盲審、改稿朗讀，再最終Exit 0；失敗不提交。
+主代理逐項依三分類閉合：已修正附Before → After及跨欄結果；不採納附來源或本人明文裁定；鎖定阻擋附精確上游替換指令。Claude主代理依現行規則終審，避免A↔B反覆修改。盲審不能替代事實核對；未讀JD就不宣稱JD匹配審查。完整中文履歷按實際欄位回報；推薦信不硬套不存在的七大模組，不用英文I次數等規則審中文。
+中文履歷及推薦信先確認指定版本的支援格式及實際入口。可預檢、隔離盲審、改稿重讀及最終驗證，但不能以Exit 0代表文字、事實、轉換或PDF同時合格。工具誤攔交Claude，不為過關改事實或硬湊文字；未通過如實標示，是否先交候選依本人明文指示。規則維護不將這些成品步驟冒稱已完成。
 
 ## 英文潤飾
 
@@ -125,10 +139,17 @@ Do not enforce a Chinese character limit on English paragraphs. Run a letter Gat
 
 ### Isolated English review prompt and acceptance
 
-Use an English-only prompt, a native-English hiring-reader role, and an English response. Provide the complete outward-facing candidate stripped of internal comments, plus an authorized JD if available. Do not provide internal rules, lock lists, revision history or reviewer conclusions.
+Use a clean reviewer with no inherited history, an English-only prompt, a native-English hiring-reader role, and an English response. Provide only the complete outward-facing candidate and authorized JD. Strip non-public comments and machine directives while assembling the prompt; do not create a blind-review file in the repo. Do not provide the upstream draft, internal rules, fact library, lock lists, revision history or the other side's opinions. Record what the reviewer actually read; without a JD review, do not claim JD-fit acceptance.
 
 > Act as a native-English-speaking hiring reader reviewing the complete candidate below. Assess clear scope and responsibility, business relevance, first-read comprehension, natural English, sentence structure and unnecessary repetition. Identify concrete wording issues and suggest concise alternatives without inventing facts, metrics, authority or outcomes. Do not read files or use external sources. Reply in English, state exactly what material you received, and distinguish genuine comprehension problems from optional stylistic preferences.
 
 For a separate JD-fit review, keep the prompt and response in English and use only the candidate and authorized JD; do not treat lack of evidence as proof of a missing career fact. Native-language fluency review is not factual validation.
-The main editor fixes applicable wording, preserves the English source's facts and qualifiers, and explains any genuine lock conflict. No Chinese impact, verb-count or formatting rubric is supplied to the English reviewer.
-Run verify_line_profile.py only for candidates using the LINE resume format supported by that source version. For other English CVs, LinkedIn content and English letters, use the explicitly supported upstream language/document-type entry point; do not impose LINE JSON/Enum requirements on unrelated formats. Follow the actual interface and source SHA. Require initial Exit 0 before review, then final Exit 0 after revisions. A failed command blocks commit/push; never modify the checker or manufacture input to pass.
+The main editor closes each finding using the disposition matrix: corrected wording with Before → After and cross-section results; rejection tied to a source fact or explicit user ruling; or an upstream lock/contract issue with exact replacement instructions. Claude is the final arbiter under the current rules, preventing preference-driven A↔B reversals. Blind review does not replace a full comparison with the designated upstream SHA. Preserve metrics and their objects, units, denominators, periods, comparison groups, responsibility, attribution, qualifiers and completion status. No Chinese impact, verb-count or formatting rubric is supplied to the English reviewer.
+
+Run verify_line_profile.py only for the English LINE input format explicitly supported by the designated tool commit. For other English CVs, LinkedIn documents, letters and standalone bullets, wait for Claude's supported format and actual entry point. An unknown route is unsupported or unverified, not fully accepted. Never impose LINE JSON/Enum requirements on unrelated English documents.
+
+Verify required text fields contain actual candidate content, actions/Enums match the declared contract, and anchors occur in the intended body rather than comments. A checker may miss these errors; Exit 0 does not prove that a candidate is complete, semantically faithful, compatible with a generator or acceptable as a PDF. Record source and tool commits separately, along with the actual command and Exit Code.
+
+Do not rewrite natural English merely to meet a similarity threshold or fixed anchor, reinsert redundant facts, or restore an obsolete parser format. Keep a reasonable candidate and send false positives or missed errors to Claude using minimal synthetic input, expected and actual behavior, tool commit, arguments and Exit Code. Do not modify the validator or fake input. An unpassed tool remains unpassed; any early candidate handoff requires the user's explicit direction.
+
+Report four separate results: script execution; complete-candidate expression and cross-section review; semantic comparison with the designated upstream; and actual conversion/PDF execution and acceptance. Claude owns conversion and PDF review. Without an actual run and inspected artifact, mark those results unverified; a name-only or placeholder PDF is not evidence of acceptance. For rule-only maintenance, review rules and routing only, without altering resumes or claiming any candidate review, blind review or PDF check.
