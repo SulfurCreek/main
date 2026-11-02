@@ -55,6 +55,7 @@ THEMES = [  # (正則, {故事: 權重})；英文縮寫一律 \b 單字邊界；
  (r"需求訪談|需求分析|規格|\bPRD\b|系統分析|\bSA\b|流程優化|流程|\brequirements?\b|\bstakeholders?\b|\broadmap\b", {"R": 3, "T": 2}),
  (r"\bSaaS\b|\bB2B\b|\bERP\b|雲端|企業客戶|訂閱制|\bmerchants?\b", {"Q": 3, "G": 2, "R": 1}),
  (r"資安|資訊安全|防詐|詐騙|Anti-Scam|帳號安全|身分驗證|個資", {"S": 6}),
+ (r"Claude Code|Context Engineering|\bMCP\b|\bn8n\b|AI[- ]first|流程自動化", {"A": 4}),
  (r"訊息|聊天|通訊|社群|互動|客服", {"M": 4}),
  (r"媒合|創作者|網紅|內容平台|0 到 1|從零|新產品|新事業", {"K": 4, "J": 1}),
  (r"遊戲|餐飲", {"K": 2, "J": 2, "M": 1, "P": 1}),
@@ -108,7 +109,12 @@ def pick(text, title=""):
     # 領域必配：JD／公司背景有金流、電商、直播等訊號時，三點中至少一點是 Y／C／J（取代最後一點）
     dom = [k for k in "YCJ" if sc.get(k, 0) >= 7]
     if dom and not any(k in chosen for k in "YCJ") and len(chosen) == 3:
-        chosen[2] = max(dom, key=lambda k: (sc[k], -TIER.index(k)))
+        slot = max((i for i, k in enumerate(chosen) if k not in "FAS"), default=None, key=lambda i: -sc.get(chosen[i], 0))
+        if slot is not None:
+            chosen[slot] = max(dom, key=lambda k: (sc[k], -TIER.index(k)))
+    # 職稱含 AI：AI 產品上線（F）必入選（取代最後一點）
+    if re.search(r"\bAI\b|人工智慧", title) and "F" not in chosen and len(chosen) == 3:
+        chosen[2] = "F"
     for k in ("R", "W", "A"):  # 補到三點
         if len(chosen) < 3 and k not in chosen: chosen.append(k)
     return chosen, sc
@@ -116,14 +122,14 @@ def pick(text, title=""):
 def opening(title, chosen, jd):
     t = f"應徵貴公司{' ' if re.match(r'[A-Za-z0-9]', title) else ''}{title}。"
     if "A" in chosen:  # A 條列已寫「日常以 AI Agent…」，開頭不重複
-        return t + "我近 10 年產品經理經驗，現任人力銀行企業端招募系統 Product Owner，帶領 2 名直屬企劃。"
+        return t + "我有近 10 年產品經理經驗，現任人力銀行企業端招募系統 Product Owner，帶領 2 名直屬企劃。"
     if chosen[0] in "F":
-        return t + "我近 10 年產品經理經驗，現任人力銀行企業端招募系統 Product Owner，日常以 AI Agent 協作撰寫規格與分析資料。"
-    if chosen[0] in "YCP":
-        return t + "我規劃過東南亞第三方支付與網頁付款，近 10 年產品經理經驗，現任人力銀行企業端招募系統 Product Owner。"
+        return t + "我有近 10 年產品經理經驗，現任人力銀行企業端招募系統 Product Owner，日常以 AI Agent 協作撰寫規格與分析資料。"
+    if chosen[0] in "YCP" and any(k in chosen for k in "YC"):
+        return t + "我規劃過東南亞第三方支付與網頁付款，有近 10 年產品經理經驗，現任人力銀行企業端招募系統 Product Owner。"
     if chosen[0] in "KJM":
         return t + "我曾經營主力高營收的訂閱制交友 App，累積近 10 年產品經理經驗，現任人力銀行企業端招募系統 Product Owner。"
-    return t + "我近 10 年產品經理經驗，現任人力銀行企業端招募系統 Product Owner，帶領 2 名直屬企劃。"
+    return t + "我有近 10 年產品經理經驗，現任人力銀行企業端招募系統 Product Owner，帶領 2 名直屬企劃。"
 
 def build(code):
     j = jobs[code]
@@ -136,7 +142,7 @@ def build(code):
     title = clean_title(title)
     for use_long in (True, False):
         bl = [S[k][0 if use_long else 1] for k in chosen]
-        end = f"{'、'.join(END[k] for k in chosen[:2])}，正是我過去幾年持續處理的課題。期待有機會與貴公司團隊進一步交流，分享{(' ' if re.match(r'[A-Za-z0-9]', END[chosen[0]]) else '') + END[chosen[0]] + '的' if '的' not in END[chosen[0]] else '相關'}實務經驗。謝謝您的閱讀。"
+        end = f"{'、'.join(END[k] for k in chosen[:2])}，正是我過去幾年持續處理的課題。期待有機會與貴公司團隊進一步交流，分享相關實務經驗。謝謝您的閱讀。"
         body = "您好：\n" + opening(title, chosen, jd) + "\n\n" + "\n\n".join("‧ " + b for b in bl) + "\n\n" + end + "\n\n聶崑淮\n"
         n = len(re.sub(r"\s", "", body))
         if n <= 350: break
