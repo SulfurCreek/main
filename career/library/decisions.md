@@ -489,3 +489,12 @@ v9.7 = v9.6 ＋ 使用者自寫自傳與各段 summary（16→10 個單位、業
 
 - `Analyzed and mapped undocumented account permissions and business rules …`（Codex 97476cf，本人核准）；取代 `Recovered the logic behind`（§69）。
 - Codex 97476cf 推送時基底是舊版（含 `In March–April 2026` 與自傳），驗證未過仍推送，不採該檔整份；只取這一句，已套用到 LINE Resume、通用版、上游草稿，驗證 Exit 0。
+
+## 71. 2026-11-02 英文履歷結構與格式鐵律三聯升級（本人）
+
+- 規則：`voice-en.md` §12、compiler SKILL；驗證：`verify_line_profile.py` 新增自傳、姓名、`reverse-engineer`、英文月份全稱、日期無空格、日期開頭攔截；新增 `verify_line_pdf.py` 驗 PDF（≤2 頁、姓名、圓點、I ≤3）。
+- 衝突說明：本人 11-02 指示中第 3 項寫「Recovered the logic behind」，但稍後與 Codex 討論後核准 `Analyzed and mapped`（§70）；以較晚的 §70 為準。
+
+## 72. 2026-11-02 英文履歷工具化補充（本人要求）
+
+- `voice-en.md` §13：Summary 與列點數字不重複、Skills Title Case、列點不用箭頭、`Analyzed and mapped` 與 `743 of 840 related client requests` 設為必備錨點、PDF 一鍵產出 `build_line_pdf.py`（自動縮字級至 2 頁、驗證 PDF）。

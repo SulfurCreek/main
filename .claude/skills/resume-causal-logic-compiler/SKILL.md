@@ -101,3 +101,8 @@ description: 專治履歷「概念偷跑（未定義先引用）」與「因果�
 ## 英文履歷職級感與反贅字護欄（2026-11-01，本人：LINE Resume 審核）
 
 編譯任何英文履歷（LINE、LinkedIn、英文 CV）時，另須遵守 `style/voice-en.md` §9：直屬部屬一律 `direct reports`／`delegated … to direct reports`；代碼表類首句須定義對象，不得裸寫 `categories`；`human-in-the-loop` 不與 `human review` 疊用；Skills 用 Title Case 與 `&`；`Claude Code`、`Antigravity` 前須帶 `AI agents`／`Agentic AI Tools`；同一數字只留在一處。驗證層：`scripts/verify_line_profile.py`。
+
+
+## 英文履歷結構、日期與 PDF 護欄（2026-11-02，本人第二次抓出同類問題）
+
+編譯任何外商英文履歷時（見 `style/voice-en.md` §11–§12）：不放 Personal Statement，PDF ≤2 頁；姓名 `Kun Huai Nieh`；禁 `Reverse-engineer(ed)`；起訖日期 `YYYY-MM – YYYY-MM`，內文日期用 `YYYY/MM`，不以日期開頭。驗證層：`scripts/verify_line_profile.py`（原稿）與 `scripts/verify_line_pdf.py`（PDF 成品）。

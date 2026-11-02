@@ -103,3 +103,22 @@
 4. 抬頭姓名拼法：`Kun Huai Nieh`。起訖日期一律 `YYYY-MM – YYYY-MM`（en dash 前後有空格）。
 
 5. 1111 無文件系統那點開頭用 `Analyzed and mapped undocumented account permissions and business rules …`（本人與 Codex 討論後核准 2026-11-02；取代 `Recovered the logic behind`、`Reverse-engineered`）。
+
+## 12. 外商英文履歷結構與 PDF 排版鐵律（本人 2026-11-02 第二次抓出同類問題；verify_line_profile.py＋verify_line_pdf.py 攔截）
+
+病因：把台灣 104 式自傳塞進外商英文履歷；英文姓名只照信箱拼成 `Nie`；禁用詞因驗證器漏列而復活；日期格式一國三制；起訖日期缺空格。
+
+1. 結構僅限 `Professional Summary`、`Skills`、`Work Experience`、`Education`、`Languages`；**不放 Personal Statement／Autobiography**；PDF 上限 2 頁、不得有孤行頁。
+2. 姓名固定 `Kun Huai Nieh`（與護照、檔名一致，不從信箱帳號推）。
+3. 禁用 `Reverse-engineer(ed)`；無文件系統那點以本人核准的 `Analyzed and mapped undocumented account permissions and business rules …` 為準。
+4. 日期：標題起訖 `YYYY-MM – YYYY-MM`（en dash 前後空格）；內文 `YYYY/MM` 或 `YYYY/MM–MM`，不用英文月份全稱；列點不以日期開頭。
+5. PDF 圓點：Skills 與 Work Experience 的列點一律渲染 `•` 並左縮排對齊；匯出後必跑 `python3 career/scripts/verify_line_pdf.py <pdf>`。
+
+## 13. 工具化補充（本人 2026-11-02 要求檢視還可加進英文履歷工具的項目）
+
+1. **Summary 數字不與列點重複**（同一數字只留一處）：驗證器攔截（`~60,000` 與 1111 首點那次）。`10`（年資）除外。
+2. **Skills 項目 Title Case**（`Requirements Analysis, PRD, …`）：驗證器攔截；`Languages:` 行除外。
+3. **列點不用 `→`**（表單可能拒收）；改用 `then`／`to`：驗證器攔截。
+4. **已核准的關鍵措辭設為必備錨點**：1111 的 `Analyzed and mapped`、`743 of 840 related client requests`，避免舊稿或下游以舊基底推回舊句。
+5. **PDF 一鍵產出**：`python3 career/scripts/build_line_pdf.py <md> <pdf>`——先驗 md（Exit 0）→ 產 fill.json／resume.json → HTML → PDF，超過 2 頁自動由 9.6pt 縮到最小 9.0pt → `verify_line_pdf.py`（頁數、姓名、圓點、I ≤3、日期空格）。
+6. 流程（非腳本）：Codex 回傳前驗證必須 Exit 0 才可推送，且基底使用本人指定的最新 SHA；盲審與母語審查報告存 `review-panel/runs/`，不在 repo 新增暫存檔。

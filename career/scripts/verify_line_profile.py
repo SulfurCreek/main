@@ -19,11 +19,11 @@ FIELDS = {
 }
 BANNED = ["strategic", "passionate", "detail-oriented", "leverage", "robust", "seamlessly", "delve", "Spearheaded",
           "Backed by", ", which leave", "merge request", "my planners", "guided my planners", "guided direct-report planners through",
-          "launched in 2018/05", "launched in 2018-05", "planned a group function for large employers", "proven track record", "cutting-edge", "(to consolidate", "govern the underlying data fields", "Reverse-engineered", "In March–April 2026", "workflow with human review", "Consolidated categories across teams", "guided product planners", "guided the product planners", "assigned others to product planners", "assigned others to the planners", "Present", "Singapore", "Russia", "1111 Job Bank"]
+          "launched in 2018/05", "launched in 2018-05", "planned a group function for large employers", "proven track record", "cutting-edge", "(to consolidate", "govern the underlying data fields", "Reverse-engineered", "reverse-engineer", "In March–April 2026", "workflow with human review", "Consolidated categories across teams", "guided product planners", "guided the product planners", "assigned others to product planners", "assigned others to the planners", "Present", "Singapore", "Russia", "1111 Job Bank"]
 BANNED_BULLET_ONLY = BANNED[:-1]
 
 ANCHORS = {
-    "2.1": ["sales buy-in", "department or branch", "lower the barrier", "candidate matching", "compliance",
+    "2.1": ["Analyzed and mapped", "743 of 840 related client requests", "sales buy-in", "department or branch", "lower the barrier", "candidate matching", "compliance",
             "actual selections", "shared category code tables", "underlying data fields", "field-level mappings", "direct reports", "delegated", "renewal", "credibility", "at least 30 days"],
     "2.2": ["Airbnb", "Miro", "kicked off in 2018", "Led the design"],
 }
@@ -103,6 +103,41 @@ def main(path):
         errs.append(f"[AI 句首模板違規] 偵測到過多或連續重複的句首詞（For 開頭 {for_cnt} 點，上限 2；同區塊連續同字開頭={repeat}），請打散句首結構！")
     if sum(1 for l in bullets if l.count("(") >= 2 and re.search(r"\((?:to|in) [a-z]", l)) :
         errs.append("[規則備註括號] Bullet 內有解釋性括號堆疊，請改寫成正文")
+    # 英文履歷結構與格式（voice-en §11、§12）
+    if re.search(r"personal statement|autobiography", t, re.I):
+        errs.append("[英文履歷結構] 不得含 PERSONAL STATEMENT／Autobiography 區塊（外商英文履歷只放 Summary、Skills、Experience、Education、Languages）")
+    if re.search(r"Kun Huai Nie\b(?!h)", t):
+        errs.append("[姓名拼法] 英文姓名須為 Kun Huai Nieh（漏 h）")
+    for i, line in enumerate(t.splitlines(), 1):
+        if not line.startswith("- "):
+            continue
+        if re.search(r"\b(January|February|March|April|May|June|July|August|September|October|November|December)\s+\d{4}\b", line):
+            errs.append(f"第 {i} 行內文用英文月份全稱：統一用 YYYY/MM（如 2026/03–04）")
+        if re.search(r"\b\d{4}-\d{2}[-–]\d{4}-\d{2}\b", line):
+            errs.append(f"第 {i} 行起訖日期缺少前後空格：須為 YYYY-MM – YYYY-MM")
+        if re.match(r"- (In|On|During|Since|From) (the )?(\d{4}|January|February|March|April|May|June|July|August|September|October|November|December)", line):
+            errs.append(f"第 {i} 行以日期開頭：動作／事件先行")
+    for i, line in enumerate(t.splitlines(), 1):
+        if re.match(r"#{2,3} .*\d{4}-\d{2}[-–]\d{4}-\d{2}", line):
+            errs.append(f"第 {i} 行標題日期缺少前後空格")
+    # Summary 數字不與列點重複；Skills Title Case；箭頭符號（voice-en §9、§13）
+    if "## 0." in t and "## 1." in t:
+        sec0 = t[t.index("## 0."):t.index("## 1.")]
+        zero = [l[2:] for l in sec0.splitlines() if l.startswith("- ")]
+        if zero:
+            summary_nums = set(re.findall(r"(?<![\w])\d[\d,~.]*%?(?![\w])", zero[0])) - {"10"}
+            rest = "\n".join(l for l in t.splitlines() if l.startswith("- ") and not l[2:].startswith("Product Owner with"))
+            dup = [n for n in summary_nums if n in rest]
+            if dup:
+                errs.append(f"[跨欄重複數字] Summary 的數字 {dup} 已在列點出現；同一數字只留一處（本人 2026-11-01）")
+        for l in zero[1:]:
+            if ":" in l and not l.startswith("Languages"):
+                items = [x.strip() for x in l.split(":", 1)[1].split(",")]
+                bad = [x for x in items if x and not x[0].isupper()]
+                if bad:
+                    errs.append(f"[Skills 大小寫] 項目須 Title Case：{bad}")
+    if "→" in t.split("## 1.")[-1] and any("→" in l for l in t.splitlines() if l.startswith("- ")):
+        errs.append("[非 ASCII 箭頭] 列點不用 →（表單可能拒收）；改用 then／to")
     # AI 工具名前必帶類別詞（voice-en §9）
     body = "\n".join(l for l in t.splitlines() if not l.lstrip().startswith("<!--"))
     for m in re.finditer(r"Antigravity", body):
