@@ -131,17 +131,17 @@ def build(code):
     jd = j["description"]
     comp = comps.get(j["company_id"], {}) if isinstance(comps, dict) else {}
     cname = (comp.get("name") if isinstance(comp, dict) else None) or re.search(r"公司名稱:\s*(.+)", jd).group(1).strip()
-    cinfo = " ".join(str(comp.get(k, "")) for k in ("industry", "description", "profile")) if isinstance(comp, dict) else ""
+    cinfo = " ".join(str(comp.get(k, "")) for k in ("industry",)) if isinstance(comp, dict) else ""
     chosen, sc = pick(title + "\n" + cname + " " + cinfo + "\n" + re.sub(r"【職務概況.*", "", jd, flags=re.S), title)
     title = clean_title(title)
     for use_long in (True, False):
         bl = [S[k][0 if use_long else 1] for k in chosen]
-        end = f"{'、'.join(END[k] for k in chosen[:2])}，正是我過去幾年持續處理的課題。期待能與團隊進一步交流，分享{' ' if re.match(r'[A-Za-z0-9]', END[chosen[0]]) else ''}{END[chosen[0]]}的實務經驗。謝謝您的閱讀。"
+        end = f"{'、'.join(END[k] for k in chosen[:2])}，正是我過去幾年持續處理的課題。期待有機會與貴公司團隊進一步交流，分享{(' ' if re.match(r'[A-Za-z0-9]', END[chosen[0]]) else '') + END[chosen[0]] + '的' if '的' not in END[chosen[0]] else '相關'}實務經驗。謝謝您的閱讀。"
         body = "您好：\n" + opening(title, chosen, jd) + "\n\n" + "\n\n".join("‧ " + b for b in bl) + "\n\n" + end + "\n\n聶崑淮\n"
         n = len(re.sub(r"\s", "", body))
         if n <= 350: break
     if n > 350:
-        end = f"{END[chosen[0]]}，正是我過去幾年持續處理的課題。期待能與團隊進一步交流，分享相關實務經驗。謝謝您的閱讀。"
+        end = f"{END[chosen[0]]}，正是我過去幾年持續處理的課題。期待有機會與貴公司團隊進一步交流，分享相關實務經驗。謝謝您的閱讀。"
         body = "您好：\n" + opening(title, chosen, jd) + "\n\n" + "\n\n".join("‧ " + b for b in bl) + "\n\n" + end + "\n\n聶崑淮\n"
         n = len(re.sub(r"\s", "", body))
     gaps = [v for rx, v in GAPS.items() if re.search(rx, jd, re.I)]

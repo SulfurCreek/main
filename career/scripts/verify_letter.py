@@ -44,7 +44,18 @@ def check_closing(body):
     closing = paras[-2] if paras[-1].replace(" ", "") == "聶崑淮" else paras[-1]
     if "期待" not in closing:
         return [f"[結尾不謙和] 結尾段須以「期待能…」收束：{closing[:40]}"]
+    if "貴公司團隊" not in closing:
+        return [f"[結尾缺貴公司團隊] 結尾須寫「與貴公司團隊進一步交流」：{closing[:40]}"]
     return []
+
+
+DIRTY_TITLE = re.compile(r"應徵貴公司[^。\n]*(?:<[^>]*>|＜[^＞]*＞|★|關係企業[-_—]|【(?:擴編|急徵)】)")
+
+
+def check_title(body):
+    """職缺名稱淨化（2026-11-02）：首句不得帶招募備註、集團前綴、★ 公告。"""
+    m = DIRTY_TITLE.search(body)
+    return [f"[職缺名未淨化] 首句含招募備註或集團前綴：{m.group(0)[:50]}"] if m else []
 
 
 def warn(body, payment=False):
@@ -74,6 +85,7 @@ def check(body, job=None):
     for m in BULLET_HEADLESS.finditer(body):
         errs.append(f"[無頭斷句開頭] 每點開頭要自帶場景主詞，不可以「{m.group(1)}」裸奔")
     errs += check_closing(body)
+    errs += check_title(body)
     if job and job not in body:
         errs.append(f"[職缺名不符] 找不到「{job}」")
     return errs
