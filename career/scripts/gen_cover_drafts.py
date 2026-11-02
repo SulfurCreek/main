@@ -243,7 +243,9 @@ def build(code):
     # 結尾雙主題；AI 職缺結尾必含 AI 課題（F／A）
     topics = []
     for k in chosen:  # 結尾主題去重（Y／C 同為「支付規劃與規格轉換」）
-        if END[k] not in [END[t] for t in topics]: topics.append(k)
+        if END[k] in [END[t] for t in topics]: continue
+        if k in "FA" and any(t in "FA" for t in topics): continue  # F／A 同屬 AI，結尾不講兩次 AI
+        topics.append(k)
         if len(topics) == 2: break
     if re.search(AI_JOB, title + " " + cname) and not any(k in "FA" for k in topics):
         ai = [k for k in chosen if k in "FA"]
@@ -288,6 +290,7 @@ def self_test():
         endp = [p for p in r[3].split("\n\n") if "期待" in p][0]
         themes = endp.split("，正是")[0].split("、")
         ok(len(themes) == len(set(themes)), f"{c} 結尾主題重複：{themes}")
+        ok(sum(1 for t in themes if "AI" in t) <= 1, f"{c} 結尾重複 AI 主題：{themes}")
         opening_para = r[3].split("\n\n")[0]
         if any(w in r[3] for w in ("交友 App", "訂閱制內容 App", "網紅與商家")):
             ok("曾" in opening_para, f"{c} 引用前職 C 端產品但首段未交代背景")
