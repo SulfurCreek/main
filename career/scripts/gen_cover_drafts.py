@@ -169,7 +169,7 @@ def opening(title, chosen, jd):
     if "Y" in chosen: prior.append("訂閱制內容 App")
     if "K" in chosen: prior.append("網紅與商家媒合平台")
     if prior:
-        return t + f"我有近 10 年產品經理經驗，曾經營{'與'.join(prior)}，現任人力銀行企業端招募系統 Product Owner。"
+        return t + f"我有近 10 年產品經理經驗，曾經營{' 與 '.join(prior) if len(prior) > 1 else prior[0]}，現任人力銀行企業端招募系統 Product Owner。"
     if "A" in chosen:  # A 條列已寫「日常以 AI Agent…」，開頭不重複
         return t + "我有近 10 年產品經理經驗，現任人力銀行企業端招募系統 Product Owner，帶領 2 名直屬企劃。"
     if chosen[0] in "F":
@@ -186,7 +186,10 @@ def build(code):
     ctx = cname + " " + cinfo + " " + " ".join(re.findall(r"\bEVT\b|\bDVT\b|\bPVT\b|\bNPI\b", jd))
     chosen, sc = pick(title + "\n" + cname + " " + cinfo + "\n" + re.sub(r"【職務概況.*", "", jd, flags=re.S), title, ctx)
     # 結尾雙主題；AI 職缺結尾必含 AI 課題（F／A）
-    topics = chosen[:2]
+    topics = []
+    for k in chosen:  # 結尾主題去重（Y／C 同為「支付規劃與規格轉換」）
+        if END[k] not in [END[t] for t in topics]: topics.append(k)
+        if len(topics) == 2: break
     if re.search(AI_JOB, title + " " + cname) and not any(k in "FA" for k in topics):
         ai = [k for k in chosen if k in "FA"]
         if ai:
@@ -223,7 +226,11 @@ if SELF_TEST:
     ok("J" in R["8bt4g"][2], f"8bt4g（直播／交友公司）須含 J：{R['8bt4g'][2]}")
     ok(R["8bt4g"][2][0] == "J", f"8bt4g 領域王牌 J 須排第一點：{R['8bt4g'][2]}")
     ok("1.25 萬" in R["8bt4g"][3], "8bt4g 的 J 點須保留 DAU 數據")
+    R["92d3h"] = build("92d3h")
     for c, r in R.items():
+        endp = [p for p in r[3].split("\n\n") if "期待" in p][0]
+        themes = endp.split("，正是")[0].split("、")
+        ok(len(themes) == len(set(themes)), f"{c} 結尾主題重複：{themes}")
         opening_para = r[3].split("\n\n")[0]
         if any(w in r[3] for w in ("交友 App", "訂閱制內容 App", "網紅與商家")):
             ok("曾" in opening_para, f"{c} 引用前職 C 端產品但首段未交代背景")
