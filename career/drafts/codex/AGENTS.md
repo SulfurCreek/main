@@ -104,6 +104,17 @@ git rev-parse --verify origin/claude/happy-lamport-ljis8c^{commit}
 - human-in-the-loop 搭配 retaining ownership of final product decisions，不重複 with human review；新工具名前帶 AI agents／Agentic AI Tools 類別詞；Skills Title Case。
 - 可填表成品不含 Editing Notes、English Self-Review 或盲審報告。修改紀錄只在對話或授權交接檔。
 
+
+### Step 3C：英文 Resume 結構與 PDF 驗收（2026-11-02）
+
+1. 對外英文 Resume 只保留 Summary、Skills、Work Experience、Education、Languages；不放 Personal Statement／Autobiography。匯出 PDF 必須不超過 2 頁，無第 3 頁孤行；不以刪除事實、縮到難讀字級或 Markdown 通過代替頁數驗收。
+2. 姓名固定 Kun Huai Nieh，不從信箱推測、不漏最後 h；directive 內原始聯絡資訊不隨姓名修正而更動。
+3. 禁用 Reverse-engineer／Reverse-engineered。無文件系統點以本人已核准的 Analyzed and mapped undocumented account permissions and business rules 為準；不退回較舊的 Recovered the logic behind 或擅自換成 Reconstructed。
+4. 標題期間使用 YYYY-MM – YYYY-MM（在職結尾 Present 依原文），en dash 前後留空格；directive 日期維持 YYYY-MM 與在職空字串。內文使用 YYYY/MM 或 YYYY/MM–MM，不混英文月份全稱、不以日期起頭；統計口徑原有日期精度保留，2026 Q3 等季度不擅改。
+5. PDF 實際逐頁檢查 Skills／Experience 的 • 圓點完整顯示、左縮排對齊、無缺字或分頁孤行。匯出後執行既有 verify_line_pdf.py；僅改 Markdown 且未取得新 PDF 時，明示 PDF 尚未驗收。
+
+可工具化的補充：Summary 不重複經歷的規模／成果數字（年資除外）、Skills Title Case、列點禁箭頭、核准關鍵措辭的錨點、防止舊基底回滾。使用上游既有 verify_line_profile.py／verify_line_pdf.py／build_line_pdf.py，不另造臨時腳本；腳本未涵蓋的視覺問題仍人工檢視。只有所有必要 Gatekeeper Exit 0 才可提交；命令失敗立即中止相依提交，不把驗證與提交拆成會無條件續跑的獨立工具呼叫。
+
 ### Step 4：最終驗證、版本提交與交付
 
 對改稿後的完整候選稿執行鎖定版本驗證器。以下在 repo 根目錄、Bash 執行；先替換 source_commit、source_path、output_path、verifier_path 與參數，不原樣執行佔位文字。

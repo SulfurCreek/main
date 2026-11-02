@@ -1,17 +1,7 @@
 <!--markdownlint-disable MD013 MD033-->
-<!--
-LINE Career Profile 上游草稿 r3（2026-10-29）｜來源：104 v12.19 + library｜Career Move
-給潤飾者（Codex）：
-1. 只潤飾每個區塊下方的英文 Bullet Points 語感（依 career/style/voice-en.md）；<!-- @line-directive --> JSON 一個字都不要動。
-2. 不改公司名、職稱、日期、數字、限定詞、Enum 代碼；不新增事實；責任詞不升級（led 僅限 decisions §51 白名單：70 項功能規劃、職缺工作說明生成與 AI 推薦人才、Juicy 推出與 JustDating 重新上架、馬來西亞定價實驗設計、KOOL 多元變現）。
-3. 純英文；每個 Bullet 痛點／場景先行，不用 Backed by、句尾 , which leave…；禁用 strategic、passionate、detail-oriented、leverage、robust、seamlessly。
-4. 日期一律 YYYY-MM；在職 end_date 為空字串。
-5. 回傳整份 line-profile.md；修改紀錄寫於對話回覆，勿寫入本檔（不得有 Editing Notes／Self-Review 章節）。
-6. 英文履歷列點省略主詞 I（全篇 ≤3）；同區塊不連續同字開頭；`For ` 開頭 ≤2 點；不抄規則備註括號（voice-en §8）。
-驗收：python3 career/scripts/verify_line_profile.py <檔>
--->
+# Kun Huai Nieh
 
-# LINE Career Profile 特化版｜可填表
+LINE Career Profile 特化版｜可填表
 
 ## 0. Professional Summary & Skills（僅供 PDF／ATS 上傳，不進表單、不屬任何 directive）
 
@@ -69,9 +59,9 @@ LINE Career Profile 上游草稿 r3（2026-10-29）｜來源：104 v12.19 + libr
 <!-- [STATUS: NEEDS_POLISH] -->
 - Product Owner of the employer-side recruitment system serving about 60,000 active paying employers (2026 Q3), covering job posting, applicant management and candidate outreach; manage two direct-report product planners and coordinate engineering, design, sales and customer service.
 - With ongoing service iterations and a full system overhaul competing for the same engineering resources, led requirements analysis and specification planning, aligned stakeholders, and secured sales buy-in before delivery, shipping about 70 major features by 2026 Q3.
-- Took over the employer-side recruitment system overhaul when account permissions and business rules had no documentation; reconstructed the rules through hands-on testing and internal interviews, then replaced legacy functions in phased releases while keeping the existing back office, database and live service running, resolving 743 of 840 related client requests (88%).
+- Analyzed and mapped undocumented account permissions and business rules for the employer-side recruitment system overhaul; 743 of 840 related client requests (88%) were resolved during the overhaul. Used hands-on testing and internal interviews, then coordinated phased replacement of legacy functions while keeping the existing back office, database and live service running.
 - Because employers and job seekers messaged each other across two overlapping tools that left interview invitations scattered, planned a unified messaging flow, now in development, addressing 199 client requests accumulated since 2021. In response to 55 client requests since 2020/12, planned a group recruitment feature, defining access rules across accounts, job posts and resumes plus legacy data migration, so large employers can recruit by department or branch beyond the original company-wide or individual scope.
-- After more than ten employer accounts were hijacked in 2026/03–04, coordinated engineering and customer service to scope the impact, then planned and launched new-device OTP login verification (MFA) and an account-unlock flow, with no similar account-takeover incidents reported through customer service through 2026/10.
+- After more than ten employer accounts were hijacked in 2026/03–04, coordinated engineering and customer service to scope the impact, then planned and launched new-device OTP login verification (MFA) and an account-unlock flow, with no similar account-takeover incidents reported to customer service through 2026/10.
 - To lower the barrier to job posting and improve candidate matching, led the launch of AI-generated job descriptions (2024/10) and AI talent recommendations (2025/11), and guided direct reports to launch company-profile generation (2026/06). Set labor-law compliance acceptance criteria requiring employer confirmation before publishing, and refined recommendation rules based on employers' actual selections and feedback.
 - Audited and consolidated 15 shared category code tables (job roles, certifications, skills and benefits) starting 2026/04 by reviewing the underlying data fields used in job posting, resume creation, search filtering and matching across the platform. Addressed fragmentation as the business expanded. Used an AI agent to assist in structuring field-level mappings and organizing handoff records, and guided colleagues in using AI to map hundreds of job categories.
 - Raised the 30-day closure rate of enterprise client proposals from 52% to 79% (2024/11–2025/10 vs. 2025/11–2026/09/20, for proposals open at least 30 days). To protect paying employers' satisfaction and renewal base, prioritized client proposals, handled key cases directly and delegated others to direct reports, building the product team's delivery credibility with the sales organization.

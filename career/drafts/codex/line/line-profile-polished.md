@@ -1,5 +1,7 @@
 <!--markdownlint-disable MD013 MD033-->
-# LINE Career Profile 特化版｜可填表
+# Kun Huai Nieh
+
+LINE Career Profile 特化版｜可填表
 
 ## 1. Basic & Contact Information
 
@@ -44,7 +46,7 @@
 <!-- [STATUS: POLISHED] -->
 - Product Owner of an employer-side recruitment system serving about 60,000 active paying employers (2026 Q3), covering job posting, applicant management and candidate outreach. Manage two product planners as direct reports and coordinate engineering, design, sales and customer service.
 - Led requirements analysis and specification planning to ship about 70 major features by 2026 Q3 while ongoing service iterations and a full system overhaul competed for the same engineering resources. Aligned stakeholders and secured sales buy-in before delivery.
-- Recovered the logic behind undocumented account permissions and business rules for the employer-side recruitment system overhaul; 743 of 840 related client requests (88%) were resolved during the overhaul. Used hands-on testing and internal interviews, then coordinated phased replacement of legacy functions while keeping the existing back office, database and live service running.
+- Analyzed and mapped undocumented account permissions and business rules for the employer-side recruitment system overhaul; 743 of 840 related client requests (88%) were resolved during the overhaul. Used hands-on testing and internal interviews, then coordinated phased replacement of legacy functions while keeping the existing back office, database and live service running.
 - Planned a unified messaging flow to address 199 client requests accumulated since 2021 (in development), consolidating two overlapping tools that scattered interview invitations between employers and job seekers.
 - In response to 55 client requests since 2020/12, planned group recruitment by department or branch. Defined access rules across accounts, job posts and resumes and specified legacy data migration, extending the original company-wide or individual-account data access.
 - Coordinated engineering and customer service to determine the impact of more than ten employer accounts hijacked in 2026/03–04. Planned and launched new-device OTP login verification (MFA) and an account-unlock flow. No similar account-takeover incidents were reported to customer service through 2026/10.
