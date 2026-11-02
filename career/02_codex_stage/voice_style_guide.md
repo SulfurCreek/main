@@ -1,222 +1,133 @@
-# Downstream Copywriter：Voice & Style Guide（資深履歷寫手＋高階獵頭視角）
+# Voice & Style Guide：按輸出語言分流
 
-現行操作與執行順序對齊 [AGENTS.md](../drafts/codex/AGENTS.md) 與正式入口 `career/CAREER_START_HERE.md`（Codex 獲准唯讀同步該入口；`main` 分支嚴格唯讀）。
-所有任務（104 中文履歷、LINE 英文履歷、104 自我推薦信）均須通過：**獵頭戰功自審 → 對應 Gatekeeper 初驗 Exit 0 → 獨立獵頭子代理盲審 → 強制三分類改稿閉合 → 全篇母語朗讀 → 最終 Gatekeeper Exit 0**。
+基底：c0c429e1fcff36365054db2b5c7b598a0e6f7d73 的 career/style/README.md。操作、權限、事實鎖定與交付流程依 [AGENTS.md](../drafts/codex/AGENTS.md)。
 
----
-
-## 1. 適用範圍、分工邊界與優先序
-
-1. **管線與讀取邊界**：
-   - 上游事實與邏輯由 Claude 編譯；Codex 以指定 commit SHA 的上游草稿及其內嵌之 `LOCK_ENTITIES`／`LOCKED` 為唯一事實基準。
-   - Codex 嚴禁讀取 `career/library/*`、`career/applications/*` 與 `SKILL.md`。不自行補造數字或未確認事實。
-2. **跨欄去重與編輯自治權限**：
-   - Codex 依本指南自治精煉 `NEEDS_POLISH` 區塊的戰功張力、語序、跨欄去重與閱讀節奏；不得更動數字、首次定義次序、句內因果、責任界線或完成狀態。
-   - **「不得重新選材」不禁止壓縮跨欄重複解釋、調整語序或突出各段不同用途**；保留事實、責任、必要限定與鎖定內容即可當場直接修改。僅「刪除整個案例、改變職缺定位或增刪段數」才提請上游 Claude 處理。
-3. **優先序**：
-   - 本人最新明文指示 → 上游鎖定事實／`LOCKED`／`LOCK_ENTITIES` 及因果邏輯 → 本指南高階獵頭視角與語氣參數。
-
----
-
-## 2. 個人語氣參數與自我推薦信 7 大準則
-
-### A. 核心語氣參數（履歷與信件通用）
-
-| 項目 | 執行標準 | 核心界線 |
+| 輸出 | 唯一語氣閱讀範圍 | 潤飾工具 |
 | --- | --- | --- |
-| 語言與視角 | 繁體中文（台灣科技業用語）或美式商務英文；直接呈現問題限制、核心判斷與交付成果 | 平實、具體、具 Senior PM／B2B PO 份量；不寫空泛求職套話 |
-| 句法與切句 | 刪冗長連接詞，以短句、分號 `；` 或直線 `｜` 切開；中文兩逗號間不超過 25 字 | 切句不改變上游因果或主從關係；65–85 字為節奏目標，不為壓字數刪鎖定事實 |
-| 主動語序 | 履歷預設主詞為本人，直接接「規劃、定義、協調、設計」等動作，不反覆補「我」或「由我」 | 同仁、直屬企劃、團隊與公司負責人的動作仍須明確歸因，不混為個人單獨成果 |
-| 首句與定義 | 保留上游首次定義與出現順序；不在每點重複完整產品背景，也不刪必要場景錨點 | 嚴禁「概念偷跑（未定義功能或實驗先寫驗收細節或結果）」 |
-| 父子層級 | 本人提供父子層級時嚴格保留：上層統攝共同商業需求，子項分別寫對應方案 | 禁止攤平為平行項目，禁止在子項重複上層整段背景，亦不替上層加獨立成果 |
-| 格式禁令 | 履歷與推薦信列點開頭禁用 `**粗體摘要：**` 或 `‧ 能力標籤：` 分類前綴 | 個人特色 `LOCKED` 逐字複製，不改 chip 數量或標準 tag |
-| 統計與限定 | 日期、期間、分母口徑、約數、上線與行銷導流期間、回報來源、人工最終判斷完整保留 | 統計口徑統一收束於指標旁或句尾括號（中文字 ≤ 35），不拆成打斷敘事的獨立句 |
+| 中文履歷、自傳、中文推薦信 | 只讀「中文潤飾」章節 | verify_polish.py；中文推薦信 verify_letter.py |
+| 英文 Resume、LINE、LinkedIn、英文推薦信或條列 | 只讀「英文潤飾」章節 | LINE履歷格式用 verify_line_profile.py；其他英文文件依上游明確語言與文件類型入口 |
+| 中英混合文件 | 中文段落只套中文章節；英文段落只套英文章節 | 各段明確標定語言及類型，再依上游路由驗收整份文件 |
 
-### B. 自我推薦信 7 大黃金準則（Cover Letter Rules）
+兩章不互相引用，也不把另一語言的口癖、句型、責任動詞白名單或排版套過來。事實與鎖定的共用護欄由 AGENTS 管理。
+**唯一語氣橋接**：英文完整保留對應中文的商業目的、系統影響範圍與統計口徑；若翻譯需要資訊而授權草稿不足，交上游補明，不讀受限事實庫、不自行推測。
 
-1. **定位區隔（Stun the HR）**：前 5 秒以「高壓限制下的硬核交付」與「高反差量化戰果」抓住眼球，吸引 HR 點開履歷；嚴禁把履歷句子剪短拼成電報式迷你履歷。
-2. **去陌生產品代號**：當上游已用「訂閱制內容 App」「主力交友 App」「網紅雙邊媒合平台」「東南亞第三方支付商」取代專名時，**嚴禁加回 `Peach`、`JustDating`、`KOOL`、`SweetRing`、`CodaPay`**。因職缺高度相關而保留專名時，首次出現必帶自然同位語定義。
-3. **場景主詞先行、反差戰果破題**：推薦信沒有履歷的公司標題保護！每點開頭必須自帶獨立場景與戰果張力（如：「在有限開發資源下，同時負責現有系統日常修改與整套系統重新改版，累計推進約 70 項主要功能上線」），**嚴禁無頭開局**（不得直接以「帳號權限缺乏文件」或「截至 2026/Q3」開頭）。
-4. **白話直述與精煉用詞**：一律寫「在有限開發資源下」（禁寫「在工程資源有限下」或生硬的「兩線共用開發資源」）；寫「將用戶從手機內購引導至網頁付款」（禁寫簡略黑話「由內購轉向網頁付款」）。推薦信不塞入「帳號、登入、公司資料與聯絡人相關」等 16 字報表分母清單。
-5. **一點一主線、禁冒號小標**：三個（或上游指定數量）`‧` 條列，禁加 `‧ 能力標籤：`；單點只講一條主線，**嚴禁以 `Separately,`、另外、此外硬湊兩件無關的事**。不解釋為何使用英文，不加敬上。
-6. **嚴守事實與台灣商務稱謂**：中文推薦信一律使用 **「貴公司」**（嚴禁「貴司、我司、敝司」）；嚴禁腦補 `Singapore`、`新加坡`、`Russian` 等未核准國別；付款管道營收占比不得寫成總營收成長。
-7. **結尾核心課題共鳴（謙遜自信，不替對方下結論）**：以一句話收束前三點共通的核心產品課題（如雙邊訊息流程整併、支付轉換與規則梳理、AI 邊界控管），再自然表達「期待能有機會與貴公司團隊進一步交流，分享…的實務經驗」。**嚴禁寫「與我目前的工作方向相近／經驗相關」等空洞廢話，亦嚴禁寫「我的經驗可以直接投入這個職位」「能立即解決貴公司問題」等自大武斷句型。**
+尚未實作的 verify_voice_zh.py／verify_voice_en.py 不當成已存在工具。拆分由上游維護，現階段沿用指定 SHA 的既有 Gatekeeper；若工具錯套語言，明示衝突並交上游，不改驗證器。
 
-> 全中文推薦信 350 字內；中英混合版英文部分 120–150 words（除非本人另訂）。交付前須通過上游 `verify_letter.py` Exit 0。
+## 中文潤飾
 
----
+### 適用與語氣
 
-## 3. 詞彙映射與責任界線
+適用繁體中文履歷、自傳、中文推薦信，以及混合文件的中文段落。授權語氣來源是 career/style/resume-voice-zh.md；不讀英文規範作中文標準。
+用台灣用語，平實、具體、結論先行。句子有對象、動作與結果，不堆自誇形容詞。不把產品規劃寫成工程實作；責任、數據、完成狀態依當輪來源。
+履歷以本人為預設動作主體，不每點補「由我」。自傳可自然第一人稱，保留本人判斷、語氣與職涯演進，不寫成另一份經歷清單。
 
-此表用於可改寫內容，保留 `LOCK_ENTITIES` 的精確字串與責任界線。依上游鎖定責任選用具體動作，不升級未授權責任。
+### 敘事與跨欄去重
 
-| 原詞／生硬句型 | 獵頭級自然替代方向 | 責任與事實界線 |
-| --- | --- | --- |
-| 透過／藉由／利用 | 以；或直接以動詞帶出已確認動作 | 不因使用工具而新增「導入制度」，不把背景變因果 |
-| 進行了…的優化 | 規劃流程調整／設計流程與規格／驗收 | 無成效數據時，不改寫成壓降或拉升 |
-| 跨部門密切溝通協調 | 協調具體單位與事項、取得業務單位背書、推進交付 | 不新增拍板權；保留實際協作關係 |
-| 解決歷史困難問題 | 點出既有限制（如缺乏文件、共用資源），再寫規劃與驗收 | 不把產品規劃寫成工程實作或架構重構 |
-| 負責管理／協助推動 | 依實際責任選：規劃、協調、定義（情境與驗收標準）、設計、推進、驗收 | 若「協助／參與／配合」確為上游界定之協作邊界，保留其意義，不機械升級為主導 |
-| 建立…的方式／機制／管道 | 讓…能…、打通、補強、串起、規劃、推進…上線 | 嚴禁硬湊「共同招募的方式」「安全的驗證機制」「建立網頁付款管道」 |
+- 前 15～20 字讓讀者辨認產品、核心動作或具體限制，但先定義場景才展開細節；不讓數字失去衡量對象。
+- 依上游 LEAD 安排：RESULT 先點明對象與指標；ACTION 以責任與行動串交付；CONTEXT 只留理解行動所需背景。未標 LEAD 時自行判斷，不固定成果永遠最前。
+- 背景原則不超過整點 1/3，約 25～45 字；65～85 字是節奏目標，不為壓字數刪事實。一般工作經歷主幹淨字數 ≤165，雙次危機承接 ≤190，依當輪驗證器與本人指示。
+- 簡介呈現定位，經歷保留責任與成果，專長呈現通用方法，專案呈現限制與關鍵做法，自傳呈現判斷及人物理解。不要同一案例跨欄完整重講。
+- 父子層級與共同背景保留；子項不重複父項，不在父項新增獨立成果。口頭舉例提煉成制度概念，不把分店店長、行政助理等解釋用角色清單塞入正文。
 
-- **強動詞授權界線**：「主導、推動、拍板」僅在上游同區塊已寫出或標有 `[AMPLIFY: 主導]` 時可用（如 Juicy／JustDating 重新上架、70 項功能規劃、AI 職缺生成與推薦人才、馬來西亞定價實驗設計、KOOL 多元變現），且僅限該授權事項（公司簡介生成仍為帶領直屬企劃；定價採用低價仍由公司負責人決定；Peach 不升級為主導）。「架構、開發、實作、重構、扛下」不用於描述本人責任。
+### 詞彙、責任與口癖
 
----
+- 正文「建立」≤5、「救回」≤1（僅授權的工作經歷危機承接）、「推進」≤8、「統籌」≤3。同一列點／自傳自然段的「規劃、協調、定義、負責」各 ≤2。先整併重複命題，不整批換成另一口癖。
+- 主導、推動、拍板只在上游該事項已明寫或有 AMPLIFY 授權時使用，不把授權擴到工程、他人任務或公司決策。公司簡介生成、公司負責人的定價決定等各自歸因。
+- 協助、參與、配合、支援、維護若準確反映責任則保留，不為加強詞替換成主導；不用架構、開發、實作、重構、扛下包裝一般規劃。
+- 禁文體套詞：賦能、抓手、閉環、攜手、助力、全方位、深耕、致力於、成功地、圓滿達成、極大地、顯著地、透過、藉由、利用、進行一個、完成了。
+- 不寫建立…的方式／機制／管道等硬湊句。並列不亂加逗號；不用「再」暗示未確認先後；不堆「推進調整上線」；保留提案後等時間口徑。
 
-## 4. 禁用文體詞與保留責任詞
+### 數據與限定
 
-1. **文體詞（硬性禁用）**：`負責日常、聽從、賦能、抓手、閉環、攜手、助力、全方位、深耕、致力於、成功地、圓滿達成、極大地、顯著地、透過、藉由、利用、進行一個、完成了`。可改點命中即修正（`LOCKED` 原文除外）。
-2. **責任詞（依事實保留，不強行升級）**：`協助、參與、配合、支援、維護` 不在禁用黑名單（如尚凡服務承接的「配合行銷導流」、SweetRing 的「參與海外市場在地化及支付方案規劃」依原責任保留）。
-3. **固定回歸檢查項（R07–R10）**：並列連接不任意加逗號；不用「再」代替無先後關係的「並」；時間口徑保留「提案後」；避免「推進調整上線」動詞堆疊；流程整合的對象是流程，不把兩套功能直接寫成一種流程。
+營收占比不寫成總營收增長；規模與需求件數不當個人成果。保留期間、分母、對照、約數、團隊歸因及開發中狀態。
+統計口徑收束在指標旁或句尾括號，單一括號中文字 ≤35；不把核心動作與戰果藏進括號。兩次服務承接的共同限定統攝一次，不貼相同長句兩遍。
+不為讀起來更有力新增成效或免責尾句；依當輪已裁定的完成／結案口徑。
 
----
+### 104／Quill 與視覺樣式
 
-## 5. 外商英文履歷與信件參數（English Style & Senior Register）
+- 保留欄位路徑、HTML、螢光位置、管理責任、本人已定特色與 LOCKED 模組標題，除非本輪明確授權。
+- G 金黃 #fbf3db：工作經歷及專案成就每區選1～2處成果／規模短語；不標純日期、不突出負向對照、不整句塗滿。
+- B 晴藍 #deebf1 加粗：工作經歷每點至多1處核心產品或模組；不為湊色另造贅句。
+- BT 純粗體：經歷、自傳、專案首次必要專名；不與 B 重複。
+- 參數值是本區正文精確連續子字串；較長詞優先，避免巢狀套色；未命中回報。簡介、個人特色、專長、新蛋及求職條件純文字。
+- 不用粗體分類前綴。104轉換與PDF由Claude處理；Markdown通過不等於Quill或PDF已驗收。
 
-**重要原則**：英文交付物（如 `line-profile.md`、英文 CV、混合推薦信）**同樣必須接受 §10 的高階獵頭戰功視角與盲審檢驗**，絕不可只做文法校對而把 Senior PM 的商業價值、管理幅度與系統資料深度降維成初階執行員！
+### 中文自我推薦信
 
-### A. 體裁分流與句法鐵律（同步 `voice-en.md`）
-1. **主詞依體裁分流（Genre Split）**：
-   - **自我推薦信（Cover Letter）**：使用自然第一人稱 `I`，每點 2～3 句完整短句（單句約 25 words 內）。
-   - **英文履歷列點（Resume Bullets，如 `line-profile.md`）**：採外商標準 **Implied First-Person（省略主詞 `I`）**，全篇獨立單字 `\bI\b` 預設 0 次、上限 ≤ 3 次！直接以責任範圍內的過去式動詞（`Led`, `Planned`, `Raised`, `Coordinated`, `Audited`）或精煉背景／目的子句接過去式動詞開頭（在職總括點可用現在式）。
-2. **句首多樣性（Anti-Anaphora）**：
-   - 同一公司區塊內，**嚴禁連續兩點以相同首字開頭**；全篇以 `- For ` 開頭的列點 **≤ 2 點**。交替使用動詞與 `When`, `After`, `With`, `Because`, `To`, `In response to` 等子句。
-3. **痛點破題與反懸垂子句（Pain-First & Anti-Trailing-Clause）**：
-   - **禁用 `Backed by X client requests`**：客戶需求是待解決問題（用 `To address X client requests accumulated since...` 或 `In response to...`），非贊助背書。
-   - **禁止把核心痛點丟入句尾 `, which leave...`**：應以 `Because...` 先寫痛點原因與結果，再接需求規模與方案（或用直接受詞子句 `consolidating two overlapping tools that scattered interview invitations`）。
-   - **禁用中式工程撞名詞**：工具整併建議譯為 `client requests`，**嚴禁譯為 `merge requests`（GitLab 保留字）**。
+純文字，一封一職缺，指定三點或來源指定點數，使用「‧」；全中文350字內，除非本人另訂。
+前5秒呈現已確認的限制、交付與反差成果，不把履歷剪成電報。每點有獨立產品場景，不以日期或無對象的「帳號權限」起頭；不加「能力小標：」。
+上游已白話化的產品名不加回；必要專名首次定義。不塞報表分母分類清單，不用另外／此外硬接無關事件。
+稱謂一律貴公司；不寫貴司、我司、敝司、敬上。不新增公司觀察或未授權地名。
+結尾總結前三點的核心課題，期待交流與分享經驗；不寫經驗相關、方向相近、可以直接投入或立即解決。
 
-### B. 外商 Senior 職級感、資料層深度與純淨度（2026-11-02 強制標準）
-1. **系統與資料欄位深度表達（Data-Literate PM Framing）**：
-   - 描述 15 張類別代碼表時，**首句必須先定義對象**，禁止以未定義的 `Consolidated categories across teams` 開頭！
-   - 必須使用能展現「直接檢視系統底層資料欄位與梳理跨表對照（而非只開需求給工程師）」的具體語言：首句使用 **`Audited and consolidated 15 shared category code tables (job roles, certifications, skills and benefits)`**，並使用 **`reviewing the underlying data fields`** 與 **`structuring field-level mappings`**。
-2. **管理幅度與部屬稱謂（People Management Register）**：
-   - 在首點定義 `Manage two product planners as direct reports.` 後，後續列點提及指導或交辦工作給直屬下屬時，**嚴禁省字降維成平級的 `product planners`**，亦不用具威權階級感的 `subordinates`。
-   - 一律使用外商標準管理詞彙：**`guided direct reports`** 與 **`delegated others to direct reports`**（取代平庸的 `assigned to product planners`）。非直屬之跨部門同仁則維持 `colleagues` 或具體部門名稱。
-3. **反同義詞疊床架屋與工具類別詞（Anti-Tautology）**：
-   - 使用 `within a human-in-the-loop workflow` 時，後方接 `retaining ownership of final product decisions`，**嚴禁重複寫 `with human review`**。
-   - 提及 `Antigravity` 等工具時，前方必保留通用類別詞 `AI agents (Claude Code, Antigravity)` 或分類標題 `Design & Agentic AI Tools:`。
-4. **Skills Title Case 與成品純淨度**：
-   - 英文 Skills 清單與分類標籤統一採 **Title Case** 與 `&`（如 `Requirements & Validation: Requirements Analysis, PRD, User Story, Use Case, Process & Sequence Diagrams, Prototyping, UAT`）。
-   - **嚴禁抄入規則備註括號**（如 `(to consolidate the tools)`）；**嚴禁在可填表 `.md` 檔末附加 `## Editing Notes` 或 `## English Self-Review`**。
-5. **英文禁用詞**：禁用 `delve, tapestry, seamlessly, leverage, synergy, robust, cutting-edge, proven track record, I am writing to express, I am excited/thrilled to, strategic, passionate, visionary, detail-oriented, results-driven, Spearheaded`；不新增未授權之 Jira、SQL 或工程實作。
+### 中文自審與隔離盲審提示
 
----
+獨立只讀子代理只收去註解的完整中文成品及獲准JD，不收內部規則或事實庫；提示與回覆用中文。實際派發可用：
 
+> 以台灣科技業資深PM／B2B PO招聘閱讀視角，閱讀下列完整中文成品。檢查責任與職級是否可信、陌生人能否理解場景、商業目的與成果是否清楚、中文自然度及跨欄重複。指出具體原句、理解風險與可改措辭，不新增事實、不評分、不為湊數捏造問題。不使用工具讀取其他檔案；只依提供的成品與JD。請以中文回覆並說明實際讀取範圍。
 
-### Step 3C：英文 Resume 結構與 PDF 驗收（2026-11-02）
+主代理逐項修正可改表達；不採納須有來源或本人裁定，鎖定阻擋附上游替換指令。完整中文履歷回報七大模組的實際變更；推薦信依實際欄位。不得用英文首詞、日期或I次數規則審中文。
+驗收用 verify_polish.py；中文信使用 verify_letter.py 的實際介面。先預檢Exit 0、隔離盲審、改稿朗讀，再最終Exit 0；失敗不提交。
 
-1. 對外英文 Resume 只保留 Summary、Skills、Work Experience、Education、Languages；不放 Personal Statement／Autobiography。匯出 PDF 必須不超過 2 頁，無第 3 頁孤行；不以刪除事實、縮到難讀字級或 Markdown 通過代替頁數驗收。
-2. 姓名固定 Kun Huai Nieh，不從信箱推測、不漏最後 h；directive 內原始聯絡資訊不隨姓名修正而更動。
-3. 禁用 Reverse-engineer／Reverse-engineered。無文件系統點以本人已核准的 Analyzed and mapped undocumented account permissions and business rules 為準；不退回較舊的 Recovered the logic behind 或擅自換成 Reconstructed。
-4. 標題期間使用 YYYY-MM – YYYY-MM（在職結尾 Present 依原文），en dash 前後留空格；directive 日期維持 YYYY-MM 與在職空字串。內文使用 YYYY/MM 或 YYYY/MM–MM，不混英文月份全稱、不以日期起頭；統計口徑原有日期精度保留，2026 Q3 等季度不擅改。
-5. PDF 實際逐頁檢查 Skills／Experience 的 • 圓點完整顯示、左縮排對齊、無缺字或分頁孤行。匯出後執行既有 verify_line_pdf.py；僅改 Markdown 且未取得新 PDF 時，明示 PDF 尚未驗收。
+## 英文潤飾
 
-可工具化的補充：Summary 不重複經歷的規模／成果數字（年資除外）、Skills Title Case、列點禁箭頭、核准關鍵措辭的錨點、防止舊基底回滾。使用上游既有 verify_line_profile.py／verify_line_pdf.py／build_line_pdf.py，不另造臨時腳本；腳本未涵蓋的視覺問題仍人工檢視。只有所有必要 Gatekeeper Exit 0 才可提交；命令失敗立即中止相依提交，不把驗證與提交拆成會無條件續跑的獨立工具呼叫。
+### Scope and register
 
-## 6. 本人手改語氣與父子層級參照（2026-10-22）
+Applies to English resumes, LINE Resume/Profile, LinkedIn/CV, English cover letters and the English passages of mixed documents. The voice source is career/style/voice-en.md, especially §§8–13. Use natural American business English, concrete verbs and readable sentences; do not apply Chinese word-frequency limits, a mandatory first-20-words impact test, a Chinese responsibility-verb whitelist, Quill styling or autobiography conventions.
 
-以下本人手改原文作為中文語氣與「一母項統攝兩子項」之結構參照（不代修此範例，實際披露狀態依當輪上游草稿）：
+### Genre and syntax
 
-> 1. 回應企業客戶多年反映懸而未決的商業需求：
->    1. 規劃整合原本分散於兩個重複功能的訊息功能流程，讓求職者與企業可以順利邀約面試，協調工程與相關單位推進。目前仍在進行中，預計於11月上線。
->    2. 規劃群組功能，讓大型企業按部門或分店共同處理招募，定義帳號、職缺與履歷的存取關係及既有資料轉換方式，並與工程團隊協作上線。
+- Resume bullets use implied first person: omit I, default zero, at most three occurrences across bullets. Use an authorized action verb or a concise contextual clause; current-role scope may use present tense.
+- Cover letters use natural first-person I and complete sentences. Do not apply the resume I limit to letters.
+- Within a company, consecutive bullets must not start with the same word. At most two bullets start with For. Vary syntax for meaning, not merely to replace the opening word.
+- Define a product, experiment or system before referring to its acceptance criteria, discounted phase or other details. Keep subjects and references clear.
+- Client requests are problems to address, not backing: use To address / In response to, never Backed by. Do not hide the core business problem in a trailing “, which leave…” clause.
+- Use client requests for tool-consolidation suggestions, not merge requests. Do not copy editorial explanations such as “(to consolidate the tools)” into final prose.
 
-- **結構要領**：上層點出共同商業需求，下層分別說明訊息整合與群組功能的解決方案與具體規則（存取關係、資料轉換、團隊協作），不攤平為三點，不在子項重複上層背景。
+### Responsibility, management and data literacy
 
----
+Keep the precise responsibility authorized in the English source; do not infer engineering implementation, architectural ownership, model development or a pricing decision made by someone else.
+Use led only for the explicitly authorized task. Do not turn planned/worked with engineering into rebuilt, engineered the model or led the architecture.
+Use the approved management wording “Manage two product planners as direct reports.” Follow with guided direct reports or delegated … to direct reports when the recipients are direct reports; retain colleagues for other collaborators. Never imply a larger team or use subordinates.
+For the approved category-table example, define the object first: “Audited and consolidated 15 shared category code tables (job roles, certifications, skills and benefits)”. Use reviewing the underlying data fields and structuring field-level mappings; do not substitute govern, or claim software implementation. These expressions apply only to the confirmed work, not as generic claims for other cases.
+For undocumented system rules, use the approved “Analyzed and mapped undocumented account permissions and business rules”. Never use Reverse-engineer/Reverse-engineered or revive Recovered the logic behind. Keep the approved 743-of-840 result and its temporal attribution; do not turn it into a direct causal claim.
 
-## 7. 敘事起點參數 LEAD（2026-10-23）
+### AI, skills and word choice
 
-依每個區塊要讓外部讀者先理解的前提，選擇敘事起點（上游有標示 `[LEAD: ...]` 時依標示，未標示時依下表判斷；成品不保留 `LEAD` 與 `LOCK_ENTITIES` 註解字串）：
+Within a human-in-the-loop workflow, retain ownership of final product decisions; do not repeat with human review. Keep the actual human decision-maker clear when describing colleagues.
+Introduce unfamiliar tools with AI agents (Claude Code, Antigravity) or Design & Agentic AI Tools.
+Skills items and category headings use Title Case, preserving acronym and brand spelling: Requirements Analysis, PRD, User Story, Use Case, Process & Sequence Diagrams, Prototyping, UAT. Use & in skill category labels.
+Avoid strategic, passionate, detail-oriented, leverage, robust, seamlessly, delve, tapestry, synergy, cutting-edge, proven track record, I am writing to express, I am excited/thrilled to and other inflated claims. Do not add Jira, SQL, billing/finance experience or development skills not present in the authorized source.
+Do not use arrows in bullets; express a sequence with then or a natural clause.
 
-| LEAD | 起點 | 適用情境與本輪核心套用 |
-| --- | --- | --- |
-| **RESULT** | 結果或指標變化 | 第一句已交代產品／對象与指標變化，無須長背景即可理解。**套用**：Peach 網頁付款占比（24%→80%+）、提案後 30 天內結案率（52%→79%，保留滿 30 天分母口徑與續約基礎／業務可信度）。 |
-| **ACTION** | 本人責任或行動 | 核心在跨部門規劃、取捨與交付規模。**套用**：1111 約 70 項主要功能上線（連結日常迭代與全面改版搶資源、先取得業務背書）。 |
-| **CONTEXT** | 問題、限制或事件 | 必須先理解系統限制、下架危機或實驗設計，數據才有意義。**套用**：無文件逆向還原與 840/743 件（88%）、即時通 199 件與群組 55 件、JustDating／Juicy 兩次危機承接 DAU、馬來西亞定價實驗、15 張類別代碼表。 |
+### Dates, names, structure and rendering handoff
 
----
+- Name: Kun Huai Nieh. Do not infer spelling from the email address.
+- Role/education ranges: YYYY-MM – YYYY-MM, with spaces around the en dash; retain Present for an ongoing role and the original directive end_date empty string.
+- Narrative dates: YYYY/MM or YYYY/MM–MM. Do not mix full English month names or start a bullet with a date. Preserve exact statistical cutoff days and source-authorized quarters.
+- Resume content: Summary, Skills, Work Experience, Education and Languages only; no Personal Statement/Autobiography. Preserve source directive JSON/Enum as machine metadata; do not invent missing fields.
+- No Editing Notes, English Self-Review, internal instructions or editorial commentary in the candidate.
+- The exported resume must fit within two pages and have visible, aligned • bullets without an orphan third page. Claude owns PDF generation, template metadata filtering, page-count/visual checks and verify_line_pdf.py/build_line_pdf.py. Codex delivers validated Markdown and does not report an unexamined PDF as passed.
 
-## 8. 104 視覺重音標記規則（Visual Tone Directives，僅 104 中文履歷適用）
+### Cross-section editing and qualifiers
 
-在 `final_resume.md` 的同一行 `STATUS` 註解內標示視覺參數，所有值必須是**該區塊正文中的連續原文子字串**：
-- `[G: 字串1 | 字串2]`（金黃底色，僅工作經歷與專案成就）：1～2 處最具說服力的量化成果或規模短語（3～12 字，如 `約 70 項主要功能已上線`、`743 件（88%）`、`由 52% 升至 79%`）。不標純日期、不標對照組負向衰退數字、不把平台規模或需求量誤導為個人成果。
-- `[B: 字串]`（晴藍底色加粗，僅工作經歷，每點最多 1 處）：自然出現的核心產品、新模組或戰略任務（如 `全面翻新`、`群組功能`、`帳號安全`、`類別代碼表`）。**嚴禁為湊 `[B]` 而另造同義贅句！**
-- `[BT: 字串1 | 字串2]`（純粗體，工作經歷、自傳與專案成就）：首次出現的重要系統名、工具或方法（如 `企業端招募系統`、`Product Owner`、`PRD`、`QA`、`Airbnb`、`Miro`、`AI Agent`）。已列 `B` 者不重複列 `BT`。
-- 個人簡介、個人特色、6 項專長、台灣新蛋、求職條件為純文字區塊，不加視覺參數。
+Summary states positioning and approach; Skills lists capabilities and tools; Experience supplies evidence and metrics. Do not repeat the same scope/result number in Summary and Experience; career tenure is an allowed summary fact.
+Keep periods, denominators, comparison groups, approximations, development status, reporting channel and team attribution. Do not redefine a case-closure metric as shipped features or sales conversions. A payment-channel share is not total revenue growth.
+For two app launches in one bullet, use one shared launch/marketing/overall-product-performance qualifier, with each metric clearly tied to its product and period. Avoid repeated long disclaimers, but do not remove required attribution.
+Pure rewording is allowed without changing a qualifier's meaning. A source lock is not a reason to ignore every fluency problem: fix the surrounding sentence and send a concrete upstream proposal only for the locked conflict.
 
----
+### English cover letters
 
-## 9. 背景鋪陳上限與敘事重心（Anti-Bloat & Action Front-Loading）
+Use one product/work context and one main line per bullet. Define unfamiliar names when retained; do not restore product names that the authorized English draft replaced with plain product types.
+English bullet sections of a mixed letter target 120–150 words unless otherwise requested. Do not invent a link to the company or guarantee immediate suitability. Close with a natural invitation to discuss the relevant experience; a fully English letter must not be forced to contain the Chinese word “期待”.
+Do not enforce a Chinese character limit on English paragraphs. Run a letter Gatekeeper only with the explicit language/document-type routing supported by that version; an incompatible Chinese-only check is an upstream tool conflict, not a reason to distort English.
 
-1. **背景鋪陳 ≤ 1/3 篇幅（Context Cap）**：即使是 `LEAD: CONTEXT`，問題背景與系統限制也只保留最小核心事實（中文以 1 句、25～45 字為原則），本人的核心動作須在前 1/3 後立即出場。
-2. **禁止口頭角色舉例入文（No Role Examples）**：不寫「用人主管或分店店長、分店行政助理」等口頭舉例，直接提煉為「讓大型企業按部門或分店共同處理招募」。
-3. **決策張力優先於基礎工具清單**：優先呈現「兩線搶資源先取得業務單位背書」「無文件下實測與訪談還原」等 Senior 判斷，基礎文件名稱退居輔助位置。
-4. **單點淨字數上限（104 工作經歷）**：扣除括號內統計口徑後，一般單點主幹淨字數 ≤ 165 字，Juicy 雙次承接點 ≤ 190 字。
+### Isolated English review prompt and acceptance
 
----
+Use an English-only prompt, a native-English hiring-reader role, and an English response. Provide the complete outward-facing candidate stripped of internal comments, plus an authorized JD if available. Do not provide internal rules, lock lists, revision history or reviewer conclusions.
 
-## 10. 高階獵頭自審、獵頭盲審與自治重寫協議（Executive Headhunter Loop）
+> Act as a native-English-speaking hiring reader reviewing the complete candidate below. Assess clear scope and responsibility, business relevance, first-read comprehension, natural English, sentence structure and unnecessary repetition. Identify concrete wording issues and suggest concise alternatives without inventing facts, metrics, authority or outcomes. Do not read files or use external sources. Reply in English, state exactly what material you received, and distinguish genuine comprehension problems from optional stylistic preferences.
 
-**核心鐵律**：本節規範同時適用於 **104 中文履歷、LINE 英文履歷與自我推薦信**。禁止在處理英文履歷或推薦信時退化為「只看文法措辭的校對員」！
-
-### Step 2 自審：高階獵頭四大戰功轉譯與七大模組掃描
-
-在初稿階段，以專招 Senior PM／B2B PO 的高階獵頭視角，對全部可改區塊執行 **4 項功績測試** 與 **4 大戰功轉譯公式**：
-1. **限制 → 突破**：將「無文件留存、兩線共用開發資源、舊後台與資料庫須延續」等硬核限制，與本人的逆向還原、業務背書、分階段替換直接咬合，第一句展現破局張力。
-2. **長年瓶頸 → 產品方案**：將累積多年的企業痛點（199 件訊息分散、55 件跨部門權限限制）連結具體的權限規則與資料轉換設計。
-3. **商業目的 ＋ 行動 ＋ 數據**：將「維護付費企業續約基礎與建立業務單位交付可信度（52%→79%）」、「降低手機內購抽成轉向網頁付款（24%→80%+）」緊密銜接，不寫成無目的的報表數字。
-4. **系統與資料層深度（去 CRUD 流水帳）**：不寫行政整理或 CRUD 清單，呈現「檢視 15 張全站共用代碼表底層資料欄位與梳理跨表對照（underlying data fields & field-level mappings）」及「指導／交辦直屬部屬（guided / delegated to direct reports）」的 Senior 職級高度。
-
-#### 全篇模組必查重點（依成品實際欄位套用）
-- **模組 1（個人簡介／Summary）**：B2B 與 B2C 訂閱變現廣度；規模數字留在經歷，不在摘要重複；危機承接、PO 帶人、系統翻新與 AI Agent（Claude Code, Antigravity）人機協作把關。
-- **模組 2（1111 經歷）**：6 萬家規模、雙線搶資源與業務背書、70 項功能；無文件還原與 743/840（88%）；199 件訊息整合（開發中）與 55 件部門／分店群組招募；OTP/MFA 補強帳號安全（未再經客服接獲回報）；AI 生成／推薦與勞基法合規驗收、依實際選用調整；15 張代碼表底層資料欄位與 AI 對照；52%→79% 結案率與續約基礎、業務交付可信度、直屬部屬交辦（`direct reports`）。
-- **模組 3（尚凡經歷）**：JustDating 主力與公開榜單 No.1；KOOL 無競品 0 到 1（Instagram 訪談、Airbnb/交友機制借鏡、Miro、2018/05 啟動、1.6 萬網紅與 8 萬報名、多元變現）；Juicy/JustDating 兩度下架危機承接與萬人 DAU（含上線與行銷導流整體表現限定）；馬來西亞 iOS 定價實驗（+5% vs Android -18%、還原 -65%、負責人採用低價）；Peach 網頁付款 24%→80%+。
-- **模組 4（SweetRing 與新蛋）**：7 國市場維運與問答功能；英文基準稿與帶領約 10 位外籍實習生全英文會議在地化；印尼與泰國導入 CodaPay 開通 2 國 8 管道、費率與實收試算、7/30/90 天方案與 Android 加值頁。
-- **模組 5～7（專長、自傳、專案與求職條件）**：專長以解決業務／系統問題的方法破題（英文 Skills 採 Title Case）；自傳七段連貫且去跨欄工具重複；四項專案串起完整背景與方法。
-
----
-
-### Step 3A：派發獨立子代理的「強制高階獵頭盲審準則（Headhunter Blind-Review Rubric）」
-
-**【防退化鐵律】**：派發只讀子代理執行盲審時，雖禁止提供內部規則檔（`voice_style_guide.md`、`voice-en.md`）與事實庫（`library/`），但**嚴禁只叫子代理「檢查語氣與英文措辭」**！
-主代理在派發盲審子代理的 Prompt 中，必須**強制賦予子代理「高階科技業獵頭與外商 Product Director」角色，並要求子代理同時從以下 4 個獵頭維度進行盲審挑刺**：
-
-1. **職級高度測試（Senior Impact vs. Junior Chore）**：
-   - 哪些句子讀起來像初階執行員（只聽命行事、整理表格、平級打雜），缺乏 Senior PM / People Manager 的決策張力、資源取捨、管理幅度（如指導／交辦直屬下屬）或系統架構深度（如直接檢視底層資料欄位與定義跨表對照）？
-2. **陌生人首讀秒懂測試（Zero-Context Clarity & Scene-Setting）**：
-   - 以完全沒看過前文與內部資料的陌生 HR 視角，哪一點開頭出現了「未定義先引用的概念偷跑（如沒講什麼分類表就先寫 categories、沒講什麼 AI 功能就先寫合規驗收）」或「無主詞／被動斷頭句」？
-3. **前 20 字商業鉤子與 So-What 測試（Front-Loaded Value & Business Stakes）**：
-   - 每個列點前 15～20 字是否讓人一眼看出「解決了什麼高價值商業問題或帶出什麼關鍵戰果」？有沒有把核心痛點藏在句尾附屬子句、或把背景鋪陳寫得太囉嗦？
-4. **母語自然度與反 AI 模板測試（Native Fluency & Anti-Template）**：
-   - 全篇從頭讀到尾，有無連續重複的句首模板（如連續 `For...` 開頭）、同段重複詞句、生硬的中式直譯或跨欄重複解釋？
-
----
-
-### Step 3B：強制三分類處置表（Disposition Matrix）與 6 大防乒乓駁回紅線
-
-收到子代理的獵頭盲審意見後，主代理必須當場完成改稿閉合，逐項歸入三分類：
-- **✅ 已直接修改入稿（預設強制）**：凡屬職級張力不足、系統／管理深度未凸顯、跨欄重複、語序卡頓、句型單調等表達問題，在不違反事實與鎖定詞下**一律當場改入成品**（附 `Before → After`）。
-- **🔒 違反事實／本人明文裁定／防乒乓紅線而不採納**：僅限違反事實庫、本人明文裁定，或命中以下 **6 條盲審駁回紅線** 時採用（須標明依據並立即 Convergence Stop）：
-  1. **紅線 1（跨輪次 A↔B 語序搖擺）**：要求將語序改回前一輪剛否決的方向。
-  2. **紅線 2（禁止狀態式斷頭首句）**：禁止為前置數字而寫出 `About 70 major features were live by 2026 Q3.` 等無本人動作的被動狀態句（須保留 `Led requirements analysis and specification planning to ship about 70 major features...`）。
-  3. **紅線 3（禁止概念偷跑）**：禁止在定義 AI 功能前先寫 `Set labor-law compliance acceptance criteria`；禁止在定義 15 張類別代碼表前先寫 `Consolidated categories across teams`；禁止在定義馬來西亞實驗前先寫降價結果。
-  4. **紅線 4（禁止同段複製長限定詞）**：Juicy 與 JustDating 雙次承接同處一點時，以一句 `Across both launches and their accompanying marketing campaigns...` 共同統攝，禁止逐字重複兩遍。
-  5. **紅線 5（禁止刪除強制限定詞或降維管理／資料深度）**：禁止刪除 `(in development)`、分母口徑、DAU 歸因；禁止將 `direct reports` / `delegated` 降維成平級 `product planners`；禁止將 15 張代碼表的 `underlying data fields` / `field-level mappings` 退化為表面整理。
-  6. **紅線 6（純主觀同義換詞）**：已具 Senior 高度，僅為個人偏好的同義字替換。
-- **⛔ 受上游 `LOCKED`／`LOCK_ENTITIES` 阻擋**：先修完可改部分，並在報告末尾附上可複製的 **「📋 建議貼給 Claude 的上游解鎖／微調指令」**。
-
----
-
-### Step 3C：全篇母語朗讀與詞頻密度關卡（Full-Text Read-Aloud Gate）
-
-盲審改稿完成後、進入 AGENTS Step 4 最終驗證前，將整份成品從頭到尾通讀：
-1. **中文履歷詞頻與括號上限**：正文「建立」≤ 5 次、「救回」≤ 1 次（僅留工作經歷 Juicy，簡介／自傳／專案用「承接既有用戶與營收」）、「推進」≤ 8 次、「統籌」≤ 3 次；「規劃、協調、定義、負責」在同一 Bullet 或自傳同一自然段內各 ≤ 2 次。單一括號中文字 ≤ 35，核心行動與戰果（如回應 199 件建議、未再接獲回報）留在主句，不藏入句尾括號（55 件需求背景括號保留）。
-2. **英文履歷體裁與多樣性上限**：全篇獨立單字 `\bI\b` ≤ 3 次（採 Implied First-Person）；全篇 `- For ` 開頭 ≤ 2 點，同公司不連續同首字開頭；無 `workflow with human review` 重複贅字；可填表檔末無 `Editing Notes` 或 `Self-Review` 章節。
-
-## 11. 本人最新採用與操作優先序
-
-本人已採用 `Manage two product planners as direct reports.`，後文仍保留 guided direct reports／delegated … to direct reports。資料表保留 Audited and consolidated、15 shared category code tables 與底層深度，改用 reviewing the underlying data fields／structuring field-level mappings，不用 govern 暗示額外資料治理權責。此裁定優先於舊規範的精確句型與舊 LOCK_ENTITIES；需同步上游草稿、voice-en 與驗證器，不自行修改共用檔案。
-
-操作順序只依 AGENTS Step 1–4。隔離盲審的四維度是通用招募任務，不提供本人專案範例、內部規則或鎖定清單；只提供去註解的完整對外文字與獲准 JD。規則中的案例僅供主代理自審，不作新增事實來源。句長與前20字是閱讀目標，不為湊數捏造張力或刪必要限定。結果與行動相關不等於個人單獨因果。本人當輪授權拆點時可執行，其他變更依授權範圍。
+For a separate JD-fit review, keep the prompt and response in English and use only the candidate and authorized JD; do not treat lack of evidence as proof of a missing career fact. Native-language fluency review is not factual validation.
+The main editor fixes applicable wording, preserves the English source's facts and qualifiers, and explains any genuine lock conflict. No Chinese impact, verb-count or formatting rubric is supplied to the English reviewer.
+Run verify_line_profile.py only for candidates using the LINE resume format supported by that source version. For other English CVs, LinkedIn content and English letters, use the explicitly supported upstream language/document-type entry point; do not impose LINE JSON/Enum requirements on unrelated formats. Follow the actual interface and source SHA. Require initial Exit 0 before review, then final Exit 0 after revisions. A failed command blocks commit/push; never modify the checker or manufacture input to pass.
