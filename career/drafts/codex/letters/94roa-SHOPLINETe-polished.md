@@ -1,4 +1,4 @@
-來源：c740c2affa8d306da18abfba93523300821f067c，career/letters/104/94roa-SHOPLINETe-draft.md；職缺名依本版檔頭。
+來源：3bfd938f9dddc2704e2737d5e72c96fa21de3f41，career/letters/104/94roa-SHOPLINETe-draft.md；職缺名依本版檔頭。
 待補：無新增；保留來源數字、日期、限定與三點結構。
 事實疑問：僅編輯指定草稿；本輪盲審及處置見 BATCH-2026-11-02-report.md。
 

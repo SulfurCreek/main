@@ -1,4 +1,4 @@
-來源：c740c2affa8d306da18abfba93523300821f067c，career/letters/104/93shv-SHOPLINETe-draft.md；職缺名依本版檔頭。
+來源：3bfd938f9dddc2704e2737d5e72c96fa21de3f41，career/letters/104/93shv-SHOPLINETe-draft.md；職缺名依本版檔頭。
 待補：無新增；保留來源數字、日期、限定與三點結構。
 事實疑問：僅編輯指定草稿；本輪盲審及處置見 BATCH-2026-11-02-report.md。
 
@@ -6,7 +6,7 @@
 
 ```text
 您好：
-應徵貴公司【TPD0603】Data Product Manager 數據產品經理。我規劃過東南亞第三方支付與網頁付款，有近 10 年產品經理經驗，現任人力銀行企業端招募系統 Product Owner。
+應徵貴公司【TPD0603】Data Product Manager 數據產品經理。我有近 10 年產品經理經驗，現任人力銀行企業端招募系統 Product Owner，帶領 2 名直屬企劃。
 
 ‧ 為交友 App 的馬來西亞 iOS 版設計三階段定價實驗，以售價不變的 Android 作對照；降價期 iOS 非續訂營收增加 5%，負責人依結果採用較低價格。
 
@@ -19,4 +19,4 @@
 聶崑淮
 ```
 
-字數：343（含標點、英數與署名，不含空白）；三個條列。
+字數：335（含標點、英數與署名，不含空白）；三個條列。
