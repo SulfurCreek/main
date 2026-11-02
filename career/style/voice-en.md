@@ -101,3 +101,5 @@
 2. 禁用 `Reverse-engineered`（外商易誤解為反編譯程式碼）；1111 無文件系統那點用 `Recovered the logic behind undocumented …`。驗證器已禁。
 3. 不以日期開頭（`In March–April 2026, …`）；動作先行，日期放在事件後，格式與同頁一致（`2026/03–04`）。驗證器已禁。
 4. 抬頭姓名拼法：`Kun Huai Nieh`。起訖日期一律 `YYYY-MM – YYYY-MM`（en dash 前後有空格）。
+
+5. 1111 無文件系統那點開頭用 `Analyzed and mapped undocumented account permissions and business rules …`（本人與 Codex 討論後核准 2026-11-02；取代 `Recovered the logic behind`、`Reverse-engineered`）。

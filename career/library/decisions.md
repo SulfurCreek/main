@@ -484,3 +484,8 @@ v9.7 = v9.6 ＋ 使用者自寫自傳與各段 summary（16→10 個單位、業
 - 取消英文自傳（取代 §65／§68，LINE Resume 不再含 Personal Statement）；PDF 收在 2 頁。
 - 姓名拼法 `Kun Huai Nieh`（`career-ops/config/profile.yml` 仍寫 Nie，待主線同步時統一）。
 - `Reverse-engineered` 取消（取代 2026-11-01 母語審查建議），改回 `Recovered the logic behind …`；MFA 點改回動作先行與 `2026/03–04` 格式。
+
+## 70. 2026-11-02 無文件系統那點動詞定案（本人）
+
+- `Analyzed and mapped undocumented account permissions and business rules …`（Codex 97476cf，本人核准）；取代 `Recovered the logic behind`（§69）。
+- Codex 97476cf 推送時基底是舊版（含 `In March–April 2026` 與自傳），驗證未過仍推送，不採該檔整份；只取這一句，已套用到 LINE Resume、通用版、上游草稿，驗證 Exit 0。
