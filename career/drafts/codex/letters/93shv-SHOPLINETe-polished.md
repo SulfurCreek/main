@@ -1,6 +1,6 @@
-來源：1a26d5de807cb2dbd36fc66a0dc5116230af7b36，career/letters/104/93shv-SHOPLINETe-draft.md。
+來源：9190a4331b2ebe5fced46c884f389b244851474d，career/letters/104/93shv-SHOPLINETe-draft.md。
 待補：無新增；沿用草稿正文與限定。
-事實疑問：僅潤飾指定來源；逐封盲審與處置見 BATCH-2026-11-02-report.md。
+事實疑問：本輪指定的來源裁定已同步；驗證與盲審處置見 BATCH-2026-11-02-report.md。
 
 # SHOPLINE Technology Corp., Ltd._商線科技股份有限公司｜【TPD0603】Data Product Manager 數據產品經理
 
@@ -8,7 +8,7 @@
 您好：
 應徵貴公司【TPD0603】Data Product Manager 數據產品經理。我規劃過東南亞第三方支付與網頁付款，有近 10 年產品經理經驗，現任人力銀行企業端招募系統 Product Owner。
 
-‧ 在馬來西亞市場設計 iOS 三階段定價實驗，以售價不變的 Android 作對照；降價期 iOS 非續訂營收增加 5%，負責人依結果採用較低價格。
+‧ 為交友 App 的馬來西亞 iOS 版設計三階段定價實驗，以售價不變的 Android 作對照；降價期 iOS 非續訂營收增加 5%，負責人依結果採用較低價格。
 
 ‧ 同仁整理上百筆職務分類對應資料遇到困難時，導入 AI Agent 檢查資料並標示信心程度，需人工討論的項目收斂至個位數筆。
 
@@ -19,4 +19,4 @@
 聶崑淮
 ```
 
-字數：333（含標點、英數與署名，不含空白）；三個條列。
+字數：338（含標點、英數與署名，不含空白）；三個條列。
