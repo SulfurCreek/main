@@ -504,3 +504,7 @@ v9.7 = v9.6 ＋ 使用者自寫自傳與各段 summary（16→10 個單位、業
 - 本人指定：中英文履歷維度差很多，指令與工具互不影響。
 - 作法：新增 `style/README.md`（路由）；compiler SKILL 加〈語言路由〉，中文專屬三節移至 `references/zh-voice-guardrails.md`、英文專屬三節移至 `references/en-voice-guardrails.md`（原章節名留 stub，既有引用不失效）；`voice-en.md`、`resume-voice-zh.md` 加語言範圍聲明；`scripts/README.md`、`ROUTER.md`、`career/CLAUDE.md` 加路由。驗證腳本本來就分開（`verify_polish.py`＝中文，`verify_line_profile.py`／`verify_line_pdf.py`＝英文），未改邏輯。
 - 唯一橋接：英文版保留對應中文版的商業目的、影響範圍與口徑。
+
+## 74. 2026-11-02 帳號安全點改用 unauthorized access（本人與 Codex 討論後核准，Codex 87fae36）
+
+- 取代 `hijacked`／`account-takeover incidents`：`…after unauthorized access to more than ten employer accounts in the recruitment system in 2026/03–04 … Through 2026/10, customer service received no reports of similar unauthorized access.`；保留十多個帳號、日期與「客服未接獲同類回報」限定。取代 §69 所指的 11-02 原句。
