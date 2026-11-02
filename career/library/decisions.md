@@ -508,3 +508,8 @@ v9.7 = v9.6 ＋ 使用者自寫自傳與各段 summary（16→10 個單位、業
 ## 74. 2026-11-02 帳號安全點改用 unauthorized access（本人與 Codex 討論後核准，Codex 87fae36）
 
 - 取代 `hijacked`／`account-takeover incidents`：`…after unauthorized access to more than ten employer accounts in the recruitment system in 2026/03–04 … Through 2026/10, customer service received no reports of similar unauthorized access.`；保留十多個帳號、日期與「客服未接獲同類回報」限定。取代 §69 所指的 11-02 原句。
+
+## 75. 2026-11-02 批次推薦信（預計 2026-11-03 應徵 53 個職缺）
+
+- 來源：本人提供 AI 與數據產品 15 筆、軟體開發與專案顧問 38 筆職缺清單；JD 取自 `automation/104-data` 的 `jobs.json`（fetched_at 2026-11-02）。48 筆有 JD 產出上游草稿，5 筆（93iic、8uhc4、94j6x、94vwt、89ffo）JD 缺漏待補。
+- 作法：`scripts/gen_cover_drafts.py` 依 JD 主題關鍵字從核准事實句庫選三點，不新增事實；逐封 `verify_letter.py` Exit 0；總表 `letters/104/BATCH-2026-11-02.md`。限制：自動配對非逐封精讀，低適配職缺針對性有限。
