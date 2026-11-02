@@ -26,14 +26,14 @@ S = {
        "十多家企業帳號遭冒用後，我協調工程與客服釐清影響，規劃並上線新裝置 OTP 驗證（MFA）與帳號解鎖流程；客服未再接獲同類回報。", "facts-1111 帳號安全、R09、decisions §58"),
  "M": ("企業與求職者使用兩套功能重疊的訊息工具，邀約面試的管道分散；我規劃整合為一條流程，回應 2021 年起累積的 199 件客戶建議，目前開發中。",
        "企業與求職者的兩套訊息工具功能重疊、邀約分散；我規劃整合為一條流程，回應 199 件客戶建議，目前開發中。", "decisions §24（只寫開發中）、facts-1111 E.1"),
- "P": ("為馬來西亞 iOS 設計三階段定價實驗，以售價不變的 Android 作對照；降價期非續訂營收增加 5%（Android 減少 18%），恢復原價後較原價期減少 65%，負責人依結果採用較低價格。",
-       "為馬來西亞 iOS 設計三階段定價實驗，以售價不變的 Android 作對照；降價期非續訂營收增加 5%，負責人依結果採用較低價格。", "facts-prior 定價實驗、decisions §51"),
+ "P": ("為交友 App 的馬來西亞 iOS 版設計三階段定價實驗，以售價不變的 Android 作對照；降價期非續訂營收增加 5%（Android 減少 18%），恢復原價後較原價期減少 65%，負責人依結果採用較低價格。",
+       "為交友 App 的馬來西亞 iOS 版設計三階段定價實驗，以售價不變的 Android 作對照；降價期非續訂營收增加 5%，負責人依結果採用較低價格。", "facts-prior 定價實驗、decisions §51"),
  "Y": ("為訂閱制內容 App 規劃從手機內購轉向網頁付款，並協調台灣金流商串接，網頁付款營收占比由 24% 升至 80% 以上（2020/11–2021/09）。",
        "為訂閱制內容 App 規劃從手機內購轉向網頁付款，網頁付款營收占比由 24% 升至 80% 以上（2020/11–2021/09）。", "facts-prior Peach 網頁付款"),
  "C": ("為經營 7 個市場的交友 App，導入東南亞第三方支付商，在印尼、泰國開通 2 國 8 種付款管道；依費用與撥款條件試算實收，提出 7／30／90 天訂閱方案。",
        "為經營 7 個市場的交友 App，導入東南亞第三方支付商，在印尼、泰國開通 8 種付款管道並試算各管道實收。", "facts-prior SweetRing 付款"),
- "K": ("網紅與商家的雙邊媒合平台沒有直接競品可參考，我先訪談商家的行銷單位，再規劃邀約、報名與訊息流程；上線半年累積約 1.6 萬份網紅檔案、8 萬多次報名。",
-       "網紅與商家的雙邊媒合平台沒有競品可參考，我先訪談商家行銷單位，再規劃邀約、報名與訊息流程；半年累積約 1.6 萬份檔案、8 萬多次報名。", "facts-prior KOOL"),
+ "K": ("網紅與商家的雙邊媒合平台沒有直接競品可參考，我先訪談商家的行銷單位，再規劃邀約、報名與訊息流程；平台累積約 1.6 萬份網紅檔案，上線半年內有 8 萬多次合作案報名。",
+       "網紅與商家的雙邊媒合平台沒有競品可參考，我先訪談商家行銷單位，再規劃邀約、報名與訊息流程；平台累積約 1.6 萬份網紅檔案，上線半年內有 8 萬多次合作案報名。", "facts-prior KOOL"),
  "J": ("主力交友 App 遭 App Store 下架後，我主導以同一後台推出接續 App 承接用戶與營收，再主導原 App 重新上架；男性日活躍用戶於上線與導流期間由約 3,200 增至 1.25 萬。",
        "主力交友 App 遭 App Store 下架後，我主導以同一後台推出接續 App 承接用戶與營收，並主導原 App 重新上架。", "decisions §51、§34（DAU 限定：上線與導流期間）"),
  "G": ("回應 2020/12 起累積的 55 件客戶建議，規劃群組招募功能，讓大型企業按部門或分店共同招募，並定義帳號、職缺與履歷的存取規則。",
@@ -45,28 +45,39 @@ S = {
  "T": ("統整全站職缺、履歷、搜尋與配對共用的 15 張分類代碼表異動，檢視底層資料欄位並做欄位級對照，再以 AI Agent 整理對照與交接紀錄。",
        "統整全站搜尋與配對共用的 15 張分類代碼表異動，檢視底層資料欄位並做欄位級對照，以 AI Agent 整理對照與交接紀錄。", "decisions §62、§63、facts-1111 2026-10-24 類別代碼表用途"),
 }
-THEMES = [  # (正則, {故事: 權重})；泛用詞（系統、企業、平台）只給低權重，避免所有信選同三點
- (r"AI|人工智慧|生成式|LLM|機器學習|Agent|GPT|模型", {"F": 4, "A": 3}),
- (r"支付|金流|付款|Pay\b|金融|銀行|租賃|數金|信用|融資", {"Y": 4, "C": 4, "P": 1}),
+THEMES = [  # (正則, {故事: 權重})；英文縮寫一律 \b 單字邊界；泛用詞只給低權重
+ (r"\b(?:AI|LLM|Agent|GPT)\b|人工智慧|生成式|機器學習|模型", {"F": 4, "A": 3}),
+ (r"支付|金流|付款|\bPay\b|金融|銀行|租賃|數金|信用|融資|分期|資融|結帳|代購|跨境電商", {"Y": 4, "C": 4, "P": 2}),
+ (r"電商|開店|多門市|分店|連鎖|零售", {"Y": 3, "G": 3, "P": 2}),
+ (r"直播|交友|娛樂|打賞|\bC 端|\bC端|消費者|用戶成長", {"J": 4, "Y": 3, "P": 2, "K": 2}),
  (r"訂閱|定價|收費|營收|變現|商業模式", {"P": 3, "Y": 2}),
- (r"專案管理|Project Manager|PMP|時程|進度|交付|專案經理|PJM", {"W": 4, "R": 2}),
- (r"需求訪談|需求分析|規格|PRD|系統分析|SA\b|流程優化|流程", {"R": 3, "T": 2}),
- (r"SaaS|B2B|ERP|雲端|企業客戶|訂閱制", {"Q": 3, "G": 2, "R": 1}),
+ (r"專案管理|Project Manager|\bPMP\b|時程|進度|交付|專案經理|\bPJM\b", {"W": 4, "R": 2}),
+ (r"需求訪談|需求分析|規格|\bPRD\b|系統分析|\bSA\b|流程優化|流程|\brequirements?\b|\bstakeholders?\b|\broadmap\b", {"R": 3, "T": 2}),
+ (r"\bSaaS\b|\bB2B\b|\bERP\b|雲端|企業客戶|訂閱制|\bmerchants?\b", {"Q": 3, "G": 2, "R": 1}),
  (r"資安|資訊安全|防詐|詐騙|Anti-Scam|帳號安全|身分驗證|個資", {"S": 6}),
- (r"訊息|聊天|通訊|社群|直播|互動|客服", {"M": 4}),
+ (r"訊息|聊天|通訊|社群|互動|客服", {"M": 4}),
  (r"媒合|創作者|網紅|內容平台|0 到 1|從零|新產品|新事業", {"K": 4, "J": 1}),
- (r"遊戲|C 端|C端|消費者|用戶成長|電商|零售|餐飲", {"K": 2, "J": 2, "M": 1, "P": 1}),
- (r"數據|Data|分析|指標|KPI|實驗|A/B|BI\b", {"P": 3, "A": 2}),
- (r"英文|跨國|海外|全球|Global|English|國際|總部", {"L": 3, "W": 1}),
- (r"跨部門|協調|溝通|利害關係|Stakeholder|業務", {"W": 2}),
- (r"權限|帳號|會員|CRM|後台", {"G": 3, "R": 1}),
+ (r"遊戲|餐飲", {"K": 2, "J": 2, "M": 1, "P": 1}),
+ (r"數據|\bData\b|分析|指標|\bKPI\b|實驗|A/B|\bBI\b", {"P": 3, "A": 2}),
+ (r"在地化|多語系|多國語言|\blocalization\b|\bi18n\b|\bl10n\b|翻譯", {"L": 4}),
+ (r"跨國|海外|全球|\bGlobal\b|國際|東南亞", {"P": 2, "C": 2, "W": 1}),
+ (r"跨部門|協調|溝通|利害關係|業務", {"W": 2}),
+ (r"權限|帳號|會員|\bCRM\b|後台", {"G": 3, "R": 1}),
  (r"客服|客戶滿意|客戶成功|案件", {"Q": 3}),
 ]
-GAPS = {"Jira": "JIRA（非本人技能）", "SQL": "SQL", "Python": "Python／程式實作", "Java": "Java／程式實作", "Tableau": "Tableau", "日文|日語|JLPT": "日文", "韓文|韓語": "韓文",
-        "PMP": "PMP 證照", "Scrum|Agile|敏捷": "Scrum／Agile（僅 2022–2023 歷史經驗，不當現行）", "半導體|製造|工廠|IoT|硬體|韌體|航太|電源": "製造／硬體產業經驗",
-        "Docker|Kubernetes|OCI": "Docker／Kubernetes／容器", "Azure DevOps": "Azure DevOps", "Atlassian|Confluence": "Atlassian／Confluence 導入", "程式設計|程式開發|寫程式": "程式開發實作", "旅遊": "旅遊產業經驗", "CRM": "CRM 系統管理", "ERP": "ERP 實施經驗", "政府": "政府專案", "行銷|SEO|廣告": "行銷操作／投放", "UI/UX|UIUX|設計稿": "UI 設計實作", "法規|ISO|CMMI": "ISO／CMMI 認證"}
+TIER = ["R", "W", "F", "Y", "P", "Q", "G", "M", "S", "K", "J", "C", "T", "A", "L"]  # 同分時 Senior 戰功含金量優先
+GAPS = {r"\bJira\b": "JIRA（非本人技能）", r"\bSQL\b": "SQL", r"\bPython\b": "Python／程式實作", r"\bJava\b": "Java／程式實作", "Tableau": "Tableau", "日文|日語|JLPT": "日文", "韓文|韓語": "韓文",
+        r"\bPMP\b": "PMP 證照", "Scrum|Agile|敏捷": "Scrum／Agile（僅 2022–2023 歷史經驗，不當現行）", "半導體|製造|工廠|IoT|硬體|韌體|航太|電源": "製造／硬體產業經驗",
+        r"Docker|Kubernetes|\bOCI\b": "Docker／Kubernetes／容器", "Azure DevOps": "Azure DevOps", "Atlassian|Confluence": "Atlassian／Confluence 導入", "程式設計|程式開發|寫程式": "程式開發實作", "旅遊": "旅遊產業經驗", "CRM": "CRM 系統管理", "ERP": "ERP 實施經驗", "政府": "政府專案", "行銷|SEO|廣告": "行銷操作／投放", "UI/UX|UIUX|設計稿": "UI 設計實作", "法規|ISO|CMMI": "ISO／CMMI 認證"}
 END = {"F": "AI 協作與產品落地", "S": "帳號安全與驗證", "Y": "支付規劃與規格轉換", "C": "支付規劃與規格轉換", "P": "訂閱與定價實驗", "W": "跨部門專案推進", "R": "無文件系統的規格梳理",
        "K": "從零到一與用戶經營", "J": "危機中的用戶與營收承接", "M": "訊息與溝通產品規劃", "L": "跨國協作", "G": "企業端權限與流程設計", "Q": "客戶案件與優先序管理", "A": "AI Agent 工作流與團隊協作", "T": "跨團隊資料整合"}
+
+def clean_title(t):
+    """剝除 104 標題的集團前綴與招募備註（正文首句用；--job 也用淨化後字串）"""
+    t = re.sub(r"^.*?關係企業[-_—\s]*", "", t)
+    t = re.sub(r"★[^★]*★", "", t)
+    t = re.sub(r"\s*[<＜【\[（(][^>＞】\]）)]*(?:年以上|經驗|擴編|急徵|薪資|面議|遠端|日班)[^>＞】\]）)]*[>＞】\]）)]", "", t)
+    return t.strip()
 
 def short_name(n):
     n = re.sub(r"股份有限公司|有限公司|台灣分公司|分公司|_.*$", "", n or "").strip()
@@ -83,7 +94,7 @@ def pick(text, title=""):
                 sc[k] = sc.get(k, 0) + v * (1 + 0.5 * (min(n, 4) - 1))
     if not sc:
         sc = {"R": 2, "W": 2, "A": 1}
-    order = sorted(sc, key=lambda k: (-sc[k], k))
+    order = sorted(sc, key=lambda k: (-sc[k], TIER.index(k) if k in TIER else 99))
     chosen = []
     for k in order:
         if len(chosen) == 3: break
@@ -94,6 +105,10 @@ def pick(text, title=""):
     # A（AI 工作流）與 T（代碼表整理）互斥，避免同一封重複講 AI 整理資料
     if "A" in chosen and "T" in chosen:
         chosen.remove("T" if sc.get("A", 0) >= sc.get("T", 0) else "A")
+    # 領域必配：JD／公司背景有金流、電商、直播等訊號時，三點中至少一點是 Y／C／J（取代最後一點）
+    dom = [k for k in "YCJ" if sc.get(k, 0) >= 7]
+    if dom and not any(k in chosen for k in "YCJ") and len(chosen) == 3:
+        chosen[2] = max(dom, key=lambda k: (sc[k], -TIER.index(k)))
     for k in ("R", "W", "A"):  # 補到三點
         if len(chosen) < 3 and k not in chosen: chosen.append(k)
     return chosen, sc
@@ -114,9 +129,11 @@ def build(code):
     j = jobs[code]
     title = j["title"].strip()
     jd = j["description"]
-    chosen, sc = pick(title + "\n" + re.sub(r"【職務概況.*", "", jd, flags=re.S), title)
     comp = comps.get(j["company_id"], {}) if isinstance(comps, dict) else {}
     cname = (comp.get("name") if isinstance(comp, dict) else None) or re.search(r"公司名稱:\s*(.+)", jd).group(1).strip()
+    cinfo = " ".join(str(comp.get(k, "")) for k in ("industry", "description", "profile")) if isinstance(comp, dict) else ""
+    chosen, sc = pick(title + "\n" + cname + " " + cinfo + "\n" + re.sub(r"【職務概況.*", "", jd, flags=re.S), title)
+    title = clean_title(title)
     for use_long in (True, False):
         bl = [S[k][0 if use_long else 1] for k in chosen]
         end = f"{'、'.join(END[k] for k in chosen[:2])}，正是我過去幾年持續處理的課題。期待能與團隊進一步交流，分享{' ' if re.match(r'[A-Za-z0-9]', END[chosen[0]]) else ''}{END[chosen[0]]}的實務經驗。謝謝您的閱讀。"
