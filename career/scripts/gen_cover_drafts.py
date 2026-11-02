@@ -6,10 +6,16 @@
 import json, re, sys
 from pathlib import Path
 
-jobs = json.load(open(sys.argv[1]))["jobs"]
-comps = json.load(open(sys.argv[2]))
+SELF_TEST = "--self-test" in sys.argv
+if SELF_TEST:  # 回歸測試：資料直接從 automation/104-data 分支讀
+    import subprocess
+    _show = lambda f: json.loads(subprocess.check_output(["git", "show", f"origin/automation/104-data:career/targets/104/{f}"]))
+    jobs, comps, codes = _show("jobs.json")["jobs"], _show("companies.json"), []
+else:
+    jobs = json.load(open(sys.argv[1]))["jobs"]
+    comps = json.load(open(sys.argv[2]))
+    codes = open(sys.argv[3]).read().split()
 comps = comps.get("companies", comps)
-codes = open(sys.argv[3]).read().split()
 outdir = Path(sys.argv[sys.argv.index("--outdir") + 1] if "--outdir" in sys.argv else "career/letters/104")
 
 # 核准事實句：(長版, 短版)；主題標籤與 library 出處
@@ -56,12 +62,12 @@ THEMES = [  # (正則, {故事: 權重})；英文縮寫一律 \b 單字邊界；
  (r"\bSaaS\b|\bB2B\b|\bERP\b|雲端|企業客戶|訂閱制|\bmerchants?\b", {"Q": 3, "G": 2, "R": 1}),
  (r"資安|資訊安全|防詐|詐騙|Anti-Scam|帳號安全|身分驗證|個資", {"S": 6}),
  (r"Claude Code|Context Engineering|\bMCP\b|\bn8n\b|AI[- ]first|流程自動化", {"A": 4}),
- (r"訊息|聊天|通訊|總機|語音|\bEVOX\b|社群|互動|客服", {"M": 4}),
+ (r"訊息|聊天|通訊|總機|語音|\bEVOX\b|社群|直播|互動|客服", {"M": 4}),
  (r"媒合|創作者|網紅|內容平台|0 到 1|從零|新產品|新事業", {"K": 4, "J": 1}),
  (r"遊戲|餐飲", {"K": 2, "J": 2, "M": 1, "P": 1}),
- (r"A/B|實驗|定價實驗|轉換率優化", {"P": 3}),
+ (r"A/B|定價實驗|轉換率", {"P": 3}),
  (r"數據|\bData\b|分析|指標|\bKPI\b", {"A": 2}),
- (r"搜尋|推薦系統|配對|分類|標籤|資料結構|數據產品|Data Product|資料治理|\bBI\b", {"T": 4, "F": 3}),
+ (r"搜尋|推薦系統|媒合|配對|分類|標籤|資料結構|數據產品|Data Product|資料治理|\bBI\b", {"T": 4, "F": 3}),
  (r"在地化|多語系|多國語言|\blocalization\b|\bi18n\b|\bl10n\b|翻譯", {"L": 4}),
  (r"東南亞|馬來西亞|印尼|泰國", {"P": 2, "C": 2}),
  (r"跨國|海外|全球|\bGlobal\b|國際", {"W": 1}),
@@ -93,7 +99,10 @@ def short_name(n):
     n = re.sub(r"^.*?_", "", n)
     return re.sub(r"[\\/:*?\"<>| ]", "", n)[:10] or "公司"
 
-def pick(text, title=""):
+HARDWARE = r"製造|硬體|韌體|半導體|航太|電源|工業電腦|電子零組件|量產|\bEVT\b|\bDVT\b|\bPVT\b|\bNPI\b|GARMIN|Garmin|研華|Advantech|旭隼|亞果|鎰福"
+AI_JOB = r"\bAI\b|人工智慧|AI Labs"
+
+def pick(text, title="", ctx=""):
     text = re.sub(r"人力銀行|104人力|一零四", "", text)  # 公司名裡的「銀行」不算支付主題
     sc = {}
     for rx, w in THEMES:
@@ -101,6 +110,9 @@ def pick(text, title=""):
         if n:
             for k, v in w.items():
                 sc[k] = sc.get(k, 0) + v * (1 + 0.5 * (min(n, 4) - 1))
+    if re.search(HARDWARE, title + " " + ctx):  # 硬體／製造業：C 端特定案例權重歸零
+        for k in "PJKL":
+            sc.pop(k, None)
     if not sc:
         sc = {"R": 2, "W": 2, "A": 1}
     order = sorted(sc, key=lambda k: (-sc[k], TIER.index(k) if k in TIER else 99))
@@ -124,7 +136,11 @@ def pick(text, title=""):
         if slot is not None:
             chosen[slot] = max(dom, key=lambda k: (sc[k], -TIER.index(k)))
     # 職稱含 AI：AI 產品上線（F）必入選（取代最後一點）
-    if re.search(r"\bAI\b|人工智慧", title) and "F" not in chosen and len(chosen) == 3:
+    if re.search(r"\bAI\b|人工智慧", title) and "F" not in chosen and len(chosen) == 3:  # 職稱含 AI：AI 產品上線必入
+        slot = max((i for i, k in enumerate(chosen) if k not in "AS"), default=None, key=lambda i: -sc.get(chosen[i], 0))
+        if slot is not None:
+            chosen[slot] = "F"
+    elif re.search(AI_JOB, ctx) and not any(k in chosen for k in "FA") and len(chosen) == 3:  # AI 公司：至少一點 AI
         chosen[2] = "F"
     # 企業通訊／雲端總機：訊息整合（M）必入選（取代最後一點）
     if re.search(r"總機|語音通訊|通訊雲|\bEVOX\b", text) and "M" not in chosen and len(chosen) == 3:
@@ -154,22 +170,53 @@ def build(code):
     comp = comps.get(j["company_id"], {}) if isinstance(comps, dict) else {}
     cname = (comp.get("name") if isinstance(comp, dict) else None) or re.search(r"公司名稱:\s*(.+)", jd).group(1).strip()
     cinfo = " ".join(str(comp.get(k, "")) for k in ("industry",)) if isinstance(comp, dict) else ""
-    chosen, sc = pick(title + "\n" + cname + " " + cinfo + "\n" + re.sub(r"【職務概況.*", "", jd, flags=re.S), title)
+    ctx = cname + " " + cinfo + " " + " ".join(re.findall(r"\bEVT\b|\bDVT\b|\bPVT\b|\bNPI\b|量產", jd))
+    chosen, sc = pick(title + "\n" + cname + " " + cinfo + "\n" + re.sub(r"【職務概況.*", "", jd, flags=re.S), title, ctx)
+    # 結尾雙主題；AI 職缺結尾必含 AI 課題（F／A）
+    topics = chosen[:2]
+    if re.search(AI_JOB, title + " " + cname) and not any(k in "FA" for k in topics):
+        ai = [k for k in chosen if k in "FA"]
+        if ai:
+            topics = [chosen[0], ai[0]]
     title = clean_title(title)
     for use_long in (True, False):
         bl = [S[k][0 if use_long else 1] for k in chosen]
-        end = f"{'、'.join(END[k] for k in chosen[:2])}，正是我過去幾年持續處理的課題。期待有機會與貴公司團隊進一步交流，分享相關實務經驗。謝謝您的閱讀。"
+        end = f"{'、'.join(END[k] for k in topics)}，正是我過去幾年持續處理的課題。期待有機會與貴公司團隊進一步交流，分享相關實務經驗。謝謝您的閱讀。"
         body = "您好：\n" + opening(title, chosen, jd) + "\n\n" + "\n\n".join("‧ " + b for b in bl) + "\n\n" + end + "\n\n聶崑淮\n"
         n = len(re.sub(r"\s", "", body))
         if n <= 350: break
     if n > 350:
-        end = f"{'、'.join(END[k] for k in chosen[:2])}，正是我過去幾年持續投入的課題。期待有機會與貴公司團隊進一步交流實務經驗。謝謝您的閱讀。"
+        end = f"{'、'.join(END[k] for k in topics)}，正是我過去幾年持續投入的課題。期待有機會與貴公司團隊進一步交流實務經驗。謝謝您的閱讀。"
         body = "您好：\n" + opening(title, chosen, jd) + "\n\n" + "\n\n".join("‧ " + b for b in bl) + "\n\n" + end + "\n\n聶崑淮\n"
         n = len(re.sub(r"\s", "", body))
     gaps = [v for rx, v in GAPS.items() if re.search(rx, jd, re.I)]
     digest = re.sub(r"\s+", " ", re.sub(r"【職務概況.*", "", jd, flags=re.S))[:700]
     eng = len(re.findall(r"[一-鿿]", jd)) < 150
     return cname, title, chosen, body, n, gaps, digest, eng
+
+if SELF_TEST:
+    fails = []
+    def ok(cond, msg):
+        if not cond: fails.append(msg)
+    TITLE_EXPECT = {"95qfm": "軟體產品經理 Product Manager - WEDA", "8qos1": "專案管理", "9686i": "B2B PM AI顧問",
+                    "70ih7": "專案管理"}
+    NOISE = re.compile(r"_(?:新店|台北|內湖|林口|[A-Z0-9]{4,})|[（(][^）)]*(?:台北|林口|內湖)[^）)]*[）)]|[｜|]\s*[A-Za-z]|\[\d+-\d+\]|\bNBO\d|<[^>]*經驗|【擴編】|關係企業-")
+    for c in ["95qfm", "8n0mx", "8qos1", "9686i", "70ih7", "96gpc", "92kcs", "8u1r1", "8ox7k", "92io8"]:
+        t = clean_title(jobs[c]["title"])
+        ok(not NOISE.search(t), f"clean_title 殘留噪音：{c} → {t}")
+        if c in TITLE_EXPECT:
+            ok(t == TITLE_EXPECT[c], f"clean_title 結果不符：{c} → {t}（預期 {TITLE_EXPECT[c]}）")
+    R = {c: build(c) for c in ["95oop", "93shv", "958dx", "8n0mx", "95q16", "8n92e", "8p2fp"]}
+    ok("F" in R["8p2fp"][2], f"8p2fp（AI 職稱）須含 F：{R['8p2fp'][2]}")
+    ok("T" in R["95oop"][2] and "P" not in R["95oop"][2], f"95oop 須含 T、不含 P：{R['95oop'][2]}")
+    ok("T" in R["93shv"][2], f"93shv 須含 T：{R['93shv'][2]}")
+    ok("M" in R["958dx"][2], f"958dx 須含 M：{R['958dx'][2]}")
+    for c in ("8n0mx", "95q16"):
+        ok("P" not in R[c][2] and "交友 App" not in R[c][3], f"{c} 硬體／製造不得含 P 或交友 App：{R[c][2]}")
+    end8 = [p for p in R["8n92e"][3].split("\n\n") if "期待" in p]
+    ok(end8 and "AI" in end8[0], f"8n92e 結尾須含 AI：{end8}")
+    print("✅ self-test 通過" if not fails else "❌ self-test 失敗：\n" + "\n".join(fails))
+    sys.exit(1 if fails else 0)
 
 missing, made = [], []
 outdir.mkdir(parents=True, exist_ok=True)

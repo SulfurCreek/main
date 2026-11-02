@@ -49,7 +49,25 @@ def check_closing(body):
     return []
 
 
-DIRTY_TITLE = re.compile(r"應徵貴公司[^。\n]*(?:<[^>]*>|＜[^＞]*＞|★|關係企業[-_—]|【(?:擴編|急徵)】|_JR\d|_[A-Z0-9]{4,}。|｜ ?[A-Za-z])")
+DIRTY_TITLE = re.compile(
+    r"應徵貴公司[^。\n]*(?:<[^>]*>|＜[^＞]*＞|★|關係企業[-_—]|【(?:擴編|急徵)】"
+    r"|_(?:新店|台北|內湖|林口|桃園|新竹|台中|高雄|JR\w*|[A-Z0-9]{4,})"
+    r"|[（(【\[<＜][^）)】\]>＞。]*(?:年以上|經驗|擴編|急徵|面議|台北|新北|林口|內湖|新店|新竹|台中|高雄|助理)[^）)】\]>＞。]*[）)】\]>＞]"
+    r"|【[^】]*／[^】]*／[^】]*】|[｜|]\s*[A-Za-z][A-Za-z0-9\s,/&.-]*。|(?:\[\d+-\d+\]|\bNBO\d+)\s*。)")
+HARDWARE_JOB = re.compile(r"製造|硬體|韌體|半導體|航太|電源|工業電腦|搜尋推薦|GARMIN|Garmin|研華|Advantech|旭隼|亞果|鎰福")
+AI_JOB = re.compile(r"\bAI\b|人工智慧|AI Labs")
+
+
+def check_domain(body, job, ctx):
+    """領域錯配（2026-11-02）：硬體製造或搜尋推薦職缺不得放 C 端交友 App 案例；AI 職缺結尾須呼應 AI。"""
+    errs, scope = [], f"{job or ''} {ctx or ''}"
+    if HARDWARE_JOB.search(scope) and ("馬來西亞 iOS" in body or "交友 App" in body):
+        errs.append("[領域錯配違規] 硬體製造或搜尋推薦職缺禁止塞入 C 端交友 App 案例！")
+    if AI_JOB.search(scope):
+        paras = [p for p in re.split(r"\n\s*\n", body.strip()) if "期待" in p]
+        if paras and "AI" not in paras[-1]:
+            errs.append("[結尾脫節違規] AI 相關職缺之結尾必須呼應 AI 課題！")
+    return errs
 
 
 def check_title(body):
@@ -64,7 +82,7 @@ def warn(body, payment=False):
     return [f"[預設不寫專名] 「{n}」建議改白話產品型態（有加分理由才保留）" for n in names if n in body]
 
 
-def check(body, job=None):
+def check(body, job=None, ctx=""):
     errs = []
     for name, defs in ENTITY_DEFS.items():
         i = body.find(name)
@@ -86,6 +104,7 @@ def check(body, job=None):
         errs.append(f"[無頭斷句開頭] 每點開頭要自帶場景主詞，不可以「{m.group(1)}」裸奔")
     errs += check_closing(body)
     errs += check_title(body)
+    errs += check_domain(body, job, ctx)
     if job and job not in body:
         errs.append(f"[職缺名不符] 找不到「{job}」")
     return errs
@@ -135,13 +154,15 @@ def main():
     if "--job" in args:
         job = args[args.index("--job") + 1]
     text = open(args[0], encoding="utf-8").read()
+    hm = re.search(r"｜j-\w+ ([^｜]*)｜([^｜]*)｜", text)
+    ctx = (args[args.index("--company") + 1] if "--company" in args else "") + " " + (hm.group(1) if hm else "")
     bodies = [b.split("```")[0] for b in text.split("```text")[1:]]
     if not bodies:
         print("❌ 找不到 ```text 推薦信區塊")
         sys.exit(1)
     bad = 0
     for k, b in enumerate(bodies, 1):
-        errs = check(b, job)
+        errs = check(b, job, ctx)
         for w in warn(b, payment):
             print(f"⚠️ 第 {k} 封：{w}")
         for e in errs:
