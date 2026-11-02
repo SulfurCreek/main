@@ -106,14 +106,57 @@ def short_name(n):
 HARDWARE = r"製造|硬體|韌體|半導體|航太|電源|工業電腦|電子零組件|量產|\bEVT\b|\bDVT\b|\bPVT\b|\bNPI\b|GARMIN|Garmin|研華|Advantech|旭隼|亞果|鎰福"
 AI_JOB = r"\bAI\b|人工智慧|AI Labs"
 
-def pick(text, title="", ctx=""):
+SECTION_WEIGHT = {"core": 1.0, "required": 1.0, "bonus": 0.5, "company": 0.3, "meta": 0.0}
+SECTION_NAME = {"core": "核心職責", "required": "必備條件", "bonus": "加分條件", "company": "公司介紹", "meta": "職務概況"}
+
+
+def split_jd(jd):
+    """JD 結構化：依【標題】切成核心職責／必備條件／加分條件／公司介紹／職務概況；否定句（不需、無須）剔除。"""
+    secs = {k: [] for k in SECTION_WEIGHT}
+    cur = "core"
+    for part in re.split(r"(【[^】]{1,40}】)", jd):
+        m = re.fullmatch(r"【([^】]+)】", part)
+        if m:
+            h = m.group(1)
+            if re.search(r"職務概況|Overview", h): cur = "meta"
+            elif re.search(r"加分|Preferred|Nice|優先|Plus", h, re.I): cur = "bonus"
+            elif re.search(r"條件|必備|必要|Requirement|Qualification|具備|資格|喜歡什麼樣", h, re.I): cur = "required"
+            elif re.search(r"為什麼|關於我們|About|Why|福利|薪資|面試|公司|團隊介紹|搶先應徵", h, re.I): cur = "company"
+            elif re.search(r"工作|職責|Responsibilit|Job|職位|內容|Brief|尋找", h, re.I): cur = "core"
+            elif re.search(r"[市區路號]", h): cur = "meta"
+            continue
+        for sent in re.split(r"[。；;\n]|(?<=[a-z])\. ", part):
+            s = sent.strip(" -•‧*")
+            if len(s) >= 4 and not re.search(r"不需|無須|不用|不要求|不是|並非|\bnot\b", s, re.I):
+                secs[cur].append(s)
+    return secs
+
+
+def evidence(k, secs):
+    """逐點對位：找出 JD 中觸發故事 k 的原句（核心＞必備＞加分＞公司），回傳 (區段, 原句) 或 None。"""
+    rxs = [rx for rx, w in THEMES if w.get(k, 0) >= 3]  # 只採該故事的強觸發詞作為對位證據
+    for sec in ("core", "required", "bonus", "company"):
+        best = max(((sum(len(re.findall(rx, s, re.I)) for rx in rxs), s) for s in secs[sec]), default=(0, ""))
+        if best[0]:
+            return SECTION_NAME[sec], best[1][:70]
+    return None
+
+
+def pick(text, title="", ctx="", secs=None):
+    if secs is not None and not text:
+        text = title + "\n" + ctx + "\n" + "\n".join(x for s in ("core", "required", "bonus", "company") for x in secs[s])
     text = re.sub(r"人力銀行|104人力|一零四", "", text)  # 公司名裡的「銀行」不算支付主題
     sc = {}
     for rx, w in THEMES:
-        n = len(re.findall(rx, text, re.I)) + 2 * len(re.findall(rx, title, re.I))
+        if secs is not None:  # 結構化計分：核心／必備全權重、加分半權、公司介紹 0.3、職務概況不計
+            n = sum(SECTION_WEIGHT[s] * sum(len(re.findall(rx, x, re.I)) for x in secs[s]) for s in secs)
+            n += len(re.findall(rx, re.sub(r"人力銀行|104人力|一零四", "", ctx), re.I)) * 0.5
+        else:
+            n = len(re.findall(rx, text, re.I))
+        n += 2 * len(re.findall(rx, title, re.I))
         if n:
             for k, v in w.items():
-                sc[k] = sc.get(k, 0) + v * (1 + 0.5 * (min(n, 4) - 1))
+                sc[k] = sc.get(k, 0) + (v * (1 + 0.5 * (min(n, 4) - 1)) if n >= 1 else v * n)
     if re.search(HARDWARE, title + " " + ctx):  # 硬體／製造業：C 端特定案例權重歸零
         for k in "PJKL":
             sc.pop(k, None)
@@ -159,7 +202,7 @@ def pick(text, title="", ctx=""):
     for k in ("R", "W", "A"):  # 補到三點
         if len(chosen) < 3 and k not in chosen: chosen.append(k)
     # C 端娛樂／直播／社群／交友／遊戲，或 Fintech／支付公司：領域王牌排第一點
-    if re.search(r"直播|交友|社群|娛樂|遊戲|LIVE|支付|金流|金融|資融|\bPay\b|Pay_", title + " " + ctx):
+    if re.search(r"直播|交友|社群|娛樂|遊戲|LIVE|支付|金流|金融|資融|Pay(?![a-z])", title + " " + ctx):
         lead = [k for k in chosen if k in "JYCPK"]
         if lead:
             chosen.remove(lead[0]); chosen.insert(0, lead[0])
@@ -188,7 +231,15 @@ def build(code):
     cname = (comp.get("name") if isinstance(comp, dict) else None) or re.search(r"公司名稱:\s*(.+)", jd).group(1).strip()
     cinfo = " ".join(str(comp.get(k, "")) for k in ("industry",)) if isinstance(comp, dict) else ""
     ctx = cname + " " + cinfo + " " + " ".join(re.findall(r"\bEVT\b|\bDVT\b|\bPVT\b|\bNPI\b", jd))
-    chosen, sc = pick(title + "\n" + cname + " " + cinfo + "\n" + re.sub(r"【職務概況.*", "", jd, flags=re.S), title, ctx)
+    secs = split_jd(jd)
+    chosen, sc = pick("", title, ctx, secs)
+    # 逐點對位：JD 原句 → 核准證據 → 為何採用；找不到 JD 原句者標低把握
+    mapping = []
+    for k in chosen:
+        ev = evidence(k, secs)
+        why = (f"{ev[0]}提到「{ev[1]}」" if ev else "JD 無直接對應（領域規則或補點）")
+        mapping.append((k, why, bool(ev)))
+    confidence = "低（交主代理判斷）" if sum(1 for m in mapping if not m[2]) >= 2 or max(sc.values(), default=0) < 3 else "一般"
     # 結尾雙主題；AI 職缺結尾必含 AI 課題（F／A）
     topics = []
     for k in chosen:  # 結尾主題去重（Y／C 同為「支付規劃與規格轉換」）
@@ -199,8 +250,10 @@ def build(code):
         if ai:
             topics = [chosen[0], ai[0]]
     title = clean_title(title)
-    for nshort in range(len(chosen) + 1):  # 逐點漸進壓縮：長長長 → 長長短 → 長短短 → 短短短
-        bl = [S[k][1 if idx >= len(chosen) - nshort else 0] for idx, k in enumerate(chosen)]
+    shrink = sorted(range(len(chosen)), key=lambda i: (sc.get(chosen[i], 0), -i))  # 先縮與 JD 最不相關的一點
+    for nshort in range(len(chosen) + 1):  # 整封分配：依相關度由低到高逐點改短版
+        short = set(shrink[:nshort])
+        bl = [S[k][1 if idx in short else 0] for idx, k in enumerate(chosen)]
         end = f"{'、'.join(END[k] for k in topics)}，正是我過去幾年持續處理的課題。期待有機會與貴公司團隊進一步交流，分享相關實務經驗。謝謝您的閱讀。"
         body = "您好：\n" + opening(title, chosen, jd) + "\n\n" + "\n\n".join("‧ " + b for b in bl) + "\n\n" + end + "\n\n聶崑淮\n"
         n = len(re.sub(r"\s", "", body))
@@ -212,7 +265,7 @@ def build(code):
     gaps = [v for rx, v in GAPS.items() if re.search(rx, jd, re.I)]
     digest = re.sub(r"\s+", " ", jd).replace("-->", "→")  # 盲審用完整 JD，不截斷
     eng = len(re.findall(r"[一-鿿]", jd)) < 150
-    return cname, title, chosen, body, n, gaps, digest, eng, raw_title, ctx
+    return cname, title, chosen, body, n, gaps, digest, eng, raw_title, ctx, mapping, confidence
 
 def self_test():
     fails = []
@@ -242,6 +295,7 @@ def self_test():
     ok("T" in R["95oop"][2] and "P" not in R["95oop"][2], f"95oop 須含 T、不含 P：{R['95oop'][2]}")
     ok("T" in R["93shv"][2], f"93shv 須含 T：{R['93shv'][2]}")
     ok("M" in R["958dx"][2], f"958dx 須含 M：{R['958dx'][2]}")
+    ok(R["92d3h"][2][0] in "YC", f"92d3h（OwlPay 支付）領域王牌須排第一點：{R['92d3h'][2]}")
     for c in ("8n0mx", "95q16"):
         ok("P" not in R[c][2] and "交友 App" not in R[c][3], f"{c} 硬體／製造不得含 P 或交友 App：{R[c][2]}")
     end8 = [p for p in R["8n92e"][3].split("\n\n") if "期待" in p]
@@ -250,8 +304,9 @@ def self_test():
     return 1 if fails else 0
 
 
-def render(c, cname, title, chosen, body, n, gaps, digest, eng, raw):
-    rows = "\n".join(f"| {i+1} | {k} | {S[k][2]} |" for i, k in enumerate(chosen))
+def render(c, cname, title, chosen, body, n, gaps, digest, eng, raw, mapping=(), conf="一般"):
+    why = {k: w for k, w, _ in mapping}
+    rows = "\n".join(f"| {i+1} | {k} | {why.get(k, '—')} | {S[k][2]} |" for i, k in enumerate(chosen))
     return f"""<!--
 104 自我推薦信上游草稿 r1（2026-11-02，批次產生）｜j-{c} {cname}｜{title}｜分級：一般｜Career Move
 職缺原名：{raw}｜job_id：{c}｜對外職稱（--job）：{title}
@@ -272,8 +327,10 @@ def render(c, cname, title, chosen, body, n, gaps, digest, eng, raw):
 
 ## 對位表
 
-| 點 | 事實句 | library 出處 |
-| :-- | :-- | :-- |
+選材把握：{conf}
+
+| 點 | 故事 | JD 原文需求（為何採用） | 核准證據出處 |
+| :-- | :-- | :-- | :-- |
 {rows}
 
 ## 刻意不寫
@@ -293,7 +350,7 @@ def generate(codes, outdir, overwrite=False):
     for c in codes:
         if c not in jobs or not jobs[c].get("description", "").strip():
             results.append((c, "失敗", "缺職缺或 JD", None)); continue
-        cname, title, chosen, body, n, gaps, digest, eng, raw, ctx = build(c)
+        cname, title, chosen, body, n, gaps, digest, eng, raw, ctx, mapping, conf = build(c)
         e1, w1 = vl.check_structure(body)
         errs = e1 + vl.check(body, title, ctx)
         if errs:
@@ -301,7 +358,7 @@ def generate(codes, outdir, overwrite=False):
         path = outdir / f"{c}-{short_name(cname)}-draft.md"
         if path.exists() and not overwrite:
             results.append((c, "略過", f"同名檔已存在：{path.name}（需 --overwrite）", None)); continue
-        path.write_text(render(c, cname, title, chosen, body, n, gaps, digest, eng, raw), encoding="utf-8")
+        path.write_text(render(c, cname, title, chosen, body, n, gaps, digest, eng, raw, mapping, conf), encoding="utf-8")
         results.append((c, "成功", f"{n} 字 {''.join(chosen)}" + ("；" + "；".join(w1) if w1 else ""), path))
     return results
 
