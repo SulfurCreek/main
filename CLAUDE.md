@@ -21,7 +21,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 | 分析 API 文件產測試矩陣、或依矩陣產生並執行 pytest | 用 `Skill` 載入 `api`（文件→矩陣）／`auto-test`（矩陣→腳本→報告，需先跑過 `api`） |
 | 撰寫/修改個人履歷、CV、作品集 | 用 `Skill` 載入 `resume-craft`（依賴的 `career/` 職能框架 wiki 已於 2026-08-31 併入本 repo，開箱即用）。**審查履歷（模擬人資／主管、同儕比較）用 `resume-review-panel`**（素材只在個人線分支，結果不取代真人回饋） |
 | 產生 104 特化版履歷 md（Quill HTML、逐欄位）／針對指定職缺寫 104 自我推薦信 | 用 `Skill` 載入 `104resume`／`104coverletter`（個人線自有；找檔案先看個人線分支 `career/ROUTER.md`） |
-| 履歷「概念偷跑／因果斷裂」編譯：Stage 1 把事實編成 `career/01_claude_stage/causal_draft.md`（STATUS／LOCK_ENTITIES 標記），Stage 3 以 `career/scripts/verify_polish.py` 驗收 Codex 成品 | 用 `Skill` 載入 `resume-causal-logic-compiler`（個人線自有；管線規則見 `wiki/personal_line_collab.md` §7） |
+| 履歷「概念偷跑／因果斷裂」編譯（四階段：Stage 1–2 Claude 提取事實並編成 `career/01_claude_stage/` 草稿、Stage 3 Codex 潤飾、Stage 4 Claude 驗收發布；**中英分流**：中文用 `verify_polish.py`，英文用 `verify_line_profile.py`／`verify_line_pdf.py`） | 用 `Skill` 載入 `resume-causal-logic-compiler`（個人線自有；管線規則見 `wiki/personal_line_collab.md` §7） |
 | 產生／填寫／驗證 104 履歷、撰寫中文履歷或自傳語氣（Cake Resume 另案，不得套用 104 規格） | 用 `Skill` 載入 `resume-craft`；104 先讀 `career/104/README.md`（在個人線分支 `claude/happy-lamport-ljis8c`，欄位規格 `fields-spec.md`），中文語氣依 `resume-craft/references/tw-voice.md` |
 | 把作品集（`career/portfolio/*.md`）渲染成靜態網站、部署 GitHub／Cloudflare Pages（作品集網站、靜態網站、portfolio site） | 用 `Skill` 載入 `portfolio-site`（只管渲染；內容由 `resume-craft` 管，輸出在使用者自己的作品集 repo，不進本 repo） |
 | 撰寫 QA 測試案例（只寫 happy path）、把規格書轉成可勾選的驗收案例表 | 用 `Skill` 載入 `qa-happy-path-cases` |
