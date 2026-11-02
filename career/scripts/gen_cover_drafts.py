@@ -56,12 +56,15 @@ THEMES = [  # (正則, {故事: 權重})；英文縮寫一律 \b 單字邊界；
  (r"\bSaaS\b|\bB2B\b|\bERP\b|雲端|企業客戶|訂閱制|\bmerchants?\b", {"Q": 3, "G": 2, "R": 1}),
  (r"資安|資訊安全|防詐|詐騙|Anti-Scam|帳號安全|身分驗證|個資", {"S": 6}),
  (r"Claude Code|Context Engineering|\bMCP\b|\bn8n\b|AI[- ]first|流程自動化", {"A": 4}),
- (r"訊息|聊天|通訊|社群|互動|客服", {"M": 4}),
+ (r"訊息|聊天|通訊|總機|語音|\bEVOX\b|社群|互動|客服", {"M": 4}),
  (r"媒合|創作者|網紅|內容平台|0 到 1|從零|新產品|新事業", {"K": 4, "J": 1}),
  (r"遊戲|餐飲", {"K": 2, "J": 2, "M": 1, "P": 1}),
- (r"數據|\bData\b|分析|指標|\bKPI\b|實驗|A/B|\bBI\b", {"P": 3, "A": 2}),
+ (r"A/B|實驗|定價實驗|轉換率優化", {"P": 3}),
+ (r"數據|\bData\b|分析|指標|\bKPI\b", {"A": 2}),
+ (r"搜尋|推薦系統|配對|分類|標籤|資料結構|數據產品|Data Product|資料治理|\bBI\b", {"T": 4, "F": 3}),
  (r"在地化|多語系|多國語言|\blocalization\b|\bi18n\b|\bl10n\b|翻譯", {"L": 4}),
- (r"跨國|海外|全球|\bGlobal\b|國際|東南亞", {"P": 2, "C": 2, "W": 1}),
+ (r"東南亞|馬來西亞|印尼|泰國", {"P": 2, "C": 2}),
+ (r"跨國|海外|全球|\bGlobal\b|國際", {"W": 1}),
  (r"跨部門|協調|溝通|利害關係|業務", {"W": 2}),
  (r"權限|帳號|會員|\bCRM\b|後台", {"G": 3, "R": 1}),
  (r"客服|客戶滿意|客戶成功|案件", {"Q": 3}),
@@ -78,6 +81,11 @@ def clean_title(t):
     t = re.sub(r"^.*?關係企業[-_—\s]*", "", t)
     t = re.sub(r"★[^★]*★", "", t)
     t = re.sub(r"\s*[<＜【\[（(][^>＞】\]）)]*(?:年以上|經驗|擴編|急徵|薪資|面議|遠端|日班)[^>＞】\]）)]*[>＞】\]）)]", "", t)
+    t = re.sub(r"_(?:新店|台北|內湖|林口|桃園|新竹|台中|高雄|[A-Z0-9]{4,}).*$", "", t)
+    t = re.sub(r"\s*[（(【\[<＜][^）)】\]>＞]*(?:台北|新北|林口|內湖|新店|新竹|台中|高雄|產品助理|日班|遠端)[^）)】\]>＞]*[）)】\]>＞]", "", t)
+    t = re.sub(r"【[^】]*／[^】]*／[^】]*】", "", t)
+    t = re.sub(r"\s*[｜|]\s*[A-Za-z][A-Za-z0-9\s,/&.-]*$", "", t)
+    t = re.sub(r"\s*\[\d+-\d+\]$|\s+[A-Z]{3}\d$", "", t)
     return t.strip()
 
 def short_name(n):
@@ -105,7 +113,10 @@ def pick(text, title=""):
         chosen.append(k)
     # A（AI 工作流）與 T（代碼表整理）互斥，避免同一封重複講 AI 整理資料
     if "A" in chosen and "T" in chosen:
-        chosen.remove("T" if sc.get("A", 0) >= sc.get("T", 0) else "A")
+        if re.search(r"搜尋|推薦|\bData\b|數據", title, re.I) or sc.get("T", 0) >= 4:
+            chosen.remove("A")  # 搜尋推薦／數據職缺：T 優先於 A
+        else:
+            chosen.remove("T" if sc.get("A", 0) >= sc.get("T", 0) else "A")
     # 領域必配：JD／公司背景有金流、電商、直播等訊號時，三點中至少一點是 Y／C／J（取代最後一點）
     dom = [k for k in "YCJ" if sc.get(k, 0) >= 7]
     if dom and not any(k in chosen for k in "YCJ") and len(chosen) == 3:
@@ -115,6 +126,11 @@ def pick(text, title=""):
     # 職稱含 AI：AI 產品上線（F）必入選（取代最後一點）
     if re.search(r"\bAI\b|人工智慧", title) and "F" not in chosen and len(chosen) == 3:
         chosen[2] = "F"
+    # 企業通訊／雲端總機：訊息整合（M）必入選（取代最後一點）
+    if re.search(r"總機|語音通訊|通訊雲|\bEVOX\b", text) and "M" not in chosen and len(chosen) == 3:
+        slot = max((i for i, k in enumerate(chosen) if k not in "FAS"), default=None, key=lambda i: -sc.get(chosen[i], 0))
+        if slot is not None:
+            chosen[slot] = "M"
     for k in ("R", "W", "A"):  # 補到三點
         if len(chosen) < 3 and k not in chosen: chosen.append(k)
     return chosen, sc
@@ -147,7 +163,7 @@ def build(code):
         n = len(re.sub(r"\s", "", body))
         if n <= 350: break
     if n > 350:
-        end = f"{END[chosen[0]]}，正是我過去幾年持續處理的課題。期待有機會與貴公司團隊進一步交流，分享相關實務經驗。謝謝您的閱讀。"
+        end = f"{'、'.join(END[k] for k in chosen[:2])}，正是我過去幾年持續投入的課題。期待有機會與貴公司團隊進一步交流實務經驗。謝謝您的閱讀。"
         body = "您好：\n" + opening(title, chosen, jd) + "\n\n" + "\n\n".join("‧ " + b for b in bl) + "\n\n" + end + "\n\n聶崑淮\n"
         n = len(re.sub(r"\s", "", body))
     gaps = [v for rx, v in GAPS.items() if re.search(rx, jd, re.I)]

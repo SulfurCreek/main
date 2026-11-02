@@ -49,7 +49,7 @@ def check_closing(body):
     return []
 
 
-DIRTY_TITLE = re.compile(r"應徵貴公司[^。\n]*(?:<[^>]*>|＜[^＞]*＞|★|關係企業[-_—]|【(?:擴編|急徵)】)")
+DIRTY_TITLE = re.compile(r"應徵貴公司[^。\n]*(?:<[^>]*>|＜[^＞]*＞|★|關係企業[-_—]|【(?:擴編|急徵)】|_JR\d|_[A-Z0-9]{4,}。|｜ ?[A-Za-z])")
 
 
 def check_title(body):
