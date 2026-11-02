@@ -70,6 +70,16 @@ def check_domain(body, job, ctx):
     return errs
 
 
+def check_prior(body):
+    """跨經歷概念偷跑（2026-11-02）：條列引用前職 C 端產品，首段須先以「曾…」交代背景。"""
+    paras = [p.strip() for p in re.split(r"\n\s*\n", body.strip()) if p.strip()]
+    head = paras[0] if paras else ""
+    rest = "\n".join(paras[1:])
+    if any(w in rest for w in ("交友 App", "訂閱制內容 App", "網紅與商家")) and "曾" not in head:
+        return ["[跨經歷概念偷跑] 條列引用前職 C 端 App 案例時，首段必須先交代曾負責相關產品之背景！"]
+    return []
+
+
 def check_title(body):
     """職缺名稱淨化（2026-11-02）：首句不得帶招募備註、集團前綴、★ 公告。"""
     m = DIRTY_TITLE.search(body)
@@ -105,6 +115,7 @@ def check(body, job=None, ctx=""):
     errs += check_closing(body)
     errs += check_title(body)
     errs += check_domain(body, job, ctx)
+    errs += check_prior(body)
     if job and job not in body:
         errs.append(f"[職缺名不符] 找不到「{job}」")
     return errs

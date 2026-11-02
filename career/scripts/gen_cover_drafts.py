@@ -41,7 +41,7 @@ S = {
  "K": ("網紅與商家的雙邊媒合平台沒有直接競品可參考，我先訪談商家的行銷單位，再規劃邀約、報名與訊息流程；平台累積約 1.6 萬份網紅檔案，上線半年內有 8 萬多次合作案報名。",
        "網紅與商家的雙邊媒合平台沒有競品可參考，我先訪談商家行銷單位，再規劃邀約、報名與訊息流程；平台累積約 1.6 萬份網紅檔案，上線半年內有 8 萬多次合作案報名。", "facts-prior KOOL"),
  "J": ("主力交友 App 遭 App Store 下架後，我主導以同一後台推出接續 App 承接用戶與營收，再主導原 App 重新上架；男性日活躍用戶於上線與導流期間由約 3,200 增至 1.25 萬。",
-       "主力交友 App 遭 App Store 下架後，我主導以同一後台推出接續 App 承接用戶與營收，並主導原 App 重新上架。", "decisions §51、§34（DAU 限定：上線與導流期間）"),
+       "主力交友 App 遭 App Store 下架後，我主導以同一後台推出接續 App 承接用戶與營收，並主導原 App 重新上架；上線與導流期間男性日活躍用戶由約 3,200 增至 1.25 萬。", "decisions §51、§34（DAU 限定：上線與導流期間）"),
  "G": ("回應 2020/12 起累積的 55 件客戶建議，規劃群組招募功能，讓大型企業按部門或分店共同招募，並定義帳號、職缺與履歷的存取規則。",
        "回應 55 件客戶建議，規劃群組招募功能，讓大型企業按部門或分店共同招募，並定義帳號、職缺與履歷的存取規則。", "facts-1111 群組功能"),
  "Q": ("處理企業客戶的產品問題與建議時，依時間與難易排定優先序，關鍵案件親自處理、其餘交辦直屬部屬，30 天結案率由 52% 升至 79%（提案滿 30 天者，2024/11–2025/10 對比 2025/11–2026/09/20）。",
@@ -154,18 +154,26 @@ def pick(text, title="", ctx=""):
             chosen[slot] = "M"
     for k in ("R", "W", "A"):  # 補到三點
         if len(chosen) < 3 and k not in chosen: chosen.append(k)
+    # C 端娛樂／直播／社群／交友／遊戲，或 Fintech／支付公司：領域王牌排第一點
+    if re.search(r"直播|交友|社群|娛樂|遊戲|LIVE|支付|金流|金融|資融|\bPay\b|Pay_", title + " " + ctx):
+        lead = [k for k in chosen if k in "JYCPK"]
+        if lead:
+            chosen.remove(lead[0]); chosen.insert(0, lead[0])
     return chosen, sc
 
 def opening(title, chosen, jd):
     t = f"應徵貴公司{' ' if re.match(r'[A-Za-z0-9]', title) else ''}{title}。"
+    # 三點中任一點引用前職 C 端產品 → 首段先交代背景（防跨經歷概念偷跑）
+    prior = []
+    if any(k in chosen for k in "PJCL"): prior.append("高營收的訂閱制交友 App")
+    if "Y" in chosen: prior.append("訂閱制內容 App")
+    if "K" in chosen: prior.append("網紅與商家媒合平台")
+    if prior:
+        return t + f"我有近 10 年產品經理經驗，曾經營{'與'.join(prior)}，現任人力銀行企業端招募系統 Product Owner。"
     if "A" in chosen:  # A 條列已寫「日常以 AI Agent…」，開頭不重複
         return t + "我有近 10 年產品經理經驗，現任人力銀行企業端招募系統 Product Owner，帶領 2 名直屬企劃。"
     if chosen[0] in "F":
         return t + "我有近 10 年產品經理經驗，現任人力銀行企業端招募系統 Product Owner，日常以 AI Agent 協作撰寫規格與分析資料。"
-    if chosen[0] in "YCP" and any(k in chosen for k in "YC"):
-        return t + "我規劃過東南亞第三方支付與網頁付款，有近 10 年產品經理經驗，現任人力銀行企業端招募系統 Product Owner。"
-    if chosen[0] in "KJM":
-        return t + "我曾經營主力高營收的訂閱制交友 App，累積近 10 年產品經理經驗，現任人力銀行企業端招募系統 Product Owner。"
     return t + "我有近 10 年產品經理經驗，現任人力銀行企業端招募系統 Product Owner，帶領 2 名直屬企劃。"
 
 def build(code):
@@ -184,8 +192,8 @@ def build(code):
         if ai:
             topics = [chosen[0], ai[0]]
     title = clean_title(title)
-    for use_long in (True, False):
-        bl = [S[k][0 if use_long else 1] for k in chosen]
+    for nshort in range(len(chosen) + 1):  # 逐點漸進壓縮：長長長 → 長長短 → 長短短 → 短短短
+        bl = [S[k][1 if idx >= len(chosen) - nshort else 0] for idx, k in enumerate(chosen)]
         end = f"{'、'.join(END[k] for k in topics)}，正是我過去幾年持續處理的課題。期待有機會與貴公司團隊進一步交流，分享相關實務經驗。謝謝您的閱讀。"
         body = "您好：\n" + opening(title, chosen, jd) + "\n\n" + "\n\n".join("‧ " + b for b in bl) + "\n\n" + end + "\n\n聶崑淮\n"
         n = len(re.sub(r"\s", "", body))
@@ -213,6 +221,12 @@ if SELF_TEST:
             ok(t == TITLE_EXPECT[c], f"clean_title 結果不符：{c} → {t}（預期 {TITLE_EXPECT[c]}）")
     R = {c: build(c) for c in ["95oop", "93shv", "958dx", "8n0mx", "95q16", "8n92e", "8p2fp", "8bt4g"]}
     ok("J" in R["8bt4g"][2], f"8bt4g（直播／交友公司）須含 J：{R['8bt4g'][2]}")
+    ok(R["8bt4g"][2][0] == "J", f"8bt4g 領域王牌 J 須排第一點：{R['8bt4g'][2]}")
+    ok("1.25 萬" in R["8bt4g"][3], "8bt4g 的 J 點須保留 DAU 數據")
+    for c, r in R.items():
+        opening_para = r[3].split("\n\n")[0]
+        if any(w in r[3] for w in ("交友 App", "訂閱制內容 App", "網紅與商家")):
+            ok("曾" in opening_para, f"{c} 引用前職 C 端產品但首段未交代背景")
     ok("F" in R["8p2fp"][2], f"8p2fp（AI 職稱）須含 F：{R['8p2fp'][2]}")
     ok("T" in R["95oop"][2] and "P" not in R["95oop"][2], f"95oop 須含 T、不含 P：{R['95oop'][2]}")
     ok("T" in R["93shv"][2], f"93shv 須含 T：{R['93shv'][2]}")
