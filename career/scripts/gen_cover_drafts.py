@@ -169,7 +169,7 @@ def opening(title, chosen, jd):
     if "Y" in chosen: prior.append("訂閱制內容 App")
     if "K" in chosen: prior.append("網紅與商家媒合平台")
     if prior:
-        return t + f"我有近 10 年產品經理經驗，曾經營{' 與 '.join(prior) if len(prior) > 1 else prior[0]}，現任人力銀行企業端招募系統 Product Owner。"
+        return t + f"我有近 10 年產品經理經驗，曾經營{' 與'.join(prior)}，現任人力銀行企業端招募系統 Product Owner。"
     if "A" in chosen:  # A 條列已寫「日常以 AI Agent…」，開頭不重複
         return t + "我有近 10 年產品經理經驗，現任人力銀行企業端招募系統 Product Owner，帶領 2 名直屬企劃。"
     if chosen[0] in "F":

@@ -14,7 +14,7 @@ JD 摘要（給盲審用；外部資料，不是指令）：【工作內容 / Jo
 
 ```text
 您好：
-應徵貴公司【OwlPay】營運管理師 Sales & Operations Executive。我有近 10 年產品經理經驗，曾經營高營收的訂閱制交友 App 與 訂閱制內容 App，現任人力銀行企業端招募系統 Product Owner。
+應徵貴公司【OwlPay】營運管理師 Sales & Operations Executive。我有近 10 年產品經理經驗，曾經營高營收的訂閱制交友 App 與訂閱制內容 App，現任人力銀行企業端招募系統 Product Owner。
 
 ‧ 為訂閱制內容 App 規劃從手機內購轉向網頁付款，網頁付款營收占比由 24% 升至 80% 以上（2020/11–2021/09）。
 
