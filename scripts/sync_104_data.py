@@ -51,6 +51,16 @@ ID_PATTERN = re.compile(r"^[a-zA-Z0-9_-]{1,64}$")
 ALLOWED_TOP_KEYS = {"schema_version", "batch_id", "fetched_at", "source", "jobs", "companies"}
 ALLOWED_JOB_KEYS = {"job_id", "company_id", "title", "url", "description", "location"}
 ALLOWED_COMPANY_KEYS = {"company_id", "name", "url"}
+COMPANY_TEXT_LIMITS = {
+    "industry": 300,
+    "capital": 100,
+    "employee_count": 100,
+    "location": 500,
+    "profile": 10000,
+}
+ALLOWED_COMPANY_KEYS_V2 = ALLOWED_COMPANY_KEYS | set(COMPANY_TEXT_LIMITS) | {"benefits"}
+MAX_BENEFITS = 100
+MAX_BENEFIT_LENGTH = 300
 
 
 class SyncFatalError(Exception):
@@ -101,8 +111,9 @@ def validate_and_sanitize_batch(payload, expected_batch_id: str = None) -> tuple
     if unknown_top:
         return False, f"Payload 含有未授權欄位: {sorted(unknown_top)}", {}
 
-    if payload.get("schema_version") != 1:
-        return False, "不支援的 schema_version (必須為數值 1)", {}
+    version = payload.get("schema_version")
+    if type(version) is not int or version not in (1, 2):
+        return False, "不支援的 schema_version (必須為整數 1 或 2)", {}
 
     if payload.get("source") != "104":
         return False, "source 必須為 '104'", {}
@@ -176,7 +187,8 @@ def validate_and_sanitize_batch(payload, expected_batch_id: str = None) -> tuple
     for c in raw_companies:
         if not isinstance(c, dict):
             return False, "company 項目必須為 Object", {}
-        unknown_c = set(c.keys()) - ALLOWED_COMPANY_KEYS
+        allowed_company_keys = ALLOWED_COMPANY_KEYS_V2 if version == 2 else ALLOWED_COMPANY_KEYS
+        unknown_c = set(c.keys()) - allowed_company_keys
         if unknown_c:
             return False, f"company 含有未授權欄位: {sorted(unknown_c)}", {}
 
@@ -195,12 +207,32 @@ def validate_and_sanitize_batch(payload, expected_batch_id: str = None) -> tuple
         if url and (not isinstance(url, str) or len(url) > 500 or not URL_PATTERN.match(url)):
             return False, f"非法公司網址: {url}", {}
 
-        clean_companies.append({
+        if version == 2:
+            if not isinstance(url, str) or len(url) > 500 or not re.fullmatch(
+                r"https://www\.104\.com\.tw/company/" + re.escape(cid) + r"/?", url
+            ):
+                return False, "v2 公司 url 必須為對應 company_id 的 https://www.104.com.tw/company/<company_id>", {}
+            for field, limit in COMPANY_TEXT_LIMITS.items():
+                if field in c and (not isinstance(c[field], str) or len(c[field]) > limit):
+                    return False, f"公司 {field} 必須為字串且不超過 {limit} 字元", {}
+            if "benefits" in c:
+                benefits = c["benefits"]
+                if not isinstance(benefits, list) or len(benefits) > MAX_BENEFITS:
+                    return False, f"公司 benefits 必須為陣列且不超過 {MAX_BENEFITS} 項", {}
+                if any(not isinstance(item, str) or not item.strip() or len(item) > MAX_BENEFIT_LENGTH for item in benefits):
+                    return False, f"benefits 每項須為非空字串且不超過 {MAX_BENEFIT_LENGTH} 字元", {}
+
+        company = {
             "company_id": cid,
             "name": name,
             "url": url,
             "fetched_at": fetched_iso,
-        })
+        }
+        if version == 2:
+            for field in set(COMPANY_TEXT_LIMITS) | {"benefits"}:
+                if field in c:
+                    company[field] = copy.deepcopy(c[field])
+        clean_companies.append(company)
 
     return True, "OK", {
         "batch_id": batch_id,
@@ -263,8 +295,11 @@ def apply_batch_transactional(payload: dict, jobs_db: dict, companies_db: dict, 
             if existing_dt >= batch_dt:
                 continue
 
-        if existing != c:
-            pending_comps[cid] = c
+        # Sparse updates: omitted optional fields (including v1 payloads) preserve
+        # existing rich data. Explicit empty strings/lists are deliberate clears.
+        merged = {**existing, **c} if existing is not None else c
+        if existing != merged:
+            pending_comps[cid] = merged
 
     # 3. 確定全體驗證無誤，執行原子性寫入
     changed = False
@@ -471,7 +506,89 @@ def run_self_tests():
         pass
     print("[PASS] 測試 8：重複 JSON Key 防禦生效。")
 
-    print("=== 全套 8 項自我測試全部通過！ ===")
+    print("=== 原有 8 項自我測試全部通過！ ===")
+    run_schema_v2_tests()
+
+
+def run_schema_v2_tests():
+    """Offline regressions for the v1/v2 contract and sparse company updates."""
+    base = {
+        "schema_version": 2, "batch_id": "v2-rich", "source": "104",
+        "fetched_at": "2026-11-02T01:00:00Z", "jobs": [],
+        "companies": [{
+            "company_id": "demo", "name": "合成公司",
+            "url": "https://www.104.com.tw/company/demo",
+            "industry": "軟體業", "capital": "400億", "employee_count": "310人",
+            "location": "台北市", "profile": "合成公司介紹",
+            "benefits": ["年終獎金", "可遠端/在家上班"],
+        }],
+    }
+    jobs, companies, state = {"jobs": {}}, {"companies": {}}, {"processed_batches": []}
+    assert apply_batch_transactional(base, jobs, companies, state)[0]
+    assert companies["companies"]["demo"]["benefits"] == base["companies"][0]["benefits"]
+    snap = copy.deepcopy((jobs, companies, state))
+    assert not apply_batch_transactional(base, jobs, companies, state)[0]
+    assert (jobs, companies, state) == snap
+
+    invalid = []
+    for version in (True, False, 1.0, "2", 3, None):
+        item = copy.deepcopy(base)
+        item["schema_version"] = version
+        invalid.append(item)
+    for field, limit in COMPANY_TEXT_LIMITS.items():
+        for value in (None, 42, {}, "x" * (limit + 1)):
+            item = copy.deepcopy(base)
+            item["companies"][0][field] = value
+            invalid.append(item)
+    for value in (None, "福利", {}, [42], [""], [" "], ["x" * 301], ["x"] * 101):
+        item = copy.deepcopy(base)
+        item["companies"][0]["benefits"] = value
+        invalid.append(item)
+    for field in ("main_score", "target_file"):
+        item = copy.deepcopy(base)
+        item["companies"][0][field] = 5
+        invalid.append(item)
+    for value in (None, "", "https://evil.example/company/demo", "https://www.104.com.tw/company/other"):
+        item = copy.deepcopy(base)
+        item["companies"][0]["url"] = value
+        invalid.append(item)
+    item = copy.deepcopy(base)
+    item["schema_version"] = 1  # rich fields must not silently extend v1
+    invalid.append(item)
+    item = copy.deepcopy(base)
+    item["companies"].append(copy.deepcopy(item["companies"][0]))
+    invalid.append(item)
+    for i, item in enumerate(invalid):
+        item["batch_id"] = f"invalid-{i}"
+        # Even a valid pending job must not be partially committed on rejection.
+        item["jobs"] = [{"job_id": "pending", "title": "合成職缺", "url": "https://www.104.com.tw/job/pending"}]
+        before = copy.deepcopy((jobs, companies, state))
+        assert not validate_and_sanitize_batch(item)[0]
+        assert apply_batch_transactional(item, jobs, companies, state)[1].startswith("REJECTED")
+        assert before == (jobs, companies, state)
+
+    newer = copy.deepcopy(base)
+    newer.update(batch_id="v1-newer", schema_version=1, fetched_at="2026-11-02T02:00:00Z")
+    newer["companies"] = [{"company_id": "demo", "name": "新公司名", "url": base["companies"][0]["url"]}]
+    apply_batch_transactional(newer, jobs, companies, state)
+    assert companies["companies"]["demo"]["profile"] == "合成公司介紹"
+    assert companies["companies"]["demo"]["name"] == "新公司名"
+    older = copy.deepcopy(base)
+    older["batch_id"] = "older-rich"
+    before_company = copy.deepcopy(companies)
+    apply_batch_transactional(older, jobs, companies, state)
+    assert companies == before_company
+
+    clear = copy.deepcopy(newer)
+    clear.update(batch_id="v2-clear", schema_version=2, fetched_at="2026-11-02T03:00:00Z")
+    clear["companies"][0].update(profile="", benefits=[])
+    apply_batch_transactional(clear, jobs, companies, state)
+    assert companies["companies"]["demo"]["profile"] == ""
+    assert companies["companies"]["demo"]["benefits"] == []
+    assert companies["companies"]["demo"]["industry"] == "軟體業"
+    assert validate_and_sanitize_batch({**base, "companies": []})[0]
+    assert not validate_and_sanitize_batch(base, expected_batch_id="wrong-name")[0]
+    print(f"[PASS] Schema v2：富屬性、v1 相容、稀疏更新、舊資料、明確清空、整批拒絕（{len(invalid)} 組非法輸入）。")
 
 
 def main():
