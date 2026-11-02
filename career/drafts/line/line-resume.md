@@ -12,23 +12,6 @@
 - Delivery & Commercial Methods: Kanban, Stakeholder Alignment, Pricing Experiments, Payment Integration Planning
 - Languages: English, Mandarin
 
-## 0b. Personal Statement（僅供 PDF／ATS 上傳，不進表單、不屬任何 directive；來源：104 v12.19 自傳（856 字，本人確認）；2026-11-02 還原為七段判斷與動機層，取代 §66 的三段縮版）
-
-<!-- [STATUS: NEEDS_POLISH] [LOCK_ENTITIES: KOOL, JustDating, Juicy, App Store, shared recruitment, AI agents] -->
-Across dating and subscription apps, an influencer-matching platform and an employer recruitment system, I keep returning to two questions: can people do what they came to do, and does the product help the company keep going? I like shaping products from ideas that have not yet taken form, and I want a team to understand the reasoning behind a plan, not only the list of features it has to build.
-
-KOOL, the influencer-matching platform, confirmed the work I enjoy most. I start from what merchants and influencers each need, then turn scattered ideas into an experience that works for both sides. Invitations, applications and messages are more than a feature list: one side's action has to connect to the other side's need.
-
-When JustDating and then Juicy were removed from the App Store, I faced the pressure of carrying existing users and revenue forward. Releasing a replacement was not enough; I also coordinated with the App Store and with marketing to keep the service running. The experience taught me how much each team's work depends on the others, and that a launch plan has to treat store communication and traffic routing as part of the product rather than an afterthought.
-
-I joined 1111 to help overhaul a whole recruitment system. When I took over the employer-side overhaul, I first asked what the new design could rely on. Account permissions and business rules were undocumented, so I worked them out from how the system actually behaved and checked them with engineering, operations and audit. Only once I understood how the existing data related to daily operations could I sequence the login and company-data changes so that the new design connected to the service still running.
-
-Moving from influencer matching to employer recruitment extended my question from how two sides find each other to how people in one organization work together. A shared recruitment feature had to consider accounts, job posts and resumes together, so that large employers could recruit by department or branch. I try to anticipate exceptions in advance so users spend less time stopping to work things out.
-
-I now work with AI agents on specifications and data analysis. I define the problem, rules and verification requirements, then guide the AI to check and add information with a stated level of confidence, and people judge the results and the exceptions. When I help colleagues use AI, I start from where they are stuck and show them how to guide it and check its output, so they can make the judgment themselves and we discuss only the few exceptions. What I want to pass on is a way of handling problems: let the tool help, and keep human judgment in the loop.
-
-Looking ahead, I want to combine my experience in subscriptions, pricing and enterprise workflows to take part in requirement trade-offs under a business direction, and to stay involved from planning through launch. I also care whether a product, once delivered, actually improves the user experience and brings business value.
-
 ---
 
 ## 1. Basic & Contact Information
@@ -73,11 +56,11 @@ Looking ahead, I want to combine my experience in subscriptions, pricing and ent
 
 <!-- [STATUS: POLISHED] -->
 - Product Owner of an employer-side recruitment system serving about 60,000 active paying employers (2026 Q3), covering job posting, applicant management and candidate outreach. Manage two product planners as direct reports and coordinate engineering, design, sales and customer service.
-- In March–April 2026, after more than ten employer recruitment accounts were hijacked, coordinated the response with engineering and customer service. Designed and launched new-device OTP login verification (MFA) and an account-unlock flow. Through October 2026, customer service received no reports of similar account-takeover incidents.
+- Coordinated the response with engineering and customer service after more than ten employer recruitment accounts were hijacked in 2026/03–04. Designed and launched new-device OTP login verification (MFA) and an account-unlock flow. No similar account-takeover incidents were reported to customer service through 2026/10.
 - Planned a unified messaging flow for employers and job seekers to address 199 client requests accumulated since 2021. It consolidates two overlapping tools that had split interview invitations across separate channels, and is now in development.
 - To lower the barrier to job posting and improve candidate matching, led the launch of AI-generated job descriptions (2024/10) and AI talent recommendations (2025/11), and guided direct reports in launching company-profile generation (2026/06). Defined labor-law compliance acceptance criteria and required employer confirmation of generated content before publishing. Refined recommendation rules using employers' actual selections and feedback.
 - Led requirements analysis and specification planning to ship about 70 major features by 2026 Q3, even as ongoing service iterations and a full system overhaul competed for the same engineering resources. Aligned stakeholders and secured sales buy-in before delivery.
-- Reverse-engineered undocumented account permissions and business rules for the employer-side recruitment system overhaul; 743 of 840 related client requests (88%) were resolved during the overhaul. Used hands-on testing and internal interviews, then coordinated phased replacement of legacy functions while keeping the existing back office, database and live service running.
+- Recovered the logic behind undocumented account permissions and business rules for the employer-side recruitment system overhaul; 743 of 840 related client requests (88%) were resolved during the overhaul. Used hands-on testing and internal interviews, then coordinated phased replacement of legacy functions while keeping the existing back office, database and live service running.
 - In response to 55 client requests since 2020/12, planned a shared recruitment feature allowing employers to manage hiring by department or branch. Defined access rules across accounts, job posts and resumes, along with legacy data migration rules, extending the original company-wide or individual-account data access.
 - Raised the 30-day case closure rate for enterprise clients' product issues and suggestions from 52% to 79% (2024/11–2025/10 vs. 2025/11–2026/09/20; cases submitted at least 30 days earlier). To support paying employers' satisfaction and renewals, prioritized client cases, handled key cases directly and delegated others to direct reports, building the product team's delivery credibility with sales.
 - Audited and consolidated 15 shared category code tables (job roles, certifications, skills and benefits) starting 2026/04 by reviewing the underlying data fields used in job posting, resume creation, search filtering and matching across the platform. Addressed fragmentation that had built up as the business expanded. Used an AI agent to assist in structuring field-level mappings and organizing handoff records, and guided colleagues in using AI to map hundreds of job categories.

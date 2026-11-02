@@ -19,7 +19,7 @@ STAT = {"2559": "Exchange Program"}
 def span(f):
     return f"{f['start_date']} – {f['end_date'] or 'Present'}"
 
-h = [f"""<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Kun Huai Nie – Resume</title><style>
+h = [f"""<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Kun Huai Nieh – Resume</title><style>
 @page{{size:A4;margin:12mm 14mm}}
 body{{font:9.6pt/1.33 Arial,Helvetica,sans-serif;color:#111;margin:0}}
 h1{{font-size:22pt;margin:0}} .t{{color:#1d4f91;font-weight:bold;margin:2px 0}} .c{{color:#444;font-size:9.5pt}}
@@ -27,7 +27,7 @@ h2{{font-size:11pt;letter-spacing:.08em;text-transform:uppercase;border-bottom:2
 .j{{margin:0 0 10px;break-inside:avoid-page}} .jh{{font-weight:bold}} .co{{color:#1d4f91}} .d{{color:#555;font-size:9.5pt}}
 ul{{margin:4px 0 0;padding-left:18px}} li{{margin:0 0 2px}}
 </style></head><body>
-<h1>Kun Huai Nie</h1><div class="t">{e(basic['current_position_title'])}</div>
+<h1>Kun Huai Nieh</h1><div class="t">{e(basic['current_position_title'])}</div>
 <div class="c">{e(basic['email'])} · {e(basic['mobile_phone'])} · {e(basic['city'])}, Taiwan</div>
 <h2>Professional Summary</h2><p style="margin:0">{e(summary)}</p>
 <h2>Skills</h2><ul>"""

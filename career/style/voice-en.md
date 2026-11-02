@@ -94,3 +94,10 @@
 2. 處置原則：**限定詞與事實保留，措辭可改**。不得用中文裁定擋掉純措辭問題；也不得用措辭改寫帶入因果或責任升級（例：`were resolved during the overhaul` 本人裁定維持，不改成 `resolving … along the way`）。
 3. 常見翻譯腔：斜線日期放在句中（`in 2026/03–04` → `In March–April 2026`）、`Recovered the logic behind`（→ `Reverse-engineered`）、名詞串、句中塞長從句後用分號、被動無主詞句尾（`No similar … were reported`）。
 4. 範例日期欄位（括號內統計期間）可維持 `YYYY/MM`；句中敘述優先用英文月份。
+
+## 11. 禁用 Reverse-engineered、句首日期、英文履歷不放自傳（本人 2026-11-02）
+
+1. 英文履歷（LINE Resume）不放 Personal Statement；英文履歷收斂在 2 頁內。
+2. 禁用 `Reverse-engineered`（外商易誤解為反編譯程式碼）；1111 無文件系統那點用 `Recovered the logic behind undocumented …`。驗證器已禁。
+3. 不以日期開頭（`In March–April 2026, …`）；動作先行，日期放在事件後，格式與同頁一致（`2026/03–04`）。驗證器已禁。
+4. 抬頭姓名拼法：`Kun Huai Nieh`。起訖日期一律 `YYYY-MM – YYYY-MM`（en dash 前後有空格）。

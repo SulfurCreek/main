@@ -26,23 +26,6 @@ LINE Resume 上游草稿 r1（2026-10-31）｜針對 LINE Taiwan Product Manager
 - Delivery & Commercial Methods: Kanban, Stakeholder Alignment, Pricing Experiments, Payment Integration Planning
 - Languages: English, Mandarin
 
-## 0b. Personal Statement（僅供 PDF／ATS 上傳，不進表單、不屬任何 directive；來源：104 v12.19 自傳（856 字，本人確認）；2026-11-02 還原為七段判斷與動機層，取代 §66 的三段縮版）
-
-<!-- [STATUS: NEEDS_POLISH] [LOCK_ENTITIES: KOOL, JustDating, Juicy, App Store, shared recruitment, AI agents] -->
-Across dating and subscription apps, an influencer-matching platform and an employer recruitment system, I keep returning to two questions: can people do what they came to do, and does the product help the company keep going? I like shaping products from ideas that have not yet taken form, and I want a team to understand the reasoning behind a plan, not only the list of features it has to build.
-
-KOOL, the influencer-matching platform, confirmed the work I enjoy most. I start from what merchants and influencers each need, then turn scattered ideas into an experience that works for both sides. Invitations, applications and messages are more than a feature list: one side's action has to connect to the other side's need.
-
-When JustDating and then Juicy were removed from the App Store, I faced the pressure of carrying existing users and revenue forward. Releasing a replacement was not enough; I also coordinated with the App Store and with marketing to keep the service running. The experience taught me how much each team's work depends on the others, and that a launch plan has to treat store communication and traffic routing as part of the product rather than an afterthought.
-
-I joined 1111 to help overhaul a whole recruitment system. When I took over the employer-side overhaul, I first asked what the new design could rely on. Account permissions and business rules were undocumented, so I worked them out from how the system actually behaved and checked them with engineering, operations and audit. Only once I understood how the existing data related to daily operations could I sequence the login and company-data changes so that the new design connected to the service still running.
-
-Moving from influencer matching to employer recruitment extended my question from how two sides find each other to how people in one organization work together. A shared recruitment feature had to consider accounts, job posts and resumes together, so that large employers could recruit by department or branch. I try to anticipate exceptions in advance so users spend less time stopping to work things out.
-
-I now work with AI agents on specifications and data analysis. I define the problem, rules and verification requirements, then guide the AI to check and add information with a stated level of confidence, and people judge the results and the exceptions. When I help colleagues use AI, I start from where they are stuck and show them how to guide it and check its output, so they can make the judgment themselves and we discuss only the few exceptions. What I want to pass on is a way of handling problems: let the tool help, and keep human judgment in the loop.
-
-Looking ahead, I want to combine my experience in subscriptions, pricing and enterprise workflows to take part in requirement trade-offs under a business direction, and to stay involved from planning through launch. I also care whether a product, once delivered, actually improves the user experience and brings business value.
-
 ---
 
 ## 1. Basic & Contact Information
