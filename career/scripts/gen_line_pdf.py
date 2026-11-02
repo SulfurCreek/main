@@ -26,18 +26,18 @@ body{{font:{FS}pt/1.33 Arial,Helvetica,sans-serif;color:#111;margin:0}}
 h1{{font-size:22pt;margin:0}} .t{{color:#1d4f91;font-weight:bold;margin:2px 0}} .c{{color:#444;font-size:9.5pt}}
 h2{{font-size:11pt;letter-spacing:.08em;text-transform:uppercase;border-bottom:2px solid #111;padding-bottom:2px;margin:12px 0 6px}}
 .j{{margin:0 0 10px;break-inside:avoid-page}} .jh{{font-weight:bold}} .co{{color:#1d4f91}} .d{{color:#555;font-size:9.5pt}}
-ul{{margin:4px 0 0;padding-left:0;list-style:none}} li{{margin:0 0 2px;display:flex;gap:6px}} li .b{{flex:0 0 10px;text-align:center}} li .t{{flex:1}}
+ul{{margin:4px 0 0;padding-left:0;list-style:none}} li{{margin:0 0 2px;display:flex;gap:6px}} li .b{{flex:0 0 10px;text-align:center}} li .bt{{flex:1}}
 </style></head><body>
 <h1>Kun Huai Nieh</h1><div class="t">{e(basic['current_position_title'])}</div>
 <div class="c">{e(basic['email'])} · {e(basic['mobile_phone'])} · {e(basic['city'])}, Taiwan</div>
 <h2>Professional Summary</h2><p style="margin:0">{e(summary)}</p>
 <h2>Skills</h2><ul>"""
-    + "".join(f'<li><span class="b">•</span><span class="t">{e(x)}</span></li>' for x in skills) + """</ul><h2>Work Experience</h2>"""]
+    + "".join(f'<li><span class="b">•</span><span class="bt">{e(x)}</span></li>' for x in skills) + """</ul><h2>Work Experience</h2>"""]
 for s in work:
     f = s["fields"]
     h.append(f'<div class="j"><div class="jh">{e(f["position_title"])} · <span class="co">{e(f["company"])}</span></div>'
              f'<div class="d">{span(f)} · {e(f["location"])}</div><ul>')
-    h += [f'<li><span class="b">•</span><span class="t">{e(b)}</span></li>' for b in s.get("description_bullets", [])]
+    h += [f'<li><span class="b">•</span><span class="bt">{e(b)}</span></li>' for b in s.get("description_bullets", [])]
     h.append("</ul></div>")
 h.append("<h2>Education</h2>")
 for s in edu:

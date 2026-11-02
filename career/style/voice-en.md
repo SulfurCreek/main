@@ -124,3 +124,4 @@
 4. **已核准的關鍵措辭設為必備錨點**：1111 的 `Analyzed and mapped`、`743 of 840 related client requests`，避免舊稿或下游以舊基底推回舊句。
 5. **PDF 一鍵產出**：`python3 career/scripts/build_line_pdf.py <md> <pdf>`——先驗 md（Exit 0）→ 產 fill.json／resume.json → HTML → PDF，超過 2 頁自動由 9.6pt 縮到最小 9.0pt → `verify_line_pdf.py`（頁數、姓名、圓點、I ≤3、日期空格）。
 6. 流程（非腳本）：Codex 回傳前驗證必須 Exit 0 才可推送，且基底使用本人指定的最新 SHA；盲審與母語審查報告存 `review-panel/runs/`，不在 repo 新增暫存檔。
+6. PDF 匯出後必須**目視檢查每一頁**：腳本驗不到樣式（例：列點意外變粗體藍字，原因是 CSS class `.t` 與抬頭樣式撞名，2026-11-02 已改為 `.bt`）。上傳前再看一次實際檔案。
