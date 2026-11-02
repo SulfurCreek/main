@@ -202,9 +202,9 @@ I am dedicated to combining user-centric design with disciplined commercial exec
 
 ## 5. Career Move 增補規則：個人簡介與頂部個人特色（2026-10-21，本人回饋整理；優先於上方 §3.1 範例公式）
 
-> 上方 §1–§4 為本人 2026-10-20 提供的原文，保留不改。本節是共用規格，`career/skills/104resume/SKILL.md` 與 `career/codex-skills/polish-104/SKILL.md` 均引用本節，不另立公式。
+> 上方 §1–§4 為本人 2026-10-20 提供的原文，保留不改。本節是共用規格，`.claude/skills/104resume/SKILL.md` 與 `career/codex-skills/polish-104/SKILL.md` 均引用本節，不另立公式。
 
-> **強制門檻（2026-10-21）**：本規格各欄位都先過 `career/skills/resume-causal-logic-compiler/SKILL.md` 的編譯規則與披露檢查。
+> **強制門檻（2026-10-21）**：本規格各欄位都先過 `.claude/skills/resume-causal-logic-compiler/SKILL.md` 的編譯規則與披露檢查。
 
 ### 5.1 個人簡介（`info.info.bio`）
 

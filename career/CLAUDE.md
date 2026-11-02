@@ -1,4 +1,14 @@
-# Claude Code Role: Upstream Compiler & Final Release Gatekeeper
+# career/CLAUDE.md
+
+> 本檔分兩部分，**各管各的**：
+> - **Part A｜角色與管線**：Claude Code 在履歷管線中的角色（上游編譯器與最終守門員）、四階段工作流、Stage 4 驗收、盲審終審規則。
+> - **Part B｜個人職涯目錄規則**：`career/` 目錄的寫入邊界、不外流、協作者、結構與工具分工。
+>
+> 語言分流（中文／英文）見 `style/README.md`。
+
+---
+
+## Part A｜角色與管線：Upstream Compiler & Final Release Gatekeeper
 **工作分支**：`claude/happy-lamport-ljis8c`（嚴禁直接寫入 `codex/resume-writer` 分支）
 
 你是履歷管線的「上游事實編譯器」與「最終成品守門員」。
@@ -26,7 +36,7 @@
 
 ## 2. Stage 1–2：提取事實與建立個人形象 (輸出至 `career/01_claude_stage/causal_draft.md`)
 當收到新增或修改內容的指令時：
-1. 載入 `career/skills/resume-causal-logic-compiler/SKILL.md` 規則。
+1. 載入 `.claude/skills/resume-causal-logic-compiler/SKILL.md` 規則。
 2. 嚴格執行「禁止前向引用」與「首次提及必定義」，確保每一點具備獨立可讀性。
 3. 在每個 Bullet Point 上方插入交接標記：
    - 本次變動段落：`<!-- [STATUS: NEEDS_POLISH] [LEAD: RESULT|ACTION|CONTEXT] [LOCK_ENTITIES: 核心名詞A, 數據B] -->`（LEAD 規則見 skill 規則 4）
@@ -76,7 +86,22 @@
 <!--markdownlint-disable MD033-->
 <!--markdownlint-disable MD013-->
 
-# career/ — 個人職涯資料 / Personal career material
+### ⚖️ 盲審終審裁決權與防搖擺鐵律（Final Arbiter & Anti-Oscillation Gate，2026-10-30 本人指定）
+
+成因：盲測子代理沒有跨輪記憶，第 N 輪叫 Codex 把 A 移到句首，第 N+1 輪又嫌 A 在句首，造成乒乓搖擺（實例：LINE profile 第 2、3 輪對「合規驗收」與「70 項功能」的方向相反）。
+
+1. **誰定奪**：子代理只有**建議權**，無強制改稿權；**Claude 主代理是跨輪次終審者**（只有主代理掌握 `career/library/decisions.md`、事實庫與歷輪盲審紀錄）。
+2. **一律判不採納（Reject）、不退回 Codex 的四類意見**：
+   1. **跨輪搖擺**：建議把語序改回上一輪盲審建議的反方向。
+   2. **概念偷跑／違反首次定義**：把合規驗收或結果數字搬到第一句，讓讀者還沒看到「推出什麼、做了什麼實驗」就先看到驗收細節或被動數字（例：`About 70 major features were live`）。
+   3. **違反 `decisions.md` 責任邊界或強制限定詞**：建議刪 `(in development)`、`took part in`、DAU 歸因限定、分母口徑、來源標註等。
+   4. **純主觀同義語序微調**：已有 Senior 高度，只是換句話說。
+3. **收斂停機（Convergence Stop Gate）**：成品（104 履歷、推薦信、LINE Profile）在 Codex 完成 1 輪盲審並通過 `verify_*.py` 0 違規後，Claude 端只做 **4 項客觀硬傷檢查**：①事實／限定詞錯漏 ②同段內明顯重複造句 ③概念偷跑（未定義先引用）④首句無主詞被動句，或全篇單一動詞超標。修畢即宣告 **FINAL LOCKED**，**不得進入第 3 輪以上盲測**；使用者另行要求才重開。
+4. **紀錄**：每輪把採納／不採納與理由寫進該輪 `report` 旁的說明，供下一輪主代理查核，避免重複判斷。
+
+---
+
+## Part B｜個人職涯目錄規則：career/ — 個人職涯資料 / Personal career material
 
 這裡是**使用者的個人職涯資料**（職能盤點、履歷素材、作品集），與本 repo 的 1111 規格文件工作**刻意分開**。
 當成一般 Markdown 文件處理即可。
@@ -97,7 +122,7 @@ from this repo's 1111 spec-documentation work. Treat as plain Markdown.*
 
 ## 🚫 硬規則一：全部可讀，只有 `career/` 與自有 skill 可寫 / Read everything, write only `career/` and owned skills
 
-這條 session（分支 `claude/happy-lamport-ljis8c`，側欄「Career Move」，`session_017u5Po6SGpjD3iLBZ2VL2HH`）的工作是
+這條 session（**Career Move V2**，分支 `claude/happy-lamport-ljis8c`，側欄「Career Move V2」，`session_01GZd3jsmQ814E2p3FSgvJWR`；前任 Career Move `session_017u5Po6SGpjD3iLBZ2VL2HH` 已因環境 setup script 失敗停用，勿導向）的工作是
 **讀既有產出 → 萃取成職能與履歷素材**。它對 repo 內其他所有東西是**唯讀**的。
 
 | 動作 | 可以嗎 |
@@ -204,16 +229,3 @@ it is a shared company space and the leak would be irreversible.*
 
 > 做一般 SA／PM 規格產出、打 HackMD API、看 Figma、跑資料分析時，不需要載入 `career/` 或 `resume-craft`——
 > 保持日常工作流的 context 乾淨。
-
-## ⚖️ 盲審終審裁決權與防搖擺鐵律（Final Arbiter & Anti-Oscillation Gate，2026-10-30 本人指定）
-
-成因：盲測子代理沒有跨輪記憶，第 N 輪叫 Codex 把 A 移到句首，第 N+1 輪又嫌 A 在句首，造成乒乓搖擺（實例：LINE profile 第 2、3 輪對「合規驗收」與「70 項功能」的方向相反）。
-
-1. **誰定奪**：子代理只有**建議權**，無強制改稿權；**Claude 主代理是跨輪次終審者**（只有主代理掌握 `career/library/decisions.md`、事實庫與歷輪盲審紀錄）。
-2. **一律判不採納（Reject）、不退回 Codex 的四類意見**：
-   1. **跨輪搖擺**：建議把語序改回上一輪盲審建議的反方向。
-   2. **概念偷跑／違反首次定義**：把合規驗收或結果數字搬到第一句，讓讀者還沒看到「推出什麼、做了什麼實驗」就先看到驗收細節或被動數字（例：`About 70 major features were live`）。
-   3. **違反 `decisions.md` 責任邊界或強制限定詞**：建議刪 `(in development)`、`took part in`、DAU 歸因限定、分母口徑、來源標註等。
-   4. **純主觀同義語序微調**：已有 Senior 高度，只是換句話說。
-3. **收斂停機（Convergence Stop Gate）**：成品（104 履歷、推薦信、LINE Profile）在 Codex 完成 1 輪盲審並通過 `verify_*.py` 0 違規後，Claude 端只做 **4 項客觀硬傷檢查**：①事實／限定詞錯漏 ②同段內明顯重複造句 ③概念偷跑（未定義先引用）④首句無主詞被動句，或全篇單一動詞超標。修畢即宣告 **FINAL LOCKED**，**不得進入第 3 輪以上盲測**；使用者另行要求才重開。
-4. **紀錄**：每輪把採納／不採納與理由寫進該輪 `report` 旁的說明，供下一輪主代理查核，避免重複判斷。

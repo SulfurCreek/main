@@ -18,27 +18,27 @@
 
 | 任務 | 必讀（依序） | 視需要 |
 | :-- | :-- | :-- |
-| **任何對外文字動筆前（強制）** | [`skills/resume-causal-logic-compiler/SKILL.md`](skills/resume-causal-logic-compiler/SKILL.md) §2.3 披露與跨欄位檢查 | — |
+| **任何對外文字動筆前（強制）** | [`.claude/skills/resume-causal-logic-compiler/SKILL.md`](../.claude/skills/resume-causal-logic-compiler/SKILL.md) §2.3 披露與跨欄位檢查 | — |
 | **任何動筆前** | [`library/INDEX.md`](library/INDEX.md) → [`library/decisions.md`](library/decisions.md) §1–§4 | [`library/superseded.md`](library/superseded.md)（改舊稿、審稿） |
 | 查「某個事實現在怎麼說」 | [`library/fact-snapshot-2026-10-13.md`](library/fact-snapshot-2026-10-13.md) | [`library/facts-1111.md`](library/facts-1111.md)、[`library/facts-prior.md`](library/facts-prior.md)、[`library/profile.md`](library/profile.md) |
-| **先判斷輸出語言（中英分流，互不套用）** | [`style/README.md`](style/README.md) | `skills/resume-causal-logic-compiler/SKILL.md`〈語言路由〉 |
+| **先判斷輸出語言（中英分流，互不套用）** | [`style/README.md`](style/README.md) | `.claude/skills/resume-causal-logic-compiler/SKILL.md`〈語言路由〉 |
 | 寫／潤英文（履歷、推薦信英文條列） | [`style/voice-en.md`](style/voice-en.md) | `style/anti-ai-ats.md` |
 | 寫／潤中文履歷 | 現行稿（§3）＋ [`style/resume-voice-zh.md`](style/resume-voice-zh.md) ＋ [`library/decisions.md`](library/decisions.md) | [`style/anti-ai-ats.md`](style/anti-ai-ats.md) |
 | 寫自傳、轉職動機 | [`library/about-me.md`](library/about-me.md)（**編輯參考，不可給驗證者**）＋ [`library/profile.md`](library/profile.md) §7 | `.claude/skills/resume-craft/references/autobiography.md` |
 | 求職信、故事素材 | [`letters/README.md`](letters/README.md)、[`letters/story-bank.md`](letters/story-bank.md) | [`letters/log.md`](letters/log.md) |
 | 104 履歷欄位 | [`104/README.md`](104/README.md) → [`104/fields-spec.md`](104/fields-spec.md) → [`104/content-spec-quill.md`](104/content-spec-quill.md)（Quill HTML 與各欄撰寫規格；範例只取格式） | [`104/resume-104.md`](104/resume-104.md)、[`104/chrome-playbook.md`](104/chrome-playbook.md) |
 | 作品集／case study | [`portfolio/`](portfolio/)（內部版）、`portfolio/public/`（對外版） | [`site/`](site/)（網站助手專屬） |
-| 投遞紀錄（職缺 × 推薦信 × 履歷版本） | [`applications/INDEX.md`](applications/INDEX.md)，每職缺一檔 `applications/<code>.md` | 推薦信產生流程見 `skills/104coverletter/SKILL.md` §5 |
+| 投遞紀錄（職缺 × 推薦信 × 履歷版本） | [`applications/INDEX.md`](applications/INDEX.md)，每職缺一檔 `applications/<code>.md` | 推薦信產生流程見 `.claude/skills/104coverletter/SKILL.md` §5 |
 | 職缺與公司資料 | [`targets/README.md`](targets/README.md)、`targets/jobs.md`、`targets/companies.md` | [`review-panel/jd/routing.tsv`](review-panel/jd/routing.tsv)（每份職缺的分層） |
 | 看驗證結果、投遞優先序 | [`review-panel/HISTORY.md`](review-panel/HISTORY.md)、[`review-panel/opus-matrix.md`](review-panel/opus-matrix.md) | `review-panel/runs/<日期>-<版本>-*/`（單次結果） |
 | 遇到〔待補〕或想問使用者 | [`library/open-questions.md`](library/open-questions.md)（問前先查） | Codex 的疑問寫 `drafts/codex/QUESTIONS.md` |
 | Resume Gen 原 ChatGPT 交接、歷史稿／PDF／對話追溯 | Codex 分類 wiki：`drafts/codex/wiki/README.md` | 逐檔索引：`drafts/codex/FILE_INDEX.md`、雜湊清單 `drafts/codex/FILE_INDEX.csv` |
 | 104 個人簡介與頂部個人特色規格 | `104/content-spec-quill.md` §5 | Codex 交接 `drafts/codex/2026-10-21-104-summary-chips-claude-handoff.md`（在 `codex/resume-writer`） |
 | Codex 內容編輯協作與交付 | Resume Writer 指令：`drafts/codex/AGENTS.md` | 接手核對 `drafts/codex/2026-10-20-conversation-reconciliation.md`、`drafts/codex/QUESTIONS.md` |
-| 產生 104 特化版履歷 md | [`skills/104resume/SKILL.md`](skills/104resume/SKILL.md) | `104/content-spec-quill.md` |
+| 產生 104 特化版履歷 md | [`.claude/skills/104resume/SKILL.md`](../.claude/skills/104resume/SKILL.md) | `104/content-spec-quill.md` |
 | LINE Career Profile 填表（Antigravity） | [`drafts/line/line-fill-playbook.md`](drafts/line/line-fill-playbook.md) | `drafts/line/line-profile.md`（定稿）、`line-profile.fill.json`（`scripts/gen_line_pack.py` 產生）、`scripts/verify_line_profile.py` |
 | LINE Resume（針對官網 /jobs/3106/、/jobs/2782/ 的特化版；通用版為 line-profile.md） | `01_claude_stage/line-resume-draft.md`（上游）→ Codex → `drafts/line/line-resume.md`（定稿，待產） | `scripts/verify_line_profile.py`、decisions §59 |
-| 寫 104 自我推薦信（指定職缺） | [`skills/104coverletter/SKILL.md`](skills/104coverletter/SKILL.md) | `104/cover-letter-research.md`、`letters/104/` |
+| 寫 104 自我推薦信（指定職缺） | [`.claude/skills/104coverletter/SKILL.md`](../.claude/skills/104coverletter/SKILL.md) | `104/cover-letter-research.md`、`letters/104/` |
 | 潤飾 104 特化版草稿（Codex） | [`codex-skills/polish-104/SKILL.md`](codex-skills/polish-104/SKILL.md) | `drafts/v11/104-v11.md` |
 | 職能證據（F1–F15） | [`competency-framework.md`](competency-framework.md) → `wiki/F*.md`、`wiki/evidence-*.md` | — |
 
@@ -70,7 +70,7 @@ SulfurCreek/main
 │   │   └── about-me.md                       # 職涯思維與選材（＝about_me_mindset）
 │   ├── 01_claude_stage/causal_draft.md       # Claude 產出：因果草稿＋STATUS／LOCK_ENTITIES 標記
 │   ├── scripts/verify_polish.py              # Claude 執行：漏修、鎖定實體、未定義名詞、披露
-│   ├── skills/resume-causal-logic-compiler/  # Claude 角色與編譯規則
+│   ├── .claude/skills/resume-causal-logic-compiler/  # Claude 角色與編譯規則
 │   ├── drafts/<版本>/                        # 成品：104 md、雙欄 PDF（Claude 核對後產出）
 │   └── style/、104/、letters/ …              # 既有語氣、104 規格、推薦信
 │

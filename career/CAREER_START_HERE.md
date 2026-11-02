@@ -56,7 +56,7 @@ claude/happy-lamport-ljis8c：
   既有職缺與公司資料。
 - career/review-panel/jd/
   JD 分析與部分全文。
-- career/skills/
+- .claude/skills/
   適用的寫作與審查規則。
 
 automation/104-data：

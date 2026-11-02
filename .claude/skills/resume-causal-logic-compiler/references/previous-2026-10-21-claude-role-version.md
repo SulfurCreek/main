@@ -65,4 +65,4 @@ description: Career Move（Claude）的角色定義與編譯規則——履歷�
 
 1. 讀 Codex 潤飾稿（`git show origin/codex/resume-writer:career/02_codex_stage/...`，或其現行交付路徑）。
 2. 逐點比對：LOCKED 段落未改；NEEDS_POLISH 段落的 LOCK_ENTITIES 全數保留；未新增事實或數字；第 1 節四條與第 2.3 節披露仍成立。
-3. 偏移處回報本人；通過後才轉成 104 md（`career/skills/104resume/`）或雙欄 PDF，交付物中**移除所有交接標記**。
+3. 偏移處回報本人；通過後才轉成 104 md（`.claude/skills/104resume/`）或雙欄 PDF，交付物中**移除所有交接標記**。
