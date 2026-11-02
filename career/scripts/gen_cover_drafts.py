@@ -142,6 +142,11 @@ def pick(text, title="", ctx=""):
             chosen[slot] = "F"
     elif re.search(AI_JOB, ctx) and not any(k in chosen for k in "FA") and len(chosen) == 3:  # AI 公司：至少一點 AI
         chosen[2] = "F"
+    # 直播／交友公司：交友 App 下架承接（J）必入選（取代最後一個非 F／A／S 點）
+    if re.search(r"直播|交友|LIVE", title + " " + ctx) and "J" not in chosen and len(chosen) == 3 and not re.search(HARDWARE, title + " " + ctx):
+        slot = max((i for i, k in enumerate(chosen) if k not in "FASJ"), default=None, key=lambda i: -sc.get(chosen[i], 0))
+        if slot is not None:
+            chosen[slot] = "J"
     # 企業通訊／雲端總機：訊息整合（M）必入選（取代最後一點）
     if re.search(r"總機|語音通訊|通訊雲|\bEVOX\b", text) and "M" not in chosen and len(chosen) == 3:
         slot = max((i for i, k in enumerate(chosen) if k not in "FAS"), default=None, key=lambda i: -sc.get(chosen[i], 0))
@@ -170,7 +175,7 @@ def build(code):
     comp = comps.get(j["company_id"], {}) if isinstance(comps, dict) else {}
     cname = (comp.get("name") if isinstance(comp, dict) else None) or re.search(r"公司名稱:\s*(.+)", jd).group(1).strip()
     cinfo = " ".join(str(comp.get(k, "")) for k in ("industry",)) if isinstance(comp, dict) else ""
-    ctx = cname + " " + cinfo + " " + " ".join(re.findall(r"\bEVT\b|\bDVT\b|\bPVT\b|\bNPI\b|量產", jd))
+    ctx = cname + " " + cinfo + " " + " ".join(re.findall(r"\bEVT\b|\bDVT\b|\bPVT\b|\bNPI\b", jd))
     chosen, sc = pick(title + "\n" + cname + " " + cinfo + "\n" + re.sub(r"【職務概況.*", "", jd, flags=re.S), title, ctx)
     # 結尾雙主題；AI 職缺結尾必含 AI 課題（F／A）
     topics = chosen[:2]
@@ -206,7 +211,8 @@ if SELF_TEST:
         ok(not NOISE.search(t), f"clean_title 殘留噪音：{c} → {t}")
         if c in TITLE_EXPECT:
             ok(t == TITLE_EXPECT[c], f"clean_title 結果不符：{c} → {t}（預期 {TITLE_EXPECT[c]}）")
-    R = {c: build(c) for c in ["95oop", "93shv", "958dx", "8n0mx", "95q16", "8n92e", "8p2fp"]}
+    R = {c: build(c) for c in ["95oop", "93shv", "958dx", "8n0mx", "95q16", "8n92e", "8p2fp", "8bt4g"]}
+    ok("J" in R["8bt4g"][2], f"8bt4g（直播／交友公司）須含 J：{R['8bt4g'][2]}")
     ok("F" in R["8p2fp"][2], f"8p2fp（AI 職稱）須含 F：{R['8p2fp'][2]}")
     ok("T" in R["95oop"][2] and "P" not in R["95oop"][2], f"95oop 須含 T、不含 P：{R['95oop'][2]}")
     ok("T" in R["93shv"][2], f"93shv 須含 T：{R['93shv'][2]}")
