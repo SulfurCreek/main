@@ -511,5 +511,5 @@ v9.7 = v9.6 ＋ 使用者自寫自傳與各段 summary（16→10 個單位、業
 
 ## 75. 2026-11-02 批次推薦信（預計 2026-11-03 應徵 53 個職缺）
 
-- 來源：本人提供 AI 與數據產品 15 筆、軟體開發與專案顧問 38 筆職缺清單；JD 取自 `automation/104-data` 的 `jobs.json`（fetched_at 2026-11-02）。48 筆有 JD 產出上游草稿，5 筆（93iic、8uhc4、94j6x、94vwt、89ffo）JD 缺漏待補。
+- 來源：本人提供 AI 與數據產品 15 筆、軟體開發與專案顧問 38 筆職缺清單；JD 取自 `automation/104-data` 的 `jobs.json`（fetched_at 2026-11-02）。53 筆全部有 JD 並產出上游草稿；原清單 5 筆代碼有誤（93iic→95qfm、8uhc4→969yw、94j6x→8nuo3、94vwt→70ih7、89ffo→7t1p8），2026-11-02 已更正。
 - 作法：`scripts/gen_cover_drafts.py` 依 JD 主題關鍵字從核准事實句庫選三點，不新增事實；逐封 `verify_letter.py` Exit 0；總表 `letters/104/BATCH-2026-11-02.md`。限制：自動配對非逐封精讀，低適配職缺針對性有限。

@@ -64,7 +64,7 @@ THEMES = [  # (正則, {故事: 權重})；泛用詞（系統、企業、平台�
 ]
 GAPS = {"Jira": "JIRA（非本人技能）", "SQL": "SQL", "Python": "Python／程式實作", "Java": "Java／程式實作", "Tableau": "Tableau", "日文|日語|JLPT": "日文", "韓文|韓語": "韓文",
         "PMP": "PMP 證照", "Scrum|Agile|敏捷": "Scrum／Agile（僅 2022–2023 歷史經驗，不當現行）", "半導體|製造|工廠|IoT|硬體|韌體|航太|電源": "製造／硬體產業經驗",
-        "CRM": "CRM 系統管理", "ERP": "ERP 實施經驗", "政府": "政府專案", "行銷|SEO|廣告": "行銷操作／投放", "UI/UX|UIUX|設計稿": "UI 設計實作", "法規|ISO|CMMI": "ISO／CMMI 認證"}
+        "Docker|Kubernetes|OCI": "Docker／Kubernetes／容器", "Azure DevOps": "Azure DevOps", "Atlassian|Confluence": "Atlassian／Confluence 導入", "程式設計|程式開發|寫程式": "程式開發實作", "旅遊": "旅遊產業經驗", "CRM": "CRM 系統管理", "ERP": "ERP 實施經驗", "政府": "政府專案", "行銷|SEO|廣告": "行銷操作／投放", "UI/UX|UIUX|設計稿": "UI 設計實作", "法規|ISO|CMMI": "ISO／CMMI 認證"}
 END = {"F": "AI 協作與產品落地", "S": "帳號安全與驗證", "Y": "支付規劃與規格轉換", "C": "支付規劃與規格轉換", "P": "訂閱與定價實驗", "W": "跨部門專案推進", "R": "無文件系統的規格梳理",
        "K": "從零到一與用戶經營", "J": "危機中的用戶與營收承接", "M": "訊息與溝通產品規劃", "L": "跨國協作", "G": "企業端權限與流程設計", "Q": "客戶案件與優先序管理", "A": "AI 協作", "T": "跨團隊資料整合"}
 
