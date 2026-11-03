@@ -1,8 +1,8 @@
 <!--markdownlint-disable MD013-->
 
-# 2026/11/3 應徵推薦信 FINAL（44 封，Codex ca24198＋0446ef8，Claude 驗收）
+# 2026/11/3 應徵推薦信 FINAL（43 封，Codex ca24198＋0446ef8，Claude 驗收）
 
-> 每封 text 區塊直接貼入 104；落款「聶崑淮」。已排除：7sirf（已面試）、94uz9／96ar6（存錯）、82slf／95x2o／8ox7k／7t1p8／92kcs／811cg（本人放棄）。依適合度排序。
+> 每封 text 區塊直接貼入 104；落款「聶崑淮」。已排除：7sirf（已面試）、94uz9／96ar6（存錯）、82slf／95x2o／8ox7k／7t1p8／92kcs／811cg／92d3h（本人放棄）。依適合度排序。
 
 ## 1｜88 分｜[95yiz](https://www.104.com.tw/job/95yiz)｜AI 產品經理(AI產品開發×應用推動)｜中文
 
@@ -706,24 +706,7 @@ Over the past several years, I have focused closely on AI agent workflows and un
 Kun Huai Nieh
 ```
 
-## 42｜25 分｜[92d3h](https://www.104.com.tw/job/92d3h)｜【OwlPay】營運管理師 Sales & Operations Executive｜中文
-
-```text
-您好：
-應徵貴公司【OwlPay】營運管理師 Sales & Operations Executive。我有近 10 年產品經理經驗，曾負責高營收訂閱制 App，過往產品涵蓋交友 App 與訂閱制內容 App，現任人力銀行企業端招募系統 Product Owner，帶領 2 名直屬企劃。
-
-‧ 為訂閱制內容 App 規劃從手機內購轉向網頁付款，網頁付款營收占比由 24% 升至 80% 以上（2020/11–2021/09）。
-
-‧ 擔任業務、客服與工程的需求窗口，每週向全國客服與業務簡報新功能並提供 FAQ；交付前取得業務支持，累計約 70 項主要功能上線。
-
-‧ 為經營 7 個市場的交友 App，導入東南亞第三方支付商，在印尼、泰國開通 8 種付款管道並試算各管道實收。
-
-期待有機會與貴公司團隊進一步交流付款流程規劃、跨部門專案推進。
-
-聶崑淮
-```
-
-## 43｜22 分｜[95q16](https://www.104.com.tw/job/95q16)｜產品管理師 Product Manager｜中文
+## 42｜22 分｜[95q16](https://www.104.com.tw/job/95q16)｜產品管理師 Product Manager｜中文
 
 ```text
 您好：
@@ -740,7 +723,7 @@ Kun Huai Nieh
 聶崑淮
 ```
 
-## 44｜18 分｜[8vt92](https://www.104.com.tw/job/8vt92)｜產品專案管理師 Product Project Specialist｜中文
+## 43｜18 分｜[8vt92](https://www.104.com.tw/job/8vt92)｜產品專案管理師 Product Project Specialist｜中文
 
 ```text
 您好：
