@@ -338,6 +338,18 @@ const check = await page.evaluate(() => {
 
 ---
 
+## 交付「HTML」時一律給無頭語法（headless snippet）
+
+使用者說「給我 HTML」「產生 HTML」，意思是**可以直接貼進 Markdown 渲染器（HackMD／md 瀏覽器）的 HTML 語法**，不是一份完整網頁檔。**不要產生 `.html` 檔**（真實事故：交了含 `<!doctype>`／`<head>`／`<style>` 的完整 `.html`，使用者打槍「我要無頭的 html 語法」，要求刪檔重交）。
+
+- **交付形式**：一個 `.md`（或 `.txt`）檔，內容只有 HTML 片段，使用者整份複製貼進 Markdown 就能渲染。
+- **不可出現**：`<!doctype>`、`<html>`、`<head>`、`<body>`、`<meta>`、`<title>`、`<style>`、`<script>`、`<section>`／`<h1>`～`<h6>`（標題一律改 `<div style="font-size:…; font-weight:700">`，避免被 Markdown 目錄或樣式吃掉）。所有樣式 inline。
+- **Markdown 相容**：整份**每行縮排 0 格**（≥4 空白會變程式碼區塊）、**HTML 區塊內不留空行**（空行會結束 HTML block，後面變成純文字）；最外層仍包白底／淺底容器。
+- **圖片**：已在 R2 的不用重抓，直接引用 R2 網址（不可用 `file://`、不可用 `hackmd.io/_uploads`）。
+- **畫面連結**：Figma 來源的每個畫面標題旁附 `<a href="…?node-id=…&m=dev" target="_blank">` 連到該畫面（node-id 的 `:` 轉 `-`）。
+- **驗證**：把片段包進最小 `<body>` 本機渲染（圖片換 `file://`，驗完刪除），確認無空行、無縮排、圖與框對得上；暫存檔不交付、不留在 repo。
+- 使用者要「看成品」仍走下節的預覽 PNG；只有他明確要語法時才交本節的片段。
+
 ## 交付預覽 PNG 給使用者
 
 使用者要「看成品」時一律給 PNG（原因見 Gotcha：`hackmd.io/_uploads` 的圖需登入憑證，交付 `.html` 只會破圖）。產這張 PNG 時：
@@ -410,7 +422,7 @@ await el.screenshot({ path: 'preview.png' });    // 自動緊貼元素邊界
 - **HackMD 對外層 `<div style="...">` 的支援**：HackMD 的 markdown 渲染器允許內嵌 HTML block，但每次寫完務必 PATCH 後 GET 回來確認渲染正常（尤其巢狀 `position:absolute` 在部分 markdown 解析器可能被過濾掉 style 屬性）——若發現 style 被吃掉，改用行內 `<img>` + 相鄰文字編號對照表當退場方案（`CLAUDE.md`「Markdown 標號對照表」選項）。
 - **深色模式（dark mode）務必包白底**：HackMD 有淺色／深色模式切換，深色模式下頁面背景變深，但截圖與說明文字顏色不會自動反轉——沒包白底的話深色模式下文字/淺色 UI 會看不清楚甚至消失。任何 HTML 標註區塊最外層一律加 `background:#fff`（見規則二範本），這是必要步驟不是可選項。
 - **「重畫一次」時要換掉整個區段，不是只換自己上次那段 HTML**：使用者說「重新繪製」時，往往同時**自己在文件裡貼了新截圖**（變成一行裸的 `![image](...)`）。若只用「上次那段 HTML 字串」當 anchor 去替換，結果會是「新貼的裸圖」＋「新版流程圖」兩份並存。正確做法：重新 GET 最新內容 → 找出目標 heading 到**下一個 heading 之間的整個區段** → 整段換成新的 HTML（順手把裸圖、舊 HTML 一起清掉）→ 驗證時明確檢查「舊圖網址已不存在於文件中」。
-- **不要交付引用 `hackmd.io/_uploads` 的獨立 `.html` 檔給使用者**：私人／團隊限閱筆記的圖片網址需要登入憑證才讀得到，瀏覽器的 `<img>` 沒辦法帶 token，使用者打開那個 HTML 只會看到一片破圖。使用者要「看成品」時**一律交付渲染好的 PNG**，且要照〈[交付預覽 PNG 給使用者](#交付預覽-png-給使用者)〉的規格產（緊貼內容裁切、`deviceScaleFactor:3`），不是把驗證用的 fullPage 截圖直接丟過去；只有在對方明確要 HTML 原始碼時才給，並附註圖片需登入才顯示。
+- **不要交付引用 `hackmd.io/_uploads` 的獨立 `.html` 檔給使用者**：私人／團隊限閱筆記的圖片網址需要登入憑證才讀得到，瀏覽器的 `<img>` 沒辦法帶 token，使用者打開那個 HTML 只會看到一片破圖。使用者要「看成品」時**一律交付渲染好的 PNG**，且要照〈[交付預覽 PNG 給使用者](#交付預覽-png-給使用者)〉的規格產（緊貼內容裁切、`deviceScaleFactor:3`），不是把驗證用的 fullPage 截圖直接丟過去；只有在對方明確要 HTML 原始碼時才給，且**一律是〈交付「HTML」時一律給無頭語法〉的 `.md`／`.txt` 片段，不是完整 `.html` 檔**，圖片用 R2 網址。
 - **禁止事項**（沿用 `CLAUDE.md`「截圖標註」既有規則）：不使用或提及任何外部 AI 圖像生成模型重繪畫面；不得用 Pillow 把 badge 燒進像素後才存檔——那是舊流程，本 skill 生效後棄用。
 - **舊資產保留**：先前用 Pillow 燒進像素的既有素材（`.claude/assets/` 內已存在的 badge 版本，如 `E1_offer_seeker_tag.png`）不用回頭重做，只有「之後新增」的標註任務才套用本 skill；若之後有人要求重繪舊圖才改。
 
