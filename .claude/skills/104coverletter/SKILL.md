@@ -147,3 +147,7 @@ description: 針對指定的 104 職缺產生「104 自我推薦信」草稿（2
 
 - JD 以英文為主的職缺，推薦信語言須先問本人，不預設中文。產生器遇到英文 JD 會略過並回報（已裁定中文才加 `--allow-en-jd-zh`）。
 - 本批 5 封（950oe、94hek、94roa、8p4ix、8wzup）本人裁定改全英文：檔名 `<代碼>-<公司>-en-draft.md`，事實句取自 LINE Resume 已核准英文句，語氣依 `style/voice-en.md`。
+
+## 12. 2026-11-03 審閱後 6 項修正
+
+見 decisions 末段：英文信職稱淨化、首段保留帶人幅度、電商必配 Y／G、Technical PM 不配 P、AI/Data 與 API 職稱配對、結尾納入第 3 點亮點。`gen_cover_drafts.py --self-test` 鎖定；英文 JD 由 `build_en()` 產生英文信。

@@ -33,6 +33,17 @@ class TitleTests(unittest.TestCase):
             self.assertEqual(g.clean_title(raw), want, raw)
 
 
+class EnglishTitleTests(unittest.TestCase):
+    def test_clean_title_en(self):
+        self.assertEqual(g.clean_title_en("【TPD0402】Product Manager"), "Product Manager (TPD0402)")
+        self.assertEqual(g.clean_title_en("【Going Cloud】Project Manager"), "Project Manager")
+        self.assertEqual(g.clean_title_en("Senior Product Manager (Anti-Scam BU/2B)"), "Senior Product Manager (Anti-Scam BU/2B)")
+
+    def test_verifier_rejects_fullwidth_brackets_in_english(self):
+        body = "Dear Hiring Team,\n\nI am applying for the 【X】Product Manager role.\n\nKun Huai Nieh\n"
+        self.assertTrue(any("全形括號" in e for e in g.vl.check(body)))
+
+
 class GenerateTests(unittest.TestCase):
     def setUp(self):
         setup_data()
