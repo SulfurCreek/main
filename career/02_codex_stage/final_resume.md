@@ -86,7 +86,7 @@
 <!-- [STATUS: POLISHED] -->
 - UI/UX 規劃：設計 iOS、Android App 與 Web 的使用流程，以 Miro、FigJam 梳理 Flowchart，使用 Figma 繪製跨裝置介面的 Wireframe，並以 Axure RP 製作互動原型；視覺畫面則與設計師協作完成。
 <!-- [STATUS: POLISHED] -->
-- 跨部門協作與時程：整合行銷、CRM、設計、技術等單位的需求，依使用者旅程、開發複雜度與業務單位共識排定優先序，以甘特圖及 Trello 管理時程；帶領產品企劃團隊，熟悉 Scrum、Kanban 與瀑布式開發流程。
+- 跨部門協作與時程：整合行銷、CRM、設計、技術等單位的需求，依使用者旅程、開發複雜度與業務單位共識排定優先序，以甘特圖及 Trello 管理時程；熟悉 Kanban 與瀑布式開發流程，並帶領產品企劃團隊。
 <!-- [STATUS: POLISHED] -->
 - App 產品與變現：設計訂閱制 App 的 VIP 訂閱、點數付費牆及精選曝光，以 Android 為對照組進行跨平台定價實驗。熟悉 App Store／Google Play 審核政策，具備與 App Store 溝通及處理上架問題的經驗；比較 App 內購（IAP）與網頁付款的抽成、稅、手續費及撥款週期，試算實收、提出訂閱方案，串接本地與海外第三方金流，導流至費率較低的網頁付款。
 
