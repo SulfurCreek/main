@@ -47,7 +47,8 @@ CHORE_AND_HALLUCINATION_TOKENS = [
 # 3. 104 絕對禁止無中生有之假工具標籤（防 Flash / 範本污染）
 FORBIDDEN_104_TAGS = [
     "Tableau", "SimilarWeb", "JIRA", "Jira", "Xmind",
-    "Google Tag Manager", "Machine Learning", "機器學習", "SQL"
+    "Google Tag Manager", "Machine Learning", "機器學習", "SQL",
+    "Scrum"  # 2026-11-03 本人裁定移除：不當現行能力，履歷文字與標籤皆不得出現
 ]
 
 RESPONSIBILITY_WARN_TOKENS = ["協助", "參與", "配合", "支援", "維護"]
@@ -93,7 +94,7 @@ ET = [["製作規格說明書", "Prototype", "Systems Analysis", "專案溝通�
 ST = [["Claude", "生成式AI", "AI"], ["製作規格說明書", "Prototype", "功能測試(function test)", "專案規劃執行╱範圍管理"],
       ["Systems Analysis", "UML", "系統整合分析"],
       ["Figma", "Axure RP", "Wireframe", "Prototype", "使用者介面設計", "使用者體驗設計", "iOS", "Android"],
-      ["專案溝通╱整合管理", "專案時間╱進度控管", "Scrum", "決策能力"],
+      ["專案溝通╱整合管理", "專案時間╱進度控管", "決策能力"],
       ["產品策略", "產品營運", "數據分析", "Electronic Payment", "iOS", "Android"]]
 MG = ['**有管理責任，1~5 人**（直屬 2 名產品企劃）', '**無管理責任**', '**無管理責任**', '**無管理責任**']
 IMG = ['images/project1_justdating_juicy.png', 'images/project2_kool.png',
@@ -479,10 +480,8 @@ def expected_104_fields(final_text, public=False):
 
 
 def skill_tags(index, description):
-    # Scrum is supported as historical experience in library, but a tag must also
-    # have evidence in this final skill card. Do not silently add it to a card
-    # that only describes the current Kanban/coordination workflow.
-    return [tag for tag in ST[index] if tag != "Scrum" or "Scrum" in description]
+    # 2026-11-03 本人裁定：Scrum 不再作為標籤或履歷文字（僅 2022–2023 歷史經驗，不當現行能力）。
+    return list(ST[index])
 
 
 def unique_json(pairs):

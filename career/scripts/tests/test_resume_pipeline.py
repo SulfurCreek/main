@@ -219,9 +219,11 @@ class PipelineTests(unittest.TestCase):
         parser = vp.FieldHTML();parser.feed("<p><strong>A</strong> <span>B</span></p>")
         self.assertEqual(parser.chunks, ["A B"])
 
-    def test_scrum_requires_card_evidence(self):
+    def test_scrum_removed_everywhere(self):
+        # 2026-11-03 本人裁定：Scrum 不作標籤，文字出現在 104 檔也會被擋
         self.assertNotIn("Scrum", vp.skill_tags(4, "以甘特圖與 Trello 管理時程"))
-        self.assertIn("Scrum", vp.skill_tags(4, "2022–2023 跑過完整 Scrum"))
+        self.assertNotIn("Scrum", vp.skill_tags(4, "2022–2023 跑過完整 Scrum"))
+        self.assertIn("Scrum", vp.FORBIDDEN_104_TAGS)
 
     def test_uml_is_retained(self):
         self.assertIn("UML", vp.skill_tags(2, "以循序圖說明系統互動"))
