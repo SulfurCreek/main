@@ -36,6 +36,13 @@ class BilingualTests(unittest.TestCase):
             first_en = re.search(r"[A-Za-z]{4}", h).start()
             self.assertLess(first_en, first_cjk)
 
+    def test_projects_english_first_and_names_untouched(self):
+        for m in re.finditer(r"### 5\.(\d) ([^\n]*)\n.*?```html\n(.*?)```", self.out, re.S):
+            h = m.group(3)
+            self.assertLess(re.search(r"[A-Za-z]{4}", h).start(), re.search(r"[\u4e00-\u9fff]", h).start())
+            self.assertIn(m.group(2), self.zh)  # 專案標題維持中文原樣
+        self.assertEqual(gb.project_checks(self.zh), [])
+
     def test_other_fields_untouched(self):
         for key in ("把構想變成產品", "AI Agent 協作", "從交友與訂閱制 App、網紅媒合平台到企業招募系統"):
             self.assertEqual(self.zh.count(key), self.out.count(key), key)
