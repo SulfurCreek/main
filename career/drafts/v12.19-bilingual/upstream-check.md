@@ -3,8 +3,8 @@
 
 ## 0. Professional Summary & Skills（僅供 PDF／ATS 上傳，不進表單、不屬任何 directive）
 
-<!-- [STATUS: POLISHED] -->
-- Product Owner with nearly 10 years of product management experience, currently owning an employer-side recruitment system, managing two product planners as direct reports, and responsible for both ongoing service iterations and the system's full overhaul. Worked on six products (JustDating, Juicy, Peach, SweetRing, KOOL and the recruitment system), covering subscriptions, pricing experiments, two-sided matching and enterprise workflows. After the flagship dating app was removed from the App Store, led the launch of a replacement app and worked with marketing to retain existing users and revenue. Turn complex business rules into product solutions, communicate through flows, specifications and prototypes, and work with engineering and QA through release. Use AI agents to draft specifications and to organize and analyze data, then check and correct the output.
+<!-- [STATUS: POLISHED] [LOCK_ENTITIES: account security, messaging, nearly 10 years, Product Owner, B2B recruitment, subscription apps, AI agents, human-in-the-loop, Claude Code, Antigravity] -->
+- Product Owner with nearly 10 years of product management experience spanning B2B recruitment and consumer subscription apps, with experience in account security, messaging, pricing, payments and localization. Manage direct reports and align stakeholder priorities, translating business requirements into specifications and coordinating cross-team delivery. Use AI agents (Claude Code, Antigravity) for specification writing and data analysis within a human-in-the-loop workflow, retaining ownership of final product decisions.
 
 <!-- [STATUS: LOCKED] [LOCK_ENTITIES: PRD, User Story, Use Case, UAT, Axure RP, Figma, Claude Code, Antigravity, Kanban] -->
 - Requirements & Validation: Requirements Analysis, PRD, User Story, Use Case, Process & Sequence Diagrams, Prototyping, UAT

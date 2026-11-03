@@ -1,65 +1,47 @@
-"""104 中英並列產生器回歸測試（讀 repo 內已定稿檔；缺檔時略過）。"""
+"""104 中英並列產生器與驗收回歸測試（讀 repo 內已定稿檔；缺檔時略過）。"""
 import pathlib
-import re
 import sys
 import unittest
 
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parents[1]))
 import gen_104_bilingual as gb  # noqa: E402
-import line_md  # noqa: E402
-import verify_polish as vp  # noqa: E402
+import verify_104_bilingual as vb  # noqa: E402
+
+OUT = gb.ZH_MD.parent.parent / "v12.19-bilingual" / "104-v12.19-bilingual.md"
 
 
-@unittest.skipUnless(gb.ZH_MD.exists() and gb.LINE_MD.exists(), "需要 v12.19 公開版與 LINE resume")
+@unittest.skipUnless(gb.ZH_MD.exists() and gb.LINE_MD.exists() and OUT.exists(), "需要公開版、LINE resume 與並列檔")
 class BilingualTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.zh = gb.ZH_MD.read_text(encoding="utf-8")
-        line_text = gb.LINE_MD.read_text(encoding="utf-8")
-        cls.doc = line_md.parse(line_text)
-        cls.eng = gb.english_blocks(cls.doc)
-        cls.out = gb.combine(cls.zh, cls.eng)
+        cls.line = gb.LINE_MD.read_text(encoding="utf-8")
+        cls.out = OUT.read_text(encoding="utf-8")
 
-    def test_chinese_kept_verbatim(self):
-        for m in re.finditer(r"### 2\.\d [^\n]*\n.*?```html\n(.*?)```", self.zh, re.S):
-            self.assertIn(m.group(1).rstrip("\n"), self.out)
-        bio = re.search(r'"mode": "plain_text"\}\n-->\n\n```text\n(近 10 年.*?)```', self.zh, re.S).group(1).strip()
-        self.assertIn(bio, self.out)
+    def test_strict_pass(self):
+        errs, manual = vb.verify(self.out, self.zh, self.line, strict=True)
+        self.assertEqual(errs, [])
+        self.assertEqual(manual, [])
 
-    def test_english_first_in_every_field(self):
-        bio = re.search(r'"mode": "plain_text"\}\n-->\n\n```text\n(.*?)```', self.out, re.S).group(1)
-        self.assertTrue(bio.startswith("Product Owner"))
-        self.assertLess(bio.index("Product Owner"), bio.index("近 10 年"))
-        for m in re.finditer(r"### 2\.\d [^\n]*\n.*?```html\n(.*?)```", self.out, re.S):
-            h = m.group(1)
-            first_cjk = re.search(r"[一-鿿]", h).start()
-            first_en = re.search(r"[A-Za-z]{4}", h).start()
-            self.assertLess(first_en, first_cjk)
+    def test_fifteen_fields_including_skills(self):
+        keys = [k for k, _ in vb.fields(self.out)]
+        self.assertEqual(len(keys), 15)
+        self.assertEqual(sum(k.startswith("skill") for k in keys), 6)
 
-    def test_projects_english_first_and_names_untouched(self):
-        for m in re.finditer(r"### 5\.(\d) ([^\n]*)\n.*?```html\n(.*?)```", self.out, re.S):
-            h = m.group(3)
-            self.assertLess(re.search(r"[A-Za-z]{4}", h).start(), re.search(r"[\u4e00-\u9fff]", h).start())
-            self.assertIn(m.group(2), self.zh)  # 專案標題維持中文原樣
-        self.assertEqual(gb.project_checks(self.zh), [])
+    def test_changed_english_sentence_is_flagged_not_failed(self):
+        en, _ = vb.split_lang(vb.fields(self.out)[0][1])
+        first = gb.sentences(vb.norm(en))[0]
+        mutated = self.out.replace(first, first + " Extra clause added.", 1)
+        errs, manual = vb.verify(mutated, self.zh, self.line, strict=False)
+        self.assertEqual(errs, [])
+        self.assertTrue(manual)
+        errs, _ = vb.verify(mutated, self.zh, self.line, strict=True)
+        self.assertTrue(errs)
 
-    def test_other_fields_untouched(self):
-        for key in ("把構想變成產品", "AI Agent 協作", "從交友與訂閱制 App、網紅媒合平台到企業招募系統"):
-            self.assertEqual(self.zh.count(key), self.out.count(key), key)
-        self.assertNotIn("英文自傳", self.out)
-
-    def test_blocks_parse_with_104_html_whitelist(self):
-        for m in re.finditer(r"### 2\.\d [^\n]*\n.*?```html\n(.*?)```", self.out, re.S):
-            p = vp.FieldHTML()
-            p.feed(m.group(1))
-            p.close()
-
-    def test_every_english_bullet_comes_from_line_resume(self):
-        src = set(sum([x["bullets"] for x in self.doc["directives"] if x["d"]["target_block"] == "work_experience"], []))
-        src = {gb.reduce_fix(b) for b in src}
-        for idx, (bl, _) in self.eng.items():
-            for b in bl:
-                self.assertIn(b, src)
+    def test_altered_chinese_is_rejected(self):
+        mutated = self.out.replace("近 10 年", "近 11 年", 1)
+        errs, _ = vb.verify(mutated, self.zh, self.line)
+        self.assertTrue(any("中文被改動" in e for e in errs))
 
     def test_accent_phrase_must_exist(self):
         with self.assertRaises(ValueError):
