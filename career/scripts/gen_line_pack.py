@@ -28,10 +28,10 @@ def payload_hash(data):
     return hashlib.sha256(canonical({k: data.get(k) for k in keys}).encode()).hexdigest()
 
 
-def build(src):
-    text = Path(src).read_text(encoding="utf-8")
+def build(src, text=None, purpose="pack"):
+    text = Path(src).read_text(encoding="utf-8") if text is None else text
     doc = line_md.parse(text)
-    errs = line_md.validate(doc, "pack")
+    errs = line_md.validate(doc, purpose)
     if errs:
         raise ValueError("；".join(errs))
     steps = line_md.payload(doc)
@@ -42,6 +42,14 @@ def build(src):
     form_steps = [{k: v for k, v in s.items() if k not in ("description_bullets", "description_text")} for s in steps]
     form = {"source": str(src), "source_sha256": sha, "summary_text": doc["summary"], "steps": form_steps}
     return form, resume
+
+
+def prepare(src, purpose="pack"):
+    """Read once, verify once, derive both payloads from the same snapshot."""
+    text = Path(src).read_text(encoding="utf-8")
+    if verify_line_profile.validate_text(text, str(src), purpose):
+        raise ValueError("格式／語氣驗收未通過")
+    return build(src, text=text, purpose=purpose)
 
 
 def atomic_write(pairs):
@@ -65,11 +73,8 @@ def main(argv=None):
         print(__doc__)
         return 2
     src = Path(argv[0])
-    if verify_line_profile.main(str(src), "pack"):
-        print("❌ 驗收未通過，不產出（既有成品不動）")
-        return 1
     try:
-        form, resume = build(src)
+        form, resume = prepare(src)
     except (OSError, ValueError) as e:
         print(f"❌ 無法產出：{e}")
         return 1

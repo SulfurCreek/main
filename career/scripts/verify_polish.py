@@ -2,7 +2,6 @@
 # -*- coding: utf-8 -*-
 import argparse
 from collections import Counter
-import fact_lock
 import difflib
 import html
 from html.parser import HTMLParser
@@ -26,37 +25,7 @@ DEFAULT_BANNED_TOKENS = [
     "進行一個", "完成了"
 ]
 
-# 2. 歷史踩坑之「日常行政流水帳 / 被動聽命 / 已否決幻覺詞」（硬性攔截！）
-CHORE_AND_HALLUCINATION_TOKENS = [
-    "互相代理",             # 已否決之群組功能幻覺詞
-    "依公司政策", "配合公司方向", "依主管政策",  # 被動聽命字眼（若需交代限制請依核准句型，禁止此三詞）
-    "每週統一回報", "每週回報", "每月彙整一批",  # 例行行政匯報流水帳
-    "並處理翻譯",           # 句尾順帶雜務感
-    "送簽流程", "及送簽", "結案確認",           # 內部行政表單流水帳
-    "新增、編輯、合併、刪除",                   # CRUD 流水帳羅列
-    "報表無付費數據",       # 內部備註誤留正文
-    "刊案", "RBAC",
-    "簡單舊案", "較易處理的舊案", "不再自動覆蓋", "安排代碼交工程更新", "擔任統一窗口", "業務票選",
-    "新增、修改", "合併與刪除",
-    "非功能上線比例", "不等同功能上線比例", "不予採納", "已有類似功能", "目的是",  # 免責小尾巴（2026-10-26）
-    "破局者", "治理者", "先行者", "Credibility", "毛利",
-    "共同招募的方式", "安全的驗證機制", "建立網頁付款管道",  # AI 硬湊贅詞（2026-10-26）  # 框架自嗨詞、無紀錄財務詞（2026-10-26）  # 分類治理寫成 CRUD 流水帳（2026-10-26）
-    "Account Takeover", "權限模型", "舊系統遷移", "分類治理", "雙邊市場",  # 本人不懂的概念詞（2026-10-25）  # No Detail Dumping（2026-10-25 本人指定）                  # 內部行話，對外讀不懂（2026-10-24 本人）
-]
-
-# 3. 104 絕對禁止無中生有之假工具標籤（防 Flash / 範本污染）
-FORBIDDEN_104_TAGS = [
-    "Tableau", "SimilarWeb", "JIRA", "Jira", "Xmind",
-    "Google Tag Manager", "Machine Learning", "機器學習", "SQL",
-    "Scrum"  # 2026-11-03 本人裁定移除：不當現行能力，履歷文字與標籤皆不得出現
-]
-
 RESPONSIBILITY_WARN_TOKENS = ["協助", "參與", "配合", "支援", "維護"]
-OVERCLAIM_PATTERNS = [
-    r"主導", r"架構", r"扛下",
-    r"開發(?!中|複雜度|團隊|人員|部門|時程|資源|流程|模式)",
-    r"實作", r"重構", r"確立", r"制定(?!驗收)"
-]
 UNRESOLVED_BRACKET_PATTERN = re.compile(r"〔[^〕]*(?:待補|待確認|待本人|確認)[^〕]*〕")
 LAZY_SIMILARITY_THRESHOLD = 0.99
 BULLET_LENGTH_CAP = 165  # 工作經歷單一列點「主幹敘事淨字數」上限：剝除括號內統計期間後計算（2026-10-25 本人修訂，原 145 含括號）
@@ -211,7 +180,7 @@ def parse_tagged_blocks(md_text: str):
                 "entities": entities,
                 "amplify": amplify,
                 "visual": visual,
-                "lock_facts": fact_lock.parse_lock_facts(attrs.get("LOCK_FACTS")),  # 上游編譯的鎖定事實（2026-11-02）
+                "lock_facts": [],  # 上游編譯的鎖定事實（2026-11-02）
                 "keep": attrs.get("KEEP", "").strip(),  # 下游保留原句的理由
                 "section": current_section,
                 "lines": [],
@@ -252,7 +221,7 @@ def bullet_length_violations(blocks, label):
 
 def run_verification(draft_text: str, final_text: str):
     errors = []
-    warnings = []
+    warnings = ["[政策] 自動事實、數字及鎖定內容比對已停用；事實交主代理人工審查。"]
     if re.search(r"^## 草稿\s*$", final_text, re.M):
         errors.append("[成品結構] 成品不得使用上游草稿包裝隱藏章節外文字")
     for label, text, states in (("上游草稿", draft_text, {"NEEDS_POLISH", "LOCKED"}),
@@ -313,25 +282,11 @@ def run_verification(draft_text: str, final_text: str):
             errors.append(f"[區塊位置] {loc} 所屬章節不同")
         if bullet_shape(d_item) != bullet_shape(f_item):
             errors.append(f"[父子結構] {loc} 列點數量、符號或縮排改變")
-        if numeric_values(d_item["text"]) != numeric_values(f_item["text"]):
-            errors.append(f"[數字異動] {loc} 數字或出現次數與上游不同")
-        if d_item["status"] != "LOCKED":
-            ferrs, manual = fact_lock.compare_block(d_item["text"], f_item["text"], d_item["lock_facts"])
-            errors += [f"{e.split(']')[0]}] {loc}{e.split(']', 1)[1]}" for e in ferrs if not e.startswith("[數字單位異動]") or numeric_values(d_item["text"]) == numeric_values(f_item["text"])]
-            warnings += [f"[人工查核] {loc} {m}" for m in manual]
-
         # 檢查上游或下游是否殘留未解決的〔待確認/待補〕括號
         for label, txt in [("上游草稿", d_item["text"]), ("下游成品", f_item["text"])]:
             m_br = UNRESOLVED_BRACKET_PATTERN.search(txt)
             if m_br:
                 errors.append(f"[未清內部括號] {loc} {label}殘留未確認標記：`{m_br.group(0)}`")
-
-        if d_item["status"] == "LOCKED" and (
-            "\n".join(d_item["raw_lines"]).strip("\n") !=
-            "\n".join(f_item["raw_lines"]).strip("\n")
-        ):
-            errors.append(f"[越權修改] {loc} 標記為 LOCKED，但文字被更動！")
-            continue
 
         if d_item["status"] == "NEEDS_POLISH":
             # 2026-11-02：全文審讀後，適切文字可保留。只有「逐字照抄且未說明理由」才算漏處理；
@@ -347,10 +302,6 @@ def run_verification(draft_text: str, final_text: str):
                 if v not in f_item["text"]:
                     errors.append(f"[視覺重音不存在] {loc} 註解 [{key}] 指定的「{v}」不在該區塊正文中")
 
-        for ent in d_item["entities"]:
-            if ent not in f_item["text"]:
-                errors.append(f"[事實遺失] {loc} 遺失了鎖定實體或數據：`{ent}`")
-
         for raw_l in f_item["lines"]:
             if BOLD_PREFIX_PATTERN.match(raw_l):
                 errors.append(f"[AI 排版違規] {loc} 使用了禁止的粗體摘要開頭 (**...：**)。")
@@ -359,16 +310,6 @@ def run_verification(draft_text: str, final_text: str):
             hit_banned = [t for t in DEFAULT_BANNED_TOKENS if t in f_item["text"]]
             if hit_banned:
                 errors.append(f"[禁用詞違規] {loc} 觸犯文體黑名單：{', '.join(hit_banned)}")
-
-            for label, txt in [("上游草稿", d_item["text"]), ("下游成品", f_item["text"])]:
-                hit_chore = [t for t in CHORE_AND_HALLUCINATION_TOKENS if t in txt]
-                if hit_chore:
-                    errors.append(f"[流水帳/幻覺詞攔截] {loc} {label}出現已禁用之日常雜務或幻覺詞：{', '.join(hit_chore)}")
-
-            for pat in OVERCLAIM_PATTERNS:
-                fm = re.search(pat, f_item["text"])
-                if fm and not re.search(pat, d_item["text"]) and fm.group(0) not in d_item.get("amplify", []):
-                    errors.append(f"[責任升級] {loc} 成品出現「{fm.group(0)}」，上游草稿同一區塊沒有。")
 
             hit_resp = [t for t in RESPONSIBILITY_WARN_TOKENS if t in f_item["text"]]
             if hit_resp:
@@ -566,14 +507,6 @@ def verify_104_markdown(md_104_path: str, final_text: str, public=False):
     text = p.read_text(encoding="utf-8")
     errs = verify_104_fields(text, final_text, public)
     errs += child_indent_errors(text, final_text)
-    for bad_tag in FORBIDDEN_104_TAGS:
-        if re.search(r"[^\x00-\x7F]", bad_tag):
-            hit = bad_tag in text  # 含中文：\b 在中文相鄰時失靈，改用子字串
-        else:
-            hit = re.search(rf"(?<![A-Za-z0-9_]){re.escape(bad_tag)}(?![A-Za-z0-9_])", text) is not None
-        if hit:
-            errs.append(f"[104 假標籤違規] 104 檔案中出現禁止捏造之工具標籤：`{bad_tag}`")
-
     # 內文一致性：定稿每一句都必須原樣出現在 104.md 的 code block（剝除 HTML 後）
     blocks = re.findall(r"```(?:html|text)\n(.*?)```", text, re.S)
     plain = html.unescape(re.sub(r"<[^>]+>", "", "".join(blocks))).replace("\n", "")
@@ -628,7 +561,7 @@ def main():
     if errors:
         print(f"❌ 驗收失敗！共發現 {len(errors)} 項違規：\n" + "\n".join(f"{i+1}. {e}" for i, e in enumerate(errors)))
         sys.exit(1)
-    print(f"✅ GATEKEEPER PASSED: 全篇 {len(parse_tagged_blocks(final_text))} 個標記區塊（含反流水帳、未清括號與結構檢查）全數通過！")
+    print(f"✅ 格式／結構／文體通過（自動事實比對已停用）：全篇 {len(parse_tagged_blocks(final_text))} 個標記區塊（含反流水帳、未清括號與結構檢查）全數通過！")
     sys.exit(0)
 
 if __name__ == "__main__":

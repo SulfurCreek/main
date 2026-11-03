@@ -12,7 +12,6 @@ import unittest
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
-import fact_lock  # noqa: E402
 import gen_line_pack  # noqa: E402
 import gen_line_pdf  # noqa: E402
 import line_md  # noqa: E402
@@ -20,12 +19,12 @@ import verify_line_pdf  # noqa: E402
 import verify_line_profile  # noqa: E402
 import verify_polish as vp  # noqa: E402
 
-A21 = ("- Analyzed and mapped rules; 743 of 840 related client requests were resolved, with sales buy-in.\n"
-       "- Planned access by department or branch to lower the barrier and improve candidate matching with compliance.\n"
+# Entire fixture below is invented for parser/format tests; no real applicant data.
+A21 = ("- Analyzed example requirements; 123 of 456 sample requests were recorded.\n"
+       "- Planned a sample workflow for a fictional team.\n"
        "- Tuned recommendations from actual selections.\n"
-       "- Audited shared category code tables, reviewing the underlying data fields and field-level mappings.\n"
-       "- Manage two planners as direct reports and delegated cases, raising renewal credibility for cases open at least 30 days.\n")
-A22 = "- Led the design of a marketplace inspired by Airbnb and Miro, which kicked off in 2018.\n"
+       "- Audited sample fields in an example dataset.\n")
+A22 = "- Led an example prototype exercise for a fictional organization.\n"
 
 
 def directive(block, fields, index=None, action=None):
@@ -40,10 +39,10 @@ def work(i, start, end):
             "start_date": start, "end_date": end}
 
 
-def doc(summary=True, basic_email="a@b.co", action=None, a21=A21, extra=""):
-    basic = {"email": basic_email, "mobile_phone": "886-900-000-000", "current_position_title": "Product Owner",
-             "current_employer": "Co 0", "country": "215", "address": "3F, No. 1, Lane 2, Some Rd., Some District", "city": "Taipei"}
-    edu = {"degree_name": "International Business", "type_of_degree": "21", "degree_status": "1172", "university": "Tamkang University",
+def doc(summary=True, basic_email="applicant@example.invalid", action=None, a21=A21, extra=""):
+    basic = {"email": basic_email, "mobile_phone": "000-000-000-000", "current_position_title": "Product Owner",
+             "current_employer": "Co 0", "country": "215", "address": "Synthetic Address Placeholder", "city": "Taipei"}
+    edu = {"degree_name": "International Business", "type_of_degree": "21", "degree_status": "1172", "university": "Example University",
            "start_date": "2010-09", "end_date": "2014-06"}
     lang = {"language": "10", "written": "1174", "spoken": "1174", "reading": "1174", "listening": "1174"}
     s = "# Resume\n\n"
@@ -53,7 +52,7 @@ def doc(summary=True, basic_email="a@b.co", action=None, a21=A21, extra=""):
     s += "## 1. Basic\n\n" + directive("basic", basic, action=action) + "\n## 2. Work\n\n"
     s += "### 2.1 Product Owner｜Co 0｜2022-08 – Present\n\n" + directive("work_experience", work(0, "2022-08", ""), 0) + "\n" + a21
     s += "\n### 2.2 Product Manager｜Co 1｜2018-01 – 2022-03\n\n" + directive("work_experience", work(1, "2018-01", "2022-03"), 1) + "\n" + A22
-    s += "\n## 3. Education\n\n### 3.1 Tamkang\n\n" + directive("education", edu, 0)
+    s += "\n## 3. Education\n\n### 3.1 Example\n\n" + directive("education", edu, 0)
     s += "\n## 4. Languages\n\n### 4.1 English\n\n" + directive("languages", lang, 0) + extra
     return s
 
@@ -104,24 +103,21 @@ class EnglishFormatTests(unittest.TestCase):
         self.assertEqual(rc, 1)
         self.assertIn("重複鍵", out)
 
-    def test_anchor_only_in_comment_rejected(self):
+    def test_fixed_fact_anchors_no_longer_gate(self):
         a21 = A21.replace("- Tuned recommendations from actual selections.\n", "<!-- actual selections -->\n- Tuned recommendations.\n")
         rc, out = run_verify(doc(a21=a21))
-        self.assertEqual(rc, 1)
-        self.assertIn("actual selections", out)
-
-    def test_upstream_number_and_status_changes_rejected(self):
-        up = doc()
-        down = up.replace("743 of 840", "743 of 850")
-        rc, out = run_verify(down, upstream=up)
-        self.assertEqual(rc, 1)
-        self.assertIn("數字單位異動", out)
-        rc, out = run_verify(doc(), upstream=up)
         self.assertEqual(rc, 0, out)
-        self.assertIn("已與上游", out)
+        self.assertIn("已停用", out)
 
-    def test_no_upstream_marks_facts_unverified(self):
-        self.assertIn("未核對", run_verify(doc())[1])
+    def test_upstream_fact_checks_are_retired(self):
+        up = doc()
+        rc, out = run_verify(up.replace("123 of 456", "999 of 850"), upstream=up)
+        self.assertEqual(rc, 0, out)
+        self.assertIn("已停用", out)
+        self.assertNotIn("已與上游", out)
+
+    def test_facts_always_marked_disabled(self):
+        self.assertIn("已停用", run_verify(doc())[1])
 
 
 class PackAndPdfTests(unittest.TestCase):
@@ -170,7 +166,7 @@ class PackAndPdfTests(unittest.TestCase):
         self.pack()
         d = json.loads((self.dir / "r.resume.json").read_text(encoding="utf-8"))
         items = verify_line_pdf.expected_items(d)
-        lines = ["Kun Huai Nieh"]
+        lines = ["Synthetic Applicant"]
         for kind, val in items:
             lines.append(("• " if kind in ("Skill", "Bullet") else "") + val)
         lines = mutate(lines)
@@ -192,7 +188,7 @@ class PackAndPdfTests(unittest.TestCase):
     def test_name_plus_ten_placeholder_bullets_not_complete(self):
         self.pack()
         d = json.loads((self.dir / "r.resume.json").read_text(encoding="utf-8"))
-        fake = "Kun Huai Nieh\n" + "\n".join("• placeholder" for _ in range(10))
+        fake = "Synthetic Applicant\n" + "\n".join("• placeholder" for _ in range(10))
         self.assertTrue(verify_line_pdf.content_errors(fake, d))
 
 
@@ -200,38 +196,45 @@ def zh(text, status="NEEDS_POLISH", attrs=""):
     return f"### 段落\n<!-- [STATUS: {status}]{attrs} -->\n{text}\n"
 
 
-class ChineseFactTests(unittest.TestCase):
-    def errors(self, up, down, attrs=""):
-        return vp.run_verification(zh(up, attrs=attrs), zh(down, "POLISHED"))[0]
+class RetiredFactPolicyTests(unittest.TestCase):
+    def test_numbers_units_and_locks_no_longer_gate(self):
+        cases = [
+            ("- 完成率 88%。", "- 完成 99 件。", ""),
+            ("- 訊息整合目前開發中。", "- 訊息整合已正式上線。", ""),
+            ("- 服務約 6 萬家企業，團隊完成 123 件。", "- 服務 8 萬家企業，完成 900 件。", ""),
+            ("- 甲產品 10 件，乙產品 20 件。", "- 乙產品 10 件，甲產品 20 件。", " [LOCK_FACTS: 甲產品=10 件; 乙產品=20 件]"),
+            ("- 原本名稱。", "- 更換表達。", " [LOCK_ENTITIES: 原本名稱]"),
+        ]
+        for up, down, attrs in cases:
+            self.assertEqual(vp.run_verification(zh(up, attrs=attrs), zh(down, "POLISHED"))[0], [])
 
-    def test_swapped_objects_rejected_with_lock_facts(self):
-        e = self.errors("- 甲產品 10 件，乙產品 20 件。", "- 乙產品 10 件，甲產品 20 件。", " [LOCK_FACTS: 甲產品=10 件; 乙產品=20 件]")
-        self.assertTrue(any("鎖定事實" in x for x in e), e)
+    def test_locked_content_no_longer_gates(self):
+        self.assertEqual(vp.run_verification(zh("- 原本 10 件。", "LOCKED"), zh("- 重新表達 20 件。", "LOCKED"))[0], [])
 
-    def test_percent_to_count_rejected(self):
-        e = self.errors("- 完成率 88%。", "- 完成 88 件。")
-        self.assertTrue(any("數字單位" in x for x in e), e)
+    def test_retired_module_exposes_no_validation_api(self):
+        import fact_lock
+        self.assertTrue(fact_lock.RETIRED)
+        self.assertFalse(hasattr(fact_lock, "compare_block"))
 
-    def test_in_development_to_launched_rejected(self):
-        e = self.errors("- 訊息整合目前開發中。", "- 訊息整合已正式上線。")
-        self.assertTrue(any("完成狀態" in x for x in e), e)
+    def test_retired_upstream_arg_does_not_read_source(self):
+        rc, out = run_verify(doc(), upstream=None)
+        self.assertEqual(rc, 0, out)
+        from unittest.mock import patch
+        with tempfile.TemporaryDirectory() as td:
+            p = Path(td, "r.md")
+            p.write_text(doc(), encoding="utf-8")
+            with contextlib.redirect_stdout(io.StringIO()):
+                self.assertEqual(verify_line_profile.main(str(p), upstream="/missing-source"), 0)
 
-    def test_removed_limiter_rejected(self):
-        e = self.errors("- 服務約 6 萬家企業，團隊完成 743 件。", "- 服務 6 萬家企業，完成 743 件。")
-        self.assertTrue(any("限定詞" in x for x in e), e)
-
-    def test_valid_polish_passes(self):
-        self.assertEqual(self.errors("- 服務約 6 萬家企業。", "- 為約 6 萬家企業服務。"), [])
-
-    def test_identical_needs_polish_requires_keep_reason(self):
-        self.assertTrue(any("漏處理" in x for x in self.errors("- 原句。", "- 原句。")))
-        ok, warns = vp.run_verification(zh("- 原句。"), "### 段落\n<!-- [STATUS: POLISHED] [KEEP: 原句已精準] -->\n- 原句。\n")
-        self.assertEqual(ok, [])
-        self.assertTrue(any("保留原句" in w for w in warns))
-
-    def test_fact_lock_pure_function(self):
-        e, m = fact_lock.compare_block("- about 60,000 employers", "- 60,000 employers")
-        self.assertTrue(any("限定詞" in x for x in e))
+    def test_prepare_validates_once(self):
+        from unittest.mock import patch
+        with tempfile.TemporaryDirectory() as td:
+            p = Path(td, "r.md")
+            p.write_text(doc(), encoding="utf-8")
+            with patch.object(verify_line_profile, "validate_text", wraps=verify_line_profile.validate_text) as check, contextlib.redirect_stdout(io.StringIO()):
+                form, resume = gen_line_pack.prepare(p, purpose="pdf")
+            self.assertEqual(check.call_count, 1)
+            self.assertEqual(form["source_sha256"], resume["source_sha256"])
 
 
 if __name__ == "__main__":

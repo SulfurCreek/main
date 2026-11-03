@@ -20,7 +20,7 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-import gen_104_bilingual as gb  # noqa: E402
+import bilingual_contract as gb  # noqa: E402
 import md104  # noqa: E402
 
 ALLOWED_TAG = re.compile(r'</?blockquote>|</?p>|</?strong>|<span style="background-color: #(?:fbf3db|deebf1);">|</span>')

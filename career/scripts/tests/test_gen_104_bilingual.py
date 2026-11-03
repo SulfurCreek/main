@@ -8,6 +8,7 @@ import unittest
 
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parents[1]))
 import gen_104_bilingual as gb  # noqa: E402
+import bilingual_contract as bc  # noqa: E402
 import line_md  # noqa: E402
 import md104  # noqa: E402
 import verify_104_bilingual as vb  # noqa: E402
@@ -77,17 +78,18 @@ def zh_doc():
 
 class Synthetic(unittest.TestCase):
     def setUp(self):
-        self.saved = {k: getattr(gb, k) for k in ("LINE_SHA", "SUMMARY_SHA", "SKILL_SRC", "PROJECT_SRC", "PROJECT_ACCENT")}
+        self.saved = {k: getattr(bc, k) for k in ("LINE_SHA", "SUMMARY_SHA", "SKILL_SRC", "PROJECT_SRC")}
         doc = line_md.parse(LINE)
         w = [x["bullets"] for x in doc["directives"]]
         h = gb.sha16
         s = gb.sentences(doc["summary"])
-        gb.LINE_SHA = hashlib.sha256(LINE.encode()).hexdigest()
-        gb.SUMMARY_SHA = h(doc["summary"])
-        gb.SKILL_SRC = [("summary_sentence", 2, h(s[2])), ("skills_line", 0, h(doc["skills"][0])),
+        bc.LINE_SHA = hashlib.sha256(LINE.encode()).hexdigest()
+        bc.SUMMARY_SHA = h(doc["summary"])
+        bc.SKILL_SRC = [("summary_sentence", 2, h(s[2])), ("skills_line", 0, h(doc["skills"][0])),
                         ("bullet_sentence", (0, 5, 1), h(gb.sentences(w[0][5])[1])), ("skills_line", 1, h(doc["skills"][1])),
                         ("summary_sentence", 1, h(s[1])), ("skills_line", 2, h(doc["skills"][2]))]
-        gb.PROJECT_SRC = {0: [(1, 4, h(w[1][4]))], 1: [(1, 3, h(w[1][3]))], 2: [(0, 5, h(w[0][5])), (0, 2, h(w[0][2]))], 3: [(0, 6, h(w[0][6]))]}
+        bc.PROJECT_SRC = {0: [(1, 4, h(w[1][4]))], 1: [(1, 3, h(w[1][3]))], 2: [(0, 5, h(w[0][5])), (0, 2, h(w[0][2]))], 3: [(0, 6, h(w[0][6]))]}
+        self.saved_accents = gb.PROJECT_ACCENT
         gb.PROJECT_ACCENT = {1: {"B": ["KOOL"], "G": ["about 16,000 profiles"]}}
         self.zh = zh_doc()
         self.out = gb.build(self.zh, LINE)
@@ -95,10 +97,11 @@ class Synthetic(unittest.TestCase):
 
     def tearDown(self):
         for k, v in self.saved.items():
-            setattr(gb, k, v)
+            setattr(bc, k, v)
+        gb.PROJECT_ACCENT = self.saved_accents
 
     def check(self, text, line=LINE, lim=None):
-        return vb.verify(text, self.zh, line, gb.LINE_SHA, self.lim if lim is None else lim)
+        return vb.verify(text, self.zh, line, bc.LINE_SHA, self.lim if lim is None else lim)
 
     def sec(self, text, key):
         return next(s for s in md104.parse(text)["sections"] if s["key"] == key)
@@ -153,9 +156,9 @@ class Synthetic(unittest.TestCase):
         self.assertTrue(self.check(self.out, line=changed)[0])
         with self.assertRaises(ValueError):
             gb.build(self.zh, changed)
-        gb.LINE_SHA = hashlib.sha256(changed.encode()).hexdigest()
+        bc.LINE_SHA = hashlib.sha256(changed.encode()).hexdigest()
         moved = LINE.replace("- Bullet four.\n", "- Bullet four.\n- Inserted.\n").replace("Bullet b1.", "Bullet b1 new.")
-        gb.LINE_SHA = hashlib.sha256(moved.encode()).hexdigest()
+        bc.LINE_SHA = hashlib.sha256(moved.encode()).hexdigest()
         with self.assertRaises(ValueError):  # 插入列點導致索引位移 → 映射原文雜湊不符
             gb.build(self.zh, moved)
 
@@ -181,6 +184,22 @@ class Synthetic(unittest.TestCase):
         self.assertEqual(errs, [])
         self.assertEqual(pending, ["bio", "skill"])
         self.assertEqual(vb.parse_limits([]), {"project": 2000, "skill": 1000, "bio": 1000})  # 三類上限皆已知
+
+    def test_pending_limits_do_not_replace_output(self):
+        from unittest.mock import patch
+        with tempfile.TemporaryDirectory() as td:
+            zp, lp, op = (pathlib.Path(td, n) for n in ("zh.md", "line.md", "out.md"))
+            zp.write_text(self.zh, encoding="utf-8")
+            lp.write_text(LINE, encoding="utf-8")
+            op.write_text("previous approved output", encoding="utf-8")
+            with patch.object(vb, "parse_limits", return_value={"project": 2000}):
+                self.assertEqual(gb.main(["--zh", str(zp), "--line", str(lp), "--out", str(op)]), 3)
+            self.assertEqual(op.read_text(encoding="utf-8"), "previous approved output")
+
+    def test_validator_does_not_use_generator_to_build_expectations(self):
+        from unittest.mock import patch
+        with patch.object(gb, "english_units", return_value=("Wrong summary.", [], {})):
+            self.assertEqual(self.check(self.out), ([], []))
 
     def test_main_writes_nothing_on_failure(self):
         with tempfile.TemporaryDirectory() as t:

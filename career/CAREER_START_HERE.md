@@ -1,3 +1,5 @@
+> 2026-11-03 本人新政策：自動事實、數字與LOCK內容比對全部停用。自動檢查、工具版本及順序唯一依 [PIPELINE_POLICY.md](PIPELINE_POLICY.md)；下文或skill中的舊自動比對要求失效。main嚴格唯讀。
+
 # Career 工作流入口與上下游協作規則
 
 狀態：正式入口。
