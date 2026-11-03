@@ -43,6 +43,21 @@ class BilingualTests(unittest.TestCase):
         errs, _ = vb.verify(mutated, self.zh, self.line)
         self.assertTrue(any("中文被改動" in e for e in errs))
 
+    def test_experience_english_only_and_within_104_limit(self):
+        for k, block in vb.fields(self.out):
+            if k.startswith("exp"):
+                self.assertFalse(vb.CJK.search(block), k)
+                import re as _re
+                self.assertLessEqual(len(_re.sub(r"<[^>]*>", "", block).strip()), vb.EXP_LIMIT, k)
+
+    def test_over_limit_experience_is_rejected(self):
+        pad = "<p>" + "Extra sentence here. " * 120 + "</p>\n"
+        mutated = self.out.replace("### 2.4", "### 2.4", 1)
+        i = mutated.index("```html\n", mutated.index("### 2.4")) + len("```html\n")
+        mutated = mutated[:i] + pad + mutated[i:]
+        errs, _ = vb.verify(mutated, self.zh, self.line)
+        self.assertTrue(any("104 字數超標" in e for e in errs))
+
     def test_accent_phrase_must_exist(self):
         with self.assertRaises(ValueError):
             gb.accent_html("abc", {"G": ["xyz"]})

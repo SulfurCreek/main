@@ -32,9 +32,9 @@ SUMMARY_EN = None  # 於 main() 設為 LINE resume 的 Summary 原文
 
 # 英文列點順序（對應中文 104 版結構）：LINE directive index → (LINE bullet 索引依中文順序, 分組標題)
 ORDER = {
-    0: {"bullets": [0, 4, 5, 2, 6, 1, 3, 8, 7],
+    0: {"bullets": [0, 3, 4, 5, 2, 6],  # 104 單筆經歷 ≤2000 字且只放英文（2026-11-03 本人指定）：取 6 點約 1,940 字
         "groups": {}},
-    1: {"bullets": [0, 3, 4, 1, 2],
+    1: {"bullets": [0, 3, 4, 2],  # 約 1,900 字；保留 KOOL 0→1、Juicy 承接，捨定價實驗
         "groups": {}},
     2: {"bullets": [0, 2, 1], "groups": {}},
     3: {"bullets": [0], "groups": {}},
@@ -194,7 +194,7 @@ def build_en_source(line_text, line_doc, eng):
 
 
 def combine(zh_text, summary_en, eng, skills_en, projects_en):
-    """把英文先行併入中文公開版 md：info.bio、4 筆經歷、6 張專長、4 筆專案說明。自傳與其餘逐字不動。"""
+    """把英文併入中文公開版 md：info.bio、6 張專長、4 筆專案說明為英文先行再中文；4 筆經歷只放英文（104 單筆 ≤2000 字）。自傳與其餘逐字不動。"""
     m = re.search(r"(\"field\": \"bio\", \"mode\": \"plain_text\"\}\n-->\n\n```text\n)(.*?)(```)", zh_text, re.S)
     if not m:
         raise ValueError("找不到 info.bio 區塊")
@@ -212,7 +212,7 @@ def combine(zh_text, summary_en, eng, skills_en, projects_en):
         return out
 
     t = sub_all(t, re.compile(r"(### 2\.(\d) [^\n]*\n.*?```html\n)(.*?)(```)", re.S),
-                lambda mm: mm.group(1) + eng[int(mm.group(2)) - 1][1] + "\n<p><br></p>\n" + mm.group(3).rstrip("\n") + "\n" + mm.group(4), 4, "工作經歷")
+                lambda mm: mm.group(1) + eng[int(mm.group(2)) - 1][1].rstrip("\n") + "\n" + mm.group(4), 4, "工作經歷")  # 經歷只放英文
     t = sub_all(t, re.compile(r"(### 3\.(\d) [^\n]*\n.*?```text\n)(.*?)(```)", re.S),
                 lambda mm: mm.group(1) + skills_en[int(mm.group(2)) - 1] + "\n\n" + mm.group(3).rstrip("\n") + "\n" + mm.group(4), 6, "專長")
     t = sub_all(t, re.compile(r"(### 5\.(\d) [^\n]*\n.*?```html\n)(.*?)(```)", re.S),

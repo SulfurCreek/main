@@ -5,7 +5,7 @@
 
 檢查（程式可確定者）：
 1. 中文零加工：中文公開版的簡介、4 筆經歷、6 張專長、自傳、4 筆專案說明，原文逐字出現在並列檔。
-2. 英文先行：簡介、4 筆經歷、6 張專長、4 筆專案說明，英文都在中文之前；自傳區塊沒有英文。
+2. 英文先行：簡介、6 張專長、4 筆專案說明，英文都在中文之前；4 筆工作經歷只放英文（單筆 ≤1,950 字）；自傳區塊沒有英文。
 3. 來源：每個英文句子都必須是 LINE 英文履歷中現有的句子（規範化空白後為子字串）。
    --strict：任何不在來源的句子即失敗（上游產生器輸出用）。
    預設：不在來源的句子列為「已修改，需主代理人工查核」，不判失敗（Codex 潤飾後用）。
@@ -23,6 +23,7 @@ import gen_104_bilingual as gb  # noqa: E402
 import verify_line_profile as vlp  # noqa: E402
 
 CJK = re.compile(r"[一-鿿]")
+EXP_LIMIT = 1950  # 單筆工作經歷（純文字）上限，留 50 字緩衝
 
 
 def norm(s):
@@ -62,13 +63,21 @@ def verify(bi_text, zh_text, line_text, strict=False):
     src = norm(line_text)
     bf, zf = dict(fields(bi_text)), dict(fields(zh_text))
     for key, block in bf.items():
-        en, zh = split_lang(block)
+        if key.startswith("exp"):  # 工作經歷：只放英文，單筆 ≤ EXP_LIMIT 字（104 上限 2000）
+            en, zh = block, ""
+            if CJK.search(block):
+                errs.append(f"[經歷只放英文] {key} 含中文字")
+            n = len(re.sub(r"<[^>]*>", "", html.unescape(block)).strip())
+            if n > EXP_LIMIT:
+                errs.append(f"[104 字數超標] {key} 共 {n} 字，上限 {EXP_LIMIT}（104 硬限制 2000）")
+        else:
+            en, zh = split_lang(block)
         if not en.strip() or CJK.search(en):
             errs.append(f"[英文先行] {key} 欄位沒有在中文之前的英文段")
             continue
-        # 中文零加工
+        # 中文零加工（經歷只放英文，不比對中文）
         zh_orig = zf[key].strip()
-        if zh_orig not in block:
+        if not key.startswith("exp") and zh_orig not in block:
             errs.append(f"[中文被改動] {key} 的中文原文沒有逐字保留")
         # 英文來源與語氣
         text = norm(en)

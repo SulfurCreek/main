@@ -7,8 +7,8 @@
 | 欄位 | 英文來源 |
 | :-- | :-- |
 | 個人簡介 | line-resume.md Summary（全文） |
-| 經歷 2.1 | line-resume.md §2.1 列點索引 [0, 4, 5, 2, 6, 1, 3, 8, 7]（依中文順序重排，原文不改） |
-| 經歷 2.2 | line-resume.md §2.2 列點索引 [0, 3, 4, 1, 2]（依中文順序重排，原文不改） |
+| 經歷 2.1 | line-resume.md §2.1 列點索引 [0, 3, 4, 5, 2, 6]（依中文順序重排，原文不改） |
+| 經歷 2.2 | line-resume.md §2.2 列點索引 [0, 3, 4, 2]（依中文順序重排，原文不改） |
 | 經歷 2.3 | line-resume.md §2.3 列點索引 [0, 2, 1]（依中文順序重排，原文不改） |
 | 經歷 2.4 | line-resume.md §2.4 列點索引 [0]（依中文順序重排，原文不改） |
 | 專長 3.1 | summary_sentence 2：Use AI agents (Claude Code, Antigravity) for specification w… |
