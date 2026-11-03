@@ -22,7 +22,7 @@ I am applying for the AI Product Manager role at your company. I have nearly 10 
 
 • For a full system overhaul with no documentation, I analyzed and mapped account permissions and business rules through hands-on testing and internal interviews; 743 of 840 related client requests (88%) were resolved during the overhaul.
 
-Ai product delivery and AI-assisted workflows are areas I have focused on in recent years. I look forward to the opportunity to discuss this experience with your team. Thank you for your time.
+AI product delivery and AI-assisted workflows are areas I have focused on in recent years. I look forward to the opportunity to discuss this experience with your team. Thank you for your time.
 
 Kun Huai Nieh
 ```
