@@ -4,6 +4,8 @@ import sys
 import json
 import re
 import copy
+import html
+import unicodedata
 from datetime import datetime, timezone
 from urllib.parse import urlparse
 
@@ -71,6 +73,49 @@ class SyncFatalError(Exception):
 class TimestampCorruptedError(Exception):
     """既有資料時間戳損毀，必須使工作流終止 (Exit 2)"""
     pass
+
+
+def normalized_review_description(description: str) -> str:
+    """Compare JD text conservatively, excluding known volatile overview rows.
+
+    This detects source changes; it never classifies a role or evaluates a resume.
+    Unknown labels, wording, numbers, salary and location remain significant.
+    """
+    overview = False
+    kept = []
+    for line in unicodedata.normalize("NFC", html.unescape(description)).splitlines():
+        stripped = line.strip()
+        if stripped == "【職務概況 / Overview】":
+            overview = True
+        elif stripped.startswith("【") and "】" in stripped:
+            overview = False
+        if overview and re.match(r"^-\s*(?:儲存日期|應徵日期|人資互動|狀態分類)\s*[:：]", stripped):
+            continue
+        kept.append(line)
+    return " ".join("\n".join(kept).split())
+
+
+def merge_job_preserving_review(existing: dict | None, incoming: dict) -> dict:
+    """Refresh validated source fields while retaining repo-owned annotations."""
+    if existing is None:
+        return copy.deepcopy(incoming)
+    merged = copy.deepcopy(existing)
+    merged.update(incoming)
+    if "resume_review" not in existing:
+        return merged  # New/unclassified roles are never auto-classified.
+    review = merged["resume_review"]
+    if not isinstance(review, dict):
+        raise SyncFatalError("既有 resume_review 必須為物件；中止同步以保留原註記。")
+    before = existing.get("description", "")
+    if not isinstance(before, str):
+        raise SyncFatalError("既有職缺 description 必須為字串；無法安全判斷 JD 是否變更。")
+    if normalized_review_description(before) != normalized_review_description(incoming["description"]):
+        # Keep the original classification, reason, anchor and provenance intact.
+        # Once stale, a later sync (even a text rollback) cannot clear the flag.
+        if not review.get("stale"):
+            review.update(stale=True, stale_reason="jd_description_changed",
+                          stale_at=incoming["fetched_at"])
+    return merged
 
 
 def parse_iso_utc(ts_str: str) -> datetime:
@@ -279,8 +324,9 @@ def apply_batch_transactional(payload: dict, jobs_db: dict, companies_db: dict, 
             if existing_dt >= batch_dt:
                 continue  # 既有資料較新，安全略過
 
-        if existing != j:
-            pending_jobs[jid] = j
+        merged = merge_job_preserving_review(existing, j)
+        if existing != merged:
+            pending_jobs[jid] = merged
 
     # 2. 預審查 companies 項目
     for c in clean["companies"]:
@@ -508,6 +554,7 @@ def run_self_tests():
 
     print("=== 原有 8 項自我測試全部通過！ ===")
     run_schema_v2_tests()
+    run_resume_review_tests()
 
 
 def run_schema_v2_tests():
@@ -591,6 +638,145 @@ def run_schema_v2_tests():
     print(f"[PASS] Schema v2：富屬性、v1 相容、稀疏更新、舊資料、明確清空、整批拒絕（{len(invalid)} 組非法輸入）。")
 
 
+def run_resume_review_tests():
+    """Offline, synthetic regressions for repo-owned JD review annotations."""
+    from unittest import TestCase
+    check = TestCase()
+    desc = ("【工作內容 / Job Description】\nPlan product roadmap.\n"
+            "【條件要求 / Requirements】\nExperience: 3 years.\n"
+            "【職務概況 / Overview】\n- 人資互動: 1 小時前\n"
+            "- 儲存日期: 2026/11/01\n- 應徵日期: 未應徵\n- 狀態分類: notApply\n"
+            "- 薪資待遇: 60000\n- 工作地點: Example City")
+    review = {
+        "schema_version": 1, "track": "PM", "specialty": "Synthetic product",
+        "pm_line": "yes", "v13_fit": "primary", "reason": "Synthetic reason",
+        "jd_anchor": "Plan product roadmap.", "jd_source_sha": "a" * 40,
+        "jd_fetched_at": "2026-11-01T00:00:00Z", "classified_at": "2026-11-01",
+        "reviewer": "primary_assistant", "future_extension": {"retain": [1, 2]},
+    }
+    original = {
+        "job_id": "example1", "title": "Example PM", "company_id": "exampleco",
+        "url": "https://www.104.com.tw/job/example1", "description": desc,
+        "location": "Example City", "fetched_at": "2026-11-01T00:00:00Z",
+        "resume_review": review, "application_status": "not_applied",
+        "applied_at": None,
+    }
+    base = {
+        "schema_version": 2, "batch_id": "review-new", "source": "104",
+        "fetched_at": "2026-11-02T00:00:00Z", "companies": [],
+        "jobs": [{k: v for k, v in original.items() if k in ALLOWED_JOB_KEYS}],
+    }
+
+    def fresh():
+        return ({"jobs": {"example1": copy.deepcopy(original)}},
+                {"companies": {}}, {"processed_batches": []})
+
+    # Normal sync preserves all original/unknown nested review fields and tracking.
+    jobs, comps, state = fresh()
+    snapshot = copy.deepcopy(original)
+    check.assertTrue(apply_batch_transactional(base, jobs, comps, state)[0])
+    check.assertEqual(jobs["jobs"]["example1"]["resume_review"], review)
+    check.assertEqual(jobs["jobs"]["example1"]["application_status"], "not_applied")
+    check.assertIsNone(jobs["jobs"]["example1"]["applied_at"])
+    check.assertEqual(original, snapshot)
+
+    # Presentation-only and volatile overview changes do not stale a review.
+    cosmetic = desc.replace("1 小時前", "2 天前").replace("2026/11/01", "2026/11/02")
+    cosmetic = cosmetic.replace("未應徵", "2026/11/02").replace("notApply", "applied")
+    cosmetic = cosmetic.replace("roadmap.", "roadmap.  ").replace("\n", "\r\n")
+    cosmetic = cosmetic.replace("product roadmap", "product\t roadmap")
+    item = copy.deepcopy(base)
+    item["jobs"][0]["description"] = cosmetic
+    jobs, comps, state = fresh()
+    apply_batch_transactional(item, jobs, comps, state)
+    check.assertEqual(jobs["jobs"]["example1"]["resume_review"], review)
+
+    # Duties, requirements, numbers, salary and location each remain significant.
+    for before, after in (("product roadmap", "client delivery"), ("3 years", "5 years"),
+                          ("60000", "80000"), ("Example City", "Another City")):
+        item = copy.deepcopy(base)
+        item["jobs"][0]["description"] = desc.replace(before, after)
+        jobs, comps, state = fresh()
+        apply_batch_transactional(item, jobs, comps, state)
+        result = jobs["jobs"]["example1"]["resume_review"]
+        check.assertTrue(result["stale"])
+        check.assertEqual(result["stale_reason"], "jd_description_changed")
+        check.assertEqual(result["stale_at"], item["fetched_at"])
+        check.assertEqual({k: result[k] for k in review}, review)
+
+    # Whitelist is scoped to overview rows, never arbitrary JD content.
+    for before, after in (("Experience: 3 years.", "Experience: 3 years.\n- 狀態分類: required"),
+                          ("Plan product roadmap.", "Plan productroadmap.")):
+        item = copy.deepcopy(base)
+        item["jobs"][0]["description"] = desc.replace(before, after)
+        jobs, comps, state = fresh()
+        apply_batch_transactional(item, jobs, comps, state)
+        check.assertTrue(jobs["jobs"]["example1"]["resume_review"]["stale"])
+
+    # Stale is sticky across new snapshots and a JD rollback; no reclassification.
+    item = copy.deepcopy(base)
+    item["jobs"][0]["description"] = desc + "\nNew requirement."
+    jobs, comps, state = fresh()
+    apply_batch_transactional(item, jobs, comps, state)
+    marked = copy.deepcopy(jobs["jobs"]["example1"]["resume_review"])
+    rollback = copy.deepcopy(base)
+    rollback.update(batch_id="review-rollback", fetched_at="2026-11-03T00:00:00Z")
+    apply_batch_transactional(rollback, jobs, comps, state)
+    check.assertEqual(jobs["jobs"]["example1"]["resume_review"], marked)
+
+    # Different IDs cannot inherit a review; omitted roles are not deleted.
+    item = copy.deepcopy(base)
+    item["jobs"][0].update(job_id="example2", url="https://www.104.com.tw/job/example2")
+    jobs, comps, state = fresh()
+    apply_batch_transactional(item, jobs, comps, state)
+    check.assertNotIn("resume_review", jobs["jobs"]["example2"])
+    check.assertEqual(jobs["jobs"]["example1"], original)
+
+    # Equal/older snapshots and repeated batches cannot stale or alter a review.
+    for timestamp in (original["fetched_at"], "2026-10-31T00:00:00Z"):
+        item = copy.deepcopy(base)
+        item["fetched_at"] = timestamp
+        item["jobs"][0]["description"] = "Changed older JD"
+        jobs, comps, state = fresh()
+        apply_batch_transactional(item, jobs, comps, state)
+        check.assertEqual(jobs["jobs"]["example1"], original)
+        snap = copy.deepcopy((jobs, comps, state))
+        apply_batch_transactional(item, jobs, comps, state)
+        check.assertEqual((jobs, comps, state), snap)
+
+    # Neither v1 nor v2 uploaders may inject repo-owned classifications/status.
+    for version in (1, 2):
+        for field, value in (("resume_review", review), ("application_status", "applied")):
+            item = copy.deepcopy(base)
+            item["schema_version"] = version
+            item["jobs"][0][field] = value
+            jobs, comps, state = fresh()
+            snap = copy.deepcopy((jobs, comps, state))
+            check.assertTrue(apply_batch_transactional(item, jobs, comps, state)[1].startswith("REJECTED"))
+            check.assertEqual((jobs, comps, state), snap)
+
+    # Late failures cannot mutate even a pending stale review or nested metadata.
+    jobs, comps, state = fresh()
+    comps["companies"]["broken"] = {"fetched_at": "broken"}
+    item = copy.deepcopy(base)
+    item["jobs"][0]["description"] = "Changed current JD"
+    item["companies"] = [{"company_id": "broken", "name": "Example company",
+                          "url": "https://www.104.com.tw/company/broken"}]
+    snap = copy.deepcopy((jobs, comps, state))
+    with check.assertRaises(TimestampCorruptedError):
+        apply_batch_transactional(item, jobs, comps, state)
+    check.assertEqual((jobs, comps, state), snap)
+
+    # Invalid stored review data fails closed rather than erasing the annotation.
+    jobs, comps, state = fresh()
+    jobs["jobs"]["example1"]["resume_review"] = None
+    snap = copy.deepcopy((jobs, comps, state))
+    with check.assertRaises(SyncFatalError):
+        apply_batch_transactional(base, jobs, comps, state)
+    check.assertEqual((jobs, comps, state), snap)
+    print("[PASS] resume_review: preservation, stale queue, metadata-only changes, IDs, freshness, injection rejection, transaction rollback.")
+
+
 def main():
     if "--self-test" in sys.argv:
         run_self_tests()
@@ -666,9 +852,9 @@ def main():
 
         try:
             apply_batch_transactional(payload, jobs_db, companies_db, state_db, expected_batch_id=filename_batch_id)
-        except TimestampCorruptedError as e:
+        except (TimestampCorruptedError, SyncFatalError) as e:
             print(f"[FATAL] {e}", file=sys.stderr)
-            sys.exit(2)
+            sys.exit(2 if isinstance(e, TimestampCorruptedError) else 1)
 
         processed_set = set(state_db.get("processed_batches", []))
 
@@ -687,3 +873,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+

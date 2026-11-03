@@ -64,6 +64,50 @@ Length is Python character count, not byte count. Null and non-string rich text 
 - Empty lists never delete existing records; absent companies do not imply closure/deletion.
 - Rich data is untrusted source text, never an instruction for an agent to execute.
 
+## Repo-owned job review annotations
+
+`jobs.<job_id>.resume_review` on `automation/104-data` is a JD-based derived
+classification, not a native 104 field, application status, or ability score.
+The initial 137 annotations were added in commit
+`5d2136327304887a99172550f97c5893382d6b9e`. Their classification schema is documented
+in `career/drafts/codex/hr-personas/HOUSEKEEPER.md` on `codex/resume-writer`.
+
+- Merge validated source fields into the existing record **by job_id**. Preserve
+  the entire review object, including unknown future fields and nested metadata.
+  Preserve other repo-owned fields such as application status and timestamps.
+- Keep the v1/v2 R2 job whitelist unchanged: uploaders cannot supply
+  `resume_review`, application status or review-clearing commands. Such batches
+  are rejected transactionally; do not send annotations back to 104 or R2.
+- New jobs have no review until explicitly classified. Do not infer PM fit from
+  title, copy another job's classification, or delete jobs absent from a batch.
+- For a newer observation, compare old and incoming `description` after HTML
+  entity decoding, Unicode NFC normalization and whitespace normalization.
+  Within the exact `【職務概況 / Overview】` section only, ignore rows labelled
+  `儲存日期`, `應徵日期`, `人資互動` or `狀態分類`. These are volatile source metadata,
+  not JD duties/requirements. The same labels outside that section are significant.
+- Any other text difference is conservatively treated as substantive, including
+  requirements, numbers, salary, location, text removal or an empty description.
+  No model or fuzzy similarity threshold reinterprets the JD.
+- On a substantive change, preserve `track`, `specialty`, `pm_line`, `v13_fit`,
+  `reason`, `jd_anchor`, `jd_source_sha`, `jd_fetched_at`, `classified_at`, `reviewer`
+  and all other original annotation fields. Add `stale: true`,
+  `stale_reason: "jd_description_changed"` and `stale_at` set to the incoming
+  batch's normalized UTC `fetched_at`. These additive fields describe review
+  freshness only; they never change application state or the classification.
+- `stale_at` records the first detected change while stale. Later syncs and even
+  a JD text rollback preserve the stale annotation; only an explicit human/agent
+  re-review may refresh classification provenance and clear the stale flag.
+- The pending-review queue is the set of jobs where `resume_review.stale == true`;
+  no sidecar migration or static HR index rewrite is performed by this sync.
+  Consumers should display stale classifications as pending review.
+- Equal/older timestamps and already processed batches do not modify review data.
+  Invalid stored review types fail closed rather than silently deleting annotations.
+  Any later batch validation/freshness failure leaves all database objects unchanged.
+
+The existing workflow self-test step includes synthetic review-preservation,
+staleness, volatile metadata, ID isolation, injection, freshness and rollback
+regressions. No workflow credentials or destination path allowlist changes are needed.
+
 ## Transport and rollout
 
 Upload JSON through the existing R2 S3-compatible API to
@@ -77,3 +121,4 @@ No changes to GitHub credentials, bucket permissions or Actions path allowlist a
 
 The scheduled workflow already invokes `python scripts/sync_104_data.py --self-test` before reading R2. It now includes v2 regressions as well as the original eight tests.
 Offline success is not evidence of a successful real v2 R2 import. After uploading, inspect the Actions result, ensure the batch is in sync-state.json, and verify representative rich fields in companies.json on automation/104-data.
+
