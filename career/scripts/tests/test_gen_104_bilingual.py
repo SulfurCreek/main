@@ -175,7 +175,7 @@ class Synthetic(unittest.TestCase):
             self.assertEqual(gb.main(["--zh", str(zp), "--out", str(op), "--line", str(lp)]), 1)
             self.assertFalse(op.exists())
             lp.write_text(LINE, encoding="utf-8")
-            self.assertEqual(gb.main(["--zh", str(zp), "--out", str(op), "--line", str(lp)]), 3)  # 上限未量測
+            self.assertEqual(gb.main(["--zh", str(zp), "--out", str(op), "--line", str(lp)]), 0)  # 三類上限皆已知，預設即可填表
             self.assertTrue(op.exists())
             self.assertEqual(gb.main(["--zh", str(zp), "--out", str(op), "--line", str(lp), "--limit", "bio=2000", "--limit", "skill=2000"]), 0)
 
