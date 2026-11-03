@@ -6,8 +6,8 @@
 
 - [評論日誌 LOG.md](LOG.md)：每輪結論、有效寫法、缺口、後續修正與最新使用者目標。
 - [完整版本快照 SNAPSHOTS.md](SNAPSHOTS.md)：六個指定commit的原文，含上游標記。
-- 最新已審草稿：[2a7a8da](https://github.com/SulfurCreek/main/blob/2a7a8da/career/01_claude_stage/v13-pm-draft.md)。
-- 最新評論：LOG.md的R05；不要將R01的問題不加核對地重複套到後版。
+- 最新已審草稿：[585ee01 r6](https://github.com/SulfurCreek/main/blob/585ee01/career/01_claude_stage/v13-pm-draft.md)。
+- 最新評論：LOG.md的R06；不要將R01的問題不加核對地重複套到後版。
 
 ## 版本 × 回答
 
@@ -64,3 +64,8 @@ git show origin/codex/resume-writer:career/drafts/codex/v13-review-journal/SNAPS
 ## HR集合體（2026-11-03新增）
 
 [HR角色與使用入口](../hr-personas/INDEX.md)：81個未應徵快照職缺、46家公司、10領域；含完整JD、職缺專屬判讀、推薦與審視協議、136筆狀態處置。本人已明確同意公開並要求push。本次僅建置角色，未實際審新草稿/PDF或派子代理。後續審視以角色包PROTOCOL與最新指定候選為準，不遺忘本日誌的五項能力定位。
+
+
+## R06｜585ee01 r6（最新）
+
+[完整PM招聘診斷](../hr-personas/runs/2026-11-03-585ee01/REPORT.md)｜[原稿完整快照](../hr-personas/runs/2026-11-03-585ee01/SOURCE.md)｜[137職缺分類](../hr-personas/JOB_TRACKS.md)｜[新欄位housekeeper交接](../hr-personas/HOUSEKEEPER.md)。三項本人補答已納入；33筆未投PM線，診斷有獨立評閱與主HR閱讀之別；未改稿/未驗PDF/未正式gate。
