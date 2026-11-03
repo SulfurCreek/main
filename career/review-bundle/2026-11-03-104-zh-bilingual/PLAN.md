@@ -35,17 +35,18 @@
 ### Step 2｜雙語組合
 1. 改寫 `gen_104_bilingual.py`：簡介英文＋CV 說明；經歷只放中文；專案／專長英文先行；其餘逐字不動。
 2. 改寫 `verify_104_bilingual.py`：欄位規格、中文零加工、英文句子必須來自 LINE（strict）、簡介 / 專案說明 ≤2000 字、專長字數。
-3. Codex 潤飾（只能擷取／重排 LINE 原句、最小接合）→ Claude 核對「已修改」清單 → 盲審一輪 → 定稿。
-4. 更新 Antigravity 填表指令檔（新欄位規格）。
+3. Codex 潤飾（只能擷取／重排 LINE 原句、最小接合；「英文 CV」一句可潤）→ Claude 核對「已修改」清單 → 盲審一輪 → 定稿。
+4. 新舊比對：Codex 舊版（e73c007）與新版逐欄 diff 報告，Claude 核對後採用。
+5. 更新 Antigravity 填表指令檔（新欄位規格）。
 
-## 四、待本人回答（開工前）
+## 四、本人答覆（2026-11-03）與據此調整
 
-| # | 問題 |
-| :-- | :-- |
-| Q1 | 今天在自薦信改過的句子（AI 功能＋向量演算法、70 項功能溝通窗口、陳舊系統改版、KOOL 0→1、下架承接＋新開發者、代碼表、AI Agent 完稿規格）是否也要進履歷？若要，先寫進 library 再編譯 |
-| Q2 | 「附有英文 CV」那句要怎麼寫？這句不在 LINE 履歷裡，屬新寫文字，需本人給字或核可（例：`English CV available upon request.`） |
-| Q3 | 簡介的中文是否完全拿掉（只留英文）？ |
-| Q4 | Codex 已在 e73c007 做過一版雙語潤飾（舊規格），新流程不沿用，是否同意 |
+| # | 答覆 | 計畫調整 |
+| :-- | :-- | :-- |
+| Q1 | 好，今天自薦信改的句子也進履歷 | 已寫入 `library/decisions.md`（2026-11-03 九句）；編譯 v12.20 時視為現行事實，措辭仍依履歷語氣規則 |
+| Q2 | Claude 先寫、Codex 潤 | 起草句：`An English version of this résumé is available on request.`（簡介最後一句；唯一新寫文字；Codex 潤飾後 Claude 核對）。若你嫌不夠「附近有」可改成 `English CV attached.` |
+| Q3 | 簡介只留英文 | 簡介欄＝LINE Summary 原句 ＋ 上述一句；不放中文 |
+| Q4 | 舊版 e73c007 不沿用，但要互相比較 | Step 2 新增比對：Codex 舊版（`origin/codex/resume-writer@e73c007` 的 `104-v12.19-bilingual.codex.md`）vs 新產生版，逐欄列差異（句子層級），由 Claude 核對，採用以新規格為準 |
 
 ## 五、工具清單
 見同資料夾 `TOOLS.md`；檔案副本在 `claude/` 與 `codex/`（Codex 檔取自 `origin/codex/resume-writer@e73c007`，唯讀複本）。
