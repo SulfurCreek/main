@@ -165,7 +165,7 @@ class Synthetic(unittest.TestCase):
         errs, pending = self.check(self.out, lim={"project": 2000})
         self.assertEqual(errs, [])
         self.assertEqual(pending, ["bio", "skill"])
-        self.assertEqual(vb.parse_limits([]), {"project": 2000, "skill": 1000})  # 專長上限 1000 為預設；簡介仍待量測
+        self.assertEqual(vb.parse_limits([]), {"project": 2000, "skill": 1000, "bio": 1000})  # 三類上限皆已知
 
     def test_main_writes_nothing_on_failure(self):
         with tempfile.TemporaryDirectory() as t:

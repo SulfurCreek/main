@@ -46,7 +46,7 @@ PROJECT_ACCENT = {
 }
 G_STYLE = "background-color: #fbf3db;"
 B_STYLE = "background-color: #deebf1;"
-LIMITS_KNOWN = {"project": 2000, "skill": 1000}  # project：fields-spec；skill：本人 2026-11-03 回報 104 頁面上限 1000 字；bio 未量測
+LIMITS_KNOWN = {"project": 2000, "skill": 1000, "bio": 1000}  # project：fields-spec；skill、bio：本人 2026-11-03 回報 104 頁面上限各 1000 字
 
 
 def sha16(s):

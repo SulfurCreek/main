@@ -546,3 +546,4 @@ v9.7 = v9.6 ＋ 使用者自寫自傳與各段 summary（16→10 個單位、業
 - 2026-11-03 本人裁定 D1–D4（雙語 104 計畫 r2）：D1 中文基底用**一般版**（非公開版）；D2 會上傳英文 CV PDF，簡介最後一句逐字鎖定為 `An English CV is attached.`；D3 簡介只放英文；D4 同意「帶標記版＝編輯來源、去標記 clean 檔＝成品」契約，Codex 檢查器改驗 clean 檔。
 - 2026-11-03 本人最終裁定（取代同日稍早 D2／D4）：①D2 簡介最後一句鎖定 `An English CV is available on request.`（不用 attached）；②D4 **不採雙檔方案**：`final_resume.md` 保留標記，由 `verify_polish.py` 為唯一權威 Gatekeeper，對外 104 檔由 `gen_104_md.py` 產出並以 `--verify-104` 驗；Codex 的 `check_polish_structure.py` 不列入驗收閘門（它與標記版互斥），不產生 `.clean.md`；③雙語版先只做**一般版**，公開雙語版（含專名固定映射表）僅在本人另行要求時才做；④Step 2 簡化為產生器確定性組裝＋strict 驗收，不再叫 Codex 看稿、不與舊版 e73c007 比對、不再跑第二次盲審（兩邊素材都已各自定稿）。
 - 2026-11-03 本人回報：104 專長說明（skill desc）上限 1000 字（專案說明 2000 字）。簡介 `info.bio` 上限尚未量測。
+- 2026-11-03 本人回報：104 個人簡介（info.bio）上限 1000 字；三類雙語欄位上限皆已量測（簡介 1000、專長 1000、專案 2000）。
