@@ -59,3 +59,8 @@ git show origin/codex/resume-writer:career/drafts/codex/v13-review-journal/SNAPS
 ## 後續記錄契約
 
 每次新commit/評論：保存指定版本原文、追加LOG輪次、更新本表與最新接續點。沒有實際比對的採納狀態寫待核對；不覆寫舊結論或以新稿冒充舊稿。
+
+
+## HR集合體（2026-11-03新增）
+
+[HR角色與使用入口](../hr-personas/INDEX.md)：81個未應徵快照職缺、46家公司、10領域；含完整JD、職缺專屬判讀、推薦與審視協議、136筆狀態處置。本人已明確同意公開並要求push。本次僅建置角色，未實際審新草稿/PDF或派子代理。後續審視以角色包PROTOCOL與最新指定候選為準，不遺忘本日誌的五項能力定位。
