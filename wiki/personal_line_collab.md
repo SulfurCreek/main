@@ -69,3 +69,13 @@
 | 取用成果 | 由使用者決定採用哪份產出。Career Move 只**讀取**（`git checkout origin/codex/resume-writer -- career/drafts/codex`），採用的內容由 Career Move 納入自己的檔案，不整支合併分支 |
 | 約束方式 | 無 hook，只靠環境指示與 `AGENTS.md`；`AGENTS.md` 放 `career/drafts/codex/` 內，不放根目錄或 `career/` 根目錄，**不得在任何 `CLAUDE.md` 用 `@AGENTS.md` 引用**（否則會把 Codex 規則帶進 Claude session） |
 | 隱私 | Resume Writer 能讀到的範圍取決於 Codex 環境連的 repo；若連 `SulfurCreek/main` 就讀得到整個 repo。真要隔離需另開只放 `career/` 的私有 repo（使用者尚未決定） |
+
+## 8. Resume Marketer 與 Fact Gatherer（2026-11-03 使用者裁定）
+
+| 角色 | 職責 | 備註 |
+| :--- | :--- | :--- |
+| Fact Gatherer（原 Career Move V2，`session_01GZd3jsmQ814E2p3FSgvJWR`） | 蒐集、整理、維護事實：`career/library/`、`career/wiki/` | 因履歷成品表現不佳，使用者收斂其角色為事實蒐集 |
+| Resume Marketer（`session_01GZd3jsAMTzWDoKoG2ieUeC`） | 履歷、自傳、求職文件的行銷策略與成品；使命是把使用者行銷出去 | 可寫 `career/` 與六個自有 skill，全 repo 唯讀；與 Fact Gatherer 同分支，用 `resume:` 前綴 |
+| Resume Writer（Codex） | 文字潤飾 | 範圍不變，見 §7 |
+
+兩個 Claude session 同分支：推送前 `git pull --rebase`，禁止 force push；library 已確認事實不由 Resume Marketer 改，只新增〔待補〕。
