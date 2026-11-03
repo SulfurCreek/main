@@ -45,6 +45,8 @@ S = {
        "為訂閱制內容 App 規劃從手機內購轉向網頁付款，網頁付款營收占比由 24% 升至 80% 以上（2020/11–2021/09）。", "facts-prior Peach 網頁付款"),
  "C": ("為經營 7 個市場的交友 App，導入東南亞第三方支付商，在印尼、泰國開通 2 國 8 種付款管道；依費用與撥款條件試算實收，提出 7／30／90 天訂閱方案。",
        "為經營 7 個市場的交友 App，導入東南亞第三方支付商，在印尼、泰國開通 8 種付款管道並試算各管道實收。", "facts-prior SweetRing 付款"),
+ "U": ("從使用者旅程出發規劃產品，依序產出 User Journey Map、User Story、Wireframe 與 Flowchart，視覺畫面與設計師協作；Kick-off 前以 Axure RP 原型讓客服與工程先看過流程再封測。",
+       "從使用者旅程出發規劃產品，依序產出 User Journey Map、User Story、Wireframe 與 Flowchart，視覺畫面與設計師協作；Kick-off 前以 Axure RP 原型讓客服與工程先看過流程再封測。", "facts-1111 個人標準交付流程、decisions 2026-10-22 UI/UX 補充（待 Codex 潤飾）"),
  "K": ("0 到 1 規劃並上線：商家網紅合作媒合App，透過訪談商家與行銷單位，完整規劃邀約、報名與訊息流程；累積約 1.6 萬份網紅檔案，上線半年內有 8 萬多次合作案報名。",
        "0 到 1 規劃並上線：商家網紅合作媒合App，透過訪談商家與行銷單位，完整規劃邀約、報名與訊息流程；累積約 1.6 萬份網紅檔案，上線半年內有 8 萬多次合作案報名。", "facts-prior KOOL"),
  "J": ("負責主力交友App因政策遭下架，主導推出接續App承接用戶與營收，接續上線與導流期間，男性日活躍用戶於 6 週內由約 3,200 增至 1.25 萬；後續亦透過新開發者將原App成功重新上架。",
@@ -72,6 +74,7 @@ THEMES = [  # (正則, {故事: 權重})；英文縮寫一律 \b 單字邊界；
  (r"資安|資訊安全|防詐|詐騙|Anti-Scam|帳號安全|身分驗證|個資", {"S": 6}),
  (r"Claude Code|Context Engineering|\bMCP\b|\bn8n\b|AI[- ]first|流程自動化", {"A": 4}),
  (r"訊息|聊天|通訊|總機|語音|\bEVOX\b|社群|直播|互動|客服", {"M": 4}),
+ (r"User Flow|Wireframe|Mockup|Prototype|User Story|使用者旅程|線框|原型|Axure", {"U": 4}),
  (r"媒合|創作者|網紅|內容平台|0 到 1|從零|新產品|新事業", {"K": 4, "J": 1}),
  (r"遊戲|餐飲", {"K": 2, "J": 2, "M": 1, "P": 1}),
  (r"A/B|定價實驗|轉換率", {"P": 3}),
@@ -85,12 +88,12 @@ THEMES = [  # (正則, {故事: 權重})；英文縮寫一律 \b 單字邊界；
  (r"客服|客戶滿意|客戶成功|案件", {"Q": 3}),
  (r"\bAPI\b|串接|介接|\bWebhook\b", {"I": 4}),
 ]
-TIER = ["R", "W", "F", "Y", "P", "Q", "G", "M", "S", "K", "J", "C", "I", "T", "A", "L"]  # 同分時 Senior 戰功含金量優先
+TIER = ["R", "W", "F", "Y", "P", "Q", "G", "M", "S", "U", "K", "J", "C", "I", "T", "A", "L"]  # 同分時 Senior 戰功含金量優先
 GAPS = {r"\bJira\b": "JIRA（非本人技能）", r"\bSQL\b": "SQL", r"\bPython\b": "Python／程式實作", r"\bJava\b": "Java／程式實作", "Tableau": "Tableau", "日文|日語|JLPT": "日文", "韓文|韓語": "韓文",
         r"\bPMP\b": "PMP 證照", "Scrum|Agile|敏捷": "Scrum／Agile（僅 2022–2023 歷史經驗，不當現行）", "半導體|製造|工廠|IoT|硬體|韌體|航太|電源": "製造／硬體產業經驗",
         r"Docker|Kubernetes|\bOCI\b": "Docker／Kubernetes／容器", "Azure DevOps": "Azure DevOps", "Atlassian|Confluence": "Atlassian／Confluence 導入", "程式設計|程式開發|寫程式": "程式開發實作", "旅遊": "旅遊產業經驗", "CRM": "CRM 系統管理", "ERP": "ERP 實施經驗", "政府": "政府專案", "行銷|SEO|廣告": "行銷操作／投放", "UI/UX|UIUX|設計稿": "UI 設計實作", "法規|ISO|CMMI": "ISO／CMMI 認證"}
 END = {"I": "外部合作的 API 規格與串接", "F": "AI 協作與產品落地", "S": "帳號安全與驗證", "Y": "付款流程規劃", "C": "付款流程規劃", "P": "訂閱與定價實驗", "W": "跨部門專案推進", "R": "系統規格落地與使用者旅程流程梳理",
-       "K": "從零到一與用戶經營", "J": "危機中的用戶與營收承接", "M": "訊息與溝通產品規劃", "L": "跨國協作", "G": "企業端權限與流程設計", "Q": "客戶案件與優先序管理", "A": "AI Agent 工作流與團隊協作", "T": "跨團隊資料整合"}
+       "U": "使用者旅程與流程設計", "K": "從零到一與用戶經營", "J": "危機中的用戶與營收承接", "M": "訊息與溝通產品規劃", "L": "跨國協作", "G": "企業端權限與流程設計", "Q": "客戶案件與優先序管理", "A": "AI Agent 工作流與團隊協作", "T": "跨團隊資料整合"}
 
 def clean_title(t):
     """剝除 104 標題的集團前綴與招募備註（正文首句用；--job 也用淨化後字串）"""
@@ -193,6 +196,12 @@ def pick(text, title="", ctx="", secs=None):
         slot = max((i for i, k in enumerate(chosen) if k not in "FAS"), default=None, key=lambda i: -sc.get(chosen[i], 0))
         if slot is not None:
             chosen[slot] = "K"
+    # JD 同時出現 2 種以上 UX 交付物（User Flow／Wireframe／Mockup／Prototype／User Story／Axure）：U 必入選
+    uxw = set(m.lower() for m in re.findall(r"User Flow|Wireframe|Mockup|Prototype|User Story|Axure", text, re.I))
+    if len(uxw) >= 2 and "U" in sc and "U" not in chosen and len(chosen) == 3 and not any(k in chosen for k in "YCJ"):  # 領域王牌（支付／直播交友）已入選者不動
+        slot = max((i for i, k in enumerate(chosen) if k not in "FASKYC"), default=None, key=lambda i: -sc.get(chosen[i], 0))
+        if slot is not None:
+            chosen[slot] = "U"
     # 職稱含 AI：AI 產品上線（F）必入選（取代最後一點）
     if re.search(r"\bAI\b|人工智慧", title) and "F" not in chosen and len(chosen) == 3:  # 職稱含 AI：AI 產品上線必入
         slot = max((i for i, k in enumerate(chosen) if k not in "AS"), default=None, key=lambda i: -sc.get(chosen[i], 0))
@@ -360,6 +369,8 @@ def self_test():
     ok("P" not in build("844j7")[2], f"844j7（Technical PM）不得含 P：{build('844j7')[2]}")
     c10 = build("8u1r1")[2]
     ok("K" in c10, f"8u1r1（JD 必備『0 到 1 上線經驗』）須含 K：{c10}")
+    c11 = build("8pkgi")[2]
+    ok("U" in c11, f"8pkgi（JD 列 Wireframe／Prototype／User Story）須含 U：{c11}")
     c9 = build("96gpc")[2]
     ok(set(c9[:2]) <= set("AFT") and "T" in c9[:2], f"96gpc（AI/Data）前兩點須為 A／F 與 T：{c9}")
     for c, need in (("8qxbv", "付款流程規劃"), ("95q7h", "付款流程規劃"), ("958dx", "訊息與溝通")):
@@ -421,6 +432,7 @@ S_EN = {
  "P": "I led the design of a three-phase Malaysia iOS pricing experiment for a dating app, with Android held at an unchanged price as the control group. In the discount phase, iOS revenue excluding renewals rose 5% versus the original-price phase, while Android fell 18%; the company owner adopted the lower price based on the results.",
  "Y": "I raised web payments' share of revenue for a subscription content app from 24% to over 80% (2020/11–2021/09) by planning the shift from in-app purchases to web payments and coordinating integration with a payment provider in Taiwan.",
  "C": "For a dating app operating across 7 markets, I onboarded a Southeast Asian payment provider and launched 8 local payment channels across Indonesia and Thailand, comparing fees and settlement terms, estimating net revenue and proposing 7-, 30- and 90-day subscription plans.",
+ "U": "I planned products from the user journey, producing user journey maps, user stories, wireframes and flowcharts, working with designers on the visuals and showing customer service and engineering an Axure RP prototype of the flow before kickoff.",
  "K": "With no direct competitor to benchmark against, I planned an influencer-matching platform from zero to one, starting with interviews with merchants' marketing teams; it accumulated about 16,000 influencer profiles, with over 80,000 campaign applications in the six months after launch.",
  "J": "When the App Store removed our flagship dating app, I led the launch of a replacement app on the same backend to retain users and revenue, then led the original app's relaunch; male daily active users of the replacement app rose from about 3,200 to 12,500 over 6 weeks during its launch and user redirection period.",
  "G": "In response to 55 client requests since 2020/12, I planned a shared recruitment feature that lets employers manage hiring by department or branch, defining access rules across accounts, job posts and resumes.",
@@ -430,7 +442,7 @@ S_EN = {
 }
 END_EN = {"I": "API specification work", "F": "AI product delivery", "S": "account security", "Y": "payment integration", "C": "cross-border payment integration", "P": "pricing experiments", "W": "cross-team delivery",
           "R": "untangling undocumented systems", "M": "messaging product planning", "L": "localization", "G": "multi-account access design", "Q": "client-focused prioritization",
-          "A": "AI agent workflows", "T": "data integration", "J": "crisis recovery of users and revenue", "K": "building products from zero to one"}
+          "A": "AI agent workflows", "T": "data integration", "J": "crisis recovery of users and revenue", "K": "building products from zero to one", "U": "user journeys and flow design"}
 
 
 EN_COMPANY = {"94hek": "CyberLink", "94roa": "SHOPLINE", "950oe": "Gogolook", "8p4ix": "Klook", "8wzup": "Going Cloud"}  # 英文品牌名（本人 2026-11-03 指定）
