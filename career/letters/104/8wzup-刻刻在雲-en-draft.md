@@ -21,7 +21,7 @@ I am applying for the Project Manager role at Going Cloud. I have nearly 10 year
 
 • Bridging sales, customer service and engineering, I led requirements analysis and specification planning to ship about 70 major features by 2026 Q3, briefing customer service and sales nationwide every week and securing sales buy-in before delivery.
 
-• I run specification writing and data analysis through AI agents (e.g., Claude Code): I set the problem, rules and checks, the agent flags its confidence, and I check and correct the results. I packaged this workflow as a reusable agent skill and guided colleagues in applying it to hundreds of job category mappings, narrowing manual review to single-digit items.
+• I run specification writing and data analysis through AI agents (e.g., Claude Code): I set the problem, rules and checks, the agent flags its confidence, and I check and correct the results. I packaged this workflow as a reusable agent skill and guided colleagues in applying it to hundreds of job category mappings, narrowing the items that needed manual discussion to single digits.
 
 Over the past several years, I have focused closely on AI agent workflows and untangling undocumented systems. I would welcome the chance to discuss how this experience can support your team. Thank you for your time.
 
@@ -38,4 +38,4 @@ Kun Huai Nieh
 | 2 | W | 必備條件提到「工作技能: 專案管理架構及專案說明、專案規劃執行╱範圍管理、專案時間╱進度控管、協商談判能力、提案與簡報技巧」 | LINE Resume 已核准英文句（A 另依 facts-1111 2026-11-02 本人確認） |
 | 3 | A | 核心職責提到「Lead end-to-end project lifecycle management for cloud and AI initiati」 | LINE Resume 已核准英文句（A 另依 facts-1111 2026-11-02 本人確認） |
 
-字數（words）：222
+字數（words）：226

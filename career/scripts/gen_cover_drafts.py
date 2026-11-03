@@ -47,8 +47,8 @@ S = {
        "為經營 7 個市場的交友 App，導入東南亞第三方支付商，在印尼、泰國開通 8 種付款管道並試算各管道實收。", "facts-prior SweetRing 付款"),
  "K": ("網紅與商家的雙邊媒合平台沒有直接競品可參考，我先訪談商家的行銷單位，再規劃邀約、報名與訊息流程；平台累積約 1.6 萬份網紅檔案，上線半年內有 8 萬多次合作案報名。",
        "網紅與商家的雙邊媒合平台沒有競品可參考，我先訪談商家行銷單位，再規劃邀約、報名與訊息流程；平台累積約 1.6 萬份網紅檔案，上線半年內有 8 萬多次合作案報名。", "facts-prior KOOL"),
- "J": ("主力交友 App 遭 App Store 下架後，我主導以同一後台推出接續 App 承接用戶與營收，再主導原 App 重新上架；男性日活躍用戶於上線與導流期間由約 3,200 增至 1.25 萬。",
-       "主力交友 App 遭 App Store 下架後，我主導以同一後台推出接續 App 承接用戶與營收，並主導原 App 重新上架；上線與導流期間男性日活躍用戶由約 3,200 增至 1.25 萬。", "decisions §51、§34（DAU 限定：上線與導流期間）"),
+ "J": ("主力交友 App 遭 App Store 下架後，我主導以同一後台推出接續 App 承接用戶與營收，再主導原 App 重新上架；接續 App 上線與導流期間，男性日活躍用戶於 6 週內由約 3,200 增至 1.25 萬。",
+       "主力交友 App 遭 App Store 下架後，我主導以同一後台推出接續 App 承接用戶與營收，並主導原 App 重新上架；接續 App 上線與導流期間，男性日活躍用戶於 6 週內由約 3,200 增至 1.25 萬。", "decisions §51、§34（DAU 限定：上線與導流期間）"),
  "G": ("回應 2020/12 起累積的 55 件客戶建議，規劃群組招募功能，讓大型企業按部門或分店共同招募，並定義帳號、職缺與履歷的存取規則。",
        "回應 55 件客戶建議，規劃群組招募功能，讓大型企業按部門或分店共同招募，並定義帳號、職缺與履歷的存取規則。", "facts-1111 群組功能"),
  "Q": ("處理企業客戶的產品問題與建議時，依時間與難易排定優先序，關鍵案件親自處理、其餘交辦直屬部屬，30 天結案率由 52% 升至 79%（提案滿 30 天者，2024/11–2025/10 對比 2025/11–2026/09/20）。",
@@ -89,7 +89,7 @@ TIER = ["R", "W", "F", "Y", "P", "Q", "G", "M", "S", "K", "J", "C", "I", "T", "A
 GAPS = {r"\bJira\b": "JIRA（非本人技能）", r"\bSQL\b": "SQL", r"\bPython\b": "Python／程式實作", r"\bJava\b": "Java／程式實作", "Tableau": "Tableau", "日文|日語|JLPT": "日文", "韓文|韓語": "韓文",
         r"\bPMP\b": "PMP 證照", "Scrum|Agile|敏捷": "Scrum／Agile（僅 2022–2023 歷史經驗，不當現行）", "半導體|製造|工廠|IoT|硬體|韌體|航太|電源": "製造／硬體產業經驗",
         r"Docker|Kubernetes|\bOCI\b": "Docker／Kubernetes／容器", "Azure DevOps": "Azure DevOps", "Atlassian|Confluence": "Atlassian／Confluence 導入", "程式設計|程式開發|寫程式": "程式開發實作", "旅遊": "旅遊產業經驗", "CRM": "CRM 系統管理", "ERP": "ERP 實施經驗", "政府": "政府專案", "行銷|SEO|廣告": "行銷操作／投放", "UI/UX|UIUX|設計稿": "UI 設計實作", "法規|ISO|CMMI": "ISO／CMMI 認證"}
-END = {"I": "外部合作的 API 規格與串接", "F": "AI 協作與產品落地", "S": "帳號安全與驗證", "Y": "支付規劃與規格轉換", "C": "支付規劃與規格轉換", "P": "訂閱與定價實驗", "W": "跨部門專案推進", "R": "無文件系統的規格梳理",
+END = {"I": "外部合作的 API 規格與串接", "F": "AI 協作與產品落地", "S": "帳號安全與驗證", "Y": "付款流程規劃", "C": "付款流程規劃", "P": "訂閱與定價實驗", "W": "跨部門專案推進", "R": "無文件系統的規格梳理",
        "K": "從零到一與用戶經營", "J": "危機中的用戶與營收承接", "M": "訊息與溝通產品規劃", "L": "跨國協作", "G": "企業端權限與流程設計", "Q": "客戶案件與優先序管理", "A": "AI Agent 工作流與團隊協作", "T": "跨團隊資料整合"}
 
 def clean_title(t):
@@ -250,7 +250,7 @@ def opening(title, chosen, jd):
     if "A" in chosen:  # A 條列已寫「日常以 AI Agent…」，開頭不重複
         return t + "我有近 10 年產品經理經驗，現任人力銀行企業端招募系統 Product Owner，帶領 2 名直屬企劃。"
     if chosen[0] in "F":
-        return t + "我有近 10 年產品經理經驗，現任人力銀行企業端招募系統 Product Owner，日常以 AI Agent 協作撰寫規格與分析資料。"
+        return t + "我有近 10 年產品經理經驗，現任人力銀行企業端招募系統 Product Owner，帶領 2 名直屬企劃，日常以 AI Agent 協作撰寫規格與分析資料。"
     return t + "我有近 10 年產品經理經驗，現任人力銀行企業端招募系統 Product Owner，帶領 2 名直屬企劃。"
 
 def build(code):
@@ -355,7 +355,7 @@ def self_test():
     ok("P" not in build("844j7")[2], f"844j7（Technical PM）不得含 P：{build('844j7')[2]}")
     c9 = build("96gpc")[2]
     ok(set(c9[:2]) <= set("AFT") and "T" in c9[:2], f"96gpc（AI/Data）前兩點須為 A／F 與 T：{c9}")
-    for c, need in (("8qxbv", "支付規劃"), ("95q7h", "支付規劃"), ("958dx", "訊息與溝通")):
+    for c, need in (("8qxbv", "付款流程規劃"), ("95q7h", "付款流程規劃"), ("958dx", "訊息與溝通")):
         endp = [p for p in build(c)[3].split("\n\n") if "期待" in p][0]
         ok(need in endp, f"{c} 結尾須收束到第 3 點亮點「{need}」")
     for c in ("8bt4g", "92d3h", "8qxbv"):
@@ -407,7 +407,7 @@ S_EN = {
  "I": "I agreed API specifications for an external partner with engineering (signature verification, replay protection, error codes and rate limits) and broke business logic into query conditions confirmed with engineers.",
  "R": "Taking over a full system overhaul with no documentation, I analyzed and mapped account permissions and business rules through hands-on testing and internal interviews; 743 of 840 related client requests (88%) were resolved during the overhaul.",
  "W": "Bridging sales, customer service and engineering, I led requirements analysis and specification planning to ship about 70 major features by 2026 Q3, briefing customer service and sales nationwide every week and securing sales buy-in before delivery.",
- "A": "I run specification writing and data analysis through AI agents (e.g., Claude Code): I set the problem, rules and checks, the agent flags its confidence, and I check and correct the results. I packaged this workflow as a reusable agent skill and guided colleagues in applying it to hundreds of job category mappings, narrowing manual review to single-digit items.",
+ "A": "I run specification writing and data analysis through AI agents (e.g., Claude Code): I set the problem, rules and checks, the agent flags its confidence, and I check and correct the results. I packaged this workflow as a reusable agent skill and guided colleagues in applying it to hundreds of job category mappings, narrowing the items that needed manual discussion to single digits.",
  "F": "For a recruitment system serving about 60,000 paying employers, I led the launch of AI features for generating job descriptions and recommending candidates. I made employer confirmation a required step before publishing, and employers' actual selections feed back into the recommendation rules.",
  "S": "After unauthorized access to more than ten employer accounts in 2026/03–04, I coordinated the response with engineering and customer service, then designed and launched new-device OTP login verification (MFA) and an account-unlock flow. Through 2026/10, customer service received no reports of similar unauthorized access.",
  "M": "To address 199 client requests accumulated since 2021, I planned a unified messaging flow for employers and job seekers, consolidating two overlapping tools that had split interview invitations across separate channels; the work is now in development.",
@@ -415,7 +415,7 @@ S_EN = {
  "Y": "I raised web payments' share of revenue for a subscription content app from 24% to over 80% (2020/11–2021/09) by planning the shift from in-app purchases to web payments and coordinating integration with a payment provider in Taiwan.",
  "C": "For a dating app operating across 7 markets, I onboarded a Southeast Asian payment provider and launched 8 local payment channels across Indonesia and Thailand, comparing fees and settlement terms, estimating net revenue and proposing 7-, 30- and 90-day subscription plans.",
  "K": "With no direct competitor to benchmark against, I planned an influencer-matching platform from zero to one, starting with interviews with merchants' marketing teams; it accumulated about 16,000 influencer profiles, with over 80,000 campaign applications in the six months after launch.",
- "J": "When the App Store removed our flagship dating app, I led the launch of a replacement app on the same backend to retain users and revenue, then led the original app's relaunch; male daily active users rose from about 3,200 to 12,500 during the launch and user redirection period.",
+ "J": "When the App Store removed our flagship dating app, I led the launch of a replacement app on the same backend to retain users and revenue, then led the original app's relaunch; male daily active users of the replacement app rose from about 3,200 to 12,500 over 6 weeks during its launch and user redirection period.",
  "G": "In response to 55 client requests since 2020/12, I planned a shared recruitment feature that lets employers manage hiring by department or branch, defining access rules across accounts, job posts and resumes.",
  "Q": "I raised the 30-day case closure rate for enterprise clients' product issues and suggestions from 52% to 79% (2024/11–2025/10 vs. 2025/11–2026/09/20; cases submitted at least 30 days earlier) by prioritizing cases, handling key cases directly and delegating others to my direct reports.",
  "L": "I coordinated localization of a dating app across 7 markets, using English as the shared baseline and working with up to about 10 foreign interns in English-only meetings to produce local-language versions.",
