@@ -345,7 +345,7 @@ def render(c, cname, title, chosen, body, n, gaps, digest, eng, raw, mapping=(),
 """
 
 
-def generate(codes, outdir, overwrite=False):
+def generate(codes, outdir, overwrite=False, allow_en_jd=False):
     """逐封：缺 JD→失敗；組稿→驗證（硬性失敗不寫）→同名檔預設跳過→寫檔。回傳狀態清單。"""
     outdir = Path(outdir)
     outdir.mkdir(parents=True, exist_ok=True)
@@ -354,6 +354,8 @@ def generate(codes, outdir, overwrite=False):
         if c not in jobs or not jobs[c].get("description", "").strip():
             results.append((c, "失敗", "缺職缺或 JD", None)); continue
         cname, title, chosen, body, n, gaps, digest, eng, raw, ctx, mapping, conf = build(c)
+        if eng and not allow_en_jd:  # 英文 JD：語言由本人決定，不預設寫中文（2026-11-03）
+            results.append((c, "略過", "JD 以英文為主：請本人決定推薦信語言（已裁定全中文才加 --allow-en-jd-zh）", None)); continue
         e1, w1 = vl.check_structure(body)
         errs = e1 + vl.check(body, title, ctx)
         if errs:
@@ -372,6 +374,7 @@ def main(argv=None):
     ap.add_argument("jobs", nargs="?"); ap.add_argument("companies", nargs="?"); ap.add_argument("codes", nargs="?")
     ap.add_argument("--outdir", default="career/letters/104")
     ap.add_argument("--overwrite", action="store_true", help="允許覆蓋同名草稿（不覆蓋已投遞或人工稿請自行確認）")
+    ap.add_argument("--allow-en-jd-zh", action="store_true", help="英文 JD 已經本人裁定用中文信")
     ap.add_argument("--self-test", action="store_true")
     ap.add_argument("--snapshot", default=SNAPSHOT_SHA)
     try:
@@ -393,7 +396,7 @@ def main(argv=None):
         codes = open(a.codes).read().split()
     except (OSError, ValueError) as e:
         print(f"❌ 無法讀取輸入：{e}"); return 2
-    res = generate(codes, a.outdir, a.overwrite)
+    res = generate(codes, a.outdir, a.overwrite, a.allow_en_jd_zh)
     for c, st, why, _ in res:
         print(f"{'✅' if st == '成功' else ('⏭️' if st == '略過' else '❌')} {c} {st}：{why}")
     cnt = {s: sum(1 for r in res if r[1] == s) for s in ("成功", "略過", "失敗")}
