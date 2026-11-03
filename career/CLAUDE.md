@@ -122,7 +122,7 @@ from this repo's 1111 spec-documentation work. Treat as plain Markdown.*
 
 ## 🚫 硬規則一：全部可讀，只有 `career/` 與自有 skill 可寫 / Read everything, write only `career/` and owned skills
 
-這條 session（**Career Move V2**，分支 `claude/happy-lamport-ljis8c`，側欄「Career Move V2」，`session_01GZd3jsmQ814E2p3FSgvJWR`；前任 Career Move `session_017u5Po6SGpjD3iLBZ2VL2HH` 已因環境 setup script 失敗停用，勿導向）的工作是
+這條 session（**Career Move V2**，分支 `claude/happy-lamport-ljis8c`，側欄「Career Move V2」，`session_01GZd3jsmQ814E2p3FSgvJWR`）的工作是
 **讀既有產出 → 萃取成職能與履歷素材**。它對 repo 內其他所有東西是**唯讀**的。
 
 | 動作 | 可以嗎 |
