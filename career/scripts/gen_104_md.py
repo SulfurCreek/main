@@ -114,7 +114,7 @@ def deco(vmap, line):
 def exp_html(lines, vmap):
     out, ul, first = [], False, True
     for l in lines:
-        child = l.startswith("    -")
+        child = bool(re.match(r"^ {2,}-", l))  # 子項：縮排 ≥2 空白（Codex 實際用 2 或 4 空白皆可）
         raw = body_key(l)
         if l.strip().startswith("▍"):
             if ul:

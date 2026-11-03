@@ -36,7 +36,7 @@ LINE = """# LINE Resume
 - Messaging flow for 199 requests.
 - Bullet three.
 - Bullet four.
-- Mapped permissions for 743 of 840 requests (88%). Used hands-on testing and interviews.
+- Mapped permissions for 743 of 840 requests (88%). Hands-on testing and interviews shaped the plan.
 - Planned a shared recruitment feature for 55 requests.
 
 ### 2.2 PM
@@ -158,6 +158,21 @@ class Synthetic(unittest.TestCase):
         gb.LINE_SHA = hashlib.sha256(moved.encode()).hexdigest()
         with self.assertRaises(ValueError):  # 插入列點導致索引位移 → 映射原文雜湊不符
             gb.build(self.zh, moved)
+
+    def test_first_sentence_must_be_complete(self):
+        import verify_104_bilingual as v
+        out = self.out
+        sec = self.sec(out, ("skill", 0))
+        bad_body = "Used hands-on testing, then shipped.\n\n" + sec["body"].split("\n\n", 1)[1]
+        mutated = out[: sec["span"][0]] + md104.render(sec, bad_body) + out[sec["span"][1]:]
+        errs, _ = self.check(mutated)
+        self.assertTrue(any("英文首句不完整" in e for e in errs), errs)
+
+    def test_verb_highlight_rejected(self):
+        i = self.out.index("<blockquote>", self.out.index("### 5.3"))
+        bad = self.out[:i] + '<blockquote><strong><span style="background-color: #deebf1;">Analyzed and mapped</span></strong>' + self.out[i + len("<blockquote>"):]
+        errs, _ = self.check(bad)
+        self.assertTrue(errs)
 
     def test_limits(self):
         errs, _ = self.check(self.out, lim={"project": 10, "bio": 2000, "skill": 2000})

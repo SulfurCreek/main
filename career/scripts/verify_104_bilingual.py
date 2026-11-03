@@ -96,6 +96,17 @@ def verify(out_text, zh_text, line_text, line_sha=None, limits=None):
                 errs.append(f"[字數超標] {k} 共 {n} 字，上限 {limits[field]}（不得截短，請回報本人）")
         else:
             pending.add(field)
+    for i, o in enumerate(od["sections"]):
+        k, body = o["key"], o["body"] or ""
+        if k[0] in ("skill", "project", "info"):
+            en = body.split("\n\n")[0] if k[0] != "project" else plain(body.split("<p><br></p>")[0])
+            first = gb.sentences(plain(en))[0] if gb.sentences(plain(en)) else ""
+            if re.match(r"^(Used|Using|Then|After|By|Through)\b", first):
+                errs.append(f"[英文首句不完整] {k}：英文首句以次要方法子句開頭（缺目的／受詞）：{first[:50]}")
+        if k[0] == "project":
+            for span in re.findall(r'<strong><span style="background-color: #deebf1;">(.*?)</span></strong>', body, re.S):
+                if re.fullmatch(r"(?i)(analy[sz]ed|mapped|used|led|planned|managed|raised|recovered)( and \w+)?", span.strip()):
+                    errs.append(f"[重音錯位] {k}：晴藍底色只能標名詞（產品／系統／功能），不得標動詞片語「{span}」")
     if _h1(md104.assemble(od, restore)) != _h1(zh_text):
         errs.append("[白名單外異動] 工作經歷、名稱、標籤、圖片、網址、directive 或其他內容與中文基底不同")
     return errs, sorted(pending)

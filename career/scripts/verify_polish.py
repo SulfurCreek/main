@@ -541,6 +541,23 @@ def verify_104_fields(text, final_text, public=False):
         errors.append("[104 結構錯誤] " + str(exc))
     return errors
 
+def child_indent_errors(md_text, final_text):
+    """父子縮排硬斷言（2026-11-03）：定稿的縮排子項數 = 104 HTML 中 margin-left 子項數；
+    且『…：』結尾的母項 li 之後緊接的 li 必須帶 margin-left（防子項被渲染成同層圓點）。"""
+    errs = []
+    src_children = len([l for l in final_text.splitlines() if re.match(r"^ {2,}- ", l)])
+    htmls = re.findall(r"```html\n(.*?)```", md_text, re.S)
+    out_children = sum(h.count('<li style="margin-left: 1em;">') for h in htmls)
+    if src_children and out_children != src_children:
+        errs.append(f"[104 子項縮排] 定稿有 {src_children} 個縮排子項，104 HTML 只有 {out_children} 個 <li style=\"margin-left: 1em;\">（子項會被渲染成同層圓點）")
+    for h in htmls:
+        lis = re.findall(r"<li(?: style=\"margin-left: 1em;\")?>(.*?)</li>", h, re.S)
+        tags = re.findall(r"<li( style=\"margin-left: 1em;\")?>", h)
+        for i, t in enumerate(re.sub(r"<[^>]*>", "", x).strip() for x in lis[:-1]):
+            if t.endswith(("：", ":")) and not tags[i + 1]:
+                errs.append(f"[104 母項統攝句] 「{t[-24:]}」之後的 <li> 必須帶 margin-left: 1em")
+    return errs
+
 
 def verify_104_markdown(md_104_path: str, final_text: str, public=False):
     """驗證 Stage 3 產出的 104.md 是否違反 v2.1.0 指南（假標籤、粗體前綴、巢狀 ul、空 li）"""
@@ -549,6 +566,7 @@ def verify_104_markdown(md_104_path: str, final_text: str, public=False):
         return [f"[104 驗證失敗] 找不到檔案：{md_104_path}"]
     text = p.read_text(encoding="utf-8")
     errs = verify_104_fields(text, final_text, public)
+    errs += child_indent_errors(text, final_text)
     for bad_tag in FORBIDDEN_104_TAGS:
         if re.search(r"[^\x00-\x7F]", bad_tag):
             hit = bad_tag in text  # 含中文：\b 在中文相鄰時失靈，改用子字串

@@ -33,7 +33,7 @@ CV_SENTENCE = "An English CV is available on request."  # D2：本人 2026-11-03
 SUMMARY_SHA = "a9418b838075fd98"
 # 專長英文：(種類, 位置, 預期原文 sha256 前 16 碼)
 SKILL_SRC = [("summary_sentence", 2, "88609a28444bdcfd"), ("skills_line", 0, "e8d1c92fc48cb0c6"),
-             ("bullet_sentence", (0, 5, 1), "bca0689aae4d0835"), ("skills_line", 1, "5ae8f881a3e221a4"),
+             ("bullet_sentences", (0, 5, 0, 2), "9782d3e847e2c137"), ("bullet_sentences", (1, 0, 3, 4), "c6553bf0a7974003"),
              ("summary_sentence", 1, "c3d377ee955aa3bd"), ("skills_line", 2, "99f07c0574a25381")]
 # 專案英文：project index → [(經歷 index, 列點 index, 預期 sha)]；第一則 blockquote
 PROJECT_SRC = {0: [(1, 4, "6379a38b331090dc")], 1: [(1, 3, "67181f7755f6d6de")],
@@ -41,7 +41,7 @@ PROJECT_SRC = {0: [(1, 4, "6379a38b331090dc")], 1: [(1, 3, "67181f7755f6d6de")],
 PROJECT_ACCENT = {
     0: {"B": ["Juicy"], "G": ["from about 3,200 to 12,500", "from about 1,500 to 12,000"]},
     1: {"B": ["KOOL"], "G": ["about 16,000 influencer profiles", "over 80,000 campaign applications"]},
-    2: {"B": ["Analyzed and mapped"], "G": ["743 of 840 related client requests (88%)"]},
+    2: {"B": ["employer-side recruitment system overhaul"], "G": ["743 of 840 related client requests (88%)"]},  # 晴藍只標名詞，不標動詞
     3: {"B": ["shared recruitment feature"], "G": ["55 client requests since 2020/12"]},
 }
 G_STYLE = "background-color: #fbf3db;"
@@ -104,6 +104,9 @@ def _units(doc):
             s = sentences(summ)[ref]
         elif kind == "skills_line":
             s = doc["skills"][ref]
+        elif kind == "bullet_sentences":  # 連續整句，以單一空白相接（不改字）
+            wi, bi, a, b = ref
+            s = " ".join(sentences(works[wi]["bullets"][bi])[a:b])
         else:
             wi, bi, si = ref
             s = sentences(works[wi]["bullets"][bi])[si]
