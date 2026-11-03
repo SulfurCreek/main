@@ -1,3 +1,5 @@
+> 2026-11-03 本人新裁定：自動事實、數字與LOCK內容比對全部停用；下方相關自動gate要求失效。語氣章節只供人工編輯，不重啟fact_lock、固定事實錨點或check_polish_structure。流程唯一依AGENTS及Claude分支career/PIPELINE_POLICY.md。FINAL-LOCKED英文雙語組裝不作自由改寫。main嚴格唯讀。
+
 # Voice & Style Guide：按輸出語言分流
 
 基底：c0c429e1fcff36365054db2b5c7b598a0e6f7d73 的 career/style/README.md。操作、權限、事實鎖定與交付流程依 [AGENTS.md](../drafts/codex/AGENTS.md)。
