@@ -120,3 +120,11 @@ python3 career/scripts/verify_line_pdf.py <pdf> --json <resume.json> [--html <ht
 ### 四種狀態不得混稱
 
 格式通過（verify）≠ 事實保存（`--upstream`／`verify_polish`）≠ 語氣審查（盲審）≠ PDF 視覺驗收（人工看版面）。
+
+## 2026-11-03 雙語 104 r2 契約工具
+| 腳本 | 用途 |
+| :-- | :-- |
+| `md104.py` | 104 md 共用解析（directive＋body），parse→assemble 逐位元組還原 |
+| `gen_104_bilingual.py` | 雙語組裝：bio 英文＋CV 句、專長／專案英文先行；LINE SHA＋映射原文雜湊鎖定；驗收通過才原子寫入 |
+| `verify_104_bilingual.py` | 全程 strict：白名單外逐位元組比對、英文必須是鎖定原文、字數上限（未量測欄位 Exit 3） |
+| `strip_markers.py` | 帶標記 final_resume.md → clean 檔；`--check` 對帳 |

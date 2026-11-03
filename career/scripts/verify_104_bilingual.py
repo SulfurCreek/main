@@ -1,16 +1,17 @@
 #!/usr/bin/env python3
-"""104 中英並列履歷驗收（2026-11-03）。
+"""104 中英雙語履歷驗收（2026-11-03 r2 契約，全程 strict，無人工放行模式）。
 
-用法：python3 career/scripts/verify_104_bilingual.py <並列 md> [--zh <中文公開版 md>] [--line <英文履歷 md>] [--strict]
+用法：python3 career/scripts/verify_104_bilingual.py <雙語 md> --zh <一般版 104 md>
+       [--line career/drafts/line/line-resume.md] [--line-sha <sha>] [--limit bio=N] [--limit skill=N]
+Exit：0 通過且可填表；3 通過但有欄位上限未量測（不可填表）；1 失敗；2 參數或讀檔錯誤。
 
-檢查（程式可確定者）：
-1. 中文零加工：中文公開版的簡介、4 筆經歷、6 張專長、自傳、4 筆專案說明，原文逐字出現在並列檔。
-2. 英文先行：簡介、6 張專長、4 筆專案說明，英文都在中文之前；4 筆工作經歷只放英文（單筆 ≤1,950 字）；自傳區塊沒有英文。
-3. 來源：每個英文句子都必須是 LINE 英文履歷中現有的句子（規範化空白後為子字串）。
-   --strict：任何不在來源的句子即失敗（上游產生器輸出用）。
-   預設：不在來源的句子列為「已修改，需主代理人工查核」，不判失敗（Codex 潤飾後用）。
-4. 英文語氣硬規則：沿用 verify_line_profile 的禁用詞、中文字夾雜、第一人稱上限。
-不能機械判定：改寫後的語意是否仍等同原句、母語語感；由主代理與盲審處理。
+檢查：
+1. 欄位白名單：把 bio／6 專長／4 專案的 body 換回中文基底後，整份必須與基底逐位元組相同
+   （只容許第一個 H1 標題行不同）→ 涵蓋工作經歷、名稱、標籤、圖片、網址、directive、順序、缺欄、重複欄。
+2. bio：等於 LINE Summary 原文＋空一行＋CV_SENTENCE，不含中文。
+3. 專長：英文＝鎖定映射原文（整句／整行）＋空一行＋中文原文。
+4. 專案：英文段落去重音後＝鎖定映射的 LINE 列點原文（逐則、同順序）；只允許兩種重音 span；接 <p><br></p>＋中文原文。
+5. 字數：可見字元（md104.visible_len）≤ 上限；上限未知者列為「未可填表」。
 """
 import argparse
 import html
@@ -20,114 +21,110 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import gen_104_bilingual as gb  # noqa: E402
-import verify_line_profile as vlp  # noqa: E402
+import md104  # noqa: E402
 
-CJK = re.compile(r"[一-鿿]")
-EXP_LIMIT = 1950  # 單筆工作經歷（純文字）上限，留 50 字緩衝
-
-
-def norm(s):
-    s = re.sub(r"</?(?:span|strong|b|em|i|u)\b[^>]*>", "", s)
-    s = html.unescape(re.sub(r"<[^>]*>", " ", s))
-    return re.sub(r"\s+", " ", re.sub(r"\s+([,.;:)])", r"\1", s)).strip()
+ALLOWED_TAG = re.compile(r'</?blockquote>|</?p>|</?strong>|<span style="background-color: #(?:fbf3db|deebf1);">|</span>')
 
 
-def fields(text):
-    """依序取出並列檔欄位：[(key, 區塊文字)]。"""
-    out = []
-    m = re.search(r'"field": "bio", "mode": "plain_text"\}\n-->\n\n```text\n(.*?)```', text, re.S)
-    out.append(("summary", m.group(1)))
-    for pat, key, fence in ((r"### 2\.(\d) [^\n]*\n.*?```html\n(.*?)```", "exp", "html"),
-                            (r"### 3\.(\d) [^\n]*\n.*?```text\n(.*?)```", "skill", "text"),
-                            (r"### 5\.(\d) [^\n]*\n.*?```html\n(.*?)```", "project", "html")):
-        for mm in re.finditer(pat, text, re.S):
-            out.append((f"{key}{mm.group(1)}", mm.group(2)))
-    return out
+def parse_limits(items):
+    lim = dict(gb.LIMITS_KNOWN)
+    for it in items:
+        k, v = it.split("=", 1)
+        lim[k.strip()] = int(v)
+    return lim
 
 
-def split_lang(block):
-    """英文在前、中文在後：回傳 (英文部分, 中文部分)；中文由第一個含中文字的段落起算。"""
-    paras = re.split(r"\n\s*\n|(?<=</p>)\n|(?<=</blockquote>)\n|(?<=</ul>)\n", block)
-    en, zh, seen_zh = [], [], False
-    for p in paras:
-        if not seen_zh and not CJK.search(p):
-            en.append(p)
+def plain(h):
+    return html.unescape(re.sub(r"<[^>]*>", "", h))
+
+
+def _h1(text):
+    return re.sub(r"^# .*$", "# H1", text, count=1, flags=re.M)
+
+
+def verify(out_text, zh_text, line_text, line_sha=None, limits=None):
+    limits = dict(gb.LIMITS_KNOWN) if limits is None else limits
+    errs, pending = [], set()
+    try:
+        summ, skills, projects = gb.english_units(line_text, line_sha)
+    except ValueError as e:
+        return [f"[來源] {e}"], []
+    try:
+        od, zd = md104.parse(out_text), md104.parse(zh_text)
+    except ValueError as e:
+        return [f"[解析] {e}"], []
+    okeys = [s["key"] for s in od["sections"]]
+    if len(okeys) != len(set(okeys)):
+        errs.append("[欄位] 有重複欄位")
+    if okeys != [s["key"] for s in zd["sections"]]:
+        return errs + ["[欄位] 欄位清單或順序與中文基底不同"], []
+    restore = {}
+    for i, (o, z) in enumerate(zip(od["sections"], zd["sections"])):
+        k, body = o["key"], o["body"] or ""
+        if k == ("info", "bio"):
+            if body != summ + "\n\n" + gb.CV_SENTENCE + "\n":
+                errs.append("[簡介] 必須是 LINE Summary 原文＋空一行＋核可的 CV 句，不得改字或加中文")
+            if md104.CJK.search(body):
+                errs.append("[簡介] 不得含中文")
+            field = "bio"
+        elif k[0] == "skill":
+            want = skills[k[1]] + "\n\n"
+            if not body.startswith(want):
+                errs.append(f"[專長 {k[1]+1}] 英文不是鎖定映射原文（或缺空行）")
+            elif body[len(want):] != z["body"]:
+                errs.append(f"[專長 {k[1]+1}] 中文與基底不同")
+            field = "skill"
+        elif k[0] == "project":
+            sep = "<p><br></p>\n"
+            if sep + z["body"] not in body or not body.endswith(z["body"]):
+                errs.append(f"[專案 {k[1]+1}] 中文與基底不同或缺分隔空段落")
+            else:
+                en = body[: len(body) - len(z["body"]) - len(sep)]
+                bad = [t for t in re.findall(r"<[^>]*>", en) if not ALLOWED_TAG.fullmatch(t)]
+                if bad:
+                    errs.append(f"[專案 {k[1]+1}] 英文含未允許的標籤：{bad[:3]}")
+                paras = [plain(p) for p in re.findall(r"<(?:blockquote|p)>(.*?)</(?:blockquote|p)>", en, re.S)]
+                if paras != projects[k[1]]:
+                    errs.append(f"[專案 {k[1]+1}] 英文不是鎖定映射的 LINE 列點原文（逐則、同順序）")
+            field = "project"
         else:
-            seen_zh = True
-            zh.append(p)
-    return "\n".join(en), "\n".join(zh)
-
-
-def verify(bi_text, zh_text, line_text, strict=False):
-    errs, manual = [], []
-    src = norm(line_text)
-    bf, zf = dict(fields(bi_text)), dict(fields(zh_text))
-    for key, block in bf.items():
-        if key.startswith("exp"):  # 工作經歷：只放英文，單筆 ≤ EXP_LIMIT 字（104 上限 2000）
-            en, zh = block, ""
-            if CJK.search(block):
-                errs.append(f"[經歷只放英文] {key} 含中文字")
-            n = len(re.sub(r"<[^>]*>", "", html.unescape(block)).strip())
-            if n > EXP_LIMIT:
-                errs.append(f"[104 字數超標] {key} 共 {n} 字，上限 {EXP_LIMIT}（104 硬限制 2000）")
-        else:
-            en, zh = split_lang(block)
-        if not en.strip() or CJK.search(en):
-            errs.append(f"[英文先行] {key} 欄位沒有在中文之前的英文段")
             continue
-        # 中文零加工（經歷只放英文，不比對中文）
-        zh_orig = zf[key].strip()
-        if not key.startswith("exp") and zh_orig not in block:
-            errs.append(f"[中文被改動] {key} 的中文原文沒有逐字保留")
-        # 英文來源與語氣
-        text = norm(en)
-        for s in gb.sentences(text):
-            if norm(s) not in src:
-                (errs if strict else manual).append(f"[英文不在來源] {key}：{s[:80]}…" if strict else f"{key}：{s[:80]}…（已修改或新增，需人工查核）")
-        for w in vlp.BANNED_BULLET_ONLY:
-            if w.lower() in text.lower():
-                errs.append(f"[禁用詞] {key}：{w}")
-        if len(re.findall(r"\bI\b", text)) > 3:
-            errs.append(f"[第一人稱] {key}：I 超過 3 次")
-    # 自傳只有中文
-    m = re.search(r'"field": "chi", "mode": "quill_html"\}\n-->\n\n```html\n(.*?)```', bi_text, re.S)
-    z = re.search(r'"field": "chi", "mode": "quill_html"\}\n-->\n\n```html\n(.*?)```', zh_text, re.S)
-    if not m or not z or m.group(1) != z.group(1):
-        errs.append("[自傳] 自傳必須與中文公開版逐字相同（只有中文）")
-    elif re.search(r"[A-Za-z]{6,} [A-Za-z]{3,} [A-Za-z]{3,}", re.sub(r"<[^>]*>", "", m.group(1))) and not CJK.search(m.group(1)):
-        errs.append("[自傳] 自傳出現整段英文")
-    keys = set(bf)
-    if len(keys) != 15:
-        errs.append(f"[欄位數] 並列欄位應為 15 個（簡介 1＋經歷 4＋專長 6＋專案 4），實際 {len(keys)}")
-    return errs, manual
+        restore[i] = z["body"]
+        n = md104.visible_len(body)
+        if field in limits:
+            if n > limits[field]:
+                errs.append(f"[字數超標] {k} 共 {n} 字，上限 {limits[field]}（不得截短，請回報本人）")
+        else:
+            pending.add(field)
+    if _h1(md104.assemble(od, restore)) != _h1(zh_text):
+        errs.append("[白名單外異動] 工作經歷、名稱、標籤、圖片、網址、directive 或其他內容與中文基底不同")
+    return errs, sorted(pending)
 
 
 def main(argv=None):
     ap = argparse.ArgumentParser()
     ap.add_argument("file")
-    ap.add_argument("--zh", default=str(gb.ZH_MD))
+    ap.add_argument("--zh", required=True)
     ap.add_argument("--line", default=str(gb.LINE_MD))
-    ap.add_argument("--strict", action="store_true")
+    ap.add_argument("--line-sha", default=None)
+    ap.add_argument("--limit", action="append", default=[])
     try:
         a = ap.parse_args(argv)
-    except SystemExit:
+        texts = [Path(p).read_text(encoding="utf-8") for p in (a.file, a.zh, a.line)]
+        limits = parse_limits(a.limit)
+    except (SystemExit, OSError, ValueError) as e:
+        print(f"❌ 參數或讀檔錯誤：{e}")
         return 2
-    try:
-        errs, manual = verify(Path(a.file).read_text(encoding="utf-8"), Path(a.zh).read_text(encoding="utf-8"),
-                              Path(a.line).read_text(encoding="utf-8"), a.strict)
-    except (OSError, AttributeError) as e:
-        print(f"❌ 無法讀取或解析：{e}")
-        return 2
+    errs, pending = verify(*texts, a.line_sha, limits)
     if errs:
-        print("❌ 中英並列驗收失敗")
+        print("❌ 雙語驗收失敗")
         for e in errs:
             print(" -", e)
         return 1
-    print("✅ 中文零加工、英文先行、欄位數、禁用詞通過" + ("；英文句子全部取自現有英文履歷（strict）" if a.strict else ""))
-    if manual:
-        print(f"⚠️ 英文句子與來源不同 {len(manual)} 處（Codex 潤飾後的差異，需主代理人工查核，不判失敗）：")
-        for m in manual:
-            print("  -", m)
+    if pending:
+        print("⚠️ 內容驗收通過，但下列欄位上限未量測，未可填表：" + "、".join(pending))
+        return 3
+    print("✅ 雙語驗收通過，可填表")
     return 0
 
 
