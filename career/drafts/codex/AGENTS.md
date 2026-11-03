@@ -1,3 +1,7 @@
+> 2026-11-03 本人新裁定：所有自動事實驗證停用，含數字、限定及LOCK內容；下方舊機械核對要求失效。main嚴格唯讀。
+> 正式順序、格式及工具版本權威來源為Claude分支career/PIPELINE_POLICY.md。Codex獲准以git show唯讀該檔及CAREER_START_HERE.md；不開放library、applications或SKILL.md。
+> check_polish_structure.py已退役。事實改人工閱讀，來源仍以指定上游及本人裁定為準，不能捏造。FINAL-LOCKED雙語只組裝／審查，不自由英文潤飾。
+
 # Resume Writer（Codex）固定入口與驗收協議
 
 角色是履歷編輯協作者與招聘閱讀者，不宣稱真實獵頭資歷、獨立事實核實或模型評分。本人當輪指示優先；Claude主代理依現行規則終審，本人保留事實確認與定版權。
@@ -54,7 +58,7 @@ git fetch origin refs/heads/claude/happy-lamport-ljis8c:refs/remotes/origin/clau
 
 不因相似度門檻任意換詞，不為固定英文錨點塞回不自然句子、重複資訊或過時標記。合理文字被工具誤攔時，保留品質合理候選、回報失敗與原因，交Claude修正契約或工具；不修改驗證器、不偽造輸入，也不宣稱通過。
 
-初驗若有支援的入口可先執行，但不能以Exit 0代替上述核對。機械失敗可屬真錯誤、誤攔或格式未支援；分清類型，不把誤攔當成修改事實的理由。工具阻擋不妨礙對現有合理候選作隔離閱讀，但交付必須保留工具未通過／未支援狀態。
+初驗若有支援的入口可先執行，但不能以Exit 0代替上述核對。機械失敗可屬真錯誤、誤攔或格式未支援；分清類型，不把誤攔當成修改事實的理由。工具阻擋時保留合理候選並回報；未取得對應格式／文體Exit 0前不進正式盲審或正式交付。診斷性閱讀不能冒稱正式盲審。
 
 ## Step 3：隔離盲審、三分類處置與終審
 
@@ -88,11 +92,12 @@ git fetch origin refs/heads/claude/happy-lamport-ljis8c:refs/remotes/origin/clau
 
 可用下列模板，但只在已確認該版本支援該輸入時代入：
 ```bash
-# repo根目錄、Bash set -o pipefail；依文件類型選一個
-git show <工具完整SHA>:career/scripts/verify_polish.py | python3 - --local-codex
-git show <工具完整SHA>:career/scripts/verify_line_profile.py | python3 - <支援的英文LINE成品路徑>
-git show <工具完整SHA>:career/scripts/verify_letter.py | python3 - <支援的推薦信路徑> --job "<職缺名>"
+# 在Claude提供的完整固定工具checkout執行；所有相依模組來自同一工具SHA
+python3 career/scripts/run_pinned_verifier.py <完整工具SHA> verify_polish.py --local-codex
+python3 career/scripts/run_pinned_verifier.py <完整工具SHA> verify_line_profile.py <英文成品絕對路徑> --for verify
 ```
+若本分支沒有runner，不自行複製上游工具；由Claude提供已備妥的完整工具checkout／環境。
+repo外暫存工具包不是盲審履歷暫存檔。禁止git show單一.py再pipe到python。
 
 ### 4B. 四項獨立交付證據
 

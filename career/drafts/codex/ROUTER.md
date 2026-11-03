@@ -18,6 +18,6 @@ Codex獲准唯讀該政策與CAREER_START_HERE.md，其他存取邊界不變；m
 
 ## 本輪部署狀態
 Claude 工具／政策版本：d969f97589d7a73113b7c40e49840dc9d165d069。
-voice_style_guide.md 已依本人明確授權部署；AGENTS.md 的修訂尚未部署，自動審批要求個別公開授權。
+voice_style_guide.md 與 AGENTS.md 已依本人明確授權部署，兩份原版均已封存。
 兩檔舊的自動事實比對、數字及 LOCK gate 指令依本人最新裁定失效；不重新執行退役工具。
 其他人工閱讀、存取邊界及語言規則仍適用。正式使用以本人裁定與上述政策為準。
