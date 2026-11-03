@@ -7,3 +7,5 @@ Claude Stage 4：`verify_polish.py` GATEKEEPER PASSED（41 區塊）；`gen_104_
 
 ## 重潤版（Codex 7ed877d，基準上游 6ee7a2d）FINAL LOCKED
 Claude Stage 4：`verify_polish.py` GATEKEEPER PASSED（40 區塊）；`gen_104_md.py` 產 `104-v12.20.md`，`--verify-104` 通過（含新增子項縮排斷言：4 個縮排子項皆為 `<li style="margin-left: 1em;">`，「以下兩項方案：」後兩點已縮排）。雙語版 `gen_104_bilingual.py`＋`verify_104_bilingual.py` Exit 0（專長 3.3 取完整兩句、3.4 取使用流程句、5.3 晴藍標名詞）。七點優化皆已落地。已知：KOOL 仍保留子項（上游結構）。
+
+Codex 18a8b9f：移除 Scrum 後重產一般版與雙語版，verify_polish／--verify-104／verify_104_bilingual 皆通過，全檔 Scrum 0 次。
