@@ -271,7 +271,7 @@ Kun Huai Nieh
 
 ‧ 0 到 1 規劃並上線：商家網紅合作媒合App，透過訪談商家與行銷單位，完整規劃邀約、報名與訊息流程；累積約 1.6 萬份網紅檔案，上線半年內有 8 萬多次合作案報名。
 
-‧ 從使用者旅程出發規劃產品，依序產出 User Journey Map、User Story、Wireframe 與 Flowchart，視覺畫面與設計師協作；Kick-off 前以 Axure RP 原型讓客服與工程先看過流程再封測。
+‧ 從使用者旅程出發規劃產品，依序產出 User Journey Map、User Story、Wireframe 與 Flowchart，並與設計師協作，由對方製作視覺畫面；Kick-off 前以 Axure RP 原型讓客服與工程先看過流程，再進行封測。
 
 期待有機會與貴公司團隊進一步交流使用者旅程與流程設計、跨部門專案推進。
 
