@@ -176,6 +176,10 @@ def check(body, job=None, ctx=""):
         errs.append(f"[列點冒號小標] 列點開頭不得加「能力標籤：」：{m.group(0).strip()}")
     for m in BULLET_HEADLESS.finditer(body):
         errs.append(f"[無頭斷句開頭] 每點開頭要自帶場景主詞，不可以「{m.group(1)}」裸奔")
+    if not is_zh(body):
+        for bad in ("at your company", "requirements contact", "opened 8 payment channels", "Ai "):
+            if bad.lower() in body.lower() and (bad != "Ai " or "Ai " in body):
+                errs.append(f"[英文直譯腔] 不得出現「{bad.strip()}」（中文「貴公司／需求窗口／開通」的死譯）")
     if not is_zh(body) and re.search(r"[【】]", body):
         errs.append("[英文信含中文全形括號] 英文信不得出現【】：代碼改成 (CODE)，公司名或口號直接移除")
     if is_zh(body):  # 中文專屬規則不套英文信

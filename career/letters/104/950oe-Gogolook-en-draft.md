@@ -15,15 +15,15 @@
 ```text
 Dear Hiring Team,
 
-I am applying for the Senior Product Manager (Anti-Scam BU/2B) role at your company. I have nearly 10 years of product management experience and currently work as Product Owner of an employer-side recruitment system serving about 60,000 active paying employers, where I manage two product planners as direct reports.
+I am applying for the Senior Product Manager (Anti-Scam BU/2B) role at Gogolook. I have nearly 10 years of product management experience and currently work as Product Owner of an employer-side recruitment system serving about 60,000 active paying employers, where I manage two product planners as direct reports.
 
 • After unauthorized access to more than ten employer accounts in 2026/03–04, I coordinated the response with engineering and customer service, then designed and launched new-device OTP login verification (MFA) and an account-unlock flow. Through 2026/10, customer service received no reports of similar unauthorized access.
 
-• I led the launch of AI-generated job descriptions and AI talent recommendations to lower the barrier to job posting and improve candidate matching. Employers confirm generated content before it is published, and recommendation rules are refined using employers' actual selections.
+• For a recruitment system serving about 60,000 paying employers, I led the launch of AI features for generating job descriptions and recommending candidates. I made employer confirmation a required step before publishing, and employers' actual selections feed back into the recommendation rules.
 
-• I use AI agents for specification writing and data analysis in a human-in-the-loop workflow: I define the rules and checks, the agent flags its confidence, and I review the results. I organized this into a reusable workflow and guided colleagues in applying it to hundreds of job category mappings.
+• I run specification writing and data analysis through AI agents (e.g., Claude Code): I set the problem, rules and checks, the agent flags its confidence, and I check and correct the results. I packaged this workflow as a reusable agent skill and guided colleagues in applying it to hundreds of job category mappings, narrowing manual review to single-digit items.
 
-Account security and AI product delivery are areas I have focused on in recent years. I look forward to the opportunity to discuss this experience with your team. Thank you for your time.
+Over the past several years, I have focused closely on account security and AI product delivery. I would welcome the chance to discuss how this experience can support your team. Thank you for your time.
 
 Kun Huai Nieh
 ```
@@ -38,4 +38,4 @@ Kun Huai Nieh
 | 2 | F | 核心職責提到「6. Working efficiently with AI tools: Make hands-on use of AI tools (e」 | LINE Resume 已核准英文句（A 另依 facts-1111 2026-11-02 本人確認） |
 | 3 | A | 核心職責提到「6. Working efficiently with AI tools: Make hands-on use of AI tools (e」 | LINE Resume 已核准英文句（A 另依 facts-1111 2026-11-02 本人確認） |
 
-字數（words）：224
+字數（words）：237

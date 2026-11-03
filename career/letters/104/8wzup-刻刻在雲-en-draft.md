@@ -15,15 +15,15 @@
 ```text
 Dear Hiring Team,
 
-I am applying for the Project Manager role at your company. I have nearly 10 years of product management experience and currently work as Product Owner of an employer-side recruitment system serving about 60,000 active paying employers, where I manage two product planners as direct reports.
+I am applying for the Project Manager role at Going Cloud. I have nearly 10 years of product management experience and currently work as Product Owner of an employer-side recruitment system serving about 60,000 active paying employers, where I manage two product planners as direct reports.
 
-• For a full system overhaul with no documentation, I analyzed and mapped account permissions and business rules through hands-on testing and internal interviews; 743 of 840 related client requests (88%) were resolved during the overhaul.
+• Taking over a full system overhaul with no documentation, I analyzed and mapped account permissions and business rules through hands-on testing and internal interviews; 743 of 840 related client requests (88%) were resolved during the overhaul.
 
-• As the requirements contact between sales, customer service and engineering, I led requirements analysis and specification planning to ship about 70 major features by 2026 Q3, securing sales buy-in before delivery.
+• Bridging sales, customer service and engineering, I led requirements analysis and specification planning to ship about 70 major features by 2026 Q3, briefing customer service and sales nationwide every week and securing sales buy-in before delivery.
 
-• I use AI agents for specification writing and data analysis in a human-in-the-loop workflow: I define the rules and checks, the agent flags its confidence, and I review the results. I organized this into a reusable workflow and guided colleagues in applying it to hundreds of job category mappings.
+• I run specification writing and data analysis through AI agents (e.g., Claude Code): I set the problem, rules and checks, the agent flags its confidence, and I check and correct the results. I packaged this workflow as a reusable agent skill and guided colleagues in applying it to hundreds of job category mappings, narrowing manual review to single-digit items.
 
-AI-assisted workflows and untangling undocumented systems are areas I have focused on in recent years. I look forward to the opportunity to discuss this experience with your team. Thank you for your time.
+Over the past several years, I have focused closely on AI agent workflows and untangling undocumented systems. I would welcome the chance to discuss how this experience can support your team. Thank you for your time.
 
 Kun Huai Nieh
 ```
@@ -38,4 +38,4 @@ Kun Huai Nieh
 | 2 | W | 必備條件提到「工作技能: 專案管理架構及專案說明、專案規劃執行╱範圍管理、專案時間╱進度控管、協商談判能力、提案與簡報技巧」 | LINE Resume 已核准英文句（A 另依 facts-1111 2026-11-02 本人確認） |
 | 3 | A | 核心職責提到「Lead end-to-end project lifecycle management for cloud and AI initiati」 | LINE Resume 已核准英文句（A 另依 facts-1111 2026-11-02 本人確認） |
 
-字數（words）：203
+字數（words）：222

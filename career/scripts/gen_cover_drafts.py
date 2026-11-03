@@ -343,7 +343,11 @@ def self_test():
         ok(not re.search(r"[【】]", build_en(c)[3]), f"{c} 英文信不得含【】")
     k8 = build("8p4ix")[2]
     ok("I" in k8 and "C" in k8, f"8p4ix（API）須含 I（API 規格）與 C（支付串接）：{k8}")
-    ok("payment integration" in build_en("8p4ix")[3].lower().split("areas i have focused")[0], "8p4ix 英文信結尾須收束到支付串接")
+    ok("cross-border payment integration" in build_en("8p4ix")[3], "8p4ix 英文信結尾須含 cross-border payment integration")
+    for c in ("94hek", "94roa", "950oe", "8p4ix", "8wzup"):
+        en = build_en(c)[3]
+        ok("at your company" not in en and "requirements contact" not in en and "opened 8 payment" not in en, f"{c} 英文信不得有中式直譯")
+        ok("manage two product planners as direct reports" in en, f"{c} 首段管理幅度須維持 decisions 的 Manage two product planners as direct reports")
     c6 = build("6qvz0")[2]
     ok(set(c6) == set("WGY"), f"6qvz0（電商開店，領域標籤）須為 W、G、Y：{c6}")
     c8 = build("8kebd")[2]
@@ -401,15 +405,15 @@ def render(c, cname, title, chosen, body, n, gaps, digest, eng, raw, mapping=(),
 # ---- 英文信（JD 全英文職缺，本人 2026-11-03 裁定）：事實句取自 LINE Resume 已核准英文句 ----
 S_EN = {
  "I": "I agreed API specifications for an external partner with engineering (signature verification, replay protection, error codes and rate limits) and broke business logic into query conditions confirmed with engineers.",
- "R": "For a full system overhaul with no documentation, I analyzed and mapped account permissions and business rules through hands-on testing and internal interviews; 743 of 840 related client requests (88%) were resolved during the overhaul.",
- "W": "As the requirements contact between sales, customer service and engineering, I led requirements analysis and specification planning to ship about 70 major features by 2026 Q3, securing sales buy-in before delivery.",
- "A": "I use AI agents for specification writing and data analysis in a human-in-the-loop workflow: I define the rules and checks, the agent flags its confidence, and I review the results. I organized this into a reusable workflow and guided colleagues in applying it to hundreds of job category mappings.",
- "F": "I led the launch of AI-generated job descriptions and AI talent recommendations to lower the barrier to job posting and improve candidate matching. Employers confirm generated content before it is published, and recommendation rules are refined using employers' actual selections.",
+ "R": "Taking over a full system overhaul with no documentation, I analyzed and mapped account permissions and business rules through hands-on testing and internal interviews; 743 of 840 related client requests (88%) were resolved during the overhaul.",
+ "W": "Bridging sales, customer service and engineering, I led requirements analysis and specification planning to ship about 70 major features by 2026 Q3, briefing customer service and sales nationwide every week and securing sales buy-in before delivery.",
+ "A": "I run specification writing and data analysis through AI agents (e.g., Claude Code): I set the problem, rules and checks, the agent flags its confidence, and I check and correct the results. I packaged this workflow as a reusable agent skill and guided colleagues in applying it to hundreds of job category mappings, narrowing manual review to single-digit items.",
+ "F": "For a recruitment system serving about 60,000 paying employers, I led the launch of AI features for generating job descriptions and recommending candidates. I made employer confirmation a required step before publishing, and employers' actual selections feed back into the recommendation rules.",
  "S": "After unauthorized access to more than ten employer accounts in 2026/03–04, I coordinated the response with engineering and customer service, then designed and launched new-device OTP login verification (MFA) and an account-unlock flow. Through 2026/10, customer service received no reports of similar unauthorized access.",
- "M": "I planned a unified messaging flow for employers and job seekers to address 199 client requests accumulated since 2021, consolidating two overlapping tools that had split interview invitations across separate channels; it is now in development.",
+ "M": "To address 199 client requests accumulated since 2021, I planned a unified messaging flow for employers and job seekers, consolidating two overlapping tools that had split interview invitations across separate channels; the work is now in development.",
  "P": "I led the design of a three-phase Malaysia iOS pricing experiment for a dating app, with Android held at an unchanged price as the control group. In the discount phase, iOS revenue excluding renewals rose 5% versus the original-price phase, while Android fell 18%; the company owner adopted the lower price based on the results.",
  "Y": "I raised web payments' share of revenue for a subscription content app from 24% to over 80% (2020/11–2021/09) by planning the shift from in-app purchases to web payments and coordinating integration with a payment provider in Taiwan.",
- "C": "For a dating app operating across 7 markets, I brought in a Southeast Asian payment provider and opened 8 payment channels in Indonesia and Thailand, comparing fees and settlement terms to estimate net revenue.",
+ "C": "For a dating app operating across 7 markets, I onboarded a Southeast Asian payment provider and launched 8 local payment channels across Indonesia and Thailand, comparing fees and settlement terms, estimating net revenue and proposing 7-, 30- and 90-day subscription plans.",
  "K": "With no direct competitor to benchmark against, I planned an influencer-matching platform from zero to one, starting with interviews with merchants' marketing teams; it accumulated about 16,000 influencer profiles, with over 80,000 campaign applications in the six months after launch.",
  "J": "When the App Store removed our flagship dating app, I led the launch of a replacement app on the same backend to retain users and revenue, then led the original app's relaunch; male daily active users rose from about 3,200 to 12,500 during the launch and user redirection period.",
  "G": "In response to 55 client requests since 2020/12, I planned a shared recruitment feature that lets employers manage hiring by department or branch, defining access rules across accounts, job posts and resumes.",
@@ -417,9 +421,12 @@ S_EN = {
  "L": "I coordinated localization of a dating app across 7 markets, using English as the shared baseline and working with up to about 10 foreign interns in English-only meetings to produce local-language versions.",
  "T": "I consolidated 15 shared category code tables used across job posting, resume creation, search filtering and matching by reviewing the underlying data fields and building field-level mappings, using an AI agent to organize mappings and handoff records.",
 }
-END_EN = {"I": "API specification work", "F": "AI product delivery", "S": "account security", "Y": "payment integration", "C": "payment integration", "P": "pricing experiments", "W": "cross-team delivery",
+END_EN = {"I": "API specification work", "F": "AI product delivery", "S": "account security", "Y": "payment integration", "C": "cross-border payment integration", "P": "pricing experiments", "W": "cross-team delivery",
           "R": "untangling undocumented systems", "M": "messaging product planning", "L": "localization", "G": "multi-account access design", "Q": "client-focused prioritization",
-          "A": "AI-assisted workflows", "T": "data integration", "J": "crisis recovery of users and revenue", "K": "building products from zero to one"}
+          "A": "AI agent workflows", "T": "data integration", "J": "crisis recovery of users and revenue", "K": "building products from zero to one"}
+
+
+EN_COMPANY = {"94hek": "CyberLink", "94roa": "SHOPLINE", "950oe": "Gogolook", "8p4ix": "Klook", "8wzup": "Going Cloud"}  # 英文品牌名（本人 2026-11-03 指定）
 
 
 def clean_title_en(t):
@@ -448,10 +455,11 @@ def build_en(code):
         if len(topics) == 2: break
     if len(chosen) == 3 and chosen[1] in "WRQ" and chosen[2] not in "WRQ" and chosen[2] not in topics:
         topics = [chosen[2], chosen[0]]
-    a, b = END_EN[topics[0]], END_EN[topics[1]] if len(topics) > 1 else END_EN[chosen[1]]
-    text = (f"Dear Hiring Team,\n\nI am applying for the {ten} role at your company. {opening_en}\n\n"
+    a, b = END_EN[topics[0]], (END_EN[topics[1]] if len(topics) > 1 else END_EN[chosen[1]])
+    at = f" at {EN_COMPANY[code]}" if code in EN_COMPANY else ""
+    text = (f"Dear Hiring Team,\n\nI am applying for the {ten} role{at}. {opening_en}\n\n"
             + "\n\n".join("• " + S_EN[k] for k in chosen)
-            + f"\n\n{a[0].upper() + a[1:]} and {b} are areas I have focused on in recent years. I look forward to the opportunity to discuss this experience with your team. Thank you for your time.\n\nKun Huai Nieh\n")
+            + f"\n\nOver the past several years, I have focused closely on {a} and {b}. I would welcome the chance to discuss how this experience can support your team. Thank you for your time.\n\nKun Huai Nieh\n")
     return cname, ten, chosen, text, len(text.split()), ctx, mapping, conf
 
 

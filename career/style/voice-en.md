@@ -125,3 +125,13 @@
 5. **PDF 一鍵產出**：`python3 career/scripts/build_line_pdf.py <md> <pdf>`——先驗 md（Exit 0）→ 產 fill.json／resume.json → HTML → PDF，超過 2 頁自動由 9.6pt 縮到最小 9.0pt → `verify_line_pdf.py`（頁數、姓名、圓點、I ≤3、日期空格）。
 6. 流程（非腳本）：Codex 回傳前驗證必須 Exit 0 才可推送，且基底使用本人指定的最新 SHA；盲審與母語審查報告存 `review-panel/runs/`，不在 repo 新增暫存檔。
 6. PDF 匯出後必須**目視檢查每一頁**：腳本驗不到樣式（例：列點意外變粗體藍字，原因是 CSS class `.t` 與抬頭樣式撞名，2026-11-02 已改為 `.bt`）。上傳前再看一次實際檔案。
+
+## 14. 英文推薦信語感（2026-11-03 本人審閱）
+
+- 首句不寫 `at your company`（死譯「貴公司」）：有英文品牌名就寫 `at <Brand>`（CyberLink、SHOPLINE、Gogolook、Klook、Going Cloud），沒有就省略。職稱 `【CODE】` 轉 `Title (CODE)`；`【公司名】` 移除。
+- 管理幅度維持 decisions 已定：`Manage two product planners as direct reports`（取代 `two direct-report product planners`），英文信沿用 `where I manage two product planners as direct reports`；不再改回舊寫法。
+- 「需求窗口」不寫 `requirements contact`；寫 `Bridging sales, customer service and engineering, I led …`。
+- 動詞：`onboarded … and launched 8 local payment channels`（不寫 `opened`）；`Taking over a full system overhaul with no documentation, I analyzed and mapped …`（本人已裁定不用 reconstructed／Recovered／Reverse-engineered）。
+- AI 工作流與 AI 上線兩點直接採用已投遞的 Yahoo 信英文句（`I run spec writing and data analysis through AI agents (e.g., Claude Code)…reusable agent skill`；`I made employer confirmation a required step before publishing`），不另寫新句。
+- 結尾：`Over the past several years, I have focused closely on {A} and {B}. I would welcome the chance to discuss how this experience can support your team.`；Klook 含 `cross-border payment integration`。
+- 驗收：`verify_letter.py` 英文信攔 `at your company`、`requirements contact`、`opened 8 payment channels`、全形 `【】`。**不攔** `as direct reports`（decisions 已定用法）。

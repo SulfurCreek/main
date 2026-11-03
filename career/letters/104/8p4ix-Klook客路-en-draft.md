@@ -15,15 +15,15 @@
 ```text
 Dear Hiring Team,
 
-I am applying for the Project Manager (API) role at your company. I have nearly 10 years of product management experience and currently work as Product Owner of an employer-side recruitment system serving about 60,000 active paying employers, where I manage two product planners as direct reports. Before that, I managed consumer subscription apps and platforms.
+I am applying for the Project Manager (API) role at Klook. I have nearly 10 years of product management experience and currently work as Product Owner of an employer-side recruitment system serving about 60,000 active paying employers, where I manage two product planners as direct reports. Before that, I managed consumer subscription apps and platforms.
 
 • I agreed API specifications for an external partner with engineering (signature verification, replay protection, error codes and rate limits) and broke business logic into query conditions confirmed with engineers.
 
-• As the requirements contact between sales, customer service and engineering, I led requirements analysis and specification planning to ship about 70 major features by 2026 Q3, securing sales buy-in before delivery.
+• Bridging sales, customer service and engineering, I led requirements analysis and specification planning to ship about 70 major features by 2026 Q3, briefing customer service and sales nationwide every week and securing sales buy-in before delivery.
 
-• For a dating app operating across 7 markets, I brought in a Southeast Asian payment provider and opened 8 payment channels in Indonesia and Thailand, comparing fees and settlement terms to estimate net revenue.
+• For a dating app operating across 7 markets, I onboarded a Southeast Asian payment provider and launched 8 local payment channels across Indonesia and Thailand, comparing fees and settlement terms, estimating net revenue and proposing 7-, 30- and 90-day subscription plans.
 
-Payment integration and API specification work are areas I have focused on in recent years. I look forward to the opportunity to discuss this experience with your team. Thank you for your time.
+Over the past several years, I have focused closely on cross-border payment integration and API specification work. I would welcome the chance to discuss how this experience can support your team. Thank you for your time.
 
 Kun Huai Nieh
 ```
@@ -38,4 +38,4 @@ Kun Huai Nieh
 | 2 | W | JD 無直接對應（領域規則或補點） | LINE Resume 已核准英文句（A 另依 facts-1111 2026-11-02 本人確認） |
 | 3 | C | JD 無直接對應（領域規則或補點） | LINE Resume 已核准英文句（A 另依 facts-1111 2026-11-02 本人確認） |
 
-字數（words）：192
+字數（words）：206

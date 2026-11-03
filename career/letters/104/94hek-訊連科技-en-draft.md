@@ -15,15 +15,15 @@
 ```text
 Dear Hiring Team,
 
-I am applying for the AI Product Manager role at your company. I have nearly 10 years of product management experience and currently work as Product Owner of an employer-side recruitment system serving about 60,000 active paying employers, where I manage two product planners as direct reports.
+I am applying for the AI Product Manager role at CyberLink. I have nearly 10 years of product management experience and currently work as Product Owner of an employer-side recruitment system serving about 60,000 active paying employers, where I manage two product planners as direct reports.
 
-• I led the launch of AI-generated job descriptions and AI talent recommendations to lower the barrier to job posting and improve candidate matching. Employers confirm generated content before it is published, and recommendation rules are refined using employers' actual selections.
+• For a recruitment system serving about 60,000 paying employers, I led the launch of AI features for generating job descriptions and recommending candidates. I made employer confirmation a required step before publishing, and employers' actual selections feed back into the recommendation rules.
 
-• For a full system overhaul with no documentation, I analyzed and mapped account permissions and business rules through hands-on testing and internal interviews; 743 of 840 related client requests (88%) were resolved during the overhaul.
+• Taking over a full system overhaul with no documentation, I analyzed and mapped account permissions and business rules through hands-on testing and internal interviews; 743 of 840 related client requests (88%) were resolved during the overhaul.
 
-• I use AI agents for specification writing and data analysis in a human-in-the-loop workflow: I define the rules and checks, the agent flags its confidence, and I review the results. I organized this into a reusable workflow and guided colleagues in applying it to hundreds of job category mappings.
+• I run specification writing and data analysis through AI agents (e.g., Claude Code): I set the problem, rules and checks, the agent flags its confidence, and I check and correct the results. I packaged this workflow as a reusable agent skill and guided colleagues in applying it to hundreds of job category mappings, narrowing manual review to single-digit items.
 
-AI-assisted workflows and AI product delivery are areas I have focused on in recent years. I look forward to the opportunity to discuss this experience with your team. Thank you for your time.
+Over the past several years, I have focused closely on AI agent workflows and AI product delivery. I would welcome the chance to discuss how this experience can support your team. Thank you for your time.
 
 Kun Huai Nieh
 ```
@@ -38,4 +38,4 @@ Kun Huai Nieh
 | 2 | R | 核心職責提到「	Product: requirement gathering, PRD/spec writing, prototyping, user-f」 | LINE Resume 已核准英文句（A 另依 facts-1111 2026-11-02 本人確認） |
 | 3 | A | 核心職責提到「	AI: comfortable using AI tools (e.g., ChatGPT, Claude) to boost produ」 | LINE Resume 已核准英文句（A 另依 facts-1111 2026-11-02 本人確認） |
 
-字數（words）：213
+字數（words）：228
