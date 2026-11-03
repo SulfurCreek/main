@@ -23,7 +23,7 @@ I am applying for the Project Manager (API) role at your company. I have nearly 
 
 • For a dating app operating across 7 markets, I brought in a Southeast Asian payment provider and opened 8 payment channels in Indonesia and Thailand, comparing fees and settlement terms to estimate net revenue.
 
-Payment integration and API specification and integration are areas I have focused on in recent years. I look forward to the opportunity to discuss this experience with your team. Thank you for your time.
+Payment integration and API specification work are areas I have focused on in recent years. I look forward to the opportunity to discuss this experience with your team. Thank you for your time.
 
 Kun Huai Nieh
 ```
@@ -38,4 +38,4 @@ Kun Huai Nieh
 | 2 | W | JD 無直接對應（領域規則或補點） | LINE Resume 已核准英文句（A 另依 facts-1111 2026-11-02 本人確認） |
 | 3 | C | JD 無直接對應（領域規則或補點） | LINE Resume 已核准英文句（A 另依 facts-1111 2026-11-02 本人確認） |
 
-字數（words）：193
+字數（words）：192

@@ -417,7 +417,7 @@ S_EN = {
  "L": "I coordinated localization of a dating app across 7 markets, using English as the shared baseline and working with up to about 10 foreign interns in English-only meetings to produce local-language versions.",
  "T": "I consolidated 15 shared category code tables used across job posting, resume creation, search filtering and matching by reviewing the underlying data fields and building field-level mappings, using an AI agent to organize mappings and handoff records.",
 }
-END_EN = {"I": "API specification and integration", "F": "AI product delivery", "S": "account security", "Y": "payment integration", "C": "payment integration", "P": "pricing experiments", "W": "cross-team delivery",
+END_EN = {"I": "API specification work", "F": "AI product delivery", "S": "account security", "Y": "payment integration", "C": "payment integration", "P": "pricing experiments", "W": "cross-team delivery",
           "R": "untangling undocumented systems", "M": "messaging product planning", "L": "localization", "G": "multi-account access design", "Q": "client-focused prioritization",
           "A": "AI-assisted workflows", "T": "data integration", "J": "crisis recovery of users and revenue", "K": "building products from zero to one"}
 
