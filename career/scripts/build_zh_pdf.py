@@ -14,7 +14,7 @@ sec, cur = {}, None
 for line in t.splitlines():
     if line.startswith('## '):
         cur = line[3:].strip(); sec[cur] = []
-    elif cur and not line.startswith('> '):
+    elif cur and not line.lstrip().startswith('> '):
         sec[cur].append(line)
 e = html.escape
 def inline(s):
