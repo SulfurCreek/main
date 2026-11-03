@@ -29,7 +29,7 @@ import md104  # noqa: E402
 ROOT = Path(__file__).resolve().parents[1]
 LINE_MD = ROOT / "drafts/line/line-resume.md"
 LINE_SHA = "1bea8e7269f17702e0272242be46622389308a05446a1d730e08b1c37ed3b201"
-CV_SENTENCE = "An English CV is attached."  # D2：本人 2026-11-03 核可（會上傳 PDF），逐字鎖定
+CV_SENTENCE = "An English CV is available on request."  # D2：本人 2026-11-03 最終裁定，逐字鎖定（104 表單未必讓 HR 下載附件，此句最通用）
 SUMMARY_SHA = "a9418b838075fd98"
 # 專長英文：(種類, 位置, 預期原文 sha256 前 16 碼)
 SKILL_SRC = [("summary_sentence", 2, "88609a28444bdcfd"), ("skills_line", 0, "e8d1c92fc48cb0c6"),

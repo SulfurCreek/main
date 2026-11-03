@@ -10,7 +10,6 @@ sys.path.insert(0, str(pathlib.Path(__file__).resolve().parents[1]))
 import gen_104_bilingual as gb  # noqa: E402
 import line_md  # noqa: E402
 import md104  # noqa: E402
-import strip_markers as sm  # noqa: E402
 import verify_104_bilingual as vb  # noqa: E402
 
 LINE = """# LINE Resume
@@ -178,17 +177,6 @@ class Synthetic(unittest.TestCase):
             self.assertEqual(gb.main(["--zh", str(zp), "--out", str(op), "--line", str(lp)]), 3)  # 上限未量測
             self.assertTrue(op.exists())
             self.assertEqual(gb.main(["--zh", str(zp), "--out", str(op), "--line", str(lp), "--limit", "bio=2000", "--limit", "skill=2000"]), 0)
-
-
-class Markers(unittest.TestCase):
-    def test_strip_and_reconcile(self):
-        src = "# T\n\n<!-- [STATUS: POLISHED] [LOCK_ENTITIES: A] -->\n- 句子一\n<!-- [STATUS: LOCKED] -->\n- 句子二\n"
-        clean = sm.strip(src)
-        self.assertNotIn("STATUS", clean)
-        self.assertEqual(sm.check(src, clean), [])
-        self.assertTrue(sm.check(src, clean.replace("句子一", "句子壹")))
-        self.assertTrue(sm.check(src, clean + "<!-- [STATUS: LOCKED] -->\n"))
-        self.assertTrue(sm.check(clean, clean))  # 來源必須是帶標記版
 
 
 if __name__ == "__main__":
