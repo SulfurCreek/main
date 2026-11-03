@@ -1,52 +1,74 @@
-# 計畫：104 最新中文履歷 → 中英雙語履歷（2026-11-03，待本人核可）
+# 計畫 r2：104 最新中文履歷 → 中英雙語履歷（2026-11-03，**待本人核可，未開工**）
 
-> 個資檔，不外流。基準：本分支 `8e9b99a`、Codex 分支 `e73c007`。**本人說 OK 前，不跑任何上下游與盲測。**
-> 已取消：先前「104 經歷只放英文」任務（commit 8e9b99a）。新規格的雙語產生器會重寫，該 commit 的 ORDER／斷路器將被取代。
+> 個資檔，不外流。r2 依本人轉來的靜態審查（8 項）修訂；**本人說 OK 前，不跑上下游、產生器與盲測**。
+> 基準：本分支 `2623b90d2d09abd78b4940cce9a6732fbd8deb32`；LINE 英文來源 `career/drafts/line/line-resume.md`@`63a08889f2cdb633e700659d5b18e5a894b05f57`；Codex 分支 `e73c007d8d2e36847f23d171a9a31aee2bfa31d0`。
+> 已取消：「104 經歷只放英文」（8e9b99a），其產生器／驗證器／測試的舊斷言會在 T3 一併移除。
 
-## 一、要產出什麼
+## 零、開工前必須本人裁定（阻擋項）
 
-| # | 產出 | 位置（預計） |
+| # | 問題 | 我的建議 |
 | :-- | :-- | :-- |
-| 1 | 最新中文 104 履歷（v12.20） | `career/drafts/v12.20/104-v12.20.md`、公開版 `104-v12.20-public.md` |
-| 2 | 中英雙語 104 履歷 | `career/drafts/v12.20-bilingual/104-v12.20-bilingual.md` |
-| 3 | 盲測報告＋處置表 | `career/review-panel/runs/2026-11-0x-*/` |
+| D1 | 雙語版的中文基底用**一般版**還是**公開版**？ | 公開版（現行 104 已用「公司名暫不公開」；影響公司名、數字、圖片） |
+| D2 | 104 上是否**真的會上傳英文 CV 附件**？ | 有上傳 → `An English CV is attached.`；沒有 → `An English CV is available on request.`（兩者擇一，本人核可後**逐字鎖定**，Codex 只能提替代建議、不得自行改） |
+| D3 | 確認：簡介**只放英文**（Summary 原句＋D2 那一句），不放中文 | 已答「對」，此處僅最終確認 |
+| D4 | 兩個中文檢查器契約（見 T1）：同意「標記版＝編輯來源、去標記版＝成品」？ | 同意後我寫需求給 Codex 改它的檢查器 |
 
-## 二、雙語欄位規格（本人 2026-11-03 指定）
+## 一、工具契約修正（開工前完成，先過測試）
 
-| 欄位 | 內容 |
+### T1｜中文檢查器矛盾（審查 1）
+- 現況已確認：Codex `check_polish_structure.py` 第 59 行要求成品**不含** `[STATUS:`；Claude `verify_polish.py` 要求成品**保留** `[STATUS: POLISHED/LOCKED]`。同一份 `final_resume.md` 無法兩者都過。
+- 契約：`02_codex_stage/final_resume.md`＝**帶標記的編輯來源**（verify_polish 驗）；由腳本產生 `final_resume.clean.md`＝**去標記成品**（check_polish_structure 驗）；新增對帳：兩者去標記後逐字相同、區塊數相同。
+- Codex 的檢查器在 Codex 分支，我不能改：寫進給 Codex 的需求，由 Codex 改成驗 clean 檔；**不得由 Codex 臨時刪標記湊通過**。
+
+### T2｜英文零改寫（審查 2、3）
+- Step 2 改名為「**組裝與驗收**」，不是潤飾。Codex 只檢查選句、對位、排列與上下文完整性（代名詞、產品首次定義是否仍在）；**不得改字、加連接詞、合句、翻譯**。需要新句或接合文字 → 列為本人待核可項，不自行處理。
+- `verify_104_bilingual.py` 移除「人工查核放行」模式：**全程 strict**（產生器輸出、Codex 處理後、最終交付）。來源比對只用 LINE 的**對外正文**（排除 HTML 註解、directive、`[KEEP:…]` 等指令）。
+- 唯一例外：D2 核可的 CV 句，**精確字串比對**。
+
+### T3｜欄位白名單與完整比對（審查 4）
+- 以中文基底 md 為準，逐欄解析（含 directive JSON）；只有下列可變，其餘**逐位元組相同**：
+
+| 欄位 | 允許變化 |
 | :-- | :-- |
-| 個人簡介 `info.bio` | **英文**（LINE 履歷 Summary 原句）＋一句說明附有英文 CV（見 Q2） |
-| 工作經歷 4 筆 | **只放中文**（v12.20 中文原文，逐字） |
-| 專案成就 4 筆說明 | **英文先行＋中文**；專案名稱、起訖、圖片、網址維持原設定 |
-| 專長 6 筆說明 `desc` | **英文先行＋中文**；名稱、標籤維持原設定 |
-| 其他（個人特色、經歷技能標籤、各欄位可自選的技能／工具、證照、語文、求職條件、自傳） | **全部維持原設定**，不動 |
+| `info.bio` | 指定英文 Summary＋D2 句（不含中文） |
+| 6 筆專長 `desc` | 指定英文＋空一行＋原中文（中文逐字） |
+| 4 筆專案說明 | 指定英文＋空段落＋原中文（中文逐字） |
+| 工作經歷 4 筆、個人特色、自傳、求職條件、專長名稱／標籤、專案名稱／起訖／圖片／網址、所有 directive、檔頭與順序 | **不得變** |
 
-英文規則：只從 `career/drafts/line/line-resume.md`（FINAL-LOCKED）擷取現成句子，Claude 與 Codex 都不得新寫或翻譯。
+- 驗：欄位數、順序、重複、缺欄、名稱、標籤、日期、圖片、網址、directive 全欄比對。
 
-## 三、流程
+### T4｜中文版與公開版產生順序（審查 5）
+- 同一份已驗證的中文定稿 → `gen_104_md.py` 產一般版 → `gen_104_md.py --public` 產公開版 → 各自跑 `verify_polish.py --verify-104`。**不再對 104 md 跑 `public_redact.py`**（它只處理 Codex 定稿格式）。
 
-### Step 1｜最新中文履歷（v12.20）
-1. Stage 1–2（Claude）：讀 `library/`（含 10-27 之後新增的 decisions），比對 `01_claude_stage/causal_draft.md`，把新事實／裁定編入；標 `NEEDS_POLISH`／`LOCKED`、`LOCK_ENTITIES`。跑 `verify_polish.py` 上游 0 違規。
+### T5｜雙語公開範圍檢查（審查 6）
+- 新增：雙語整份（含英文）跑公開版禁字檢查（公司名、內部系統名、客戶名等，沿用 public_redact 的規則表）。
+- 若鎖定英文原句與公開政策衝突 → **停止、回報本人裁定**；不改寫英文、不因「英文已核准」放行。
+
+### T6｜來源映射鎖定與字數（審查 7）
+- `ORDER`／`PROJECT_SRC`／`SKILL_SRC` 每個映射附**預期原文 SHA-256**；LINE 檔需等於固定 SHA，不符立即失敗（防 LINE 增刪列點後抽到別的案例）。
+- 字數：計**英文＋中文合計可見文字**；規則寫死：去 HTML 標籤、entity 解碼、換行計 1 字元、空段落計 0（另以「含換行」與「不含換行」兩種口徑同時列印，取較大者判斷）。
+- 上限：簡介、專案說明 ≤2,000（fields-spec）；專長說明上限**未知 → 開工前由 Antigravity 量測或本人提供**，未知前專長不得標「可填表」。
+- 超標 → **停止、回報欄位**；中英文都不准改，不擅自截短或換句。
+
+### T7｜測試（審查 8）
+- 改為**離線合成資料測試**（測試內自建小型中文基底＋LINE 樣本），不依賴 v12.19 實檔、不會整組 skip。
+- 至少涵蓋：經歷四筆中文逐字且無英文；簡介只英文；專長／專案英文先行、中文不變；非白名單欄位／標籤／圖片被改即失敗；缺欄、重複、換序、來源外英文、映射原文不符、超標均失敗；驗證失敗**不寫出**可填表成品（原子寫入）。
+- **刪除**舊規格斷言（「經歷只放英文」、manual 放行測試）。
+
+## 二、流程（契約修正並通過測試後，本人說 OK 才開始）
+
+### Step 1｜最新中文履歷 v12.20
+1. Stage 1–2（Claude）：`library/`（含 11-03 九句）→ `01_claude_stage/causal_draft.md`；`verify_polish.py` 上游 0 違規。
 2. Claude 端盲測（credibility-blind-prompt，不讀 library）→ A/B/C 分流。
-3. Stage 3（Codex）：依 `voice_style_guide.md` 潤飾 → `02_codex_stage/final_resume.md`，Codex 自跑 `check_polish_structure.py` 與 `verify_polish.py`。
-4. Stage 4（Claude）：唯讀拉取 → `verify_polish.py` → `gen_104_md.py` 產 104 md → `verify_polish.py --verify-104` → `public_redact.py` 產公開版。
-5. 定稿盲審（coach-prompt）→ 終審，收斂停機（不跑第 3 輪）。
+3. Stage 3（Codex）：潤飾 → `final_resume.md`（帶標記）＋ `final_resume.clean.md`；兩支檢查器＋對帳全過。
+4. Stage 4（Claude）：唯讀拉取 → T4 產一般版／公開版並各自驗證。
+5. 定稿盲審（coach-prompt）→ 終審，收斂停機。
 
-### Step 2｜雙語組合
-1. 改寫 `gen_104_bilingual.py`：簡介英文＋CV 說明；經歷只放中文；專案／專長英文先行；其餘逐字不動。
-2. 改寫 `verify_104_bilingual.py`：欄位規格、中文零加工、英文句子必須來自 LINE（strict）、簡介 / 專案說明 ≤2000 字、專長字數。
-3. Codex 潤飾（只能擷取／重排 LINE 原句、最小接合；「英文 CV」一句可潤）→ Claude 核對「已修改」清單 → 盲審一輪 → 定稿。
-4. 新舊比對：Codex 舊版（e73c007）與新版逐欄 diff 報告，Claude 核對後採用。
-5. 更新 Antigravity 填表指令檔（新欄位規格）。
+### Step 2｜雙語組裝與驗收
+1. 產生器（T2/T3/T6）以 D1 選定的中文基底組裝 → strict 驗收 → T5 公開範圍檢查 → 字數。
+2. Codex：只做選句與上下文完整性檢查，回報建議清單（不改字）；需新句者列本人待核可。
+3. 新舊比對：Codex 舊版（e73c007 `104-v12.19-bilingual.codex.md`）vs 新版，逐欄句子差異報告，Claude 核對；採用以新規格為準。
+4. 盲審一輪（只給全文）→ 處置表 → 定稿；Antigravity 指令檔依新欄位規格改寫。
 
-## 四、本人答覆（2026-11-03）與據此調整
-
-| # | 答覆 | 計畫調整 |
-| :-- | :-- | :-- |
-| Q1 | 好，今天自薦信改的句子也進履歷 | 已寫入 `library/decisions.md`（2026-11-03 九句）；編譯 v12.20 時視為現行事實，措辭仍依履歷語氣規則 |
-| Q2 | Claude 先寫、Codex 潤 | 起草句：`An English version of this résumé is available on request.`（簡介最後一句；唯一新寫文字；Codex 潤飾後 Claude 核對）。若你嫌不夠「附近有」可改成 `English CV attached.` |
-| Q3 | 簡介只留英文 | 簡介欄＝LINE Summary 原句 ＋ 上述一句；不放中文 |
-| Q4 | 舊版 e73c007 不沿用，但要互相比較 | Step 2 新增比對：Codex 舊版（`origin/codex/resume-writer@e73c007` 的 `104-v12.19-bilingual.codex.md`）vs 新產生版，逐欄列差異（句子層級），由 Claude 核對，採用以新規格為準 |
-
-## 五、工具清單
-見同資料夾 `TOOLS.md`；檔案副本在 `claude/` 與 `codex/`（Codex 檔取自 `origin/codex/resume-writer@e73c007`，唯讀複本）。
+## 三、工具清單
+見 `TOOLS.md`；副本在 `claude/`、`codex/`。
