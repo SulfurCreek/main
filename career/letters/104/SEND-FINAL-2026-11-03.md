@@ -98,7 +98,7 @@ I am applying for the AI Product Manager role at CyberLink. With nearly 10 years
 
 • For a recruitment system serving about 60,000 paying employers, I led the launch of AI features for generating job descriptions and recommending candidates. After launch, I kept refining the vector algorithm with the technical team based on how customers actually used the features.
 
-• Taking over a full system overhaul with no documentation, I analyzed and mapped account permissions and business rules through hands-on testing and internal interviews. 743 of 840 related client requests (88%) were resolved during the overhaul.
+• I planned products from the user journey, producing user journey maps, user stories, wireframes and flowcharts while designers produced the visuals, and I walked customer service and engineering through an Axure RP prototype of the flow before kickoff.
 
 • I run specification writing and data analysis through AI agents (e.g., Claude Code): I set the problem, rules and checks; the agent flags its confidence, and I check and correct the results. I packaged this workflow as a reusable agent skill and guided colleagues in applying it to hundreds of job category mappings, narrowing the items that needed manual discussion to single digits.
 
@@ -220,9 +220,9 @@ Kun Huai Nieh
 
 ‧ 接手沒有文件的陳舊系統改版，以實測與內部訪談還原帳號權限與業務規則，分階段替換舊功能；840 件相關客戶建議中，團隊已完成 743 件（88%）。
 
-‧ 回應 2020/12 起累積的 55 件客戶建議，規劃群組招募功能，讓大型企業按部門或分店共同處理招募；定義帳號、職缺與履歷的存取規則。
+‧ 從使用者旅程出發規劃產品，依序產出 User Journey Map、User Story、Wireframe 與 Flowchart，並與設計師協作，由對方製作視覺畫面；Kick-off 前以 Axure RP 原型讓客服與工程先看過流程，再進行封測。
 
-期待有機會與貴公司團隊進一步交流企業端權限與流程設計、跨部門專案推進。
+期待有機會與貴公司團隊進一步交流使用者旅程與流程設計、跨部門專案推進。
 
 聶崑淮
 ```
@@ -630,9 +630,9 @@ Kun Huai Nieh
 
 ‧ 接手沒有文件的陳舊系統改版，以實測與內部訪談還原帳號權限與業務規則，分階段替換舊功能；840 件相關客戶建議中，團隊已完成 743 件（88%）。
 
-‧ 與工程單位議定外部單位合作所需API 規格（簽章驗證、呼叫方式、錯誤情境與頻率限制）；將口語上的商業邏輯轉化成查詢條件，讓工程順利開發。
+‧ 從使用者旅程出發規劃產品，依序產出 User Journey Map、User Story、Wireframe 與 Flowchart，並與設計師協作，由對方製作視覺畫面；Kick-off 前以 Axure RP 原型讓客服與工程先看過流程，再進行封測。
 
-期待有機會與貴公司團隊進一步交流外部合作的 API 規格與串接、跨部門專案推進。
+期待有機會與貴公司團隊進一步交流使用者旅程與流程設計、跨部門專案推進。
 
 聶崑淮
 ```
