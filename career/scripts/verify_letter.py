@@ -173,6 +173,8 @@ def check(body, job=None, ctx=""):
     for w in banned_hits(body):
         errs.append(f"[禁用詞] {w}")
     for m in BULLET_LABEL.finditer(body):
+        if re.search(r"[‧•\-]\s*0 到 1 規劃並上線[：:]", m.group(0)):
+            continue  # 本人指定的 KOOL 0→1 破題句（2026-11-03），非能力標籤
         errs.append(f"[列點冒號小標] 列點開頭不得加「能力標籤：」：{m.group(0).strip()}")
     for m in BULLET_HEADLESS.finditer(body):
         errs.append(f"[無頭斷句開頭] 每點開頭要自帶場景主詞，不可以「{m.group(1)}」裸奔")
