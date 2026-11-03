@@ -11,15 +11,15 @@
 3. [COMPANIES.md](COMPANIES.md)：46家公司公開背景原文及職缺關聯。
 4. 下方選擇HR-code，開對應領域文件，完整讀該卡與全文JD；各卡均附固定來源commit及公司ID。
 
-有效角色81個、46家公司、10領域。舊63筆清單已由較新136筆同步與投遞/放棄紀錄交叉核對。只在repo快照意義上標記未應徵，不宣稱即時狀態。
-本次完成建置與覆蓋檢查；**未實際審視任何新履歷或PDF，也未派出子代理**。
+有效角色82個、46家公司、10領域。舊63筆清單已由較新137筆同步與投遞/放棄紀錄交叉核對。只在repo快照意義上標記未應徵，不宣稱即時狀態。
+初次建置僅建角色；2026-11-03已完成[r6診斷](runs/2026-11-03-585ee01/REPORT.md)，含獨立評閱與主HR閱讀（非正式成品盲審），未驗PDF。
 
 ## 使用方式
 
 - 「派HR-8692h看這份草稿」：支付連專屬招聘視角。
 - 「派HR-93shv看這份英文履歷」：SHOPLINE Data Product Manager視角，不混用Checkout。
 - 「支付組一起看」：PAY領域全部有效角色，逐職缺保留結論。
-- 「全部集合看」：81角色逐職缺審視，再由主HR整合共通強項與版本差異；不是用平均分或模擬多數票決定。
+- 「全部集合看」：82角色逐職缺審視，再由主HR整合共通強項與版本差異；不是用平均分或模擬多數票決定。
 - 「盲讀」：隔離代理只讀完整對外候選＋JD/公開公司資料，不給期待它稱讚的指令與過往評論。
 - 指定PDF時需實際讀檔及看頁面；僅MD不可宣稱版面驗收。
 
@@ -34,98 +34,101 @@
 | COMMERCE 電商、商家與平台產品 | 8 | [COMMERCE.md](personas/COMMERCE.md) |
 | ENTERPRISE 企業系統、產品整合與複雜規則 | 8 | [ENTERPRISE.md](personas/ENTERPRISE.md) |
 | CONSUMER 消費產品、訂閱與成長 | 11 | [CONSUMER.md](personas/CONSUMER.md) |
-| AI AI產品、導入與組織推動 | 6 | [AI.md](personas/AI.md) |
+| AI AI產品、導入與組織推動 | 7 | [AI.md](personas/AI.md)＋[HR-94wfd](personas/HR-94wfd.md) |
 | DATA 數據產品、行為分析與商業洞察 | 3 | [DATA.md](personas/DATA.md) |
 | DELIVERY 軟體專案、客戶交付與顧問協作 | 10 | [DELIVERY.md](personas/DELIVERY.md) |
 | SOLUTION 雲端、資安、電信與解決方案經營 | 10 | [SOLUTION.md](personas/SOLUTION.md) |
 | HARDWARE 硬體、製造與供應鏈 | 12 | [HARDWARE.md](personas/HARDWARE.md) |
 | OPERATIONS 營運企劃與商品管理 | 2 | [OPERATIONS.md](personas/OPERATIONS.md) |
 
-## 81個角色完整索引
+## 82個角色完整索引（最新狀態與職責欄）
 
-| HR ID | 公司 | 職缺 | 領域/卡片 |
-| --- | --- | --- | --- |
-| HR-96686 | \\|台\\|灣\\|大\\|哥\\|大\\|股\\|份\\|有\\|限\\|公\\|司\\| | \\|I\\|2\\|1\\|0\\| \\|A\\|I\\|專\\|案\\|P\\|M\\|(\\|可\\|遠\\|端\\|工\\|作\\|)\\| | [AI](personas/AI.md#hr-96686) |
-| HR-5jvck | \\|三\\|竹\\|資\\|訊\\|股\\|份\\|有\\|限\\|公\\|司\\| | \\|A\\|P\\|P\\|應\\|用\\|事\\|業\\|群\\| \\|-\\| \\|P\\|r\\|o\\|j\\|e\\|c\\|t\\| \\|M\\|a\\|n\\|a\\|g\\|e\\|r\\| | [DELIVERY](personas/DELIVERY.md#hr-5jvck) |
-| HR-5n0va | \\|I\\|n\\|v\\|e\\|n\\|t\\|e\\|c\\|_\\|英\\|業\\|達\\|股\\|份\\|有\\|限\\|公\\|司\\| | \\|軟\\|體\\|專\\|案\\|經\\|理\\|(\\|S\\|E\\|P\\|M\\|)\\|(\\|士\\|林\\|)\\| | [HARDWARE](personas/HARDWARE.md#hr-5n0va) |
-| HR-5ya5p | \\|三\\|竹\\|資\\|訊\\|股\\|份\\|有\\|限\\|公\\|司\\| | \\|金\\|融\\|服\\|務\\|事\\|業\\|群\\| \\|-\\| \\|證\\|券\\|產\\|品\\|經\\|理\\| | [CONSUMER](personas/CONSUMER.md#hr-5ya5p) |
-| HR-6ilwb | \\|台\\|灣\\|固\\|網\\|股\\|份\\|有\\|限\\|公\\|司\\| | \\|D\\|5\\|0\\| \\|固\\|網\\|產\\|品\\|P\\|M\\| | [SOLUTION](personas/SOLUTION.md#hr-6ilwb) |
-| HR-6k2q4 | \\|台\\|灣\\|大\\|哥\\|大\\|股\\|份\\|有\\|限\\|公\\|司\\| | \\|D\\|4\\|6\\|7\\| \\|用\\|戶\\|行\\|為\\|分\\|析\\|人\\|員\\| \\|(\\|可\\|遠\\|端\\|工\\|作\\|)\\| | [DATA](personas/DATA.md#hr-6k2q4) |
-| HR-6ujxk | \\|P\\|r\\|e\\|s\\|s\\|P\\|l\\|a\\|y\\|_\\|瑞\\|奧\\|股\\|份\\|有\\|限\\|公\\|司\\| | \\|【\\|知\\|識\\|】\\|產\\|品\\|設\\|計\\|部\\|｜\\|產\\|品\\|經\\|理\\| \\|P\\|r\\|o\\|d\\|u\\|c\\|t\\| \\|M\\|a\\|n\\|a\\|g\\|e\\|r\\| | [CONSUMER](personas/CONSUMER.md#hr-6ujxk) |
-| HR-75rkw | \\|和\\|泰\\|聯\\|網\\|股\\|份\\|有\\|限\\|公\\|司\\| | \\|【\\|y\\|o\\|x\\|i\\|】\\|A\\|P\\|P\\|產\\|品\\|經\\|理\\| | [CONSUMER](personas/CONSUMER.md#hr-75rkw) |
-| HR-77jpv | \\|玉\\|山\\|銀\\|行\\|_\\|玉\\|山\\|商\\|業\\|銀\\|行\\|股\\|份\\|有\\|限\\|公\\|司\\| | \\|【\\|數\\|位\\|金\\|融\\|】\\|數\\|位\\|平\\|台\\|企\\|劃\\|-\\|W\\|e\\|b\\|/\\|A\\|P\\|P\\| \\|P\\|r\\|o\\|d\\|u\\|c\\|t\\| \\|M\\|a\\|n\\|a\\|g\\|e\\|r\\|(\\|經\\|驗\\|行\\|員\\|)\\| | [PAY](personas/PAY.md#hr-77jpv) |
-| HR-78em2 | \\|桓\\|竑\\|智\\|聯\\|股\\|份\\|有\\|限\\|公\\|司\\| | \\|專\\|案\\|經\\|理\\|（\\|P\\|r\\|o\\|j\\|e\\|c\\|t\\| \\|M\\|a\\|n\\|a\\|g\\|e\\|r\\|）\\| | [DELIVERY](personas/DELIVERY.md#hr-78em2) |
-| HR-7996v | \\|全\\|支\\|付\\|電\\|子\\|支\\|付\\|股\\|份\\|有\\|限\\|公\\|司\\| | \\|全\\|支\\|付\\|-\\| \\|P\\|r\\|o\\|d\\|u\\|c\\|t\\| \\|M\\|a\\|n\\|a\\|g\\|e\\|r\\| \\|(\\|專\\|案\\|執\\|行\\|)\\| | [PAY](personas/PAY.md#hr-7996v) |
-| HR-7dijs | \\|玩\\|美\\|移\\|動\\|股\\|份\\|有\\|限\\|公\\|司\\| | \\|A\\|P\\|P\\| \\|P\\|r\\|o\\|d\\|u\\|c\\|t\\| \\|M\\|a\\|n\\|a\\|g\\|e\\|r\\| \\|產\\|品\\|經\\|理\\| | [CONSUMER](personas/CONSUMER.md#hr-7dijs) |
-| HR-7ig7x | \\|新\\|加\\|坡\\|商\\|蝦\\|皮\\|娛\\|樂\\|電\\|商\\|有\\|限\\|公\\|司\\|台\\|灣\\|分\\|公\\|司\\| | \\|P\\|r\\|o\\|d\\|u\\|c\\|t\\| \\|M\\|a\\|n\\|a\\|g\\|e\\|r\\| \\|產\\|品\\|經\\|理\\|／\\|蝦\\|皮\\|店\\|到\\|店\\| | [COMMERCE](personas/COMMERCE.md#hr-7ig7x) |
-| HR-7p3v5 | \\|宏\\|碁\\|雲\\|架\\|構\\|服\\|務\\|股\\|份\\|有\\|限\\|公\\|司\\| | \\|雲\\|端\\|產\\|品\\|經\\|理\\|P\\|M\\| | [SOLUTION](personas/SOLUTION.md#hr-7p3v5) |
-| HR-7ppuh | \\|口\\|袋\\|證\\|券\\|股\\|份\\|有\\|限\\|公\\|司\\| | \\|軟\\|體\\|產\\|品\\|經\\|理\\| | [CONSUMER](personas/CONSUMER.md#hr-7ppuh) |
-| HR-7rk75 | \\|I\\|n\\|v\\|e\\|n\\|t\\|e\\|c\\|_\\|英\\|業\\|達\\|股\\|份\\|有\\|限\\|公\\|司\\| | \\|【\\|電\\|競\\|事\\|業\\|部\\|】\\|軟\\|體\\|專\\|案\\|經\\|理\\|(\\|S\\|E\\|P\\|M\\|)\\|(\\|士\\|林\\|)\\| | [HARDWARE](personas/HARDWARE.md#hr-7rk75) |
-| HR-7uqbx | \\|核\\|果\\|智\\|能\\|科\\|技\\|股\\|份\\|有\\|限\\|公\\|司\\| | \\|資\\|深\\|軟\\|體\\|專\\|案\\|經\\|理\\|｜\\| \\|S\\|e\\|n\\|i\\|o\\|r\\| \\|P\\|M\\| | [DELIVERY](personas/DELIVERY.md#hr-7uqbx) |
-| HR-7wq7q | \\|台\\|灣\\|大\\|哥\\|大\\|股\\|份\\|有\\|限\\|公\\|司\\| | \\|D\\|5\\|9\\|7\\| \\|產\\|品\\|專\\|案\\|P\\|M\\| | [DELIVERY](personas/DELIVERY.md#hr-7wq7q) |
-| HR-81bhg | \\|i\\|R\\|e\\|n\\|t\\|_\\|和\\|雲\\|行\\|動\\|服\\|務\\|股\\|份\\|有\\|限\\|公\\|司\\| | \\|i\\|R\\|e\\|n\\|t\\|營\\|運\\|企\\|劃\\|（\\|產\\|品\\|經\\|理\\|）\\| \\|(\\|企\\|劃\\|部\\|)\\| | [OPERATIONS](personas/OPERATIONS.md#hr-81bhg) |
-| HR-81x5r | \\|台\\|灣\\|大\\|哥\\|大\\|股\\|份\\|有\\|限\\|公\\|司\\| | \\|D\\|4\\|6\\|4\\| \\|行\\|動\\|裝\\|置\\|周\\|邊\\|配\\|件\\|產\\|品\\|P\\|M\\|(\\|可\\|遠\\|端\\|上\\|班\\|)\\| | [OPERATIONS](personas/OPERATIONS.md#hr-81x5r) |
-| HR-82gqm | \\|台\\|灣\\|固\\|網\\|股\\|份\\|有\\|限\\|公\\|司\\| | \\|D\\|5\\|3\\| \\|I\\|D\\|C\\|產\\|品\\|P\\|M\\| \\|(\\|可\\|遠\\|端\\|工\\|作\\|)\\| | [SOLUTION](personas/SOLUTION.md#hr-82gqm) |
-| HR-84s1l | \\|訊\\|連\\|科\\|技\\|股\\|份\\|有\\|限\\|公\\|司\\| | \\|S\\|a\\|a\\|S\\| \\|P\\|r\\|o\\|d\\|u\\|c\\|t\\| \\|M\\|a\\|n\\|a\\|g\\|e\\|r\\| | [AI](personas/AI.md#hr-84s1l) |
-| HR-8692h | \\|拍\\|付\\|國\\|際\\|資\\|訊\\|股\\|份\\|有\\|限\\|公\\|司\\| | \\|產\\|品\\|經\\|理\\|(\\|支\\|付\\|連\\|)\\| | [PAY](personas/PAY.md#hr-8692h) |
-| HR-86svk | \\|三\\|竹\\|資\\|訊\\|股\\|份\\|有\\|限\\|公\\|司\\| | \\|軟\\|體\\|產\\|品\\|經\\|理\\| \\|-\\| \\|雲\\|端\\|事\\|業\\|群\\| \\||\\| \\|C\\|o\\|L\\|i\\|n\\|e\\| | [ENTERPRISE](personas/ENTERPRISE.md#hr-86svk) |
-| HR-8bymx | \\|悠\\|勢\\|科\\|技\\|股\\|份\\|有\\|限\\|公\\|司\\| | \\|資\\|深\\|產\\|品\\|經\\|理\\|｜\\|S\\|e\\|n\\|i\\|o\\|r\\| \\|P\\|r\\|o\\|d\\|u\\|c\\|t\\| \\|M\\|a\\|n\\|a\\|g\\|e\\|r\\| | [ENTERPRISE](personas/ENTERPRISE.md#hr-8bymx) |
-| HR-8c9o0 | \\|C\\|o\\|o\\|l\\|e\\|r\\| \\|M\\|a\\|s\\|t\\|e\\|r\\|_\\|訊\\|凱\\|國\\|際\\|股\\|份\\|有\\|限\\|公\\|司\\| | \\|專\\|案\\|經\\|理\\| \\|P\\|r\\|o\\|j\\|e\\|c\\|t\\| \\|M\\|a\\|n\\|a\\|g\\|e\\|r\\| | [HARDWARE](personas/HARDWARE.md#hr-8c9o0) |
-| HR-8cb9c | \\|台\\|灣\\|理\\|光\\|股\\|份\\|有\\|限\\|公\\|司\\| | \\|智\\|能\\|辦\\|公\\|解\\|決\\|方\\|案\\| \\|產\\|品\\|經\\|理\\|(\\|J\\|r\\|.\\|/\\|S\\|r\\|.\\|)\\| | [SOLUTION](personas/SOLUTION.md#hr-8cb9c) |
-| HR-8cfb8 | \\|行\\|動\\|力\\|國\\|際\\|股\\|份\\|有\\|限\\|公\\|司\\| | \\|專\\|案\\|經\\|理\\|P\\|M\\| | [HARDWARE](personas/HARDWARE.md#hr-8cfb8) |
-| HR-8dbp3 | \\|9\\|1\\|A\\|P\\|P\\|_\\|英\\|屬\\|開\\|曼\\|群\\|島\\|商\\|九\\|一\\|應\\|用\\|軟\\|體\\|股\\|份\\|有\\|限\\|公\\|司\\|台\\|灣\\|分\\|公\\|司\\| | \\|［\\|U\\|P\\|D\\|］\\|S\\|a\\|a\\|S\\| \\|產\\|品\\|經\\|理\\| \\|/\\| \\|P\\|r\\|o\\|d\\|u\\|c\\|t\\| \\|O\\|w\\|n\\|e\\|r\\| \\|(\\|C\\|o\\|m\\|m\\|e\\|r\\|c\\|e\\| \\|C\\|l\\|o\\|u\\|d\\|,\\| \\|G\\|1\\|1\\|N\\|,\\| \\|O\\|M\\|O\\|)\\| | [COMMERCE](personas/COMMERCE.md#hr-8dbp3) |
-| HR-8f25l | \\|新\\|加\\|坡\\|商\\|蝦\\|皮\\|娛\\|樂\\|電\\|商\\|有\\|限\\|公\\|司\\|台\\|灣\\|分\\|公\\|司\\| | \\|P\\|r\\|o\\|d\\|u\\|c\\|t\\| \\|M\\|a\\|n\\|a\\|g\\|e\\|r\\| \\|產\\|品\\|管\\|理\\|師\\| \\| \\|/\\| \\|P\\|r\\|o\\|d\\|u\\|c\\|t\\| \\|M\\|a\\|n\\|a\\|g\\|e\\|m\\|e\\|n\\|t\\| \\|產\\|品\\|管\\|理\\|部\\| | [COMMERCE](personas/COMMERCE.md#hr-8f25l) |
-| HR-8geon | \\|三\\|竹\\|資\\|訊\\|股\\|份\\|有\\|限\\|公\\|司\\| | \\|金\\|融\\|服\\|務\\|事\\|業\\|群\\|-\\|P\\|M\\| | [DELIVERY](personas/DELIVERY.md#hr-8geon) |
-| HR-8ick4 | \\|新\\|加\\|坡\\|商\\|蝦\\|皮\\|娛\\|樂\\|電\\|商\\|有\\|限\\|公\\|司\\|台\\|灣\\|分\\|公\\|司\\| | \\|S\\|h\\|o\\|p\\|e\\|e\\| \\|-\\| \\|B\\|2\\|C\\| \\|S\\|y\\|s\\|t\\|e\\|m\\| \\|P\\|r\\|o\\|d\\|u\\|c\\|t\\| \\|M\\|a\\|n\\|a\\|g\\|e\\|r\\| \\|產\\|品\\|經\\|理\\| | [ENTERPRISE](personas/ENTERPRISE.md#hr-8ick4) |
-| HR-8mpjw | \\|L\\|I\\|N\\|E\\| \\|P\\|a\\|y\\|_\\|連\\|加\\|網\\|路\\|商\\|業\\|股\\|份\\|有\\|限\\|公\\|司\\| | \\|T\\|e\\|c\\|h\\|n\\|i\\|c\\|a\\|l\\| \\|P\\|r\\|o\\|d\\|u\\|c\\|t\\| \\|M\\|a\\|n\\|a\\|g\\|e\\|r\\| | [PAY](personas/PAY.md#hr-8mpjw) |
-| HR-8n0mx | \\|G\\|A\\|R\\|M\\|I\\|N\\|_\\|台\\|灣\\|國\\|際\\|航\\|電\\|股\\|份\\|有\\|限\\|公\\|司\\| | \\|【\\|全\\|球\\|智\\|慧\\|製\\|造\\|】\\|智\\|慧\\|製\\|造\\|系\\|統\\|產\\|品\\|經\\|理\\| \\|S\\|m\\|a\\|r\\|t\\| \\|M\\|a\\|n\\|u\\|f\\|a\\|c\\|t\\|u\\|r\\|i\\|n\\|g\\| \\|S\\|y\\|s\\|t\\|e\\|m\\| \\|P\\|r\\|o\\|d\\|u\\|c\\|t\\| \\|M\\|a\\|n\\|a\\|g\\|e\\|r\\|_\\|新\\|店\\| | [HARDWARE](personas/HARDWARE.md#hr-8n0mx) |
-| HR-8nijy | \\|N\\|V\\|I\\|D\\|I\\|A\\|_\\|新\\|加\\|坡\\|商\\|輝\\|達\\|開\\|發\\|有\\|限\\|公\\|司\\|台\\|灣\\|分\\|公\\|司\\| | \\|S\\|e\\|r\\|v\\|e\\|r\\| \\|P\\|r\\|o\\|d\\|u\\|c\\|t\\| \\|P\\|r\\|o\\|g\\|r\\|a\\|m\\| \\|M\\|a\\|n\\|a\\|g\\|e\\|r\\| | [HARDWARE](personas/HARDWARE.md#hr-8nijy) |
-| HR-8nuo3 | \\|E\\|u\\|n\\|o\\|d\\|a\\|t\\|a\\|_\\|御\\|諾\\|資\\|訊\\|股\\|份\\|有\\|限\\|公\\|司\\| | \\|軟\\|體\\|專\\|案\\|管\\|理\\|師\\| \\|S\\|o\\|f\\|t\\|w\\|a\\|r\\|e\\| \\|P\\|r\\|o\\|j\\|e\\|c\\|t\\| \\|M\\|a\\|n\\|a\\|g\\|e\\|r\\| \\|(\\|P\\|M\\|)\\| | [DELIVERY](personas/DELIVERY.md#hr-8nuo3) |
-| HR-8ocje | \\|全\\|支\\|付\\|電\\|子\\|支\\|付\\|股\\|份\\|有\\|限\\|公\\|司\\| | \\|全\\|支\\|付\\|-\\| \\|P\\|r\\|o\\|d\\|u\\|c\\|t\\| \\|M\\|a\\|n\\|a\\|g\\|e\\|r\\| \\|(\\|內\\|部\\|系\\|統\\|、\\|串\\|接\\|)\\| | [PAY](personas/PAY.md#hr-8ocje) |
-| HR-8olw0 | \\|統\\|一\\|集\\|團\\|_\\|安\\|源\\|資\\|訊\\|股\\|份\\|有\\|限\\|公\\|司\\| | \\|平\\|台\\|應\\|用\\|開\\|發\\| \\|T\\|e\\|a\\|m\\|－\\|專\\|案\\|管\\|理\\|師\\| | [DELIVERY](personas/DELIVERY.md#hr-8olw0) |
-| HR-8p4ix | \\|K\\|l\\|o\\|o\\|k\\|客\\|路\\|_\\|客\\|遊\\|天\\|下\\|旅\\|行\\|社\\|有\\|限\\|公\\|司\\| | \\|P\\|r\\|o\\|j\\|e\\|c\\|t\\| \\|M\\|a\\|n\\|a\\|g\\|e\\|r\\| \\|(\\|A\\|P\\|I\\|)\\| | [DELIVERY](personas/DELIVERY.md#hr-8p4ix) |
-| HR-8ph3b | \\|台\\|灣\\|固\\|網\\|股\\|份\\|有\\|限\\|公\\|司\\| | \\|D\\|6\\|8\\| \\|雲\\|端\\|產\\|品\\|P\\|M\\| | [SOLUTION](personas/SOLUTION.md#hr-8ph3b) |
-| HR-8q2st | \\|光\\|速\\|未\\|來\\|有\\|限\\|公\\|司\\| | \\|產\\|品\\|經\\|理\\| \\|P\\|r\\|o\\|d\\|u\\|c\\|t\\| \\|M\\|a\\|n\\|a\\|g\\|e\\|r\\| | [ENTERPRISE](personas/ENTERPRISE.md#hr-8q2st) |
-| HR-8qd7h | \\|和\\|泰\\|聯\\|網\\|股\\|份\\|有\\|限\\|公\\|司\\| | \\|【\\|去\\|趣\\|】\\|旅\\|遊\\|應\\|用\\|程\\|式\\| \\|產\\|品\\|經\\|理\\| \\|P\\|M\\| | [CONSUMER](personas/CONSUMER.md#hr-8qd7h) |
-| HR-8rb54 | \\|台\\|灣\\|固\\|網\\|股\\|份\\|有\\|限\\|公\\|司\\| | \\|D\\|8\\|0\\| \\|資\\|安\\|產\\|品\\|P\\|M\\| | [SOLUTION](personas/SOLUTION.md#hr-8rb54) |
-| HR-8rb81 | \\|台\\|灣\\|固\\|網\\|股\\|份\\|有\\|限\\|公\\|司\\| | \\|D\\|8\\|1\\| \\|企\\|業\\|A\\|I\\| \\|P\\|M\\| | [SOLUTION](personas/SOLUTION.md#hr-8rb81) |
-| HR-8rnz1 | \\|台\\|灣\\|固\\|網\\|股\\|份\\|有\\|限\\|公\\|司\\| | \\|D\\|8\\|2\\| \\|自\\|研\\|產\\|品\\|P\\|M\\| \\|(\\|可\\|遠\\|端\\|工\\|作\\|)\\| | [SOLUTION](personas/SOLUTION.md#hr-8rnz1) |
-| HR-8s2o0 | \\|台\\|灣\\|大\\|哥\\|大\\|股\\|份\\|有\\|限\\|公\\|司\\| | \\|D\\|6\\|3\\|7\\| \\|金\\|流\\|產\\|品\\|營\\|運\\|P\\|M\\| | [PAY](personas/PAY.md#hr-8s2o0) |
-| HR-8v53h | \\|台\\|灣\\|大\\|哥\\|大\\|股\\|份\\|有\\|限\\|公\\|司\\| | \\|虛\\|擬\\|資\\|產\\|交\\|易\\|所\\|產\\|品\\|P\\|M\\| | [PAY](personas/PAY.md#hr-8v53h) |
-| HR-8vt92 | \\|A\\|D\\|A\\|M\\| \\|e\\|l\\|e\\|m\\|e\\|n\\|t\\|s\\| \\|I\\|n\\|t\\|e\\|r\\|n\\|a\\|t\\|i\\|o\\|n\\|a\\|l\\| \\|C\\|o\\|.\\|,\\| \\|L\\|t\\|d\\|.\\|_\\|亞\\|果\\|元\\|素\\|國\\|際\\|股\\|份\\|有\\|限\\|公\\|司\\| | \\|產\\|品\\|專\\|案\\|管\\|理\\|師\\| \\|P\\|r\\|o\\|d\\|u\\|c\\|t\\| \\|P\\|r\\|o\\|j\\|e\\|c\\|t\\| \\|S\\|p\\|e\\|c\\|i\\|a\\|l\\|i\\|s\\|t\\| | [HARDWARE](personas/HARDWARE.md#hr-8vt92) |
-| HR-8vymg | \\|技\\|嘉\\|科\\|技\\|股\\|份\\|有\\|限\\|公\\|司\\| | \\|S\\|o\\|f\\|t\\|w\\|a\\|r\\|e\\| \\|P\\|M\\|_\\|3\\|2\\|2\\|5\\| | [HARDWARE](personas/HARDWARE.md#hr-8vymg) |
-| HR-8wezw | \\|1\\|0\\|4\\|人\\|力\\|銀\\|行\\|_\\|一\\|零\\|四\\|資\\|訊\\|科\\|技\\|股\\|份\\|有\\|限\\|公\\|司\\| | \\|資\\|深\\|產\\|品\\|經\\|理\\| \\|(\\|打\\|工\\|與\\|兼\\|職\\|服\\|務\\|)\\| \\|★\\|預\\|計\\|2\\|0\\|2\\|7\\|年\\|中\\|搬\\|遷\\|至\\|松\\|山\\|站\\|共\\|構\\|大\\|樓\\|★\\| | [CONSUMER](personas/CONSUMER.md#hr-8wezw) |
-| HR-8wzup | \\|刻\\|刻\\|在\\|雲\\|股\\|份\\|有\\|限\\|公\\|司\\| | \\|【\\|G\\|o\\|i\\|n\\|g\\| \\|C\\|l\\|o\\|u\\|d\\|】\\|P\\|r\\|o\\|j\\|e\\|c\\|t\\| \\|M\\|a\\|n\\|a\\|g\\|e\\|r\\| | [DELIVERY](personas/DELIVERY.md#hr-8wzup) |
-| HR-8xcyw | \\|美\\|商\\|超\\|微\\|半\\|導\\|體\\|股\\|份\\|有\\|限\\|公\\|司\\|台\\|灣\\|分\\|公\\|司\\| | \\|P\\|r\\|o\\|d\\|u\\|c\\|t\\|i\\|o\\|n\\| \\|P\\|l\\|a\\|n\\|n\\|e\\|r\\| \\|&\\| \\|C\\|o\\|n\\|t\\|r\\|o\\|l\\|l\\|e\\|r\\| \\|(\\|H\\|s\\|i\\|n\\|c\\|h\\|u\\|)\\| | [HARDWARE](personas/HARDWARE.md#hr-8xcyw) |
-| HR-8y7n8 | \\|9\\|1\\|A\\|P\\|P\\|_\\|英\\|屬\\|開\\|曼\\|群\\|島\\|商\\|九\\|一\\|應\\|用\\|軟\\|體\\|股\\|份\\|有\\|限\\|公\\|司\\|台\\|灣\\|分\\|公\\|司\\| | \\|［\\|U\\|P\\|D\\|］\\|金\\|流\\|產\\|品\\|經\\|理\\| \\|P\\|r\\|o\\|d\\|u\\|c\\|t\\| \\|O\\|w\\|n\\|e\\|r\\| \\|-\\| \\|P\\|a\\|y\\|m\\|e\\|n\\|t\\| \\|S\\|e\\|r\\|v\\|i\\|c\\|e\\| | [PAY](personas/PAY.md#hr-8y7n8) |
-| HR-8zacy | \\|台\\|灣\\|大\\|哥\\|大\\|股\\|份\\|有\\|限\\|公\\|司\\| | \\|I\\|1\\|1\\|0\\| \\|A\\|I\\| \\|產\\|品\\|經\\|理\\|(\\|可\\|遠\\|端\\|工\\|作\\|)\\| | [AI](personas/AI.md#hr-8zacy) |
-| HR-91bo9 | \\|易\\|遊\\|網\\|旅\\|行\\|社\\|股\\|份\\|有\\|限\\|公\\|司\\| | \\|F\\|0\\|9\\|T\\|-\\|產\\|品\\|經\\|理\\|(\\|P\\|r\\|o\\|d\\|u\\|c\\|t\\| \\|M\\|a\\|n\\|a\\|g\\|e\\|r\\|/\\|P\\|M\\|)\\| | [CONSUMER](personas/CONSUMER.md#hr-91bo9) |
-| HR-91ddn | \\|台\\|灣\\|大\\|哥\\|大\\|股\\|份\\|有\\|限\\|公\\|司\\| | \\|數\\|據\\|服\\|務\\|與\\|金\\|流\\|P\\|M\\| | [PAY](personas/PAY.md#hr-91ddn) |
-| HR-923em | \\|和\\|碩\\|集\\|團\\|_\\|和\\|碩\\|聯\\|合\\|科\\|技\\|股\\|份\\|有\\|限\\|公\\|司\\| | \\|P\\|r\\|o\\|d\\|u\\|c\\|t\\| \\|M\\|a\\|n\\|a\\|g\\|e\\|r\\| \\|(\\|P\\|M\\|)\\|_\\|1\\|5\\|7\\|4\\|2\\| | [HARDWARE](personas/HARDWARE.md#hr-923em) |
-| HR-93shv | \\|S\\|H\\|O\\|P\\|L\\|I\\|N\\|E\\| \\|T\\|e\\|c\\|h\\|n\\|o\\|l\\|o\\|g\\|y\\| \\|C\\|o\\|r\\|p\\|.\\|,\\| \\|L\\|t\\|d\\|.\\|_\\|商\\|線\\|科\\|技\\|股\\|份\\|有\\|限\\|公\\|司\\| | \\|【\\|T\\|P\\|D\\|0\\|6\\|0\\|3\\|】\\|D\\|a\\|t\\|a\\| \\|P\\|r\\|o\\|d\\|u\\|c\\|t\\| \\|M\\|a\\|n\\|a\\|g\\|e\\|r\\| \\|數\\|據\\|產\\|品\\|經\\|理\\| | [DATA](personas/DATA.md#hr-93shv) |
-| HR-93vx9 | \\|三\\|竹\\|資\\|訊\\|股\\|份\\|有\\|限\\|公\\|司\\| | \\|創\\|新\\|產\\|品\\|部\\|-\\|行\\|動\\|廣\\|告\\|系\\|統\\|產\\|品\\|經\\|理\\|（\\|P\\|r\\|o\\|d\\|u\\|c\\|t\\| \\|M\\|a\\|n\\|a\\|g\\|e\\|r\\|）\\| | [DATA](personas/DATA.md#hr-93vx9) |
-| HR-943rr | \\|台\\|灣\\|固\\|網\\|股\\|份\\|有\\|限\\|公\\|司\\| | \\|D\\|8\\|6\\| \\|國\\|際\\|專\\|案\\|管\\|理\\|師\\| | [SOLUTION](personas/SOLUTION.md#hr-943rr) |
-| HR-94bt1 | \\|遠\\|傳\\|電\\|信\\|股\\|份\\|有\\|限\\|公\\|司\\| | \\|C\\|0\\|6\\|3\\|1\\| \\|行\\|動\\|支\\|付\\|產\\|品\\|P\\|M\\| | [PAY](personas/PAY.md#hr-94bt1) |
-| HR-94fod | \\|Q\\|u\\|i\\|c\\|k\\|C\\|l\\|i\\|c\\|k\\|快\\|一\\|點\\|_\\|點\\|點\\|全\\|球\\|股\\|份\\|有\\|限\\|公\\|司\\| | \\|【\\|P\\|M\\|C\\|】\\|軟\\|體\\|產\\|品\\|經\\|理\\| \\|(\\| \\|P\\|r\\|o\\|d\\|u\\|c\\|t\\| \\|M\\|a\\|n\\|a\\|g\\|e\\|r\\| \\|/\\| \\|T\\|e\\|c\\|h\\|n\\|i\\|c\\|a\\|l\\| \\|P\\|r\\|o\\|g\\|r\\|a\\|m\\| \\|M\\|a\\|n\\|a\\|g\\|e\\|r\\|)\\| | [ENTERPRISE](personas/ENTERPRISE.md#hr-94fod) |
-| HR-94h37 | \\|口\\|袋\\|證\\|券\\|股\\|份\\|有\\|限\\|公\\|司\\| | \\|行\\|銷\\|產\\|品\\|經\\|理\\|（\\|M\\|a\\|r\\|k\\|e\\|t\\|i\\|n\\|g\\| \\|P\\|r\\|o\\|d\\|u\\|c\\|t\\| \\|M\\|a\\|n\\|a\\|g\\|e\\|r\\|）\\| | [CONSUMER](personas/CONSUMER.md#hr-94h37) |
-| HR-94hek | \\|訊\\|連\\|科\\|技\\|股\\|份\\|有\\|限\\|公\\|司\\| | \\|A\\|I\\| \\|P\\|r\\|o\\|d\\|u\\|c\\|t\\| \\|M\\|a\\|n\\|a\\|g\\|e\\|r\\| | [AI](personas/AI.md#hr-94hek) |
-| HR-94lbz | \\|台\\|灣\\|大\\|哥\\|大\\|股\\|份\\|有\\|限\\|公\\|司\\| | \\|D\\|4\\|4\\|0\\| \\|M\\|y\\|V\\|i\\|d\\|e\\|o\\| \\|影\\|音\\|產\\|品\\|P\\|M\\|(\\|可\\|遠\\|端\\|工\\|作\\|)\\| | [CONSUMER](personas/CONSUMER.md#hr-94lbz) |
-| HR-94le0 | \\|台\\|灣\\|大\\|哥\\|大\\|股\\|份\\|有\\|限\\|公\\|司\\| | \\|D\\|4\\|4\\|1\\| \\|M\\|y\\|V\\|i\\|d\\|e\\|o\\|影\\|音\\|產\\|品\\|G\\|r\\|o\\|w\\|t\\|h\\| \\|P\\|M\\|(\\|可\\|遠\\|端\\|工\\|作\\|)\\| | [CONSUMER](personas/CONSUMER.md#hr-94le0) |
-| HR-94n8b | \\|1\\|0\\|4\\|人\\|力\\|銀\\|行\\|_\\|一\\|零\\|四\\|資\\|訊\\|科\\|技\\|股\\|份\\|有\\|限\\|公\\|司\\| | \\|產\\|品\\|專\\|案\\|經\\|理\\|(\\|內\\|部\\|系\\|統\\|)\\| \\|★\\|預\\|計\\|2\\|0\\|2\\|7\\|年\\|中\\|搬\\|遷\\|至\\|松\\|山\\|站\\|共\\|構\\|大\\|樓\\|★\\| | [ENTERPRISE](personas/ENTERPRISE.md#hr-94n8b) |
-| HR-94roa | \\|S\\|H\\|O\\|P\\|L\\|I\\|N\\|E\\| \\|T\\|e\\|c\\|h\\|n\\|o\\|l\\|o\\|g\\|y\\| \\|C\\|o\\|r\\|p\\|.\\|,\\| \\|L\\|t\\|d\\|.\\|_\\|商\\|線\\|科\\|技\\|股\\|份\\|有\\|限\\|公\\|司\\| | \\|【\\|T\\|P\\|D\\|0\\|4\\|0\\|2\\|】\\|P\\|r\\|o\\|d\\|u\\|c\\|t\\| \\|M\\|a\\|n\\|a\\|g\\|e\\|r\\| | [COMMERCE](personas/COMMERCE.md#hr-94roa) |
-| HR-94ywa | \\|富\\|邦\\|媒\\|體\\|科\\|技\\|股\\|份\\|有\\|限\\|公\\|司\\|(\\|富\\|邦\\|m\\|o\\|m\\|o\\|)\\| | \\|B\\|A\\|1\\|0\\|0\\|0\\|【\\|多\\|領\\|域\\|招\\|募\\|】\\|產\\|品\\|經\\|理\\|/\\|P\\|r\\|o\\|d\\|u\\|c\\|t\\| \\|M\\|a\\|n\\|a\\|g\\|e\\|r\\| | [COMMERCE](personas/COMMERCE.md#hr-94ywa) |
-| HR-94zew | \\|台\\|灣\\|固\\|網\\|股\\|份\\|有\\|限\\|公\\|司\\| | \\|D\\|8\\|7\\| \\|I\\|C\\|T\\|產\\|品\\|P\\|M\\| | [SOLUTION](personas/SOLUTION.md#hr-94zew) |
-| HR-950oe | \\|G\\|o\\|g\\|o\\|l\\|o\\|o\\|k\\|_\\|走\\|著\\|瞧\\|股\\|份\\|有\\|限\\|公\\|司\\| | \\|S\\|e\\|n\\|i\\|o\\|r\\| \\|P\\|r\\|o\\|d\\|u\\|c\\|t\\| \\|M\\|a\\|n\\|a\\|g\\|e\\|r\\| \\|(\\|A\\|n\\|t\\|i\\|-\\|S\\|c\\|a\\|m\\| \\|B\\|U\\|/\\|2\\|B\\|)\\| | [DELIVERY](personas/DELIVERY.md#hr-950oe) |
-| HR-95aew | \\|技\\|鋼\\|科\\|技\\|股\\|份\\|有\\|限\\|公\\|司\\|_\\|技\\|嘉\\|集\\|團\\| | \\|1\\|0\\|8\\|6\\|_\\|跨\\|平\\|台\\|產\\|品\\|整\\|合\\|(\\|P\\|M\\|/\\|S\\|o\\|l\\|u\\|t\\|i\\|o\\|n\\| \\|O\\|w\\|n\\|e\\|r\\|)\\| | [ENTERPRISE](personas/ENTERPRISE.md#hr-95aew) |
-| HR-95mvt | \\|悠\\|勢\\|科\\|技\\|股\\|份\\|有\\|限\\|公\\|司\\| | \\|產\\|品\\|經\\|理\\|｜\\|P\\|r\\|o\\|d\\|u\\|c\\|t\\| \\|M\\|a\\|n\\|a\\|g\\|e\\|r\\| | [ENTERPRISE](personas/ENTERPRISE.md#hr-95mvt) |
-| HR-95q16 | \\|旭\\|隼\\|科\\|技\\|股\\|份\\|有\\|限\\|公\\|司\\| | \\|產\\|品\\|管\\|理\\|師\\| \\|P\\|r\\|o\\|d\\|u\\|c\\|t\\| \\|M\\|a\\|n\\|a\\|g\\|e\\|r\\| | [HARDWARE](personas/HARDWARE.md#hr-95q16) |
-| HR-95q7h | \\|買\\|即\\|可\\|全\\|球\\|電\\|商\\|有\\|限\\|公\\|司\\| | \\|產\\|品\\|經\\|理\\| | [COMMERCE](personas/COMMERCE.md#hr-95q7h) |
-| HR-95te1 | \\|和\\|碩\\|集\\|團\\|_\\|和\\|碩\\|聯\\|合\\|科\\|技\\|股\\|份\\|有\\|限\\|公\\|司\\| | \\|軟\\|體\\|專\\|案\\|管\\|理\\|師\\|_\\|1\\|6\\|2\\|8\\|4\\| | [HARDWARE](personas/HARDWARE.md#hr-95te1) |
-| HR-95zyw | \\|玩\\|美\\|移\\|動\\|股\\|份\\|有\\|限\\|公\\|司\\| | \\|S\\|a\\|a\\|s\\| \\|P\\|r\\|o\\|d\\|u\\|c\\|t\\| \\|M\\|a\\|n\\|a\\|g\\|e\\|r\\| | [COMMERCE](personas/COMMERCE.md#hr-95zyw) |
-| HR-963h3 | \\|L\\|I\\|N\\|E\\| \\|P\\|a\\|y\\|_\\|連\\|加\\|網\\|路\\|商\\|業\\|股\\|份\\|有\\|限\\|公\\|司\\| | \\|T\\|e\\|c\\|h\\|n\\|i\\|c\\|a\\|l\\| \\|P\\|a\\|r\\|t\\|n\\|e\\|r\\| \\|S\\|o\\|l\\|u\\|t\\|i\\|o\\|n\\| \\|S\\|p\\|e\\|c\\|i\\|a\\|l\\|i\\|s\\|t\\|(\\|E\\|P\\|I\\|)\\| | [PAY](personas/PAY.md#hr-963h3) |
-| HR-9667l | \\|台\\|灣\\|大\\|哥\\|大\\|股\\|份\\|有\\|限\\|公\\|司\\| | \\|I\\|2\\|1\\|0\\| \\|A\\|I\\|資\\|安\\|P\\|M\\|(\\|可\\|遠\\|端\\|工\\|作\\|)\\| | [AI](personas/AI.md#hr-9667l) |
-| HR-9686i | \\|十\\|論\\|科\\|技\\|股\\|份\\|有\\|限\\|公\\|司\\| | \\|B\\|2\\|B\\| \\|P\\|M\\| \\|A\\|I\\|顧\\|問\\|｜\\| \\|B\\|2\\|B\\| \\|P\\|M\\|,\\| \\|A\\|I\\| \\|C\\|o\\|n\\|s\\|u\\|l\\|t\\|a\\|n\\|t\\| | [AI](personas/AI.md#hr-9686i) |
-| HR-968yx | \\|S\\|t\\|u\\|d\\|i\\|o\\| \\|D\\|o\\|e\\|_\\|朵\\|墨\\|股\\|份\\|有\\|限\\|公\\|司\\| | \\|【\\|S\\|t\\|u\\|d\\|i\\|o\\| \\|D\\|o\\|e\\|】\\|產\\|品\\|經\\|理\\| \\|P\\|r\\|o\\|d\\|u\\|c\\|t\\| \\|M\\|a\\|n\\|a\\|g\\|e\\|r\\| \\|-\\| \\|C\\|o\\|m\\|m\\|e\\|r\\|c\\|e\\| \\|&\\| \\|O\\|p\\|e\\|r\\|a\\|t\\|i\\|o\\|n\\|s\\| | [COMMERCE](personas/COMMERCE.md#hr-968yx) |
+新增欄位來源：原jobs.json的`resume_review`，完整137筆見[JOB_TRACKS](JOB_TRACKS.md)。狀態取09a7c235快照；舊角色卡內舊擷取狀態以本表/新清單為準。非PM職缺仍保留角色，未混稱PM。
+
+| HR ID | 公司 | 職缺 | track | pm_line | v13_fit | 卡片 |
+| --- | --- | --- | --- | --- | --- | --- |
+| HR-96686 | 台灣大哥大股份有限公司 | I210 AI專案PM(可遠端工作) | PM_PO | conditional | partial | [AI](personas/AI.md#hr-96686) |
+| HR-5jvck | 三竹資訊股份有限公司 | APP應用事業群 - Project Manager | PROJECT | no | not_target | [DELIVERY](personas/DELIVERY.md#hr-5jvck) |
+| HR-5n0va | Inventec_英業達股份有限公司 | 軟體專案經理(SEPM)(士林) | HARDWARE | no | not_target | [HARDWARE](personas/HARDWARE.md#hr-5n0va) |
+| HR-5ya5p | 三竹資訊股份有限公司 | 金融服務事業群 - 證券產品經理 | PM_PO | yes | primary | [CONSUMER](personas/CONSUMER.md#hr-5ya5p) |
+| HR-6ilwb | 台灣固網股份有限公司 | D50 固網產品PM | PM | no | not_target | [SOLUTION](personas/SOLUTION.md#hr-6ilwb) |
+| HR-6k2q4 | 台灣大哥大股份有限公司 | D467 用戶行為分析人員 (可遠端工作) | DATA_ANALYST | no | not_target | [DATA](personas/DATA.md#hr-6k2q4) |
+| HR-6ujxk | PressPlay_瑞奧股份有限公司 | 【知識】產品設計部｜產品經理 Product Manager | PM | yes | primary | [CONSUMER](personas/CONSUMER.md#hr-6ujxk) |
+| HR-75rkw | 和泰聯網股份有限公司 | 【yoxi】APP產品經理 | PM | yes | primary | [CONSUMER](personas/CONSUMER.md#hr-75rkw) |
+| HR-77jpv | 玉山銀行_玉山商業銀行股份有限公司 | 【數位金融】數位平台企劃-Web/APP Product Manager(經驗行員) | PM_PO | yes | primary | [PAY](personas/PAY.md#hr-77jpv) |
+| HR-78em2 | 桓竑智聯股份有限公司 | 專案經理（Project Manager） | PROJECT | no | not_target | [DELIVERY](personas/DELIVERY.md#hr-78em2) |
+| HR-7996v | 全支付電子支付股份有限公司 | 全支付- Product Manager (專案執行) | PO | conditional | primary | [PAY](personas/PAY.md#hr-7996v) |
+| HR-7dijs | 玩美移動股份有限公司 | APP Product Manager 產品經理 | PM | yes | primary | [CONSUMER](personas/CONSUMER.md#hr-7dijs) |
+| HR-7ig7x | 新加坡商蝦皮娛樂電商有限公司台灣分公司 | Product Manager 產品經理／蝦皮店到店 | PO | conditional | partial | [COMMERCE](personas/COMMERCE.md#hr-7ig7x) |
+| HR-7p3v5 | 宏碁雲架構服務股份有限公司 | 雲端產品經理PM | SOLUTION | conditional | partial | [SOLUTION](personas/SOLUTION.md#hr-7p3v5) |
+| HR-7ppuh | 口袋證券股份有限公司 | 軟體產品經理 | PM | yes | primary | [CONSUMER](personas/CONSUMER.md#hr-7ppuh) |
+| HR-7rk75 | Inventec_英業達股份有限公司 | 【電競事業部】軟體專案經理(SEPM)(士林) | HARDWARE | no | not_target | [HARDWARE](personas/HARDWARE.md#hr-7rk75) |
+| HR-7uqbx | 核果智能科技股份有限公司 | 資深軟體專案經理｜ Senior PM | PROJECT | no | not_target | [DELIVERY](personas/DELIVERY.md#hr-7uqbx) |
+| HR-7wq7q | 台灣大哥大股份有限公司 | D597 產品專案PM | PO | conditional | partial | [DELIVERY](personas/DELIVERY.md#hr-7wq7q) |
+| HR-81bhg | iRent_和雲行動服務股份有限公司 | iRent營運企劃（產品經理） (企劃部) | OPERATIONS | conditional | partial | [OPERATIONS](personas/OPERATIONS.md#hr-81bhg) |
+| HR-81x5r | 台灣大哥大股份有限公司 | D464 行動裝置周邊配件產品PM(可遠端上班) | OPERATIONS | no | not_target | [OPERATIONS](personas/OPERATIONS.md#hr-81x5r) |
+| HR-82gqm | 台灣固網股份有限公司 | D53 IDC產品PM (可遠端工作) | PM | conditional | partial | [SOLUTION](personas/SOLUTION.md#hr-82gqm) |
+| HR-84s1l | 訊連科技股份有限公司 | SaaS Product Manager | PM | yes | primary | [AI](personas/AI.md#hr-84s1l) |
+| HR-8692h | 拍付國際資訊股份有限公司 | 產品經理(支付連) | PM | yes | primary | [PAY](personas/PAY.md#hr-8692h) |
+| HR-86svk | 三竹資訊股份有限公司 | 軟體產品經理 - 雲端事業群 \| CoLine | PM | yes | primary | [ENTERPRISE](personas/ENTERPRISE.md#hr-86svk) |
+| HR-8bymx | 悠勢科技股份有限公司 | 資深產品經理｜Senior Product Manager | PM_PO | yes | primary | [ENTERPRISE](personas/ENTERPRISE.md#hr-8bymx) |
+| HR-8c9o0 | Cooler Master_訊凱國際股份有限公司 | 專案經理 Project Manager | OPERATIONS | no | not_target | [HARDWARE](personas/HARDWARE.md#hr-8c9o0) |
+| HR-8cb9c | 台灣理光股份有限公司 | 智能辦公解決方案 產品經理(Jr./Sr.) | SOLUTION | no | not_target | [SOLUTION](personas/SOLUTION.md#hr-8cb9c) |
+| HR-8cfb8 | 行動力國際股份有限公司 | 專案經理PM | HARDWARE | no | not_target | [HARDWARE](personas/HARDWARE.md#hr-8cfb8) |
+| HR-8dbp3 | 91APP_英屬開曼群島商九一應用軟體股份有限公司台灣分公司 | ［UPD］SaaS 產品經理 / Product Owner (Commerce Cloud, G11N, OMO) | PM_PO | yes | primary | [COMMERCE](personas/COMMERCE.md#hr-8dbp3) |
+| HR-8f25l | 新加坡商蝦皮娛樂電商有限公司台灣分公司 | Product Manager 產品管理師  / Product Management 產品管理部 | PO | conditional | partial | [COMMERCE](personas/COMMERCE.md#hr-8f25l) |
+| HR-8geon | 三竹資訊股份有限公司 | 金融服務事業群-PM | PROJECT | conditional | partial | [DELIVERY](personas/DELIVERY.md#hr-8geon) |
+| HR-8ick4 | 新加坡商蝦皮娛樂電商有限公司台灣分公司 | Shopee - B2C System Product Manager 產品經理 | PO | conditional | partial | [ENTERPRISE](personas/ENTERPRISE.md#hr-8ick4) |
+| HR-8mpjw | LINE Pay_連加網路商業股份有限公司 | Technical Product Manager | PO | conditional | partial | [PAY](personas/PAY.md#hr-8mpjw) |
+| HR-8n0mx | GARMIN_台灣國際航電股份有限公司 | 【全球智慧製造】智慧製造系統產品經理 Smart Manufacturing System Product Manager_新店 | PO | conditional | not_target | [HARDWARE](personas/HARDWARE.md#hr-8n0mx) |
+| HR-8nijy | NVIDIA_新加坡商輝達開發有限公司台灣分公司 | Server Product Program Manager | HARDWARE | no | not_target | [HARDWARE](personas/HARDWARE.md#hr-8nijy) |
+| HR-8nuo3 | Eunodata_御諾資訊股份有限公司 | 軟體專案管理師 Software Project Manager (PM) | PROJECT | no | not_target | [DELIVERY](personas/DELIVERY.md#hr-8nuo3) |
+| HR-8ocje | 全支付電子支付股份有限公司 | 全支付- Product Manager (內部系統、串接) | PO | conditional | partial | [PAY](personas/PAY.md#hr-8ocje) |
+| HR-8olw0 | 統一集團_安源資訊股份有限公司 | 平台應用開發 Team－專案管理師 | PROJECT | no | not_target | [DELIVERY](personas/DELIVERY.md#hr-8olw0) |
+| HR-8p4ix | Klook客路_客遊天下旅行社有限公司 | Project Manager (API) | OPERATIONS | no | not_target | [DELIVERY](personas/DELIVERY.md#hr-8p4ix) |
+| HR-8ph3b | 台灣固網股份有限公司 | D68 雲端產品PM | SOLUTION | no | not_target | [SOLUTION](personas/SOLUTION.md#hr-8ph3b) |
+| HR-8q2st | 光速未來有限公司 | 產品經理 Product Manager | PM_PO | yes | partial | [ENTERPRISE](personas/ENTERPRISE.md#hr-8q2st) |
+| HR-8qd7h | 和泰聯網股份有限公司 | 【去趣】旅遊應用程式 產品經理 PM | PO | conditional | partial | [CONSUMER](personas/CONSUMER.md#hr-8qd7h) |
+| HR-8rb54 | 台灣固網股份有限公司 | D80 資安產品PM | SOLUTION | conditional | partial | [SOLUTION](personas/SOLUTION.md#hr-8rb54) |
+| HR-8rb81 | 台灣固網股份有限公司 | D81 企業AI PM | SOLUTION | conditional | partial | [SOLUTION](personas/SOLUTION.md#hr-8rb81) |
+| HR-8rnz1 | 台灣固網股份有限公司 | D82 自研產品PM (可遠端工作) | PM | yes | primary | [SOLUTION](personas/SOLUTION.md#hr-8rnz1) |
+| HR-8s2o0 | 台灣大哥大股份有限公司 | D637 金流產品營運PM | OPERATIONS | conditional | partial | [PAY](personas/PAY.md#hr-8s2o0) |
+| HR-8v53h | 台灣大哥大股份有限公司 | 虛擬資產交易所產品PM | PM | yes | partial | [PAY](personas/PAY.md#hr-8v53h) |
+| HR-8vt92 | ADAM elements International Co., Ltd._亞果元素國際股份有限公司 | 產品專案管理師 Product Project Specialist | HARDWARE | no | not_target | [HARDWARE](personas/HARDWARE.md#hr-8vt92) |
+| HR-8vymg | 技嘉科技股份有限公司 | Software PM_3225 | PM_PO | conditional | partial | [HARDWARE](personas/HARDWARE.md#hr-8vymg) |
+| HR-8wezw | 104人力銀行_一零四資訊科技股份有限公司 | 資深產品經理 (打工與兼職服務) ★預計2027年中搬遷至松山站共構大樓★ | PM | yes | primary | [CONSUMER](personas/CONSUMER.md#hr-8wezw) |
+| HR-8wzup | 刻刻在雲股份有限公司 | 【Going Cloud】Project Manager | PROJECT | no | not_target | [DELIVERY](personas/DELIVERY.md#hr-8wzup) |
+| HR-8xcyw | 美商超微半導體股份有限公司台灣分公司 | Production Planner & Controller (Hsinchu) | OPERATIONS | no | not_target | [HARDWARE](personas/HARDWARE.md#hr-8xcyw) |
+| HR-8y7n8 | 91APP_英屬開曼群島商九一應用軟體股份有限公司台灣分公司 | ［UPD］金流產品經理 Product Owner - Payment Service | PM_PO | yes | primary | [PAY](personas/PAY.md#hr-8y7n8) |
+| HR-8zacy | 台灣大哥大股份有限公司 | I110 AI 產品經理(可遠端工作) | PM | conditional | partial | [AI](personas/AI.md#hr-8zacy) |
+| HR-91bo9 | 易遊網旅行社股份有限公司 | F09T-產品經理(Product Manager/PM) | PM | yes | primary | [CONSUMER](personas/CONSUMER.md#hr-91bo9) |
+| HR-91ddn | 台灣大哥大股份有限公司 | 數據服務與金流PM | PO | conditional | partial | [PAY](personas/PAY.md#hr-91ddn) |
+| HR-923em | 和碩集團_和碩聯合科技股份有限公司 | Product Manager (PM)_15742 | HARDWARE | no | not_target | [HARDWARE](personas/HARDWARE.md#hr-923em) |
+| HR-93shv | SHOPLINE Technology Corp., Ltd._商線科技股份有限公司 | 【TPD0603】Data Product Manager 數據產品經理 | PM | yes | primary | [DATA](personas/DATA.md#hr-93shv) |
+| HR-93vx9 | 三竹資訊股份有限公司 | 創新產品部-行動廣告系統產品經理（Product Manager） | PM_PO | yes | primary | [DATA](personas/DATA.md#hr-93vx9) |
+| HR-943rr | 台灣固網股份有限公司 | D86 國際專案管理師 | SOLUTION | no | not_target | [SOLUTION](personas/SOLUTION.md#hr-943rr) |
+| HR-94bt1 | 遠傳電信股份有限公司 | C0631 行動支付產品PM | SOLUTION | conditional | partial | [PAY](personas/PAY.md#hr-94bt1) |
+| HR-94fod | QuickClick快一點_點點全球股份有限公司 | 【PMC】軟體產品經理 ( Product Manager / Technical Program Manager) | PM_PO | yes | primary | [ENTERPRISE](personas/ENTERPRISE.md#hr-94fod) |
+| HR-94h37 | 口袋證券股份有限公司 | 行銷產品經理（Marketing Product Manager） | PM | yes | primary | [CONSUMER](personas/CONSUMER.md#hr-94h37) |
+| HR-94hek | 訊連科技股份有限公司 | AI Product Manager | PM_PO | yes | primary | [AI](personas/AI.md#hr-94hek) |
+| HR-94lbz | 台灣大哥大股份有限公司 | D440 MyVideo 影音產品PM(可遠端工作) | PM | yes | primary | [CONSUMER](personas/CONSUMER.md#hr-94lbz) |
+| HR-94le0 | 台灣大哥大股份有限公司 | D441 MyVideo影音產品Growth PM(可遠端工作) | PM | yes | primary | [CONSUMER](personas/CONSUMER.md#hr-94le0) |
+| HR-94n8b | 104人力銀行_一零四資訊科技股份有限公司 | 產品專案經理(內部系統) ★預計2027年中搬遷至松山站共構大樓★ | PO | conditional | partial | [ENTERPRISE](personas/ENTERPRISE.md#hr-94n8b) |
+| HR-94roa | SHOPLINE Technology Corp., Ltd._商線科技股份有限公司 | 【TPD0402】Product Manager | PM | yes | primary | [COMMERCE](personas/COMMERCE.md#hr-94roa) |
+| HR-94wfd | 台灣大哥大股份有限公司 | D661 AI產品暨商務發展管理PM | PM | yes | primary | [AI](personas/HR-94wfd.md) |
+| HR-94ywa | 富邦媒體科技股份有限公司(富邦momo) | BA1000【多領域招募】產品經理/Product Manager | PM_PO | yes | primary | [COMMERCE](personas/COMMERCE.md#hr-94ywa) |
+| HR-94zew | 台灣固網股份有限公司 | D87 ICT產品PM | SOLUTION | conditional | partial | [SOLUTION](personas/SOLUTION.md#hr-94zew) |
+| HR-950oe | Gogolook_走著瞧股份有限公司 | Senior Product Manager (Anti-Scam BU/2B) | PM_PO | yes | primary | [DELIVERY](personas/DELIVERY.md#hr-950oe) |
+| HR-95aew | 技鋼科技股份有限公司_技嘉集團 | 1086_跨平台產品整合(PM/Solution Owner) | PM_PO | yes | partial | [ENTERPRISE](personas/ENTERPRISE.md#hr-95aew) |
+| HR-95mvt | 悠勢科技股份有限公司 | 產品經理｜Product Manager | PM_PO | yes | primary | [ENTERPRISE](personas/ENTERPRISE.md#hr-95mvt) |
+| HR-95q16 | 旭隼科技股份有限公司 | 產品管理師 Product Manager | HARDWARE | no | not_target | [HARDWARE](personas/HARDWARE.md#hr-95q16) |
+| HR-95q7h | 買即可全球電商有限公司 | 產品經理 | PM_PO | yes | primary | [COMMERCE](personas/COMMERCE.md#hr-95q7h) |
+| HR-95te1 | 和碩集團_和碩聯合科技股份有限公司 | 軟體專案管理師_16284 | HARDWARE | no | not_target | [HARDWARE](personas/HARDWARE.md#hr-95te1) |
+| HR-95zyw | 玩美移動股份有限公司 | Saas Product Manager | PM | yes | primary | [COMMERCE](personas/COMMERCE.md#hr-95zyw) |
+| HR-963h3 | LINE Pay_連加網路商業股份有限公司 | Technical Partner Solution Specialist(EPI) | SOLUTION | no | not_target | [PAY](personas/PAY.md#hr-963h3) |
+| HR-9667l | 台灣大哥大股份有限公司 | I210 AI資安PM(可遠端工作) | PM_PO | conditional | partial | [AI](personas/AI.md#hr-9667l) |
+| HR-9686i | 十論科技股份有限公司 | B2B PM AI顧問｜ B2B PM, AI Consultant | SOLUTION | conditional | partial | [AI](personas/AI.md#hr-9686i) |
+| HR-968yx | Studio Doe_朵墨股份有限公司 | 【Studio Doe】產品經理 Product Manager - Commerce & Operations | PM_PO | yes | primary | [COMMERCE](personas/COMMERCE.md#hr-968yx) |
 
 ## 來源固定版本
 
@@ -138,3 +141,13 @@
 本人已於本聊天室明確同意公開並要求push。repo位置：career/drafts/codex/hr-personas/，分支codex/resume-writer。不修改Claude上游。
 Claude可把本INDEX路徑加入其ROUTER；既有日誌索引另設本入口。
 每次審稿與狀態變更依PROTOCOL追加紀錄，不只依賴聊天記憶。
+
+
+## 最新：r6 PM職缺分類與招聘診斷
+
+- [137筆責任線＋33筆未投PM](JOB_TRACKS.md)
+- [新增resume_review欄位／housekeeper指令](HOUSEKEEPER.md)
+- [585ee01用人主管診斷](runs/2026-11-03-585ee01/REPORT.md)
+- [原稿完整快照](runs/2026-11-03-585ee01/SOURCE.md)
+
+新增94wfd後共82有效角色；原81角色歷史、原始STATUS快照保留，不假裝當時就有82個。
