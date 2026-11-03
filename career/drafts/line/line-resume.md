@@ -6,9 +6,10 @@
 <!-- [STATUS: POLISHED] [LOCK_ENTITIES: account security, messaging, nearly 10 years, Product Owner, B2B recruitment, subscription apps, AI agents, human-in-the-loop, Claude Code, Antigravity] -->
 - Product Owner with nearly 10 years of product management experience spanning B2B recruitment and consumer subscription apps, with experience in account security, messaging, pricing, payments and localization. Manage direct reports and align stakeholder priorities, translating business requirements into specifications and coordinating cross-team delivery. Use AI agents (Claude Code, Antigravity) for specification writing and data analysis within a human-in-the-loop workflow, retaining ownership of final product decisions.
 
-<!-- [STATUS: LOCKED] [LOCK_ENTITIES: PRD, User Story, Use Case, UAT, Axure RP, Figma, Claude Code, Antigravity, Kanban] -->
+<!-- [STATUS: LOCKED] [LOCK_ENTITIES: PRD, User Story, Use Case, UAT, Axure RP, Figma, FigJam, Miro, Claude Code, Antigravity, Kanban] -->
 - Requirements & Validation: Requirements Analysis, PRD, User Story, Use Case, Process & Sequence Diagrams, Prototyping, UAT
 - Design & Agentic AI Tools: Axure RP, Figma, Claude Code, Antigravity
+- UI/UX Planning: Flowcharts in Miro and FigJam, Wireframes in Figma, Interactive Prototypes in Axure RP
 - Delivery & Commercial Methods: Kanban, Stakeholder Alignment, Pricing Experiments, Payment Integration Planning
 - Languages: English, Mandarin
 

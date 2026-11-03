@@ -28,13 +28,13 @@ import md104  # noqa: E402
 
 ROOT = Path(__file__).resolve().parents[1]
 LINE_MD = ROOT / "drafts/line/line-resume.md"
-LINE_SHA = "1bea8e7269f17702e0272242be46622389308a05446a1d730e08b1c37ed3b201"
+LINE_SHA = "078b42cba4e3502d0d5865521a29e5ce5d5d83f585561c761155d2c0b09535f8"
 CV_SENTENCE = "An English CV is available on request."  # D2：本人 2026-11-03 最終裁定，逐字鎖定（104 表單未必讓 HR 下載附件，此句最通用）
 SUMMARY_SHA = "a9418b838075fd98"
 # 專長英文：(種類, 位置, 預期原文 sha256 前 16 碼)
 SKILL_SRC = [("summary_sentence", 2, "88609a28444bdcfd"), ("skills_line", 0, "e8d1c92fc48cb0c6"),
-             ("bullet_sentences", (0, 5, 0, 2), "9782d3e847e2c137"), ("bullet_sentences", (1, 0, 3, 4), "c6553bf0a7974003"),
-             ("summary_sentence", 1, "c3d377ee955aa3bd"), ("skills_line", 2, "99f07c0574a25381")]
+             ("bullet_sentences", (0, 5, 0, 2), "9782d3e847e2c137"), ("skills_line", 2, "6b3d3dc7522ac7c5"),
+             ("summary_sentence", 1, "c3d377ee955aa3bd"), ("skills_line", 3, "99f07c0574a25381")]
 # 專案英文：project index → [(經歷 index, 列點 index, 預期 sha)]；第一則 blockquote
 PROJECT_SRC = {0: [(1, 4, "6379a38b331090dc")], 1: [(1, 3, "67181f7755f6d6de")],
                2: [(0, 5, "9782d3e847e2c137"), (0, 2, "c0455a0881b9340a")], 3: [(0, 6, "2602e84d5e02b777")]}
