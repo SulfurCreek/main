@@ -1,22 +1,15 @@
-來源：53683ea9cfe1fe51a665737b257dfb1136d584b8，career/letters/104/94hek-訊連科技-draft.md；職缺與公司依本版檔頭。
-待補：無新增；保留來源數字、對象、單位、期間、歸因與完成狀態。
-事實疑問：本輪僅對指定來源核對；驗證、盲審與交付分項見 BATCH-2026-11-02-report.md。
-
-# 訊連科技股份有限公司｜AI Product Manager
-
 ```text
-您好：
-應徵貴公司 AI Product Manager。我有近 10 年產品經理經驗，現任人力銀行企業端招募系統 Product Owner，帶領 2 名直屬企劃。
+Dear Hiring Team,
 
-‧ 在服務約 6 萬家付費企業的招募系統中，主導 AI 職缺內容生成、人才推薦功能上線。生成內容經企業確認才刊登，依客戶實際選用人才調整推薦規則。
+I am applying for the AI Product Manager role at CyberLink. I have nearly 10 years of product management experience. I currently work as Product Owner of an employer-side recruitment system serving about 60,000 active paying employers, where I manage two product planners as direct reports.
 
-‧ 接手招募系統改版，以實測及內部訪談還原缺乏文件的帳號權限與業務規則。改版相關的 840 件客戶建議中，團隊已完成 743 件（88%）。
+• For a recruitment system serving about 60,000 paying employers, I led the launch of AI features for generating job descriptions and recommending candidates. I made employer confirmation a required step before publishing job descriptions, and employers' actual selections feed back into the recommendation rules.
 
-‧ 日常以 AI Agent 撰寫規格、分析資料；我定義規則與驗證要求，Agent 標示信心程度，再由人工覆核。將做法整理成可重複使用的 AI 作業流程，用來指導同仁做上百筆職務分類對照，覆核後需討論的項目收斂至個位數筆。
+• Taking over a full system overhaul with no documentation, I analyzed and mapped account permissions and business rules through hands-on testing and internal interviews. 743 of 840 related client requests (88%) were resolved during the overhaul.
 
-期待能與貴公司團隊交流，分享 AI 功能上線與系統規則梳理經驗。謝謝。
+• I run specification writing and data analysis through AI agents (e.g., Claude Code): I set the problem, rules and checks; the agent flags its confidence, and I check and correct the results. I packaged this workflow as a reusable agent skill and guided colleagues in applying it to hundreds of job category mappings, narrowing manual review to single-digit items.
 
-聶崑淮
+Over the past several years, I have focused closely on AI agent workflows and AI product delivery. I would welcome the chance to discuss how this experience can support your team. Thank you for your time.
+
+Kun Huai Nieh
 ```
-
-字數：346（含標點、英數與署名，不含空白）；三個條列。

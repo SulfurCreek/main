@@ -1,22 +1,15 @@
-來源：53683ea9cfe1fe51a665737b257dfb1136d584b8，career/letters/104/94roa-SHOPLINETe-draft.md；職缺與公司依本版檔頭。
-待補：無新增；保留來源數字、對象、單位、期間、歸因與完成狀態。
-事實疑問：本輪僅對指定來源核對；驗證、盲審與交付分項見 BATCH-2026-11-02-report.md。
-
-# SHOPLINE Technology Corp., Ltd._商線科技股份有限公司｜【TPD0402】Product Manager
-
 ```text
-您好：
-應徵貴公司【TPD0402】Product Manager。我有近 10 年產品經理經驗，現任人力銀行企業端招募系統 Product Owner，帶領 2 名直屬企劃。
+Dear Hiring Team,
 
-‧ 處理企業客戶的產品問題與建議，親自處理關鍵案件，其餘交由直屬同仁承辦；30 天內結案率由 52% 升至 79%（提出滿 30 天的案件，2024/11–2025/10 對比 2025/11–2026/09/20）。
+I am applying for the Product Manager (TPD0402) role at SHOPLINE. I have nearly 10 years of product management experience. I currently work as Product Owner of an employer-side recruitment system serving about 60,000 active paying employers, where I manage two product planners as direct reports.
 
-‧ 接手招募系統改版，以實測及內部訪談還原缺乏文件的帳號權限與業務規則。改版相關的 840 件客戶建議中，團隊已完成 743 件（88%）。
+• I raised the 30-day case closure rate for enterprise clients' product issues and suggestions from 52% to 79% (2024/11–2025/10 vs. 2025/11–2026/09/20; cases submitted at least 30 days earlier) by prioritizing cases, handling key cases directly and delegating others to my direct reports.
 
-‧ 規劃群組招募功能，讓大型企業按部門或分店共同處理招募，回應 55 件客戶建議；定義帳號、職缺與履歷的存取規則。
+• Taking over a full system overhaul with no documentation, I analyzed and mapped account permissions and business rules through hands-on testing and internal interviews. 743 of 840 related client requests (88%) were resolved during the overhaul.
 
-期待能與貴公司團隊交流企業招募流程與系統規則梳理經驗。
+• In response to 55 client requests received since 2020/12, I planned a shared recruitment feature that lets employers manage hiring by department or branch, defining access rules across accounts, job posts and resumes.
 
-聶崑淮
+Over the past several years, I have focused closely on multi-account access design and client-focused prioritization. I would welcome the chance to discuss how this experience can support your team. Thank you for your time.
+
+Kun Huai Nieh
 ```
-
-字數：329（含標點、英數與署名，不含空白）；三個條列。

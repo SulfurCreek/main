@@ -1,22 +1,15 @@
-來源：53683ea9cfe1fe51a665737b257dfb1136d584b8，career/letters/104/8p4ix-Klook客路-draft.md；職缺與公司依本版檔頭。
-待補：無新增；保留來源數字、對象、單位、期間、歸因與完成狀態。
-事實疑問：本輪僅對指定來源核對；驗證、盲審與交付分項見 BATCH-2026-11-02-report.md。
-
-# Klook客路_客遊天下旅行社有限公司｜Project Manager (API)
-
 ```text
-您好：
-應徵貴公司 Project Manager (API)。我有近 10 年產品經理經驗，現任人力銀行企業端招募系統 Product Owner，帶領 2 名直屬企劃。
+Dear Hiring Team,
 
-‧ 擔任招募系統需求窗口，對接業務、客服與工程；每週向全國客服與業務說明新功能並提供 FAQ，交付前取得業務支持，累計約 70 項主要功能上線。
+I am applying for the Project Manager (API) role at Klook. I have nearly 10 years of product management experience. I currently work as Product Owner of an employer-side recruitment system serving about 60,000 active paying employers, where I manage two product planners as direct reports. Before that, I managed consumer subscription apps and platforms.
 
-‧ 接手招募系統改版，以實測及內部訪談還原缺乏文件的帳號權限與業務規則，分階段替換舊功能。改版相關的 840 件客戶建議中，團隊已完成 743 件（88%）。
+• I worked with engineering to agree on API specifications for an external partner (signature verification, replay protection, error codes and rate limits). I translated business logic into query conditions and confirmed them with engineers.
 
-‧ 規劃群組招募功能，讓大型企業按部門或分店共同處理招募，回應 2020/12 起累積的 55 件客戶建議；定義帳號、職缺與履歷的存取規則。
+• Bridging sales, customer service and engineering, I led requirements analysis and specification work to ship about 70 major features by 2026 Q3. I briefed customer service and sales nationwide every week and secured sales buy-in before delivery.
 
-期待能與貴公司團隊交流需求協調、使用規則與功能說明經驗。
+• For a dating app operating across 7 markets, I onboarded a Southeast Asian payment provider and launched 8 local payment channels across Indonesia and Thailand. I compared fees and settlement terms, estimated net revenue and proposed 7-, 30- and 90-day subscription plans.
 
-聶崑淮
+Over the past several years, I have focused closely on cross-border payment integration and API specification work. I would welcome the chance to discuss how this experience can support your team. Thank you for your time.
+
+Kun Huai Nieh
 ```
-
-字數：314（含標點、英數與署名，不含空白）；三個條列。

@@ -1,22 +1,15 @@
-來源：53683ea9cfe1fe51a665737b257dfb1136d584b8，career/letters/104/950oe-Gogolook-draft.md；職缺與公司依本版檔頭。
-待補：無新增；保留來源數字、對象、單位、期間、歸因與完成狀態。
-事實疑問：本輪僅對指定來源核對；驗證、盲審與交付分項見 BATCH-2026-11-02-report.md。
-
-# Gogolook_走著瞧股份有限公司｜Senior Product Manager (Anti-Scam BU/2B)
-
 ```text
-您好：
-應徵貴公司 Senior Product Manager (Anti-Scam BU/2B)。擔任產品經理近 10 年，現任人力銀行企業端招募系統 Product Owner，帶領 2 名直屬企劃。
+Dear Hiring Team,
 
-‧ 十多家企業帳號遭冒用後，協調工程與客服釐清影響，規劃並上線新裝置 OTP 驗證（MFA）及帳號解鎖流程；截至 2026/10，客服未再接獲同類回報。
+I am applying for the Senior Product Manager (Anti-Scam BU/2B) role at Gogolook. I have nearly 10 years in product management. I am Product Owner of an employer-side recruitment system serving about 60,000 active paying employers, where I manage two product planners as direct reports.
 
-‧ 在服務約 6 萬家付費企業的招募系統中，主導 AI 職缺內容生成、人才推薦功能上線。生成內容經企業確認才刊登，推薦規則依客戶實際選用人才調整。
+• After unauthorized access to more than ten employer accounts in 2026/03–04, I coordinated the response with engineering and customer service, designed and launched new-device OTP login verification (MFA) and an account-unlock flow. Through 2026/10, customer service received no reports of similar unauthorized access.
 
-‧ 日常以 AI Agent 寫規格、分析資料；我定義規則與驗證要求，Agent 標示信心程度，由人工覆核。整理為可重複使用的 AI 作業流程，指導同仁做上百筆職務分類對照，覆核後需討論的項目收斂至個位數筆。
+• For a recruitment system serving about 60,000 paying employers, I led the launch of AI features for generating job descriptions and recommending candidates. I made employer confirmation a required step before publishing job descriptions, and employers' actual selections feed back into the recommendation rules.
 
-期待與貴公司團隊交流 AI 作業流程。
+• I run specification writing and data analysis through AI agents (e.g., Claude Code): I set the problem, rules and checks; the agent flags its confidence, and I check and correct the results. I packaged this workflow as a reusable agent skill and guided colleagues in applying it to hundreds of job category mappings, narrowing manual review to single-digit items.
 
-聶崑淮
+Over the past several years, I have focused closely on account security and AI product delivery. I would welcome the chance to discuss how this experience can support your team.
+
+Kun Huai Nieh
 ```
-
-字數：348（含標點、英數與署名，不含空白）；三個條列。

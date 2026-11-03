@@ -1,22 +1,15 @@
-來源：53683ea9cfe1fe51a665737b257dfb1136d584b8，career/letters/104/8wzup-刻刻在雲-draft.md；職缺與公司依本版檔頭。
-待補：無新增；保留來源數字、對象、單位、期間、歸因與完成狀態。
-事實疑問：本輪僅對指定來源核對；驗證、盲審與交付分項見 BATCH-2026-11-02-report.md。
-
-# 刻刻在雲股份有限公司｜【Going Cloud】Project Manager
-
 ```text
-您好：
-應徵貴公司【Going Cloud】Project Manager。我有近 10 年產品經理經驗，現任人力銀行企業端招募系統 Product Owner，帶領 2 名直屬企劃。
+Dear Hiring Team,
 
-‧ 接手招募系統改版，以實測及內部訪談還原缺乏文件的帳號權限與業務規則。改版相關的 840 件客戶建議中，團隊已完成 743 件（88%）。
+I am applying for the Project Manager role at Going Cloud. I have nearly 10 years of product management experience. I currently work as Product Owner of an employer-side recruitment system serving about 60,000 active paying employers, where I manage two product planners as direct reports.
 
-‧ 擔任招募系統需求窗口，對接業務、客服與工程；每週向全國客服與業務說明新功能，交付前取得業務支持，累計約 70 項主要功能上線。
+• Taking over a full system overhaul with no documentation, I analyzed and mapped account permissions and business rules through hands-on testing and internal interviews. 743 of 840 related client requests (88%) were resolved during the overhaul.
 
-‧ 日常以 AI Agent 撰寫規格、分析資料；我定義規則與驗證要求，Agent 標示信心程度，再由人工覆核。將做法整理成可重複使用的 AI 作業流程，用來指導同仁做上百筆職務分類對照，覆核後需討論的項目收斂至個位數筆。
+• Bridging sales, customer service and engineering, I led requirements analysis and specification work to ship about 70 major features by 2026 Q3. I briefed customer service and sales nationwide every week and secured sales buy-in before delivery.
 
-期待能與貴公司團隊交流，分享系統規則梳理與需求協調經驗。謝謝。
+• I run specification writing and data analysis through AI agents (e.g., Claude Code): I set the problem, rules and checks; the agent flags its confidence, and I check and correct the results. I packaged this workflow as a reusable agent skill and guided colleagues in applying it to hundreds of job category mappings, narrowing manual review to single-digit items.
 
-聶崑淮
+Over the past several years, I have focused closely on AI agent workflows and untangling undocumented systems. I would welcome the chance to discuss how this experience can support your team. Thank you for your time.
+
+Kun Huai Nieh
 ```
-
-字數：348（含標點、英數與署名，不含空白）；三個條列。
