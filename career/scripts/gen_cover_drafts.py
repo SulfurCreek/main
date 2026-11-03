@@ -188,6 +188,11 @@ def pick(text, title="", ctx="", secs=None):
         slot = max((i for i, k in enumerate(chosen) if k not in "FAS"), default=None, key=lambda i: -sc.get(chosen[i], 0))
         if slot is not None:
             chosen[slot] = max(dom, key=lambda k: (sc[k], -TIER.index(k)))
+    # JD 明列「產品從 0 到 1 / 從無到有」上線經驗：K（KOOL 0→1）必入選（取代最弱的一點；硬體職缺 K 已歸零不補）
+    if re.search(r"(?:0\s*(?:到|→|至)\s*1|從無到有)[^。；\n]{0,24}經驗", text) and "K" in sc and "K" not in chosen and len(chosen) == 3:
+        slot = max((i for i, k in enumerate(chosen) if k not in "FAS"), default=None, key=lambda i: -sc.get(chosen[i], 0))
+        if slot is not None:
+            chosen[slot] = "K"
     # 職稱含 AI：AI 產品上線（F）必入選（取代最後一點）
     if re.search(r"\bAI\b|人工智慧", title) and "F" not in chosen and len(chosen) == 3:  # 職稱含 AI：AI 產品上線必入
         slot = max((i for i, k in enumerate(chosen) if k not in "AS"), default=None, key=lambda i: -sc.get(chosen[i], 0))
@@ -353,6 +358,8 @@ def self_test():
     c8 = build("8kebd")[2]
     ok("F" in c8 and "Y" in c8, f"8kebd（AI＋電商 SaaS）須含 F、Y：{c8}")
     ok("P" not in build("844j7")[2], f"844j7（Technical PM）不得含 P：{build('844j7')[2]}")
+    c10 = build("8u1r1")[2]
+    ok("K" in c10, f"8u1r1（JD 必備『0 到 1 上線經驗』）須含 K：{c10}")
     c9 = build("96gpc")[2]
     ok(set(c9[:2]) <= set("AFT") and "T" in c9[:2], f"96gpc（AI/Data）前兩點須為 A／F 與 T：{c9}")
     for c, need in (("8qxbv", "付款流程規劃"), ("95q7h", "付款流程規劃"), ("958dx", "訊息與溝通")):
