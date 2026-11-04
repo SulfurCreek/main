@@ -1,5 +1,7 @@
 # v13 PM r9 潤飾與 PDF 全文覆核
 
+> 歷史紀錄：本人 2026-11-04 最新指示改為只交 Markdown，原 PDF、HTML 及兩頁預覽圖片已刪除。以下描述的是前輪實際執行，不代表本輪重新匯出或仍有可用產物。
+
 - 上游固定 SHA：`8f64688f74b7a857e8a4e89f690dee5a1d3f5522`。
 - 唯讀草稿：`career/01_claude_stage/v13-pm-draft.md`。
 - 候選：`career/02_codex_stage/final_resume_v13_pm.md`，取代 aa6117a 版本；不沿用舊新蛋經歷。
