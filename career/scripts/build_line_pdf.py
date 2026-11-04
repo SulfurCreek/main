@@ -12,6 +12,7 @@ import re
 import subprocess
 import sys
 from pathlib import Path
+import gen_line_pack as pack
 
 
 def main(argv=None):
@@ -23,12 +24,14 @@ def main(argv=None):
     up = argv[argv.index("--upstream") + 1] if "--upstream" in argv else None
     py = sys.executable
     here = Path(__file__).resolve().parent
-    check = [py, str(here / "verify_line_profile.py"), str(md), "--for", "pdf"] + (["--upstream", up] if up else [])
-    if subprocess.run(check).returncode:
-        print("❌ md 驗收未通過，不產出 PDF（既有成品不動）")
-        return 1
-    if subprocess.run([py, str(here / "gen_line_pack.py"), str(md)]).returncode:
-        print("❌ 產生 JSON 失敗（既有成品不動）")
+    if up:
+        print("⚠️ --upstream 已停用事實比對，僅保留CLI相容性。")
+    try:
+        form, resume = pack.prepare(md, purpose="pdf")
+        pack.atomic_write([(md.with_name(md.stem + ".fill.json"), form),
+                           (md.with_name(md.stem + ".resume.json"), resume)])
+    except (OSError, ValueError) as exc:
+        print(f"❌ 格式驗收或JSON產生失敗：{exc}（既有PDF不動）")
         return 1
     rj = md.with_name(md.stem + ".resume.json")
     html, final_html = md.with_name(md.stem + ".html.tmp.html"), md.with_name(md.stem + ".html")

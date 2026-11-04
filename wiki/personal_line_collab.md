@@ -63,9 +63,19 @@
 | 角色 | 文字編輯者。事實唯一來源是 `career/library/`（Career Move 維護）；Resume Writer 只負責把事實寫成通順自然的文字，**不新增事實** |
 | 讀取 | 只讀 `career/`；repo 其他目錄一律不碰 |
 | 寫入 | 只寫 `career/drafts/codex/`（交接紀錄、`QUESTIONS.md`）與 `career/02_codex_stage/`（`final_resume.md`、`voice_style_guide.md`，2026-10-22 起）。`library/`、`wiki/`、`style/`、`104/`、`01_claude_stage/` 等一律唯讀 |
-| 履歷管線（2026-10-22 起） | Stage 1：Career Move 把事實編譯成 `career/01_claude_stage/causal_draft.md`（每個列點上方標 `STATUS`／`LOCK_ENTITIES`）→ Stage 2：Resume Writer 只潤飾 `NEEDS_POLISH` 段，寫 `career/02_codex_stage/final_resume.md` → Stage 3：Career Move 用 `career/scripts/verify_polish.py` 驗收，通過才發布到 `career/drafts/<版本>/`，不通過退回，**Career Move 不自己改語氣**。兩邊只以 `git show origin/<對方分支>:<路徑>` 唯讀取用對方檔案，不互寫分支 |
+| 履歷管線（2026-10-26 起四階段，2026-11-02 起中英分流） | Stage 1–2：Career Move 提取事實、建立個人形象，編成 `career/01_claude_stage/` 草稿（`STATUS`／`LOCK_ENTITIES` 標記）→ Stage 3：Resume Writer 只潤飾 `NEEDS_POLISH` 段，寫 `career/02_codex_stage/final_resume.md` → Stage 4：Career Move 驗收並發布到 `career/drafts/<版本>/`，不通過退回，**Career Move 不自己改語氣**。驗證工具中英分開：中文 `verify_polish.py`、英文 `verify_line_profile.py`／`verify_line_pdf.py`；語氣規範中文 `style/resume-voice-zh.md`、英文 `style/voice-en.md`，互不套用（見個人線分支 `career/style/README.md`）。兩邊只以 `git show origin/<對方分支>:<路徑>` 唯讀取用對方檔案，不互寫分支 |
 | 分支 | 自己的分支（建議 `codex/resume-writer`），**不推 `main`、不推 `claude/happy-lamport-ljis8c`**，不 force push |
 | 事實有疑問 | 寫進 `career/drafts/codex/QUESTIONS.md`（編號、問題、出處），由使用者決定；Career Move 查證後更新 library 並答覆 |
 | 取用成果 | 由使用者決定採用哪份產出。Career Move 只**讀取**（`git checkout origin/codex/resume-writer -- career/drafts/codex`），採用的內容由 Career Move 納入自己的檔案，不整支合併分支 |
 | 約束方式 | 無 hook，只靠環境指示與 `AGENTS.md`；`AGENTS.md` 放 `career/drafts/codex/` 內，不放根目錄或 `career/` 根目錄，**不得在任何 `CLAUDE.md` 用 `@AGENTS.md` 引用**（否則會把 Codex 規則帶進 Claude session） |
 | 隱私 | Resume Writer 能讀到的範圍取決於 Codex 環境連的 repo；若連 `SulfurCreek/main` 就讀得到整個 repo。真要隔離需另開只放 `career/` 的私有 repo（使用者尚未決定） |
+
+## 8. Resume Marketer 與 Fact Gatherer（2026-11-03 使用者裁定）
+
+| 角色 | 職責 | 備註 |
+| :--- | :--- | :--- |
+| Fact Gatherer（原 Career Move V2，`session_01GZd3jsmQ814E2p3FSgvJWR`） | 蒐集、整理、維護事實：`career/library/`、`career/wiki/` | 因履歷成品表現不佳，使用者收斂其角色為事實蒐集 |
+| Resume Marketer（`session_01GZd3jsAMTzWDoKoG2ieUeC`） | 履歷、自傳、求職文件的行銷策略與成品；使命是把使用者行銷出去 | 可寫 `career/` 與六個自有 skill，全 repo 唯讀；與 Fact Gatherer 同分支，用 `resume:` 前綴 |
+| Resume Writer（Codex） | 文字潤飾 | 範圍不變，見 §7 |
+
+兩個 Claude session 同分支：推送前 `git pull --rebase`，禁止 force push；library 已確認事實不由 Resume Marketer 改，只新增〔待補〕。

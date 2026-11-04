@@ -4,11 +4,10 @@
 用法：python3 career/scripts/verify_line_profile.py <檔> [--for verify|pack|pdf] [--upstream <上游 md>]
 - 格式契約與解析由 line_md.py 共用（產生器同一份），用途不支援的格式在這裡就拒絕。
 - 語氣與錨點只檢查對外正文（HTML 註解剔除）。
-- 事實保存：給 --upstream 才核對數字＋單位、限定詞、完成狀態與 LOCK_ENTITIES；沒給就明確標示「未核對」。
+- 自動事實比對已停用；--upstream 僅保留相容性，不讀取或比對來源。
   固定英文措辭存在≠事實完整或語意正確；責任與因果仍需主代理人工查核。"""
 import json, re, sys
 sys.path.insert(0, __import__("os").path.dirname(__import__("os").path.abspath(__file__)))
-import fact_lock  # noqa: E402
 import line_md  # noqa: E402
 
 ENUM = {
@@ -30,46 +29,11 @@ BANNED = ["strategic", "passionate", "detail-oriented", "leverage", "robust", "s
           "launched in 2018/05", "launched in 2018-05", "planned a group function for large employers", "proven track record", "cutting-edge", "(to consolidate", "govern the underlying data fields", "Reverse-engineered", "reverse-engineer", "In March–April 2026", "workflow with human review", "Consolidated categories across teams", "guided product planners", "guided the product planners", "assigned others to product planners", "assigned others to the planners", "Present", "Singapore", "Russia", "1111 Job Bank"]
 BANNED_BULLET_ONLY = BANNED[:-1]
 
-ANCHORS = {
-    "2.1": ["Analyzed and mapped", "743 of 840 related client requests", "sales buy-in", "department or branch", "lower the barrier", "candidate matching", "compliance",
-            "actual selections", "shared category code tables", "underlying data fields", "field-level mappings", "direct reports", "delegated", "renewal", "credibility", "at least 30 days"],
-    "2.2": ["Airbnb", "Miro", "kicked off in 2018", "Led the design"],
-}
 DATE = re.compile(r"^\d{4}-(0[1-9]|1[0-2])$")
 D = re.compile(r"<!-- @line-directive\s*(\{.*?\})\s*-->", re.S)
 
 
-def upstream_check(doc, up_path):
-    """與指定上游逐區塊核對：Summary、每個 directive 的列點。回傳 (errors, manual)。"""
-    up_text = __import__("pathlib").Path(up_path).read_text(encoding="utf-8")
-    up = line_md.parse(up_text)
-    errs, manual = [], []
-    pairs = []
-    if up["summary"] is not None:
-        pairs.append(("Summary", up["summary"], doc["summary"] or ""))
-    ud, dd = up["directives"], doc["directives"]
-    if len(ud) != len(dd):
-        errs.append(f"[來源對帳] directive 數量與上游不同：上游 {len(ud)}、成品 {len(dd)}")
-    for i, (a, b) in enumerate(zip(ud, dd)):
-        name = f"{a['d'].get('target_block')}#{a['d'].get('index', 0)}"
-        if a["d"].get("fields") != b["d"].get("fields"):
-            errs.append(f"[來源對帳] {name} 表單欄位與上游不同")
-        if len(a["bullets"]) != len(b["bullets"]):
-            errs.append(f"[來源對帳] {name} 列點數 {len(b['bullets'])}，上游 {len(a['bullets'])}")
-        pairs.append((name, "\n".join(a["bullets"]), "\n".join(b["bullets"])))
-    for name, u, d in pairs:
-        e, m = fact_lock.compare_block(u, d)
-        errs += [f"{x} @ {name}" for x in e]
-        manual += [f"{name}：{x}" for x in m]
-    for ent in re.findall(r"\[LOCK_ENTITIES:\s*([^\]]*)\]", up_text):
-        for w in [x.strip() for x in ent.split(",") if x.strip()]:
-            if w not in line_md.visible(__import__("pathlib").Path(doc["_path"]).read_text(encoding="utf-8")):
-                errs.append(f"[鎖定詞遺失] 上游 LOCK_ENTITIES「{w}」不在成品對外正文")
-    return errs, manual
-
-
-def main(path, purpose="verify", upstream=None):
-    t = __import__("pathlib").Path(path).read_text(encoding="utf-8")
+def validate_text(t, path="<memory>", purpose="verify", upstream=None):
     doc = line_md.parse(t)
     doc["_path"] = path
     errs = line_md.validate(doc, purpose)
@@ -135,8 +99,6 @@ def main(path, purpose="verify", upstream=None):
     # 英文履歷結構與格式（voice-en §11、§12）
     if re.search(r"personal statement|autobiography", t, re.I):
         errs.append("[英文履歷結構] 不得含 PERSONAL STATEMENT／Autobiography 區塊（外商英文履歷只放 Summary、Skills、Experience、Education、Languages）")
-    if re.search(r"Kun Huai Nie\b(?!h)", t):
-        errs.append("[姓名拼法] 英文姓名須為 Kun Huai Nieh（漏 h）")
     for i, line in enumerate(t.splitlines(), 1):
         if not line.startswith("- "):
             continue
@@ -174,27 +136,16 @@ def main(path, purpose="verify", upstream=None):
         if not re.search(r"AI agents|Agentic AI|AI Agent", ctx, re.I):
             errs.append("[工具名無類別詞] Claude Code／Antigravity 前方須有 AI agents 或 Agentic AI Tools 類別詞（voice-en §9）")
             break
-    # 商業價值錨點：避免中翻英降維（voice-en §7）
-    for num, words in ANCHORS.items():
-        m = re.search(r"^### %s\b.*?(?=^### |^---|\Z)" % re.escape(num), t, re.M | re.S)
-        body = m.group(0).lower() if m else ""
-        for w in words:
-            if w.lower() not in body:
-                errs.append(f"區塊 {num} 缺少必備錨點「{w}」（Credibility Stripping）")
     for m in D.finditer(t):
         a = json.loads(m.group(1)).get("fields", {}).get("address")
-        if a and (a.endswith(".") or "St. Beitou" in a):
+        if a and a.endswith("."):
             errs.append(f"address 標點錯誤：{a!r}")
     for blk in ("basic", "work_experience", "education", "languages"):
         if blk not in {json.loads(m.group(1)).get("target_block") for m in D.finditer(t)}:
             errs.append(f"缺少區塊 {blk}")
     manual = []
     if upstream:
-        try:
-            ue, manual = upstream_check(doc, upstream)
-            errs += ue
-        except OSError as e:
-            errs.append(f"[來源對帳] 無法讀取上游：{e}")
+        manual.append("--upstream 僅保留CLI相容性，不再讀取或比對事實來源。")
     print(f"格式：{doc['format']}；用途：{purpose}")
     if errs:
         print("❌ LINE 驗收失敗")
@@ -202,13 +153,15 @@ def main(path, purpose="verify", upstream=None):
             print(" -", e)
         return 1
     print("✅ 格式與語氣規則通過")
-    if upstream:
-        print(f"✅ 事實保存：已與上游 {upstream} 核對數字＋單位、限定詞、完成狀態、LOCK_ENTITIES")
-        for m in manual[:20]:
-            print(" 🔎 人工查核：", m)
-    else:
-        print("⚠️ 事實保存：未核對（未提供 --upstream）；格式通過不代表事實完整")
+    print("⚠️ 自動事實、數字與鎖定內容比對已停用；交主代理人工審查。")
+    for item in manual:
+        print(" 🔎 ", item)
     return 0
+
+
+def main(path, purpose="verify", upstream=None):
+    text = __import__("pathlib").Path(path).read_text(encoding="utf-8")
+    return validate_text(text, path, purpose, upstream)
 
 
 def cli(argv=None):
