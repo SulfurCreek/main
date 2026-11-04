@@ -2,14 +2,15 @@
 
 # style/ 語氣與規範路由（中英分流）
 
+> 2026-11-04：所有驗證腳本與鎖定已停用（PIPELINE_POLICY.md），本表工具只做排版。
 > 2026-11-02 本人指定：中英文履歷維度差很多，**語氣規則與工具分流、互不影響**。事實層（`library/`）、編譯核心與 Final Arbiter 兩邊共用。
 
 ## 先選語言，再讀對應檔
 
-| 輸出語言 | 語氣規範（唯一） | 編譯護欄 | 驗證與產出工具 |
-| :-- | :-- | :-- | :-- |
-| **中文**（104 履歷、自傳、中文推薦信） | [`resume-voice-zh.md`](resume-voice-zh.md)（輔：`pm-resume-best-practices-zh.md`、`leaving-reason-source.md`、`autobio-storyteller-source.md`） | `.claude/skills/resume-causal-logic-compiler/references/zh-voice-guardrails.md` | `scripts/verify_polish.py`、`scripts/gen_104_md.py`、`scripts/verify_letter.py`（中文信） |
-| **英文**（LINE Resume／LinkedIn／英文 CV／英文條列） | [`voice-en.md`](voice-en.md) | `.claude/skills/resume-causal-logic-compiler/references/en-voice-guardrails.md` | `scripts/verify_line_profile.py`、`scripts/verify_line_pdf.py`、`scripts/build_line_pdf.py`、`scripts/gen_line_pack.py` |
+| 輸出語言 | 語氣規範 | 產出工具（純排版） |
+| :-- | :-- | :-- |
+| **中文**（104 履歷、自傳、中文推薦信） | [`resume-voice-zh.md`](resume-voice-zh.md)（輔：`pm-resume-best-practices-zh.md`、`leaving-reason-source.md`、`autobio-storyteller-source.md`） | `scripts/build_zh_pdf.py`、`scripts/gen_104_md.py` |
+| **英文**（LINE Resume／LinkedIn／英文 CV／英文條列） | [`voice-en.md`](voice-en.md) | `scripts/build_line_pdf.py`、`scripts/gen_line_pack.py` |
 
 ## 不互相套用的例子
 
@@ -24,4 +25,4 @@
 
 ## Codex 端的中英分流（2026-11-02）
 
-Codex 的 `career/02_codex_stage/voice_style_guide.md` 已於 Codex 分支 `codex/resume-writer` @ `3701462` 拆為「中文潤飾」「英文潤飾」兩個互不引用的章節，`drafts/codex/AGENTS.md` 先選語言再選規則與驗證入口。規則內容以本目錄為準；Codex 的檔案只有 Codex 寫，這裡只記版本。若日後 Codex 的指南與本目錄不一致，列為待辦由使用者轉達，不由 Claude 代改。
+Codex 的 `career/02_codex_stage/voice_style_guide.md` 已於 Codex 分支 `codex/resume-writer` @ `3701462` 拆為「中文潤飾」「英文潤飾」兩個互不引用的章節，`drafts/codex/AGENTS.md` 先選語言再選規則。規則內容以本目錄為準；Codex 的檔案只有 Codex 寫，這裡只記版本。若日後 Codex 的指南與本目錄不一致，列為待辦由使用者轉達，不由 Claude 代改。
