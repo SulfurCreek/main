@@ -1,9 +1,11 @@
-# 履歷與求職管線政策（2026-11-04 全面革新版）
+# Career 現行管線政策
 
-## 1. 全面停用所有事實驗證與鎖定限制（Full Decommissioning of Verification & Locks）
-- **徹底停用所有驗證器做事實或詞彙把關**：不再執行 `verify_polish.py`、`verify_line_profile.py`、`verify_letter.py`、`verify_104_bilingual.py` 中的任何事實比對、禁用詞掃描、相似度檢查、區塊數檢查或 `LOCK_ENTITIES` 核對。
-- **廢除所有內部控制標籤與出處註解**：草稿與定稿中**不再標註** `[LOCK_ENTITIES: ...]`、`[STATUS: LOCKED]`、`[LEAD: ...]`、`[AMPLIFY: ...]` 或 `> 出處：...` 註解。
-- **不再將修改決定回寫為腳本規則**：任何文字調整均以「能否在 6 秒內驚艷 HR 與 Hiring Manager」為唯一標準，嚴禁將編輯偏好轉寫成正規表達式斷言或硬性禁令。
+四角色與交接唯一依 `ROLE_CONTRACT.md`。Marketer 是主要上游行銷寫手；Fact Gatherer 專責事實訪談；Resume Writer 改稿增強；HR Subagent 審查與調度。角色不隨一般 review／改稿關鍵字切換。
 
-## 2. 僅保留之純技術輔助（Optional Formatting Only）
-- 腳本僅用於「純排版與檔案轉換」（如 Markdown 轉 PDF、104 JSON directive 結構組裝或純字元長度統計），絕不介入文字內容、選材與語氣判斷。
+Writer／Marketer 的逐字鎖、詞彙鎖、區塊鎖、責任詞白名單及 FINAL LOCKED 全部退役。歷史標記不阻止當輪已授權改稿；不要求解鎖或先跑驗證。本人指定的實際事實、語意、責任、期間與當輪操作範圍仍須尊重，不得杜撰。
+
+不跑自動事實驗證、數字／LOCK／相似度／黑名單 gate、ATS 打分或強制三分類／多輪盲審。不以純格式工具名稱掩蓋其內建已停用檢查。技術格式與轉檔依任務需要，閱讀與說服力由角色實際工作，不以 Exit 0 證明品質。
+
+HR Subagent 依本人任務實際派 persona；未派發、未讀 JD、未看新 PDF 都如實標記，不能以多視角自審冒充子代理結果。本人為最終選用者，不設 Claude 自動終審或不可再改的凍結狀態。
+
+main 嚴格唯讀；其他讀寫與發布邊界依四角色契約。

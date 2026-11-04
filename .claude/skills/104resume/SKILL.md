@@ -1,36 +1,12 @@
 ---
 name: 104resume
-description: 從現行履歷產生 104 特化版履歷 md（Quill HTML、逐欄位路徑，給填表 agent 用），交 Codex 潤飾後由 Career Move 核對採用。觸發：「104 履歷」「104 特化版」「104 md」。
+description: 按本人指定來源編寫並組裝104內容；Marketer主筆、Writer編輯，無內容鎖或驗證器閘門。
 ---
 
-<!--markdownlint-disable MD013-->
+# 104resume：內容與純格式分工
 
-# 104resume：104 特化版履歷 md
-
-> 維護：Career Move。原 `resume-craft/references/104-quill.md` 的流程獨立成本 skill（2026-10-20 本人要求）；該 reference 改為指向本檔。
-
-## 1. 來源
-
-| 用途 | 檔案 |
-| :-- | :-- |
-| 正文底稿 | 現行版 `career/drafts/<版本>/resume-<版本>.md`（見 `career/ROUTER.md` §3） |
-| 格式 | `career/104/content-spec-quill.md`（Quill HTML 樣式、欄位路徑、撰寫公式；**範例文字只取格式，不取事實**） |
-| 字數 | `career/104/fields-spec.md`；取較嚴者：自述 ≤300、經歷每段 ≤1500、專長名 ≤15／desc 100–200、專案名 ≤30／說明 ≤2000、中文自傳 ≤4000 |
-| 範圍 | `library/decisions.md` §20：只寫內容欄；不附英文自傳；專案成就 4 個（JustDating／Juicy 兩次承接、KOOL、新版求才系統、群組共同招募） |
-| 管理責任 | `library/profile.md`：1111「1~5 人」，尚凡、思維特、新蛋「無」 |
-| 個人簡介與頂部個人特色 | `career/104/content-spec-quill.md` **§5**（共用規格，優先於 §3.1 範例公式） |
-| 範本 | 最新一份 `career/drafts/<版本>/104-<版本>.md` |
-
-## 0. 強制門檻
-
-先過 `.claude/skills/resume-causal-logic-compiler/SKILL.md` §1 編譯規則與 §2.3 披露與跨欄位檢查；草稿走 `career/01_claude_stage/causal_draft.md`，潤飾後跑 `career/scripts/verify_polish.py`。未通過不得標「可填表」。
-
-## 2. 步驟
-
-1. 依欄位放入：自述（`info.info.bio`，依規格 §5.1）→ 個人特色 chip（§5.2）→ 經歷（blockquote 範疇＋`ql-size-large` 主題小標＋條列＋`ql-divider`／`small` 工具列）→ 專長 4 項（name／desc／tag）→ 中文自傳（每段 `<p>`）→ 專案 4 個（name、起訖、isInProgress、introduction）→ 求職條件內容（純文字）。
-2. 螢光 `#fbf3db` 只標數字；不新增數字或說法；缺的結構欄（如 KOOL 結束年月）標〔待補〕，填表留空。
-3. 字數檢查（去 HTML 計純文字），全部在上限內；禁用詞為 0（Spearheaded、第一大、Jira、案主／業主、3 週上線、千萬、承接率、雙週 Sprint）。
-4. 檔頭：若有新寫、未潤飾段落，標「草稿，待 Resume Writer（Codex）潤飾」並列出段落；若全部文字已潤飾過，標「可填表」。
-5. 草稿由 Codex 依 `career/codex-skills/polish-104/SKILL.md` 潤飾 → 推 `codex/resume-writer` → 本人轉達。
-6. 核對潤飾稿（`git show origin/codex/resume-writer:career/drafts/codex/104-<版本>-polished.md`）：欄位路徑相同、各區塊數字與 HTML 標籤不變、禁用詞 0、限定詞未刪；語意偏移處回報本人。
-7. 本人同意後採用，檔頭改「可填表」，更新 `ROUTER.md` 現行版指向，commit 前綴 `career:`。
+角色先讀 career/ROLE_CONTRACT.md。Claude Marketer 是主要上游行銷寫手，負責完整內容；Resume Writer 依指定版本完整編輯。事實缺口交 Fact Gatherer，招聘審查交 HR Subagent。
+來源為本人指定 SHA／路徑與目標版本，不能從舊 README 預設最新稿。格式只讀 career/104/fields-spec.md 與 content-spec-quill.md 的欄位路徑／HTML／限制；範例不是事實、不固定卡片數量或寫作內容，依本人當輪規格與實際表單。
+組裝保持必要欄位、順序與合法 HTML／directive；字符長度是平台技術限制，不能以刪掉必要口徑或硬塞故事來過關。保留與否是編輯判斷，不是詞彙／數字逐字鎖。
+不標 LOCK_ENTITIES、LOCKED、STATUS、LEAD、AMPLIFY；不跑 verify_polish、舊編譯器、黑名單或固定三分類，也不要求先解鎖。沒有內容確認／格式需求完成時稱候選，不自動標可填表或已投遞。
+Writer 的交付與語氣由其專用治理控制，不要求 Codex 讀本 skill、library 或 applications。Marketer 收到選用版本後，只在本人授權下做純格式／PDF／104 採用；不要執行會內建重啟已停用檢查的歷史整條管線。

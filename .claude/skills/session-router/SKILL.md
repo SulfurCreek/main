@@ -11,6 +11,12 @@ description: >
 
 # Session Router — 職責邊界判斷
 
+## Career 四角色例外：先用角色，不以分支選人
+
+個人履歷的 Resume Writer、HR Subagent、Marketer、Fact Gatherer 先依 `career/ROLE_CONTRACT.md` 與本人已指派 Session 工作。Marketer 是主要上游行銷寫手，不是只做定位；Fact Gatherer 專責訪談。同分支不代表同角色，一般 review／改稿關鍵字也不換身分。
+本技能下方「先看 branch、按舊 wiki 對照表選 Session」僅適用非 career 網域，不可覆蓋四角色。career 不需從 main 開新分支，main 仍嚴格唯讀；是否跨 Session 傳送仍必須依工具可用性與本人授權如實回報。
+
+
 ## 目的
 
 本 repo 有多支 Claude Code Remote session 各自認養不同任務網域（見 `wiki/session_directory.md`）。

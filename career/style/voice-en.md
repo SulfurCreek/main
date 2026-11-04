@@ -1,137 +1,14 @@
-<!--markdownlint-disable MD013-->
+# English resume and cover-letter voice
 
-# 英文寫作語氣規範（履歷、104 推薦信英文條列、cover letter）
+Roles and scope follow ../ROLE_CONTRACT.md. Marketer is the principal upstream marketing writer; Resume Writer edits the complete approved source. Historical LOCK labels, fixed wording and verb allowlists do not control editing.
 
-> **語言範圍：僅英文輸出（LINE Resume／LinkedIn／英文 CV／英文條列）**。另一語言的規則不套用到本檔所管的輸出；路由見 `career/style/README.md`。
-
-> 2026-10-21 建立（本人同意）。Claude 與 Codex 共用。事實與責任範圍仍以 `library/` 為準；本檔只管英文怎麼寫。
-
-## 1. 語域
-
-- 平實商務英文；句子約 25 words 內。**第一人稱依體裁分流，見 §8**：推薦信／cover letter 用 `I`、短句；英文履歷列點省略主詞 `I`。
-- 美式拼字（organization、prioritize）。
-- 直接寫做了什麼、為什麼、結果；不先鋪陳、不自我評價。
-
-## 2. 責任範圍 → 動詞對照（不得升級）
-
-| 實際角色（library） | 可用 | 不可用 |
-| :-- | :-- | :-- |
-| 定義 AI 功能的情境與驗收標準 | defined the use cases and acceptance criteria; worked with the data science team | built, developed, engineered the model |
-| 規劃新版系統、與工程分階段上線 | planned, worked with engineering on phased releases | rebuilt, led the architecture, architected |
-| 還原沒有文件的規則 | worked out / recovered undocumented rules through hands-on testing and internal interviews | reverse-engineered the codebase |
-| 導入 AI Agent 給同仁使用、同仁做最後判斷 | introduced an AI Agent; my colleagues made the final decisions | automated the whole process, eliminated manual work |
-| 帶 2 名直屬企劃 | managed two product planners | led a large team |
-| 主導職缺工作說明生成與 AI 推薦人才上線（decisions §51 白名單）；制定合規驗收標準 | led the launch of; set acceptance criteria | built the AI model, developed the algorithm |
-| 主導 Juicy 推出（上線與導流期間 DAU） | led the launch of; during launch and promotion | single-handedly grew, drove X% revenue |
-
-## 3. 固定譯法
-
-| 中文 | 英文 |
-| :-- | :-- |
-| 產品企劃主任（履歷抬頭） | Product Owner (title: Product Planning Supervisor) |
-| 企業端招募系統 | employer-side recruitment system |
-| 職務類別代碼 | job-category codes |
-| 驗收標準 | acceptance criteria |
-| 分階段上線 | phased releases |
-| 權限與計費規則 | permission and billing rules |
-| 信心程度 | confidence levels |
-| 人工判斷／覆核 | human review; final decisions |
-| 近 10 年 | nearly 10 years |
-
-## 4. 禁用
-
-- AI 感詞：delve, tapestry, navigated, seamlessly, testament to, transformative, leverage, synergy, robust, cutting-edge。
-- 套話：I am writing to express…, I am excited / thrilled to…, I believe I would be a great fit…, proven track record。
-- 自誇形容詞：strategic, passionate, visionary, detail-oriented, results-driven。
-- Spearheaded（全份最多 1 次，推薦信不用）。
-- 不寫未具備的：Jira, SQL, frontend/backend development, A/B testing at this company。
-
-## 5. 自檢
-
-1. 每句主詞動詞清楚；被動句只在主詞不重要時用。
-2. 數字、數量、日期與中文版一致。
-3. 動詞沒有超出 §2 的範圍。
-4. 大聲念一遍：像本人在面試裡會說的話。
-
-## 6. 痛點破題、禁尾巴子句（本人 2026-10-29，推薦信與履歷共用）
-
-- **不用 `Backed by N client requests` 開頭**：客戶的需求、建議或抱怨是「待解決的問題」，不是贊助或背書。用 `To address N client requests accumulated since 2021, …` 或 `In response to …`。
-- **核心商業痛點不得塞在句尾關係子句**（No Trailing Pain Clauses）：
-  - ❌ `Backed by 199 client requests since 2021, I am planning to merge the two overlapping tools employers and job seekers use to message each other, which leave interview invitations scattered; the work is now in development.`（最重要的痛點「面試邀約散落」被丟在 `, which leave…`，結構鬆散、力道全失）
-  - ✅ **真實痛點破題 → 需求規模與核心方案**：`Because employers and job seekers currently message each other across two overlapping tools, interview invitations often get scattered. To address 199 client requests accumulated since 2021, I planned a unified messaging flow that is now in development.`
-- 英文條列仍受 §2 責任動詞對照與「一點一事」約束；`planned`（規劃）不得升級成 `led`（除 decisions §51 白名單）。
-
-
-## 7. 中翻英反降維與反直譯鐵律（Anti-Chinglish & No Credibility Stripping；本人 2026-10-29，LINE profile 抓出）
-
-1. **不撞工程保留字**：中文「合併建議」（客戶要求整併兩套工具）一律譯 `N client requests`（前文已交代兩套工具，不另加括號解釋；括號是給編輯看的語意備註，不是正文，見 §8.4），禁用 `merge request(s)`（GitLab 程式碼合併請求，面試官會誤解）。同類先問：此英文詞在軟體業是否另有專有意義。
-2. **專業帶人與法規用語**：直屬企劃＝`direct-report product planners`（禁 `my planners`、`guided … through`）；`labor-law compliance acceptance criteria` 不可漏 `compliance`；同句不混用名詞 `price cut` 與動詞 `cut it 65%`，改 `reduced it by 65%`。
-3. **時序不得為省字改寫**：KOOL 2018/05 是專案啟動，英文寫 `After the project kicked off in 2018/05, … launch`，不寫 `launched in 2018/05`；借鏡 Airbnb、以 Miro 繪製流程不可刪。
-4. **英文同享「首次提及必定義」**：不寫空泛的 `a group function`；必須交代解決的限制（原僅有全公司與個人兩種資料範圍）與用途（定義帳號、職缺、履歷存取規則與舊資料轉換，讓大型企業按部門或分店共同招募）。
-5. **中文版 Stage 2 的商業目的、系統影響範圍、統計分母口徑，英文版 100% 保留**，不得因壓縮字數刪除（verify_line_profile.py 以必備錨點檢查）。
-
-## 8. 體裁分流、句首多樣性、禁抄備註括號、成品檔純淨（本人 2026-10-29，LINE profile 第二輪抓出 4 病灶；verify_line_profile.py 自動攔截）
-
-1. **體裁分流（Cover Letter ≠ Resume Bullets）**：
-   - Cover Letter：自然第一人稱 `I`，每點 2～3 句完整短句。
-   - **英文履歷列點（LINE、LinkedIn、英文 CV）**：外商標準 Implied First-Person，**省略主詞 `I`**。直接以高張力動詞（`Led`、`Planned`、`Raised`、`Coordinated`、`Consolidated`）或「精煉背景／目的子句 + 過去式動詞」開頭（`To lower…, led…`、`With ongoing iterations…, led…`、`After 10+ accounts were hijacked…, coordinated…`）。全篇列點 `I` ≤ 3 次，預設 0。成因：把推薦信的 `I` 短句規則套到履歷，一點連發 `I led… I guided… I set…` 像日記。
-2. **句首多樣性（Anti-Anaphora）**：同一公司區塊內不得連續兩點以同一個首字開頭；全篇 `- For ` 開頭的列點 ≤ 2 點。成因：為湊「場景先行」無腦套 `For X, …` 模板。場景先行可改用 `With…`、`After…`、`When…`、`Because…`、`To…`、`In response to…` 或直接動詞開頭。
-3. **規則備註不入正文**：本檔或 skill 裡括號內的譯法說明（如舊版 §7.1 的 `(to consolidate the tools)`）是給編輯看的語意提示，**不得連括號照抄**。前文已交代背景，後句直接寫 `199 client requests`；同一句不堆兩個說明性括號。**寫規則時，範例譯文只寫可直接入文的最終文字，語意說明放括號外的中文敘述。**
-4. **成品檔純淨**：可填表的 `line-profile.md` 只含標題、directive、Bullet；不得出現 `## Editing Notes`、`## English Self-Review` 等非履歷章節。修改紀錄與自審寫在對話回覆（或 Codex 的交接檔 `drafts/codex/` 內），不寫進成品。
-
-## 9. 外商 Senior PM 職級感、資料深度與反贅字（本人 2026-11-01，LINE Resume 審核抓出 4 病灶；verify_line_profile.py 自動攔截）
-
-病因：為湊齊 `LOCK_ENTITIES` 疊同義詞；為換動詞讓首句概念偷跑且把資料檢視力寫成行政整理；為省字刪掉從屬關係使管理職級降維；Skills 欄位排版沒有慣例。
-
-1. **管理職級稱謂（People Management Register）**：不用 `subordinates`。首點定義 `two direct-report product planners` 後，（2026-11-01 本人採用的首點寫法：`Manage two product planners as direct reports.`，不改成平級、不擴大管理人數）後續提到指導或分派一律用 `guided direct reports`、`delegated [tasks] to direct reports`；禁止簡寫成平級的 `guided product planners`／`assigned others to product planners`。
-2. **資料欄位深度（Data-Literate PM Framing）**：描述代碼表、分類或跨系統整合時，禁止首句裸奔 `Consolidated categories …`（概念偷跑）。首句須完整帶出對象與範圍，如 `Audited and consolidated 15 shared category code tables (job roles, certifications, skills and benefits)`，並用 `reviewing the underlying data fields`、`structuring field-level mappings` 表達可直接檢視底層欄位；**不用 `govern the underlying data fields`**（暗示超出實際工作的資料治理權責，本人 2026-11-01 取消）。僅限本人確認具備此能力的項目（decisions §62）。
-3. **反同義疊字（Anti-Tautology）**：已寫 `within a human-in-the-loop workflow` 就不再接 `with human review`；後句改 `retaining ownership of final product decisions`。鎖定詞不能成為疊字的理由，鎖定詞的同義說明要刪、不要疊。
-4. **Skills 排版**：項目一律 Title Case（`Requirements Analysis, PRD, User Story, Use Case, Process & Sequence Diagrams, Prototyping, UAT`）；分類標籤用 `&`（`Design & Agentic AI Tools: …`）。
-5. **工具名可讀性**：`Claude Code`、`Antigravity` 前方須有 `AI agents` 或 `Agentic AI Tools` 類別詞。
-6. **數字不重複**：同一數字（如約 60,000 付費雇主）只留在一處；Summary 寫定位與方法，數字留在經歷（本人 2026-11-01 裁定）。
-
-## 10. 英文成品須經「純英文母語審查」（本人 2026-11-01 質疑審稿仍用中文語境）
-
-1. 英文履歷定稿前，除 JD 對照盲審外，另派一個**全英文 prompt、母語 hiring manager 角色、輸出英文**的審查者，只審英文自然度（不審職涯事實）。報告存 `review-panel/runs/<日期>-english-<版本>/`；不在 repo 新增暫存檔。
-2. 處置原則：**限定詞與事實保留，措辭可改**。不得用中文裁定擋掉純措辭問題；也不得用措辭改寫帶入因果或責任升級（例：`were resolved during the overhaul` 本人裁定維持，不改成 `resolving … along the way`）。
-3. 常見翻譯腔：斜線日期放在句中（`in 2026/03–04` → `In March–April 2026`）、`Recovered the logic behind`（→ `Reverse-engineered`）、名詞串、句中塞長從句後用分號、被動無主詞句尾（`No similar … were reported`）。
-4. 範例日期欄位（括號內統計期間）可維持 `YYYY/MM`；句中敘述優先用英文月份。
-
-## 11. 禁用 Reverse-engineered、句首日期、英文履歷不放自傳（本人 2026-11-02）
-
-1. 英文履歷（LINE Resume）不放 Personal Statement；英文履歷收斂在 2 頁內。
-2. 禁用 `Reverse-engineered`（外商易誤解為反編譯程式碼）；1111 無文件系統那點用 `Recovered the logic behind undocumented …`。驗證器已禁。
-3. 不以日期開頭（`In March–April 2026, …`）；動作先行，日期放在事件後，格式與同頁一致（`2026/03–04`）。驗證器已禁。
-4. 抬頭姓名拼法：`Kun Huai Nieh`。起訖日期一律 `YYYY-MM – YYYY-MM`（en dash 前後有空格）。
-
-5. 1111 無文件系統那點開頭用 `Analyzed and mapped undocumented account permissions and business rules …`（本人與 Codex 討論後核准 2026-11-02；取代 `Recovered the logic behind`、`Reverse-engineered`）。
-
-## 12. 外商英文履歷結構與 PDF 排版鐵律（本人 2026-11-02 第二次抓出同類問題；verify_line_profile.py＋verify_line_pdf.py 攔截）
-
-病因：把台灣 104 式自傳塞進外商英文履歷；英文姓名只照信箱拼成 `Nie`；禁用詞因驗證器漏列而復活；日期格式一國三制；起訖日期缺空格。
-
-1. 結構僅限 `Professional Summary`、`Skills`、`Work Experience`、`Education`、`Languages`；**不放 Personal Statement／Autobiography**；PDF 上限 2 頁、不得有孤行頁。
-2. 姓名固定 `Kun Huai Nieh`（與護照、檔名一致，不從信箱帳號推）。
-3. 禁用 `Reverse-engineer(ed)`；無文件系統那點以本人核准的 `Analyzed and mapped undocumented account permissions and business rules …` 為準。
-4. 日期：標題起訖 `YYYY-MM – YYYY-MM`（en dash 前後空格）；內文 `YYYY/MM` 或 `YYYY/MM–MM`，不用英文月份全稱；列點不以日期開頭。
-5. PDF 圓點：Skills 與 Work Experience 的列點一律渲染 `•` 並左縮排對齊；匯出後必跑 `python3 career/scripts/verify_line_pdf.py <pdf>`。
-
-## 13. 工具化補充（本人 2026-11-02 要求檢視還可加進英文履歷工具的項目）
-
-1. **Summary 數字不與列點重複**（同一數字只留一處）：驗證器攔截（`~60,000` 與 1111 首點那次）。`10`（年資）除外。
-2. **Skills 項目 Title Case**（`Requirements Analysis, PRD, …`）：驗證器攔截；`Languages:` 行除外。
-3. **列點不用 `→`**（表單可能拒收）；改用 `then`／`to`：驗證器攔截。
-4. **已核准的關鍵措辭設為必備錨點**：1111 的 `Analyzed and mapped`、`743 of 840 related client requests`，避免舊稿或下游以舊基底推回舊句。
-5. **PDF 一鍵產出**：`python3 career/scripts/build_line_pdf.py <md> <pdf>`——先驗 md（Exit 0）→ 產 fill.json／resume.json → HTML → PDF，超過 2 頁自動由 9.6pt 縮到最小 9.0pt → `verify_line_pdf.py`（頁數、姓名、圓點、I ≤3、日期空格）。
-6. 流程（非腳本）：Codex 回傳前驗證必須 Exit 0 才可推送，且基底使用本人指定的最新 SHA；盲審與母語審查報告存 `review-panel/runs/`，不在 repo 新增暫存檔。
-6. PDF 匯出後必須**目視檢查每一頁**：腳本驗不到樣式（例：列點意外變粗體藍字，原因是 CSS class `.t` 與抬頭樣式撞名，2026-11-02 已改為 `.bt`）。上傳前再看一次實際檔案。
-
-## 14. 英文推薦信語感（2026-11-03 本人審閱）
-
-- 首句不寫 `at your company`（死譯「貴公司」）：有英文品牌名就寫 `at <Brand>`（CyberLink、SHOPLINE、Gogolook、Klook、Going Cloud），沒有就省略。職稱 `【CODE】` 轉 `Title (CODE)`；`【公司名】` 移除。
-- 管理幅度維持 decisions 已定：`Manage two product planners as direct reports`（取代 `two direct-report product planners`），英文信沿用 `where I manage two product planners as direct reports`；不再改回舊寫法。
-- 「需求窗口」不寫 `requirements contact`；寫 `Bridging sales, customer service and engineering, I led …`。
-- 動詞：`onboarded … and launched 8 local payment channels`（不寫 `opened`）；`Taking over a full system overhaul with no documentation, I analyzed and mapped …`（本人已裁定不用 reconstructed／Recovered／Reverse-engineered）。
-- AI 工作流與 AI 上線兩點直接採用已投遞的 Yahoo 信英文句（`I run spec writing and data analysis through AI agents (e.g., Claude Code)…reusable agent skill`；`I made employer confirmation a required step before publishing`），不另寫新句。
-- 結尾：`Over the past several years, I have focused closely on {A} and {B}. I would welcome the chance to discuss how this experience can support your team.`；Klook 含 `cross-border payment integration`。
-- 驗收：`verify_letter.py` 英文信攔 `at your company`、`requirements contact`、`opened 8 payment channels`、全形 `【】`。**不攔** `as direct reports`（decisions 已定用法）。
+- Write natural professional English for the genre and target role. Make the product, problem, candidate contribution and relevant outcome understandable in reading order.
+- Use precise verbs matching actual responsibility. Do not inflate planning into sole ownership or company decisions into the candidate's decisions.
+- Lead with impact when its subject and meaning are clear; otherwise give brief context. Introduce unfamiliar names, keep comparators and time windows near metrics, and avoid noun stacks.
+- Keep purpose, observation and supported causation distinct. Preserve actual team attribution and unfinished status without legalistic repetition.
+- Edit summary, experience and skills as a whole; remove duplicated explanation while retaining unique evidence. No required first-person count, fixed anchor phrases, bold-heading template or mechanical rewrite quota.
+- Resume bullets may use implied first person; cover letters use natural first-person sentences. Do not mechanically add or delete subjects.
+- Choose format, language and page target from the current task. No unobserved PDF/ATS success or native-reader approval claims.
+- Only a current explicit extraction-only/no-translation request limits composition. Otherwise historical approved sentences are source material, not a permanent phrase lock.
+- Route factual gaps to Fact Gatherer; ask the user about meaningful editorial trade-offs. Do not invent outcomes, efficiency gains, experience, causation or evidence.
+- No validators, keyword gates, required native-reader subagents, ATS scoring or automatic final freeze. HR persona work belongs to the separate HR Subagent session.
