@@ -8,7 +8,8 @@
 - [完整版本快照 SNAPSHOTS.md](SNAPSHOTS.md)：六個指定commit的原文，含上游標記。
 - 最新已審成品：b3b1cfb3 的 career/02_codex_stage/104-v14.md；R12。
 - 前輪已審文字：[使用者貼上的 v14 快照](sources/2026-11-04-v14-pasted.md)，無指定 commit；不可當作 585ee01 版本。
-- 最新評論：[R15｜58dfa89升級與905c743整合審視](reviews/2026-11-04-58dfa89-905c743-upgrade.md)。
+- 最新治理校正：[審查者責任與persona調度](../REVIEWER_GOVERNANCE.md)｜[上游訪談指令](../hr-personas/UPSTREAM_INTERVIEW_REQUEST.md)。R07–R15只有主審閱讀，未實際派persona；不可當成完整persona審查。
+- 最新歷史評論：[R15｜58dfa89升級與905c743整合審視](reviews/2026-11-04-58dfa89-905c743-upgrade.md)。
 - 前輪評論：[R14｜行銷版與潤飾版增量比較](reviews/2026-11-04-c6768415-vs-1372959e.md)，c6768415 → 1372959e。
 - 前輪評論：[R13｜實際 PDF 的候選人推廣與推薦效果](reviews/2026-11-04-pdf-promotion-vouch.md)。
 - 前輪評論：[R12｜104-v14 審視與 Codex 需求](reviews/2026-11-04-b3b1cfb3-104-v14.md)，底稿 b3b1cfb3。
@@ -101,3 +102,7 @@ git show origin/codex/resume-writer:career/drafts/codex/v13-review-journal/SNAPS
 ## R15｜58dfa89 → 905c743（最新）
 
 2026-11-04，[完整閱讀及比較](reviews/2026-11-04-58dfa89-905c743-upgrade.md)。相對1372959e，Codex已改善代表作短標、產品理由、AI數字與方法分工、提案主訊息，從語句編輯進入說服力編輯。905c743後補口徑括號與專長19萬可保留；提案短標加回留存使訊息過滿，建議沿用58dfa89短標、留存留正文。不否定本人已核可資料。未改履歷或驗新PDF。
+
+## R16｜2026-11-04 審查角色與責任校正
+
+本人明訂此代理負責審查與派HR persona；事實疑問交上游訪談，不直接訪談本人或改稿。已建立 [審查者治理](../REVIEWER_GOVERNANCE.md)、[上游訪談指令](../hr-personas/UPSTREAM_INTERVIEW_REQUEST.md)，並更新AGENTS角色路由與persona協議。R07–R15沒有實際persona派發，屬主審閱讀／比較；先前正向結論不代表19萬筆、常駐Agent及季度期間已完成可信度核對。三項交上游，待回覆後再審。本輪只改治理與交接，沒有派新代理或執行新履歷審查。
