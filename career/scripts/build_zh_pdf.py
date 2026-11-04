@@ -39,7 +39,7 @@ head = [l for l in sec.get('抬頭', []) if l.strip()]
 name, title = (head[0].split('｜') + [''])[:2]
 skills = ''.join(f'<li>{e(x.strip())}</li>' for x in ' '.join(sec.get('專長', [])).split('｜') if x.strip())
 edu = ''.join(f'<li>{e(x.strip())}</li>' for l in sec.get('學歷與證照', []) for x in l.split('｜') if x.strip())
-summary = inline(' '.join(l for l in sec.get('簡介', []) if l.strip()))
+summary = ''.join(f'<p>{inline(x.strip())}</p>' for x in '\n'.join(sec.get('簡介', [])).split('\n\n') if x.strip())
 doc = f'''<!doctype html><html><head><meta charset="utf-8"><style>
 @page {{ size: A4; margin: 12mm 12mm; }}
 body {{ font-family: "Noto Sans CJK TC","WenQuanYi Zen Hei",sans-serif; font-size: 9.3pt; line-height: 1.5; color:#222; margin:0 }}
@@ -49,7 +49,7 @@ body {{ font-family: "Noto Sans CJK TC","WenQuanYi Zen Hei",sans-serif; font-siz
 .sum {{ background:#f2f5f7; padding:7px 9px; border-radius:4px; margin-bottom:8px }}
 .grid {{ display:grid; grid-template-columns: 1fr 52mm; gap: 12px }}
 h2 {{ font-size: 10.5pt; color:#566876; border-bottom:1px solid #c9d2d8; margin:6px 0 4px; padding-bottom:2px }}
-.job {{ margin-bottom:7px; break-inside: avoid-page }} .jh {{ display:flex; justify-content:space-between }}
+.job {{ margin-bottom:7px }} .sum p {{ margin:0 0 4px }} .jh {{ display:flex; justify-content:space-between }}
 .jt {{ font-weight:700; font-size:10pt }} .jd {{ color:#566876; font-size:8.8pt }} .jc {{ color:#444; font-size:9pt; margin-bottom:2px }}
 p {{ margin: 2px 0 3px }} ul {{ margin: 2px 0; padding-left: 14px }} li {{ margin-bottom: 3px; break-inside: avoid }}
 .side ul {{ padding-left: 12px }} .side li {{ font-size: 8.8pt }}
