@@ -61,7 +61,6 @@
 | `review-panel/` | 驗證規則、職缺分流、各次驗證結果 | Career Move |
 | `career-ops/` | 求職流程工具與 pipeline | Career Move |
 | `_requests-to-main.md` | 需要主幹施作的請求 | Career Move |
-
 | `01_claude_stage/` | Claude 上游行銷草稿（例：`v13-pm-draft.md`） | Claude |
 
 ## 快速搜尋
@@ -71,4 +70,4 @@
 | 某個數字或說法出現在哪 | `grep -rn "關鍵字" career/library career/wiki` |
 | 某個說法是否已被推翻 | `grep -n "關鍵字" career/library/superseded.md` |
 | 某職缺的分層與公司 | `grep "代碼" career/review-panel/jd/routing.tsv` |
-| 現行稿某段文字 | `grep -n "關鍵字" career/drafts/v11/resume-v11.md` |
+| 現行稿某段文字 | `grep -n "關鍵字" career/drafts/v13/final_resume_v13_pm.source.md` |
