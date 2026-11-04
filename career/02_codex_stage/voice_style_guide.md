@@ -1,6 +1,7 @@
 # Resume Writer 語氣與說服力指南
 
 依本人 2026-11-04 指示修訂。流程、來源與提問時機依 `../drafts/codex/AGENTS.md`；本檔處理句子、段落與讀者理解。中文及英文分流，不把中文短標格式硬套英文。
+每輪須完整讀取兩份規則並記錄實際 commit，不因改稿位置不同就省略。完整閱讀本輪指定底稿後，動筆前先簡述人物定位、最值得突出的證據與準備解決的閱讀問題；方向明確者直接繼續，需選擇才問。
 停用的驗證器、數字／LOCK 機械比對、黑名單及子代理盲審不重新啟用。以下為人工編輯原則，不新增腳本門檻或固定得分。
 
 ## 1. 共通：說服力先於聲量
@@ -47,11 +48,20 @@
 - Explain the candidate's judgment and contribution through supported examples. Tool counts, delivery volume and repeated `Led` do not by themselves establish seniority or business impact.
 - Keep business purpose, observed association and demonstrated causation distinct. Preserve team attribution and work-in-progress status; do not translate them into sole ownership or completed outcomes.
 - Edit the summary, experience and skills as a whole. Remove duplicated explanations while preserving distinct evidence. Do not impose Chinese bold-heading/colon patterns, Chinese banned phrases, or literal Chinese sentence order on English.
+- Resume bullets may use implied first person; cover letters use natural first-person sentences. Choose syntax for the genre rather than mechanically removing or adding subjects.
 - Distinguish a resume/CV from a cover letter or platform profile. For an English resume, a concise two-page target may apply when requested; do not claim page count, native-reader review or layout quality without the actual artifact and work.
 - English or bilingual tasks limited to approved source sentences remain extraction/assembly tasks. Do not newly translate, connect or rewrite locked text unless the current task expressly permits it; ask about missing language or meaning.
 
 ## 4. 讀不順就提出具體問題
 
-一般語病、重複字與指代清楚的小修可直接處理。若讀者卡住的根源是案例取捨、人物定位、責任不明、難解的數字或可能暗示因果，引用短原句，說明閱讀影響，給兩種由既有事實支持的具體安排及推薦，再問本人。
+一般語病、明確重複、可確定的指代與順序問題直接修。遇到事實、責任或因果缺口，引用原句並直接問缺什麼，不硬湊兩個猜測答案。遇到案例取捨、人物定位或不同說服方向，說明閱讀影響，提出由既有事實支持的具體候選寫法／安排，交代各自強調、犧牲什麼及推薦理由，再問本人。刪整案、移走唯一能力證據或改本人指定保留內容前，先問。
 不要只問「要不要更有說服力」，也不要用未確認的新成果作其中一個選項。已答過或明確不披露的資料不重問。
-提問後繼續其他可做部分；未答之處維持原文或安全候選，不假定沉默就是同意。
+每輪優先問一至兩個核心問題。提問後繼續其他可獨立處理部分；未答之處維持原文或安全候選，不假定沉默就是同意。有未解核心問題就標候選。
+
+## 5. 改後整體閱讀與實際交付
+
+實質改動後重讀公司前言與全部列點；一輪完成再從簡介讀到最後欄位，連同未被點名的部分，確認沒有因局部變順造成全篇重複、證據失衡、背景缺漏或能力流失。
+
+交付完整候選或指定檔案，簡述重要 Before → After，說明解決哪個理解障礙、哪個聘用理由更清楚、靠哪項既有證據支撐，以及仍待本人回答的問題。不能只回覆「已全文重讀」或「已增強說服力」。
+
+只有 Markdown 就審文字；未實際看到本次新 PDF，不宣稱版面驗收完成。
