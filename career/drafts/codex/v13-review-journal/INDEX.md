@@ -6,8 +6,10 @@
 
 - [評論日誌 LOG.md](LOG.md)：每輪結論、有效寫法、缺口、後續修正與最新使用者目標。
 - [完整版本快照 SNAPSHOTS.md](SNAPSHOTS.md)：六個指定commit的原文，含上游標記。
-- 最新已審文字：[使用者貼上的 v14 快照](sources/2026-11-04-v14-pasted.md)，無指定 commit；不可當作 585ee01 版本。
-- 最新評論：[R07–R11 完整整理](reviews/2026-11-04-pdf-to-v14.md)，以 R11 接續；R08 保留對局部審視的校正。歷史問題不能直接套用後版。
+- 最新已審成品：b3b1cfb3 的 career/02_codex_stage/104-v14.md；R12。
+- 前輪已審文字：[使用者貼上的 v14 快照](sources/2026-11-04-v14-pasted.md)，無指定 commit；不可當作 585ee01 版本。
+- 最新評論：[R12｜104-v14 審視與 Codex 需求](reviews/2026-11-04-b3b1cfb3-104-v14.md)，底稿 b3b1cfb3。
+- 前輪評論：[R07–R11 完整整理](reviews/2026-11-04-pdf-to-v14.md)，以 R11 接續；R08 保留對局部審視的校正。歷史問題不能直接套用後版。
 
 ## 版本 × 回答
 
@@ -77,6 +79,10 @@ git show origin/codex/resume-writer:career/drafts/codex/v13-review-journal/SNAPS
 
 [完整PM招聘診斷](../hr-personas/runs/2026-11-03-585ee01/REPORT.md)｜[原稿完整快照](../hr-personas/runs/2026-11-03-585ee01/SOURCE.md)｜[137職缺分類](../hr-personas/JOB_TRACKS.md)｜[新欄位housekeeper交接](../hr-personas/HOUSEKEEPER.md)。三項本人補答已納入；33筆未投PM線，診斷有獨立評閱與主HR閱讀之別；未改稿/未驗PDF/未正式gate。
 
-## R11｜v14（最新）
+## R11｜v14（歷史文字版）
 
 [評論與五項待修](reviews/2026-11-04-pdf-to-v14.md)｜[v14 文字快照](sources/2026-11-04-v14-pasted.md)。R07–R09 是先前 PDF 審視；R10 是新版 v13 貼文，保存來源要點而非完整原文；R11 是 v14 貼文，沒有新 PDF。這次只補記，未修改上游草稿。
+
+## R12｜104-v14（最新）
+
+[招聘閱讀與 Codex 交接需求](reviews/2026-11-04-b3b1cfb3-104-v14.md)。指定 commit b3b1cfb3ddc2d538ff313404c4fe8d4260b04518，career/02_codex_stage/104-v14.md。與68cdfa3 PDF文字底稿比較；未改成品、未實際傳訊給另一個 agent。
