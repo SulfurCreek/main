@@ -1,23 +1,7 @@
-# Codex Resume Writer 路由
+# Codex 兩角色路由
 
-操作入口AGENTS.md；自動檢查與流程唯一政策為Claude分支career/PIPELINE_POLICY.md。
-Codex獲准唯讀該政策與CAREER_START_HERE.md，其他存取邊界不變；main嚴格唯讀。
-
-| 任務 | 路由 |
-| --- | --- |
-| 中文／英文語氣 | voice_style_guide.md各自語言章 |
-| 上游／候選 | 本人指定完整SHA與路徑，完整閱讀，不自行跨受限目錄補事實 |
-| 格式／文體 | 固定完整工具包的對應verify；不判事實 |
-| 自動事實、數字、LOCK比對 | 全部停用，改主代理人工判斷 |
-| check_polish_structure.py | 退役；原碼封存，不重新啟用 |
-| FINAL-LOCKED雙語 | 核可英文只擷取與排列，不改寫 |
-| PDF／轉換／填表 | Claude執行與驗收，未實做標未驗證 |
-
-完整閱讀／改稿→格式文體Exit 0→隔離盲審→三分類→修改後重驗及全文閱讀→Claude終審。
-歷史INDEX／archive／交接只供追溯。規則維護不虛報成品盲審。
-
-## 本輪部署狀態
-Claude 工具／政策版本：d969f97589d7a73113b7c40e49840dc9d165d069。
-voice_style_guide.md 與 AGENTS.md 已依本人明確授權部署，兩份原版均已封存。
-兩檔舊的自動事實比對、數字及 LOCK gate 指令依本人最新裁定失效；不重新執行退役工具。
-其他人工閱讀、存取邊界及語言規則仍適用。正式使用以本人裁定與上述政策為準。
+共通入口 `AGENTS.md`，固定角色與跨四角色交接見 `../../ROLE_CONTRACT.md`。
+Resume Writer 讀 `WRITER_GOVERNANCE.md` 與 `../../02_codex_stage/voice_style_guide.md`；HR Subagent 讀 `REVIEWER_GOVERNANCE.md`、`hr-personas/PROTOCOL.md` 及角色索引。一般 review 不換身分。
+事實缺口交 Fact Gatherer，主要上游行銷稿交 Marketer；兩者不是同一角色。自己負責部分直接完成，不因要跨角色交接就停掉可做工作。
+不使用 LOCK、解鎖、verify／Exit 0、固定三分類、強制隔離盲審或 Claude 終審路線。HR 依本人審查任務實際派 persona，不把 Writer 自審稱成 persona 結果。
+目前底稿與任務進度以本人指定及各角色自己的 session-state 為準，不能把歷史檔名或「latest」當本輪來源。main 嚴格唯讀。

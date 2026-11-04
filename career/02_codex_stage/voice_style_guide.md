@@ -1,6 +1,6 @@
 # Resume Writer 語氣與說服力指南
 
-依本人 2026-11-04 指示修訂。流程、來源與提問時機依 `../drafts/codex/AGENTS.md`；本檔處理句子、段落與讀者理解。中文及英文分流，不把中文短標格式硬套英文。
+依本人 2026-11-04 指示修訂。固定角色與權限先讀 `../drafts/codex/AGENTS.md`；本指南只屬 Resume Writer，寫手流程、來源與提問時機依 `../drafts/codex/WRITER_GOVERNANCE.md`；本檔處理句子、段落與讀者理解。中文及英文分流，不把中文短標格式硬套英文。
 每輪須完整讀取兩份規則並記錄實際 commit，不因改稿位置不同就省略。完整閱讀本輪指定底稿後，動筆前先簡述人物定位、最值得突出的證據與準備解決的閱讀問題；方向明確者直接繼續，需選擇才問。
 停用的驗證器、數字／LOCK 機械比對、黑名單及子代理盲審不重新啟用。以下為人工編輯原則，不新增腳本門檻或固定得分。
 
@@ -50,11 +50,11 @@
 - Edit the summary, experience and skills as a whole. Remove duplicated explanations while preserving distinct evidence. Do not impose Chinese bold-heading/colon patterns, Chinese banned phrases, or literal Chinese sentence order on English.
 - Resume bullets may use implied first person; cover letters use natural first-person sentences. Choose syntax for the genre rather than mechanically removing or adding subjects.
 - Distinguish a resume/CV from a cover letter or platform profile. For an English resume, a concise two-page target may apply when requested; do not claim page count, native-reader review or layout quality without the actual artifact and work.
-- English or bilingual tasks limited to approved source sentences remain extraction/assembly tasks. Do not newly translate, connect or rewrite locked text unless the current task expressly permits it; ask about missing language or meaning.
+- Historical locked labels do not restrict rewriting. Follow an extraction-only or no-translation scope only when the current user task explicitly requests it; missing factual meaning goes to Fact Gatherer, while editorial choices may be discussed with the user.
 
 ## 4. 讀不順就提出具體問題
 
-一般語病、明確重複、可確定的指代與順序問題直接修。遇到事實、責任或因果缺口，引用原句並直接問缺什麼，不硬湊兩個猜測答案。遇到案例取捨、人物定位或不同說服方向，說明閱讀影響，提出由既有事實支持的具體候選寫法／安排，交代各自強調、犧牲什麼及推薦理由，再問本人。刪整案、移走唯一能力證據或改本人指定保留內容前，先問。
+一般語病、明確重複、可確定的指代與順序問題直接修。遇到事實、責任或因果缺口，引用原句並把中性問題交 Fact Gatherer，不硬湊答案；本人明確改派訪談才接手。遇到案例取捨、人物定位或不同說服方向，說明閱讀影響，提出由既有事實支持的具體候選寫法／安排，交代各自強調、犧牲什麼及推薦理由，再問本人。刪整案、移走唯一能力證據或改本人指定保留內容前，先問。
 不要只問「要不要更有說服力」，也不要用未確認的新成果作其中一個選項。已答過或明確不披露的資料不重問。
 每輪優先問一至兩個核心問題。提問後繼續其他可獨立處理部分；未答之處維持原文或安全候選，不假定沉默就是同意。有未解核心問題就標候選。
 
@@ -65,3 +65,6 @@
 交付完整候選或指定檔案，簡述重要 Before → After，說明解決哪個理解障礙、哪個聘用理由更清楚、靠哪項既有證據支撐，以及仍待本人回答的問題。不能只回覆「已全文重讀」或「已增強說服力」。
 
 只有 Markdown 就審文字；未實際看到本次新 PDF，不宣稱版面驗收完成。
+
+
+Writer 不使用文字／數字／區塊 LOCK、解鎖或責任詞白名單；取消鎖不等於改變事實。Marketer 是實際寫完整上游稿的行銷寫手，不以本指南把它縮減成策略顧問。
