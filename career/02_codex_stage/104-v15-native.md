@@ -64,14 +64,14 @@ TOEIC 980全英文協作
 <p><br></p>
 <ul>
 <li><strong>接手停滯改版，主導舊系統翻新與分階段上線</strong>：權限及商業規則缺乏文件，既有資料庫又必須沿用。透過實測與內部訪談還原規則，選擇在維持線上服務的情況下，分階段以新版替換舊功能。經全國客服封測，於 2025/10、2026/01 分別在離峰時段切換上線。帳號與公司資料相關的 840 件企業建議中，已完成 743 件（88%）。</li>
-<li><strong>主導 AI 招募上線，重構推薦邏輯</strong>：主導<strong><span style="background-color: #deebf1;">職缺工作說明生成</span></strong>（2024/10）與<strong><span style="background-color: #deebf1;">AI 推薦人才</span></strong>（2025/11）上線，另帶領企劃完成公司簡介生成（2026/06），並訂定勞動法規合規驗收標準。職類推薦串接資料科學團隊 API，預設自動帶入推薦內容，企業手動編輯後就不再覆蓋，保留企業的修改。針對人才推薦名單「少又舊」的問題，追查原因、實測主要競品後，重訂排序與重複曝光規則。</li>
+<li><strong>主導 AI 招募上線，重構推薦邏輯</strong>：主導<strong><span style="background-color: #deebf1;">職缺工作說明生成</span></strong>（2024/10）與<strong><span style="background-color: #deebf1;">AI 推薦人才</span></strong>（2025/11）上線，另帶領企劃完成公司簡介生成（2026/06），並訂定勞動法規合規驗收標準。職類推薦串接資料科學團隊 API，並訂定自動帶入與手動編輯的規則：預設帶入推薦內容，企業手動編輯後就不再覆蓋，保留企業的修改。針對人才推薦名單「少又舊」的問題，追查原因、實測主要競品後，重訂排序與重複曝光規則。</li>
 <li><strong>規劃企業群組權限，支援大型企業跨部門／分店共同招募</strong>：原系統只能按全公司或個人劃分資料範圍，因此規劃<strong><span style="background-color: #deebf1;">群組功能</span></strong>，定義帳號、職缺與履歷的存取關係，以及舊資料如何轉換。功能於 2025/09 上線，回應自 2020/12 起累積的 55 件廠商建議。</li>
 </ul>
 <p><br></p>
 <p><span class="ql-size-large" style="color: #00afb8;"><strong>二、團隊效能與服務韌性</strong></span></p>
 <p><br></p>
 <ul>
-<li><strong>自建 AI 工作流，清洗近 19 萬筆搜尋與配對條件</strong>：針對企業反映常搜不到人的問題，處理<span style="background-color: #fbf3db;">近 19 萬筆</span>條件，產出<span style="background-color: #fbf3db;">逾 2 萬筆</span>修正值。先與工程釐清前端設定和 <strong>Solr</strong> 語法如何對應，再以 <strong>Antigravity</strong> 試驗新語法，讓 AI 判讀錯誤輸入的意圖並轉換。接著以 <strong>Claude</strong> 全量比對原意與修正值，不一致的部分再與修改的 Agent 討論；由本人把關，並在測試環境驗證搜尋結果。另找出 7 項搜尋解析問題，列入工程待修。這套方法也用於 15 張類別代碼表對照，並透過 skill 與方法，帶 2 名直屬企劃用進工作流程。</li>
+<li><strong>自建 AI 工作流，清洗近 19 萬筆搜尋與配對條件</strong>：針對企業反映常搜不到人的問題，處理<span style="background-color: #fbf3db;">近 19 萬筆</span>條件，產出<span style="background-color: #fbf3db;">逾 2 萬筆</span>修正值。先與工程釐清前端設定和 <strong>Solr</strong> 語法如何對應，再以 <strong>Antigravity</strong> 試驗新語法，讓 AI 判讀錯誤輸入的意圖並轉換。接著以 <strong>Claude</strong> 全量比對原意與修正值，反覆修正比對不一致的部分；由本人把關，並在測試環境驗證搜尋結果。另找出 7 項搜尋解析問題，列入工程待修。這套方法也用於 15 張類別代碼表對照，並提供 skill 與方法，帶 2 名直屬企劃將這套做法納入工作流程。</li>
 <li><strong>重整企業提案處理，30 天結案率由 52% 升至 79%</strong>：面對 880 件積壓提案，依客戶提案優先原則安排案件順序與分工，帶領 2 名直屬企劃於 2025/11–12 兩個月清理 625 件。結案率比較介入前 2024 Q4–2025 Q3 與介入後 2025 Q4–2026 Q3，只計提案滿 30 天的案件。另外比較付費企業群體：曾有提案獲處理的付費企業，其年化留存率為 <span style="background-color: #fbf3db;">79.5%</span>，比其餘付費企業的 74.8% 高 <span style="background-color: #fbf3db;">4.7 個百分點</span>。</li>
 <li><strong>主導帳號冒用應變，補強登入防線</strong>：面對 2026/03–04 十多家廠商招募帳號遭冒用登入，帶領工程與客服釐清影響範圍，設計新裝置 <strong>OTP</strong> 驗證及自助解鎖流程。上線一週內便依客服回饋調整。至 2026/10，客服未再接獲廠商回報同類冒用。</li>
 </ul>
