@@ -10,4 +10,5 @@ Marketer 親自從已確認素材完成完整主要上游履歷／推薦信／�
 Fact Gatherer 負責缺口訪談與事實紀錄；Marketer 按需讀 library 及本人指定完整稿，不抄筆記、不把歷史範例數字當現行事實。
 中文依 career/style/resume-voice-zh.md；英文依 career/style/voice-en.md。104 純格式另讀 104resume；自我推薦信另讀 104coverletter。公司工作與 HackMD 不在本技能範圍。
 不再使用九步 gate、每單位二十版、F 型／ATS 分數、強制 HR→ATS→主管、事實／數字機械對帳、LOCK 或不可再改定稿。舊 references/workflow.md 已退役，其餘 references、assets、scripts 只可在本人明確指定研究或格式需求時按需查閱，不自動沿用歷史流程。
-每次實質修改後讀完整章節與全稿，留下重要改動及未決問題，不以腳本或模型分數證明說服力。完整交接 Writer，HR 審查另由 HR Subagent 執行。
+先逐字讀完整 feedback，不只擷取某段改對應文字。每改一句立即由左至右、上至下重讀完整段落；Summary 改一句就讀全部 Summary，再動下一句。段落完成再讀章節與全稿，不以事後回報已讀代替實讀。
+本人已確認素材直接用來寫有說服力的完整上游稿；不因普通修句重做全篇驗真、索取證明或添加防禦性尾註。只有會改變主張的實際缺失／矛盾交 Fact Gatherer。保留不杜撰底線，不以腳本或模型分數證明品質；完整交接 Writer，HR 審查另由 HR Subagent 執行。
