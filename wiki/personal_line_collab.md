@@ -63,7 +63,7 @@
 | 角色 | 文字編輯者。事實唯一來源是 `career/library/`（Career Move 維護）；Resume Writer 只負責把事實寫成通順自然的文字，**不新增事實** |
 | 讀取 | 只讀 `career/`；repo 其他目錄一律不碰 |
 | 寫入 | 只寫 `career/drafts/codex/`（交接紀錄、`QUESTIONS.md`）與 `career/02_codex_stage/`（`final_resume.md`、`voice_style_guide.md`，2026-10-22 起）。`library/`、`wiki/`、`style/`、`104/`、`01_claude_stage/` 等一律唯讀 |
-| 履歷管線（2026-10-26 起四階段，2026-11-02 起中英分流） | Stage 1–2：Career Move 提取事實、建立個人形象，編成 `career/01_claude_stage/` 草稿（`STATUS`／`LOCK_ENTITIES` 標記）→ Stage 3：Resume Writer 只潤飾 `NEEDS_POLISH` 段，寫 `career/02_codex_stage/final_resume.md` → Stage 4：Career Move 驗收並發布到 `career/drafts/<版本>/`，不通過退回，**Career Move 不自己改語氣**。驗證工具中英分開：中文 `verify_polish.py`、英文 `verify_line_profile.py`／`verify_line_pdf.py`；語氣規範中文 `style/resume-voice-zh.md`、英文 `style/voice-en.md`，互不套用（見個人線分支 `career/style/README.md`）。兩邊只以 `git show origin/<對方分支>:<路徑>` 唯讀取用對方檔案，不互寫分支 |
+| 履歷管線（2026-11-04 起改為四角色責任鏈，取代 10-26 的四階段＋驗證閘門） | Fact Gatherer 交已確認事實 → Marketer 寫完整上游稿 → Resume Writer（Codex）完整編輯增強 → HR Subagent（Codex）審查。**LOCK／LOCK_ENTITIES／AMPLIFY／LEAD、`verify_*`、數字與相似度比對、ATS 打分、強制盲審全部退役**；角色與讀寫界線以個人線分支 `career/ROLE_CONTRACT.md`、`PIPELINE_POLICY.md`、各角色治理為準，本檔不重複。Codex 的寫入範圍同上（`career/02_codex_stage/`、`career/drafts/codex/`） |
 | 分支 | 自己的分支（建議 `codex/resume-writer`），**不推 `main`、不推 `claude/happy-lamport-ljis8c`**，不 force push |
 | 事實有疑問 | 寫進 `career/drafts/codex/QUESTIONS.md`（編號、問題、出處），由使用者決定；Career Move 查證後更新 library 並答覆 |
 | 取用成果 | 由使用者決定採用哪份產出。Career Move 只**讀取**（`git checkout origin/codex/resume-writer -- career/drafts/codex`），採用的內容由 Career Move 納入自己的檔案，不整支合併分支 |
