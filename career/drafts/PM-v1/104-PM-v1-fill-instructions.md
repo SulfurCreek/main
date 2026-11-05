@@ -22,7 +22,7 @@
 專案另需（依各 directive）：名稱、起訖（5.1 2020/01–2020/06、5.2 2018/05–2022/03、5.3 2024/12–迄今、5.4 2025/03–2025/09，104 只收年月）、圖片（5.1→`images/project1_justdating_juicy.png`、5.2→`project2_kool.png`、5.3→`project3_1111_recruit.png`、5.4→`project4_1111_recruit.png`；素材選「上傳圖片或影片」、每專案一張）、網址留空。
 專長名稱與標籤、經歷標籤：依 md 各 directive 的 `name`／`tags`；標籤只用 `career/104/skill_categories.md`／`tool_categories.md` 內名稱，找不到就略過；與頁面現況不同處**停下回報，不自行改**。
 公司名稱、職稱、起訖、管理責任（2.1：有管理責任 1~5 人，直屬 2 名）不動，只核對與 md 一致。
-`## 0.` 全站版型（chronological、SkillThemeCard、#566876）需我確認後才套用，先不動。
+`## 0.` 全站版型維持 104 現況，不套用、不修改（本人 2026-11-05 裁示）。
 
 ## 二、最高鐵律（違反即中止）
 
