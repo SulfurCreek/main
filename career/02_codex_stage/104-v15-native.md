@@ -71,7 +71,7 @@ TOEIC 980全英文協作
 <p><span class="ql-size-large" style="color: #00afb8;"><strong>二、團隊效能與服務韌性</strong></span></p>
 <p><br></p>
 <ul>
-<li><strong>自建 AI 工作流，清洗近 19 萬筆搜尋與配對條件</strong>：企業反映搜尋語法老舊、常搜不到人，因此配合搜尋語法改版，盤點既有規則與業務邏輯，並與工程釐清前端設定如何對應搜尋引擎 <strong>Solr</strong> 的語法。用 <strong>Antigravity</strong> 試驗語法與新的搜尋邏輯，取出資料庫中的廠商關鍵字，讓 AI 判讀錯誤輸入想表達的意圖，產出修正值、轉成新語法。接著由 <strong>Claude</strong> 全量比對修正值與原意，反覆修正不一致的部分；本人把關，並在測試環境用新語法驗證搜尋結果。這次共處理<span style="background-color: #fbf3db;">近 19 萬筆</span>搜尋與配對條件，產出<span style="background-color: #fbf3db;">逾 2 萬筆</span>修正值，也找出 7 項搜尋解析問題，列入工程待修。這套方法也用於 15 張類別代碼表對照，並提供 skill 與方法，帶 2 名直屬企劃使用，已納入工作流程。</li>
+<li><strong>自建 AI 工作流，清洗近 19 萬筆搜尋與配對條件</strong>：為處理企業反映語法老舊、常搜不到人的問題，配合搜尋語法改版，盤點規則與業務邏輯，和工程釐清前端設定與搜尋引擎 <strong>Solr</strong> 語法的對應。用 <strong>Antigravity</strong> 試驗新語法與搜尋邏輯，取出資料庫中的廠商關鍵字，由 AI 判讀錯誤輸入的意圖，產出修正值並轉成新語法。再以 <strong>Claude</strong> 全量比對修正值與原意，針對差異反覆修正；本人把關並在測試環境驗證新語法的搜尋結果。這次共處理<span style="background-color: #fbf3db;">近 19 萬筆</span>搜尋與配對條件，產出<span style="background-color: #fbf3db;">逾 2 萬筆</span>修正值，也找出 7 項搜尋解析問題，列入工程待修。這套方法也用於 15 張類別代碼表對照，並提供 skill 與方法，帶 2 名直屬企劃使用，已納入工作流程。</li>
 <li><strong>重整企業提案處理，30 天結案率由 52% 升至 79%</strong>：接手 880 件積壓提案後，依客戶提案優先原則排定順序、分派案件，帶領 2 名直屬企劃在 2025/11–12 兩個月清理 625 件。結案率比較介入前 2024/11–2025/10 與介入後 2025/11–2026/10，只計提案滿 30 天的案件。另外觀察兩群付費企業的留存：有提案獲處理的企業，年化留存率為 <span style="background-color: #fbf3db;">79.5%</span>；其餘付費企業為 74.8%，兩者相差 <span style="background-color: #fbf3db;">4.7 個百分點</span>。</li>
 <li><strong>主導帳號冒用應變，補強登入防線</strong>：2026/03–04 十多家廠商招募帳號遭冒用登入，帶領工程與客服釐清影響範圍，再設計新裝置 <strong>OTP</strong> 驗證及自助解鎖流程，補強登入防線。功能上線後一週內，便依客服回饋調整。至 2026/10，客服未再接獲廠商回報同類冒用。</li>
 </ul>
@@ -93,7 +93,7 @@ TOEIC 980全英文協作
 <ul>
 <li><strong>主導付款轉型，網頁付款營收占比最高達 91%</strong>：考量 App 商店抽成高於網頁金流費率，為 <strong><span style="background-color: #deebf1;">Peach</span></strong> 規劃新的付款流程，將用戶從 App 內購導向網頁付款，並完成<strong>智冠</strong>金流串接。轉型後，網頁付款營收占比從 2020/11 的 24% 升至 2021/09 的 80% 以上，2022/02 最高達 <span style="background-color: #fbf3db;">91%</span>。</li>
 <li><strong>主導 JustDating 跨平台定價對照測試，改變馬來西亞價格帶</strong>：在 2021/05–08 主導 iOS 定價測試，依序測試原價、降價與恢復原價，並讓 <strong>Android</strong> 維持售價，作為對照。結果顯示，降價期的 iOS 非續訂營收比原價期<span style="background-color: #fbf3db;">增加 5%</span>，同期 Android 卻<span style="background-color: #fbf3db;">減少 18%</span>。當 iOS 恢復原價，非續訂營收反而比原價期下滑 65%。公司根據測試結果調整馬來西亞價格帶，從原先與新加坡同級的高價區，改為與印尼、越南、泰國相同的低價帶。</li>
-<li><strong>主導兩次下架承接，守住主力營收產品</strong>：JustDating 因政策遭 <strong>App Store</strong> 下架，便推出沿用同一後端的 <strong><span style="background-color: #deebf1;">Juicy</span></strong> 接續服務；其後 Juicy 也遭下架，再推動 JustDating 重新上架。兩款產品在上線與導流期間，男性 DAU 都有成長：Juicy 在 6 週內從約 3,200 增至 <span style="background-color: #fbf3db;">1.25 萬</span>（近 4 倍）；JustDating 在 12 週內從約 1,500 增至 <span style="background-color: #fbf3db;">1.2 萬</span>（8 倍）。</li>
+<li><strong>主導兩次下架承接，守住主力營收產品</strong>：JustDating 因政策遭 <strong>App Store</strong> 下架，便推出沿用同一後端的 <strong><span style="background-color: #deebf1;">Juicy</span></strong> 接續服務；其後 Juicy 也遭下架，再推動 JustDating 重新上架。上線與導流期間快速拉回用戶規模：Juicy 男性 DAU 在 6 週內從約 3,200 增至 <span style="background-color: #fbf3db;">1.25 萬</span>（近 4 倍）；JustDating 在 12 週內從約 1,500 增至 <span style="background-color: #fbf3db;">1.2 萬</span>（8 倍）。</li>
 </ul>
 <p><br></p>
 <p><span class="ql-size-large" style="color: #00afb8;"><strong>二、網紅媒合平台 0 到 1</strong></span></p>
