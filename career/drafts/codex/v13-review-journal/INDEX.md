@@ -121,3 +121,8 @@ git show origin/codex/resume-writer:career/drafts/codex/v13-review-journal/SNAPS
 
 固定候選d4299ef739b2f60b8efff3a31ae9216e7255810d，career/02_codex_stage/104-v15-native.md；對照e056227fe8c5b8aa86af03052b6f59465ff99eaa的career/drafts/v15/104-v15.md與notes。五位實際子代理均完成全文審查：[完整入口](../hr-personas/runs/2026-11-05-d4299ef-v15-native/INDEX.md)｜[報告](../hr-personas/runs/2026-11-05-d4299ef-v15-native/REPORT.md)｜[分工交接](../hr-personas/runs/2026-11-05-d4299ef-v15-native/UPSTREAM.md)。
 結論：保留native候選，自然化有實際增益，Senior與推薦力保住；Writer局部處理迭代變討論及規則設計主體。底稿已補明全量比對／本人把關測試環境／兩名企劃採用，不再沿R18重問。P3季度與52→79仍是既有未決，FG單獨接續，不歸咎本輪Writer擅改，不以無新增疑問宣告舊問題已解。未改履歷、未訪談本人、未跑驗證器／PDF。原JD專屬缺口本輪不重評。
+
+## R20｜2026-11-05完整資訊重寫：共通內容可收斂（最新）
+
+固定候選516842e576467b94fede1be1c31489e646381cb2，career/02_codex_stage/104-v15-native.md；資訊底稿8650da8aeca9acb6e263a1b61e8f7d04a2a19eff的career/drafts/v14.10/104-v14.10.md。五位實際子代理均完成全文審查：[完整入口](../hr-personas/runs/2026-11-05-516842e-v15-full/INDEX.md)｜[整合報告](../hr-personas/runs/2026-11-05-516842e-v15-full/REPORT.md)｜[上游結案交接](../hr-personas/runs/2026-11-05-516842e-v15-full/UPSTREAM.md)。
+五項回補均可見；最新FG來源確認月份52.4%／78.9%，候選恢復相同月份52%→79%，舊季度問題結案，不用舊10/04反覆索證。AI修正值／測試環境／兩名企劃範圍及R19規則本人作用、反覆修正均已處理。無新增必訪談或全篇改寫需求，可保留候選。小修僅非阻擋建議，原JD專屬適配不重評。未改履歷、未訪談本人、未跑驗證器／PDF；不冒稱獨立核算原始資料。歷史R18／R19當時未決保留，新來源在R20使其收斂。
