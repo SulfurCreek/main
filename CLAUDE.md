@@ -19,10 +19,10 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 | 手繪風 lo-fi wireframe／線框圖草稿；線框圖上線到 Cloudflare 網站（`wireframe-site/`） | 用 `Skill` 載入 `lofi-wireframer`（上線規則見其 `references/publish-to-site.md`） |
 | 1111 切版改版（mock↔正式偏離稽核、CSS 對照表）或前端修改工程單 | 用 `Skill` 載入 `frontend-slicing-1111`（改版稽核）／`frontend-change-ticket-1111`（工程單內文強制格式，兩者衝突時後者優先） |
 | 分析 API 文件產測試矩陣、或依矩陣產生並執行 pytest | 用 `Skill` 載入 `api`（文件→矩陣）／`auto-test`（矩陣→腳本→報告，需先跑過 `api`） |
-| 撰寫/修改個人履歷、CV、作品集 | 用 `Skill` 載入 `resume-craft`（依賴的 `career/` 職能框架 wiki 已於 2026-08-31 併入本 repo，開箱即用）。**審查履歷（模擬人資／主管、同儕比較）用 `resume-review-panel`**（素材只在個人線分支，結果不取代真人回饋） |
-| 產生 104 特化版履歷 md（Quill HTML、逐欄位）／針對指定職缺寫 104 自我推薦信 | 用 `Skill` 載入 `104resume`／`104coverletter`（個人線自有；找檔案先看個人線分支 `career/ROUTER.md`） |
-| 履歷「概念偷跑／因果斷裂」編譯（四階段：Stage 1–2 Claude 提取事實並編成 `career/01_claude_stage/` 草稿、Stage 3 Codex 潤飾、Stage 4 Claude 驗收發布；**中英分流**：中文用 `verify_polish.py`，英文用 `verify_line_profile.py`／`verify_line_pdf.py`） | 用 `Skill` 載入 `resume-causal-logic-compiler`（個人線自有；管線規則見 `wiki/personal_line_collab.md` §7） |
-| 產生／填寫／驗證 104 履歷、撰寫中文履歷或自傳語氣（Cake Resume 另案，不得套用 104 規格） | 用 `Skill` 載入 `resume-craft`；104 先讀 `career/104/README.md`（在個人線分支 `claude/happy-lamport-ljis8c`，欄位規格 `fields-spec.md`），中文語氣依 `resume-craft/references/tw-voice.md` |
+| 撰寫／修改個人履歷、CV、作品文字或處理 feedback | 先讀 `career/CLAUDE.md`、`career/ROLE_CONTRACT.md`，維持本人指定角色。Marketer 是主要上游行銷寫手，Fact Gatherer 訪談，Writer 編輯，HR Subagent 審查；不因 review 字樣切角色。 |
+| 104 履歷格式／逐職缺自我推薦信 | 依 `career/ROUTER.md` 及本人指定稿。Marketer 寫完整內容，`104resume`／`104coverletter` 只依現行角色與需求使用，不恢復鎖定或驗證門檻。 |
+| 履歷理解順序、因果措辭與說服力 | 依 Marketer／Writer 的專用治理人工編輯；舊四階段編譯、驗證與 Claude 終審已退役。只有實際事實缺口交 Fact Gatherer，不因修語感重做驗真。 |
+| 104 純格式、中文履歷或自傳語氣（Cake Resume 不套 104 規格） | 技術欄位讀 `career/104/README.md` 與 `fields-spec.md`；中文語氣讀 `career/style/resume-voice-zh.md`，不載入舊 tw-voice／打分／鎖定流程。 |
 | 把作品集（`career/portfolio/*.md`）渲染成靜態網站、部署 GitHub／Cloudflare Pages（作品集網站、靜態網站、portfolio site） | 用 `Skill` 載入 `portfolio-site`（只管渲染；內容由 `resume-craft` 管，輸出在使用者自己的作品集 repo，不進本 repo） |
 | 撰寫 QA 測試案例（只寫 happy path）、把規格書轉成可勾選的驗收案例表 | 用 `Skill` 載入 `qa-happy-path-cases` |
 | 從 Sitemap／規格文件反向工程 User Journey Map（旅程地圖，三段式範本；`user-journey/` 專案） | 用 `Skill` 載入 `user-journey-map`（HackMD 文件 session 編輯素材 md，HTML 化歸「產生HTML報告」session，見 `user-journey/README.md`） |
@@ -79,12 +79,11 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
    **HackMD 文件 session** 管 HackMD 規格書內容與 `notes/` 快取。兩邊不動對方主場檔案；
    skill 內容與 HackMD 規格衝突時**以 HackMD 為準**，回頭修 skill。
 1. **新 session 一律從最新 `main` 開分支**。開工第一件事 `git fetch origin main` 確認基準點，繼承最新路由表＋全部 skill。
-   - **例外：個人成長／履歷 session**（`claude/happy-lamport-ljis8c`，側欄「Career Move」）
-     是**唯讀**角色——全 repo 可讀（產出就是它的職能證據來源），但**只能寫 `career/`**。
+   - **例外：個人履歷角色**（`claude/happy-lamport-ljis8c`）依 `career/ROLE_CONTRACT.md` 分為固定的 Marketer 與 Fact Gatherer；不以舊 Career Move 名稱重新指派角色。按任務最小化讀取獲准來源，通常只寫 `career/`，不得覆蓋 Codex 與網站助手區域；main 嚴格唯讀。
      它要改 `career/` 以外的任何東西，一律寫進 `career/_requests-to-main.md` 請主幹施作，不自己動手。
      **例外中的例外（2026-10-08 使用者裁示）**：個人線自有 skill `resume-craft`／`resume-review-panel`／`portfolio-site`／`104coverletter`／`104resume`／`resume-causal-logic-compiler` 跟 1111 主線無關，**擁有權歸個人線分支**——Career Move 自己改、自己推到該分支；main 上的副本由 Repo Steward 從分支單向同步（`git checkout origin/claude/happy-lamport-ljis8c -- <六個目錄>`），main 不直接改這六個目錄。
-     完整規則見 `career/CLAUDE.md`〈硬規則一〉；護欄見 `scripts/guard_career_scope.sh`（只在該分支生效的 PreToolUse hook）。
-     **事實來源**：使用者提供過的資料一律收在該分支 `career/library/`（現行事實、裁定、已推翻說法、待確認），寫履歷前先讀。
+     現行分工、來源與讀寫界線見 `career/CLAUDE.md`、`career/ROLE_CONTRACT.md`；護欄見 `scripts/guard_career_scope.sh`（只在該分支生效的 PreToolUse hook）。
+     **寫作來源**：本人已確認素材與指定完整稿可直接使用；library 按實際需要讀取，Fact Gatherer 主責缺口訪談及確認紀錄。改一句不重做整份查核。feedback 先逐字讀完，每改一句立即重讀完整段落；Marketer 以完整、有說服力的上游稿為交付。
    - **例外：線框圖助手**（側欄「Wireframe helper v2」）可直接推 `main`，但**只能寫 `wireframe-site/<slug>/**` 與 `wireframe-site/index.html` 的 `PAGES` 區**；上線前須使用者核可並去識別化（網址公開）。規則見 `lofi-wireframer/references/publish-to-site.md`。
      **同一分支另有「作品集網站助手」session**，只寫 `career/site/`；兩者的目錄所有權、交接流程、git 規則見 `wiki/personal_line_collab.md`。
 2. **共用資產唯一變更入口＝主幹管理 session**：`CLAUDE.md`／`.claude/skills/`／`.claude/agents/`／`wiki/`／`scripts/`／`.claude_index.md`／`.claude/settings.json` 只由主幹管理 session 修改。其他 session 需要改共用檔時，在自己的 PR 描述註明「請主幹對照吸收」，**不要直接改**——直接改必然跟主幹撞衝突，且會被主幹版本覆蓋。
