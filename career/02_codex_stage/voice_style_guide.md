@@ -13,21 +13,44 @@
 
 ## 1. 共通：說服力先於聲量
 
-- 先選讀者最需要的證據，再安排閱讀順序，最後修語氣。強動詞、粗體與百分比不能替代本人判斷、方法與作用。
-- 每個案例以一個主訊息為中心。從來源挑出必要題目、本人作用與結果即可，不強迫每條包含完整的問題、替代方案、驗證流程與商業成效。
+本次 Writer 分工以 Marketer 已完成的架構與資訊為基準：保留欄位、段落／案例順序及資訊配置，完整重塑文字，不自行重新選材、跨欄搬移或增刪資訊。下列去重、順序與篇幅原則均在此範圍內運用；需要架構／資訊變更時提出方案交本人／Marketer 決定。這不恢復逐字鎖、驗證器或最小改動要求。
+
+- 先理解 Marketer 已選的證據及閱讀安排，再於原架構與全部資訊內逐句重塑語氣與承接。強動詞、粗體與百分比不能替代本人判斷、方法與作用。
+- 每個案例以一個主訊息為中心。依既有題目、本人作用與結果自然敘述，不另補來源沒有的問題、替代方案、驗證流程或商業成效，也不為套公式刪掉原有資訊。
 - 商業目的、已做的事、觀察結果與可支持的因果要分清；不把目的直接寫成已實現的效果。沒有成效數據時，可用方案選擇、交付或組織作用形成說服力，不虛構數字。
-- 避免為「完整」塞入每個技術步驟；也避免為「精簡」刪到只剩空泛領導宣稱。保留能看懂本人判斷的細節，其他素材可提議移到面試，由本人決定重要取捨。
+- 不為補齊公式另加技術步驟，也不為「精簡」刪到只剩空泛領導宣稱。既有資訊全部保留，以句子與轉折改善節奏；素材若要移到面試，先提方案，由本人／Marketer 決定，Writer 不自行刪移。
 - 讀者到當下還不知道的產品類型、指標對象或角色，要在首次需要時交代。內部知道、不等於外部讀者已知道。後文補定義不能自動修好前文的理解斷點。
 - 對照標題、首句、正文與相鄰段落；只換同義詞、只拆句、只把數字往前移，不能宣稱已完成結構改善。
 
 ## 2. 中文：自然、具體、能順著讀
+
+### 台灣繁中真人商務語感與打字習性（De-stiffening & Human Typing Flow）
+
+**架構與資訊不改，整份文字充分重塑。** Marketer 決定要講哪些戰功、放在哪個欄位、呈現哪些資訊；Writer 的下筆立場是資深求職者本人，以台灣繁體中文自然打字的商務語感爭取面談。逐句檢視全稿，不能因文法正確、看得懂而只做 Minimal Diff；也不為證明有改而強換已自然的句子。不加口語贅詞、故意錯字或裝熟來模擬真人，專業、務實、有力即可。
+
+1. **戒除公文／AI 官腔連接詞與名詞堆疊。**
+   - 生硬寫法例如：「旨在、據此、進而、俾利、透過…之方式進行…之優化、將人機分工訂為…保留企業的編輯結果」。
+   - 改用直白動詞及自然承接，例如：「為了…、先…再…、查出原因後重訂…」，或在原稿確有相同功能資訊時寫成「設定為預設自動帶入，但企業手動修改後系統就不再覆蓋」。
+   - 例子示範語感，不是可挪用的新事實或機械禁詞表；不能因換連接詞而補出原稿沒有的目的、先後或因果。
+
+2. **打破機械式分號與長串條件壓縮。**
+   - 不把四五件事用分號「；」與頓號「、」硬塞進長句，讓讀者像解壓縮檔。
+   - 依既有資訊，把「為什麼要做（痛點／限制）」、「我實際怎麼處理（動作與判斷）」、「最後結果如何（數據／現況）」用自然逗號、句號與承接順著講完。這是閱讀邏輯，不是每段必須湊齊三件事的公式；來源沒有就不補。
+   - 調整句子長短與呼吸節奏，避免整段都是同一種壓縮句型；不把所有分號機械替換成句號後就算完成。
+
+3. **重塑求職者親身經歷的現場感。**
+   - 先問自己：「如果這是我親手做的專案，我在履歷上會怎麼用最自然、最專業的台灣商務中文打出來？」
+   - 產品名、數字、時間、方法、限制等全部資訊 100% 保留；責任、團隊歸因、完成狀態、比較口徑及因果邊界也不變。可完整重寫句子骨架、段內語序與轉折，把生硬資訊變成真人順手打出的商務文字；不搬動原欄位、段落／案例安排或資訊配置。
+   - 閱讀角度是招聘者，下筆是成熟、務實、懂商業也懂技術的台灣資深產品人；說清楚既有的取捨與作法，不寫吹噓口號或局外人式驗收報告。不必每句加「我」，也不能為現場感捏造對話、心理或場景。
+   - **每改寫一句，立即由左至右、由上至下重讀完整段落；讀順才改下一句。** Summary 改一句就讀全部 Summary，包含未修改部分。自然語感不能靠整篇改完後一次補讀，完整 feedback 閱讀規則也持續有效。
+
 
 ### 短標與正文
 
 - 既有工作經歷可保留 `- **短標**：正文`。短標指出本案例的題目、本人動作或有意義的結果，不強制每點都用「主導」，不設定 10～18 字硬上限。
 - 短標單獨看要能懂，不為縮短刪掉指標名詞、產品類型或必要比較對象。例如付款占比不能縮寫成另一個更大的營收主張。
 - 成果本身已可理解時可以前置；陌生產品、複雜題目先給最短定位再接成果，不強迫數據與強動詞永遠第一。
-- 短標負責掃讀，正文負責補上判斷與證據；可呼應但不要把同句完整再念一次。不同案例依重要性安排篇幅，不一律做成等長口號。
+- 短標負責掃讀，正文負責補上判斷與證據；可呼應但不要把同句完整再念一次。沿用 Marketer 的案例安排與重點，以自然句長呈現，不一律改成等長口號，不為調整篇幅刪減資訊。
 - 一句承擔一個主要動作或關係。長句若混合不同事件，先辨認事件與邏輯再拆；不要只是把分號改句號，留下原來的堆疊。
 
 ### 從句子到整份的閱讀順序
@@ -35,17 +58,17 @@
 - 先讓人知道是什麼產品／問題、本人負責什麼，再讀到需要這些背景的做法。定義可以在同一句或前文，不要求每段重複介紹。
 - 指代要能就近找到對象。兩款產品、兩組數字、兩段期間要逐一對應，不要求讀者靠「分別」回頭猜。
 - 「未再收到回報」保留接收範圍；「比值、百分點、占比、件數」保持原意。可縮短限定語，但要留在讀者需要的位置。
-- 相鄰數字即使寫「同期」也可能被讀成因果。沒有因果依據時，依案例目的考慮分離、降權或提出取捨問題，不能只加轉折詞就宣告解決。
-- 摘要建立人物定位與代表證據，不重播每個案例。公司前言說範圍，列點說判斷與作用；專長便於辨識能力，專案可補深度，自傳寫思路。重複一個必要關鍵字可保留，重講整套背景與結果要重構。
-- 跨欄刪減後，確認工程溝通、產品規劃、AI 實際運用、教導／協調、英文等當輪重要能力仍有來源證據；不要把所有能力都塞回摘要補救。
+- 相鄰數字即使寫「同期」也可能被讀成因果。沒有因果依據時，先在同段以語序、分句與準確關係改善；若需跨段分離、改權重或刪資訊，提出取捨問題，不能自行改配置，也不能只加轉折詞就宣告解決。
+- 摘要建立人物定位與代表證據，不重播每個案例。公司前言說範圍，列點說判斷與作用；專長便於辨識能力，專案可補深度，自傳寫思路。重複一個必要關鍵字可保留，重講整套背景與結果時先在既有資訊內重塑措辭；需跨欄去重、刪移資訊或改用途則交本人／Marketer 決定。
+- 不可自行跨欄刪減；發現工程溝通、產品規劃、AI 實際運用、教導／協調、英文等能力的資訊配置問題時，提出具體方案交本人／Marketer，不把所有能力都塞回摘要補救。
 
 ### 語氣與數字
 
 - 用台灣招聘語境自然的動作與關係，不追求戰功口號。主導、規劃、設計、分析、協調、推動、帶領各有責任含義；「拍板」「重構」只在來源支持時使用。
 - 本人作用可省略反覆的「本人」，但不能讓團隊成果或上級決策變成本人獨力完成。不要將所有句子強改成同一種主動句。
-- 數字保留能幫助判斷的部分。很多精確數字並列時，先決定哪個是主證據、哪個是規模背景；沒有通用的每點一數字規定。
+- 既有數字全部保留。很多精確數字並列時，用句法說清主證據與規模背景；需要減少或搬移數字時先交本人／Marketer 決定，沒有通用的每點一數字規定。
 - 不重新計算或創造新口徑來讓數據更漂亮；既有數字仍難解碼時，提出保留原口徑或改以已確認決策呈現的寫法，詢問本人。
-- 精簡不能犧牲必要期間、對象與歸因；限定不是一概該刪的免責聲明。避免把核對過程、待修問題清單或全部工具數量搬進履歷。
+- 精簡措辭不能刪掉既有資訊，也不能犧牲必要期間、對象與歸因；限定不是一概該刪的免責聲明。避免把核對過程、待修問題清單或全部工具數量搬進履歷。
 
 ## 3. English: clear product work and credible impact
 
@@ -54,7 +77,7 @@
 - Lead with a result only when its meaning is clear. Otherwise give brief context first. Avoid noun stacks, long chains of clauses, and multiple unrelated achievements in one bullet.
 - Explain the candidate's judgment and contribution through supported examples. Tool counts, delivery volume and repeated `Led` do not by themselves establish seniority or business impact.
 - Keep business purpose, observed association and demonstrated causation distinct. Preserve team attribution and work-in-progress status; do not translate them into sole ownership or completed outcomes.
-- Edit the summary, experience and skills as a whole. Remove duplicated explanations while preserving distinct evidence. Do not impose Chinese bold-heading/colon patterns, Chinese banned phrases, or literal Chinese sentence order on English.
+- Read the summary, experience and skills as a whole. Within the current scope, preserve the upstream structure, information placement and all existing information; improve phrasing and raise proposed cross-field deletions or moves with the user/Marketer. Do not impose Chinese bold-heading/colon patterns, Chinese banned phrases, or literal Chinese sentence order on English.
 - Resume bullets may use implied first person; cover letters use natural first-person sentences. Choose syntax for the genre rather than mechanically removing or adding subjects.
 - Distinguish a resume/CV from a cover letter or platform profile. For an English resume, a concise two-page target may apply when requested; do not claim page count, native-reader review or layout quality without the actual artifact and work.
 - Historical locked labels do not restrict rewriting. Follow an extraction-only or no-translation scope only when the current user task explicitly requests it; missing factual meaning goes to Fact Gatherer, while editorial choices may be discussed with the user.
@@ -69,7 +92,7 @@
 
 每改一句就立即重讀完整段落，不能批次改完再讀。Summary 改一句即重讀全部 Summary；收到 feedback 先逐字讀完整份，再處理局部。段落完成再讀公司前言與全部列點，一輪完成再從簡介讀到最後欄位，連同未被點名的部分，確認沒有因局部變順造成全篇重複、證據失衡、背景缺漏或能力流失。
 
-交付完整候選或指定檔案，簡述重要 Before → After，說明解決哪個理解障礙、哪個聘用理由更清楚、靠哪項既有證據支撐，以及仍待本人回答的問題。不能只回覆「已全文重讀」或「已增強說服力」。
+交付完整候選或指定檔案，簡述重要 Before → After，指出生硬句如何在保留架構與全部資訊下變得自然，說明解決哪個理解障礙、哪個聘用理由更清楚、靠哪項既有證據支撐，以及仍待本人回答的問題。不能只回覆「已全文重讀」或「已增強說服力」。
 
 只有 Markdown 就審文字；未實際看到本次新 PDF，不宣稱版面驗收完成。
 

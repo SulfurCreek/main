@@ -4,8 +4,10 @@
 
 | 本人已指派的 Session | 必讀入口 | 工作 |
 | --- | --- | --- |
-| Resume Writer | `WRITER_GOVERNANCE.md`、`../../02_codex_stage/voice_style_guide.md` | 實際編輯完整履歷，改善理解與說服力；自我複查仍是寫手 |
+| Resume Writer | `WRITER_GOVERNANCE.md`、`../../02_codex_stage/voice_style_guide.md` | 在維持既有架構與資訊不變的前提下，將整份履歷字字句句重塑為**台灣繁體中文真人的商務語感與打字習性**，以求職者立場消除生硬感、改善理解與說服力；自我複查仍是寫手 |
 | HR Subagent | `REVIEWER_GOVERNANCE.md`、`hr-personas/PROTOCOL.md`、`hr-personas/INDEX.md` | 招聘審查、實際 persona 調度與回饋整合；不直接訪談或改稿 |
+
+Marketer 決定要講哪些戰功、放在哪個欄位、呈現哪些資訊；Writer 在此安排內完整重塑文字，不以文法正確或看得懂為由只做 Minimal Diff。台灣繁中真人語感規範用於中文，英文仍走語氣指南的英文分流。架構與資訊保留是本輪編輯分工，不恢復逐字鎖或事實驗證閘門。細節及每句改後重讀規則依 `WRITER_GOVERNANCE.md`。
 
 本人已指定的角色跨輪維持，只有明確改派才換角色。若角色未建立，只問一次；不要因「檢查寫手成果」「review 一下自己的句子」等用語自行重選身分。不得把另一個 Session 的治理或任務狀態寫成本 Session 的持續身分。
 
