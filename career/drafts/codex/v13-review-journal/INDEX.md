@@ -106,3 +106,8 @@ git show origin/codex/resume-writer:career/drafts/codex/v13-review-journal/SNAPS
 ## R16｜2026-11-04 審查角色與責任校正
 
 本人明訂此代理負責審查與派HR persona；事實疑問交上游訪談，不直接訪談本人或改稿。已建立 [審查者治理](../REVIEWER_GOVERNANCE.md)、[上游訪談指令](../hr-personas/UPSTREAM_INTERVIEW_REQUEST.md)，並更新AGENTS角色路由與persona協議。R07–R15沒有實際persona派發，屬主審閱讀／比較；先前正向結論不代表19萬筆、常駐Agent及季度期間已完成可信度核對。三項交上游，待回覆後再審。本輪只改治理與交接，沒有派新代理或執行新履歷審查。
+
+## R17｜最新104 Markdown：五位persona完整審查
+
+2026-11-04實際派發與完成，2026-11-05補齊先前GitHub故障未同步的報告。
+[完整入口](../hr-personas/runs/2026-11-04-216445b9-104/INDEX.md)｜[整合報告](../hr-personas/runs/2026-11-04-216445b9-104/REPORT.md)｜[上游需求](../hr-personas/runs/2026-11-04-216445b9-104/UPSTREAM.md)。入口含五份原始全文，來源固定216445b97d7aa282c4f4c0b47229c54fe496adb1的career/02_codex_stage/104-v14.md。支付連、91APP與訊連值得邀約；PressPlay先釐清行為分析、SHOPLINE Data先釐清數據產品責任。共通資料處理、Agent術語與統計口徑仍交上游，不等於已核實。協助式、非隔離盲審，未改履歷或驗PDF。
