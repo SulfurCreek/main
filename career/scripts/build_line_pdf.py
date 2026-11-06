@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
-"""一鍵產出 LINE 英文履歷 PDF：驗收 md（--for pdf）→ fill.json／resume.json → HTML → PDF → verify_line_pdf（內容對帳）。
+"""含已停用驗證，勿照歷史命令執行；純格式用途請先確認。
+一鍵產出 LINE 英文履歷 PDF：驗收 md（--for pdf）→ fill.json／resume.json → HTML → PDF → verify_line_pdf（內容對帳）。
 
 用法：python3 career/scripts/build_line_pdf.py <line-resume.md> <out.pdf> [--upstream <上游 md>]
 

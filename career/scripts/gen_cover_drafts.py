@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
-"""批次產生 104 自我推薦信上游草稿（中文，250–350 字）：依 JD 主題從已核准的事實句庫選 3 點。
+"""含已停用驗證，勿照歷史命令執行；純格式用途請先確認。
+批次產生 104 自我推薦信上游草稿（中文，250–350 字）：依 JD 主題從已核准的事實句庫選 3 點。
 事實句全部取自已定稿推薦信／履歷的核准句（decisions §51、§34、R09、R20）；不新增事實。
 用法：python3 career/scripts/gen_cover_drafts.py <jobs.json> <companies.json> <codes.txt> [--outdir DIR] [--overwrite]
       python3 career/scripts/gen_cover_drafts.py --self-test [--snapshot SHA]

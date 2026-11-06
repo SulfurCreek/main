@@ -1,5 +1,8 @@
 # v7.1 vs v7.2 分數比較（2026-10-09）
 
+> 歷史文件：其中 verify_polish／verify_104_bilingual／ATS／final_resume 逐字沿用要求已退役，僅 fields-spec.md 與 content-spec-quill.md 為現行格式規格。
+
+
 v7.2 是第一個用「每個單位 20 版本、取最高分、組裝」產生的版本（25 個單位、500 個版本，評分明細 `drafts/v7.2/04-scores.md`）。審查者為同一模型扮演，非真人意見。
 
 | 檢測 | v7.1 | v7.2 | 差異 |

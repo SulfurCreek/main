@@ -1,5 +1,8 @@
 # 檢討：v4～v5.2 履歷遺漏 PM 交付鏈與產出文件（2026-10-08）
 
+> 歷史參考，已停用，不作為評分或驗證依據。
+
+
 ## 發生什麼
 使用者指出：v4 之後的履歷看不到 User Journey Map、User Story、Use Case、SA、流程圖／循序圖、Wireframe、Prototype、Spec、QA 協作、上線計畫等產出與流程。這些在 `wiki/F01`、`F02`、`F05` 都有證據，早期 wiki 草稿（`resume-extract.md`）也有寫。
 

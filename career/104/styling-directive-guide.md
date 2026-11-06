@@ -6,6 +6,9 @@
 
 # 104 人力銀行全欄位格式設定與自動化指令指南 (104 Field Styling & Directive Guide)
 
+> 歷史文件：其中 verify_polish／verify_104_bilingual／ATS／final_resume 逐字沿用要求已退役，僅 fields-spec.md 與 content-spec-quill.md 為現行格式規格。
+
+
 > **版本**：2.3.0（2026-10-26：禁止填表端硬編碼內文、純文字斷言、子項獨立 li 縮排與大標留白由產生器一次到位）｜2.2.0（2026-10-24：視覺重音由定稿註解指定）  
 > **適用平台**：104 會員中心履歷編輯器 (`https://pda.104.com.tw/profile/edit?vno={vno}`)  
 > **核心用途**：提供給內容封裝 AI（Claude Code Stage 3）與瀏覽器執行 Agent（Antigravity + Gemini Flash），定義 104 履歷每一欄位的資料型態、Quill 富文本 HTML 排版語法、官方標籤白名單驗證，以及**在產出 `104.md` 時嵌入機器可讀指令的標準語法**。

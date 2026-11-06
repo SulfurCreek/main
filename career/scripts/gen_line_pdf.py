@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
-"""由 <stem>.resume.json（唯一內文來源）產生單欄英文履歷 HTML；再用 resume-craft/scripts/mkpdf.js 轉 PDF。
+"""含已停用驗證，勿照歷史命令執行；純格式用途請先確認。
+由 <stem>.resume.json（唯一內文來源）產生單欄英文履歷 HTML；再用 resume-craft/scripts/mkpdf.js 轉 PDF。
 不新增、不改寫任何內文；不含街道地址。用法：python3 career/scripts/gen_line_pdf.py <resume.json> <out.html>
 
 2026-11-02 契約：渲染前重算 payload_sha256、並以 source 路徑重算 source_sha256，任一不符即拒絕（防 JSON 被竄改或來源不符）。

@@ -2,6 +2,9 @@
 
 # 給 Antigravity：104 中英雙語履歷填寫指令（v12.20，新規格 2026-11-03）
 
+> 歷史文件：其中 verify_polish／verify_104_bilingual／ATS／final_resume 逐字沿用要求已退役，僅 fields-spec.md 與 content-spec-quill.md 為現行格式規格。
+
+
 > 個資檔，不外流，不得貼到任何公開位置或 HackMD。
 > 本檔是 `styling-directive-guide.md` v2.3.0 的**增補**，衝突時以「最高鐵律」與本檔「範圍」為準。
 > 內文唯一來源：`career/drafts/v12.20-bilingual/104-v12.20-bilingual.md`（已通過 `verify_104_bilingual.py` strict 與 `verify_polish.py --verify-104`）。

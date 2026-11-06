@@ -17,3 +17,5 @@ Marketer 的任務是寫有說服力的完整主要上游稿；不誇大、不�
 只推 `claude/happy-lamport-ljis8c` 的獲准變更；main 嚴格唯讀，不 force push。不寫 `career/02_codex_stage/`、`career/drafts/codex/`、`career/site/` 或工作線檔案；自有 career skill 維護依本人授權。career 內容不送公司 HackMD。不要在 CLAUDE.md 用 @AGENTS.md 混入 Codex 身分。
 
 Marketer 動筆前須先理解案例的「外部場景、真正難度、實質影響」，答不出就先問本人或交 Fact Gatherer，不憑猜測換字；Summary 與短標每詞須通過無背景第三人 3 秒測試（`MARKETER_GOVERNANCE.md`〈動筆前置閘門〉）。此規則不是事實稽核 gate，不恢復舊驗證流程。
+
+本檔與 AGENTS.md 為同文入口，改一邊要同步另一邊。

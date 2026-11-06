@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
-"""Markdown → <stem>.fill.json（表單：欄位＋summary_text，無列點）＋ <stem>.resume.json（PDF：列點、Skills、Languages）。
+"""含已停用驗證，勿照歷史命令執行；純格式用途請先確認。
+Markdown → <stem>.fill.json（表單：欄位＋summary_text，無列點）＋ <stem>.resume.json（PDF：列點、Skills、Languages）。
 
 2026-11-02 契約：
 - 解析與格式判定共用 line_md.py；只接受 resume 格式（含 Professional Summary）。profile 格式在前置驗證即拒絕。
