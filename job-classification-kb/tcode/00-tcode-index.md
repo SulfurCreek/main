@@ -1,5 +1,7 @@
 # 00 — tCode 代碼表總覽 (Index & Purpose)
 
+> **公司內部異動 SOP（企劃／Perry／主要專案／維運怎麼協作）見 [04-change-workflow-sop](04-change-workflow-sop.md)**——不確定某個異動該找誰、工單怎麼開、公告誰發，先看那頁。
+
 > `job-classification-kb/TCode_Export.xlsx`，15 張工作表。tCodeBenefit／Certify／CompSkill／DutyHL／DutyNM／DutyPT／DutyST／Major 八表已於 20261102 依官方最新匯出更新（20261013 批異動確認已正式套用，不再是預覽稿）；其餘 7 表（City／College／DutyTU／MRT／Nation／Trade／WorkAbility）這批未收錄，維持原狀未變動。所有表共用同一套 schema（見 [01-schema](01-schema.md)）。本頁是用途對照與選表指南。
 
 ## 15 張表一覽
