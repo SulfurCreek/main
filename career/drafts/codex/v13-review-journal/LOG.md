@@ -252,3 +252,10 @@ R07–R09 原附件來源及範圍、R10 版本摘記、R11 已改善與五項�
 
 本人指定37f9183e3219fa1db85a9e7afdb9c7c6445cde9f，career/02_codex_stage/104-PM-v1.8.md；完整讀正文/notes及d7d407cc8a4e6fb7096ce8ecb9326c95f0547d2f上游/填表指令，現行角色治理已讀且blob相同。[主審全文](../hr-personas/runs/2026-11-06-37f9183-v1.8-reader/REPORT.md)｜[三份獨立原文入口](../hr-personas/runs/2026-11-06-37f9183-v1.8-reader/INDEX.md)｜[上游需求](../hr-personas/runs/2026-11-06-37f9183-v1.8-reader/UPSTREAM.md)。
 三新代理fork_turns=none，只讀去內部註解完整正文、無個案背景，全部完成；非JD匹配或新PDF驗收。前輪四個優先問題已解：推薦類別/人才分工、非續訂（單次購買）、199件要求合併工具、SweetRing市場範圍；合規限定兩項文字生成。代碼表補維護重整與底層欄位，但三位仍不知對照兩端/產物用途，故僅部分解決，局部中等不阻擋投遞。Writer先用既有資料說清，真的缺再交FG有限釐清，不重問整案。填表指令標題/唯一來源仍v1.7已實讀確認，交Marketer修版本指向。無擅改履歷/訪談本人/驗證器/ATS或填表。
+
+
+## 2026-11-06｜81cffb2 v1.11：逐句逐段、以實際轉述驗收（最新）
+
+固定81cffb2dcc0400e118a1c9ba0f4bffa726ccb64f，career/02_codex_stage/104-PM-v1.11.md。[主審對照](../hr-personas/runs/2026-11-06-81cffb2-v1.11-comprehension/REPORT.md)｜[原始轉述與全篇覆蓋](../hr-personas/runs/2026-11-06-81cffb2-v1.11-comprehension/INDEX.md)｜[主審每段紀錄](../hr-personas/runs/2026-11-06-81cffb2-v1.11-comprehension/MAIN-COVERAGE.md)｜[上游交接](../hr-personas/runs/2026-11-06-81cffb2-v1.11-comprehension/UPSTREAM.md)。三個新代理fork_turns=none、無對話/作者背景，只讀候選正文，先白話介紹/聘用理由再重建各案。本人再強調每句每段後，三位按原順序補全篇各段理解，無問題段也列。主審已讀三份原始全文與三份覆蓋補錄，未只核對問題句。
+核心情境/本人判斷/分工/用途實際傳達成立：分類與15表可被解釋成修復刊登、履歷及搜尋配對的共同分類，再以新舊及顯示次序對照供工程更新，不只是資料量。搜尋分析與轉換成立，但正式上線訊息未建立；再行銷增量未建立。句內也保留C對手測範圍詞及API安全細節只理解部分，不以整體可讀抵銷。交Writer有限用途橋梁，無新增FG必訪談、不全篇重寫。
+REVIEWER_GOVERNANCE已依本人校正新增全篇覆蓋與實際轉述驗收（3eb422b391325a318fbf07c06f3a0b33b85033a1），無法理解即該訊息傳達失敗；不恢復自動驗證器或分數。不改履歷/不訪談本人/未驗PDF或六秒真人掃讀/未填表，原稿未重複公開。
