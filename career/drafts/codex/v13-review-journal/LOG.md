@@ -265,3 +265,10 @@ REVIEWER_GOVERNANCE已依本人校正新增全篇覆蓋與實際轉述驗收（3
 
 固定6123970b527c5667c160172356d8469d34a8ef68，career/02_codex_stage/104-PM-v1.11-reader.md。三新代理fork_turns=none，無工程背景、無歷史/改稿提示，只讀完整對外正文，均完成每段白話轉述，主審已完整核對。
 [完整報告](../hr-personas/runs/2026-11-06-6123970-reader/REPORT.md)｜[三份原始全文與來源](../hr-personas/runs/2026-11-06-6123970-reader/INDEX.md)｜[上游交接](../hr-personas/runs/2026-11-06-6123970-reader/UPSTREAM.md)。手測/API用途兩項確實解決，三位均推薦資深PM初談；但簡介搜尋用途到後文才懂、全案翻新階段晚確認、C首讀AI功能混淆仍保留部分理解，不以整體可讀抵銷。Writer/Marketer有限處理，不改履歷、不新增FG必訪、不重算季度、不驗PDF/ATS/六秒計時；不是具名JD匹配或真實公司背書。
+
+
+## 2026-11-06｜ebbbfa6：初讀用途/階段修補已實際傳達
+
+固定ebbbfa617e1b67a63417bf0ac94fe41610707d2d，career/02_codex_stage/104-PM-v1.11-reader.md。三新代理readereb_a/b/c、fork_turns=none、無工程背景，只讀完整對外正文，均完成每段轉述，主審已讀全部。
+[完整報告](../hr-personas/runs/2026-11-06-ebbbfa6-reader/REPORT.md)｜[原始全文/派發](../hr-personas/runs/2026-11-06-ebbbfa6-reader/INDEX.md)｜[上游交接](../hr-personas/runs/2026-11-06-ebbbfa6-reader/UPSTREAM.md)。三位首處已懂搜尋舊設定接續用途、翻新部分上線仍進行，並分清三類AI/兩生成合規；KOOL商家與網紅首處明確。6123970的三項初讀問題與對象問題結案，手測/API保住。
+仍保留B搜尋兩工作需二讀的初讀部分理解、點數牆具體步驟未傳達，以及原意判讀可靠性/正式部署/營收承接量未知；不以願面談抵銷。三位推薦一般資深PM/PO初談；不是具名JD適配、事實查證或PDF驗收。無新增FG必訪、不重算季度、不改候選。密度重複屬Marketer另行選材議題，本輪用途修補可收斂。
