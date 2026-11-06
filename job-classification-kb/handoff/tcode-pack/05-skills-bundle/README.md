@@ -12,7 +12,7 @@
 
 - **觸發條件**：分析或修改 Excel/CSV 內容（尤其職類校正、不合理清單等已建立 MD 資料層的資料）時，一律讀寫 MD、不回讀 Excel；只有使用者明確要求「輸出／給我 Excel」時才由 MD 產生 Excel。
 - **依賴的檔案或環境**：已存在的 `data_*.md` 資料層檔案；原始 Excel/CSV 僅作首次匯出來源。
-- **已知問題**：本次打包發現 `data_tCodeCertify_summary.md`／`data_tCodeWorkAbility_summary.md` 這兩份「唯一真實來源」MD 實際上落後於已確認套用的異動（見 `04-known-facts.md`〈資料層副本落後現況〉）——這違反了這個 skill「MD 是唯一真實來源」的前提，使用前要先確認 MD 本身有沒有過期。
+- **已知問題**：本 KB 的部分摘要層 MD（中類摘要類型的檔案）實際使用時曾發現落後於已確認套用的異動——這違反了這個 skill「MD 是唯一真實來源」的前提，使用前要先確認 MD 本身有沒有過期，見 `02-iron-rules.md` 第 7 條的通用檢查方法。
 
 ## safe-excel-editor（`safe-excel-editor/`）
 
