@@ -177,3 +177,9 @@ Claude可把本INDEX路徑加入其ROUTER；既有日誌索引另設本入口。
 
 固定候選516842e576467b94fede1be1c31489e646381cb2，career/02_codex_stage/104-v15-native.md；資訊底稿8650da8aeca9acb6e263a1b61e8f7d04a2a19eff的career/drafts/v14.10/104-v14.10.md。五位實際子代理均完成全文審查：[完整入口](runs/2026-11-05-516842e-v15-full/INDEX.md)｜[整合報告](runs/2026-11-05-516842e-v15-full/REPORT.md)｜[上游結案交接](runs/2026-11-05-516842e-v15-full/UPSTREAM.md)。
 五項回補均可見；最新FG來源確認月份52.4%／78.9%，候選恢復相同月份52%→79%，舊季度問題結案，不用舊10/04反覆索證。AI修正值／測試環境／兩名企劃範圍及R19規則本人作用、反覆修正均已處理。無新增必訪談或全篇改寫需求，可保留候選。小修僅非阻擋建議，原JD專屬適配不重評。未改履歷、未訪談本人、未跑驗證器／PDF；不冒稱獨立核算原始資料。歷史R18／R19當時未決保留，新來源在R20使其收斂。
+
+
+## R21｜2026-11-06 完整PM v1.1（最新）
+
+固定候選cf5e43749e0075398d5e72956d5417fed12df8ad，career/02_codex_stage/104-PM-v1.1.md；完整上游ad68d632cc1fc95f449747b72f4d1be7d01302ec，career/drafts/PM-v1.1/104-PM-v1.1.md。五位實際persona完成全文協助式審讀，非隔離盲審：[完整入口](runs/2026-11-06-cf5e437-PM-v1.1/INDEX.md)｜[主審報告](runs/2026-11-06-cf5e437-PM-v1.1/REPORT.md)｜[上游分工](runs/2026-11-06-cf5e437-PM-v1.1/UPSTREAM.md)。
+結論：Senior與promote／vouch成立，可推薦商業／訂閱PM、複雜企業PM／PO。支付連、91APP、訊連、PressPlay值得邀約；SHOPLINE Data值得適配初談，未冒稱直接數據產品線經驗。PressPlay已看見首購／續訂／LTV證據，不套舊版缺口。無新增FG必訪談或全篇重寫需求；743件短標權重與AI閱讀節奏為非阻擋。季度依本人11/06裁定保留52→79，不revert、不重算、不冒稱獨立核算。未改履歷、訪談本人、跑驗證器或驗PDF。完整原稿與五份原始報告均已保存。
