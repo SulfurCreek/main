@@ -1,13 +1,13 @@
 # HR Subagent Session接續
 
-固定角色Codex HR Subagent，不自任寫手或Fact Gatherer。
-目前任務：2026-11-06 fab9bcf v1.6陌生HR嚴格全文理解審讀，完成。
-本人指定候選：fab9bcf8d131a5eda157d5006c7f3596ad4a35d3，career/02_codex_stage/104-PM-v1.6-refined.md；blob10d7acc63eb1adb63c40653c087e6d758391c2d8。
-本人當輪要求：更嚴格，HR無專案背景，只知道通用產品/專案/業界詞。沿前輪隔離意圖，新建三代理fork_turns=none；不沿用舊persona記憶，只給完整去內部註解正文及中性理解任務，不給舊評論/修改清單/治理。三個模擬視角均實際完成，主審全文整合。
-交付：career/drafts/codex/hr-personas/runs/2026-11-06-fab9bcf-v1.6-reader/REPORT.md、INDEX.md及a.md/b.md/c.md，codex/resume-writer；本地/workspace/language-v16/。完整候選只存本地，遠端以既有固定commit引用。
-結論：整體自然可讀、產品名多有類型/用途引介。局部通順但需猜：AI推薦功能層次（三位）、非續訂營收精確稱呼（A/C）、199件合併建議字面歧義（B/C）；另SweetRing七市場概括範圍由C提出，A/B可分辨。skill/15張表屬輔助介紹，不升格必修全體共識。
-對本人annotation：簡介原修飾卡點、兩套工具語序已改善；自傳結尾也順，不用同一舊句反覆退稿。對搜尋多成果長標可談密度，不判成原句法問題仍未解。
-交接：Writer依既有確認素材分清功能/指標/修飾與範圍；非續訂或市場口徑若既有資料真的無法釐清才交FG，不直接訪談本人。Marketer只處理輔例權重，不全篇重寫。
-隔離報告有搜尋正式上線/營收證據強度疑問，主審保留原文但不將其當全新必訪談；既有確認事實與邊界沿用，不重算季度、不要求公開營收。不能把語感問題與證據強弱混為一談。
-未執行：新PDF/104視覺、JD資格匹配、數據核算或驗證器/ATS；未改履歷、未直接訪談本人或宣稱已通知其他Session。
-前輪：R22下游可收斂；其後PDF直接語感及/workspace/fresh-language/三新代理報告均為歷史，不當本輪隔離輸入。最新固定來源依本人本輪SHA，不從索引猜新版。
+固定角色Codex HR Subagent，審查與調度，不自任寫手或Fact Gatherer。
+目前任務：2026-11-06 v1.8陌生HR全文複審，已完成。
+本人固定候選37f9183e3219fa1db85a9e7afdb9c7c6445cde9f，career/02_codex_stage/104-PM-v1.8.md，blob9a1d8a64fd4cb01195123a801b7dc7ca379644d6。
+上游d7d407cc8a4e6fb7096ce8ecb9326c95f0547d2f，career/drafts/PM-v1.8/104-PM-v1.8.md；同目錄fill-instructions及下游notes均完整讀。現行ROLE_CONTRACT/REVIEWER_GOVERNANCE/PROTOCOL及自身接續已讀，與固定候選治理blob相同。
+本人要求：嚴格遵治理、詳讀全篇，HR只懂通用產品/專案/業界詞，不知道個案背景。實際新派v18_fresh_a/b/c，全部fork_turns=none，只有完整對外正文，不給治理/原稿內部註解/舊評語/修改清單。三份完成後主審全文整合；是陌生閱讀，不假稱JD資格匹配或真人HR背書。
+交付：career/drafts/codex/hr-personas/runs/2026-11-06-37f9183-v1.8-reader/REPORT.md、INDEX.md、UPSTREAM.md、a.md/b.md/c.md；codex/resume-writer已保存。完整原稿只存/workspace/language-v18/SOURCE.md，遠端引用既有SHA不重複公開全文。
+結論：可理解主要經歷，前輪四優先問題與合規範圍已解；不能說全部問題都沒了。代碼表補情境但對照兩端/產物用途仍讓三位HR疑惑，部分解決，局部中等不阻擋投遞。Writer先用已確認素材說清，若實際欠兩端資料才交FG有限問，勿猜成遷移/搜尋改善。
+已解：類別/人才推薦規則分開；非續訂兩處明示單次購買而非首購；199件要求合併訊息工具建議；7個App在地化市場與印尼泰國支付分開；勞動法規合規只對工作說明及公司簡介文字生成。
+交接未解：d7來源fill-instructions標題仍v1.7，唯一來源指PM-v1.7文件；已實讀確認，交Marketer在填表前更新實際採用SHA/path，圖片素材另指定。候選來源字數1518不等於本下游已驗字數。
+其他意見：skill形式/測試連接詞/長標為低優先，不新增強制全篇改寫。搜尋正式套用與營收數字不因隔離代理未知重開既有訪談；未寫已正式回寫。季度依本人裁定不revert/重算。
+未執行：改履歷、直接訪談本人、數據核算/驗證器/ATS、PDF/104視覺或填表/儲存/投遞。UPSTREAM是可轉貼需求，未宣稱已通知另一Session。
