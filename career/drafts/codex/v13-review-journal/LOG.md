@@ -234,3 +234,9 @@ R07–R09 原附件來源及範圍、R10 版本摘記、R11 已改善與五項�
 
 固定候選cf5e43749e0075398d5e72956d5417fed12df8ad，career/02_codex_stage/104-PM-v1.1.md；完整上游ad68d632cc1fc95f449747b72f4d1be7d01302ec，career/drafts/PM-v1.1/104-PM-v1.1.md。五位實際persona完成全文協助式審讀，非隔離盲審：[完整入口](../hr-personas/runs/2026-11-06-cf5e437-PM-v1.1/INDEX.md)｜[主審報告](../hr-personas/runs/2026-11-06-cf5e437-PM-v1.1/REPORT.md)｜[上游分工](../hr-personas/runs/2026-11-06-cf5e437-PM-v1.1/UPSTREAM.md)。
 結論：Senior與promote／vouch成立，可推薦商業／訂閱PM、複雜企業PM／PO。支付連、91APP、訊連、PressPlay值得邀約；SHOPLINE Data值得適配初談，未冒稱直接數據產品線經驗。PressPlay已看見首購／續訂／LTV證據，不套舊版缺口。無新增FG必訪談或全篇重寫需求；743件短標權重與AI閱讀節奏為非阻擋。季度依本人11/06裁定保留52→79，不revert、不重算、不冒稱獨立核算。未改履歷、訪談本人、跑驗證器或驗PDF。完整原稿與五份原始報告均已保存。
+
+
+## R22｜2026-11-06 PM v1.2當事人敘事版（最新）
+
+固定候選a79ca79a9f89152845fa479402b41afa268c7106，career/02_codex_stage/104-PM-v1.2-owner.md；上游9c038f53b5c7607e43ae1a1281c88220a96c48a4，career/drafts/PM-v1.2/104-PM-v1.2.md。[完整入口](../hr-personas/runs/2026-11-06-a79ca79-PM-v1.2-owner/INDEX.md)｜[主審全文](../hr-personas/runs/2026-11-06-a79ca79-PM-v1.2-owner/REPORT.md)｜[上游結案交接](../hr-personas/runs/2026-11-06-a79ca79-PM-v1.2-owner/UPSTREAM.md)。
+支付連、91APP、訊連三個實際persona均完成全文、值得邀約；未另派PPA／SHOPLINE，不宣稱五位重跑。R21的743標題權重及AI層次已處理；自然省略主詞未削弱本人判斷／Senior／promote-vouch。無新增FG或寫手必辦，可收斂。季度裁定保留，不revert、不重算；未改履歷、訪談本人、跑驗證器或驗PDF。自動審核拒絕重複上傳完整履歷快照，未重試全文；SOURCE僅連結既有固定原稿，報告與三份原始審讀均已保存。
