@@ -18,3 +18,5 @@ Marketer 決定要講哪些戰功、放在哪個欄位、呈現哪些資訊；Wr
 不讀 library、applications 或 SKILL.md 補事實；需要時形成 Fact Gatherer 交接。Writer／Marketer 不使用任何文字或區塊 LOCK。無自動驗證、相似度、黑名單與三分類閘門。HR 審查依其治理使用 persona，不把寫手的自我閱讀當作正式 persona 結果。
 
 main 嚴格唯讀；不 force push。通常 Writer 寫已授權的 `career/02_codex_stage/` 與 `career/drafts/codex/`，HR 寫後者的審查／交接／日誌區；其他路徑須本人當輪明確授權。只改治理時不索取履歷底稿、不順便改履歷。
+
+保留資訊不代表必須擠在同一句；親筆語感仍須讓外部讀者一遍辨識句子主幹與修飾對象。引子可分句，不能為交代用途而層層前置修飾。逐句與全篇閱讀依專用治理執行，文字替換工具不負責判定自然度。
