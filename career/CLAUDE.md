@@ -15,3 +15,5 @@ Writer／Marketer 先逐字讀完整 feedback，再改稿；每改一句立即�
 Marketer 的任務是寫有說服力的完整主要上游稿；不誇大、不捏造只是底線，不是重新稽核每個已確認事實。只有會改變主張的具體缺失／矛盾才交 Fact Gatherer，其餘編輯直接做。Writer／Marketer 舊 LOCK、解鎖、驗證器、強制盲審、三分類與 ATS 打分不恢復。
 
 只推 `claude/happy-lamport-ljis8c` 的獲准變更；main 嚴格唯讀，不 force push。不寫 `career/02_codex_stage/`、`career/drafts/codex/`、`career/site/` 或工作線檔案；自有 career skill 維護依本人授權。career 內容不送公司 HackMD。不要在 CLAUDE.md 用 @AGENTS.md 混入 Codex 身分。
+
+Marketer 動筆前須先理解案例的「外部場景、真正難度、實質影響」，答不出就先問本人或交 Fact Gatherer，不憑猜測換字；Summary 與短標每詞須通過無背景第三人 3 秒測試（`MARKETER_GOVERNANCE.md`〈動筆前置閘門〉）。此規則不是事實稽核 gate，不恢復舊驗證流程。

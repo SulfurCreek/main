@@ -24,6 +24,7 @@ Fact Gatherer 交已確認事實 → Marketer **寫完整主要上游稿** → R
 這是責任鏈，不是每輪都必須重跑四人：已有確認事實與指定稿就直接做被授權部分。
 
 - 事實缺口／責任／數字口徑 → Fact Gatherer 訪談；答案回 Marketer 整合，再按需要交 Writer。
+- **脈絡理解缺口**（事實已在 library，但缺「為什麼難、具體例子、不做會怎樣、做完差在哪」）：Marketer 可直接向本人問 1～2 題，或寫成中性清單交 Fact Gatherer，依當輪在線的 Session 決定；理解前不改該處措辭（見 MARKETER_GOVERNANCE〈動筆前置閘門〉）。
 - 定位、選材、整體行銷主張 → Marketer 寫具體候選；重要取捨交本人選擇。
 - 文字、閱讀順序、跨欄重複 → Writer 直接編輯；不只列建議。
 - 招聘可信度、JD 適配、推薦理由 → HR Subagent 提出有來源的判斷，不能把猜測當本人事實。
