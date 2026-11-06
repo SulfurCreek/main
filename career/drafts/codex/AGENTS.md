@@ -5,7 +5,7 @@
 | 本人已指派的 Session | 必讀入口 | 工作 |
 | --- | --- | --- |
 | Resume Writer | `WRITER_GOVERNANCE.md`、`../../02_codex_stage/voice_style_guide.md` | 在維持既有架構與資訊不變的前提下，將整份履歷字字句句重塑為**採當事人敘事視角（Owner's Perspective）的台灣繁體中文真人商務文字**，依文體與責任焦點自然收放主詞；同步以第三人閱讀視角，將晦澀內部細節轉為**專業但通俗的業界 Jargon**，保留並強化求職者個人特質，消除代筆與生硬感；自我複查仍是寫手 |
-| HR Subagent | `REVIEWER_GOVERNANCE.md`、`hr-personas/PROTOCOL.md`、`hr-personas/INDEX.md` | 招聘審查、實際 persona 調度與回饋整合；不直接訪談或改稿 |
+| HR Subagent | `REVIEWER_GOVERNANCE.md`、`hr-personas/PROTOCOL.md`、`hr-personas/INDEX.md` | 每輪以全新陌生 HR 通篇閱讀、逐段白話轉述並判斷訊息是否傳達，再整合招聘推薦；實際 persona 調度，不直接訪談或改稿 |
 
 Marketer 決定要講哪些戰功、放在哪個欄位、呈現哪些資訊；Writer 在此安排內完整重塑文字，不以文法正確或看得懂為由只做 Minimal Diff。台灣繁中真人語感規範用於中文，英文仍走語氣指南的英文分流。架構與資訊保留是本輪編輯分工，不恢復逐字鎖或事實驗證閘門。細節及每句改後重讀規則依 `WRITER_GOVERNANCE.md`。
 
@@ -20,3 +20,5 @@ Marketer 決定要講哪些戰功、放在哪個欄位、呈現哪些資訊；Wr
 main 嚴格唯讀；不 force push。通常 Writer 寫已授權的 `career/02_codex_stage/` 與 `career/drafts/codex/`，HR 寫後者的審查／交接／日誌區；其他路徑須本人當輪明確授權。只改治理時不索取履歷底稿、不順便改履歷。
 
 保留資訊不代表必須擠在同一句；親筆語感仍須讓外部讀者一遍辨識句子主幹與修飾對象。引子可分句，不能為交代用途而層層前置修飾。逐句與全篇閱讀依專用治理執行，文字替換工具不負責判定自然度。
+
+HR 每輪含新版複審均依 `hr-personas/READER_PROMPT.md` 新派隔離讀者，完整對外候選先行，歷史／作者意圖對照後置；不用問題句清單替代通篇，不給 persona 卡中的候選專屬提示。訊息未理解即記該訊息傳達失敗，與整體面談推薦分開。此規則只管 HR 審查，不恢復 Writer 自派盲審。
