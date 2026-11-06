@@ -1,13 +1,13 @@
 # HR Subagent Session接續
 
-固定角色Codex HR Subagent，無可讀Session ID不填造。
-目前任務：R22 PM v1.2當事人敘事版下游複審，2026-11-06完成。
-本輪來源：本人通知新版下游已推送codex/resume-writer，未附可解析連結/SHA；依Writer接續與實際分支commit確認a79ca79a9f89152845fa479402b41afa268c7106，career/02_codex_stage/104-PM-v1.2-owner.md，blob a15b2c06e0ed7c9bbb0495305febddbc99afe607。
-上游：9c038f53b5c7607e43ae1a1281c88220a96c48a4，career/drafts/PM-v1.2/104-PM-v1.2.md；notes同候選SHA的104-PM-v1.2-owner-editing-notes.md。
-交付：career/drafts/codex/hr-personas/runs/2026-11-06-a79ca79-PM-v1.2-owner/INDEX.md、REPORT.md、UPSTREAM.md、SOURCE.md及三份reviews/，codex/resume-writer。
-已完成：完整候選、上游、notes；支付連/91APP/訊連三個實際persona全文及整合。協助式非隔離盲審。未另派PPA/SHOPLINE、不假稱五位全部重跑。三個索引日誌更新。
-結論：值得面談，Senior與推薦力保住；743移正文、AI主輔例與3.1三段實際改善；省略我未削弱本人選擇與責任。無新增FG必訪談、Marketer重構或Writer必修，保留本候選收斂，不全篇返工。
-季度：本人裁定2024Q4–2025Q3對2025Q4–2026Q3、52→79保留，不revert、不重算、不列待確認；不冒稱獨立核算。AI修正值/測試環境/2企劃實用已確認不重問。
-保存限制：完整履歷快照重複上傳遭自動審核以個人/任職資料授權不明拒絕，未重試或繞過。完整快照留/workspace/review-r22/SOURCE.md；repo SOURCE.md僅引用已存在固定原稿SHA/path/blob。報告與三份原始全文正常保存。
-下一步：可選用a79ca79完整文字候選；只有新實際PDF/104顯示或具體職缺目標才處理對應呈現/適配。未驗新PDF、DB、正式回寫、即時職缺，不設成停工條件。
-未自任寫手、未訪談本人、未跑驗證器/ATS，UPSTREAM僅為可轉貼交接，不宣稱已通知其他Session。
+固定角色Codex HR Subagent，不自任寫手或Fact Gatherer。
+目前任務：2026-11-06 fab9bcf v1.6陌生HR嚴格全文理解審讀，完成。
+本人指定候選：fab9bcf8d131a5eda157d5006c7f3596ad4a35d3，career/02_codex_stage/104-PM-v1.6-refined.md；blob10d7acc63eb1adb63c40653c087e6d758391c2d8。
+本人當輪要求：更嚴格，HR無專案背景，只知道通用產品/專案/業界詞。沿前輪隔離意圖，新建三代理fork_turns=none；不沿用舊persona記憶，只給完整去內部註解正文及中性理解任務，不給舊評論/修改清單/治理。三個模擬視角均實際完成，主審全文整合。
+交付：career/drafts/codex/hr-personas/runs/2026-11-06-fab9bcf-v1.6-reader/REPORT.md、INDEX.md及a.md/b.md/c.md，codex/resume-writer；本地/workspace/language-v16/。完整候選只存本地，遠端以既有固定commit引用。
+結論：整體自然可讀、產品名多有類型/用途引介。局部通順但需猜：AI推薦功能層次（三位）、非續訂營收精確稱呼（A/C）、199件合併建議字面歧義（B/C）；另SweetRing七市場概括範圍由C提出，A/B可分辨。skill/15張表屬輔助介紹，不升格必修全體共識。
+對本人annotation：簡介原修飾卡點、兩套工具語序已改善；自傳結尾也順，不用同一舊句反覆退稿。對搜尋多成果長標可談密度，不判成原句法問題仍未解。
+交接：Writer依既有確認素材分清功能/指標/修飾與範圍；非續訂或市場口徑若既有資料真的無法釐清才交FG，不直接訪談本人。Marketer只處理輔例權重，不全篇重寫。
+隔離報告有搜尋正式上線/營收證據強度疑問，主審保留原文但不將其當全新必訪談；既有確認事實與邊界沿用，不重算季度、不要求公開營收。不能把語感問題與證據強弱混為一談。
+未執行：新PDF/104視覺、JD資格匹配、數據核算或驗證器/ATS；未改履歷、未直接訪談本人或宣稱已通知其他Session。
+前輪：R22下游可收斂；其後PDF直接語感及/workspace/fresh-language/三新代理報告均為歷史，不當本輪隔離輸入。最新固定來源依本人本輪SHA，不從索引猜新版。
