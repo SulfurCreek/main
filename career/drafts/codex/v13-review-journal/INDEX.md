@@ -138,3 +138,9 @@ git show origin/codex/resume-writer:career/drafts/codex/v13-review-journal/SNAPS
 
 固定候選a79ca79a9f89152845fa479402b41afa268c7106，career/02_codex_stage/104-PM-v1.2-owner.md；上游9c038f53b5c7607e43ae1a1281c88220a96c48a4，career/drafts/PM-v1.2/104-PM-v1.2.md。[完整入口](../hr-personas/runs/2026-11-06-a79ca79-PM-v1.2-owner/INDEX.md)｜[主審全文](../hr-personas/runs/2026-11-06-a79ca79-PM-v1.2-owner/REPORT.md)｜[上游結案交接](../hr-personas/runs/2026-11-06-a79ca79-PM-v1.2-owner/UPSTREAM.md)。
 支付連、91APP、訊連三個實際persona均完成全文、值得邀約；未另派PPA／SHOPLINE，不宣稱五位重跑。R21的743標題權重及AI層次已處理；自然省略主詞未削弱本人判斷／Senior／promote-vouch。無新增FG或寫手必辦，可收斂。季度裁定保留，不revert、不重算；未改履歷、訪談本人、跑驗證器或驗PDF。自動審核拒絕重複上傳完整履歷快照，未重試全文；SOURCE僅連結既有固定原稿，報告與三份原始審讀均已保存。
+
+
+## 2026-11-06｜fab9bcf v1.6：陌生HR全文理解審讀（最新）
+
+固定fab9bcf8d131a5eda157d5006c7f3596ad4a35d3，career/02_codex_stage/104-PM-v1.6-refined.md。[主審全文](../hr-personas/runs/2026-11-06-fab9bcf-v1.6-reader/REPORT.md)｜[三份原始全文與方法](../hr-personas/runs/2026-11-06-fab9bcf-v1.6-reader/INDEX.md)。本人要求只懂通用產品/專案/業界詞、沒有個案背景，更嚴格重讀。三個新代理fork_turns=none，只讀完整對外正文，未給歷史評論/修改清單/治理，先獨立完成再整合。
+整體自然可讀，不是專案名普遍缺介紹；優先Writer處理AI不同推薦功能關係、非續訂營收稱呼、199件合併建議修飾，另留七市場工作範圍的局部歧義。skill及資料狀態重要性各代理不同，不冒稱全體共識。已修簡介/訊息工具句及自傳末段不重退稿。既有AI/營收/季度已確認事實不因隔離代理未知而重開訪談；不把證據強弱混成生硬。無改稿/本人訪談/數據重算/新PDF驗收。三份原始報告、主審採納及未採理由均保存；完整履歷未重複上傳。
