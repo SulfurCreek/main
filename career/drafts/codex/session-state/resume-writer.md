@@ -2,16 +2,19 @@
 
 ## 固定角色與本輪任務
 
-- 固定角色：Resume Writer；依本人 PM v1.16 跨欄切片交接，只順語氣、節奏與銜接，不恢復已刪掉的步驟、日期或背景。
-- 治理實讀：`f999ef386f6c946cf92e24fe589c736ec040de69` 的 AGENTS.md、WRITER_GOVERNANCE.md、voice_style_guide.md，另讀共通契約、管線政策與本接續紀錄。
+- 固定角色：Resume Writer；PM v1.17 完整編輯。在 Marketer 已決定的跨欄配置內整理語氣、句義與節奏，不重開選材。
+- 治理實讀：`91f44b2bf1eef48b4e3320f64ba47702384f2dfd` 的 AGENTS、WRITER_GOVERNANCE，以及快轉至 `f8cc8e6b13d28ee9d2e49f085efe7f4d0169c808` 後的 voice_style_guide、接續檔；治理內容未變。
 
 ## 履歷來源與交付
 
-- 本人已換版：`efc19a847bc2ba7fc7bd05b3b1164820e6596dc0:career/drafts/PM-v1.16/104-PM-v1.16.md`，直接從此來源建立，不沿用舊候選。
-- 新候選：`career/02_codex_stage/104-PM-v1.16.md`。
-- 本輪紀錄：`career/drafts/codex/104-PM-v1.16-editing-notes.md`，含修改對照與理由。
+- 本人已換版：`0797370037ea9ea9d04b2627a58762005249ccc1:career/drafts/PM-v1.17/104-PM-v1.17.md`，同來源 decisions-notes.md；不沿用舊成品當底。
+- 新候選：`career/02_codex_stage/104-PM-v1.17.md`。
+- 修改紀錄：`career/drafts/codex/104-PM-v1.17-editing-notes.md`；交付追溯見 `WRITER_DELIVERIES.md`。
+- 完整讀取指定 v1.16 HR run 的 REPORT、UPSTREAM、MAIN-COVERAGE、a／b／c 原始理解、INDEX、DISPATCH；未把原稿的理解結論挪為新版結果。
 
 ## 已確認裁示與持續有效授權（Resolved Decisions & Standing Authorizations）
+
+- **PM v1.17 已決定範圍**：本人本輪及指定 decisions-notes.md。簡介保留搜尋轉換並交代舊設定沿用的用途；3.2／自傳只主張訪談商家行銷單位，與理解商家、網紅各自需求分開；不恢復 3.6 的付款占比及價格帶結果。DAU、743／88% 與群組在指定欄位的重複刻意保留，不自行刪除。2.1 不加內容，不補回已刪步驟／日期／背景。
 
 - **PM v1.16 跨欄配置優先**：本人本輪要求簡介只留定位與戰果錨點、工作經歷完整保留、自傳只談決策心法、專案第一段直接補經歷以外資訊。不得從舊候選恢復本版刪除的過程、日期或背景。v1.15 的只改 KOOL 範圍屬上輪，本輪以 v1.16 交接為準。
 
@@ -27,9 +30,9 @@
 
 ## 已完成與下一步
 
-- 六處文字整理：自傳第 2、3、5 段，以及專案 5.1 第一段、5.2 末段、5.3 第二段。其餘內容從指定來源保留，2.1 完整不動。
-- 逐句改後重讀，完成後讀七段自傳、全部專案及全稿。保持自傳說思考、專案先補新資訊，不把過程搬回簡介。
-- 可交 Marketer 整合本輪完整候選與修改紀錄；不自行接續舊版本其他待辦。
+- 完整候選已編輯五處：簡介用途句、3.2 訪談及角色需求句群、3.6 付款／定價承接、自傳 KOOL 訪談對象、5.1 海外工作範圍句；另更新候選檔頭。2.1 與指定保留重複不動。
+- 逐句改後重讀、章節及全稿閱讀完成，具體理由在 editing-notes；不以自我閱讀宣稱陌生 HR 一定懂。
+- 下一步由 HR 審查者按其治理對新候選作理解判讀；尚未派發、尚未取得新結果，不聲稱已跨 Session 通知。
 
 ## 待確認／未決事項
 

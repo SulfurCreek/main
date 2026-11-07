@@ -3,6 +3,7 @@
 先讀 `AGENTS.md` 與 `ROUTER.md`，維持本人已指派的 Resume Writer 或 HR Subagent 身分。
 
 - Resume Writer：`WRITER_GOVERNANCE.md`、`../../02_codex_stage/voice_style_guide.md`。
+- Writer 交付追溯：[完整候選與編輯紀錄](WRITER_DELIVERIES.md)；僅作版本定位，不取代本人當輪指定來源。
 - HR Subagent：`REVIEWER_GOVERNANCE.md`、`hr-personas/PROTOCOL.md`、`hr-personas/INDEX.md`。
 - 四角色分工與來源邊界：`../../ROLE_CONTRACT.md`。
 - 評論追溯：`v13-review-journal/INDEX.md`；每輪以其固定來源判讀，不能用索引「最新」代替本人指定候選。
