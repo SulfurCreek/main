@@ -184,3 +184,10 @@ REVIEWER_GOVERNANCE已依本人校正新增全篇覆蓋與實際轉述驗收（3
 固定48b87ba701df7dc933f3c580ea00b5ccdd14716f，career/02_codex_stage/104-PM-v1.12-reader.md，blobf2444ebab6b965961e0a8af41a26678864a2ed2b。三新persona r48_reader_a/b/c均fork_turns=none、無工程背景，只讀同稿完整簡介及全文，逐句每段/短標/主子列含無問題內容；三位全完成，主審完整核對後才讀notes與比歷史。
 [完整報告](../hr-personas/runs/2026-11-07-48b87ba-v1.12-reader/REPORT.md)｜[三份原始全文/派發](../hr-personas/runs/2026-11-07-48b87ba-v1.12-reader/INDEX.md)｜[上游結案與來源狀態更正](../hr-personas/runs/2026-11-07-48b87ba-v1.12-reader/UPSTREAM.md)。福利調整前後對應/畫面順序交工程，三位已能說出具體產物；單例未外推15表或系統遷移/搜尋品質成效。具體章標與一頁摘要/看板詞義卡點已解，AI動作/沿用目的可懂，搜尋兩線維持。
 **歷史更正：本人本輪交付及notes載明福利單例新授權與來源，取代3cca704當輪撤回/不得恢復條件，不能把舊交接當永久禁用；主審未另讀library/原始資料驗真，也不替全15表作保。** 無新FG必訪或本人必答，Writer無本輪必辦修句。簡介密度/跨欄重述/長搜尋主標仍Marketer接續；自建/skill形式未知保留。推薦資深PM/PO初談；無JD、新PDF、真人計時、驗證器/ATS/填表，未改候選。
+
+
+## 2026-11-07｜f999ef3 PM v1.15：本人要求重啟、全新無歷史HR全文驗證
+
+固定f999ef386f6c946cf92e24fe589c736ec040de69，career/02_codex_stage/104-PM-v1.15.md（blobd069aaa6ccfa0c3bf5c7fa6fa9f4b8733380cec1）。新派v115_fresh_a/b/c全部fork_turns=none、無工程背景；只給同稿完整簡介及全正文，未給KOOL Before/After/改動位置/意圖、舊評或背景。三位全文每句每段/短標/主子列/日期管理狀態全部完成，主審全讀後才看notes。
+[獨立主審報告](../hr-personas/runs/2026-11-07-f999ef3-v1.15-fresh/REPORT.md)｜[三份原始全文與隔離](../hr-personas/runs/2026-11-07-f999ef3-v1.15-fresh/INDEX.md)｜[上游範圍交接](../hr-personas/runs/2026-11-07-f999ef3-v1.15-fresh/UPSTREAM.md)。本輪推薦資深PM/PO初談，能白話說需求/舊規則→可執行方案/工程交付，商業/新品/英文/小團隊皆有例。KOOL自傳被理解為經過支持方法偏好，不是新成果，無新增收尾改寫要求。
+保留全篇密度/重複、AI標籤首處及技術未知。3.2『使用者訪談釐清雙方需求』三位自然讀成訪談雙方，KOOL只明寫商家；列為泛用方法與個案範圍差異，先交Marketer/Writer以既有素材決定，不推為未做/造假或本輪自傳新造。FG無新必訪、本人無必答。無JD/新PDF/真人計時、驗證器或ATS，未改候選。
