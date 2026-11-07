@@ -272,3 +272,10 @@ REVIEWER_GOVERNANCE已依本人校正新增全篇覆蓋與實際轉述驗收（3
 固定ebbbfa617e1b67a63417bf0ac94fe41610707d2d，career/02_codex_stage/104-PM-v1.11-reader.md。三新代理readereb_a/b/c、fork_turns=none、無工程背景，只讀完整對外正文，均完成每段轉述，主審已讀全部。
 [完整報告](../hr-personas/runs/2026-11-06-ebbbfa6-reader/REPORT.md)｜[原始全文/派發](../hr-personas/runs/2026-11-06-ebbbfa6-reader/INDEX.md)｜[上游交接](../hr-personas/runs/2026-11-06-ebbbfa6-reader/UPSTREAM.md)。三位首處已懂搜尋舊設定接續用途、翻新部分上線仍進行，並分清三類AI/兩生成合規；KOOL商家與網紅首處明確。6123970的三項初讀問題與對象問題結案，手測/API保住。
 仍保留B搜尋兩工作需二讀的初讀部分理解、點數牆具體步驟未傳達，以及原意判讀可靠性/正式部署/營收承接量未知；不以願面談抵銷。三位推薦一般資深PM/PO初談；不是具名JD適配、事實查證或PDF驗收。無新增FG必訪、不重算季度、不改候選。密度重複屬Marketer另行選材議題，本輪用途修補可收斂。
+
+
+## 2026-11-07｜3cca704 PM v1.12：三項調整複驗
+
+固定claude/happy-lamport-ljis8c@3cca7049667f148adcfd9fd02b92f53383f2a65b，career/drafts/PM-v1.12/104-PM-v1.12.md，blob3e309aad981ad8db33d91d2ac749141c9f9754d3。11/06開始、11/07UTC完成；三新persona v112_reader_a/b/c均fork_turns=none、無工程背景，先同稿簡介初讀再全文逐句逐段/粗體短標/縮排子列，未給歷史/diff/作者目的/Marketer交接。三位全完成，主審全讀。
+[完整報告](../hr-personas/runs/2026-11-07-3cca704-v1.12-reader/REPORT.md)｜[三份原始全文及派發](../hr-personas/runs/2026-11-07-3cca704-v1.12-reader/INDEX.md)｜[分工需求](../hr-personas/runs/2026-11-07-3cca704-v1.12-reader/UPSTREAM.md)。推薦資深PM/PO初談；簡介第二段241→184字元確縮但仍密，三秒真人未測；搜尋診斷/轉舊設定兩線初讀可分；分類AI雲端收斂/工具補新方向成立，15表無新舊遷移或已證實品質改善誤讀，但同AI/逐欄對照內容仍部分傳達。舊福利例子依本輪事實修正撤回不得復用，歷史可讀評論不是事實。
+局部去重有效、全篇同案重述仍高；服務韌性/產品承接/AI工作流首處、one-pager和底層資料等有局部語意成本，交Marketer選材/Writer白話化。翻新/AI三分/KOOL雙方/季度已結案維持，不重審或重算；無新增FG必訪或本人必答，未改履歷、未驗PDF/填表/ATS/三秒真人。
