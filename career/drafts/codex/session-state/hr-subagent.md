@@ -1,3 +1,15 @@
+# HR Subagent 任務接續｜2026-11-07（Asia/Taipei）
+
+固定HR審查，不改稿、不代Fact Gatherer訪談。最新使用者任務：全新不認識候選人的HR完整讀v1.16，先整體feedback再比較上輪。
+
+固定91f44b2bf1eef48b4e3320f64ba47702384f2dfd，career/02_codex_stage/104-PM-v1.16.md。/root/v116_new_hr_a/b/c均fork_turns=none，無工程背景，只讀完整INTRO/READER，無修改清單/歷史/作者目的。全部全文逐段完成，主審全讀後比較v1.15及notes。保存career/drafts/codex/hr-personas/runs/2026-11-07-91f44b2-v1.16-fresh/，原始a/b/c、DISPATCH、MAIN-COVERAGE、REPORT、UPSTREAM、INDEX全完成，persona/journal索引及日誌同步。
+
+推薦資深PM/PO初談；自傳/專案局部清楚、整體人物成立；不全面理解通過。3.2仍A/B收到直接訪談雙方較廣範圍，C未明確推定；Marketer/Writer以既有素材處理，不推未做或造假。簡介搜尋刪去為新版沿用目的，B/C明確未知為何轉條件、正文補懂，較v1.15首處退步；用途表達/選材交Writer/Marketer，無須新增訪談。重複與1111/3.6密度仍在，不要求自傳已懂處反覆改。FG無新增必訪，本人無新增必答。未改履歷/通知其他Session，無PDF/JD/真人計時/ATS/數據核算。
+
+下一步：交本人完整報告、原始索引與可轉貼上游指令；無待完成代理。下一新版重新新派完整全文，不用歷史當讀者輸入。以下保留前輪紀錄與福利授權界線供主審追溯，不當最新任務或陌生讀者輸入。
+
+---
+
 # HR Subagent 任務接續
 
 固定Codex HR Subagent，依ROLE_CONTRACT/REVIEWER_GOVERNANCE/PROTOCOL/READER_PROMPT。不改稿，不代FG訪談本人。2026-11-07UTC。
