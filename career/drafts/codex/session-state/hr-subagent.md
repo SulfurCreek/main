@@ -1,24 +1,26 @@
 # HR Subagent 任務接續
 
-固定角色：Codex HR Subagent，依REVIEWER_GOVERNANCE、PROTOCOL、READER_PROMPT。只審查/派發/推薦/交接，不改履歷、不代FG訪談本人。2026-11-07UTC。
+固定Codex HR Subagent，依ROLE_CONTRACT/REVIEWER_GOVERNANCE/PROTOCOL/READER_PROMPT；不改稿、不代FG訪談本人。2026-11-07UTC。
 
-## 已完成最新任務
+## 最新已完成任務
 
-本人轉Marketer交接複驗PM v1.12，固定claude/happy-lamport-ljis8c@3cca7049667f148adcfd9fd02b92f53383f2a65b，career/drafts/PM-v1.12/104-PM-v1.12.md（blob3e309aad981ad8db33d91d2ac749141c9f9754d3）。對照前輪ebbbfa6的Writer reader。
-三新persona/root/v112_reader_a/b/c，全部fork_turns=none、無工程背景，不知候選人/內部工作；先只讀完整INTRO再逐句通篇READER/每段白話轉述和粗體短標，保留主子列點。未給交接問題清單、舊評、diff、作者意圖/背景/事實庫。全部完成，主審已完整讀候選與各原始報告才歷史比較。無JD，中性一般招聘；無新PDF或真人三秒計時。
+本人給48b87ba701df7dc933f3c580ea00b5ccdd14716f要求重新驗證改善。固定career/02_codex_stage/104-PM-v1.12-reader.md，blobf2444ebab6b965961e0a8af41a26678864a2ed2b。三新persona/root/r48_reader_a/b/c，全部fork_turns=none/無工程背景/無歷史，只讀同稿完整INTRO後全READER，含所有段落/無問題處/粗體短標/縮排子列。沒有修改清單/福利來歷/舊評/diff/作者提示。全部完成，主審已完整讀正文與各原始報告才讀notes及前輪交接比較。無JD/新PDF。
 
-交付：career/drafts/codex/hr-personas/runs/2026-11-07-3cca704-v1.12-reader/；REPORT、UPSTREAM、MAIN-COVERAGE、DISPATCH、a/b/c、INDEX均保存codex/resume-writer；persona索引/journal索引/LOG同步。未重複公開完整履歷。
+保存codex/resume-writer：career/drafts/codex/hr-personas/runs/2026-11-07-48b87ba-v1.12-reader/，REPORT、UPSTREAM、MAIN-COVERAGE、DISPATCH、a/b/c、INDEX全部已上傳，persona/journal索引與LOG同步。原履歷未重複公開。
 
-## 結論/未決
+## 結論
 
-- 主審推薦資深PM/PO初談，有可轉述需求/規則分析→方案與工程協作交付、新平台/商業英文/小團隊例證。A一般PM初談，B/C一般/資深，無特定JD適配或錄用保證。
-- 簡介精簡成立：第二段241→184非空白字元、總460→403；三位沿用用途初讀可懂，但仍多題偏密；不能簽三秒全懂（未真人測）。
-- 搜尋主項/兩子項分界成立：三位初讀可分規則解析問題交工程和AI轉舊設定比對/修正值/本人測試。工具技術未知不影響該分界。
-- 分類方向正確：AI/雲端過碎收斂，工具類別過舊補新。15表只收到核對給工程更新、具體逐欄對照關係/同AI哪步未明，部分理解。未錯當新舊系統遷移或已證實搜尋品質改善；父段本來寫分類供搜尋配對，用途不能判誤讀。舊福利例子依本輪本人修正撤回不得復用，歷史可讀≠事實核實。
-- 抽象章標服務韌性/產品承接、AI工作流首次與one-pager/底層資料等局部詞卡點；局部去重有效但同案多欄重述仍高。Marketer選主次/去重，Writer既有素材白話化，交接具體見UPSTREAM。
-- 翻新範圍、AI三分、KOOL雙方、季度依本人指定不重審/重算，通篇仍實際讀過。無新FG必訪、本人無必答。15表若要主打且現有素材缺具體關係，才由FG有限釐清，不恢復福利例子。
-- 未要求正式回寫/11月中狀態、111/44測試環境、7項根因/!範圍、全部工程責任重答；未加正式上線/品質/營收增量，未讀library補事實。
+推薦資深PM/PO初談；各讀者可用白話介紹需求/規則→產品流程/工程交付，有商業、新平台、小團隊/AI英文材料。不是特定JD或錄用保證。
+- 分類子例解：三位能說明增刪改合/15分類表，福利調整前後對應與畫面順序交工程更新的產物。單例不等全部表，無誤讀為新舊系統遷移或已量測搜尋品質改善。
+- 新章標直接列搜尋/分類/提案/安全、以及下架後延續服務，首次語意懂；one-pager/dashboard有一頁式摘要/數據看板，詞義卡點解。
+- 簡介自行安排AI分析比對的動作/舊設定沿用目的懂，完整步驟後文補；個人特色自建標籤仍未說清自寫軟體或編排工具，不能推AI研發平台。skill形式/技術細節未知保留。
+- 搜尋兩線、翻新/AI三分/KOOL/季度等既有結案維持，完整仍讀，不再重審/重算。
+- 簡介多題、同案跨欄重述、長搜尋主標仍Marketer前輪接續，並非這輪Writer已完成全篇去重。Writer本輪無新增必辦修句；無新FG必訪/本人必答，不為未知表schema追加全量明細或技術教材。
 
-## 下一步
+## 福利單例重要歷史更正
 
-回覆本人完整結果與路徑。新版仍重新派隔離全新讀者通篇，不只送diff/問題句。未改履歷、代訪談、發訊給其他Session、跑驗證器/ATS/數據fact gate/填表/PDF/真人三秒。
+3cca704當輪撤回/不得恢復仍是歷史狀態。本輪本人明確提供福利調整前後與排序、限單例；48b87ba notes（47255ea277b549b7e2f404b6097a8acf57e00b89）載其來源及本人本輪前單例授權。按最新交付與來源說明取代舊禁止恢復條件，**不要再拿前輪UPSTREAM當永久鎖，或要求本人重答已提供單例。** 不擴至全15表、不新增95筆/品質成效。主審未讀library/原始資料，不能宣稱獨立驗真。
+
+## 下一步與邊界
+
+回報本人已改善與結案檔案。下新版仍新派隔離全文讀者，不僅檢查改句。未訪談本人、改候選、通知另一Session、執行驗證器/ATS/原始數據fact gate、104填表、PDF或真人三秒。
