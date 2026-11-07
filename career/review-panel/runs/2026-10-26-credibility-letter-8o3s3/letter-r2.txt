@@ -1,0 +1,25 @@
+
+您好：
+應徵貴司【北士科】Product Manager。我有近 10 年產品經理經驗，現任人力銀行企業端招募系統 Product Owner，負責約 6 萬家付費企業使用的系統改版，並主導生成式 AI 功能上線。以下是三項相關經驗：
+
+‧ To lower the barrier for employers posting jobs, I led the launch of AI job description generation and AI talent recommendations. I set acceptance criteria that kept generated content compliant with labor law, required employers to confirm AI content before publishing, and tuned recommendation rules based on what clients actually selected.
+‧ The recruitment system's account permissions and business rules had no documentation, yet the overhaul had to keep the existing back office and database. I reconstructed the rules through hands-on testing and internal interviews and turned them into specs for phased releases. Of 840 client requests on accounts, login, company data and contacts, 743 (88%) are now resolved.
+‧ With no direct competitor to learn from, I interviewed merchants' marketing teams to understand how they found influencers, then designed KOOL's two-sided matching flow. The platform grew to about 16,000 influencer profiles and over 80,000 applications in six months.
+
+貴司也服務人才招募平臺，我希望把招募系統與生成式 AI 功能的經驗帶進這個職位。完整經歷在履歷中，謝謝您的閱讀。
+
+聶崑淮
+
+
+=== 方案 B（全中文備選）===
+
+您好：
+應徵貴司【北士科】Product Manager。我有近 10 年產品經理經驗，現任人力銀行企業端招募系統 Product Owner，負責約 6 萬家付費企業使用的系統改版，並主導生成式 AI 功能上線。
+
+‧ 為降低企業刊登門檻，主導職缺工作說明生成與 AI 推薦人才上線；制定勞動法規合規的驗收標準，AI 內容經企業確認才刊登，並依客戶實際選用結果調整推薦規則。
+‧ 帳號權限與商業模式規則沒有文件，改版又須沿用既有後台與資料庫；我以實測與內部訪談逆向還原規則、分階段上線，相關的 840 件企業建議已完成 743 件（88%）。
+‧ 網紅媒合平台 KOOL 沒有直接競品可參考，我訪談商家的行銷單位、設計雙邊媒合流程，平台累積約 1.6 萬份網紅檔案、半年 8 萬多次合作報名。
+
+貴司也服務人才招募平臺，希望把這些經驗帶進這個職位。謝謝您的閱讀。
+
+聶崑淮

@@ -39,6 +39,10 @@
 - 擔任 **PM／RD／QA／設計**間的樞紐，產出交接文件、功能說明頁、競品分析與跨組同步會議記錄，降低 key-person 風險。
   *Served as the cross-functional hub, producing handoff docs, feature guides, competitive analyses, and sync
   meeting notes that reduced key-person risk.*
+- 由規格直接推導**驗收測試案例**（跨系統即時訊息第二階段 **11 條**，逐條回連規格章節），並將寫法沉澱為可重用流程；與 QA 共同產出案例、於測試執行期間管理範圍與方案異動，雙環境驗證通過後結案。
+  *Derived acceptance test cases directly from specs (11 for a cross-system messaging release, each traced to its spec
+  section) and codified the method into a reusable workflow; co-authored cases with QA and managed scope changes during
+  execution through two-environment verification.*
 - 主導 **227 項求才產品 Roadmap** 的優先級（P0–P3）與時間盒交付，**直屬管理 2 名企劃**（蔡育琳、楊丞佳）並委派工單給工程，近半年交付 **111 項上線、94%（84/89）準時或提前**。
   *Owned a 227-item product roadmap — prioritization (P0–P3) and time-boxed delivery — directly managing 2 product
   planners and delegating to engineering; shipped 111 items in ~5 months at 94% (84/89) on-or-ahead-of-schedule.*
@@ -46,19 +50,55 @@
   *Acted as single intake point across 16 stakeholder units (from C-suite/board down to frontline CS), balancing
   top-down mandates with bottom-up needs and deciding by data (votes) rather than hierarchy; briefed a ~200-person
   business team on progress weekly.*
-- 作為求才系統維運單一窗口，年度累計處理 **1,279 張工單**（維運／企劃建議／工程 bug），**結案率約 88%**（1,131 張）；經與客戶名冊交叉實證，具名工單 **96.5% 來自開單當時付費中的廠商**、管線觸及 **1,109 家相異付費帳號**（公開牌價估算年約當刊登價值 **NT$3–5 千萬量級**），被服務客群至今仍付費比例 **85.5%（約為全體基準 44% 的 1.9 倍）**——以**工單 → Kanban → 上線**閉環與**根因定位**（配對信異常、AI 推薦名單過舊、代碼體系競品重整）維護付費客戶體驗、**支撐業務業績與續約**。
+- 作為求才系統維運單一窗口，年度累計處理 **1,279 張工單**（維運／企劃建議／工程 bug），**結案率約 88%**（1,131 張）；經與客戶名冊交叉實證，具名工單 **96.5% 來自開單當時付費中的廠商**、管線覆蓋 **1,279 家相異付費帳號**（公開牌價估算年約當合約價值 **NT$3 千萬量級**），被服務客群至今仍付費 **86.1%**（全站同期 43.6%）——以**工單 → Kanban → 上線**閉環與**根因定位**（配對信異常、AI 推薦名單過舊、代碼體系競品重整）維護付費客戶體驗、**支撐業務業績與續約**。
   *Ran point on recruit-system operations, resolving 1,279 tickets YTD at ~88% close rate (1,131); verified against
-  the customer roster, 96.5% of vendor-named tickets came from accounts paying at filing time, the pipeline reached
-  1,109 distinct paying employer accounts — an annualized posting value on the order of NT$30–56M (US$1M+) at list
-  price — and serviced accounts remain paying at 85.5% today (~1.9× the 44% all-customer baseline) — via a
+  the customer roster, 96.5% of vendor-named tickets came from accounts paying at filing time, the pipeline covered
+  1,279 distinct paying employer accounts (~NT$30M annualized contract value at list price), and 86.1% of served
+  accounts remain paying versus 43.6% platform-wide — via a
   ticket → Kanban → launch loop and root-cause fixes (matching-email anomaly, stale AI recommendations,
   competitor-benchmarked code-table overhaul), protecting paying-customer experience and the sales team's revenue
   retention.*
+- 以 **14.9 萬家廠商名冊的雙快照世代分析**驗證維運的商業成效：所治理的工單管線覆蓋 **1,279 家活躍付費廠商**，
+  其**年化留存 81.2%、高於全站基準 74.2%**（**+7pt、流失相對降低 30%、p=0.011**），對應單一 68 天窗口約 **NT$55 萬**的超額留存合約價值。
+  *Validated the commercial impact of operations with a two-snapshot cohort analysis across a 149.5K-account roster:
+  the ops pipeline I own covered 1,279 active paying accounts retaining at 81.2% annualized versus a 74.2% platform
+  baseline (+7pt, 30% lower relative churn, p=0.011) — ~NT$550K of excess retained contract value in the observed window.*
 - 導入維運工單的**量化週期追蹤**，攤開並一次性清理多年累積的陳年積壓，轉入穩態營運後，2026 上半年處理週期**季度改善約 69%**（平均處理天數 100.4 天→30.9 天，已排除當日即時解決案件與難度變化的干擾）。
   *Introduced quantified cycle-time tracking for ops tickets, surfacing and clearing years of inherited backlog in a
   one-time sweep; once stabilized, resolution time improved ~69% quarter-over-quarter in H1 2026 (mean 100.4→30.9
   days), net of same-day trivial closures and caseload-difficulty shifts.*
+- 設計並治理一套**多代理 AI 工作系統**以承載單一對話無法負荷的工作量：**12 條長駐領域分身、23 個共用 skill、
+  單一共用規則書**；建立單一事實來源制度、重複建置偵測（已攔截 2 次重工），並在一次跨分支衝突事故後，
+  將健檢從路徑比對升級為 `git merge-tree` 乾跑偵測、把規則寫回治理手冊。
+  *Designed and governed a multi-agent AI working system — 12 long-running domain branches, 23 shared skills and a
+  single shared rulebook — instituting source-of-truth control and duplicate-build detection (two caught), and after
+  a cross-branch conflict incident, upgrading the health check to a `git merge-tree` dry run and codifying the rule.*
 
 ---
 
-**相關分頁 / Related**：[旗艦專案 E.1](flagship-e1.md) ・ [學歷與證照](education-certifications.md) ・ [下一步補強建議](growth-edges.md)
+## 前段職涯 / Prior roles（2013–2022，B2C 行動產品）
+
+> 證據見[完整職涯時間軸](prior-roles.md)。舊履歷幾乎無量化，以下標 `〔待補數據〕` 處請補上真實數字後再對外使用。
+
+- 於交友與網紅媒合平台主導 **3 個 0→1 新產品**與 **4 個既有產品**的定義與營運，涵蓋 **iOS／Android／RWD** 三端；
+  從 user story、wireframe 到 prototype 獨立產出，並在嚴格時程下交付多次初版上線、達成可用 MVP。
+  *Owned 3 products from zero to launch plus 4 existing products across iOS, Android and responsive web at dating
+  and influencer-marketplace companies — driving definition from user story through wireframe and prototype, and
+  shipping initial launches to a stable MVP under tight timelines.*
+- **調整應用內購（IAP）變現模型與價格點**並搭配促銷節奏，提升營收與獲利〔待補數據：成長 %〕；
+  將**第三方金流導入成熟產品**以擴大可觸及銷售，並擔任串接與營運全期的單一窗口。
+  *Tuned the in-app-purchase model and price points with staged promotions to grow revenue and margin 〔TODO: %〕,
+  and integrated third-party payment rails into mature products as the single point of contact through launch and ops.*
+- 以**用戶召回策略降低流失**（策略源自中國行動應用市場案例研究）〔待補數據：流失下降 %〕，
+  並以 iOS／Android 後台與 **App Annie** 等數據源監測趨勢、產出改版與促銷決策。
+  *Cut churn with new call-back strategies drawn from China mobile-market case studies 〔TODO: %〕, monitoring
+  iOS/Android consoles and App Annie to drive update and promotion decisions.*
+- 與 **7 個市場**（美國／墨西哥／巴西／印尼／馬來西亞／日本／韓國）背景的行銷團隊協作，**完成整個 App 的在地化**
+  並透過各市場社群切入；與母語使用者共同改版使用者體驗，交付道地而非直譯的在地化。
+  *Localized an entire app with a marketing team spanning seven markets (US, Mexico, Brazil, Indonesia, Malaysia,
+  Japan, Korea) and broke into them through local social communities, revamping UX with native speakers to ship
+  authentic localization rather than translated UI.*
+
+---
+
+**相關分頁 / Related**：[完整職涯時間軸](prior-roles.md) ・ [旗艦專案 E.1](flagship-e1.md) ・ [學歷與證照](education-certifications.md) ・ [下一步補強建議](growth-edges.md)

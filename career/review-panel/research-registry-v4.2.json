@@ -1,0 +1,1585 @@
+{
+ "version": "4.2",
+ "note": "A01–A50（ATS）、M01–M50（用人主管）為規格 v4.2 §21–22 登錄，查閱日 2026-10-13（規格作者查閱，本 session 未重開網頁）。篇數是研究覆蓋量，不是投票權重；與 v4.1 S01–S50 有重疊，不可相加宣稱 150 個獨立來源。 2026-10-25 追加 M51–M54（AI PM 評估，查閱日 2026-10-25，使用者提供），對應 HM14。",
+ "sources": [
+  {
+   "source_id": "A01",
+   "title": "Report on Talent Matching and AI opt-out data – Greenhouse Support",
+   "url": "https://support.greenhouse.io/hc/en-us/articles/47209071041051-Report-on-Talent-Matching-and-AI-opt-out-data",
+   "group": "ats",
+   "source_type": "本輪查閱",
+   "accessed_at": "2026-10-13",
+   "reuse_status": "本輪查閱",
+   "adopted_note": "配對報表需功能與權限啟用；manual review 可能是退出 AI 或技術問題。",
+   "context_limit": "報表標籤不是能力判決。",
+   "mapped_rule_ids": [
+    "ATS09",
+    "ATS14"
+   ]
+  },
+  {
+   "source_id": "A02",
+   "title": "Talent Matching setup – Greenhouse Support",
+   "url": "https://support.greenhouse.io/hc/en-us/articles/45126074890523-Talent-Matching-setup",
+   "group": "ats",
+   "source_type": "本輪查閱",
+   "accessed_at": "2026-10-13",
+   "reuse_status": "本輪查閱",
+   "adopted_note": "配對分數取決於管理員開關、職缺與部門設定。",
+   "context_limit": "不能從 ATS 品牌推知某職缺啟用 AI。",
+   "mapped_rule_ids": [
+    "ATS01",
+    "ATS09"
+   ]
+  },
+  {
+   "source_id": "A03",
+   "title": "Talent Matching assistant – Greenhouse Support",
+   "url": "https://support.greenhouse.io/hc/en-us/articles/54538392333339-Talent-Matching-assistant",
+   "group": "ats",
+   "source_type": "本輪查閱",
+   "accessed_at": "2026-10-13",
+   "reuse_status": "本輪查閱",
+   "adopted_note": "assistant 草擬條件與篩選器，與候選人計分功能不同。",
+   "context_limit": "有 AI 助手不代表 AI 自動決定錄取。",
+   "mapped_rule_ids": [
+    "ATS05",
+    "ATS09"
+   ]
+  },
+  {
+   "source_id": "A04",
+   "title": "Past candidates in Talent Matching – Greenhouse Support",
+   "url": "https://support.greenhouse.io/hc/en-us/articles/51004677097627-Past-candidates-in-Talent-Matching",
+   "group": "ats",
+   "source_type": "本輪查閱",
+   "accessed_at": "2026-10-13",
+   "reuse_status": "本輪查閱",
+   "adopted_note": "歷史候選人頁用階段、日期與其他條件篩選，該頁不給 AI 配對分。",
+   "context_limit": "同平台不同頁面不能混為同一排序。",
+   "mapped_rule_ids": [
+    "ATS05",
+    "ATS14"
+   ]
+  },
+  {
+   "source_id": "A05",
+   "title": "Talent Matching FAQ – Greenhouse Support",
+   "url": "https://support.greenhouse.io/hc/en-us/articles/41131886674075-Talent-Matching-FAQ",
+   "group": "ats",
+   "source_type": "本輪查閱",
+   "accessed_at": "2026-10-13",
+   "reuse_status": "本輪查閱",
+   "adopted_note": "Talent Matching 不因低配對等級自動淘汰，異常可轉人工。",
+   "context_limit": "只適用該功能，不否定另設的 Auto-reject。",
+   "mapped_rule_ids": [
+    "ATS08",
+    "ATS09"
+   ]
+  },
+  {
+   "source_id": "A06",
+   "title": "Talent Matching - Data Processing FAQ – Greenhouse Support",
+   "url": "https://support.greenhouse.io/hc/en-us/articles/41131616864283-Talent-Matching-Data-Processing-FAQ",
+   "group": "ats",
+   "source_type": "本輪查閱",
+   "accessed_at": "2026-10-13",
+   "reuse_status": "本輪查閱",
+   "adopted_note": "配對使用履歷擷取的技能、職称、年資等；技能與職稱可語意匹配。",
+   "context_limit": "此匹配路徑不含申請表資料；勿泛化到其他產品。",
+   "mapped_rule_ids": [
+    "ATS04",
+    "ATS06",
+    "ATS09"
+   ]
+  },
+  {
+   "source_id": "A07",
+   "title": "Talent Matching – Greenhouse Support",
+   "url": "https://support.greenhouse.io/hc/en-us/articles/41396009937307-Talent-Matching",
+   "group": "ats",
+   "source_type": "本輪查閱",
+   "accessed_at": "2026-10-13",
+   "reuse_status": "本輪查閱",
+   "adopted_note": "配對解釋會標出相符及相似詞，依職缺校準判讀。",
+   "context_limit": "相似詞標記不是已驗證候選人能力。",
+   "mapped_rule_ids": [
+    "ATS06",
+    "ATS09"
+   ]
+  },
+  {
+   "source_id": "A08",
+   "title": "Keyword suggestions – Greenhouse Support",
+   "url": "https://support.greenhouse.io/hc/en-us/articles/44504704295323-Keyword-suggestions",
+   "group": "ats",
+   "source_type": "本輪查閱",
+   "accessed_at": "2026-10-13",
+   "reuse_status": "本輪查閱",
+   "adopted_note": "從職缺內容建議搜尋詞，由使用者加入條件。",
+   "context_limit": "建議詞不等於每項皆為必要資格。",
+   "mapped_rule_ids": [
+    "ATS05"
+   ]
+  },
+  {
+   "source_id": "A09",
+   "title": "Talent Filtering – Greenhouse Support",
+   "url": "https://support.greenhouse.io/hc/en-us/articles/27104809835291-Talent-Filtering",
+   "group": "ats",
+   "source_type": "本輪查閱",
+   "accessed_at": "2026-10-13",
+   "reuse_status": "本輪查閱",
+   "adopted_note": "Talent Filtering 有精確詞匹配與 AND／OR 條件。",
+   "context_limit": "與同品牌的語意配對並存，不可擇一概括全部。",
+   "mapped_rule_ids": [
+    "ATS05",
+    "ATS06"
+   ]
+  },
+  {
+   "source_id": "A10",
+   "title": "Greenhouse AI features – Greenhouse Support",
+   "url": "https://support.greenhouse.io/hc/en-us/articles/33043749845403-Greenhouse-AI-features",
+   "group": "ats",
+   "source_type": "本輪查閱",
+   "accessed_at": "2026-10-13",
+   "reuse_status": "本輪查閱",
+   "adopted_note": "AI 功能各自有資料範圍、方案與供應元件。",
+   "context_limit": "用途、方案會變動，需保存查閱日。",
+   "mapped_rule_ids": [
+    "ATS01",
+    "ATS09"
+   ]
+  },
+  {
+   "source_id": "A11",
+   "title": "Unsuccessful resume parse – Greenhouse Support",
+   "url": "https://support.greenhouse.io/hc/en-us/articles/200989175-Unsuccessful-resume-parse",
+   "group": "ats",
+   "source_type": "沿用並重查",
+   "accessed_at": "2026-10-13",
+   "reuse_status": "沿用並重查",
+   "adopted_note": "解析與附件保留分開；欄位、欄列、文字框及 2.5 MB 解析限制可能影響擷取。",
+   "context_limit": "為 Greenhouse 文件所述限制，不是所有 ATS 的檔案門檻。",
+   "mapped_rule_ids": [
+    "ATS02",
+    "ATS03"
+   ]
+  },
+  {
+   "source_id": "A12",
+   "title": "Why didn't the candidate's resume import correctly? – Greenhouse Support",
+   "url": "https://support.greenhouse.io/hc/en-us/articles/200721684-Why-didn-t-the-candidate-s-resume-import-correctly",
+   "group": "ats",
+   "source_type": "本輪查閱",
+   "accessed_at": "2026-10-13",
+   "reuse_status": "本輪查閱",
+   "adopted_note": "非標準格式、資訊不足及未辨識字元會影響匯入；外連圖片可能不顯示。",
+   "context_limit": "匯入失敗不直接證明履歷內容不佳。",
+   "mapped_rule_ids": [
+    "ATS02",
+    "ATS03"
+   ]
+  },
+  {
+   "source_id": "A13",
+   "title": "AI Features Opt-In ／ Ashby",
+   "url": "https://www.ashbyhq.com/product-updates/ai-features-opt-in",
+   "group": "ats",
+   "source_type": "本輪查閱",
+   "accessed_at": "2026-10-13",
+   "reuse_status": "本輪查閱",
+   "adopted_note": "Ashby 各 AI 功能可個別開關。",
+   "context_limit": "不能推定所有雇主採用全部功能。",
+   "mapped_rule_ids": [
+    "ATS01"
+   ]
+  },
+  {
+   "source_id": "A14",
+   "title": "AI Features in Ashby - Ashby Knowledge Base",
+   "url": "https://docs.ashbyhq.com/ai-features-in-ashby",
+   "group": "ats",
+   "source_type": "本輪查閱",
+   "accessed_at": "2026-10-13",
+   "reuse_status": "本輪查閱",
+   "adopted_note": "enhanced parsing 支援更多語言與複雜版面；文件列含繁體中文。",
+   "context_limit": "支援清單不保證每份文件欄位均正確。",
+   "mapped_rule_ids": [
+    "ATS03",
+    "ATS04"
+   ]
+  },
+  {
+   "source_id": "A15",
+   "title": "Verify answers using AI-assisted analysis during application review ／ Ashby",
+   "url": "https://www.ashbyhq.com/product-updates/verify-answers-using-ai-assisted-analysis-during-application-review",
+   "group": "ats",
+   "source_type": "本輪查閱",
+   "accessed_at": "2026-10-13",
+   "reuse_status": "本輪查閱",
+   "adopted_note": "可檢查申請題是否有作答，辨識空白或不相干答案。",
+   "context_limit": "有作答不同於答案正確或能力優秀。",
+   "mapped_rule_ids": [
+    "ATS07"
+   ]
+  },
+  {
+   "source_id": "A16",
+   "title": "AI-Assisted Application Review - Ashby Knowledge Base",
+   "url": "https://docs.ashbyhq.com/ai-assisted-application-review",
+   "group": "ats",
+   "source_type": "本輪查閱",
+   "accessed_at": "2026-10-13",
+   "reuse_status": "本輪查閱",
+   "adopted_note": "雇主自訂單一明確條件，輸出符合、不符合或不確定；AI 比例與人工分數分開。",
+   "context_limit": "AI criteria percentage 只屬其設定，不是通用 ATS 分。",
+   "mapped_rule_ids": [
+    "ATS07",
+    "ATS09",
+    "ATS14"
+   ]
+  },
+  {
+   "source_id": "A17",
+   "title": "Candidate Search - Ashby Knowledge Base",
+   "url": "https://docs.ashbyhq.com/candidate-search",
+   "group": "ats",
+   "source_type": "本輪查閱",
+   "accessed_at": "2026-10-13",
+   "reuse_status": "本輪查閱",
+   "adopted_note": "全文及結構欄位搜尋不同；空值與 No 不同，人工評分與 AI 結果不同。",
+   "context_limit": "該搜尋不查候選人 notes，不能套其他系統的搜尋範圍。",
+   "mapped_rule_ids": [
+    "ATS05",
+    "ATS07"
+   ]
+  },
+  {
+   "source_id": "A18",
+   "title": "Enabling and disabling AI features – Workable Help",
+   "url": "https://help.workable.com/hc/en-us/articles/23685011706775-Enabling-and-disabling-AI-features",
+   "group": "ats",
+   "source_type": "本輪查閱",
+   "accessed_at": "2026-10-13",
+   "reuse_status": "本輪查閱",
+   "adopted_note": "Workable 可在帳戶層級關閉 AI；舊 Screening Assistant 網址已改為開關說明。",
+   "context_limit": "應使用現行 Agent 文件，不能沿用舊搜尋摘要。",
+   "mapped_rule_ids": [
+    "ATS01"
+   ]
+  },
+  {
+   "source_id": "A19",
+   "title": "Best practices: Candidate Screening – Workable Help",
+   "url": "https://help.workable.com/hc/en-us/articles/23365968258711-Best-practices-Candidate-Screening",
+   "group": "ats",
+   "source_type": "沿用並重查",
+   "accessed_at": "2026-10-13",
+   "reuse_status": "沿用並重查",
+   "adopted_note": "篩選包含必要條件、總年資、地點、申請答案及 Agent。",
+   "context_limit": "列為可用方法，不代表每家公司照做。",
+   "mapped_rule_ids": [
+    "ATS05",
+    "ATS07",
+    "ATS08"
+   ]
+  },
+  {
+   "source_id": "A20",
+   "title": "Uploading candidate resumes / CVs: Individual and bulk options – Workable Help",
+   "url": "https://help.workable.com/hc/en-us/articles/115012661408-Uploading-candidate-resumes-CVs-Individual-and-bulk-options",
+   "group": "ats",
+   "source_type": "本輪查閱",
+   "accessed_at": "2026-10-13",
+   "reuse_status": "本輪查閱",
+   "adopted_note": "上傳後擷取聯絡等欄位，文件說明可處理影像型與多語履歷並允許更正。",
+   "context_limit": "反駁所有 ATS 都不能讀影像；仍建議可選取文字以利檢查。",
+   "mapped_rule_ids": [
+    "ATS02",
+    "ATS03"
+   ]
+  },
+  {
+   "source_id": "A21",
+   "title": "Anonymized resume screening – Workable Help",
+   "url": "https://help.workable.com/hc/en-us/articles/360060351113-Anonymized-resume-screening",
+   "group": "ats",
+   "source_type": "本輪查閱",
+   "accessed_at": "2026-10-13",
+   "reuse_status": "本輪查閱",
+   "adopted_note": "匿名篩選可隱藏姓名與聯絡等資訊，求職信姓名不一定被遮蔽。",
+   "context_limit": "匿名工具不代表已消除所有偏誤。",
+   "mapped_rule_ids": [
+    "ATS14"
+   ]
+  },
+  {
+   "source_id": "A22",
+   "title": "Auto-disqualify candidates using application form questions – Workable Help",
+   "url": "https://help.workable.com/hc/en-us/articles/115012238688-Auto-disqualify-candidates-using-application-form-questions",
+   "group": "ats",
+   "source_type": "本輪查閱",
+   "accessed_at": "2026-10-13",
+   "reuse_status": "本輪查閱",
+   "adopted_note": "申請表回答可觸發淘汰；通知與狀態是不同步驟，可人工還原。",
+   "context_limit": "快速或延遲信件均不能單獨證明淘汰原因。",
+   "mapped_rule_ids": [
+    "ATS07",
+    "ATS08"
+   ]
+  },
+  {
+   "source_id": "A23",
+   "title": "Candidates page overview – Workable Help",
+   "url": "https://help.workable.com/hc/en-us/articles/4981424570135-Candidates-page-overview",
+   "group": "ats",
+   "source_type": "本輪查閱",
+   "accessed_at": "2026-10-13",
+   "reuse_status": "本輪查閱",
+   "adopted_note": "可依來源、年資、公司、地點與答案等條件縮小候選池。",
+   "context_limit": "總年資不是目標領域年資；不同條件組合會改變結果。",
+   "mapped_rule_ids": [
+    "ATS05",
+    "ATS07"
+   ]
+  },
+  {
+   "source_id": "A24",
+   "title": "Managing AI-assisted and automated job applications – Workable Help",
+   "url": "https://help.workable.com/hc/en-us/articles/35293126257815-Managing-AI-assisted-and-automated-job-applications",
+   "group": "ats",
+   "source_type": "本輪查閱",
+   "accessed_at": "2026-10-13",
+   "reuse_status": "本輪查閱",
+   "adopted_note": "AI-assisted 標記依申請中繼資料和自動投遞模式，並非只讀文章猜作者。",
+   "context_limit": "不能把被潤稿的自然文字直接判為機器冒用或詐騙。",
+   "mapped_rule_ids": [
+    "ATS11"
+   ]
+  },
+  {
+   "source_id": "A25",
+   "title": "Collecting candidate info: what methods are available – Workable Help",
+   "url": "https://help.workable.com/hc/en-us/articles/17174909579287-Collecting-candidate-info-what-methods-are-available",
+   "group": "ats",
+   "source_type": "本輪查閱",
+   "accessed_at": "2026-10-13",
+   "reuse_status": "本輪查閱",
+   "adopted_note": "自訂問題、自訂欄位與問卷有不同用途及蒐集時點。",
+   "context_limit": "履歷附件不等於完整申請資料。",
+   "mapped_rule_ids": [
+    "ATS07"
+   ]
+  },
+  {
+   "source_id": "A26",
+   "title": "Disqualification reasons overview – Workable Help",
+   "url": "https://help.workable.com/hc/en-us/articles/7263547772055-Disqualification-reasons-overview",
+   "group": "ats",
+   "source_type": "本輪查閱",
+   "accessed_at": "2026-10-13",
+   "reuse_status": "本輪查閱",
+   "adopted_note": "淘汰原因可能是必要經驗、時程、聯絡問題或職缺停止等。",
+   "context_limit": "沒拿到實際原因不可從拒信反推履歷分數。",
+   "mapped_rule_ids": [
+    "ATS08",
+    "ATS14"
+   ]
+  },
+  {
+   "source_id": "A27",
+   "title": "Using Search with AI to auto-source candidates – Workable Help",
+   "url": "https://help.workable.com/hc/en-us/articles/360006049713-Using-Search-with-AI-to-auto-source-candidates",
+   "group": "ats",
+   "source_type": "本輪查閱",
+   "accessed_at": "2026-10-13",
+   "reuse_status": "本輪查閱",
+   "adopted_note": "從 JD 與地點找被動候選人，顯示匹配理由供人檢閱。",
+   "context_limit": "被動搜尋與已投遞者排序為不同場景。",
+   "mapped_rule_ids": [
+    "ATS05",
+    "ATS09"
+   ]
+  },
+  {
+   "source_id": "A28",
+   "title": "Data Used for Suggestions in Matching Features",
+   "url": "https://docs.oracle.com/en/cloud/saas/talent-management/faimh/data-used-for-suggestions-in-matching-features.html",
+   "group": "ats",
+   "source_type": "本輪查閱",
+   "accessed_at": "2026-10-13",
+   "reuse_status": "本輪查閱",
+   "adopted_note": "Oracle 匹配讀職務、經歷、學歷、技能與證照等結構資料。",
+   "context_limit": "只列輸入，不公開所有權重或驗證準確率。",
+   "mapped_rule_ids": [
+    "ATS04",
+    "ATS09"
+   ]
+  },
+  {
+   "source_id": "A29",
+   "title": "Understand Top Candidate Suggestions",
+   "url": "https://docs.oracle.com/en/cloud/saas/talent-management/faush/understand-suggested-candidates.html",
+   "group": "ats",
+   "source_type": "本輪查閱",
+   "accessed_at": "2026-10-13",
+   "reuse_status": "本輪查閱",
+   "adopted_note": "四類相對匹配指標仍需招聘者閱讀履歷。",
+   "context_limit": "星數不是絕對能力、錄取機率或跨職缺百分位。",
+   "mapped_rule_ids": [
+    "ATS09",
+    "ATS14"
+   ]
+  },
+  {
+   "source_id": "A30",
+   "title": "Set Up Matching Features: Suggested Candidates, Similar Candidates, Similar Jobs, Recommended Jobs",
+   "url": "https://docs.oracle.com/en/cloud/saas/talent-management/faimh/set-up-matching-features-best-candidates-similar-candidates.html",
+   "group": "ats",
+   "source_type": "本輪查閱",
+   "accessed_at": "2026-10-13",
+   "reuse_status": "本輪查閱",
+   "adopted_note": "配對需對應設定及資料同步流程。",
+   "context_limit": "設定與處理時間屬平台行為，非候選人能力。",
+   "mapped_rule_ids": [
+    "ATS01",
+    "ATS09"
+   ]
+  },
+  {
+   "source_id": "A31",
+   "title": "Candidate Search",
+   "url": "https://docs.oracle.com/en/cloud/saas/talent-management/faush/candidate-search.html",
+   "group": "ats",
+   "source_type": "本輪查閱",
+   "accessed_at": "2026-10-13",
+   "reuse_status": "本輪查閱",
+   "adopted_note": "Oracle 的欄位、布林語法、頁尾限制與確認聯絡方式各有說明。",
+   "context_limit": "規則限該產品路徑；不把網站找工作功能誤當雇主找人。",
+   "mapped_rule_ids": [
+    "ATS03",
+    "ATS05",
+    "ATS07"
+   ]
+  },
+  {
+   "source_id": "A32",
+   "title": "Co-pilot: Candidate screening ／ Teamtailor Support Center",
+   "url": "https://support.teamtailor.com/en/articles/10209597-co-pilot-candidate-screening",
+   "group": "ats",
+   "source_type": "本輪查閱",
+   "accessed_at": "2026-10-13",
+   "reuse_status": "本輪查閱",
+   "adopted_note": "Teamtailor 可用履歷、答案、評論等逐條評估，缺資訊可為 unknown；另可搭配 Smart move。",
+   "context_limit": "是否自動移動取決於設定，不能只引人審宣言。",
+   "mapped_rule_ids": [
+    "ATS07",
+    "ATS09",
+    "ATS14"
+   ]
+  },
+  {
+   "source_id": "A33",
+   "title": "Co-pilot: Candidate suggestions ／ Teamtailor Support Center",
+   "url": "https://support.teamtailor.com/en/articles/9424192-co-pilot-candidate-suggestions",
+   "group": "ats",
+   "source_type": "本輪查閱",
+   "accessed_at": "2026-10-13",
+   "reuse_status": "本輪查閱",
+   "adopted_note": "建議候選池受過往活動、地點、流程狀態與未來職缺許可影響。",
+   "context_limit": "搜尋不到不代表履歷寫不好。",
+   "mapped_rule_ids": [
+    "ATS05",
+    "ATS09"
+   ]
+  },
+  {
+   "source_id": "A34",
+   "title": "Co-pilot: Request missing info ／ Teamtailor Support Center",
+   "url": "https://support.teamtailor.com/en/articles/16641922-co-pilot-request-missing-info",
+   "group": "ats",
+   "source_type": "本輪查閱",
+   "accessed_at": "2026-10-13",
+   "reuse_status": "本輪查閱",
+   "adopted_note": "可針對未知準則索取缺漏資訊，再更新並重評。",
+   "context_limit": "資訊不足應保留補問途徑，不自動等於不符合。",
+   "mapped_rule_ids": [
+    "ATS07",
+    "ATS14"
+   ]
+  },
+  {
+   "source_id": "A35",
+   "title": "Co-pilot: Privacy and Security ／ Teamtailor Support Center",
+   "url": "https://support.teamtailor.com/en/articles/8611616-co-pilot-privacy-and-security",
+   "group": "ats",
+   "source_type": "本輪查閱",
+   "accessed_at": "2026-10-13",
+   "reuse_status": "本輪查閱",
+   "adopted_note": "不同 Co-pilot 功能使用資料與候選人選擇機制不同。",
+   "context_limit": "退出 AI 的選項不能跨系統或跨功能泛化。",
+   "mapped_rule_ids": [
+    "ATS01",
+    "ATS14"
+   ]
+  },
+  {
+   "source_id": "A36",
+   "title": "Auto-reject – Greenhouse Support",
+   "url": "https://support.greenhouse.io/hc/en-us/articles/360000653472-Auto-reject",
+   "group": "ats",
+   "source_type": "本輪查閱",
+   "accessed_at": "2026-10-13",
+   "reuse_status": "本輪查閱",
+   "adopted_note": "Auto-reject 以特定申請問題答案觸發，與配對分數分開。",
+   "context_limit": "必須知道問題、答案及雇主設定才可模擬觸發。",
+   "mapped_rule_ids": [
+    "ATS07",
+    "ATS08"
+   ]
+  },
+  {
+   "source_id": "A37",
+   "title": "Application rules overview – Greenhouse Support",
+   "url": "https://support.greenhouse.io/hc/en-us/articles/203105595-Application-rules-overview",
+   "group": "ats",
+   "source_type": "本輪查閱",
+   "accessed_at": "2026-10-13",
+   "reuse_status": "本輪查閱",
+   "adopted_note": "條件可用 AND／OR，另有重疊規則與來源例外。",
+   "context_limit": "只看單一回答未必重現完整流程。",
+   "mapped_rule_ids": [
+    "ATS07",
+    "ATS08"
+   ]
+  },
+  {
+   "source_id": "A38",
+   "title": "Set application limits for job posts – Greenhouse Support",
+   "url": "https://support.greenhouse.io/hc/en-us/articles/24412757660443-Set-application-limits-for-job-posts",
+   "group": "ats",
+   "source_type": "本輪查閱",
+   "accessed_at": "2026-10-13",
+   "reuse_status": "本輪查閱",
+   "adopted_note": "雇主可限制重複申請，超出時自動拒絕；特定來源有例外。",
+   "context_limit": "不建議用多帳號或反覆重投測試規則。",
+   "mapped_rule_ids": [
+    "ATS10"
+   ]
+  },
+  {
+   "source_id": "A39",
+   "title": "Auto-advance – Greenhouse Support",
+   "url": "https://support.greenhouse.io/hc/en-us/articles/360044105651-Auto-advance",
+   "group": "ats",
+   "source_type": "本輪查閱",
+   "accessed_at": "2026-10-13",
+   "reuse_status": "本輪查閱",
+   "adopted_note": "表單條件也可自動推進，官方建議聚焦工作必要資格。",
+   "context_limit": "未自動推進不代表不合格。",
+   "mapped_rule_ids": [
+    "ATS07",
+    "ATS08"
+   ]
+  },
+  {
+   "source_id": "A40",
+   "title": "Fraud Detection and Spam Blocklist - Security & Privacy FAQ – Greenhouse Support",
+   "url": "https://support.greenhouse.io/hc/en-us/articles/45397232315035-Fraud-Detection-and-Spam-Blocklist-Security-Privacy-FAQ",
+   "group": "ats",
+   "source_type": "本輪查閱",
+   "accessed_at": "2026-10-13",
+   "reuse_status": "本輪查閱",
+   "adopted_note": "詐騙與垃圾申請檢查有獨立管線與訊號。",
+   "context_limit": "風險訊號不是文體 AI 作者鑑定，也不是能力評分。",
+   "mapped_rule_ids": [
+    "ATS11"
+   ]
+  },
+  {
+   "source_id": "A41",
+   "title": "Co-pilot: Ask Co-pilot ／ Teamtailor Support Center",
+   "url": "https://support.teamtailor.com/en/articles/12729815-co-pilot-ask-co-pilot",
+   "group": "ats",
+   "source_type": "本輪查閱",
+   "accessed_at": "2026-10-13",
+   "reuse_status": "本輪查閱",
+   "adopted_note": "問答助手可取用有權限的候選人資料及面試資訊。",
+   "context_limit": "輸入可能超出履歷；須記錄模型實際看見哪些資料。",
+   "mapped_rule_ids": [
+    "ATS04",
+    "ATS12"
+   ]
+  },
+  {
+   "source_id": "A42",
+   "title": "Co-pilot: AI features overview ／ Teamtailor Support Center",
+   "url": "https://support.teamtailor.com/en/articles/8403166-co-pilot-ai-features-overview",
+   "group": "ats",
+   "source_type": "本輪查閱",
+   "accessed_at": "2026-10-13",
+   "reuse_status": "本輪查閱",
+   "adopted_note": "篩選、建議與摘要是不同功能，可個別啟用。",
+   "context_limit": "摘要存在不代表同時使用排名或自動淘汰。",
+   "mapped_rule_ids": [
+    "ATS01",
+    "ATS12"
+   ]
+  },
+  {
+   "source_id": "A43",
+   "title": "Report on candidate AI opt-out status ／ Ashby",
+   "url": "https://www.ashbyhq.com/product-updates/candidate-opt-out-reporting",
+   "group": "ats",
+   "source_type": "本輪查閱",
+   "accessed_at": "2026-10-13",
+   "reuse_status": "本輪查閱",
+   "adopted_note": "退出 AI 的狀態可另報表追蹤與適當處理。",
+   "context_limit": "缺 AI 分數不是低分。",
+   "mapped_rule_ids": [
+    "ATS14"
+   ]
+  },
+  {
+   "source_id": "A44",
+   "title": "Reviewing 1500 resumes in 6 hours with AI-Assisted Application Review in Ashby ／ Ashby",
+   "url": "https://www.ashbyhq.com/blog/recruiting/ai-assisted-application-review-in-practice",
+   "group": "ats",
+   "source_type": "本輪查閱",
+   "accessed_at": "2026-10-13",
+   "reuse_status": "本輪查閱",
+   "adopted_note": "招聘者以明確準則審閱並人工決策的實務個案。",
+   "context_limit": "供應商自述個案；不採其速度或降低偏誤說法作普遍效度。",
+   "mapped_rule_ids": [
+    "ATS13",
+    "ATS14"
+   ]
+  },
+  {
+   "source_id": "A45",
+   "title": "Using the Workable Agent – Workable Help",
+   "url": "https://help.workable.com/hc/en-us/articles/38381544828695-Using-the-Workable-Agent",
+   "group": "ats",
+   "source_type": "本輪查閱",
+   "accessed_at": "2026-10-13",
+   "reuse_status": "本輪查閱",
+   "adopted_note": "現行 Workable Agent 可按設定加權評分、自動推進或淘汰，並使用履歷與答案。",
+   "context_limit": "是否啟用與實際準則需確認；文內重評描述有差異，不猜運作。",
+   "mapped_rule_ids": [
+    "ATS07",
+    "ATS08",
+    "ATS09"
+   ]
+  },
+  {
+   "source_id": "A46",
+   "title": "How do I run an advanced/boolean search for candidates? – Workable Help",
+   "url": "https://help.workable.com/hc/en-us/articles/6058530293015-How-do-I-run-an-advanced-boolean-search-for-candidates",
+   "group": "ats",
+   "source_type": "本輪查閱",
+   "accessed_at": "2026-10-13",
+   "reuse_status": "本輪查閱",
+   "adopted_note": "Workable 搜尋預設模糊匹配，可改精確詞與布林條件，搜尋範圍排除部分欄位。",
+   "context_limit": "不能拿 Greenhouse 的精確匹配規則套用。",
+   "mapped_rule_ids": [
+    "ATS05",
+    "ATS06"
+   ]
+  },
+  {
+   "source_id": "A47",
+   "title": "Resume parsing with non-English languages – Greenhouse Support",
+   "url": "https://support.greenhouse.io/hc/en-us/articles/205019689-Resume-parsing-with-non-English-languages",
+   "group": "ats",
+   "source_type": "本輪查閱",
+   "accessed_at": "2026-10-13",
+   "reuse_status": "本輪查閱",
+   "adopted_note": "Greenhouse 公開完整解析清單列簡體中文，未明列繁體。",
+   "context_limit": "未列不等於實測失敗；繁體履歷保留待驗證。",
+   "mapped_rule_ids": [
+    "ATS04"
+   ]
+  },
+  {
+   "source_id": "A48",
+   "title": "Auto-Reject Applications - Ashby Knowledge Base",
+   "url": "https://docs.ashbyhq.com/auto-reject-applications",
+   "group": "ats",
+   "source_type": "本輪查閱",
+   "accessed_at": "2026-10-13",
+   "reuse_status": "本輪查閱",
+   "adopted_note": "Ashby 可依表單條件自動拒絕，空值、相似文字與 AND／OR 等均可設定。",
+   "context_limit": "AI Review 與 Auto-Reject 分別檢查，信件延遲不能證明人工審閱。",
+   "mapped_rule_ids": [
+    "ATS07",
+    "ATS08"
+   ]
+  },
+  {
+   "source_id": "A49",
+   "title": "Supported formats for resumes, cover letters and other candidate uploads – Greenhouse Support",
+   "url": "https://support.greenhouse.io/hc/en-us/articles/360052218132-Supported-formats-for-resumes-cover-letters-and-other-candidate-uploads",
+   "group": "ats",
+   "source_type": "本輪查閱",
+   "accessed_at": "2026-10-13",
+   "reuse_status": "本輪查閱",
+   "adopted_note": "Greenhouse 上傳容許類型與 100 MB 附件限制不同於解析限制。",
+   "context_limit": "上傳成功不保證解析成功；不要混用兩種容量。",
+   "mapped_rule_ids": [
+    "ATS02"
+   ]
+  },
+  {
+   "source_id": "A50",
+   "title": "Co-pilot: Resume summaries ／ Teamtailor Support Center",
+   "url": "https://support.teamtailor.com/en/articles/8403177-co-pilot-resume-summaries",
+   "group": "ats",
+   "source_type": "本輪查閱",
+   "accessed_at": "2026-10-13",
+   "reuse_status": "本輪查閱",
+   "adopted_note": "Teamtailor 可自動摘要與產生時間軸，允許查看全文、更正摘要。",
+   "context_limit": "時間軸空段或摘要省略不等於失業原因、能力缺乏。",
+   "mapped_rule_ids": [
+    "ATS12"
+   ]
+  },
+  {
+   "source_id": "M01",
+   "title": "A guide to structured interviewing for better hiring practices - Google re:Work",
+   "url": "https://rework.withgoogle.com/intl/en/guides/a-guide-to-structured-interviewing-for-better-hiring-practices",
+   "group": "hiring_manager",
+   "source_type": "官方招聘方法；本輪查閱",
+   "accessed_at": "2026-10-13",
+   "reuse_status": "本輪查閱",
+   "adopted_note": "先固定工作資格、問題與行為錨點，再獨立評估。",
+   "context_limit": "結構化面試效度不能直接移植成履歷 LLM 效度。",
+   "mapped_rule_ids": [
+    "HM01",
+    "HM13"
+   ]
+  },
+  {
+   "source_id": "M02",
+   "title": "PM-T Interview Prep",
+   "url": "https://www.amazon.jobs/content/en/how-we-hire/pm-t-interview-prep",
+   "group": "hiring_manager",
+   "source_type": "雇主角色面試指南；本輪查閱",
+   "accessed_at": "2026-10-13",
+   "reuse_status": "本輪查閱",
+   "adopted_note": "技術 PM 看產品生命週期、技術深度、協作與書面表達。",
+   "context_limit": "屬 PM-T，不是所有 PM 必須寫程式。",
+   "mapped_rule_ids": [
+    "HM01",
+    "HM08"
+   ]
+  },
+  {
+   "source_id": "M03",
+   "title": "Product Manager Interview Prep",
+   "url": "https://www.amazon.jobs/content/en/how-we-hire/product-manager-interview-prep",
+   "group": "hiring_manager",
+   "source_type": "雇主角色面試指南；本輪查閱",
+   "accessed_at": "2026-10-13",
+   "reuse_status": "本輪查閱",
+   "adopted_note": "產品、顧客、市場、數據、適應與做決策的原因皆被檢視。",
+   "context_limit": "僅適用 Amazon 招募脈絡；不硬套其完整流程。",
+   "mapped_rule_ids": [
+    "HM02",
+    "HM05",
+    "HM10"
+   ]
+  },
+  {
+   "source_id": "M04",
+   "title": "Product Manager ／ The GitLab Handbook",
+   "url": "https://handbook.gitlab.com/job-description-library/product/product-manager/",
+   "group": "hiring_manager",
+   "source_type": "雇主職務與面試流程；本輪查閱",
+   "accessed_at": "2026-10-13",
+   "reuse_status": "本輪查閱",
+   "adopted_note": "PM 面試分角色經驗、願景與短期方案、跨職能及商業思考。",
+   "context_limit": "一家公司職級不能直接對應通用 Level。",
+   "mapped_rule_ids": [
+    "HM01",
+    "HM06",
+    "HM10"
+   ]
+  },
+  {
+   "source_id": "M05",
+   "title": "The Product Manager Role at GitLab ／ The GitLab Handbook",
+   "url": "https://handbook.gitlab.com/handbook/product/product-management/product-manager-role/",
+   "group": "hiring_manager",
+   "source_type": "雇主工作手冊；本輪查閱",
+   "accessed_at": "2026-10-13",
+   "reuse_status": "本輪查閱",
+   "adopted_note": "要求懂得取捨，深度面試連結長期願景、近期範圍與回饋。",
+   "context_limit": "工作期待是追問題庫，不要求履歷塞入全部細節。",
+   "mapped_rule_ids": [
+    "HM01",
+    "HM03"
+   ]
+  },
+  {
+   "source_id": "M06",
+   "title": "Product Management CDF and Competencies ／ The GitLab Handbook",
+   "url": "https://handbook.gitlab.com/handbook/product/product-management/product-cdf-competencies/",
+   "group": "hiring_manager",
+   "source_type": "雇主能力框架；本輪查閱",
+   "accessed_at": "2026-10-13",
+   "reuse_status": "本輪查閱",
+   "adopted_note": "資深程度看價值範圍，包含市場導入與收入影響而非僅上線。",
+   "context_limit": "組織特定能力階梯，不是市場百分位。",
+   "mapped_rule_ids": [
+    "HM04",
+    "HM05",
+    "HM09"
+   ]
+  },
+  {
+   "source_id": "M07",
+   "title": "Product Management - Leadership ／ The GitLab Handbook",
+   "url": "https://handbook.gitlab.com/job-description-library/product/product-management-leadership/",
+   "group": "hiring_manager",
+   "source_type": "雇主管理職框架；本輪查閱",
+   "accessed_at": "2026-10-13",
+   "reuse_status": "本輪查閱",
+   "adopted_note": "領導職評估跨團隊策略、成果責任及人才培養。",
+   "context_limit": "只在 JD 要求管理職時啟用，不懲罰資深 IC。",
+   "mapped_rule_ids": [
+    "HM09"
+   ]
+  },
+  {
+   "source_id": "M08",
+   "title": "Competencies ／ The GitLab Handbook",
+   "url": "https://handbook.gitlab.com/handbook/people-group/competencies/",
+   "group": "hiring_manager",
+   "source_type": "雇主能力定義；本輪查閱",
+   "accessed_at": "2026-10-13",
+   "reuse_status": "本輪查閱",
+   "adopted_note": "相同能力隨職級改變影響範圍與預期行為。",
+   "context_limit": "職稱標籤不能替代實際範圍證據。",
+   "mapped_rule_ids": [
+    "HM09",
+    "HM13"
+   ]
+  },
+  {
+   "source_id": "M09",
+   "title": "Atlassian product interview handbook ／ Atlassian",
+   "url": "https://www.atlassian.com/company/careers/resources/career-growth/product-managers",
+   "group": "hiring_manager",
+   "source_type": "雇主 PM 面試指南；本輪查閱",
+   "accessed_at": "2026-10-13",
+   "reuse_status": "本輪查閱",
+   "adopted_note": "看共同目標、產品專業、使用者與商業結果、溝通。",
+   "context_limit": "craft 用可見案例判讀，不獎勵口號或工程學位。",
+   "mapped_rule_ids": [
+    "HM02",
+    "HM05",
+    "HM06",
+    "HM10"
+   ]
+  },
+  {
+   "source_id": "M10",
+   "title": "Interview tips ／ Microsoft Careers",
+   "url": "https://careers.microsoft.com/v2/global/en/hiring-tips/interview-tips",
+   "group": "hiring_manager",
+   "source_type": "雇主面試指南；本輪查閱",
+   "accessed_at": "2026-10-13",
+   "reuse_status": "本輪查閱",
+   "adopted_note": "準備具體情境、動作、結果與學到什麼，說明如何回應回饋。",
+   "context_limit": "面試可見行為不能從履歷語氣完整推斷。",
+   "mapped_rule_ids": [
+    "HM06",
+    "HM10",
+    "HM11"
+   ]
+  },
+  {
+   "source_id": "M11",
+   "title": "Coaching Tools - The Assessment - Silicon Valley Product Group : Silicon Valley Product Group",
+   "url": "https://www.svpg.com/coaching-tools-the-assessment/",
+   "group": "hiring_manager",
+   "source_type": "產品主管評估方法；本輪查閱",
+   "accessed_at": "2026-10-13",
+   "reuse_status": "本輪查閱",
+   "adopted_note": "顧客、數據、產業、商業與產品運作知識的缺口依角色重要性判讀。",
+   "context_limit": "原為 coaching；不直接採作者 1–10 量表當履歷量表。",
+   "mapped_rule_ids": [
+    "HM02",
+    "HM04",
+    "HM09"
+   ]
+  },
+  {
+   "source_id": "M12",
+   "title": "Recruiting Product Managers - Silicon Valley Product Group : Silicon Valley Product Group",
+   "url": "https://www.svpg.com/recruiting-product-managers/",
+   "group": "hiring_manager",
+   "source_type": "產品主管招聘經驗；本輪查閱",
+   "accessed_at": "2026-10-13",
+   "reuse_status": "本輪查閱",
+   "adopted_note": "看具體問題解法、與團隊建立信任及將技術用於問題。",
+   "context_limit": "早期個人觀點；不採加班、天生聰明或口音作評分。",
+   "mapped_rule_ids": [
+    "HM06",
+    "HM08",
+    "HM11",
+    "HM14"
+   ]
+  },
+  {
+   "source_id": "M13",
+   "title": "Chris Favorite Interview Question - Silicon Valley Product Group : Silicon Valley Product Group",
+   "url": "https://www.svpg.com/chris-favorite-interview-question/",
+   "group": "hiring_manager",
+   "source_type": "產品主管招聘經驗；本輪查閱",
+   "accessed_at": "2026-10-13",
+   "reuse_status": "本輪查閱",
+   "adopted_note": "團隊需要互補專長，候選人對成長區域的認知值得追問。",
+   "context_limit": "不可只憑謙虛措辭推斷自我覺察。",
+   "mapped_rule_ids": [
+    "HM01",
+    "HM11"
+   ]
+  },
+  {
+   "source_id": "M14",
+   "title": "Assessing Product Opportunities - Silicon Valley Product Group : Silicon Valley Product Group",
+   "url": "https://www.svpg.com/assessing-product-opportunities/",
+   "group": "hiring_manager",
+   "source_type": "產品策略方法；本輪查閱",
+   "accessed_at": "2026-10-13",
+   "reuse_status": "本輪查閱",
+   "adopted_note": "評估機會、價值、成本與不做的理由。",
+   "context_limit": "用於定義決策證據，非直接招聘效度研究。",
+   "mapped_rule_ids": [
+    "HM03",
+    "HM04"
+   ]
+  },
+  {
+   "source_id": "M15",
+   "title": "Titles, Roles and Responsibilities - Silicon Valley Product Group : Silicon Valley Product Group",
+   "url": "https://www.svpg.com/titles-roles-and-responsibilities/",
+   "group": "hiring_manager",
+   "source_type": "產品角色辨析；本輪查閱",
+   "accessed_at": "2026-10-13",
+   "reuse_status": "本輪查閱",
+   "adopted_note": "產品定義、設計、時程與行銷的分工依公司而異。",
+   "context_limit": "歷史文章中的公司職稱慣例不當現行事實。",
+   "mapped_rule_ids": [
+    "HM01",
+    "HM07"
+   ]
+  },
+  {
+   "source_id": "M16",
+   "title": "The VP Product Role - Silicon Valley Product Group : Silicon Valley Product Group",
+   "url": "https://www.svpg.com/the-vp-product-role/",
+   "group": "hiring_manager",
+   "source_type": "產品領導者招聘經驗；本輪查閱",
+   "accessed_at": "2026-10-13",
+   "reuse_status": "本輪查閱",
+   "adopted_note": "產品領導職需要培養團隊、願景與執行的證據。",
+   "context_limit": "VP 期待不下放為資深 PM 必備。",
+   "mapped_rule_ids": [
+    "HM09"
+   ]
+  },
+  {
+   "source_id": "M17",
+   "title": "Intercom’s Jane Honey on perfecting career paths for product management",
+   "url": "https://www.intercom.com/blog/podcasts/intercoms-jane-honey-on-career-paths-for-product-management",
+   "group": "hiring_manager",
+   "source_type": "產品主管訪談；本輪查閱",
+   "accessed_at": "2026-10-13",
+   "reuse_status": "本輪查閱",
+   "adopted_note": "Intercom 以洞察、領導、執行、策略及定義結果評估人選。",
+   "context_limit": "績效框架與招聘相關，但不等於因果或量表已校準。",
+   "mapped_rule_ids": [
+    "HM05",
+    "HM09",
+    "HM11"
+   ]
+  },
+  {
+   "source_id": "M18",
+   "title": "Product Manager Interview Question Guide ／ LinkedIn",
+   "url": "https://business.linkedin.com/hire/resources/how-to-hire-guides/product-manager-interview-questions",
+   "group": "hiring_manager",
+   "source_type": "招聘平台雇主指南；本輪查閱",
+   "accessed_at": "2026-10-13",
+   "reuse_status": "本輪查閱",
+   "adopted_note": "優先級、路線圖改動、市場理解與利害關係人買單是追問重點。",
+   "context_limit": "框架名稱不等於做過；方法依目標職缺。",
+   "mapped_rule_ids": [
+    "HM02",
+    "HM03",
+    "HM04",
+    "HM06"
+   ]
+  },
+  {
+   "source_id": "M19",
+   "title": "6 Tactics LinkedIn’s Product Team Used to Cut Its Time to Hire in Half",
+   "url": "https://www.linkedin.com/business/talent/blog/talent-acquisition/how-linkedins-product-team-cut-its-time-to-hire-in-half",
+   "group": "hiring_manager",
+   "source_type": "雇主招聘流程個案；本輪查閱",
+   "accessed_at": "2026-10-13",
+   "reuse_status": "本輪查閱",
+   "adopted_note": "縮小每次訪談的評估範圍，訓練面試官並校準評語。",
+   "context_limit": "單一公司自述，不能將訪談人數視為獨立實驗。",
+   "mapped_rule_ids": [
+    "HM13"
+   ]
+  },
+  {
+   "source_id": "M20",
+   "title": "Accomplishment Records",
+   "url": "https://www.opm.gov/policy-data-oversight/assessment-and-selection/other-assessment-methods/accomplishment-records/",
+   "group": "hiring_manager",
+   "source_type": "評估方法綜述；本輪查閱",
+   "accessed_at": "2026-10-13",
+   "reuse_status": "本輪查閱",
+   "adopted_note": "經歷敘述需情境、本人動作、結果與可驗證性。",
+   "context_limit": "不能要求公開機密或把口述當已外部查證。",
+   "mapped_rule_ids": [
+    "HM05",
+    "HM06",
+    "HM12"
+   ]
+  },
+  {
+   "source_id": "M21",
+   "title": "Work Samples and Simulations",
+   "url": "https://www.opm.gov/policy-data-oversight/assessment-and-selection/other-assessment-methods/work-samples-and-simulations/",
+   "group": "hiring_manager",
+   "source_type": "評估方法綜述；本輪查閱",
+   "accessed_at": "2026-10-13",
+   "reuse_status": "本輪查閱",
+   "adopted_note": "工作樣本要接近真正工作與必要能力。",
+   "context_limit": "只可列後續驗證，不能由履歷推定已通過。",
+   "mapped_rule_ids": [
+    "HM08",
+    "HM12"
+   ]
+  },
+  {
+   "source_id": "M22",
+   "title": "Structured Interviews",
+   "url": "https://www.opm.gov/policy-data-oversight/assessment-and-selection/other-assessment-methods/structured-interviews/",
+   "group": "hiring_manager",
+   "source_type": "評估方法綜述；沿用並重查",
+   "accessed_at": "2026-10-13",
+   "reuse_status": "沿用並重查",
+   "adopted_note": "工作相關問題與一致尺度，先個別評估再討論分歧。",
+   "context_limit": "模型 persona 不會因此成為獨立真人樣本。",
+   "mapped_rule_ids": [
+    "HM13"
+   ]
+  },
+  {
+   "source_id": "M23",
+   "title": "Training and Experience (T & E) Evaluations",
+   "url": "https://www.opm.gov/policy-data-oversight/assessment-and-selection/other-assessment-methods/training-and-experience-evaluations/",
+   "group": "hiring_manager",
+   "source_type": "評估方法綜述；沿用並重查",
+   "accessed_at": "2026-10-13",
+   "reuse_status": "沿用並重查",
+   "adopted_note": "傳統年資與訓練加總對工作表現的預測有限。",
+   "context_limit": "不代表經驗無用；要連回工作內容。",
+   "mapped_rule_ids": [
+    "HM01",
+    "HM09"
+   ]
+  },
+  {
+   "source_id": "M24",
+   "title": "Assessment Centers",
+   "url": "https://www.opm.gov/policy-data-oversight/assessment-and-selection/other-assessment-methods/assessment-centers",
+   "group": "hiring_manager",
+   "source_type": "評估方法綜述；本輪查閱",
+   "accessed_at": "2026-10-13",
+   "reuse_status": "本輪查閱",
+   "adopted_note": "多方法及受訓評估者共同檢視工作行為。",
+   "context_limit": "勿從綜合結果推導精密個人能力剖面。",
+   "mapped_rule_ids": [
+    "HM12",
+    "HM13"
+   ]
+  },
+  {
+   "source_id": "M25",
+   "title": "Situational Judgment Tests",
+   "url": "https://www.opm.gov/policy-data-oversight/assessment-and-selection/other-assessment-methods/situational-judgment-tests/",
+   "group": "hiring_manager",
+   "source_type": "評估方法綜述；本輪查閱",
+   "accessed_at": "2026-10-13",
+   "reuse_status": "本輪查閱",
+   "adopted_note": "情境題可探索衝突、協商與管理判斷。",
+   "context_limit": "假設性回答與過去已完成行為分開標示。",
+   "mapped_rule_ids": [
+    "HM03",
+    "HM06",
+    "HM12"
+   ]
+  },
+  {
+   "source_id": "M26",
+   "title": "Assessment Method Considerations",
+   "url": "https://www.opm.gov/policy-data-oversight/assessment-and-selection/other-assessment-methods/assessment-method-considerations/",
+   "group": "hiring_manager",
+   "source_type": "評估方法比較；本輪查閱",
+   "accessed_at": "2026-10-13",
+   "reuse_status": "本輪查閱",
+   "adopted_note": "選方法需考慮有效性、成本、受試反應與差異。",
+   "context_limit": "方法類別的表格不是此評分器準確率。",
+   "mapped_rule_ids": [
+    "HM12",
+    "HM13"
+   ]
+  },
+  {
+   "source_id": "M27",
+   "title": "Selection Methods ／ CIPD",
+   "url": "https://www.cipd.org/en/knowledge/factsheets/selection-factsheet",
+   "group": "hiring_manager",
+   "source_type": "專業機構方法指南；本輪查閱",
+   "accessed_at": "2026-10-13",
+   "reuse_status": "本輪查閱",
+   "adopted_note": "初篩與後續評估分開，採角色相關、一致且透明的方法。",
+   "context_limit": "不把英國制度要求當台灣法規。",
+   "mapped_rule_ids": [
+    "HM01",
+    "HM12",
+    "HM13"
+   ]
+  },
+  {
+   "source_id": "M28",
+   "title": "Fair selection: An evidence review",
+   "url": "https://www.cipd.org/globalassets/media/knowledge/knowledge-hub/evidence-reviews/2023-pdfs/fair-selection-evidence-practice-summary_tcm18-114569.pdf",
+   "group": "hiring_manager",
+   "source_type": "研究證據綜述；本輪查閱",
+   "accessed_at": "2026-10-13",
+   "reuse_status": "本輪查閱",
+   "adopted_note": "透明標準、適當說明及候選人公平感值得納入流程。",
+   "context_limit": "公平感證據與工作績效預測證據分開。",
+   "mapped_rule_ids": [
+    "HM13"
+   ]
+  },
+  {
+   "source_id": "M29",
+   "title": "Reference Checking",
+   "url": "https://piv.opm.gov/policy-data-oversight/assessment-and-selection/other-assessment-methods/reference-checking/",
+   "group": "hiring_manager",
+   "source_type": "評估方法綜述；本輪查閱",
+   "accessed_at": "2026-10-13",
+   "reuse_status": "本輪查閱",
+   "adopted_note": "結構化查核可驗證過去角色與行為。",
+   "context_limit": "本任務不授權聯絡推薦人，不能假稱查核完成。",
+   "mapped_rule_ids": [
+    "HM06",
+    "HM12"
+   ]
+  },
+  {
+   "source_id": "M30",
+   "title": "如何當上「產品經理」？從履歷、面試技巧，到offer選擇、職涯發展，不藏私全分享！｜104職場力",
+   "url": "https://blog.104.com.tw/pm-interview-suggestions/",
+   "group": "hiring_manager",
+   "source_type": "台灣從業者講座整理；本輪查閱",
+   "accessed_at": "2026-10-13",
+   "reuse_status": "本輪查閱",
+   "adopted_note": "把案例與應徵需求連結，技術討論可透過拆解及問替代方案。",
+   "context_limit": "屬轉述經驗，不是用人主管代表性調查。",
+   "mapped_rule_ids": [
+    "HM01",
+    "HM08",
+    "HM10"
+   ]
+  },
+  {
+   "source_id": "M31",
+   "title": "PM產品經理面試如何準備？沒經驗有機會錄取嗎？專家傳授必備5大面試題｜104職場力",
+   "url": "https://blog.104.com.tw/pm-interview-questions/",
+   "group": "hiring_manager",
+   "source_type": "台灣作者書籍節錄；本輪查閱",
+   "accessed_at": "2026-10-13",
+   "reuse_status": "本輪查閱",
+   "adopted_note": "追問產品問題與失敗後的理解。",
+   "context_limit": "不採未經失敗就不合格、加班或權威語氣等普遍判準。",
+   "mapped_rule_ids": [
+    "HM02",
+    "HM11"
+   ]
+  },
+  {
+   "source_id": "M32",
+   "title": "〖PM 產品經理履歷範本〗掌握 5 點寫出優質 PM 履歷！｜Yourator 職涯平台專欄｜找工作、求職、徵才",
+   "url": "https://www.yourator.co/articles/814",
+   "group": "hiring_manager",
+   "source_type": "台灣招聘平台編輯指南；本輪查閱",
+   "accessed_at": "2026-10-13",
+   "reuse_status": "本輪查閱",
+   "adopted_note": "PM 履歷突出策略、用戶、協作與數據，職稱不替代內容。",
+   "context_limit": "示例數字不能借入履歷；不強迫每條量化。",
+   "mapped_rule_ids": [
+    "HM02",
+    "HM03",
+    "HM05",
+    "HM06"
+   ]
+  },
+  {
+   "source_id": "M33",
+   "title": "一份好履歷怎麼寫？10 分鐘完成人資最愛履歷表〖附履歷範本、履歷健檢表〗｜Yourator 職涯平台專欄｜找工作、求職、徵才",
+   "url": "https://www.yourator.co/articles/152",
+   "group": "hiring_manager",
+   "source_type": "台灣招聘平台編輯指南；沿用並重查",
+   "accessed_at": "2026-10-13",
+   "reuse_status": "沿用並重查",
+   "adopted_note": "挑相關經驗、清楚時間職務，作品連結須可讀。",
+   "context_limit": "頁數或作品數僅為建議，不當硬門檻。",
+   "mapped_rule_ids": [
+    "HM01",
+    "HM10",
+    "HM12"
+   ]
+  },
+  {
+   "source_id": "M34",
+   "title": "[PM] Senior Product Manager 資深產品經理 - 慧景科技thingnario ｜Yourator 新創・數位人才求職平台｜找工作、求職、徵才",
+   "url": "https://www.yourator.co/companies/thingnario/jobs/48043",
+   "group": "hiring_manager",
+   "source_type": "台灣雇主職缺原文；本輪查閱",
+   "accessed_at": "2026-10-13",
+   "reuse_status": "本輪查閱",
+   "adopted_note": "該職缺明列產品線 P&L、定價資源配置與帶 PM。",
+   "context_limit": "只是此職缺期待，不代表所有資深 PM 均須 P&L。",
+   "mapped_rule_ids": [
+    "HM01",
+    "HM04",
+    "HM09"
+   ]
+  },
+  {
+   "source_id": "M35",
+   "title": "研發中心 - Mid - Sr. 產品經理 Product Manager - 浪LIVE｜Yourator 新創・數位人才求職平台｜找工作、求職、徵才",
+   "url": "https://s.yourator.co/companies/langlive/jobs/41041",
+   "group": "hiring_manager",
+   "source_type": "台灣雇主職缺原文；本輪查閱",
+   "accessed_at": "2026-10-13",
+   "reuse_status": "本輪查閱",
+   "adopted_note": "社交產品重視用戶行為、營運指標、PRD 與跨團隊交付。",
+   "context_limit": "此 JD 與前一職缺不同，不能混成唯一資深標準。",
+   "mapped_rule_ids": [
+    "HM01",
+    "HM05",
+    "HM07"
+   ]
+  },
+  {
+   "source_id": "M36",
+   "title": "Find, Vet and Close the Best Product Managers",
+   "url": "https://review.firstround.com/find-vet-and-close-the-best-product-managers-heres-how/",
+   "group": "hiring_manager",
+   "source_type": "產品主管原始訪談；本輪查閱",
+   "accessed_at": "2026-10-13",
+   "reuse_status": "本輪查閱",
+   "adopted_note": "先決定所需 PM 類型，再看定義好產品、協作與迭代能力。",
+   "context_limit": "文中的候選人學校公司例子不當名校名企加分。",
+   "mapped_rule_ids": [
+    "HM01",
+    "HM03",
+    "HM06"
+   ]
+  },
+  {
+   "source_id": "M37",
+   "title": "40 Favorite Interview Questions from Some of the Sharpest Folks We Know",
+   "url": "https://review.firstround.com/40-favorite-interview-questions-from-some-of-the-sharpest-folks-we-know/",
+   "group": "hiring_manager",
+   "source_type": "主管原始訪談彙整；本輪查閱",
+   "accessed_at": "2026-10-13",
+   "reuse_status": "本輪查閱",
+   "adopted_note": "產品情境題看思考嚴謹度與連貫性，不限定唯一產品答案。",
+   "context_limit": "同文多位主管只算一筆來源，不宣稱抽樣代表性。",
+   "mapped_rule_ids": [
+    "HM02",
+    "HM03",
+    "HM11"
+   ]
+  },
+  {
+   "source_id": "M38",
+   "title": "From PM to VP of Product: Jiaona Zhang’s career advice from Webflow, Airbnb & Dropbox",
+   "url": "https://review.firstround.com/podcast/from-pm-to-vp-of-product-jiaona-zhangs-career-advice-from-webflow-airbnb-dropbox/",
+   "group": "hiring_manager",
+   "source_type": "產品主管原始訪談；本輪查閱",
+   "accessed_at": "2026-10-13",
+   "reuse_status": "本輪查閱",
+   "adopted_note": "資深領導者需要策略與培養、擴展團隊的證據。",
+   "context_limit": "主管與 IC 分開，不要求履歷先寫完整入職計畫。",
+   "mapped_rule_ids": [
+    "HM09",
+    "HM11"
+   ]
+  },
+  {
+   "source_id": "M39",
+   "title": "4 Questions I Always Ask When Interviewing Product Managers",
+   "url": "https://www.producttalk.org/4-questions-i-always-ask-when-interviewing-product-managers/",
+   "group": "hiring_manager",
+   "source_type": "產品招聘者第一手經驗；本輪查閱",
+   "accessed_at": "2026-10-13",
+   "reuse_status": "本輪查閱",
+   "adopted_note": "現職工作、團隊分工與如何決定做什麼，是初篩核心。",
+   "context_limit": "依職缺尋找合適類型，不把所有 PM 排同一高低序列。",
+   "mapped_rule_ids": [
+    "HM01",
+    "HM03",
+    "HM06"
+   ]
+  },
+  {
+   "source_id": "M40",
+   "title": "You Don't Need Experience To Become a Product Manager",
+   "url": "https://www.producttalk.org/you-dont-need-experience-to-become-a-product-manager/",
+   "group": "hiring_manager",
+   "source_type": "產品招聘者第一手經驗；本輪查閱",
+   "accessed_at": "2026-10-13",
+   "reuse_status": "本輪查閱",
+   "adopted_note": "以能做工作的行為與作品看能力，不把學位證照當替代品。",
+   "context_limit": "新人與轉職語境，不取消明文必要資格。",
+   "mapped_rule_ids": [
+    "HM01",
+    "HM03",
+    "HM08"
+   ]
+  },
+  {
+   "source_id": "M41",
+   "title": "How to Develop Product Expertise",
+   "url": "https://www.producttalk.org/how-to-develop-product-expertise/",
+   "group": "hiring_manager",
+   "source_type": "產品顧問方法；本輪查閱",
+   "accessed_at": "2026-10-13",
+   "reuse_status": "本輪查閱",
+   "adopted_note": "核心能力加專長深度；團隊應尋找真正需要的一兩種長處。",
+   "context_limit": "不要求候選人樣樣頂尖，也不憑廣度敘述加分。",
+   "mapped_rule_ids": [
+    "HM01",
+    "HM02",
+    "HM11"
+   ]
+  },
+  {
+   "source_id": "M42",
+   "title": "The Non-PM’s Guide to Hiring A Product Manager",
+   "url": "https://www.linkedin.com/pulse/non-pms-guide-hiring-product-manager-merci-victoria-grace",
+   "group": "hiring_manager",
+   "source_type": "產品招聘者第一手流程；本輪查閱",
+   "accessed_at": "2026-10-13",
+   "reuse_status": "本輪查閱",
+   "adopted_note": "看提問、實際交付、失敗修正與協作情境。",
+   "context_limit": "不採作業做越久越有誠意；自訂情境題需合理負擔。",
+   "mapped_rule_ids": [
+    "HM03",
+    "HM05",
+    "HM06",
+    "HM12"
+   ]
+  },
+  {
+   "source_id": "M43",
+   "title": "Interview feedback template ／ Confluence",
+   "url": "https://www.atlassian.com/software/confluence/templates/interview-feedback",
+   "group": "hiring_manager",
+   "source_type": "雇主協作範本；本輪查閱",
+   "accessed_at": "2026-10-13",
+   "reuse_status": "本輪查閱",
+   "adopted_note": "先定尺度、保留觀察及未問問題，獨立交回評語再討論。",
+   "context_limit": "流程範本不是預測工作表現的實證。",
+   "mapped_rule_ids": [
+    "HM10",
+    "HM13"
+   ]
+  },
+  {
+   "source_id": "M44",
+   "title": "How to use the Profession Map for recruiting people professionals ／ CIPD",
+   "url": "https://www.cipd.org/en/the-people-profession/the-profession-map/how-it-works/for-selecting-assessing-interviewing-people-professionals/",
+   "group": "hiring_manager",
+   "source_type": "專業機構操作指南；本輪查閱",
+   "accessed_at": "2026-10-13",
+   "reuse_status": "本輪查閱",
+   "adopted_note": "把職級能力標準轉為初篩與面試證據問題。",
+   "context_limit": "原為人資職類，只借轉譯方法，不借職能內容。",
+   "mapped_rule_ids": [
+    "HM01",
+    "HM09",
+    "HM13"
+   ]
+  },
+  {
+   "source_id": "M45",
+   "title": "Fair selection: Surrey Police and Sussex Police ／ CIPD",
+   "url": "https://www.cipd.org/uk/knowledge/case-studies/surrey-sussex-police/",
+   "group": "hiring_manager",
+   "source_type": "組織實務個案；本輪查閱",
+   "accessed_at": "2026-10-13",
+   "reuse_status": "本輪查閱",
+   "adopted_note": "只列操作成果可能漏掉領導能力；具體回饋有助公平感。",
+   "context_limit": "警察內部晉升情境，不能直推台灣 PM 招聘。",
+   "mapped_rule_ids": [
+    "HM09",
+    "HM13"
+   ]
+  },
+  {
+   "source_id": "M46",
+   "title": "Leadership Principles",
+   "url": "https://www.amazon.jobs/content/en/our-workplace/leadership-principles",
+   "group": "hiring_manager",
+   "source_type": "雇主原始價值定義；本輪查閱",
+   "accessed_at": "2026-10-13",
+   "reuse_status": "本輪查閱",
+   "adopted_note": "客戶起點、長期責任、尋找反證等可轉為行為追問。",
+   "context_limit": "不把價值口號出現次數或人格相似性計分。",
+   "mapped_rule_ids": [
+    "HM02",
+    "HM03",
+    "HM11"
+   ]
+  },
+  {
+   "source_id": "M47",
+   "title": "Onboarding a product manager - do's and don'ts in the first few weeks - The Intercom Blog",
+   "url": "https://www.intercom.com/blog/onboarding-a-product-manager-dos-and-donts-in-the-first-few-weeks",
+   "group": "hiring_manager",
+   "source_type": "產品從業者經驗；本輪查閱",
+   "accessed_at": "2026-10-13",
+   "reuse_status": "本輪查閱",
+   "adopted_note": "到職需對齊目標、決策權與成功定義，理解新產品情境。",
+   "context_limit": "非招聘效度研究；只用作可遷移經驗的追問。",
+   "mapped_rule_ids": [
+    "HM01",
+    "HM07",
+    "HM11"
+   ]
+  },
+  {
+   "source_id": "M48",
+   "title": "Hunter Walk on product management - The Intercom Blog",
+   "url": "https://www.intercom.com/blog/podcasts/homebrews-hunter-walk-product-management",
+   "group": "hiring_manager",
+   "source_type": "產品主管原始訪談；本輪查閱",
+   "accessed_at": "2026-10-13",
+   "reuse_status": "本輪查閱",
+   "adopted_note": "同理各方不等於凡事共識決，技術協作不等於親自寫程式。",
+   "context_limit": "對技術深度的期待仍依具體產品與職缺。",
+   "mapped_rule_ids": [
+    "HM02",
+    "HM06",
+    "HM08"
+   ]
+  },
+  {
+   "source_id": "M49",
+   "title": "My Favorite PM Interview Question - Silicon Valley Product Group : Silicon Valley Product Group",
+   "url": "https://www.svpg.com/my-favorite-pm-interview-question",
+   "group": "hiring_manager",
+   "source_type": "產品主管招聘經驗；本輪查閱",
+   "accessed_at": "2026-10-13",
+   "reuse_status": "本輪查閱",
+   "adopted_note": "看是否承擔決策又理解權限與多方限制。",
+   "context_limit": "不依候選人贊成某個比喻與否判人格。",
+   "mapped_rule_ids": [
+    "HM03",
+    "HM06"
+   ]
+  },
+  {
+   "source_id": "M50",
+   "title": "Job Analysis",
+   "url": "https://www.opm.gov/policy-data-oversight/assessment-and-selection/job-analysis/",
+   "group": "hiring_manager",
+   "source_type": "評估方法基礎；本輪查閱",
+   "accessed_at": "2026-10-13",
+   "reuse_status": "本輪查閱",
+   "adopted_note": "先理解職務任務、所需能力及兩者連結，再設篩選。",
+   "context_limit": "方法原則可採用，不能移植美國公部門法規。",
+   "mapped_rule_ids": [
+    "HM01",
+    "HM13"
+   ]
+  },
+  {
+   "source_id": "M51",
+   "title": "AI Product Manager Interview Questions (and prep) - IGotAnOffer (2026-05-04)",
+   "url": "https://igotanoffer.com/en/advice/ai-product-manager-interview",
+   "group": "hiring_manager",
+   "source_type": "B 招聘與面試實務指南",
+   "accessed_at": "2026-10-25",
+   "reuse_status": "使用者 2026-10-25 查閱提供；本 session 未重開網頁",
+   "adopted_note": "AI PM 須理解 AI 輸出的非確定性（non-deterministic nature），具備設定合理預期、設計錯誤/退場狀態（failure/fallback states）、制定評估指標（evaluation metrics）並與資料科學家協作處理預測不一致的能力。",
+   "context_limit": "屬北美科技大廠 AI PM 面試標準；非 AI 專屬職缺僅在候選人列出 AI 功能或 Agent 工作流時作為證據與追問檢查，不作普遍淘汰門檻。",
+   "mapped_rule_ids": [
+    "HM14",
+    "HM08"
+   ]
+  },
+  {
+   "source_id": "M52",
+   "title": "The Ultimate AI Product Manager Interview Guide (2026 Edition) - TechInterview",
+   "url": "https://www.techinterview.net/blog/ai-product-manager-interview-guide",
+   "group": "hiring_manager",
+   "source_type": "B/C 產品評估框架",
+   "accessed_at": "2026-10-25",
+   "reuse_status": "使用者 2026-10-25 查閱提供；本 session 未重開網頁",
+   "adopted_note": "AI 產品為機率性（probabilistic）而非確定性；關鍵產品挑戰在於定義準確率基準（Precision/Recall 取捨）、可靠性驗收（Evals）以及 Human-in-the-Loop (HITL) 邊界設計（AI 在哪裡停下、人工在哪裡確認或介入）。",
+   "context_limit": "用於檢視履歷中 AI 案例是否交代『驗收標準、回饋修正與人工判斷邊界』；不要求一般 PM 在履歷中計算 Token 成本。",
+   "mapped_rule_ids": [
+    "HM14",
+    "HM07"
+   ]
+  },
+  {
+   "source_id": "M53",
+   "title": "OpenAI Product Manager Interview (questions, process, prep) - IGotAnOffer (2026-05-05)",
+   "url": "https://igotanoffer.com/en/advice/openai-product-manager-interview",
+   "group": "hiring_manager",
+   "source_type": "B 雇主面試實務指南",
+   "accessed_at": "2026-10-25",
+   "reuse_status": "使用者 2026-10-25 查閱提供；本 session 未重開網頁",
+   "adopted_note": "不可直接套用傳統確定性軟體的成功指標；須評估模型權衡（trade-offs）、護欄與異常風險緩解。",
+   "context_limit": "僅借用其『不以單純功能上線等同 AI 品質』的判讀邏輯，不將前沿模型研究室的使命要求套用至一般企業。",
+   "mapped_rule_ids": [
+    "HM14",
+    "HM05"
+   ]
+  },
+  {
+   "source_id": "M54",
+   "title": "AI Product Manager Evaluation Framework 2026 - AIPM Framework",
+   "url": "https://aipmframework.com/",
+   "group": "hiring_manager",
+   "source_type": "B 選才評分框架",
+   "accessed_at": "2026-10-25",
+   "reuse_status": "使用者 2026-10-25 查閱提供；本 session 未重開網頁",
+   "adopted_note": "區分『理解模型能力與限制並實際建立 AI/Agent 工作流解決問題』與『僅掛名或被動閱讀』。",
+   "context_limit": "明確排除該文要求個人 GitHub 專案或親自寫程式的極端門檻；僅採其『須具體呈現 AI 工具/功能之問題定義、限制處理與驗證方式』。",
+   "mapped_rule_ids": [
+    "HM14"
+   ]
+  }
+ ]
+}

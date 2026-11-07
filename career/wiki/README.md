@@ -4,6 +4,7 @@
 # career/wiki — 職能框架分頁 / Competency wiki pages
 
 > 入口與路由表在 [`../competency-framework.md`](../competency-framework.md)（Home）。本頁僅為目錄。
+> 📚 **現行事實以 [`../library/`](../library/README.md) 為準**：wiki 是逐次疊加的證據層，舊段落可能已被更正（清單見 [`../library/superseded.md`](../library/superseded.md)）。
 > ⚠️ 個人職涯資料，非 1111 規格文件（規則見 [`../CLAUDE.md`](../CLAUDE.md)）。
 
 - [F01 產品定義全鏈路](F01-product-definition.md)
@@ -17,8 +18,15 @@
 - [F09 利害關係人管理與向上影響](F09-stakeholder-influence.md)
 - [F10 業務邏輯梳理](F10-business-logic.md)
 - [F11 問題解決與維運交付](F11-problem-solving-ops.md)
+- [F12 C 端行動產品與 0→1 初創](F12-consumer-mobile.md)
+- [F13 變現、定價與金流](F13-monetization-pricing.md)
+- [F14 國際化與跨文化在地化](F14-localization-intl.md)
+- [F15 AI 協作系統設計與治理](F15-ai-workflow-governance.md)
+- [完整職涯時間軸（2013–2022 前段職涯）](prior-roles.md)
 - [旗艦專案 E.1 跨系統聯絡人才](flagship-e1.md)
 - [履歷可用摘要](resume-extract.md)
 - [學歷・證照與語言](education-certifications.md)
+- [證據頁：前段職涯產品的公開數據](evidence-prior-products.md)
 - [證據頁：工單 × 付費客戶交叉分析](evidence-paying-customers.md)
+- [PM 語彙對照表（50 概念 → 證據／缺口）](pm-vocabulary-map.md)
 - [下一步補強建議](growth-edges.md)

@@ -42,6 +42,16 @@ description: >
 | 區塊內容標籤 | MECE 四狀態表、權限表格 | `` `功能樣式` `` 與 `` `資料來源` `` 兩段（反引號標籤） |
 | 設計稿連結 | 無固定章節 | 固定 `## 設計稿` 章節放 Figma 連結 |
 
+**求才系統再分新版／現版（架構不同，2026-09-30 使用者裁定）**：頁面／文件編號**英文字母開頭**（`A.1`、`B.2`、`E.1`、`J.1.7`）＝**新版求才**；**純數字**（`2.2`、`3.1.1`、`5.5`）＝**現版求才**。以文件編號判斷，不看所在資料夾字母（`C. 職缺` 內的 `2.x` 仍是現版）。IA 層級異動（新增／搬移節點、版本變更）要同時更新 HackMD Sitemap（`rkGFjjlPWe`）與 `user-journey/recruiter_journey_map.md`。
+
+* **前端技術架構**（使用者 2026-10-02 提供的瀏覽器偵測結果，未做完整 bundle 分析）：
+  * **新版求才**（如首頁、`/company/...`）：Nuxt 3（Vue 3＋Vite），根節點 `#__nuxt`；仍載入 jQuery 3.7.1／jquery-migrate 與舊外掛（impromptu、fancyBox3、simplebar 等），屬遷移期混合。
+  * **現版求才**（`.aspx`，如 `PublishList.aspx`）：ASP.NET WebForms＋jQuery 3.7.1＋Bootstrap，表單互動走伺服器 postback（`__VIEWSTATE`、`__doPostBack`），無 Vue。
+  * **共用元件**：`components.1111.com.tw/loader.js` 載入以 IIFE 打包、用版本號管理的獨立元件（如 `category-selector`），新舊頁面都能引用，不依賴 Nuxt。
+  * 第三方追蹤：Facebook Pixel、Alexa（`atrk.js`）。
+  * 影響：同一個前端功能（如埋點、共用元件）新版可用 Nuxt composable，現版要用 jQuery／原生 JS 另寫一份。
+
+
 本 skill 下文的詳細慣例（初始化、MECE、紅字、mermaid 等）**以求才系統為主**；撰寫求職系統文件時以 `assets/template-jobseeker.md` 的骨架為準，樣式慣例（反引號欄位、紅字變更、兩空格縮排、mermaid）仍通用。
 
 ## 何時使用

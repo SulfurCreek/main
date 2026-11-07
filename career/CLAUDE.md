@@ -1,42 +1,21 @@
-<!--markdownlint-disable MD033-->
-<!--markdownlint-disable MD013-->
+# Claude Career：兩個固定 Session
+2026-11-05 本人最新要求：本區以本檔、ROLE_CONTRACT 與角色專用治理為準。根目錄或舊 wiki 中的四階段編譯、驗證器、tw-voice 舊路由及逐次事實查核，不再是履歷工作流程；不得據此重啟。Marketer 持續負責有說服力的完整主要上游寫作。
 
-# career/ — 個人職涯資料 / Personal career material
+先讀 `ROLE_CONTRACT.md`、`PIPELINE_POLICY.md`。本人已指派的角色持續有效；不是讀到某份文件就被重新指派，也不以同一分支當成同一角色。
 
-這裡是**使用者的個人職涯資料**（職能盤點、履歷素材、作品集），與本 repo 的 1111 規格文件工作**刻意分開**。
-當成一般 Markdown 文件處理即可。
+| Session | 專用治理 | 必須交付 |
+| --- | --- | --- |
+| Marketer | `MARKETER_GOVERNANCE.md` | **主要上游行銷寫手**實際撰寫、選材、重構並整合完整上游稿；不是只提供定位與編排 |
+| Fact Gatherer | `FACT_GATHERER_GOVERNANCE.md` | 訪談、蒐集、釐清與更新確認事實，交回來源摘要；不自行寫履歷定稿 |
 
-*The user's personal career material — competency inventory, résumé source, portfolio. Deliberately kept apart
-from this repo's 1111 spec-documentation work. Treat as plain Markdown.*
+尚未指派時只確認一次；已知的 Marketer／Fact Gatherer 不因任務出現「review」「問問題」「改字」自行切換。任務接續各記 `session-state/marketer.md`、`session-state/fact-gatherer.md`，治理維護不代填或清空正在做的任務。
 
-## 🚫 硬規則：不外流 / Hard rule: never publish
+Writer／Marketer 先逐字讀完整 feedback，再改稿；每改一句立即由左至右、上至下重讀完整段落，Summary 改一句就讀完整 Summary，不等整段改完才補讀。具體方式依 ROLE_CONTRACT 與專用治理。
 
-**絕不**把 `career/` 的任何內容推送、同步或建立到 HackMD `1111-jobdocs` 團隊工作區（或任何 HackMD note）。
-那是公司共用空間，一旦寫入即為不可逆的個人資料外洩。
+Marketer 的任務是寫有說服力的完整主要上游稿；不誇大、不捏造只是底線，不是重新稽核每個已確認事實。只有會改變主張的具體缺失／矛盾才交 Fact Gatherer，其餘編輯直接做。Writer／Marketer 舊 LOCK、解鎖、驗證器、強制盲審、三分類與 ATS 打分不恢復。
 
-*Never push, sync, or create `career/` content in the HackMD `1111-jobdocs` team workspace (or any HackMD note) —
-it is a shared company space and the leak would be irreversible.*
+只推 `claude/happy-lamport-ljis8c` 的獲准變更；main 嚴格唯讀，不 force push。不寫 `career/02_codex_stage/`、`career/drafts/codex/`、`career/site/` 或工作線檔案；自有 career skill 維護依本人授權。career 內容不送公司 HackMD。不要在 CLAUDE.md 用 @AGENTS.md 混入 Codex 身分。
 
-同理，`career/` 的量化數字若來自 1111 內部資料（工單、客戶名冊、Roadmap），**對外版本必須抽象化**：
-可寫「跨系統即時訊息」「1,109 家付費帳號」，但**不外露**內部 API 名、欄位名、權限代碼、廠商編號與名稱。
+Marketer 動筆前須先理解案例的「外部場景、真正難度、實質影響」，答不出就先問本人或交 Fact Gatherer，不憑猜測換字；Summary 與短標每詞須通過無背景第三人 3 秒測試（`MARKETER_GOVERNANCE.md`〈動筆前置閘門〉）。此規則不是事實稽核 gate，不恢復舊驗證流程。
 
-## 結構 / Structure
-
-| 路徑 | 內容 |
-| :--- | :--- |
-| `competency-framework.md` | **wiki 入口**：定位、Profile Snapshot、路由表、F1–F11 總覽 |
-| `wiki/` | 職能分頁（`F01`–`F11`）、旗艦專案、履歷摘要、學歷證照、證據頁、缺口盤點 |
-| `portfolio/` | 作品集 case study（完整敘事＋圖表）|
-
-**依任務只載入需要的分頁**（入口的路由表會指路），不要整包讀進來。更新職能內容時改對應的 `wiki/` 分頁，
-入口只維護索引與快照。
-
-## 工具分工 / Tooling
-
-- 履歷／CV／LinkedIn／作品集／職能盤點 → **`resume-craft`** skill
-- 1111 規格書 → **`spec-doc-1111`** skill（**不要**套用到 `career/`，這裡不是規格書：
-  沒有 User Story／Use Case 區塊、初始化、權限代碼表、版控表那一套）
-- 這兩者與根目錄 `CLAUDE.md`（HackMD API）是三條獨立的線，刻意不混用。
-
-> 做一般 SA／PM 規格產出、打 HackMD API、看 Figma、跑資料分析時，不需要載入 `career/` 或 `resume-craft`——
-> 保持日常工作流的 context 乾淨。
+本檔與 AGENTS.md 為同文入口，改一邊要同步另一邊。

@@ -3,7 +3,7 @@
 
 # 作品集 / Portfolio ・ 大企業訊號
 
-> 回 [`../SKILL.md`](../SKILL.md)。範本：[`../assets/portfolio-case-study.md`](../assets/portfolio-case-study.md)。
+> 回 [`../SKILL.md`](../SKILL.md)。範本：國際／英文版 [`../assets/portfolio-case-study.md`](../assets/portfolio-case-study.md)、台灣版 [`../assets/portfolio-case-study-tw.md`](../assets/portfolio-case-study-tw.md)（選法見下方〈市場路由〉）。
 > 已完成的實例：`career/portfolio/e1-cross-system-messaging.md`。
 
 ## 作品集
@@ -29,6 +29,34 @@
 | 閱讀 | 6 秒掃 | 有興趣才細讀 5–15 分 |
 
 **3–5 篇即可**（深度 > 數量）；用真實素材但**勿放機密 1111 資料**（去識別化或用個人專案）。
+
+## 市場路由：用哪份範本
+
+| 投遞對象 | 範本 | 重點 |
+| :--- | :--- | :--- |
+| 外商／英文／策略型角色 | [`portfolio-case-study.md`](../assets/portfolio-case-study.md)（國際版） | Executive Summary、Hypothesis、策略重要性、RICE 式優先級 |
+| 台灣本土企業／新創／執行導向 | [`portfolio-case-study-tw.md`](../assets/portfolio-case-study-tw.md)（台灣版） | 系統分析與規格定義、跨部門交付、上線同步 |
+
+**同一個專案可以出兩版，但兩份共用同一批事實與數字**：先定稿事實與去識別化後的數字，再分別套版；不可為了迎合市場讓兩版的數字、角色或時程不一致。
+
+## 對外版（供作品集網站）
+
+作品集內部版（`career/portfolio/*.md`）可含內部細節；**要上網站的篇章另產對外版**：`career/portfolio/public/<slug>.md`，
+由 Career Move 依下方 NDA 規則去識別化後撰寫，front matter 含 `publish: draft|ready`（使用者核可才設 `ready`）、`source`、`highlights`（首頁數字卡，最多 3 條）。
+欄位與交接流程見 `wiki/personal_line_collab.md`。對外版與內部版共用同一批事實與數字，只是抽象化，不新增、不改寫成果。
+預設保守：不寫公司名、不寫 HackMD／內部 wiki／RAG 索引、時間線只寫年資級距；使用者明說才放寬。
+
+## NDA 去識別化規則
+
+1. **數字**：絕對值改成 % 或相對值（如「流失 60% → 38%」、「縮短一半」）；營收、人數四捨五入成級距（如「數百人」「千萬級」）。
+2. **名稱**：去掉內部 API 名、欄位名、系統代碼，以及客戶與廠商名稱，用通用說法（「後台審核流程」「某類企業客戶」）。
+3. **圖**：截圖與流程圖也要去識別化；Mermaid 節點用通用名稱，不放真實欄位。
+4. **禁止編造或使用假資料**：沒有數據就標 `〔待補數據〕` 或只寫質化描述。誠實契約優先於美觀，寧可版面空一格，也不放編出來的數字。
+5. 來源是 1111 內部資料（工單、客戶名冊、Roadmap）者，對外版本一律先抽象化，見 `career/CLAUDE.md` 硬規則二。
+
+## Mermaid 圖
+
+作品集裡的 Mermaid 一律照 [`wiki/mermaid_styling_rules.md`](../../../../wiki/mermaid_styling_rules.md)（柔和色系、`classDef`、長文字用 `<br>`），並用 mermaid-cli 渲染驗證後才放進文件。每篇最多 1 張，圖要能幫讀者理解狀態、權限或互斥規則，不當裝飾。
 
 ## 大企業訊號
 

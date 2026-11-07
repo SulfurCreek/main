@@ -18,6 +18,7 @@
 | v2.3 | 2026-08-18 | [§8.7] 補回情境二確認結果（唯一一筆訊息被收回後，該對話不再透過 `get-by-condition` 回傳給前端，非顯示成空狀態——上一版覆蓋時漏掉）；補**面試行事曆連動刪除**已確認：被收回訊息若為面試邀約／面試異動＋現場面試，無論情境一二三皆額外刪除該筆面試行事曆資料（廠商＋求職者端）；新增完整收回流程循序圖 |
 | v2.5 | 2026-08-27 | **收回機制重大修訂**（依《信件即時通整併-收回機制》2026/08/27）：新增 §5.7 面試行事曆狀態代碼（`mailCalendar.isConfirm`／`oInterView.Kind`，0–7 含新增的 `7 已廢棄(收回)`）；§5.6 補 `oDelDate`／`tDelDate`；**§8.7 全面改寫**——(1) 面試行事曆由「實體刪除」更正為**狀態改 `7` 且僅影響「邀約中(0)」**，已成立/已過期不受影響；(2) 拆分求才／求職兩端處理範圍（求職端收回**不動**行事曆）；(3) 情境一／二實際只還原或更新**已讀日期**單一欄位（非舊版列的 8 個欄位），情境二為設成 `getDate()` 而非清空；(4) 新增 90 天可收回上限；(5) 補第二階段企業通知卡片可收回之行為；(6) 循序圖同步重繪。新增 3 處 🚧 待確認：可收回條件前後端不一致、收回是否即時通知、情境二對話是否留在列表 |
 | v2.4 | 2026-08-21 | [§5.1] 名稱統一定案：`mailType=6`「到職確認」＝「錄取通知」，目標名稱為**錄取通知**（E.1 上線後全面統一），現階段「到職確認」可接受、兩者視為同義 |
+| v2.6 | 2026-09-18 | **收回機制補充**（依《信件即時通整併-回收機制》2026/09/18＋[E1 第二階段](/IloIqtx8Q2u2_yRpTSOrww)已更新的〈收回企業通知訊息〉章節交叉驗證）：[§5.2] 新增 `sendKind=11`（求才企業通知收回系統訊息，repo 內首次出現，含前端渲染規則：pill 樣式「原邀約已失效」）；[§5.6] 補 `lastReplyDetailNo` 歸零條件（`mailType=8` 且 `interViewKind=3`）；[§8.7] 補「兩端可收回信件類型不同」（求才全類型／求職僅一般訊息，可用 E1p2〈收回企業通知流程〉的求才專屬視角交叉驗證）、補 SQL `sendKind NOT IN (7,8)` 防重複收回、新增「企業通知邀約的行事曆提醒訊息」小節（`sendKind=11` 觸發條件＋UI 規則，含循序圖新分支）、待確認 1 補上新版來源仍未解開此落差的記錄；新增 3 張新截圖的待搬遷註記。本次為既有內容的**補充**，非取代——舊版情境一/二/三 `tLastViewDate`／`oLastViewDate` 回推邏輯、收回後 `mailType` 清空為 `0` 規則等，新文件未重述但不代表取消，維持既有記載 |
 
 ---
 
@@ -189,6 +190,7 @@ Request 為**陣列**，每筆一個異動：
 | `8` | 求職者回收訊息 |
 | `9` | 即時通廠商轉入（視為 `0`） |
 | `10` | 即時通求職者轉入（視為 `1`） |
+| `11` | 求才企業通知收回系統訊息（新增，來源：《信件即時通整併-回收機制》2026/09/18；前端渲染為 pill 樣式「原邀約已失效」，見 §8.7） |
 
 | 情境 | 對應 `SendKind` |
 | :--- | :--- |
@@ -239,7 +241,7 @@ Request 為**陣列**，每筆一個異動：
 | `mailNotice` | `lastReplyDate` | 求職者／廠商最後信件回覆日期 |
 | `mailNotice` | `lastMailType` | 最後一筆信件類別（求職端用；僅更新 `mailType:1／5／6／8`） |
 | `mailNotice` | `nonMsgLastReplyDate` | 求職者／廠商非一般訊息（`mailType:1／5／6／8`）的最後回覆日期（求職端用，判斷 90 天過期） |
-| `mailNotice` | `lastReplyDetailNo` | 需回覆意願的 `mailDetailNo`（`mailType:1／6／8` 時有值；即 §4.2 面試邀約卡片補充欄位） |
+| `mailNotice` | `lastReplyDetailNo` | 需回覆意願的 `mailDetailNo`（`mailType:1／6／8` 時有值；即 §4.2 面試邀約卡片補充欄位）。收回訊息若為 `mailType=8`（面試異動）且 `interViewKind=3`（取消，見 §5.3），該欄位歸零（來源：《信件即時通整併-回收機制》2026/09/18，先前版本僅定義欄位、未載明重置條件） |
 
 > 收回後 `mailNoticeDetailXX.sendKind` 改為 `7`（求才回收）或 `8`（求職者回收，代碼見 §5.2）、`mailType` 清空為 `0`。求才端收回另寫入 `oDeluNo`＋`oDelDate`，求職端收回寫入 `tDelDate`。
 
@@ -763,8 +765,11 @@ sequenceDiagram
 | `mailNoticeDetailXX` | `sendKind=7`、`oDeluNo`、`oDelDate` | `sendKind=8`、`tDelDate` |
 | `mailNotice` 已讀日期 | 更新 `tLastViewDate`（對方＝求職者的已讀） | 更新 `oLastViewDate`（對方＝廠商的已讀） |
 | 面試行事曆 | **會連動**（`mailCalendar`＋`oInterView`） | **不處理**（求職者訊息不會產生面試邀約） |
+| 可收回的信件類型 | **所有信件類型**（含一般訊息＋企業通知卡片） | **僅一般訊息**（企業通知卡片不可收回） |
 
-**共同前置條件**：所有收回 SQL 都帶 `DATEDIFF(DAY, dateSend, GETDATE()) <= 90`——**超過 90 天的訊息不可收回**。
+> 求職端限一般訊息的規則來源：《信件即時通整併-回收機制》2026/09/18（「求職：針對 24 小時內求才端未讀訊息，僅可收回一般訊息」）。與 [第二階段](/IloIqtx8Q2u2_yRpTSOrww)〈收回企業通知流程〉可交叉驗證——該流程圖從頭到尾只有 `actor Emp as 求才廠商` 視角，從未畫過求職端收回企業通知的分支，與本次新文件的明文規則一致。
+
+**共同前置條件**：所有收回 SQL 都帶 `DATEDIFF(DAY, dateSend, GETDATE()) <= 90`——**超過 90 天的訊息不可收回**；且皆帶 `sendKind NOT IN (7,8)`，避免同一則訊息被重複收回（來源：2026/09/18 版 SQL）。
 
 ---
 
@@ -826,6 +831,25 @@ sequenceDiagram
 
 ---
 
+**企業通知邀約的行事曆提醒訊息（新增，來源：2026/09/18 SQL＋[E1 第二階段](/IloIqtx8Q2u2_yRpTSOrww)〈收回企業通知訊息〉UI 規格交叉驗證）**
+
+求才端收回**企業通知類訊息**時，額外判斷該對話關聯的 `mailCalendar`／`oInterView` 面試行程是否有**尚未過期**的一筆（面試時間與報到時間皆未過期；SQL 層面的判斷條件寫作 `setDate > GETDATE()`，兩份文件用詞不同但語意一致）。若有，補發一筆 `sendKind=11`（求才企業通知收回系統訊息，見 §5.2）的系統訊息寫入 `mailNoticeDetailXX`：
+
+```sql
+-- 檢查是否有尚未過期的關聯行事曆行程
+SELECT top 1 maildetailNo from mailCalendar cm
+WHERE cm.infoNo={infoNo} and cm.setDate>GETDATE() and organno={oNo} and talentNo={talentNo}
+-- 有則新增一筆 sendKind=11 的系統訊息
+INSERT INTO mailNoticeDetailXX ...
+```
+
+前端渲染規則（來源：[E1 第二階段](/IloIqtx8Q2u2_yRpTSOrww)〈收回企業通知訊息〉，已由 PM 補上）：
+* 顯示為 **pill 樣式**，文字固定為「**原邀約已失效**」
+* 求職者與廠商**雙方皆會看到**這則系統訊息
+* `sendKind=11` 先前整個 repo 未曾出現過，是本次唯一沒有對應舊版內容可比對的全新規則，已與 E1 第二階段互相印證，非單一來源臆測
+
+---
+
 **第二階段：企業通知卡片也可收回**
 
 第一階段只有一般訊息可收回；[第二階段](/IloIqtx8Q2u2_yRpTSOrww)〈收回優化〉起，**企業通知卡片（詢問意願／面試邀約／面試異動／錄取通知／感謝函）也可收回**。差異在於：
@@ -850,6 +874,7 @@ sequenceDiagram
   * [ ] 24 小時限制由誰把關（前端 only／後端也驗）？
   * [ ] 收回失敗（影響 0 筆）時的前端行為與文案
 * 來源：《信件即時通整併-收回機制》2026/08/27 SQL vs E.1 §1.3.3
+* 補充（2026/09/18 新版來源文件）：文件開頭再次用「24 小時內未讀」描述可收回條件（求才／求職分別敘述），但附帶的 SQL 仍是 `DATEDIFF(DAY, dateSend, GETDATE()) <= 90 and tLastViewDate = '1911/1/1'`，同樣沒有 24 小時子句——本次新文件沒有提供解開此待確認的新證據，維持待確認
 
 </font>
 :::
@@ -891,6 +916,8 @@ sequenceDiagram
 :::
 
 > 🚧 來源文件《信件即時通整併-收回機制》2026/08/27 版內含 10 張截圖（欄位總表、三種狀況的情境圖與 SQL 截圖），本次提供的 Markdown 僅有圖片佔位路徑（`images/IMG-01.png` 等）、無實際圖檔，故未嵌入。三張情境示意圖沿用 08/18 版既有圖。
+>
+> 🚧 2026/09/18 版來源文件另附 3 張實際圖檔（本次有拿到檔案，非佔位路徑），尚未搬遷至 R2（依本 repo 慣例由圖片協作 session 處理，此處不自行上傳）：`01_收回訊息示意_取得資訊記錄更新至mailNotice.png`（對應本節開頭「共同起手式」示意）、`02_面試異動卡片收回示意.png`（對應本節新增的 `lastReplyDetailNo` 歸零規則）、`03_一般訊息收回示意.png`（對應求職端僅一般訊息可收回的求職 SQL 流程）。
 
 ```mermaid
 sequenceDiagram
@@ -935,6 +962,12 @@ sequenceDiagram
         RB->>Cal: update mailCalendar set isConfirm=7（已廢棄-收回）<br>where 90 天內 and isConfirm=0（邀約中）
         RB->>Cal: update oInterView set Kind=7, DateChange=getDate()<br>where 90 天內 and Kind=0（邀約中）
         Note over Cal: 已成立(1)／已過期(2) 等狀態不受收回影響<br>非實體刪除，資料仍保留
+
+        RB->>DB: 若為企業通知類訊息，檢查關聯行事曆行程<br>是否有尚未過期的一筆（新增 2026/09/18）
+        opt 有尚未過期的行事曆行程
+            RB->>DB: INSERT mailNoticeDetailXX<br>新增一筆 sendKind=11 系統訊息
+            Note over RF: pill 樣式，文字「原邀約已失效」<br>求職者與廠商雙方皆會看到
+        end
 
         RB->>Push: 同步整併（notifyType=3 收回）
         Note over Push: 第一階段：notifyType=3 不發 SignalR 通知<br>求職者需重新整理／重新進入聊天室才看到「已收回」<br>🚧 第二階段〈收回優化〉要求即時通知，見待確認 2

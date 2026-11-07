@@ -86,6 +86,13 @@ python3 scripts/repo_healthcheck.py --section branches --section skills
 四段：分支耦合／skill 重複／索引與路由完整性／體積雜物。建議每週一次或每次收斂分支後跑一次，
 把有動作價值的發現寫進 CLAUDE.md 分支索引，**不要把整份報告 commit 進 repo**（它是即時產物，會過期）。
 
+**⚠️ 每次修改共用資產（CLAUDE.md／.claude/skills/／.claude_index.md／wiki/）後，一定要跑一次
+`--section branches` 看「現在合併會衝突？」欄**——這是實測過的教訓：連續幾次共用檔修改曾經讓
+3 支有 open PR 的分支（#9／#10／#12）跟 main 產生真實文字衝突，是使用者發現才處理，不是自己先抓到。
+該欄只對**有 open PR 的分支**才需要處理（沒有 PR 的舊分支顯示 🔴 是正常的血緣落後噪音，
+不用管）；有 PR 又衝突時，處理方式見「收斂分支耦合」一節，**push 回該分支，不是 push 到 main**，
+resolve 完在對應 PR 留言說明。
+
 ---
 
 ## 與 HackMD session 的分工
